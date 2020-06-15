@@ -139,7 +139,7 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     [void] SetOrganizationValueTestString ([string[]] $CheckContent)
     {
-        $result = $CheckContent -match '\s*If.*(?:greater|less|and\/or\s*other|higher).*this is a finding'
+        $result = $CheckContent -match '\s*If.*(?:greater|less|and\/or\s*other|higher|more\s+than\s+"\w*").*this is a finding'
         $formattedResult = 'that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "{0}" ' -f $result
         if ($null -ne $result)
         {
@@ -167,7 +167,7 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     [bool] TestStringForRange ([string] $CheckContent)
     {
-        if ($CheckContent -match '\s*If\s+.*(?:greater|less|and\/or\s*other|higher).*this is a finding')
+        if ($CheckContent -match '\s*If\s+.*(?:greater|less|and\/or\s*other|higher|more\s+than\s+"\w*").*this is a finding')
         {
             return $true
         }

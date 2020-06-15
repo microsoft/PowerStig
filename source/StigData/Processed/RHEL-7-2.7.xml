@@ -3049,7 +3049,8 @@ minclass = 4
 If the value of "minclass" is set to less than "4", this is a finding.</RawString>
     </Rule>
     <Rule id="V-71915" severity="medium" conversionstatus="pass" title="SRG-OS-000072-GPOS-00040" dscresource="nxFileLine">
-      <ContainsLine>maxrepeat = 3</ContainsLine>
+      <ContainsLine>
+      </ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
 
 Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3057,8 +3058,8 @@ Password complexity is one factor of several that determines how long it takes t
       <DuplicateOf />
       <FilePath>/etc/security/pwquality.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxrepeat" is set to more than "3", this is a finding." </OrganizationValueTestString>
       <RawString>The "maxrepeat" option sets the maximum number of allowed same consecutive characters in a new password.
 
 Check for the value of the "maxrepeat" option in "/etc/security/pwquality.conf" with the following command:
@@ -3069,7 +3070,8 @@ maxrepeat = 3
 If the value of "maxrepeat" is set to more than "3", this is a finding.</RawString>
     </Rule>
     <Rule id="V-71917" severity="medium" conversionstatus="pass" title="SRG-OS-000072-GPOS-00040" dscresource="nxFileLine">
-      <ContainsLine>maxclassrepeat = 4</ContainsLine>
+      <ContainsLine>
+      </ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
 
 Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3077,8 +3079,8 @@ Password complexity is one factor of several that determines how long it takes t
       <DuplicateOf />
       <FilePath>/etc/security/pwquality.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxclassrepeat" is set to more than "4", this is a finding." </OrganizationValueTestString>
       <RawString>The "maxclassrepeat" option sets the maximum number of allowed same consecutive characters in the same class in the new password.
 
 Check for the value of the "maxclassrepeat" option in "/etc/security/pwquality.conf" with the following command:
