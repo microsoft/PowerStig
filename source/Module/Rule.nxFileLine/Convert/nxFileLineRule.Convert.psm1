@@ -81,7 +81,14 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     [void] SetContainsLine ([string[]] $CheckContent)
     {
-        $containsLine = Get-nxFileLineContainsLine -CheckContent $CheckContent
+        if ($this.IsHardCoded())
+        {
+            $containsLine = $this.GetHardCodedString()
+        }
+        else
+        {
+            $containsLine = Get-nxFileLineContainsLine -CheckContent $CheckContent
+        }
 
         if (-not $this.SetStatus($containsLine))
         {
@@ -179,18 +186,19 @@ class nxFileLineRuleConvert : nxFileLineRule
             $CheckContent -Match 'If\s+.*".*".*commented out.*this is a finding|If\s+.*"\w*".*is missing from.*file.*this is a finding' -or
             (
                 # CheckContent match for RHEL STIG
-                $CheckContent -Match '#\s+(?:cat|grep).*/.*/.*(?:grep|).*' -and
+                $CheckContent -Match '#\s+(?:cat|grep|more).*/.*/.*(?:grep|).*' -and
                 (
                     $CheckContent -Match 'If\s+.*(?:"\w*"|"\w*\s*\w"|the\s+line\s+is\s+commented\s+out).*,\s+this\s+is\s+a\s+finding' -or
                     $CheckContent -Match 'If\s+.*required\s+value\s+is\s+not\s+set.*,\s+this\s+is\s+a\s+finding' -or
                     $CheckContent -Match 'If\s+.*configuration\s+file\s+does\s+not\s+exist\s+or\s+allows\s+for.*,\s+this\s+is\s+a\s+finding' -or
                     $CheckContent -Match 'If\s+.*command(?:s|)\s+(?:does|do)\s+not\s+return\s+(?:any\s+|a\s+line\s+|)output.*,\s+this\s+is\s+a\s+finding' -or
                     $CheckContent -Match 'If\s+.*there\s+is\s+no\s+process\s+to\s+validate.*,\s+this\s+is\s+a\s+finding' -or
-                    $CheckContent -Match 'If\s+there\s+is\s+no\s+evidence\s+that\s+the\s+(?:transfer\s+of\s+the\s+|)audit\s+logs.*,\s+this\s+is\s+a\s+finding'
+                    $CheckContent -Match 'If\s+there\s+is\s+no\s+evidence\s+that\s+the\s+(?:transfer\s+of\s+the\s+|)audit\s+logs.*,\s+this\s+is\s+a\s+finding' -or
+                    $CheckContent -Match 'Verify\s+the\s+operating\s+system\s+displays\s+the\s+Standard\s+Mandatory\s+DoD\s+Notice\s+and\s+Consent\s+Banner'
                 )
             ) -and
             $CheckContent -NotMatch 'ESXi' -and
-            $CheckContent -NotMatch '#\s*cat\s+\/etc\/fstab.*'
+            $CheckContent -NotMatch '#\s*(?:cat|more)\s+\/etc\/fstab.*'
         )
         {
             return $true

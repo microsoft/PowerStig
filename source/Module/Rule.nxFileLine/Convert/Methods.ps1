@@ -96,18 +96,24 @@ function Get-nxFileLineDoesNotContainPattern
 
     try
     {
-        $results = @()
-        foreach ($line in $this.ContainsLine)
+        if ($doesNotContainPattern.ContainsKey($this.ContainsLine))
         {
-            if ($doesNotContainPattern.ContainsKey($line))
-            {
-                $results += $doesNotContainPattern[$line]
-            }
-            else
-            {
-                # This could be expanded upon in the future, dynamically creating the DoesNotContainPattern property.
-                $results += $null
-            }
+            $results = $doesNotContainPattern[$this.ContainsLine]
+        }
+
+        if
+        (
+            $results -eq 'DynamicallyGeneratedDoesNotContainPattern' -or
+            $doesNotContainPattern.ContainsKey($this.ContainsLine) -eq $false
+        )
+        {
+            <#
+                The "Dynamic" DoesNotContainPattern generation takes the containsLine and prefixes it with
+                a hash, as well as replaces any spaces with a RegEx \s*.
+            #>
+            $doesNotContainPattern = $this.ContainsLine -replace '=', '\s*=\s*' -replace '\s+', '\s*'
+            $doesNotContainPattern = $doesNotContainPattern.Replace('\s*\s*', '\s*')
+            $results = '#\s*{0}' -f $doesNotContainPattern
         }
     }
     catch

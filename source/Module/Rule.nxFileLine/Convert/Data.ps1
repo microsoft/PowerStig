@@ -10,7 +10,7 @@ data regularExpression
     ConvertFrom-StringData -StringData @'
         nxFileLineContainsLine        = .*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
         nxFileLineContainsLineExclude = The result must contain the following line:|If\\s+.*commented\\s+(?:out|line).*|#\\s+cat\\s+/etc/redhat-release
-        nxFileLineFilePath            = #\\s+grep.*\\s+(?<filePath>\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
+        nxFileLineFilePath            = #\\s+(?:grep|more).*\\s+(?<filePath>\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
         nxFileLineFooterDetection     = ^If\\s+.*$
 '@
 }
