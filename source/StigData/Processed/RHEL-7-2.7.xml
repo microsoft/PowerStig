@@ -29,6 +29,67 @@ If the file is not owned by the default owner and is not documented with the Inf
 
 If the file is not a member of the default group and is not documented with the Information System Security Officer (ISSO), this is a finding.</RawString>
     </Rule>
+    <Rule id="V-71859" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Display of a standardized and approved use notification before granting access to the operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.
+
+System use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.
+
+The banner must be formatted in accordance with applicable DoD policy. Use the following verbiage for operating systems that can accommodate banners of 1300 characters:
+
+"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
+-At any time, the USG may inspect and seize data stored on this IS.
+
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
+
+
+Satisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000024-GPOS-00007, SRG-OS-000228-GPOS-00088&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the operating system via a graphical user logon.
+
+Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+
+Check to see if the operating system displays a banner at the logon screen with the following command:
+
+# grep banner-message-enable /etc/dconf/db/local.d/*
+banner-message-enable=true
+
+If "banner-message-enable" is set to "false" or is missing, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-71891" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not want to log out because of the temporary nature of the absence.
+
+The session lock is implemented at the point where session activity can be determined.
+
+Regardless of where the session lock is determined and implemented, once invoked, the session lock must remain in place until the user reauthenticates. No other activity aside from reauthentication must unlock the system.
+
+Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system enables a user's session lock until that user re-establishes access using established identification and authentication procedures. The screen program must be installed to lock sessions on the console.
+
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
+
+Check to see if the screen lock is enabled with the following command:
+
+# grep -i lock-enabled /etc/dconf/db/local.d/*
+lock-enabled=true
+
+If the "lock-enabled" setting is missing or is not set to "true", this is a finding.</RawString>
+    </Rule>
     <Rule id="V-71893" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, operating systems need to be able to identify when a user's session has idled and take action to initiate the session lock.
 
@@ -48,6 +109,26 @@ idle-delay=uint32 900
 
 If the "idle-delay" setting is missing or is not set to "900" or less, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-71899" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, operating systems need to be able to identify when a user's session has idled and take action to initiate the session lock.
+
+The session lock is implemented at the point where session activity can be determined and/or controlled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system initiates a session lock after a 15-minute period of inactivity for graphical user interfaces. The screen program must be installed to lock sessions on the console.
+
+Note: If the system does not have a Graphical User Interface installed, this requirement is Not Applicable.
+
+Check for the session lock settings with the following commands:
+
+# grep -i idle-activation-enabled /etc/dconf/db/local.d/*
+
+idle-activation-enabled=true
+
+If "idle-activation-enabled" is not set to "true", this is a finding.</RawString>
+    </Rule>
     <Rule id="V-71901" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, operating systems need to be able to identify when a user's session has idled and take action to initiate the session lock.
 
@@ -66,6 +147,22 @@ If GNOME is installed, check to see a session lock occurs when the screensaver i
 lock-delay=uint32 5
 
 If the "lock-delay" setting is missing, or is not set to "5" or less, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-71923" severity="medium" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Passwords need to be protected at all times, and encryption is the standard method for protecting passwords. If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised. Passwords encrypted with a weak algorithm are no more protected than if they are kept in plain text.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the user and group account administration utilities are configured to store only encrypted representations of passwords. The strength of encryption that must be used to hash passwords for all accounts is "SHA512".
+
+Check that the system is configured to create "SHA512" hashed passwords with the following command:
+
+# grep -i sha512 /etc/libuser.conf 
+
+crypt_style = sha512
+
+If the "crypt_style" variable is not set to "sha512", is not in the defaults section, is commented out, or does not exist, this is a finding.</RawString>
     </Rule>
     <Rule id="V-71933" severity="medium" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. If the information system or application allows the user to consecutively reuse their password when that password has exceeded its defined lifetime, the end result is a password that is not changed per policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -172,6 +269,40 @@ Check the configuration of the "/etc/sudoers" and "/etc/sudoers.d/*" files with 
 
 If any uncommented line is found with a "NOPASSWD" tag, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-71953" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Failure to restrict system access to authenticated users negatively impacts operating system security.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system does not allow an unattended or automatic logon to the system via a graphical user interface.
+
+Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+
+Check for the value of the "AutomaticLoginEnable" in the "/etc/gdm/custom.conf" file with the following command:
+
+# grep -i automaticloginenable /etc/gdm/custom.conf
+AutomaticLoginEnable=false
+
+If the value of "AutomaticLoginEnable" is not set to "false", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-71955" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Failure to restrict system access to authenticated users negatively impacts operating system security.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system does not allow an unrestricted logon to the system via a graphical user interface.
+
+Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+
+Check for the value of the "TimedLoginEnable" parameter in "/etc/gdm/custom.conf" file with the following command:
+
+# grep -i timedloginenable /etc/gdm/custom.conf
+TimedLoginEnable=false
+
+If the value of "TimedLoginEnable" is not set to "false", this is a finding.</RawString>
+    </Rule>
     <Rule id="V-71961" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -210,6 +341,48 @@ If the root password entry does not begin with "password_pbkdf2", this is a find
 
 If the "superusers-account" is not set to "root", this is a finding.</RawString>
     </Rule>
+    <Rule id="V-71977" severity="high" conversionstatus="pass" title="SRG-OS-000366-GPOS-00153" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Changes to any software components can have significant effects on the overall security of the operating system. This requirement ensures the software has not been tampered with and that it has been provided by a trusted vendor.
+
+Accordingly, patches, service packs, device drivers, or operating system components must be signed with a certificate recognized and approved by the organization.
+
+Verifying the authenticity of the software prior to installation validates the integrity of the patch or upgrade received from a vendor. This verifies the software has not been tampered with and that it has been provided by a trusted vendor. Self-signed certificates are disallowed by this requirement. The operating system should not have to verify the software again. This requirement does not mandate DoD certificates for this purpose; however, the certificate used to verify the software must be from an approved CA.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system prevents the installation of patches, service packs, device drivers, or operating system components from a repository without verification that they have been digitally signed using a certificate that is recognized and approved by the organization.
+
+Check that yum verifies the signature of packages from a repository prior to install with the following command:
+
+# grep gpgcheck /etc/yum.conf
+gpgcheck=1
+
+If "gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the certificates for patches and other operating system components are verified. 
+
+If there is no process to validate certificates that is approved by the organization, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-71979" severity="high" conversionstatus="pass" title="SRG-OS-000366-GPOS-00153" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Changes to any software components can have significant effects on the overall security of the operating system. This requirement ensures the software has not been tampered with and that it has been provided by a trusted vendor.
+
+Accordingly, patches, service packs, device drivers, or operating system components must be signed with a certificate recognized and approved by the organization.
+
+Verifying the authenticity of the software prior to installation validates the integrity of the patch or upgrade received from a vendor. This verifies the software has not been tampered with and that it has been provided by a trusted vendor. Self-signed certificates are disallowed by this requirement. The operating system should not have to verify the software again. This requirement does not mandate DoD certificates for this purpose; however, the certificate used to verify the software must be from an approved CA.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system prevents the installation of patches, service packs, device drivers, or operating system components of local packages without verification that they have been digitally signed using a certificate that is recognized and approved by the organization.
+
+Check that yum verifies the signature of local packages prior to install with the following command:
+
+# grep localpkg_gpgcheck /etc/yum.conf
+localpkg_gpgcheck=1
+
+If "localpkg_gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the signatures of local packages and other operating system components are verified. 
+
+If there is no process to validate the signatures of local packages that is approved by the organization, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-71983" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;USB mass storage permits easy introduction of unknown devices, thereby facilitating malicious activity.
 
@@ -236,6 +409,21 @@ Check to see if USB mass storage is disabled with the following command:
 blacklist usb-storage
 
 If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-71987" severity="low" conversionstatus="pass" title="SRG-OS-000437-GPOS-00194" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Previous versions of software components that are not removed from the information system after updates have been installed may be exploited by adversaries. Some information technology products may remove older versions of software automatically from the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system removes all software components after updated versions have been installed.
+
+Check if yum is configured to remove unneeded packages with the following command:
+
+# grep -i clean_requirements_on_remove /etc/yum.conf
+clean_requirements_on_remove=1
+
+If "clean_requirements_on_remove" is not set to "1", "True", or "yes", or is not set in "/etc/yum.conf", this is a finding.</RawString>
     </Rule>
     <Rule id="V-71999" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Timely patching is critical for maintaining the operational availability, confidentiality, and integrity of information technology (IT) systems. However, failure to keep operating system and application software patched is a common mistake made by IT professionals. New patches are released daily, and it is often difficult for even experienced System Administrators to keep abreast of all the new patches. When new weaknesses in an operating system exist, patches are usually made available by the vendor to resolve the problems. If the most recent security patches and updates are not installed, unauthorized users may take advantage of weaknesses in the unpatched software. The lack of prompt attention to patching could result in a system compromise.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2670,47 +2858,6 @@ If the output does not match the example, this is a finding.</RawString>
     </Rule>
   </ManualRule>
   <nxFileLineRule dscresourcemodule="nx">
-    <Rule id="V-71859" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="nxFileLine">
-      <ContainsLine>banner-message-enable=true</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Display of a standardized and approved use notification before granting access to the operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.
-
-System use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.
-
-The banner must be formatted in accordance with applicable DoD policy. Use the following verbiage for operating systems that can accommodate banners of 1300 characters:
-
-"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
-
-By using this IS (which includes any device attached to this IS), you consent to the following conditions:
-
--The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
-
--At any time, the USG may inspect and seize data stored on this IS.
-
--Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
-
--This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
-
--Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
-
-
-Satisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000024-GPOS-00007, SRG-OS-000228-GPOS-00088&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*banner-message-enable\s*=\s*true</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/dconf/db/local.d/</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the operating system via a graphical user logon.
-
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
-
-Check to see if the operating system displays a banner at the logon screen with the following command:
-
-# grep banner-message-enable /etc/dconf/db/local.d/*
-banner-message-enable=true
-
-If "banner-message-enable" is set to "false" or is missing, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-71863" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="nxFileLine">
       <ContainsLine>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
@@ -2776,55 +2923,6 @@ By using this IS (which includes any device attached to this IS), you consent to
 If the operating system does not display a graphical logon banner or the banner does not match the Standard Mandatory DoD Notice and Consent Banner, this is a finding.
 
 If the text in the "/etc/issue" file does not match the Standard Mandatory DoD Notice and Consent Banner, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-71891" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="nxFileLine">
-      <ContainsLine>lock-enabled=true</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not want to log out because of the temporary nature of the absence.
-
-The session lock is implemented at the point where session activity can be determined.
-
-Regardless of where the session lock is determined and implemented, once invoked, the session lock must remain in place until the user reauthenticates. No other activity aside from reauthentication must unlock the system.
-
-Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*lock-enabled\s*=\s*true</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/dconf/db/local.d/</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system enables a user's session lock until that user re-establishes access using established identification and authentication procedures. The screen program must be installed to lock sessions on the console.
-
-Note: If the system does not have GNOME installed, this requirement is Not Applicable.
-
-Check to see if the screen lock is enabled with the following command:
-
-# grep -i lock-enabled /etc/dconf/db/local.d/*
-lock-enabled=true
-
-If the "lock-enabled" setting is missing or is not set to "true", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-71899" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
-      <ContainsLine>idle-activation-enabled=true</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, operating systems need to be able to identify when a user's session has idled and take action to initiate the session lock.
-
-The session lock is implemented at the point where session activity can be determined and/or controlled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*idle-activation-enabled\s*=\s*true</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/dconf/db/local.d/</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system initiates a session lock after a 15-minute period of inactivity for graphical user interfaces. The screen program must be installed to lock sessions on the console.
-
-Note: If the system does not have a Graphical User Interface installed, this requirement is Not Applicable.
-
-Check for the session lock settings with the following commands:
-
-# grep -i idle-activation-enabled /etc/dconf/db/local.d/*
-
-idle-activation-enabled=true
-
-If "idle-activation-enabled" is not set to "true", this is a finding.</RawString>
     </Rule>
     <Rule id="V-71903" severity="medium" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="nxFileLine">
       <ContainsLine>ucredit = -1</ContainsLine>
@@ -3008,25 +3106,6 @@ ENCRYPT_METHOD SHA512
 
 If the "/etc/login.defs" configuration file does not exist or allows for password hashes other than SHA512 to be used, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-71923" severity="medium" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="nxFileLine">
-      <ContainsLine>crypt_style = sha512</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Passwords need to be protected at all times, and encryption is the standard method for protecting passwords. If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised. Passwords encrypted with a weak algorithm are no more protected than if they are kept in plain text.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*crypt_style\s*=\s*sha512</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/libuser.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the user and group account administration utilities are configured to store only encrypted representations of passwords. The strength of encryption that must be used to hash passwords for all accounts is "SHA512".
-
-Check that the system is configured to create "SHA512" hashed passwords with the following command:
-
-# grep -i sha512 /etc/libuser.conf 
-
-crypt_style = sha512
-
-If the "crypt_style" variable is not set to "sha512", is not in the defaults section, is commented out, or does not exist, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-71925" severity="medium" conversionstatus="pass" title="SRG-OS-000075-GPOS-00043" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
@@ -3147,46 +3226,6 @@ FAIL_DELAY 4
 
 If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-71953" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="nxFileLine">
-      <ContainsLine>AutomaticLoginEnable=false</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Failure to restrict system access to authenticated users negatively impacts operating system security.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*AutomaticLoginEnable\s*=\s*false</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/gdm/custom.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system does not allow an unattended or automatic logon to the system via a graphical user interface.
-
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
-
-Check for the value of the "AutomaticLoginEnable" in the "/etc/gdm/custom.conf" file with the following command:
-
-# grep -i automaticloginenable /etc/gdm/custom.conf
-AutomaticLoginEnable=false
-
-If the value of "AutomaticLoginEnable" is not set to "false", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-71955" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="nxFileLine">
-      <ContainsLine>TimedLoginEnable=false</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Failure to restrict system access to authenticated users negatively impacts operating system security.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*TimedLoginEnable\s*=\s*false</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/gdm/custom.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system does not allow an unrestricted logon to the system via a graphical user interface.
-
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
-
-Check for the value of the "TimedLoginEnable" parameter in "/etc/gdm/custom.conf" file with the following command:
-
-# grep -i timedloginenable /etc/gdm/custom.conf
-TimedLoginEnable=false
-
-If the value of "TimedLoginEnable" is not set to "false", this is a finding.</RawString>
-    </Rule>
     <Rule id="V-71957" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="nxFileLine">
       <ContainsLine>PermitUserEnvironment no</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Failure to restrict system access to authenticated users negatively impacts operating system security.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3222,72 +3261,6 @@ Check for the value of the "HostbasedAuthentication" keyword with the following 
 HostbasedAuthentication no
 
 If the "HostbasedAuthentication" keyword is not set to "no", is missing, or is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-71977" severity="high" conversionstatus="pass" title="SRG-OS-000366-GPOS-00153" dscresource="nxFileLine">
-      <ContainsLine>gpgcheck=1</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Changes to any software components can have significant effects on the overall security of the operating system. This requirement ensures the software has not been tampered with and that it has been provided by a trusted vendor.
-
-Accordingly, patches, service packs, device drivers, or operating system components must be signed with a certificate recognized and approved by the organization.
-
-Verifying the authenticity of the software prior to installation validates the integrity of the patch or upgrade received from a vendor. This verifies the software has not been tampered with and that it has been provided by a trusted vendor. Self-signed certificates are disallowed by this requirement. The operating system should not have to verify the software again. This requirement does not mandate DoD certificates for this purpose; however, the certificate used to verify the software must be from an approved CA.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*gpgcheck\s*=\s*1</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/yum.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system prevents the installation of patches, service packs, device drivers, or operating system components from a repository without verification that they have been digitally signed using a certificate that is recognized and approved by the organization.
-
-Check that yum verifies the signature of packages from a repository prior to install with the following command:
-
-# grep gpgcheck /etc/yum.conf
-gpgcheck=1
-
-If "gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the certificates for patches and other operating system components are verified. 
-
-If there is no process to validate certificates that is approved by the organization, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-71979" severity="high" conversionstatus="pass" title="SRG-OS-000366-GPOS-00153" dscresource="nxFileLine">
-      <ContainsLine>localpkg_gpgcheck=1</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Changes to any software components can have significant effects on the overall security of the operating system. This requirement ensures the software has not been tampered with and that it has been provided by a trusted vendor.
-
-Accordingly, patches, service packs, device drivers, or operating system components must be signed with a certificate recognized and approved by the organization.
-
-Verifying the authenticity of the software prior to installation validates the integrity of the patch or upgrade received from a vendor. This verifies the software has not been tampered with and that it has been provided by a trusted vendor. Self-signed certificates are disallowed by this requirement. The operating system should not have to verify the software again. This requirement does not mandate DoD certificates for this purpose; however, the certificate used to verify the software must be from an approved CA.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*localpkg_gpgcheck\s*=\s*1</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/yum.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system prevents the installation of patches, service packs, device drivers, or operating system components of local packages without verification that they have been digitally signed using a certificate that is recognized and approved by the organization.
-
-Check that yum verifies the signature of local packages prior to install with the following command:
-
-# grep localpkg_gpgcheck /etc/yum.conf
-localpkg_gpgcheck=1
-
-If "localpkg_gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the signatures of local packages and other operating system components are verified. 
-
-If there is no process to validate the signatures of local packages that is approved by the organization, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-71987" severity="low" conversionstatus="pass" title="SRG-OS-000437-GPOS-00194" dscresource="nxFileLine">
-      <ContainsLine>clean_requirements_on_remove=1</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Previous versions of software components that are not removed from the information system after updates have been installed may be exploited by adversaries. Some information technology products may remove older versions of software automatically from the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*clean_requirements_on_remove\s*=\s*1</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/yum.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system removes all software components after updated versions have been installed.
-
-Check if yum is configured to remove unneeded packages with the following command:
-
-# grep -i clean_requirements_on_remove /etc/yum.conf
-clean_requirements_on_remove=1
-
-If "clean_requirements_on_remove" is not set to "1", "True", or "yes", or is not set in "/etc/yum.conf", this is a finding.</RawString>
     </Rule>
     <Rule id="V-71991" severity="high" conversionstatus="pass" title="SRG-OS-000445-GPOS-00199" dscresource="nxFileLine">
       <ContainsLine>SELINUXTYPE = targeted</ContainsLine>
