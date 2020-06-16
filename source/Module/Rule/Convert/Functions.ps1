@@ -151,6 +151,10 @@ function Get-HardCodedString
         'V-73649', # Windows Server 2016 - Legal Banner Dialog Box Title
         'V-93149', # Windows Server 2019 - Legal Banner Dialog Box Title
         'V-17761', # Outlook 2013 - OrgSetting Value
+        'V-72083', # Redhat - Audit Server IP
+        'V-72087', # Redhat - Storage full auction (Audit)
+        'V-72093', # Redhat - Admin accounts
+        'V-73163', # Redhat - Network Failure Action
         'V-75241', # Windows Defender - ASSignatureDue
         'V-75243', # Windows Defender - AVSignatureDue
         'V-100679', # Ubuntu - Admin accounts
@@ -220,14 +224,24 @@ function Get-HardCodedString
             $hardCodedString = "{0} -ge '1' -and {0} -le '7'"
             continue
         }
-        {$PSItem -match 'V-100679'}
+        {$PSItem -match 'V-72083'}
+        {
+            $hardCodedString = 'the IP address of the log aggregation server is defined i.e.: remote_server = <IP Address>.'
+            continue
+        }
+        {$PSItem -match 'V-72093|V-100679'}
         {
             $hardCodedString = 'the value of the "action_mail_acct" keyword is set to "root" and/or other accounts for security personnel.'
             continue
         }
-        {$PSItem -match 'V-100681'}
+        {$PSItem -match 'V-72087|V-100681'}
         {
-            $hardCodedString = 'the value of the "disk_full_action" option is "SYSLOG", "SINGLE", or "HALT".'
+            $hardCodedString = 'the value of the "disk_full_action" option is set to "SYSLOG", "SINGLE", or "HALT".'
+            continue
+        }
+        {$PSItem -match 'V-73163'}
+        {
+            $hardCodedString = 'the "network_failure_action" option is set to "SYSLOG", "SINGLE", or "HALT".'
             continue
         }
         {$PSItem -match 'V-100885'}

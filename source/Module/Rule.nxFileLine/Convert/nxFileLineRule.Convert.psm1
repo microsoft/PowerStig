@@ -42,28 +42,30 @@ class nxFileLineRuleConvert : nxFileLineRule
     {
         $rawString = $this.SplitCheckContent
         $this.SetFilePath($rawString)
+        $this.SetContainsLine($rawString)
+        $this.SetDoesNotContainPattern()
         if ($this.IsHardCodedOrganizationValueTestString())
         {
             $OrganizationValueTestString = $this.GetHardCodedOrganizationValueTestString()
             $this.set_OrganizationValueTestString($OrganizationValueTestString)
             $this.SetOrganizationValueRequired()
         }
-        else
+        elseif ($this.TestStringForRange($rawString))
         {
-            $this.SetContainsLine($rawString)
-            $this.SetDoesNotContainPattern()
-            if ($this.TestStringForRange($rawString))
-            {
-                $this.SetOrganizationValueRequired()
-                $this.SetOrganizationValueTestString($rawString)
-                $this.ContainsLine = [string]::Empty
-            }
+            $this.SetOrganizationValueTestString($rawString)
+            $this.SetOrganizationValueRequired()
         }
 
         if ($this.conversionstatus -eq 'pass')
         {
             $this.SetDuplicateRule()
             $this.SetDscResource()
+        }
+
+        if ($this.OrganizationValueRequired -eq $true)
+        {
+            $this.set_ContainsLine([string]::Empty)
+            $this.set_DoesNotContainPattern([string]::Empty)
         }
 
         if ($null -ne $this.DuplicateOf)

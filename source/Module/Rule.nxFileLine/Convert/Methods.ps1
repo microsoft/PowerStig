@@ -22,9 +22,8 @@ function Get-nxFileLineContainsLine
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     try
     {
-        $fileContainsLinePattern = '{0}{1}' -f $regularExpression.nxFileLineFilePath, $regularExpression.nxFileLineContainsLine
         $rawString = $CheckContent -join "`n"
-        if ($rawString -match $fileContainsLinePattern)
+        if ($rawString -match $regularExpression.nxFileLineContainsLine)
         {
             $matchResults = $Matches['setting'] -split "`n"
             $results = @()
@@ -70,8 +69,36 @@ function Get-nxFileLineFilePath
 
     try
     {
-        $null = $CheckContent -match $regularExpression.nxFileLineFilePath
-        return $Matches['filePath']
+        $nxFileLineFilePathAggregate = '{0}|{1}|{2}|{3}' -f
+            $regularExpression.nxFileLineFilePathAudit,
+            $regularExpression.nxFileLineFilePathTftp,
+            $regularExpression.nxFileLineFilePathRescue,
+            $regularExpression.nxFileLineFilePath
+        $null = $CheckContent -match $nxFileLineFilePathAggregate
+        switch ($Matches.Keys)
+        {
+            'auditPath'
+            {
+                return $Matches['auditPath']
+            }
+            'tftpPath'
+            {
+                return $Matches['tftpPath']
+            }
+            'rescuePath'
+            {
+                return $Matches['rescuePath']
+            }
+            'filePath'
+            {
+                return $Matches['filePath']
+            }
+            default
+            {
+                Write-Verbose "[$($MyInvocation.MyCommand.Name)] nxFileLineFilePath : Not Found"
+                return $null
+            }
+        }
     }
     catch
     {

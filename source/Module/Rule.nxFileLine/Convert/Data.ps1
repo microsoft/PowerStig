@@ -8,8 +8,11 @@
 data regularExpression
 {
     ConvertFrom-StringData -StringData @'
-        nxFileLineContainsLine        = .*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
+        nxFileLineContainsLine        = #\\s+(?:grep|more).*\\s+(?<filePath>\\/[\\w.\\/-]*\\/[\\w.\\/-]*).*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
         nxFileLineContainsLineExclude = The result must contain the following line:|If\\s+.*commented\\s+(?:out|line).*|#\\s+cat\\s+/etc/redhat-release
+        nxFileLineFilePathAudit       = #\\s+grep.*(?<auditPath>\\/etc\\/audit\\/audit\\.rules).*
+        nxFileLineFilePathTftp        = #\\s+grep.*(?<tftpPath>\\/etc\\/xinetd\\.d\\/tftp).*
+        nxFileLineFilePathRescue      = #\\s+grep.*(?<rescuePath>\\/usr\\/lib\\/systemd\\/system\\/rescue\\.service).*
         nxFileLineFilePath            = #\\s+(?:grep|more).*\\s+(?<filePath>\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
         nxFileLineFooterDetection     = ^If\\s+.*$
 '@
