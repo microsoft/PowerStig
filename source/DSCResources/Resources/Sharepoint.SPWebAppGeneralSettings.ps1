@@ -7,7 +7,7 @@ foreach ($rule in $rules)
 {
     if ($vulnIDs)
     {
-        $vulnIDs += ',' + $rule.ID
+        $vulnIDs += ' ' + $rule.ID
     }
     else
     {
@@ -36,7 +36,7 @@ foreach ($rule in $rules)
         }
     }
 }
-$blockTitle = "[$($vulnIDs)][$($Rule.severity)][$($Rule.title)]"
+$blockTitle = "[$($vulnIDs)]"
 SPWebAppGeneralSettings $blockTitle
 {
     WebAppUrl                           = "$WebAppUrl"
