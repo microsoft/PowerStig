@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V1R19_Manual-xccdf.xml" releaseinfo="Release: 19 Benchmark Date: 25 Oct 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.19" created="11/18/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V1R19_Manual-xccdf.xml" releaseinfo="Release: 19 Benchmark Date: 25 Oct 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.19" created="6/17/2020">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1128,6 +1128,748 @@ Valid to: Friday, June 14, 2041</RawString>
 Verify the Bluetooth radio is turned off unless approved by the organization. If it is not, this is a finding.
 
 Approval must be documented with the ISSO.</RawString>
+    </Rule>
+    <Rule id="V-77189" severity="medium" conversionstatus="pass" title="WN10-EP-000070" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name Acrobat.exe".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+BottomUp: ON
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77191" severity="medium" conversionstatus="pass" title="WN10-EP-000080" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name AcroRd32.exe".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+BottomUp: ON
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77195" severity="medium" conversionstatus="pass" title="WN10-EP-000090" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name chrome.exe".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77201" severity="medium" conversionstatus="pass" title="WN10-EP-000100" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name EXCEL.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77205" severity="medium" conversionstatus="pass" title="WN10-EP-000110" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name firefox.exe".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+BottomUp: ON
+ForceRelocateImages: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77209" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name FLTLDR.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ImageLoad:
+BlockRemoteImageLoads: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+Child Process:
+DisallowChildProcessCreation: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77213" severity="medium" conversionstatus="pass" title="WN10-EP-000130" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name GROOVE.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+ImageLoad:
+BlockRemoteImageLoads: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+Child Process:
+DisallowChildProcessCreation: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77217" severity="medium" conversionstatus="pass" title="WN10-EP-000140" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name iexplore.exe".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+BottomUp: ON
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77221" severity="medium" conversionstatus="pass" title="WN10-EP-000150" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name INFOPATH.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77223" severity="medium" conversionstatus="pass" title="WN10-EP-000160" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name [application name]" with each of the following substituted for [application name]:
+java.exe, javaw.exe, and javaws.exe
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON" for each, this is a finding:
+
+DEP:
+Enable: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77227" severity="medium" conversionstatus="pass" title="WN10-EP-000170" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name lync.exe".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77231" severity="medium" conversionstatus="pass" title="WN10-EP-000180" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name MSACCESS.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77233" severity="medium" conversionstatus="pass" title="WN10-EP-000190" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name MSPUB.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77235" severity="medium" conversionstatus="pass" title="WN10-EP-000210" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name OneDrive.exe".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+ImageLoad:
+BlockRemoteImageLoads: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77239" severity="medium" conversionstatus="pass" title="WN10-EP-000200" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name OIS.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77243" severity="medium" conversionstatus="pass" title="WN10-EP-000220" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name OUTLOOK.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77247" severity="medium" conversionstatus="pass" title="WN10-EP-000240" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name POWERPNT.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77249" severity="medium" conversionstatus="pass" title="WN10-EP-000250" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name PPTVIEW.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77255" severity="medium" conversionstatus="pass" title="WN10-EP-000260" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name VISIO.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77259" severity="medium" conversionstatus="pass" title="WN10-EP-000270" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name VPREVIEW.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77263" severity="medium" conversionstatus="pass" title="WN10-EP-000280" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name WINWORD.EXE".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+ASLR:
+ForceRelocateImages: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77267" severity="medium" conversionstatus="pass" title="WN10-EP-000290" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name wmplayer.exe".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+Payload:
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77269" severity="medium" conversionstatus="pass" title="WN10-EP-000300" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name wordpad.exe".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
@@ -2426,642 +3168,6 @@ Values that would not be a finding include:
 ON
 NOTSET (Default configuration)</RawString>
     </Rule>
-    <Rule id="V-77189" severity="medium" conversionstatus="pass" title="WN10-EP-000070" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,BottomUp,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>Acrobat.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name Acrobat.exe".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-BottomUp: ON
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77191" severity="medium" conversionstatus="pass" title="WN10-EP-000080" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,BottomUp,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>AcroRd32.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name AcroRd32.exe".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-BottomUp: ON
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77195" severity="medium" conversionstatus="pass" title="WN10-EP-000090" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>chrome.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name chrome.exe".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77201" severity="medium" conversionstatus="pass" title="WN10-EP-000100" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>EXCEL.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name EXCEL.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77205" severity="medium" conversionstatus="pass" title="WN10-EP-000110" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,BottomUp,ForceRelocateImages</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>firefox.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name firefox.exe".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-BottomUp: ON
-ForceRelocateImages: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77209" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,BlockRemoteImageLoads,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec,DisallowChildProcessCreation</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>FLTLDR.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name FLTLDR.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ImageLoad:
-BlockRemoteImageLoads: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-Child Process:
-DisallowChildProcessCreation: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77213" severity="medium" conversionstatus="pass" title="WN10-EP-000130" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,BlockRemoteImageLoads,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec,DisallowChildProcessCreation</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>GROOVE.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name GROOVE.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-ImageLoad:
-BlockRemoteImageLoads: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-Child Process:
-DisallowChildProcessCreation: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77217" severity="medium" conversionstatus="pass" title="WN10-EP-000140" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,BottomUp,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>iexplore.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name iexplore.exe".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-BottomUp: ON
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77221" severity="medium" conversionstatus="pass" title="WN10-EP-000150" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>INFOPATH.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name INFOPATH.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77223.a" severity="medium" conversionstatus="pass" title="WN10-EP-000160" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>java.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name [application name]" with each of the following substituted for [application name]:
-java.exe, javaw.exe, and javaws.exe
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON" for each, this is a finding:
-
-DEP:
-Enable: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77223.b" severity="medium" conversionstatus="pass" title="WN10-EP-000160" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>javaw.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name [application name]" with each of the following substituted for [application name]:
-java.exe, javaw.exe, and javaws.exe
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON" for each, this is a finding:
-
-DEP:
-Enable: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77223.c" severity="medium" conversionstatus="pass" title="WN10-EP-000160" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>javaws.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name [application name]" with each of the following substituted for [application name]:
-java.exe, javaw.exe, and javaws.exe
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON" for each, this is a finding:
-
-DEP:
-Enable: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77227" severity="medium" conversionstatus="pass" title="WN10-EP-000170" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>lync.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name lync.exe".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77231" severity="medium" conversionstatus="pass" title="WN10-EP-000180" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>MSACCESS.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name MSACCESS.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77233" severity="medium" conversionstatus="pass" title="WN10-EP-000190" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>MSPUB.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name MSPUB.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77235" severity="medium" conversionstatus="pass" title="WN10-EP-000210" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,BlockRemoteImageLoads,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>OneDrive.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name OneDrive.exe".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-ImageLoad:
-BlockRemoteImageLoads: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77239" severity="medium" conversionstatus="pass" title="WN10-EP-000200" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>OIS.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name OIS.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77243" severity="medium" conversionstatus="pass" title="WN10-EP-000220" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>OUTLOOK.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name OUTLOOK.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
     <Rule id="V-77245" severity="medium" conversionstatus="pass" title="WN10-EP-000230" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable />
@@ -3078,249 +3184,6 @@ This is applicable to unclassified systems, for other systems this is NA.
 Run "Windows PowerShell" with elevated privileges (run as administrator).
 
 Enter "Get-ProcessMitigation -Name plugin-container.exe".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77247" severity="medium" conversionstatus="pass" title="WN10-EP-000240" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>POWERPNT.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name POWERPNT.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77249" severity="medium" conversionstatus="pass" title="WN10-EP-000250" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>PPTVIEW.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name PPTVIEW.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77255" severity="medium" conversionstatus="pass" title="WN10-EP-000260" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>VISIO.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name VISIO.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77259" severity="medium" conversionstatus="pass" title="WN10-EP-000270" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>VPREVIEW.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name VPREVIEW.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77263" severity="medium" conversionstatus="pass" title="WN10-EP-000280" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>WINWORD.EXE</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name WINWORD.EXE".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-ASLR:
-ForceRelocateImages: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77267" severity="medium" conversionstatus="pass" title="WN10-EP-000290" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>wmplayer.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name wmplayer.exe".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-Payload:
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
-    <Rule id="V-77269" severity="medium" conversionstatus="pass" title="WN10-EP-000300" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>wordpad.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name wordpad.exe".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
 If the following mitigations do not have a status of "ON", this is a finding:
@@ -6356,7 +6219,7 @@ Value: 0x00000001 (1)</RawString>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\FVE\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\FVE</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>ValueData is set to 0x00000006 (6) or greater </OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
