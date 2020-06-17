@@ -6,9 +6,9 @@ using module ..\..\PowerStig.psm1
 
 <#
     .SYNOPSIS
-        A composite DSC resource to manage Ubuntu STIG settings
+        A composite DSC resource to manage Redhat Enterprise Linux STIG settings
     .PARAMETER OsVersion
-        The version of Ubuntu operating system STIG to apply and monitor
+        The version of Redhat Enterprise Linux operating system STIG to apply and monitor
     .PARAMETER StigVersion
         Uses the OsVersion to select the version of the STIG to apply and monitor. If this parameter
         is not provided, the most recent version of the STIG is automatically selected.
@@ -29,7 +29,7 @@ using module ..\..\PowerStig.psm1
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
 #>
-configuration Ubuntu
+configuration RHEL
 {
     [CmdletBinding()]
     param
@@ -65,7 +65,7 @@ configuration Ubuntu
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('Ubuntu', $OsVersion, $StigVersion)
+    $stig = [STIG]::New('RHEL', $OsVersion, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
