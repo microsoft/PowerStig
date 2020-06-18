@@ -166,9 +166,9 @@ function Get-ResourceMatchStatement
         {
             return '\[VMHostVssSecurity\]'
         }
-        'SPWebAppGeneralSettingsRule'
+        'SharePointSPWebAppGeneralSettingsRule' 
         {
-            return '\[SPWebAppGeneralSettings\]'
+            return '\[SharePointSPWebAppGeneralSettingsRule\]'
         }
     }
 }

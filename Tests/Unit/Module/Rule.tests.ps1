@@ -281,6 +281,21 @@ try
                 }
             }
 
+            Context 'SharePointSPWebAppGeneralSettingsRule' {
+                It "Should return 'SharePointSPWebAppGeneralSettingsRule' when 'general settings' is found" {
+                    $checkContent = 'general settings'
+                    $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+                    $testResults = [ConvertFactory]::Rule( $rule )
+                    $testResults[0].GetType().Name | Should Not Be 'SharePointSPWebAppGeneralSettingsRule'
+                }
+                It "Should return 'SharePointSPWebAppGeneralSettingsRule' when 'manage web part security' is found" {
+                    $checkContent = 'manage web part security'
+                    $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+                    $testResults = [ConvertFactory]::Rule( $rule )
+                    $testResults[0].GetType().Name | Should Not Be 'SharePointSPWebAppGeneralSettingsRule'
+                }
+            }
+
             Context 'UserRightRule' {
                 $checkContent = 'Run "gpedit.msc".
 

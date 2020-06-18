@@ -148,13 +148,6 @@ try
                 -Select the "Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance" option in the Online Web Part Gallery section.
                 
                 Select "OK".'
-            },
-            @{
-                OrganizationValueRequired = $false
-                PropertyName = 'WebAppUrl'
-                PropertyValue = ''
-                CheckContent = ''
-                FixText = ''
             }
         )
         #endregion
