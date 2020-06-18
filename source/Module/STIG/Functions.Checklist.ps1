@@ -4,16 +4,28 @@
 
 <#
     .SYNOPSIS
-        Automatically creates a STIG Viewer checklist from DSC results or a compiled MOF
+        Automatically creates a STIG Viewer checklist from DSC results (DscResults) or a compiled MOF (MofFile) parameter for a single endpoint. 
+        The function will test based upon the passed in STIG file (XccdfPath) or files (ChecklistSTIGFiles) parameter.
+        Manual entries in the checklist can be injected from a ManualCheckListEntries file.
 
-    .PARAMETER ReferenceConfiguration
-        The MOF that was compiled with a PowerStig composite
+    .PARAMETER MofFile
+        A MOF that was compiled with a PowerStig composite.
 
-    .PARAMETER DscResult
-        The results of Test-DscConfiguration or DSC report server output for a node
+    .PARAMETER DscResults
+        The results of Test-DscConfiguration or DSC report server output for a node.
+
+    .PARAMETER XccdfPath
+        The path to a DISA STIG .xccdf file. PowerSTIG includes the f
+
+    .PARAMETER ChecklistSTIGFiles 
+        A file that contains a list of STIG Xccdf files to use for the checklist output. This 
+        See a sample at /PowerShell/StigData/Samples/RequiredSTIGVersions.xml
+        
+    .PARAMETER OutputPath
+        The location you want the checklist saved to
 
     .PARAMETER ManualChecklistEntries
-        Location of a psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
+        Location of a .psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
 
         This file can be created manually or by exporting an Excel worksheet as XML. The file format should look like the following:
 
@@ -25,26 +37,11 @@
 	        </VulID>
         </ManualChecklistEntries>
 
-    .PARAMETER RequiredSTIGVersions
-        A file that contains a list of required STIG versions to use for the checklist output. Only specify
-        any STIGs that should be processed using a version other than the latest.
-        See a sample at /PowerShell/StigData/Samples/RequiredSTIGVersions.xml
-        
-    .PARAMETER OutputPath
-        The location you want the checklist saved to
-
     .EXAMPLE
-        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualChecklistEntries $ManualChecklistEntriesFile -XccdfPath $xccdfPath -OutputPath $outputPath
-        New-StigCheckList -DscResult $auditRehydrated -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
-        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualChecklistEntries $ManualChecklistEntriesFile -ChecklistSTIGFiles $ChecklistSTIGFiles -OutputPath $outputPath
-        New-StigCheckList -DscResult $auditRehydrated -ChecklistSTIGFiles $ChecklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
-
-    .EXAMPLE
-        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -XccdfPath $xccdfPath -OutputPath $outputPath
-
-    .EXAMPLE
-        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualChecklistEntries "C:\Stig\ManualChecks\2012R2-MS-1.7.psd1" -XccdfPath $xccdfPath -OutputPath $outputPath
-        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualChecklistEntries $ManualChecklistEntriesPath -XccdfPath $xccdfPath -OutputPath $outputPath
+        New-StigCheckList -MofFile $MofFile -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+        New-StigCheckList -MofFile $MofFile -ChecklistSTIGFiles $ChecklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+        New-StigCheckList -DscResults $auditRehydrated -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+        New-StigCheckList -DscResults $auditRehydrated -ChecklistSTIGFiles $ChecklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
 #>
 function New-StigCheckList
 {
@@ -55,20 +52,20 @@ function New-StigCheckList
         [Parameter(Mandatory = $true, ParameterSetName = 'single-mof')]
         [Parameter(Mandatory = $true, ParameterSetName = 'multi-mof')]
         [string]
-        $ReferenceConfiguration,
+        $MofFile,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'single-dsc')]
         [Parameter(Mandatory = $true, ParameterSetName = 'multi-dsc')]
         [psobject]
-        $DscResult,
+        $DscResults,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'single-mof')]
         [Parameter(Mandatory = $true, ParameterSetName = 'single-dsc')]
         [string]
         $XccdfPath,
 
-        [Parameter(ParameterSetName = 'multi-mof')]
-        [Parameter(ParameterSetName = 'multi-dsc')]
+        [Parameter(Mandatory = $true, ParameterSetName = 'multi-mof')]
+        [Parameter(Mandatory = $true, ParameterSetName = 'multi-dsc')]
         [string]
         $ChecklistSTIGFiles,
 
@@ -95,7 +92,7 @@ function New-StigCheckList
     {
         if (-not (Test-Path -Path $XccdfPath))
         {
-            throw "$($XccdfPath) is not a valid path to a ChecklistSTIGFiles.txt file. Provide a full valid path."
+            throw "$($XccdfPath) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path."
         }
         $ChecklistSTIGs = $XccdfPath
     }
@@ -122,23 +119,23 @@ function New-StigCheckList
     # Values for some of these fields can be read from the .mof file or the DSC results file
     if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
     {
-        if (-not (Test-Path -Path $ReferenceConfiguration))
+        if (-not (Test-Path -Path $MofFile))
         {
-            throw "$($ReferenceConfiguration) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
+            throw "$($MofFile) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
         }
 
-        $MofString = Get-Content -Path $ReferenceConfiguration -Raw
+        $MofString = Get-Content -Path $MofFile -Raw
         $TargetNode = Get-TargetNodeFromMof($MofString)
 
     }
     elseif ($PSCmdlet.ParameterSetName -eq 'single-dsc' -or $PSCmdlet.ParameterSetName -eq 'multi-dsc')
     {
         # Check the returned object
-        if ($null -eq $DscResult)
+        if ($null -eq $DscResults)
         {
-            throw 'Passed in $DscResult parameter is null. Please provide a valid result using Test-DscConfiguration.'
+            throw 'Passed in $DscResults parameter is null. Please provide a valid result using Test-DscConfiguration.'
         }
-        $TargetNode = $DscResult.PSComputerName
+        $TargetNode = $DscResults.PSComputerName
     }
 
     $TargetNodeType = Get-TargetNodeType($TargetNode)
@@ -306,7 +303,7 @@ function New-StigCheckList
 
             if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
             {
-                $setting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $vid
+                $setting = Get-SettingsFromMof -MofFile $MofFile -Id $vid
                 $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object {$_.id -eq $VID}
 
                 if ($setting)
@@ -339,7 +336,7 @@ function New-StigCheckList
                 }
                 else
                 {
-                    $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
+                    $setting = Get-SettingsFromResult -DscResults $DscResults -Id $vid
                     if ($setting)
                     {
                         if ($setting.InDesiredState -eq $true)
@@ -374,7 +371,7 @@ function New-StigCheckList
                 # How is the duplicate rule handled? If it is handled, then this duplicate is also covered
                 if ($PSCmdlet.ParameterSetName -eq 'mof')
                 {
-                    $originalSetting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $convertedRule.DuplicateOf
+                    $originalSetting = Get-SettingsFromMof -MofFile $MofFile -Id $convertedRule.DuplicateOf
 
                     if ($originalSetting)
                     {
@@ -385,7 +382,7 @@ function New-StigCheckList
                 }
                 elseif ($PSCmdlet.ParameterSetName -eq 'result')
                 {
-                    $originalSetting = Get-SettingsFromResult -DscResult $dscResult -id $convertedRule.DuplicateOf
+                    $originalSetting = Get-SettingsFromResult -DscResults $DscResults -id $convertedRule.DuplicateOf
 
                     if ($originalSetting.InDesiredState -eq 'True')
                     {
@@ -518,12 +515,12 @@ function Get-MofContent
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $ReferenceConfiguration
+        $MofFile
     )
 
     if (-not $script:mofContent)
     {
-        $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($referenceConfiguration, 4)
+        $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($MofFile, 4)
     }
 
     return $script:mofContent
@@ -541,14 +538,14 @@ function Get-SettingsFromMof
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $ReferenceConfiguration,
+        $MofFile,
 
         [Parameter(Mandatory = $true)]
         [string]
         $Id
     )
 
-    $mofContent = Get-MofContent -ReferenceConfiguration $referenceConfiguration
+    $mofContent = Get-MofContent -MofFile $MofFile
 
     $mofContentFound = $mofContent.Where({$PSItem.ResourceID -match $Id})
 
@@ -567,7 +564,7 @@ function Get-SettingsFromResult
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $DscResult,
+        $DscResults,
 
         [Parameter(Mandatory = $true)]
         [string]
@@ -576,7 +573,7 @@ function Get-SettingsFromResult
 
     if (-not $script:allResources)
     {
-        $script:allResources = $dscResult.ResourcesNotInDesiredState + $dscResult.ResourcesInDesiredState
+        $script:allResources = $DscResults.ResourcesNotInDesiredState + $DscResults.ResourcesInDesiredState
     }
 
     return $script:allResources.Where({$PSItem.ResourceID -match $id})
