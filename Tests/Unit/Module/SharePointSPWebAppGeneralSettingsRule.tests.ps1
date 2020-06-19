@@ -2,7 +2,6 @@
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 
-
 try
 {
     InModuleScope -ModuleName "$($global:moduleName).Convert" {
@@ -43,7 +42,7 @@ try
             @{
                 OrganizationValueRequired = $false
                 PropertyName = 'SecurityValidation'
-                PropertyValue = $true
+                PropertyValue = 'True'
                 CheckContent = 'Review the SharePoint server configuration to ensure user sessions are terminated upon user logoff, and when idle time limit is exceeded.
 
                 Navigate to Central Administration website.
@@ -115,11 +114,11 @@ try
                 Type $webApp.AllowedInlineDownloadedMimeTypes. Remove ({mime type}) where {mime type} represents the mime type to remove (e.g., application\x-shockwave-flash).
                 
                 Press Enter.'
-            }.
+            },
             @{
                 OrganizationValueRequired = $false
                 PropertyName = 'AllowOnlineWebPartCatalog'
-                PropertyValue = $false
+                PropertyValue = 'False'
                 CheckContent = 'Review the SharePoint server configuration to ensure access to the online web part gallery is configured for limited access.
 
                 Log on to Central Administration.

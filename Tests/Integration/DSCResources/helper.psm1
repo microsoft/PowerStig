@@ -24,7 +24,7 @@ data exceptionRuleParameterValues
         ServiceRule                  = 'StartupType'
         UserRightRule                = 'Identity'
         VsphereAdvancedSettingsRule  = 'AdvancedSettings'
-        SPWebAppGeneralSettingsRule  = 'PropertyValue' # using example from DnsServerSettingRule
+        SPWebAppGeneralSettingsRule  = 'PropertyValue'
     }
 }
 #endregion

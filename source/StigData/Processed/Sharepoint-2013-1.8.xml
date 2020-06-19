@@ -171,6 +171,34 @@ Under “System Settings”, click “Configure Alternate Access mappings”.
 
 Review the “Public URL for zone” column values. If any URL does not begin with “https”, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-59941" severity="medium" conversionstatus="pass" title="SRG-APP-000019" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
+
+Remote network and system access is accomplished by leveraging common communication protocols to establish a remote connection. These connections will typically originate over either the public Internet or the Public Switched Telephone Network (PSTN). Neither of these Internetworking mechanisms is private or secure, and they do not, by default, restrict access to networked resources once connectivity is established.
+
+Numerous best practices are employed to protect remote connections, such as utilizing encryption to protect data sessions and firewalls to restrict and control network connectivity. In addition to these protections, auditing must also be utilized in order to track system activity, assist in diagnosing system issues and provide evidence needed for forensic investigations post security incident.
+
+When organizations define security-related application functions or security-related application information, it is incumbent upon the application providing access to that data to ensure auditing of remote connectivity to those resources occurs in support of organizational requirements.
+
+Remote access to security functions (e.g., user management, audit log management, etc.) and security-relevant information requires the activity be audited by the organization. Any application providing remote access must support organizational requirements to audit access or organization-defined security functions and security-relevant information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure remote sessions for accessing security functions and security-relevant information are audited.
+
+Verify that SharePoint audit settings are configured at the site collection level in accordance with your system security plan.
+
+To verify audit settings at the site collection level for each site collection level subject to auditing per the SSP:
+
+Click Settings &gt;&gt; Site settings.
+
+If not at the root of your site collection, under Site Collection Administration, click Go to top level site settings. (Note: The Site Collection Administration section will not be available if you do not have the necessary permissions)
+
+On the Site Settings page, under Site Collection Administration, click Site collection audit settings.
+
+On the Configure Audit Settings page verify the events that are required to audit are selected, and then click OK. If nothing is selected, or the selected criteria do not match the SSP, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-59943" severity="high" conversionstatus="pass" title="SRG-APP-000039" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.
 
@@ -615,6 +643,27 @@ Verify the Central Administration site is not installed on a server located in a
 
 If Central Administrator is installed on a publicly facing SharePoint server, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-59997" severity="medium" conversionstatus="pass" title="SRG-APP-000062" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. 
+
+This requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts. 
+This policy limits the Farm Account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the "Database Access" account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure the farm service account (database access account)  is configured with minimum privileges in Active Directory (AD).
+
+- Verify the account has least privilege in Active Directory.
+- Navigate to “Active Directory Users and Computers” &gt;&gt; Users.
+- Double click on the account to view the account properties.
+- Select the “Members of” tab and verify this account is a member of the Domain Users group only.
+- Select the other tabs in this area to verify no other services or permissions are configured for this account.
+
+If the farm service account is a member of other groups other than Domain Users, this is a finding.
+
+If the Setup User account has unneeded permissions or services assigned, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-59999" severity="medium" conversionstatus="pass" title="SRG-APP-000062" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. 
 
@@ -633,6 +682,28 @@ This policy limits the Farm Account privileges in AD.  However, default permissi
 
 Otherwise, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-60001" severity="medium" conversionstatus="pass" title="SRG-APP-000062" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. 
+
+This requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts.
+ 
+This policy limits the setup account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the "Database Access" account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure the setup account is configured with the minimum privileges in Active Directory.
+
+Verify the account has least privilege in Active Directory.
+- Navigate to “Active Directory Users and Computers” &gt;&gt; Users.
+- Double click on the account to view the account properties.
+- Select the “Members of” tab and verify this account is a member of the Domain Users group only.
+- Select the other tabs in this area to verify no other services or permissions are configured for this account.
+
+If the Setup User account is a member of other groups other than Domain Users, this is a finding.
+
+If the Setup User account has unneeded permissions or services assigned, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-60003" severity="medium" conversionstatus="pass" title="SRG-APP-000062" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. 
 
@@ -650,6 +721,24 @@ This policy limits the Farm Account privileges in AD.  However, default permissi
 - Click on "User Mapping" and verify that the setup account is a member of the public and db_owner role on each SharePoint database.
 
 Otherwise, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-60005" severity="medium" conversionstatus="pass" title="SRG-APP-000062" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. 
+
+This requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts.
+
+This policy limits the setup account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the "Database Access" account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure the setup account is configured with the minimum privileges for the local server.
+
+- On the server(s) where the SharePoint software is installed, navigate to Server Manager &gt;&gt; Local Users and Groups.
+- Select the “Member of” tab and verify this account is only a member of the Administrators, WSS_ADMIN_WPG, and IIS_IUSRS groups.
+- Select the other tabs in this area to verify no other services or permissions are configured for this account.
+
+If the Setup User account is a member of any other groups than Administrators, WSS_ADMIN_WPG, and IIS_IUSRS on the local server where SharePoint is installed, this is a finding.</RawString>
     </Rule>
     <Rule id="V-60007" severity="low" conversionstatus="pass" title="SRG-APP-000062" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If a site reaches its maximum size, users will be denied access until an administrator fixes the problem. Having a secondary administrator reduces the risk of having a Denial-of-Service on a site. If the site reaches its maximum size, the secondary administrator can fix the problem if the primary administrator is not available. In some situations, having a secondary site administrator could be inappropriate for reasons of control or confidentiality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -686,121 +775,15 @@ Find the entry for the Central Administration web application and verify the por
 
 If the port number is not allowed in accordance with DoD PPSM policy, this is a finding.</RawString>
     </Rule>
-  </ManualRule>
-  <PermissionRule dscresourcemodule="AccessControlDsc">
-    <Rule id="V-59941" severity="medium" conversionstatus="fail" title="SRG-APP-000019" dscresource="">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
-
-Remote network and system access is accomplished by leveraging common communication protocols to establish a remote connection. These connections will typically originate over either the public Internet or the Public Switched Telephone Network (PSTN). Neither of these Internetworking mechanisms is private or secure, and they do not, by default, restrict access to networked resources once connectivity is established.
-
-Numerous best practices are employed to protect remote connections, such as utilizing encryption to protect data sessions and firewalls to restrict and control network connectivity. In addition to these protections, auditing must also be utilized in order to track system activity, assist in diagnosing system issues and provide evidence needed for forensic investigations post security incident.
-
-When organizations define security-related application functions or security-related application information, it is incumbent upon the application providing access to that data to ensure auditing of remote connectivity to those resources occurs in support of organizational requirements.
-
-Remote access to security functions (e.g., user management, audit log management, etc.) and security-relevant information requires the activity be audited by the organization. Any application providing remote access must support organizational requirements to audit access or organization-defined security functions and security-relevant information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Review the SharePoint server configuration to ensure remote sessions for accessing security functions and security-relevant information are audited.
-
-Verify that SharePoint audit settings are configured at the site collection level in accordance with your system security plan.
-
-To verify audit settings at the site collection level for each site collection level subject to auditing per the SSP:
-
-Click Settings &gt;&gt; Site settings.
-
-If not at the root of your site collection, under Site Collection Administration, click Go to top level site settings. (Note: The Site Collection Administration section will not be available if you do not have the necessary permissions)
-
-On the Site Settings page, under Site Collection Administration, click Site collection audit settings.
-
-On the Configure Audit Settings page verify the events that are required to audit are selected, and then click OK. If nothing is selected, or the selected criteria do not match the SSP, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-59997" severity="medium" conversionstatus="fail" title="SRG-APP-000062" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. 
-
-This requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts. 
-This policy limits the Farm Account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the "Database Access" account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59941</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Review the SharePoint server configuration to ensure the farm service account (database access account)  is configured with minimum privileges in Active Directory (AD).
-
-- Verify the account has least privilege in Active Directory.
-- Navigate to “Active Directory Users and Computers” &gt;&gt; Users.
-- Double click on the account to view the account properties.
-- Select the “Members of” tab and verify this account is a member of the Domain Users group only.
-- Select the other tabs in this area to verify no other services or permissions are configured for this account.
-
-If the farm service account is a member of other groups other than Domain Users, this is a finding.
-
-If the Setup User account has unneeded permissions or services assigned, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-60001" severity="medium" conversionstatus="fail" title="SRG-APP-000062" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. 
-
-This requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts.
- 
-This policy limits the setup account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the "Database Access" account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59941</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Review the SharePoint server configuration to ensure the setup account is configured with the minimum privileges in Active Directory.
-
-Verify the account has least privilege in Active Directory.
-- Navigate to “Active Directory Users and Computers” &gt;&gt; Users.
-- Double click on the account to view the account properties.
-- Select the “Members of” tab and verify this account is a member of the Domain Users group only.
-- Select the other tabs in this area to verify no other services or permissions are configured for this account.
-
-If the Setup User account is a member of other groups other than Domain Users, this is a finding.
-
-If the Setup User account has unneeded permissions or services assigned, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-60005" severity="medium" conversionstatus="fail" title="SRG-APP-000062" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. 
-
-This requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts.
-
-This policy limits the setup account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the "Database Access" account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59941</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Review the SharePoint server configuration to ensure the setup account is configured with the minimum privileges for the local server.
-
-- On the server(s) where the SharePoint software is installed, navigate to Server Manager &gt;&gt; Local Users and Groups.
-- Select the “Member of” tab and verify this account is only a member of the Administrators, WSS_ADMIN_WPG, and IIS_IUSRS groups.
-- Select the other tabs in this area to verify no other services or permissions are configured for this account.
-
-If the Setup User account is a member of any other groups than Administrators, WSS_ADMIN_WPG, and IIS_IUSRS on the local server where SharePoint is installed, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-60391" severity="medium" conversionstatus="fail" title="SRG-APP-000062" dscresource="None">
-      <AccessControlEntry />
+    <Rule id="V-60391" severity="medium" conversionstatus="pass" title="SRG-APP-000062" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Separation of duties is a prevalent Information Technology control implemented at different layers of the information system including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires the person accountable for approving an action not be the same person who is tasked with implementing the action. 
 
 This requirement is intended to limit exposure due to user accounts being used to operate from within a privileged account or role. Limiting the access and permissions of privileged accounts to the minimum required, reduces exposure if the account is compromised and provides forensic history of activity when operating from these accounts. 
 This policy limits the Farm Account privileges in AD.  However, default permissions for this account are configured by the SharePoint Products Configuration Wizard during product installation. This account is referred to during the installation as the “Database Access” account. By default, the account is used as the service account for the SharePoint Timer Service and the SharePoint Central Administration Web Site Application Pool. These settings should not be changed. Furthermore, this account should not be used as the service account for non-privileged services, applications, or application pools.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59941</DuplicateOf>
-      <Force>True</Force>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path />
       <RawString>Review the SharePoint server configuration to ensure the farm service account (database access account) is configured with the minimum privileges for the local server.
 
 - On the server(s) where the SharePoint software is installed, navigate to Server Manager &gt;&gt; Local Users and Groups.
@@ -809,7 +792,7 @@ This policy limits the Farm Account privileges in AD.  However, default permissi
 
 If the farm service account is a member of any other groups than WSS_RESTRICTED_WPG, WSS_ADMIN_WPG, and WSS_WPG on the local server where SharePoint is installed, this is a finding.</RawString>
     </Rule>
-  </PermissionRule>
+  </ManualRule>
   <SharePointSPWebAppGeneralSettingsRule dscresourcemodule="SharePointDSC">
     <Rule id="V-59919" severity="medium" conversionstatus="pass" title="SRG-APP-000003" dscresource="SharePointSPWebAppGeneralSettings">
       <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their application session prior to vacating the vicinity, applications need to be able to identify when a user's application session has idled and take action to initiate the session lock.
