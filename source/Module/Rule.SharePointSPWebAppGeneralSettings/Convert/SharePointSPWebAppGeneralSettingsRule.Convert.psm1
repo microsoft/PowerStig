@@ -37,8 +37,6 @@ Class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
     {
         $this.PropertyName = $this.GetPropertyName($this.SplitCheckContent)
         $this.PropertyValue = $this.GetPropertyValue($this.SplitCheckContent)
-        
-        <# $this.SetVariable($ruleType) #>
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }

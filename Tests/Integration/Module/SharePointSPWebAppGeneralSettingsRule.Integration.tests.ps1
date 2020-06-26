@@ -109,7 +109,6 @@ try
             }
         }
     }
-    #endregion
 }
 finally
 {
