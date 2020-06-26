@@ -10,7 +10,6 @@ foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-# Header
 
 <#
     .SYNOPSIS
@@ -43,9 +42,6 @@ Class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }
-
-
-# 
 
  <#
         .SYNOPSIS
@@ -127,7 +123,6 @@ Class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
             $thisVariable = & Get-$($RuleType)Variable
             $this.set_Variable($thisVariable)
 
-            # If a SharePointRule has a value in the variable property then it requires an OrgValue
             $this.Set_OrganizationValueRequired($true)
         }
     }
@@ -174,9 +169,6 @@ Class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
         return $false
     }
 
-    #endregion
-
-
     [string] GetPropertyName([string]$CheckContent)
     {
 
@@ -201,26 +193,22 @@ Class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
         return $PropertyName
     }
 
-    #[string] GetPropertyValue ([string]$CheckContent, [string]$OrgSettings)
     [string] GetPropertyValue ([string] $CheckContent)
     {
         $PropertyValue = ''
         if ($CheckContent -Match "set to expire after 15 minutes or less") #59919
         {
             $CheckContentPattern = [regex]::new('((\d\d)(?=\sminutes of inactivity))')
-            $matches = $CheckContentPattern.Matches($CheckContent)
-            #$PropertyValue = $matches.Value
-            $PropertyValue = '15'
+            $myMatches = $CheckContentPattern.Matches($CheckContent)
+            $PropertyValue = $myMatches.Value
         }
         if ($CheckContent -Match "ensure user sessions are terminated upon user logoff") #59977
         {
-            #$PropertyValue = $true
-            $PropertyValue = 'True'
+            $PropertyValue = $true
         }
         if ($CheckContent -Match "ensure access to the online web part gallery is configured") #59991
         {
-            #$PropertyValue = $false
-            $PropertyValue = 'False'
+            $PropertyValue = $false
         }
         if ($CheckContent -Match "prohibited mobile code") #59957
         {
@@ -229,15 +217,4 @@ Class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
         
         return $PropertyValue
     }
-
-
-<# Static[string] Test-VariableRequired([string]$Rule)
-{
-    $requiresVariableList = @(
-        ''
-    )
-
-    return ($Rule -in $requiresVariableList)
-} #>
-
 }

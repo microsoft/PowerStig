@@ -25,12 +25,7 @@ configuration SharePoint_config
 
         [Parameter()]
         [object]
-        $OrgSettings,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $LogPath
+        $OrgSettings
     )
 
     Import-DscResource -ModuleName PowerStig

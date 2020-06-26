@@ -2,7 +2,6 @@
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
 using module .\..\Rule\Rule.psm1
-#header
 
 <#
     .SYNOPSIS
