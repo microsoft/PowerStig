@@ -12,6 +12,7 @@
 * Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R3: [#604](https://github.com/microsoft/PowerStig/issues/604)
 * Fixed [#616](https://github.com/microsoft/PowerStig/issues/616): Unable to Import PowerSTIG 4.4.0 Due to cyclic dependency Error
+* Update PowerSTIG to parse/apply SharePoint 2013 STIG - Ver 1, Rel 8 [#602](https://github.com/microsoft/PowerStig/issues/602)
 
 ## [4.3.0] - 2020-03-27
 
