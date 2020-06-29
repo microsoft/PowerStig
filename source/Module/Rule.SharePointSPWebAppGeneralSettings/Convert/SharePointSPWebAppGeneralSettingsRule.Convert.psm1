@@ -169,7 +169,6 @@ class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
 
     [string] GetPropertyName([string]$CheckContent)
     {
-
         $PropertyName = ''
         if ($CheckContent -Match "prohibited mobile code")
         {
