@@ -15,14 +15,14 @@
         The results of Test-DscConfiguration or DSC report server output for a node.
 
     .PARAMETER XccdfPath
-        The path to a DISA STIG .xccdf file. PowerSTIG includes the f
+        The path to a DISA STIG .xccdf file. PowerSTIG includes the files in the /PowerShell/StigData/Archive folder.
 
     .PARAMETER ChecklistSTIGFiles 
-        A file that contains a list of STIG Xccdf files to use for the checklist output. This 
-        See a sample at /PowerShell/StigData/Samples/RequiredSTIGVersions.xml
+        A file that contains a list of STIG Xccdf files to use for the checklist output. This is a simple list of the paths to STIGs that should be checked.
+        See a sample at /PowerShell/StigData/Samples/ChecklistSTIGFiles.txt.
         
     .PARAMETER OutputPath
-        The location you want the checklist saved to
+        The location where the checklist .ckl file will be created.
 
     .PARAMETER ManualChecklistEntries
         Location of a .psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
@@ -36,6 +36,8 @@
 		        <Comments>This is a test of a manual check file entry.</Comments>
 	        </VulID>
         </ManualChecklistEntries>
+        
+        See a sample at /PowerShell/StigData/Samples/ManualCheckListEntriesExcelExport.xml.
 
     .EXAMPLE
         New-StigCheckList -MofFile $MofFile -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
@@ -138,6 +140,13 @@ function New-StigCheckList
         $TargetNode = $DscResults.PSComputerName
     }
 
+    $statusMap = @{
+        NotReviewed   = 'Not_Reviewed'
+        Open          = 'Open'
+        NotAFinding   = 'NotAFinding'
+        NotApplicable = 'Not_Applicable'
+    }
+
     $TargetNodeType = Get-TargetNodeType($TargetNode)
 
     switch ($TargetNodeType)
@@ -208,8 +217,6 @@ function New-StigCheckList
     #region STIGS
     $writer.WriteStartElement("STIGS")
 
-    #endregion STIGS
-
     #region STIG_iteration
     foreach($xccdfPath in $ChecklistSTIGs)
     {
@@ -239,15 +246,12 @@ function New-StigCheckList
         foreach ($StigInfoElement in $stigInfoElements.GetEnumerator())
         {
             $writer.WriteStartElement("SI_DATA")
-
             $writer.WriteStartElement('SID_NAME')
             $writer.WriteString($StigInfoElement.name)
             $writer.WriteEndElement(<#SID_NAME#>)
-
             $writer.WriteStartElement('SID_DATA')
             $writer.WriteString($StigInfoElement.value)
             $writer.WriteEndElement(<#SID_DATA#>)
-
             $writer.WriteEndElement(<#SI_DATA#>)
         }
 
@@ -294,13 +298,6 @@ function New-StigCheckList
                 $writer.WriteEndElement(<#STIG_DATA#>)
             }
 
-            $statusMap = @{
-                NotReviewed   = 'Not_Reviewed'
-                Open          = 'Open'
-                NotAFinding   = 'NotAFinding'
-                NotApplicable = 'Not_Applicable'
-            }
-
             if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
             {
                 $setting = Get-SettingsFromMof -MofFile $MofFile -Id $vid
@@ -327,7 +324,6 @@ function New-StigCheckList
             elseif ($PSCmdlet.ParameterSetName -eq 'single-dsc' -or $PSCmdlet.ParameterSetName -eq 'multi-dsc')
             {
                 $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object -FilterScript {$_.id -eq $VID}
-                # If we have manual check data, we don't need to look at the configuration
                 if ($manualCheck)
                 {
                     $status = $statusMap["$($manualCheck.Status)"]
@@ -368,7 +364,7 @@ function New-StigCheckList
 
             if ($convertedRule.DuplicateOf)
             {
-                # How is the duplicate rule handled? If it is handled, then this duplicate is also covered
+                # How is the duplicate rule handled? If it is handled, then this duplicate should have the same status
                 if ($PSCmdlet.ParameterSetName -eq 'mof')
                 {
                     $originalSetting = Get-SettingsFromMof -MofFile $MofFile -Id $convertedRule.DuplicateOf
@@ -430,6 +426,9 @@ function New-StigCheckList
     #endregion STIG_iteration
     
     $writer.WriteEndElement(<#STIGS#>)
+
+    #endregion STIGS
+
     $writer.WriteEndElement(<#CHECKLIST#>)
     $writer.Flush()
     $writer.Close()
