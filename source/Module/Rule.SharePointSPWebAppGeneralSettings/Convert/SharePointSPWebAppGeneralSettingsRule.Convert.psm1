@@ -17,7 +17,7 @@ foreach ($supportFile in $supportFileList)
     .DESCRIPTION
         
 #>
-Class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSettingsRule
+class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSettingsRule
 {
     <#
         .SYNOPSIS
@@ -33,7 +33,7 @@ Class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    SharePointSPWebAppGeneralSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    SharePointSPWebAppGeneralSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.PropertyName = $this.GetPropertyName($this.SplitCheckContent)
         $this.PropertyValue = $this.GetPropertyValue($this.SplitCheckContent)
@@ -142,7 +142,7 @@ Class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'SharePointSPWebAppGeneralSettings'
         }
