@@ -29,6 +29,7 @@ foreach ($stig in $stigList)
         ParameterValue  = 1234567
     }
     $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
+    $getRandomExceptionRuleParams.RuleType = 'SharePointSPWebAppGeneralSettingsRule'
     $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
     $backCompatException = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility
     $backCompatExceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2 -BackwardCompatibility
