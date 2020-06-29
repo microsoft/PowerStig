@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IE_11_STIG" description="The Microsoft Internet Explorer 11 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_MS_IE11_STIG_V1R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 26 Apr 2019" title="Microsoft Internet Explorer 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.17" created="12/5/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IE_11_STIG" description="The Microsoft Internet Explorer 11 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_MS_IE11_STIG_V1R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 26 Apr 2019" title="Microsoft Internet Explorer 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.17" created="6/12/2020">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-46473" severity="medium" conversionstatus="pass" title="DTBI014-IE11-TLS setting" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This parameter ensures only DoD-approved ciphers and algorithms are enabled for use by the web browser by allowing you to turn on/off support for TLS and SSL. TLS is a protocol for protecting communications between the browser and the target server. When the browser attempts to set up a protected communication with the target server, the browser and server negotiate which protocol and version to use. The browser and server attempt to match each other's list of supported protocols and versions and pick the most preferred match..&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1896,7 +1896,7 @@ If the value for "140C" is not REG_DWORD = 3, this is a finding.
 Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and is otherwise not applicable.
 </RawString>
       <ValueData>3</ValueData>
-      <ValueName>140C is not REG_DWORD = 3, this is a finding. Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and</ValueName>
+      <ValueName>140C</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-75171" severity="medium" conversionstatus="pass" title="DTBI1130-IE11-VBScript" dscresource="RegistryPolicyFile">
@@ -1916,7 +1916,7 @@ If the value for "140C" is not REG_DWORD = 3, this is a finding.
 Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and is otherwise not applicable.
 </RawString>
       <ValueData>3</ValueData>
-      <ValueName>140C is not REG_DWORD = 3, this is a finding. Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and</ValueName>
+      <ValueName>140C</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>

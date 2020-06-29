@@ -375,15 +375,10 @@ function Split-BenchmarkId
     {
         {$PSItem -match "SQL_Server"}
         {
-            # The metadata does not differentiate between the database and instance STIG so we have to get that from the file name.
-            $sqlRole = Get-SqlTechnologyRole -Path $FilePath
-            $returnId = $id -replace ($sqlServerVariations -join '|'), 'SqlServer'
-
-            # SQL 2012 Instance 1.17 has a different format which requires this line, can be removed when this STIG is no longer in archive
-            $returnId = $returnId -replace "_Database_Instance" + ""
-            # SQL 2012 Database 1.20 has a different format which requires this line.
-            $returnId = $returnId -replace "_Database" + ""
-            $returnId = '{0}_{1}' -f $returnId, $sqlRole
+            $sqlRole = Get-SqlTechnologyRole -Path $FilePath -Id $id
+            $id -match "(?<Version>\d{4})"
+            $sqlVersion = $Matches['Version']
+            $returnId = 'SqlServer_{0}_{1}' -f $sqlVersion, $sqlRole
             continue
         }
         {$PSItem -match "_Firewall"}
@@ -519,6 +514,10 @@ function Get-SqlTechnologyRole
     [OutputType([string])]
     param
     (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Id,
+
         [Parameter(Mandatory=$true)]
         [AllowEmptyString()]
         [string]
@@ -528,6 +527,11 @@ function Get-SqlTechnologyRole
     $split = $Path -split '_'
     $stigIndex = $split.IndexOf('STIG')
     $sqlRole = $split[$stigIndex -1]
+    if ($sqlRole -match '\w\d{1,}\w\d{1,}')
+    {
+        $null = $Id -match "(?<Type>Database|Instance)"
+        $sqlRole = $Matches['Type']
+    }
 
     return $sqlRole
 }
@@ -555,12 +559,8 @@ function Get-StigVersionNumber
     )
 
     # Extract the revision number from the xccdf
-    $revision = ( $StigDetails.Benchmark.'plain-text'.'#text' `
-            -split "(Release:)(.*?)(Benchmark)" )[2].trim()
-
+    $revision = ($StigDetails.Benchmark.'plain-text'.'#text' -split "(Release:)(.*?)(Benchmark)")[2].trim()
     "$($StigDetails.Benchmark.version).$revision"
-
 }
 
 #endregion
-
