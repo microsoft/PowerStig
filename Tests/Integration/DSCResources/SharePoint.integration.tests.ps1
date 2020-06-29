@@ -24,11 +24,10 @@ foreach ($stig in $stigList)
     $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
 
     $getRandomExceptionRuleParams = @{
-        RuleType = 'SharePointSPWebAppGeneralSettingsRule'
-        PowerStigXml = $powerstigXml
-        ParameterValue = 1234567
+        RuleType        = 'SharePointSPWebAppGeneralSettingsRule'
+        PowerStigXml    = $powerstigXml
+        ParameterValue  = 1234567
     }
-
     $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
     $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
     $backCompatException = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility
