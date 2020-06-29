@@ -11,7 +11,14 @@
 * Update PowerSTIG to successfully parse/apply Microsoft IIS Server/Site 8.5 STIG - Ver 1, Rel10: [#622](https://github.com/microsoft/PowerStig/issues/622)
 * Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R3: [#604](https://github.com/microsoft/PowerStig/issues/604)
+* Update PowerSTIG to support multiple STIGs per checklist [#567] (https://github.com/microsoft/PowerStig/issues/567)
+* Fixed [#570](https://github.com/microsoft/PowerStig/issues/570): Example using ManualCheckFile with multiple Vulnerability objects. Updated file format to XML.
 * Fixed [#616](https://github.com/microsoft/PowerStig/issues/616): Unable to Import PowerSTIG 4.4.0 Due to cyclic dependency Error
+* Fixed [#548](https://github.com/microsoft/PowerStig/issues/548): Target/Host Data is blank when creating a checklist
+* Fixed [#546](https://github.com/microsoft/PowerStig/issues/546): Typecase causing issue when trying to generate checklist
+* Fixed [#528](https://github.com/microsoft/PowerStig/issues/528): New-StigChecklist should not require a ManualCheckFile
+* Fixed [#443](https://github.com/microsoft/PowerStig/issues/443): missing cmdlet Get-StigXccdfBenchmark function
+* Fixed [#210](https://github.com/microsoft/PowerStig/issues/210): Include the Description attribute in PowerSTIG XML
 
 ## [4.3.0] - 2020-03-27
 
