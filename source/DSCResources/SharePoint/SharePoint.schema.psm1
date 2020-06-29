@@ -8,10 +8,7 @@ using module ..\..\PowerStig.psm1
     .SYNOPSIS
         A composite DSC resource to manage the SharePoint STIG settings.
     .PARAMETER SharePointVersion
-        The version of SharePoint being used E.g. 'Server2012'
-    .PARAMETER SharePointRole
-        There are two STIGs that cover the scope of SharePoint_ SharePoint Instance covers each instance of SharePoint on a server
-        SharePoint Database covers each Database within an Instance.
+        The version of SharePoint being used E.g. '2013'
     .PARAMETER StigVersion
         The version of the SharePoint STIG to apply and/or monitor
     .PARAMETER Exception

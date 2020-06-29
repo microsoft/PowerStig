@@ -194,21 +194,21 @@ Class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
     [string] GetPropertyValue ([string] $CheckContent)
     {
         $PropertyValue = ''
-        if ($CheckContent -Match "set to expire after 15 minutes or less") #59919
+        if ($CheckContent -Match "set to expire after 15 minutes or less")
         {
             $CheckContentPattern = [regex]::new('((\d\d)(?=\sminutes of inactivity))')
             $myMatches = $CheckContentPattern.Matches($CheckContent)
             $PropertyValue = $myMatches.Value
         }
-        if ($CheckContent -Match "ensure user sessions are terminated upon user logoff") #59977
+        if ($CheckContent -Match "ensure user sessions are terminated upon user logoff")
         {
             $PropertyValue = $true
         }
-        if ($CheckContent -Match "ensure access to the online web part gallery is configured") #59991
+        if ($CheckContent -Match "ensure access to the online web part gallery is configured")
         {
             $PropertyValue = $false
         }
-        if ($CheckContent -Match "prohibited mobile code") #59957
+        if ($CheckContent -Match "prohibited mobile code")
         {
             $PropertyValue = "Strict"
         }
