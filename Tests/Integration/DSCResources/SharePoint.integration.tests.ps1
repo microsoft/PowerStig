@@ -16,11 +16,11 @@ foreach ($stig in $stigList)
         Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
 
     $skipRule = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id
-    $skipRuleType = 'SharePointSPWebAppGeneralSettingsRule'
+    $skipRuleType = $null
     $expectedSkipRuleTypeCount = $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
 
     $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id -Count 4
-    $skipRuleTypeMultiple = @('SharePointSPWebAppGeneralSettingsRule')
+    $skipRuleTypeMultiple = $null
     $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
 
     $getRandomExceptionRuleParams = @{
@@ -28,8 +28,8 @@ foreach ($stig in $stigList)
         PowerStigXml    = $powerstigXml
         ParameterValue  = 1234567
     }
+
     $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
-    $getRandomExceptionRuleParams.RuleType = 'SharePointSPWebAppGeneralSettingsRule'
     $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
     $backCompatException = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility
     $backCompatExceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2 -BackwardCompatibility
