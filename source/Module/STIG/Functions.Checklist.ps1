@@ -31,10 +31,10 @@
 
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <ManualChecklistEntries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	        <VulID id="V-79119" Status="NotAFinding">
-		        <Details>See System Security Document.</Details>
-		        <Comments>This is a test of a manual check file entry.</Comments>
-	        </VulID>
+            <VulID id="V-79119" Status="NotAFinding">
+                <Details>See System Security Document.</Details>
+                <Comments>This is a test of a manual check file entry.</Comments>
+            </VulID>
         </ManualChecklistEntries>
         
         See a sample at /PowerShell/StigData/Samples/ManualCheckListEntriesExcelExport.xml.
