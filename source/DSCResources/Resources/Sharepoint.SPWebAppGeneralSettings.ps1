@@ -46,3 +46,4 @@ SPWebAppGeneralSettings $blockTitle
     SecurityValidation                  = $SecurityValidation    
     PsDscRunAsCredential                = $SetupAccount
 }
+
