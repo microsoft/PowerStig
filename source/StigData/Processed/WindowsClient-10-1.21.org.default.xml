@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="1.18">
+<OrganizationalSettings fullversion="1.21">
   <!-- Ensure ''V-63329'' -match '0|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-63329" ValueData="0" />
   <!-- Ensure ''V-63405'' -ge '15' -or ''V-63405'' -eq '0'-->
@@ -32,7 +32,7 @@
   <OrganizationalSetting id="V-63581" ValueData="1" />
   <!-- Ensure ''V-63595.b'' -match '1|3'-->
   <OrganizationalSetting id="V-63595.b" ValueData="1" />
-  <!-- Ensure ''V-63607'' -match '1|3|8|ShouldBeAbsent'-->
+  <!-- Ensure ''V-63607'' -match '1|3|8'-->
   <OrganizationalSetting id="V-63607" ValueData="1" />
   <!-- Ensure ''V-63619'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-63619" OptionValue="" />
