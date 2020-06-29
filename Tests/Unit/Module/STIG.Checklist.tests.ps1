@@ -26,3 +26,4 @@ Describe 'New-StigCheckList' {
         {New-StigCheckList -DscResult 'foo' -MofFile 'bar' -OutputPath 'C:\Test'} | Should throw
     }
 }
+
