@@ -10,7 +10,7 @@ $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeReso
 
 foreach ($stig in $stigList)
 {
-    $orgSettingsPath = $stig.Path.Replace('.xml','.org.default.xml')
+    $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
     $blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
     $powerstigXml = [xml](Get-Content -Path $stig.Path) |
         Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
@@ -25,7 +25,6 @@ foreach ($stig in $stigList)
 
     $getRandomExceptionRuleParams = @{
         RuleType        = 'SharePointSPWebAppGeneralSettingsRule'
-        PowerStigXml    = $powerstigXml
         ParameterValue  = 1234567
     }
 

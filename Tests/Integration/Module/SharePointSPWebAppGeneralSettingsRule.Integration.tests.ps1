@@ -23,6 +23,7 @@ try
             -In the "Web Page Security Validation" section, verify that "Security Validation is:" is set to "On" and that the "Security Validation Expires:" setting is set to 15 minutes.
             
             Otherwise, this is a finding.'
+            ConversionStatus = 'pass'
         },
         @{
             PropertyName    = 'SecurityValidationTimeOutMinutes'
@@ -41,6 +42,7 @@ try
             - Verify that the Security Validation is "On" and set to expire after 15 minutes or less. 
             
             If Security Validation is "Off" or if the default time-out period is not set to 15 minutes or less for any of the web applications, this is a finding.'
+            ConversionStatus = 'pass'
         },
         @{
             PropertyName    = 'BrowserFileHandling'
@@ -59,6 +61,7 @@ try
             -Under Browser File Handling, verify that "Strict" is selected.
             
             If "Strict" is not selected, this is a finding.'
+            ConversionStatus = 'pass'
         },
         @{
             PropertyName    = 'AllowOnlineWebPartCatalog'
@@ -77,6 +80,7 @@ try
             -Verify "Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance" option in the Online Web Part Gallery section is selected.
             
             If the "Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance" option in the Online Web Part Gallery section is not checked, this is a finding.'
+            ConversionStatus = 'pass'
         }
     )
 

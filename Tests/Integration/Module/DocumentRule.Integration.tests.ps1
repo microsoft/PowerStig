@@ -27,7 +27,7 @@ try
         It 'Should set dscresource to "None"' {
             $rule.dscresource | Should Be 'None'
         }
-        It 'Should set the Conversion statud to pass ensure value' {
+        It 'Should set the Conversion status to pass ensure value' {
             $rule.conversionstatus | Should Be 'pass'
         }
     }

@@ -92,7 +92,7 @@ try
                 It 'Should set the correct DscResource' {
                     $rule.DscResource | Should Be 'Service'
                 }
-                It 'Should set the Conversion statud to pass ensure value' {
+                It 'Should set the Conversion status to pass ensure value' {
                     $rule.conversionstatus | Should be $service.conversionstatus
                 }
             }
@@ -139,7 +139,7 @@ try
             It 'Should set the correct DscResource' {
                 $rule.DscResource | Should Be 'Service'
             }
-            It 'Should set the Conversion statud to pass ensure value' {
+            It 'Should set the Conversion status to pass ensure value' {
                 $rule.conversionstatus | Should be 'pass'
             }
         }
@@ -166,7 +166,7 @@ try
             It 'Should set the correct DscResource' {
                 $rule.DscResource | Should Be 'Service'
             }
-            It 'Should set the Conversion statud to pass ensure value' {
+            It 'Should set the Conversion status to pass ensure value' {
                 $rule.conversionstatus | Should be 'pass'
             }
         }
