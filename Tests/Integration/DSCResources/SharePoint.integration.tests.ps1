@@ -42,7 +42,7 @@ foreach ($stig in $stigList)
     $getRandomExceptionRuleParams = @{
         RuleType        = 'SharePointSPWebAppGeneralSettingsRule'
         PowerStigXml    = $powerstigXml
-        ParameterValue  = 'Strict'
+        ParameterValue  = "Strict"
     }
 
     $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
