@@ -9,11 +9,11 @@ $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeRe
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
 $password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'
-$credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList 'Admin', $password
+$SetupAccount = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList 'Admin', $password
 
-$additionalTestParameterList = @{
-    Credential = $credential
-    ConfigurationData          = @{
+$additionalTestParameterList    = @{
+    SetupAccount = $SetupAccount
+    ConfigurationData           = @{
         AllNodes = @(
             @{
                 NodeName = 'localhost'

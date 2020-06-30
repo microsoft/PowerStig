@@ -8,6 +8,11 @@ configuration SharePoint_config
         [string]
         $TechnologyVersion,
 
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyRole,
+
         [Parameter(Mandatory = $true)]
         [string]
         $StigVersion,
@@ -30,7 +35,12 @@ configuration SharePoint_config
 
         [Parameter()]
         [string]
-        $WebAppUrl
+        $WebAppUrl,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [System.Management.Automation.PSCredential]
+        $SetupAccount
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -43,6 +53,7 @@ configuration SharePoint_config
             SharePointVersion = '$TechnologyVersion'
             StigVersion = '$StigVersion'
             WebAppurl = 'test.com'
+            SetupAccount = '$SetupAccount'
             $(if ($OrgSettings -is [hashtable])
             {
                 "Orgsettings = @{`n$($OrgSettings.Keys |
