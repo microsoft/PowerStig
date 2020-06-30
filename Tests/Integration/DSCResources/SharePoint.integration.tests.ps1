@@ -8,12 +8,28 @@ $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeRe
 
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
+$password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'
+$credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList 'Admin', $password
+
+$additionalTestParameterList = @{
+    Credential = $credential
+    ConfigurationData          = @{
+        AllNodes = @(
+            @{
+                NodeName = 'localhost'
+                PSDscAllowDomainUser = $true
+                PSDscAllowPlainTextPassword = $true
+            }
+        )
+    }
+}
+
 foreach ($stig in $stigList)
 {
     $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
     $blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
     $powerstigXml = [xml](Get-Content -Path $stig.Path) |
-        Remove-DscResourceEqualsNone #| Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
+        Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
 
     $skipRule = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id
     $skipRuleType = $null
@@ -34,5 +50,5 @@ foreach ($stig in $stigList)
     $backCompatException = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility
     $backCompatExceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2 -BackwardCompatibility
 
-    . "$PSScript\Common.integration.ps1"
+    . "$PSScriptRoot\Common.integration.ps1"
 }

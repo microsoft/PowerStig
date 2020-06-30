@@ -1,5 +1,6 @@
 configuration SharePoint_config
 {
+    [CmdletBinding()]
     param
     (
         [Parameter()]
@@ -25,7 +26,11 @@ configuration SharePoint_config
 
         [Parameter()]
         [object]
-        $OrgSettings
+        $OrgSettings,
+
+        [Parameter()]
+        [string]
+        $WebAppUrl
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -37,6 +42,7 @@ configuration SharePoint_config
         {
             SharePointVersion = '$TechnologyVersion'
             StigVersion = '$StigVersion'
+            WebAppurl = 'test.com'
             $(if ($OrgSettings -is [hashtable])
             {
                 "Orgsettings = @{`n$($OrgSettings.Keys |
