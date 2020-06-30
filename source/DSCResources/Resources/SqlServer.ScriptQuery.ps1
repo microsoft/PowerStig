@@ -9,12 +9,15 @@ foreach ($instance in $ServerInstance)
     {
         foreach ($db in $Database)
         {
+            $getScript = '{0} --{1}' -f $rule.GetScript, $db
+
             foreach ($rule in $rules)
             {
-                SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
+                $resourceTitle = '{0}{1}_{2}' -f (Get-ResourceTitle -Rule $rule), $instance, $db
+                SqlScriptQuery "$resourceTitle"
                 {
                     ServerInstance = $Instance
-                    GetQuery       = $rule.GetScript
+                    GetQuery       = $getScript
                     TestQuery      = $rule.TestScript
                     SetQuery       = $rule.SetScript
                     Variable       = Format-SqlScriptVariable -Database $db -Variable $($rule.Variable) -VariableValue $($rule.VariableValue)
@@ -35,7 +38,7 @@ foreach ($instance in $ServerInstance)
                     TestQuery      = $rule.TestScript
                     SetQuery       = $rule.SetScript
                     Variable       = Format-SqlScriptVariable -Variable $($rule.Variable) -VariableValue $($rule.VariableValue)
-                }   
+                }
                 continue
             }
 
