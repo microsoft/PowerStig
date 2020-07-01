@@ -1,11 +1,10 @@
 #region Header
-using module .\..\..\..\Module\Rule\Rule.psm1
-using module .\..\..\..\Module\Rule\Convert\ConvertFactory.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName $global:moduleName {
         #region Test Setup
         $stig = [Rule]::new( (Get-TestStigRule -ReturnGroupOnly), $true )
         $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
@@ -113,12 +112,11 @@ try
                 }
             }
         }
-
         #endregion
-        #region Convert Factory
+    }
 
+    InModuleScope -ModuleName ConvertFactory {
         Describe 'Convert Factory' {
-
             Context 'AccountPolicyRule' {
                 $checkContent = 'Run "gpedit.msc".
 
@@ -134,7 +132,7 @@ try
             }
 
             Context 'AuditPolicyRule' {
-        $checkContent = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+                $checkContent = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
                 Use the AuditPol tool to review the current Audit Policy configuration:
                 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -344,7 +342,6 @@ try
                 }
             }
         }
-        #endregion
     }
 }
 finally

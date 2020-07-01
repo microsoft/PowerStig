@@ -1,12 +1,10 @@
 #region Header
-using module .\..\..\..\Module\Rule\Convert\ConvertFactory.psm1
-using module .\..\..\..\Module\Rule.HardCoded\Convert\HardCodedRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 
 try
 {
-    InModuleScope -ModuleName "$($global:moduleName).Convert" {
+    InModuleScope -ModuleName ConvertFactory {
         #region Test Setup
         $testRuleListSingle = @(
             @{
@@ -279,6 +277,7 @@ try
 
             foreach ($splitRule in $testRuleListSplit)
             {
+
                 Context "Hard Coded Split Rules (CheckContent): $($splitRule.CheckContent)" {
                     <#
                         Generate XML with a temp check content block.

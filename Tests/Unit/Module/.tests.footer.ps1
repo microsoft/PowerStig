@@ -1,10 +1,12 @@
-
+# footer script cleaning up test scripts test data
 if ((Get-PSCallStack)[1].Command -notmatch 'Stig\.')
 {
     # Cleanup convert module tests
     Remove-Variable STIGSettings -Scope Global
 }
-else
+
+$dynamicClassImport = Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport'
+if (Test-Path -Path $dynamicClassImport)
 {
-    # Cleanup Stig module tests
+    Remove-Item -Path $dynamicClassImport -Force -Recurse -Confirm:$false
 }

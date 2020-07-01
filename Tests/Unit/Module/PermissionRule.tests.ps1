@@ -1,5 +1,4 @@
 #region Header
-using module .\..\..\..\Module\Rule.Permission\Convert\PermissionRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 

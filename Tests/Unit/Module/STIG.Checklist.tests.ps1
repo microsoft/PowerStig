@@ -1,4 +1,6 @@
-. $PSScriptRoot\..\..\..\Module\STIG\Functions.Checklist.ps1
+#region Header
+. $PSScriptRoot\.tests.header.ps1
+#endregion
 
 Describe 'New-StigCheckList' {
 

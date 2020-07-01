@@ -1,6 +1,17 @@
 #region Header
-using module .\..\..\..\Module\Rule.Registry\Convert\RegistryRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
+#endregion
+
+# Data files
+if ($null -eq (Get-Variable -Name SingleLine* -Scope Global))
+{
+    $dataFilePath = Join-Path -Path $script:moduleRoot -ChildPath 'Module\Rule\Convert'
+    $supportFiles = (Get-ChildItem -Path $dataFilePath -Filter 'Data.*.ps1').FullName
+    foreach ($file in $supportFiles)
+    {
+        . $file
+    }
+}
 #endregion
 
 try

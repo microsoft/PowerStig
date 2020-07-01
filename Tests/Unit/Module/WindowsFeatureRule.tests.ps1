@@ -1,5 +1,4 @@
 #region Header
-using module .\..\..\..\Module\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 

@@ -1,7 +1,6 @@
-$script:DSCModuleName = 'PowerStig'
-$script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
-Import-Module (Join-Path -Path $moduleRoot -ChildPath 'Tools\TestHelper\TestHelper.psm1') -Force
-$manifestPath = "$script:moduleRoot\$script:DSCModuleName.psd1"
+# DscResource Unit Test Header
+. $PSScriptRoot\.tests.header.ps1
+
 $Manifest = Import-PowerShellDataFile -Path $manifestPath
 
 Describe 'Common Tests - Configuration Module Requirements' {
@@ -64,10 +63,10 @@ Describe 'Common Tests - Configuration Module Requirements' {
 }
 Describe 'Composite Resources' {
 
-    $manifestDscResourceList = $Manifest.DscResourcesToExport
+    $manifestDscResourceList = $Manifest.DscResourcesToExport | Sort-Object -Descending
 
     $moduleDscResourceList = Get-ChildItem -Path "$($script:moduleRoot)\DscResources" -Directory -Exclude 'Resources' |
-                        Select-Object -Property BaseName -ExpandProperty BaseName
+                        Select-Object -Property BaseName -ExpandProperty BaseName | Sort-Object -Descending
 
     It 'Should have all module resources listed in the manifest' {
         $manifestDscResourceList | Should Be $moduleDscResourceList
