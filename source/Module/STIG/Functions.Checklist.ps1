@@ -40,40 +40,74 @@
         See a sample at /PowerShell/StigData/Samples/ManualCheckListEntriesExcelExport.xml.
 
     .EXAMPLE
-        New-StigCheckList -MofFile $mofFile -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $manualChecklistEntriesFile
-        New-StigCheckList -MofFile $mofFile -ChecklistSTIGFiles $checklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $manualChecklistEntriesFile
-        New-StigCheckList -DscResults $auditRehydrated -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $manualChecklistEntriesFile
-        New-StigCheckList -DscResults $auditRehydrated -ChecklistSTIGFiles $checklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $manualChecklistEntriesFile
+        Generate a checklist for single STIG using a .MOF file:
+        
+        $MofFile = 'C:\contoso.local.mof'
+        $xccdfPath = 'C:\SQL Server\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
+        $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_mof.ckl'
+        $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesExcelExport.xml'
+        New-StigCheckList -MofFile $MofFile -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+    
+    .EXAMPLE
+        Generate a checklist for a single STIG using DSC results obtained from Test-DscConfiguration:
+
+        $audit = Test-DscConfiguration -ComputerName localhost -MofFile 'C:\Dev\Utilities\SqlServerInstance_config\localhost.mof'
+        $xccdfPath = 'C:\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
+        $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_dscresults.ckl'
+        $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesSQL2016Instance.xml'
+        New-StigCheckList -DscResult $audit -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile 
+
+    .EXAMPLE
+        Generate a checklist for multiple STIGs for an endpoint using a .MOF file:
+
+        $MofFile = 'C:\contoso.local.mof'
+        $ChecklistSTIGFiles = 'C:\ChecklistSTIGFiles.txt'
+        $outputPath = 'C:\SqlServer01_mof.ckl'
+        $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesSqlServer01ExcelExport.xml'
+        New-StigCheckList -DscResults $auditRehydrated -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+
+    .EXAMPLE
+        Generate a checklist for multiple STIGs for an endpoint using DSC results obtained from Test-DscConfiguration, dehydrated/rehydrated using CLIXML:
+
+        $audit = Test-DscConfiguration -ComputerName localhost -MofFile 'C:\localhost.mof'
+        $audit | Export-Clixml 'C:\TestDSC.xml'
+        
+        $auditRehydrated = import-clixml C:\TestDSC.xml
+        $ChecklistSTIGFiles = 'C:\ChecklistSTIGFiles.txt'
+        $outputPath = 'C:\SqlServer01_dsc.ckl'
+        $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesSqlServer01ExcelExport.xml'
+
+        New-StigCheckList -DscResults $auditRehydrated -ChecklistSTIGFiles $ChecklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
 #>
 function New-StigCheckList
 {
     [CmdletBinding()]
-    [OutputType([xml])]
+    [OutputType([XML])]
     param
     (
         [Parameter(Mandatory = $true, ParameterSetName = 'single-mof')]
         [Parameter(Mandatory = $true, ParameterSetName = 'multi-mof')]
-        [string]
-        $mofFile,
+        [String]
+        $MofFile,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'single-dsc')]
         [Parameter(Mandatory = $true, ParameterSetName = 'multi-dsc')]
-        [psobject]
+        [PSObject]
         $DscResults,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'single-mof')]
         [Parameter(Mandatory = $true, ParameterSetName = 'single-dsc')]
-        [string]
-        $xccdfPath,
+        [String]
+        $XccdfPath,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'multi-mof')]
         [Parameter(Mandatory = $true, ParameterSetName = 'multi-dsc')]
-        [string]
-        $checklistSTIGFiles,
+        [String]
+        $ChecklistSTIGFiles,
 
         [Parameter()]
         [String]
-        $manualChecklistEntries,
+        $ManualChecklistEntries,
 
         [Parameter(Mandatory = $true)]
         [System.IO.FileInfo]
@@ -81,34 +115,34 @@ function New-StigCheckList
     )
 
     # Validate parameters before continuing
-    if ($manualChecklistEntries)
+    if ($ManualChecklistEntries)
     {
-        if (-not (Test-Path -Path $manualChecklistEntries))
+        if (-not (Test-Path -Path $ManualChecklistEntries))
         {
-            throw "$($manualChecklistEntries) is not a valid path to a ManualChecklistEntries.xml file. Provide a full valid path."
+            throw "$($ManualChecklistEntries) is not a valid path to a ManualChecklistEntries.xml file. Provide a full valid path."
         }
 
-        [xml]$manualCheckData = Get-Content -Path $manualChecklistEntries
+        [XML]$manualCheckData = Get-Content -Path $ManualChecklistEntries
     }
 
-    if ($xccdfPath)
+    if ($XccdfPath)
     {
-        if (-not (Test-Path -Path $xccdfPath))
+        if (-not (Test-Path -Path $XccdfPath))
         {
-            throw "$($xccdfPath) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path."
+            throw "$($XccdfPath) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path."
         }
 
-        $checklistSTIGs = $xccdfPath
+        $checklistSTIGs = $XccdfPath
     }
 
-    if ($checklistSTIGFiles)
+    if ($ChecklistSTIGFiles)
     {
-        if (-not (Test-Path -Path $checklistSTIGFiles))
+        if (-not (Test-Path -Path $ChecklistSTIGFiles))
         {
-            throw "$($checklistSTIGFiles) is not a valid path to a ChecklistSTIGFiles.txt file. Provide a full valid path."
+            throw "$($ChecklistSTIGFiles) is not a valid path to a ChecklistSTIGFiles.txt file. Provide a full valid path."
         }
 
-        $checklistSTIGs = Get-Content -Path $checklistSTIGFiles
+        $checklistSTIGs = Get-Content -Path $ChecklistSTIGFiles
     }
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
@@ -124,13 +158,13 @@ function New-StigCheckList
     # Values for some of these fields can be read from the .mof file or the DSC results file
     if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
     {
-        if (-not (Test-Path -Path $mofFile))
+        if (-not (Test-Path -Path $MofFile))
         {
-            throw "$($mofFile) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
+            throw "$($MofFile) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
         }
 
-        $MofString = Get-Content -Path $mofFile -Raw
-        $TargetNode = Get-TargetNodeFromMof($MofString)
+        $mofString = Get-Content -Path $MofFile -Raw
+        $targetNode = Get-TargetNodeFromMof -MofString $mofString
 
     }
     elseif ($PSCmdlet.ParameterSetName -eq 'single-dsc' -or $PSCmdlet.ParameterSetName -eq 'multi-dsc')
@@ -141,7 +175,7 @@ function New-StigCheckList
             throw 'Passed in $DscResults parameter is null. Please provide a valid result using Test-DscConfiguration.'
         }
 
-        $TargetNode = $DscResults.PSComputerName
+        $targetNode = $DscResults.PSComputerName
     }
 
     $statusMap = @{
@@ -151,33 +185,33 @@ function New-StigCheckList
         NotApplicable = 'Not_Applicable'
     }
 
-    $TargetNodeType = Get-TargetNodeType($TargetNode)
+    $targetNodeType = Get-TargetNodeType -TargetNode $targetNode
 
-    switch ($TargetNodeType)
+    switch ($targetNodeType)
     {
         "MACAddress"
         {
-            $HostnameMACAddress = $TargetNode
+            $HostnameMACAddress = $targetNode
             Break
         }
         "IPv4Address"
         {
-            $HostnameIPAddress = $TargetNode
+            $HostnameIPAddress = $targetNode
             Break
         }
         "IPv6Address"
         {
-            $HostnameIPAddress = $TargetNode
+            $HostnameIPAddress = $targetNode
             Break
         }
         "FQDN"
         {
-            $HostnameFQDN = $TargetNode
+            $HostnameFQDN = $targetNode
             Break
         }
         default
         {
-            $Hostname = $TargetNode
+            $Hostname = $targetNode
         }
     }
 
@@ -222,7 +256,7 @@ function New-StigCheckList
     $writer.WriteStartElement("STIGS")
 
     #region STIG_iteration
-    foreach ($xccdfPath in $checklistSTIGs)
+    foreach ($XccdfPath in $checklistSTIGs)
     {
 
         $writer.WriteStartElement("iSTIG")
@@ -231,7 +265,7 @@ function New-StigCheckList
 
         $writer.WriteStartElement("STIG_INFO")
 
-        $xccdfBenchmarkContent = Get-StigXccdfBenchmarkContent -Path $xccdfPath
+        $xccdfBenchmarkContent = Get-StigXccdfBenchmarkContent -Path $XccdfPath
 
         $stigInfoElements = [ordered] @{
             'version'        = $xccdfBenchmarkContent.version
@@ -239,7 +273,7 @@ function New-StigCheckList
             'customname'     = ''
             'stigid'         = $xccdfBenchmarkContent.id
             'description'    = $xccdfBenchmarkContent.description
-            'filename'       = Split-Path -Path $xccdfPath -Leaf
+            'filename'       = Split-Path -Path $XccdfPath -Leaf
             'releaseinfo'    = $xccdfBenchmarkContent.'plain-text'.InnerText
             'title'          = $xccdfBenchmarkContent.title
             'uuid'           = (New-Guid).Guid
@@ -266,10 +300,10 @@ function New-StigCheckList
         #region STIGS/iSTIG/VULN[]
 
         # Pull in the processed XML file to check for duplicate rules for each vulnerability
-        [xml]$xccdfBenchmark = Get-Content -Path $xccdfPath -Encoding UTF8
+        [XML]$xccdfBenchmark = Get-Content -Path $XccdfPath -Encoding UTF8
         $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark
         $processedFileName = $fileList.Settings.FullName
-        [xml]$processed = Get-Content -Path $processedFileName
+        [XML]$processed = Get-Content -Path $processedFileName
 
         $vulnerabilities = Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent
 
@@ -304,7 +338,7 @@ function New-StigCheckList
 
             if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
             {
-                $setting = Get-SettingsFromMof -MofFile $mofFile -Id $vid
+                $setting = Get-SettingsFromMof -MofFile $MofFile -Id $vid
                 $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object {$_.id -eq $vid}
 
                 if ($setting)
@@ -371,7 +405,7 @@ function New-StigCheckList
                 # How is the duplicate rule handled? If it is handled, then this duplicate should have the same status
                 if ($PSCmdlet.ParameterSetName -eq 'mof')
                 {
-                    $originalSetting = Get-SettingsFromMof -MofFile $mofFile -Id $convertedRule.DuplicateOf
+                    $originalSetting = Get-SettingsFromMof -MofFile $MofFile -Id $convertedRule.DuplicateOf
 
                     if ($originalSetting)
                     {
@@ -428,7 +462,7 @@ function New-StigCheckList
     }
 
     #endregion STIG_iteration
-    
+
     $writer.WriteEndElement(<#STIGS#>)
 
     #endregion STIGS
@@ -446,11 +480,11 @@ function New-StigCheckList
 function Get-VulnerabilityList
 {
     [CmdletBinding()]
-    [OutputType([xml])]
+    [OutputType([XML])]
     param
     (
         [Parameter()]
-        [psobject]
+        [PSObject]
         $XccdfBenchmark
     )
 
@@ -458,7 +492,7 @@ function Get-VulnerabilityList
 
     foreach ($vulnerability in $XccdfBenchmark.Group)
     {
-        [xml]$vulnerabiltyDiscussionElement = "<discussionroot>$($vulnerability.Rule.description)</discussionroot>"
+        [XML]$vulnerabiltyDiscussionElement = "<discussionroot>$($vulnerability.Rule.description)</discussionroot>"
 
         [void] $vulnerabilityList.Add(
             @(
@@ -513,17 +547,17 @@ function Get-VulnerabilityList
 function Get-MofContent
 {
     [CmdletBinding()]
-    [OutputType([psobject])]
+    [OutputType([PSObject])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [string]
-        $mofFile
+        [String]
+        $MofFile
     )
 
     if (-not $script:mofContent)
     {
-        $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($mofFile, 4)
+        $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($MofFile, 4)
     }
 
     return $script:mofContent
@@ -536,19 +570,19 @@ function Get-MofContent
 function Get-SettingsFromMof
 {
     [CmdletBinding()]
-    [OutputType([psobject])]
+    [OutputType([PSObject])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [string]
-        $mofFile,
+        [String]
+        $MofFile,
 
         [Parameter(Mandatory = $true)]
-        [string]
+        [String]
         $Id
     )
 
-    $mofContent = Get-MofContent -MofFile $mofFile
+    $mofContent = Get-MofContent -MofFile $MofFile
 
     $mofContentFound = $mofContent.Where({$PSItem.ResourceID -match $Id})
 
@@ -562,15 +596,15 @@ function Get-SettingsFromMof
 function Get-SettingsFromResult
 {
     [CmdletBinding()]
-    [OutputType([psobject])]
+    [OutputType([PSObject])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [psobject]
+        [PSObject]
         $DscResults,
 
         [Parameter(Mandatory = $true)]
-        [string]
+        [String]
         $Id
     )
 
@@ -588,13 +622,13 @@ function Get-SettingsFromResult
 #>
 function Get-FindingDetails
 {
-    [OutputType([string])]
+    [OutputType([String])]
     [CmdletBinding()]
     param
     (
         [Parameter(Mandatory)]
         [AllowNull()]
-        [psobject]
+        [PSObject]
         $Setting
     )
 
@@ -627,13 +661,13 @@ function Get-FindingDetails
 #>
 function Get-FindingDetailsString
 {
-    [OutputType([string])]
+    [OutputType([String])]
     [CmdletBinding()]
     param
     (
         [Parameter(Mandatory)]
         [AllowNull()]
-        [psobject]
+        [PSObject]
         $Setting
     )
 
@@ -653,19 +687,19 @@ function Get-FindingDetailsString
 #>
 function Get-TargetNodeFromMof
 {
-    [OutputType([string])]
+    [OutputType([String])]
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory)]
-        [string]
-        $MofString
+        [Parameter(Mandatory = $true)]
+        [String]
+        $mofString
     )
 
     $pattern = "((?<=@TargetNode=')(.*)(?='))"
-    $TargetNodeSearch = $mofstring | Select-String -Pattern $pattern
-    $TargetNode = $TargetNodeSearch.matches.value
-    return $TargetNode
+    $targetNodeSearch = $mofString | Select-String -Pattern $pattern
+    $targetNode = $targetNodeSearch.matches.value
+    return $targetNode
 }
 <#
     .SYNOPSIS
@@ -674,16 +708,16 @@ function Get-TargetNodeFromMof
 #>
 function Get-TargetNodeType
 {
-    [OutputType([string])]
+    [OutputType([String])]
     [CmdletBinding()]
     param
     (
         [Parameter(Mandatory)]
-        [string]
-        $TargetNode
+        [String]
+        $targetNode
     )
 
-    switch ($TargetNode)
+    switch ($targetNode)
     {
         # Do we have a MAC address?
         {
