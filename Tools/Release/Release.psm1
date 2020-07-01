@@ -944,6 +944,7 @@ function Update-PowerSTIGCoverageMarkdown
         $stigDetailFileName = (Split-Path -Path $stigXml -Leaf) -replace '.xml', '.md'
         $stigDetailFilePath = Join-Path -Path $stigDetails -ChildPath $stigDetailFileName
         $stigDetailFileLink = $markdownStrings.markdownRuleLink -f ($stigDetailFileName -replace '.md')
+        [string]$stigAutomatedRulePercentage = ([math]::Round($automatedRuleCount/$allStigRuleCount, 2) * 100)
         $stigMarkdown = $markdownStrings.markdownSummaryBody -f
             $stig.DISASTIG.stigid.Replace('_', ' ').Trim(),
             $stig.DISASTIG.fullversion.Trim(),
@@ -956,7 +957,7 @@ function Update-PowerSTIGCoverageMarkdown
             $stig.DISASTIG.description.Trim(),
             $automatedRuleCount,
             $allStigRuleCount,
-            $([math]::Round($automatedRuleCount/$allStigRuleCount, 2)*100),
+            $stigAutomatedRulePercentage,
             ($automatedSevCount | Where-Object {$_.Name -eq 'high'}).Count,
             ($allStigRuleSevCount | Where-Object {$_.Name -eq 'high'}).Count,
             ($automatedSevCount | Where-Object {$_.Name -eq 'medium'}).Count,
