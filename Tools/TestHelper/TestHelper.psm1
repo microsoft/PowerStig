@@ -262,7 +262,10 @@ function Get-StigDataRootPath
     param ( )
 
     $projectRoot = Split-Path -Path (Split-Path -Path $PsScriptRoot)
-    return Join-Path -Path $projectRoot -Child 'StigData'
+    $buildOutput = Join-Path -Path $projectRoot -ChildPath 'output'
+    $manifestPath = (Get-ChildItem -Path $buildOutput -Filter 'PowerStig.psd1' -Recurse).FullName
+    $moduleRoot = Split-Path -Path $manifestPath -Parent
+    return Join-Path -Path $moduleRoot -Child 'StigData'
 }
 
 <#
@@ -493,7 +496,7 @@ function Get-DscResourceModuleInfo
     )
 
     $moduleInfo = @()
-    $modulePattern   = "(?<ModuleName>(?<=ModuleName\s)\w+(?=\s))"
+    $modulePattern   = "(?<ModuleName>(?<=ModuleName\s)\w+.\w+(?=\s))"
     $versionPatthern = "(?<ModuleVersion>(?<=ModuleVersion\s)[\d\.]+(?=$))"
 
     $importModuleCommands = Select-String -Path $Path -Pattern 'Import-DscResource' -AllMatches
@@ -507,6 +510,57 @@ function Get-DscResourceModuleInfo
     }
 
     return $moduleInfo
+}
+
+<#
+    .SYNOPSIS
+        Set/Creates ps1 file with 'using module' statement in order to dynamically load
+        Rule specific classes.
+
+    .DESCRIPTION
+        Sets/Creates a ps1 file with a 'using module' statement with a specified class.
+        This function is needed for tests due to the 'using' statement accepting either
+        relative paths and/or fully qualified paths. The build process creates an output
+        folder with the current version
+
+    .PARAMETER RuleType
+        The Rule Type to set in the ps1 file.
+
+    .PARAMETER PowerSTIGBuildPath
+        The path where PowerSTIG module was created.
+
+    .PARAMETER DestinationPath
+        The path where the ps1 file containing the using statement should reside.
+#>
+function Set-DynamicClassFile
+{
+    [CmdletBinding()]
+    [OutputType()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string[]]
+        $ClassModuleFileName,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateScript({Test-Path -Path $_})]
+        [string]
+        $PowerStigBuildPath,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $DestinationPath
+    )
+
+    $stringBuilder = [System.Text.StringBuilder]::new()
+    foreach ($class in $ClassModuleFileName)
+    {
+        $classModulePath = (Get-ChildItem -Path $PowerStigBuildPath -Filter $class -Recurse).FullName
+        $usingStatement = 'using module {0}' -f $classModulePath
+        [void] $stringBuilder.AppendLine($usingStatement)
+    }
+
+    Set-Content -Value $stringBuilder.ToString() -Path $DestinationPath
 }
 
 Export-ModuleMember -Function @(
@@ -523,4 +577,5 @@ Export-ModuleMember -Function @(
     'Get-ValidStigVersionNumbers'
     'Test-AutomatableRuleType'
     'Get-DscResourceModuleInfo'
+    'Set-DynamicClassFile'
 )

@@ -47,7 +47,7 @@ configuration SqlServer_config
         {
             SqlVersion = $TechnologyVersion
             SqlRole = '$TechnologyRole'
-            StigVersion = $StigVersion
+            StigVersion = '$StigVersion'
             ServerInstance = 'TestServer'
             $(if ($OrgSettings -is [hashtable])
             {
@@ -129,7 +129,7 @@ configuration SqlServerDatabase_config
             SqlRole        = '$TechnologyRole'
             StigVersion    = '$StigVersion'
             ServerInstance = 'TestServer'
-            Database       = 'TestDataBase'
+            Database       = @('TestDataBase','TestDataBase2')
             $(if ($null -ne $OrgSettings)
             {
                 "Orgsettings = '$OrgSettings'"

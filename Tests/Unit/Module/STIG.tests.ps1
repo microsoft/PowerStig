@@ -1,11 +1,9 @@
 #region Header
-using module .\..\..\..\Module\STIG\Convert\Convert.Main.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Functions
-
     Describe 'Split-StigXccdf' {
 
         $sampleXccdfFileName = 'U_Windows_Server_2016{0}_STIG_V1R1_Manual-xccdf.xml'
@@ -37,6 +35,7 @@ try
             }
         }
     }
+
     Describe 'Get-StigVersionNumber' {
         $majorVersionNumber = '1'
         $minorVersionNumber = '5'
@@ -48,6 +47,7 @@ try
                 Should Be "$majorVersionNumber.$minorVersionNumber"
         }
     }
+
     Describe 'Get-PowerStigFileList' {
         $majorVersionNumber = '1'
         $minorVersionNumber = '5'
@@ -81,6 +81,7 @@ try
         }
         #>
     }
+
     Describe 'Split-BenchmarkId' {
         $sampleStrings = [ordered]@{
             'SQLServer' = @(
@@ -249,14 +250,16 @@ try
             }
         }
     }
+
     Describe 'Conversion Status' {
         It 'Should not contain conversionstatus="fail" in any processed STIG' {
-            $selectStringResults = Select-String -Pattern 'conversionstatus="fail"' -Path "$PSScriptRoot\..\..\..\StigData\Processed\*.xml"
+            $processedStigDataPath = Join-Path -Path $script:moduleRoot -ChildPath 'StigData\Processed\*.xml'
+            $selectStringResults = Select-String -Pattern 'conversionstatus="fail"' -Path $processedStigDataPath
             $selectStringResults | Should Be $null
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1
