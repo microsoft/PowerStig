@@ -9,7 +9,7 @@ $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeRe
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
 $password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'
-$SetupAccount = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList 'Admin', $password
+$SetupAccount = New-Object -TypeName pscredential -ArgumentList 'Admin', $password
 
 $additionalTestParameterList    = @{
     SetupAccount = $SetupAccount
