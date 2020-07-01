@@ -247,14 +247,14 @@ function New-StigCheckList
             'source'         = $xccdfBenchmarkContent.reference.source
         }
 
-        foreach ($StigInfoElement in $stigInfoElements.GetEnumerator())
+        foreach ($stigInfoElement in $stigInfoElements.GetEnumerator())
         {
             $writer.WriteStartElement("SI_DATA")
             $writer.WriteStartElement('SID_NAME')
-            $writer.WriteString($StigInfoElement.name)
+            $writer.WriteString($stigInfoElement.name)
             $writer.WriteEndElement(<#SID_NAME#>)
             $writer.WriteStartElement('SID_DATA')
-            $writer.WriteString($StigInfoElement.value)
+            $writer.WriteString($stigInfoElement.value)
             $writer.WriteEndElement(<#SID_DATA#>)
             $writer.WriteEndElement(<#SI_DATA#>)
         }
