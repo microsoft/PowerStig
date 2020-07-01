@@ -168,7 +168,7 @@ function Get-ResourceMatchStatement
         }
         'SharePointSPWebAppGeneralSettingsRule' 
         {
-            return '\[SharePointSPWebAppGeneralSettingsRule\]'
+            return '\[SPWebAppGeneralSettings\]'
         }
     }
 }
