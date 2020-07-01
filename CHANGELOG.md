@@ -5,7 +5,6 @@
 * Update PowerSTIG to successfully parse/apply MS SQL Server 2012 Instance Ver. 1 Rel. 20: [#639](https://github.com/microsoft/PowerStig/issues/639)
 * Update PowerSTIG to successfully parse/apply MS SQL Server 2016 Instance Ver. 1 Rel. 9: [#636](https://github.com/microsoft/PowerStig/issues/636)
 * Update PowerSTIG to successfully parse/apply Windows Server 2012 DNS STIG - Ver 1, Rel 14:  [#633](https://github.com/microsoft/PowerStig/issues/633)
-* Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R4: [#634](https://github.com/microsoft/PowerStig/issues/634)
 * Update PowerSTIG to successfully parse Microsoft IIS Server/Site 10.0 STIG STIG V1R1: [#632](https://github.com/microsoft/PowerStig/issues/632)
 * Update PowerSTIG to successfully parse Microsoft Visio 2013 STIG V1R4: [#629](https://github.com/microsoft/PowerStig/issues/629)
 * Update PowerSTIG to successfully parse/apply Windows Defender Antivirus STIG - V1R8: [#625](https://github.com/microsoft/PowerStig/issues/625)
@@ -13,6 +12,7 @@
 * Update PowerSTIG to successfully parse/apply Microsoft IIS Server/Site 8.5 STIG - Ver 1, Rel10: [#622](https://github.com/microsoft/PowerStig/issues/622)
 * Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R3: [#604](https://github.com/microsoft/PowerStig/issues/604)
+* Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R4: [#634](https://github.com/microsoft/PowerStig/issues/634)
 * Fixed [#647](https://github.com/microsoft/PowerStig/issues/647): Conflict when configuring multiple databases
 * Fixed [#616](https://github.com/microsoft/PowerStig/issues/616): Unable to Import PowerSTIG 4.4.0 Due to cyclic dependency Error
 * Fixed [#632](https://github.com/microsoft/PowerStig/issues/632): Update PowerSTIG to allow for workgroup level scansr
