@@ -13,7 +13,7 @@
 * Update PowerSTIG to successfully parse/apply Microsoft IIS Server/Site 8.5 STIG - Ver 1, Rel10: [#622](https://github.com/microsoft/PowerStig/issues/622)
 * Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R3: [#604](https://github.com/microsoft/PowerStig/issues/604)
-* Update PowerSTIG to support multiple STIGs per checklist [#567] (https://github.com/microsoft/PowerStig/issues/567)
+* Update PowerSTIG to support multiple STIGs per checklist [#567](https://github.com/microsoft/PowerStig/issues/567)
 * Fixed [#210](https://github.com/microsoft/PowerStig/issues/210): Include the Description attribute in PowerSTIG XML
 * Fixed [#647](https://github.com/microsoft/PowerStig/issues/647): Conflict when configuring multiple databases
 * Fixed [#616](https://github.com/microsoft/PowerStig/issues/616): Unable to Import PowerSTIG 4.4.0 Due to cyclic dependency Error

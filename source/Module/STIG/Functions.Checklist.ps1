@@ -40,10 +40,10 @@
         See a sample at /PowerShell/StigData/Samples/ManualCheckListEntriesExcelExport.xml.
 
     .EXAMPLE
-        New-StigCheckList -MofFile $MofFile -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
-        New-StigCheckList -MofFile $MofFile -ChecklistSTIGFiles $ChecklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
-        New-StigCheckList -DscResults $auditRehydrated -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
-        New-StigCheckList -DscResults $auditRehydrated -ChecklistSTIGFiles $ChecklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+        New-StigCheckList -MofFile $mofFile -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $manualChecklistEntriesFile
+        New-StigCheckList -MofFile $mofFile -ChecklistSTIGFiles $checklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $manualChecklistEntriesFile
+        New-StigCheckList -DscResults $auditRehydrated -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $manualChecklistEntriesFile
+        New-StigCheckList -DscResults $auditRehydrated -ChecklistSTIGFiles $checklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $manualChecklistEntriesFile
 #>
 function New-StigCheckList
 {
@@ -54,7 +54,7 @@ function New-StigCheckList
         [Parameter(Mandatory = $true, ParameterSetName = 'single-mof')]
         [Parameter(Mandatory = $true, ParameterSetName = 'multi-mof')]
         [string]
-        $MofFile,
+        $mofFile,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'single-dsc')]
         [Parameter(Mandatory = $true, ParameterSetName = 'multi-dsc')]
@@ -64,16 +64,16 @@ function New-StigCheckList
         [Parameter(Mandatory = $true, ParameterSetName = 'single-mof')]
         [Parameter(Mandatory = $true, ParameterSetName = 'single-dsc')]
         [string]
-        $XccdfPath,
+        $xccdfPath,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'multi-mof')]
         [Parameter(Mandatory = $true, ParameterSetName = 'multi-dsc')]
         [string]
-        $ChecklistSTIGFiles,
+        $checklistSTIGFiles,
 
         [Parameter()]
         [String]
-        $ManualChecklistEntries,
+        $manualChecklistEntries,
 
         [Parameter(Mandatory = $true)]
         [System.IO.FileInfo]
@@ -81,31 +81,34 @@ function New-StigCheckList
     )
 
     # Validate parameters before continuing
-    if ($ManualChecklistEntries)
+    if ($manualChecklistEntries)
     {
-        if (-not (Test-Path -Path $ManualChecklistEntries))
+        if (-not (Test-Path -Path $manualChecklistEntries))
         {
-            throw "$($ManualChecklistEntries) is not a valid path to a ManualChecklistEntries.xml file. Provide a full valid path."
+            throw "$($manualChecklistEntries) is not a valid path to a ManualChecklistEntries.xml file. Provide a full valid path."
         }
-        [xml]$manualCheckData = get-content -path $ManualChecklistEntries
+
+        [xml]$manualCheckData = Get-Content -Path $manualChecklistEntries
     }
 
-    if ($XccdfPath)
+    if ($xccdfPath)
     {
-        if (-not (Test-Path -Path $XccdfPath))
+        if (-not (Test-Path -Path $xccdfPath))
         {
-            throw "$($XccdfPath) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path."
+            throw "$($xccdfPath) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path."
         }
-        $ChecklistSTIGs = $XccdfPath
+
+        $checklistSTIGs = $xccdfPath
     }
 
-    if ($ChecklistSTIGFiles)
+    if ($checklistSTIGFiles)
     {
-        if (-not (Test-Path -Path $ChecklistSTIGFiles))
+        if (-not (Test-Path -Path $checklistSTIGFiles))
         {
-            throw "$($ChecklistSTIGFiles) is not a valid path to a ChecklistSTIGFiles.txt file. Provide a full valid path."
+            throw "$($checklistSTIGFiles) is not a valid path to a ChecklistSTIGFiles.txt file. Provide a full valid path."
         }
-        $ChecklistSTIGs = Get-Content -path $ChecklistSTIGFiles
+
+        $checklistSTIGs = Get-Content -Path $checklistSTIGFiles
     }
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
@@ -121,12 +124,12 @@ function New-StigCheckList
     # Values for some of these fields can be read from the .mof file or the DSC results file
     if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
     {
-        if (-not (Test-Path -Path $MofFile))
+        if (-not (Test-Path -Path $mofFile))
         {
-            throw "$($MofFile) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
+            throw "$($mofFile) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
         }
 
-        $MofString = Get-Content -Path $MofFile -Raw
+        $MofString = Get-Content -Path $mofFile -Raw
         $TargetNode = Get-TargetNodeFromMof($MofString)
 
     }
@@ -137,6 +140,7 @@ function New-StigCheckList
         {
             throw 'Passed in $DscResults parameter is null. Please provide a valid result using Test-DscConfiguration.'
         }
+
         $TargetNode = $DscResults.PSComputerName
     }
 
@@ -218,7 +222,7 @@ function New-StigCheckList
     $writer.WriteStartElement("STIGS")
 
     #region STIG_iteration
-    foreach($xccdfPath in $ChecklistSTIGs)
+    foreach ($xccdfPath in $checklistSTIGs)
     {
 
         $writer.WriteStartElement("iSTIG")
@@ -300,8 +304,8 @@ function New-StigCheckList
 
             if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
             {
-                $setting = Get-SettingsFromMof -MofFile $MofFile -Id $vid
-                $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object {$_.id -eq $VID}
+                $setting = Get-SettingsFromMof -MofFile $mofFile -Id $vid
+                $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object {$_.id -eq $vid}
 
                 if ($setting)
                 {
@@ -323,7 +327,7 @@ function New-StigCheckList
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'single-dsc' -or $PSCmdlet.ParameterSetName -eq 'multi-dsc')
             {
-                $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object -FilterScript {$_.id -eq $VID}
+                $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object -FilterScript {$_.id -eq $vid}
                 if ($manualCheck)
                 {
                     $status = $statusMap["$($manualCheck.Status)"]
@@ -355,7 +359,7 @@ function New-StigCheckList
                     else
                     {
                         $status = $statusMap['NotReviewed']
-                    }    
+                    }
                 }
             }
 
@@ -367,13 +371,13 @@ function New-StigCheckList
                 # How is the duplicate rule handled? If it is handled, then this duplicate should have the same status
                 if ($PSCmdlet.ParameterSetName -eq 'mof')
                 {
-                    $originalSetting = Get-SettingsFromMof -MofFile $MofFile -Id $convertedRule.DuplicateOf
+                    $originalSetting = Get-SettingsFromMof -MofFile $mofFile -Id $convertedRule.DuplicateOf
 
                     if ($originalSetting)
                     {
                         $status = $statusMap['NotAFinding']
-                        $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
-                        $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                        $findingDetails = 'See {0} for Finding Details.' -f $convertedRule.DuplicateOf
+                        $comments = 'Managed via PowerStigDsc - this rule is a duplicate of {0}' -f $convertedRule.DuplicateOf
                     }
                 }
                 elseif ($PSCmdlet.ParameterSetName -eq 'result')
@@ -383,14 +387,14 @@ function New-StigCheckList
                     if ($originalSetting.InDesiredState -eq 'True')
                     {
                         $status = $statusMap['NotAFinding']
-                        $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
-                        $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                        $findingDetails = 'See {0} for Finding Details.' -f $convertedRule.DuplicateOf
+                        $comments = 'Managed via PowerStigDsc - this rule is a duplicate of {0}' -f $convertedRule.DuplicateOf
                     }
                     else
                     {
                         $status = $statusMap['Open']
-                        $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
-                        $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                        $findingDetails = 'See {0} for Finding Details.' -f $convertedRule.DuplicateOf
+                        $comments = 'Managed via PowerStigDsc - this rule is a duplicate of {0}' -f $convertedRule.DuplicateOf
                     }
                 }
             }
@@ -514,12 +518,12 @@ function Get-MofContent
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $MofFile
+        $mofFile
     )
 
     if (-not $script:mofContent)
     {
-        $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($MofFile, 4)
+        $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($mofFile, 4)
     }
 
     return $script:mofContent
@@ -537,14 +541,14 @@ function Get-SettingsFromMof
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $MofFile,
+        $mofFile,
 
         [Parameter(Mandatory = $true)]
         [string]
         $Id
     )
 
-    $mofContent = Get-MofContent -MofFile $MofFile
+    $mofContent = Get-MofContent -MofFile $mofFile
 
     $mofContentFound = $mofContent.Where({$PSItem.ResourceID -match $Id})
 
