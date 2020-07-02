@@ -82,4 +82,7 @@ configuration SharePoint
 
     Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.2.0
     . "$resourcePath\SharePoint.SPWebAppGeneralSettings.ps1"
+
+    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Script.skip.ps1"
 }
