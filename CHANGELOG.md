@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Removed required dependency of Vmware.VsphereDSC due to cyclic redundancy error when importing Powerstig
+
 ## [4.4.0] - 2020-07-01
 
 * Update PowerSTIG to successfully parse/apply MS SQL Server 2012 Instance Ver. 1 Rel. 20: [#639](https://github.com/microsoft/PowerStig/issues/639)
