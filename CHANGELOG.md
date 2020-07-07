@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-* Removed required dependency of Vmware.VsphereDSC due to cyclic redundancy error when importing Powerstig
+* Removed required dependency of Vmware.VsphereDSC due to cyclic redundancy error when importing PowerSTIG
 
 ## [4.4.0] - 2020-07-01
 
