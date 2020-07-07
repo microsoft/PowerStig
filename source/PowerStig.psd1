@@ -47,15 +47,7 @@ RequiredModules  = @(
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
-    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'},
-    @{ModuleName = 'VMware.VimAutomation.Sdk'; ModuleVersion = '12.0.0.15939651'},
-    @{ModuleName = 'VMware.VimAutomation.Common'; ModuleVersion = '12.0.0.15939652'},
-    @{ModuleName = 'VMware.Vim'; ModuleVersion ='7.0.0.15939650'},
-    @{ModuleName = 'VMware.VimAutomation.Cis.Core'; ModuleVersion = '12.0.0.15939657'},
-    @{ModuleName = 'VMware.VimAutomation.Core'; ModuleVersion = '12.0.0.15939655'},
-    @{ModuleName = 'VMware.VimAutomation.Storage'; ModuleVersion = '11.5.0.14901686'},
-    @{ModuleName = 'VMware.VimAutomation.Vds'; ModuleVersion = '11.2.0.12483615'},
-    @{ModuleName = 'Vmware.vSphereDsc'; ModuleVersion = '2.1.0.58'}
+    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'}
 )
 
 # DSC resources to export from this module
