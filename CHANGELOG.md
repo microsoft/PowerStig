@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Release Process Update: Ensure the nuget package uses explicit DSC Resource Module Versions: [#667](https://github.com/microsoft/PowerStig/issues/667)
+
 ## [4.4.2] - 2020-07-06
 
 * Removed required dependency of Vmware.VsphereDSC due to cyclic redundancy error when importing PowerSTIG
