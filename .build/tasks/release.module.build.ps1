@@ -276,6 +276,7 @@ task package_module_nupkg {
     $projectNuspecFile = New-NuspecFile @newNuspecFileParams
     $nugetFilePath = Join-Path -Path (Get-Module -Name PSDepend -ListAvailable).ModuleBase -ChildPath 'nuget.exe' | Select-Object -Unique
     Write-Warning -Message "nuget Path: $nugetFilePath"
+    Get-Command 'nuget.exe'
     Push-Location
     Set-Location -Path (Split-Path -Path $nugetFilePath -Parent)
     Get-ChildItem
