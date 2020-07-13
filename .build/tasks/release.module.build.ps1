@@ -265,15 +265,6 @@ task package_module_nupkg {
         }
     }
 
-    <#
-        $PublishModuleParams = @{
-            Path        = (Join-Path $OutputDirectory $ProjectName)
-            Repository  = 'output'
-            Force       = $true
-            ErrorAction = 'Stop'
-        }
-        Publish-Module @PublishModuleParams
-    #>
     Write-Build DarkGray "  Creating nuspec file"
     $projectPath = Join-Path -Path $OutputDirectory -ChildPath $ProjectName
     $manifestFileName = '{0}.psd1' -f $ProjectName
@@ -284,6 +275,7 @@ task package_module_nupkg {
     }
     $projectNuspecFile = New-NuspecFile @newNuspecFileParams
     $nugetFilePath = Join-Path -Path (Get-Module -Name PSDepend -ListAvailable).ModuleBase -ChildPath 'nuget.exe' | Select-Object -Unique
+    Write-Warning -Message "nuget Path: $nugetFilePath"
     if ((Test-Path -Path $nugetFilePath) -eq $false)
     {
         throw "nuget.exe not found, aborting task package_module_nupkg"
