@@ -274,9 +274,9 @@ task package_module_nupkg {
         DestinationPath    = $OutputDirectory
     }
     $projectNuspecFile = New-NuspecFile @newNuspecFileParams
-    $nugetFilePath = Get-Command -Name 'nuget.exe'
-    Write-Build DarkGray "nuget Path: $($nugetFilePath.FullName)"
-    if ((Test-Path -Path $nugetFilePath.FullName) -eq $false)
+    $nugetFilePath = 'C:\ProgramData\Chocolatey\bin\nuget.exe'
+    Write-Build DarkGray "nuget Path: $($nugetFilePath)"
+    if ((Test-Path -Path $nugetFilePath) -eq $false)
     {
         throw "nuget.exe not found, aborting task package_module_nupkg"
     }
