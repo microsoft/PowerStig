@@ -282,21 +282,25 @@ task package_module_nupkg {
         ModuleManifestPath = $moduleManifestPath.FullName
         DestinationPath    = $OutputDirectory
     }
-    New-NuspecFile @newNuspecFileParams
+    $projectNuspecFile = New-NuspecFile @newNuspecFileParams
     $nugetFilePath = Join-Path -Path (Get-Module -Name PSDepend -ListAvailable).ModuleBase -ChildPath 'nuget.exe' | Select-Object -Unique
-    if ((Test-Path -Path $nugetFilePath -eq $false))
+    if ((Test-Path -Path $nugetFilePath) -eq $false)
     {
         throw "nuget.exe not found, aborting task package_module_nupkg"
     }
     else
     {
+        $startProcessNugetParams = @{
+            FilePath     = $nugetFilePath
+            Wait         = $true
+            ArgumentList = @(
+                'Pack', $projectNuspecFile
+                '-OutputDirectory', $OutputDirectory
+            )
+        }
 
-        Start-Process -FilePath $nugetFilePath -Wait -ArgumentList @(
-        'Pack', $nuspecPath
-        '-OutputDirectory', $env:APPVEYOR_BUILD_FOLDER
-        '-BasePath', $MainModulePath
-        )
-        Write-Build Green "`n  Packaged $ProjectName NuGet package `n"
+        Start-Process @startProcessNugetParams
+        Write-Build Green "  Packaged $ProjectName NuGet package"
     }
 
     Write-Build DarkGray "  Cleaning up"

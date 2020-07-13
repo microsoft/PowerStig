@@ -578,10 +578,11 @@ function New-NuspecFile
 
     $moduleManifest = Import-PowerShellDataFile -Path $ModuleManifestPath
 
-    $requiredModules = @()
+    $requiredModuleStringBuilder = New-Object -TypeName System.Text.StringBuilder
     foreach ($dependency in $moduleManifest.RequiredModules)
     {
-        $requiredModules += "      <dependency id='{0}' version='[{1}]' />" -f $dependency.ModuleName, $dependency.ModuleVersion
+        $requiredModuleContents = "      <dependency id='{0}' version='[{1}]' />" -f $dependency.ModuleName, $dependency.ModuleVersion
+        [void] $requiredModuleStringBuilder.AppendLine($requiredModuleContents)
     }
 
     $nuspecFileContent = $nuspecContents -f
@@ -595,7 +596,7 @@ function New-NuspecFile
         $moduleManifest['Copyright'],
         $(Get-Date).Year,
         $($moduleManifest['PrivateData']['PsData']['Tags'] -join ' '),
-        $($requiredModules -join "`n`r"),
+        $($requiredModuleStringBuilder.ToString()),
         $moduleManifest['ModuleVersion']
 
     if (-not (Test-Path -Path $DestinationPath))
@@ -603,9 +604,11 @@ function New-NuspecFile
         $null = New-Item -Path $DestinationPath -ItemType 'Directory'
     }
 
-    $nuspecFilePath = Join-Path -Path $DestinationPath -ChildPath "$PackageName.nuspec"
-    $null = New-Item -Path $nuspecFilePath -ItemType 'File' -Force
+    $packageName = (Split-Path -Path $ModuleManifestPath -Leaf) -replace '.psd1'
+    $nuspecFilePath = Join-Path -Path $DestinationPath -ChildPath "$packageName.nuspec"
+    $nuspecFile = New-Item -Path $nuspecFilePath -ItemType 'File' -Force
     $null = Set-Content -Path $nuspecFilePath -Value $nuspecFileContent
+    return $nuspecFile.FullName
 }
 
 Export-ModuleMember -Function @(
