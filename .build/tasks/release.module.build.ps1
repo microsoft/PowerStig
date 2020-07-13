@@ -276,18 +276,12 @@ task package_module_nupkg {
     $projectNuspecFile = New-NuspecFile @newNuspecFileParams
     $nugetFilePath = Join-Path -Path (Get-Module -Name PSDepend -ListAvailable).ModuleBase -ChildPath 'nuget.exe' | Select-Object -Unique
     Write-Warning -Message "nuget Path: $nugetFilePath"
-    if ((Test-Path -Path $nugetFilePath) -eq $false)
-    {
-        throw "nuget.exe not found, aborting task package_module_nupkg"
-    }
-    else
-    {
-        Push-Location
-        Set-Location -Path (Split-Path -Path $nugetFilePath -Leaf)
-        .\nuget.exe Pack $projectNuspecFile -OutputDirectory $OutputDirectory
-        Pop-Location
-        Write-Build Green "  Packaged $ProjectName NuGet package"
-    }
+    Push-Location
+    Set-Location -Path (Split-Path -Path $nugetFilePath -Leaf)
+    Get-ChildItem
+    .\nuget.exe Pack $projectNuspecFile -OutputDirectory $OutputDirectory
+    Pop-Location
+    Write-Build Green "  Packaged $ProjectName NuGet package"
 
     Write-Build DarkGray "  Cleaning up"
     $null = Unregister-PSRepository -Name output -ErrorAction SilentlyContinue
