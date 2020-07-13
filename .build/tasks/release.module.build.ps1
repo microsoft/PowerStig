@@ -283,7 +283,7 @@ task package_module_nupkg {
     else
     {
         $startProcessNugetParams = @{
-            FilePath     = $nugetFilePath.FullName
+            FilePath     = $nugetFilePath
             Wait         = $true
             ArgumentList = @(
                 'Pack', $projectNuspecFile
