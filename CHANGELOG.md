@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+* Fixed [#668](https://github.com/microsoft/PowerStig/issues/668): Incorrect key for SSL 3.0 rules in SqlServer-2016-Instance.*.xml
+* Fixed [#669](https://github.com/microsoft/PowerStig/issues/669): Missing TLS 1.2 configuration for rule V-97521
+
 ## [4.4.2] - 2020-07-06
 
 * Removed required dependency of Vmware.VsphereDSC due to cyclic redundancy error when importing PowerSTIG
