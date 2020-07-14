@@ -274,9 +274,8 @@ task package_module_nupkg {
         DestinationPath    = $OutputDirectory
     }
     $projectNuspecFile = New-NuspecFile @newNuspecFileParams
-    Get-Command -Name nuget.exe
-    $nugetResults = Get-ChildItem -Path $env:ProgramData -Filter nuget.exe -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-    $nugetFilePath = $nugetResults.FullName
+    $nugetResults = Get-Command -Name nuget.exe | Select-Object -First 1
+    $nugetFilePath = $nugetResults.Source
     Write-Build DarkGray "  nuget Path: $($nugetFilePath)"
     if ((Test-Path -Path $nugetFilePath) -eq $false)
     {
