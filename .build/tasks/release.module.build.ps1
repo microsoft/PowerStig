@@ -274,9 +274,10 @@ task package_module_nupkg {
         DestinationPath    = $OutputDirectory
     }
     $projectNuspecFile = New-NuspecFile @newNuspecFileParams
+    Get-Command -Name nuget.exe
     $nugetResults = Get-ChildItem -Path $env:ProgramData -Filter nuget.exe -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
     $nugetFilePath = $nugetResults.FullName
-    Write-Build DarkGray "nuget Path: $($nugetFilePath)"
+    Write-Build DarkGray "  nuget Path: $($nugetFilePath)"
     if ((Test-Path -Path $nugetFilePath) -eq $false)
     {
         throw "nuget.exe not found, aborting task package_module_nupkg"
