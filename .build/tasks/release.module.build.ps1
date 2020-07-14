@@ -274,6 +274,8 @@ task package_module_nupkg {
         DestinationPath    = $OutputDirectory
     }
     $projectNuspecFile = New-NuspecFile @newNuspecFileParams
+    $results = Get-ChildItem -Path $env:ProgramData -Filter nuget.exe -Recurse -ErrorAction SilentlyContinue
+    $results
     $nugetFilePath = 'C:\ProgramData\Chocolatey\bin\nuget.exe'
     Write-Build DarkGray "nuget Path: $($nugetFilePath)"
     if ((Test-Path -Path $nugetFilePath) -eq $false)
