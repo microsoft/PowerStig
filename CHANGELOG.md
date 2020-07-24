@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Fixed [#663](https://github.com/microsoft/PowerStig/issues/663): Missing OrgSettings for V-88203 - Win10 Client 1.19 and 1.21
+
 ## [4.4.2] - 2020-07-06
 
 * Removed required dependency of Vmware.VsphereDSC due to cyclic redundancy error when importing PowerSTIG
