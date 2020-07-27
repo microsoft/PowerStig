@@ -49,8 +49,8 @@ function New-NuspecFile
         $null = New-Item -Path $DestinationPath -ItemType 'Directory'
     }
 
-    $packageName = (Split-Path -Path $ModuleManifestPath -Leaf) -replace '.psd1'
-    $nuspecFilePath = Join-Path -Path $DestinationPath -ChildPath "$packageName.nuspec"
+    $packageName = (Split-Path -Path $ModuleManifestPath -Leaf) -replace 'psd1', 'nuspec'
+    $nuspecFilePath = Join-Path -Path $DestinationPath -ChildPath $packageName
     $nuspecFile = New-Item -Path $nuspecFilePath -ItemType 'File' -Force
     $null = Set-Content -Path $nuspecFilePath -Value $nuspecFileContent
     return $nuspecFile.FullName
