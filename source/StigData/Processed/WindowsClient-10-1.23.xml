@@ -1993,7 +1993,7 @@ The PowerShell command produces a list of mitigations; only those with a require
 
 If there is no such documented policy or procedure in place, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-102627" severity="medium" conversionstatus="pass" title="WN10-SO-000251	" dscresource="None">
+    <Rule id="V-102627" severity="medium" conversionstatus="pass" title="WN10-SO-000251" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without the use of multifactor authentication, the ease of access to privileged and non-privileged functions is greatly increased.
 
 All domain accounts must be enabled for multifactor authentication with the exception of local emergency accounts.
