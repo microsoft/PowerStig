@@ -4587,7 +4587,7 @@ Value Name: NoReadingPane
 
 Value Type: REG_DWORD
 
-Value: 1</check-content></check></Rule></Group><Group id="V-102627"><title>WN10-SO-000251	</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-111577r1_rule" severity="medium" weight="10.0"><version>WN10-SO-000251	</version><title>Windows 10 must use multifactor authentication for local and network access to privileged and non-privileged accounts.</title><description>&lt;VulnDiscussion&gt;Without the use of multifactor authentication, the ease of access to privileged and non-privileged functions is greatly increased.
+Value: 1</check-content></check></Rule></Group><Group id="V-102627"><title>WN10-SO-000251</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-111577r1_rule" severity="medium" weight="10.0"><version>WN10-SO-000251</version><title>Windows 10 must use multifactor authentication for local and network access to privileged and non-privileged accounts.</title><description>&lt;VulnDiscussion&gt;Without the use of multifactor authentication, the ease of access to privileged and non-privileged functions is greatly increased.
 
 All domain accounts must be enabled for multifactor authentication with the exception of local emergency accounts.
 
