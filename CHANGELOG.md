@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 23: [678](https://github.com/microsoft/PowerStig/issues/678)
 * Release Process Update: Ensure the nuget package uses explicit DSC Resource Module Versions: [#667](https://github.com/microsoft/PowerStig/issues/667)
 * Fixed [#668](https://github.com/microsoft/PowerStig/issues/668): Incorrect key for SSL 3.0 rules in SqlServer-2016-Instance.*.xml
 * Fixed [#669](https://github.com/microsoft/PowerStig/issues/669): Missing TLS 1.2 configuration for rule V-97521
