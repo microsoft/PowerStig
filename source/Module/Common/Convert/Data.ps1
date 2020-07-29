@@ -59,5 +59,7 @@ data exclusionRuleList
         V-77263 = 'Set-ProcessMitigation doesn't allow for configuration of Override Settings, this will be updated in next release'
         V-77267 = 'Set-ProcessMitigation doesn't allow for configuration of Override Settings, this will be updated in next release'
         V-77269 = 'Set-ProcessMitigation doesn't allow for configuration of Override Settings, this will be updated in next release'
+        V-77245 = 'Set-ProcessMitigation doesn't allow for configuration of Override Settings, this will be updated in next release'
+        V-102627 = 'No automation available based on STIG Guidance, Fix text recommends setting up Windows Hello for non-domain systems'
 '@
 }
