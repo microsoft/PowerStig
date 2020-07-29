@@ -4,8 +4,9 @@
 
 * Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 23: [678](https://github.com/microsoft/PowerStig/issues/678)
 * Update PowerSTIG to successfully parse/apply Windows Server 2019 Instance Ver. 1 Rel. 5: [#683](https://github.com/microsoft/PowerStig/issues/683)
-* Release Process Update: Ensure the nuget package uses explicit DSC Resource Module Versions: [#667](https://github.com/microsoft/PowerStig/issues/667)
+* Update PowerSTIG to successfully parse/apply Windows 2016 DC/MS Version 1, Rev 12: [#681](https://github.com/microsoft/PowerStig/issues/681)
 * Update PowerSTIG to successfully parse/apply Windows 2012 R2 MS Version 2, Rev 19: [#676](https://github.com/microsoft/PowerStig/issues/676)
+* Release Process Update: Ensure the nuget package uses explicit DSC Resource Module Versions: [#667](https://github.com/microsoft/PowerStig/issues/667)
 * Fixed [#668](https://github.com/microsoft/PowerStig/issues/668): Incorrect key for SSL 3.0 rules in SqlServer-2016-Instance.*.xml
 * Fixed [#669](https://github.com/microsoft/PowerStig/issues/669): Missing TLS 1.2 configuration for rule V-97521
 * Fixed [#663](https://github.com/microsoft/PowerStig/issues/663): Missing OrgSettings for V-88203 - Win10 Client 1.19 and 1.21
