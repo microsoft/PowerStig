@@ -77,6 +77,7 @@ function Get-MitigationType
     try
     {
         $mitigationType = ($CheckContent | Select-String -Pattern $regularExpression.MitigationType -AllMatches).Matches.Value | Select-Object -Unique
+
         if ($mitigationType -eq "CFG")
         {
             $mitigationType = "ControlFlowGuard"
@@ -120,6 +121,12 @@ function Get-MitigationName
     try
     {
         $mitigationName = ($CheckContent | Select-String -Pattern $regularExpression.MitigationName -AllMatches).Matches.Value | Select-Object -Unique
+
+        if ($mitigationName -eq "Override DEP")
+        {
+            $mitigationName = "OverrideDep"
+        }
+
         return $mitigationName
     }
     catch
