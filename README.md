@@ -28,7 +28,7 @@ To see the released PowerStig module, go to the [PowerShell Gallery](https://www
 For example:
 
 ```powershell
-Install-Module -Name PowerStig -Scope CurrentUser
+Install-Module -Name PowerSTIG -Scope CurrentUser
 ```
 
 Once PowerStig is installed, you can view the list of STIGs that are currently available.
