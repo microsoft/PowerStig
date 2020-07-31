@@ -51,11 +51,24 @@ configuration SharePoint_config
 
     Node localhost
     {
-        SharePoint Configuration
-        {
-            SharePointVersion   = $TechnologyVersion
-            SetupAccount        = $SetupAccount
-            WebAppUrl           = 'test.com'
-        }
+        $psboundParams = $PSBoundParameters
+        $psboundParams.Remove('TechnologyRole')
+        $psboundParams.Remove('ConfigurationData')
+        $psboundParams.Version = $psboundParams['TechnologyVersion']
+        $psboundParams.Remove('TechnologyVersion')
+        $resourceParameters = @(
+            'Version'
+            'StigVersion'
+            'Exception'
+            'SkipRule'
+            'SkipRuleType'
+            'OrgSettings'
+            'SetupAccount'
+            'WebAppUrl'
+        )
+
+        $resourceParamString = New-ResourceParameterString -ResourceParameters $resourceParameters -PSBoundParams $psboundParams
+        $resourceScriptBlockString = New-ResourceString -ResourceParameterString $resourceParamString -ResourceName Sharepoint
+        & ([scriptblock]::Create($resourceScriptBlockString))
     }
 }

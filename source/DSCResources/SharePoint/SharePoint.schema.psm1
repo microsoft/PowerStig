@@ -7,7 +7,7 @@ using module ..\..\PowerStig.psm1
 <#
     .SYNOPSIS
         A composite DSC resource to manage the SharePoint STIG settings.
-    .PARAMETER SharePointVersion
+    .PARAMETER Version
         The version of SharePoint being used E.g. '2013'
     .PARAMETER StigVersion
         The version of the SharePoint STIG to apply and/or monitor
@@ -44,10 +44,10 @@ configuration SharePoint
         [pscredential]
         $SetupAccount,
 
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [string]
-        $SharePointVersion,
+        $Version,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
@@ -76,7 +76,7 @@ configuration SharePoint
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('Sharepoint', $SharePointVersion, $StigVersion)
+    $stig = [STIG]::New('Sharepoint', $Version, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 

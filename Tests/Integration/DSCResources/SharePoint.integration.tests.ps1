@@ -10,10 +10,12 @@ $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeReso
 
 $password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'
 $SetupAccount = New-Object -TypeName pscredential -ArgumentList 'Admin', $password
+$WebAppUrl = 'test.com'
 
 $additionalTestParameterList    = @{
-    SetupAccount = $SetupAccount
-    ConfigurationData           = @{
+    SetupAccount        = $SetupAccount
+    WebAppUrl           = $WebAppurl
+    ConfigurationData   = @{
         AllNodes = @(
             @{
                 NodeName = 'localhost'
@@ -42,7 +44,7 @@ foreach ($stig in $stigList)
     $getRandomExceptionRuleParams = @{
         RuleType        = 'SharePointSPWebAppGeneralSettingsRule'
         PowerStigXml    = $powerstigXml
-        ParameterValue  = "Strict"
+        ParameterValue  = 1234567
     }
 
     $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
