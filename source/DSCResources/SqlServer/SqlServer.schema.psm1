@@ -98,7 +98,7 @@ configuration SqlServer
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
     . "$resourcePath\Windows.SecurityOption.ps1"
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.0.0
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.1
     . "$resourcePath\Windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
