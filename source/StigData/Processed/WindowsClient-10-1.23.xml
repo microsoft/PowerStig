@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V1R19_Manual-xccdf.xml" releaseinfo="Release: 19 Benchmark Date: 25 Oct 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.19" created="6/17/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V1R23_Manual-xccdf.xml" releaseinfo="Release: 23 Benchmark Date: 17 Jun 2020" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.23" created="7/28/2020">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -183,27 +183,6 @@ Compare the AuditPol settings with the following.  If the system does not audit 
 Account Logon &gt;&gt; Credential Validation - Success</RawString>
       <Subcategory>Credential Validation</Subcategory>
     </Rule>
-    <Rule id="V-63441" severity="medium" conversionstatus="pass" title="WN10-AU-000020" dscresource="AuditPolicySubcategory">
-      <AuditFlag>Success</AuditFlag>
-      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
-
-Other Account Management records events such as the access of a password hash or the Password Policy Checking API being called.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
-
-Use the AuditPol tool to review the current Audit Policy configuration:
-Open a Command Prompt with elevated privileges ("Run as Administrator").
-Enter "AuditPol /get /category:*".
-
-Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding:
-
-Account Management &gt;&gt; Other Account Management Events - Success</RawString>
-      <Subcategory>Other Account Management Events</Subcategory>
-    </Rule>
     <Rule id="V-63445" severity="medium" conversionstatus="pass" title="WN10-AU-000030" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
@@ -308,27 +287,6 @@ Compare the AuditPol settings with the following.  If the system does not audit 
 
 Detailed Tracking &gt;&gt; Process Creation - Success</RawString>
       <Subcategory>Process Creation</Subcategory>
-    </Rule>
-    <Rule id="V-63455" severity="medium" conversionstatus="pass" title="WN10-AU-000055" dscresource="AuditPolicySubcategory">
-      <AuditFlag>Success</AuditFlag>
-      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
-
-Account Lockout events can be used to identify potentially malicious logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
-
-Use the AuditPol tool to review the current Audit Policy configuration:
-Open a Command Prompt with elevated privileges ("Run as Administrator").
-Enter "AuditPol /get /category:*"
-
-Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding:
-
-Logon/Logoff &gt;&gt; Account Lockout - Success</RawString>
-      <Subcategory>Account Lockout</Subcategory>
     </Rule>
     <Rule id="V-63457" severity="medium" conversionstatus="pass" title="WN10-AU-000060" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
@@ -481,27 +439,6 @@ Object Access &gt;&gt; Removable Storage - Success
 Some virtual machines may generate excessive audit events for access to the virtual hard disk itself when this setting is enabled. This may be set to Not Configured in such cases and would not be a finding.  This must be documented with the ISSO to include mitigations such as monitoring or restricting any actual removable storage connected to the VM.</RawString>
       <Subcategory>Removable Storage</Subcategory>
     </Rule>
-    <Rule id="V-63475" severity="medium" conversionstatus="pass" title="WN10-AU-000095" dscresource="AuditPolicySubcategory">
-      <AuditFlag>Failure</AuditFlag>
-      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
-
-Audit Policy Change records events related to changes in audit policy.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
-
-Use the AuditPol tool to review the current Audit Policy configuration:
-Open a Command Prompt with elevated privileges ("Run as Administrator").
-Enter "AuditPol /get /category:*".
-
-Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding:
-
-Policy Change &gt;&gt; Audit Policy Change - Failure</RawString>
-      <Subcategory>Audit Policy Change</Subcategory>
-    </Rule>
     <Rule id="V-63479" severity="medium" conversionstatus="pass" title="WN10-AU-000100" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
@@ -605,27 +542,6 @@ Enter "AuditPol /get /category:*".
 Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding:
 
 System &gt;&gt; IPSec Driver - Failure</RawString>
-      <Subcategory>IPSec Driver</Subcategory>
-    </Rule>
-    <Rule id="V-63495" severity="medium" conversionstatus="pass" title="WN10-AU-000125" dscresource="AuditPolicySubcategory">
-      <AuditFlag>Success</AuditFlag>
-      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
-
-IPSec Driver records events related to the IPSec Driver such as dropped packets.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
-
-Use the AuditPol tool to review the current Audit Policy configuration:
-Open a Command Prompt with elevated privileges ("Run as Administrator").
-Enter "AuditPol /get /category:*".
-
-Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding:"
-
-System &gt;&gt; IPSec Driver - Success</RawString>
       <Subcategory>IPSec Driver</Subcategory>
     </Rule>
     <Rule id="V-63499" severity="medium" conversionstatus="pass" title="WN10-AU-000130" dscresource="AuditPolicySubcategory">
@@ -897,6 +813,168 @@ Object Access &gt;&gt; File Share - Failure
 If the system does not audit the above, this is a finding.</RawString>
       <Subcategory>File Share</Subcategory>
     </Rule>
+    <Rule id="V-99541" severity="medium" conversionstatus="pass" title="WN10-AU-000565" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Audit Other Logon/Logoff Events determines whether Windows generates audit events for other logon or logoff events. Logon events are essential to understanding user activity and detecting potential attacks.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+Open a Command Prompt with elevated privileges ("Run as Administrator").
+Enter "AuditPol /get /category:*".
+
+Compare the AuditPol settings with the following. If the system does not audit the following, this is a finding:
+
+Logon/Logoff  &gt;&gt; Other Logon/Logoff Events - Failure
+</RawString>
+      <Subcategory>Other Logon/Logoff Events</Subcategory>
+    </Rule>
+    <Rule id="V-99543" severity="medium" conversionstatus="pass" title="WN10-AU-000560" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Audit Other Logon/Logoff Events determines whether Windows generates audit events for other logon or logoff events. Logon events are essential to understanding user activity and detecting potential attacks.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+Open a Command Prompt with elevated privileges ("Run as Administrator").
+Enter "AuditPol /get /category:*".
+
+Compare the AuditPol settings with the following. If the system does not audit the following, this is a finding:
+
+Logon/Logoff  &gt;&gt; Other Logon/Logoff Events - Success
+</RawString>
+      <Subcategory>Other Logon/Logoff Events</Subcategory>
+    </Rule>
+    <Rule id="V-99545" severity="medium" conversionstatus="pass" title="WN10-AU-000570" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Audit Detailed File Share allows you to audit attempts to access files and folders on a shared folder.
+The Detailed File Share setting logs an event every time a file or folder is accessed, whereas the File Share setting only records one event for any connection established between a client and file share. Detailed File Share audit events include detailed information about the permissions or other criteria used to grant or deny access.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+Open a Command Prompt with elevated privileges ("Run as Administrator").
+Enter "AuditPol /get /category:*".
+
+Compare the AuditPol settings with the following. If the system does not audit the following, this is a finding:
+
+Object Access  &gt;&gt; Detailed File Share - Failure
+</RawString>
+      <Subcategory>Detailed File Share</Subcategory>
+    </Rule>
+    <Rule id="V-99547" severity="medium" conversionstatus="pass" title="WN10-AU-000575" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Audit MPSSVC Rule-Level Policy Change determines whether the operating system generates audit events when changes are made to policy rules for the Microsoft Protection Service (MPSSVC.exe).
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+Open a Command Prompt with elevated privileges ("Run as Administrator").
+Enter "AuditPol /get /category:*".
+
+Compare the AuditPol settings with the following. If the system does not audit the following, this is a finding:
+
+Policy Change  &gt;&gt; MPSSVC Rule-Level Policy Change - Success
+</RawString>
+      <Subcategory>MPSSVC Rule-Level Policy Change</Subcategory>
+    </Rule>
+    <Rule id="V-99549" severity="medium" conversionstatus="pass" title="WN10-AU-000580" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Audit MPSSVC Rule-Level Policy Change determines whether the operating system generates audit events when changes are made to policy rules for the Microsoft Protection Service (MPSSVC.exe).
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+Open a Command Prompt with elevated privileges ("Run as Administrator").
+Enter "AuditPol /get /category:*".
+
+Compare the AuditPol settings with the following. If the system does not audit the following, this is a finding:
+
+Policy Change  &gt;&gt; MPSSVC Rule-Level Policy Change - Failure
+</RawString>
+      <Subcategory>MPSSVC Rule-Level Policy Change</Subcategory>
+    </Rule>
+    <Rule id="V-99551" severity="medium" conversionstatus="pass" title="WN10-AU-000550" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Audit Other Policy Change Events contains events about EFS Data Recovery Agent policy changes, changes in Windows Filtering Platform filter, status on Security policy settings updates for local Group Policy settings, Central Access Policy changes, and detailed troubleshooting events for Cryptographic Next Generation (CNG) operations.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+Open a Command Prompt with elevated privileges ("Run as Administrator").
+Enter "AuditPol /get /category:*".
+
+Compare the AuditPol settings with the following. If the system does not audit the following, this is a finding:
+
+Policy Change  &gt;&gt; Other Policy Change Events - Success
+</RawString>
+      <Subcategory>Other Policy Change Events</Subcategory>
+    </Rule>
+    <Rule id="V-99553" severity="medium" conversionstatus="pass" title="WN10-AU-000555" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Audit Other Policy Change Events contains events about EFS Data Recovery Agent policy changes, changes in Windows Filtering Platform filter, status on Security policy settings updates for local Group Policy settings, Central Access Policy changes, and detailed troubleshooting events for Cryptographic Next Generation (CNG) operations.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+Open a Command Prompt with elevated privileges ("Run as Administrator").
+Enter "AuditPol /get /category:*".
+
+Compare the AuditPol settings with the following. If the system does not audit the following, this is a finding:
+
+Policy Change  &gt;&gt; Other Policy Change Events - Failure
+</RawString>
+      <Subcategory>Other Policy Change Events</Subcategory>
+    </Rule>
   </AuditPolicyRule>
   <AuditSettingRule dscresourcemodule="AuditSystemDsc">
     <Rule id="V-63349" severity="high" conversionstatus="pass" title="WN10-00-000040" dscresource="AuditSetting">
@@ -905,7 +983,7 @@ If the system does not audit the above, this is a finding.</RawString>
 New versions with feature updates are planned to be released on a semi-annual basis with an estimated support timeframe of 18 to 30 months depending on the release. Support for previously released versions has been extended for Enterprise editions.
 
 A separate servicing branch intended for special purpose systems is the Long-Term Servicing Channel (LTSC, formerly Branch - LTSB) which will receive security updates for 10 years but excludes feature updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DesiredValue>10.0.15063</DesiredValue>
+      <DesiredValue>10.0.17134</DesiredValue>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Operator>-le</Operator>
@@ -917,15 +995,14 @@ A separate servicing branch intended for special purpose systems is the Long-Ter
 
 If the "About Windows" dialog box does not display:
 
-"Microsoft Windows Version 1703 (OS Build 15063.0)"
+"Microsoft Windows Version 1803 (OS Build 17134.0)"
 
 or greater, this is a finding.
 
 Note: Microsoft has extended support for previous versions providing critical and important updates for Windows 10 Enterprise.
 
 Microsoft scheduled end of support dates for current Semi-Annual Channel versions:
-v1703 - 8 October 2019
-v1709 - 14 April 2020
+v1709 - 13 October 2020
 v1803 - 10 November 2020
 v1809 - 13 April 2021
 v1903 - 8 December 2020
@@ -1129,7 +1206,7 @@ Verify the Bluetooth radio is turned off unless approved by the organization. If
 
 Approval must be documented with the ISSO.</RawString>
     </Rule>
-    <Rule id="V-77189" severity="medium" conversionstatus="pass" title="WN10-EP-000070" dscresource="None">
+    <Rule id="V-77189" severity="medium" conversionstatus="pass" title="WN10-EP-000070  " dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1144,24 +1221,23 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name Acrobat.exe".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
-BottomUp: ON
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status of are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77191" severity="medium" conversionstatus="pass" title="WN10-EP-000080" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1178,24 +1254,23 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name AcroRd32.exe".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
-BottomUp: ON
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot= False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77195" severity="medium" conversionstatus="pass" title="WN10-EP-000090" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1212,12 +1287,12 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name chrome.exe".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+OverrideDEP: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77201" severity="medium" conversionstatus="pass" title="WN10-EP-000100" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1234,23 +1309,23 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name EXCEL.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77205" severity="medium" conversionstatus="pass" title="WN10-EP-000110" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1266,17 +1341,15 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 
 Enter "Get-ProcessMitigation -Name firefox.exe".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
-BottomUp: ON
-ForceRelocateImages: ON
+ForceRelocateImages: On
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77209" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1293,26 +1366,26 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name FLTLDR.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ImageLoad:
-BlockRemoteImageLoads: ON
+OverrideBlockRemoteImages: False
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
 Child Process:
-DisallowChildProcessCreation: ON
+OverrideChildProcess: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77213" severity="medium" conversionstatus="pass" title="WN10-EP-000130" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1329,29 +1402,30 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name GROOVE.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+OverrideDEP: False
 
 ASLR:
-ForceRelocateImages: ON
+ForceRelocateImages: On
 
 ImageLoad:
-BlockRemoteImageLoads: ON
+OverrideBlockRemoteImages: False
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
+
 
 Child Process:
-DisallowChildProcessCreation: ON
+OverrideChildProcess: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here.  If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77217" severity="medium" conversionstatus="pass" title="WN10-EP-000140" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1368,24 +1442,23 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name iexplore.exe".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
-BottomUp: ON
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77221" severity="medium" conversionstatus="pass" title="WN10-EP-000150" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1402,23 +1475,23 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name INFOPATH.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77223" severity="medium" conversionstatus="pass" title="WN10-EP-000160" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1436,20 +1509,21 @@ Enter "Get-ProcessMitigation -Name [application name]" with each of the followin
 java.exe, javaw.exe, and javaws.exe
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON" for each, this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77227" severity="medium" conversionstatus="pass" title="WN10-EP-000170" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1466,23 +1540,23 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name lync.exe".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77231" severity="medium" conversionstatus="pass" title="WN10-EP-000180" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1499,23 +1573,24 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name MSACCESS.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+
+The PowerShell command produces a list of mitigations; only those with a required status of are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77233" severity="medium" conversionstatus="pass" title="WN10-EP-000190" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1532,23 +1607,24 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name MSPUB.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77235" severity="medium" conversionstatus="pass" title="WN10-EP-000210" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1565,26 +1641,27 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name OneDrive.exe".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
-ForceRelocateImages: ON
+OverrideRelocateImages: NOTSET
 
 ImageLoad:
-BlockRemoteImageLoads: ON
+OverrideBlockRemoteImages: False
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77239" severity="medium" conversionstatus="pass" title="WN10-EP-000200" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1601,20 +1678,21 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name OIS.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+OverrideDEP: False
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideEnableExportAddressFilter: False
+OverrideEnableExportAddressFilterPlus: False
+OverrideEnableImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77243" severity="medium" conversionstatus="pass" title="WN10-EP-000220" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1631,21 +1709,52 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name OUTLOOK.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
+
+
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77245" severity="medium" conversionstatus="pass" title="WN10-EP-000230" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name plugin-container.exe".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have the listed status shown below, this is a finding:
+
+DEP:
+Override DEP: False
+
+Payload:
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
 The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
@@ -1664,23 +1773,23 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name POWERPNT.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77249" severity="medium" conversionstatus="pass" title="WN10-EP-000250" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1697,23 +1806,23 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name PPTVIEW.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77255" severity="medium" conversionstatus="pass" title="WN10-EP-000260" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1730,23 +1839,23 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name VISIO.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77259" severity="medium" conversionstatus="pass" title="WN10-EP-000270" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1763,23 +1872,23 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name VPREVIEW.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77263" severity="medium" conversionstatus="pass" title="WN10-EP-000280" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1796,23 +1905,23 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name WINWORD.EXE".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 ASLR:
 ForceRelocateImages: ON
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status of are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77267" severity="medium" conversionstatus="pass" title="WN10-EP-000290" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1829,17 +1938,20 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name wmplayer.exe".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 Payload:
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77269" severity="medium" conversionstatus="pass" title="WN10-EP-000300" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1856,20 +1968,65 @@ Run "Windows PowerShell" with elevated privileges (run as administrator).
 Enter "Get-ProcessMitigation -Name wordpad.exe".
 (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
 
-If the following mitigations do not have a status of "ON", this is a finding:
+If the following mitigations do not have the listed status which is shown below, this is a finding:
 
 DEP:
-Enable: ON
+Override DEP: False
 
 Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
+OverrideExportAddressFilter: False
+OverrideExportAddressFilterPlus: False
+OverrideImportAddressFilter: False
+OverrideEnableRopStackPivot: False
+OverrideEnableRopCallerCheck: False
+OverrideEnableRopSimExec: False
 
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-102611" severity="medium" conversionstatus="pass" title="WN10-00-000250" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;For virtual desktop implementations (VDIs) where the virtual desktop instance is deleted or refreshed upon logoff, the organization should enforce that sessions be terminated within 24 hours. This would ensure any data stored on the VM that is not encrypted or covered by Credential Guard is deleted.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Ensure there is a documented policy or procedure in place that non-persistent VM sessions do not exceed 24 hours.
+
+If there is no such documented policy or procedure in place, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-102627" severity="medium" conversionstatus="pass" title="WN10-SO-000251" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without the use of multifactor authentication, the ease of access to privileged and non-privileged functions is greatly increased.
+
+All domain accounts must be enabled for multifactor authentication with the exception of local emergency accounts.
+
+Multifactor authentication requires using two or more factors to achieve authentication.
+
+Factors include:
+
+1) Something a user knows (e.g., password/PIN);
+
+2) Something a user has (e.g., cryptographic identification device, token); and
+
+3) Something a user is (e.g., biometric).
+
+A privileged account is defined as an information system account with authorizations of a privileged user.
+
+Network access is defined as access to an information system by a user (or a process acting on behalf of a user) communicating through a network (e.g., local area network, wide area network, or the Internet).
+
+Local access is defined as access to an organizational information system by a user (or process acting on behalf of a user) communicating through a direct connection without the use of a network.
+
+The DoD CAC with DoD-approved PKI is an example of multifactor authentication.
+
+Satisfies: SRG-OS-000105-GPOS-00052, SRG-OS-000106-GPOS-00053, SRG-OS-000107-GPOS-00054, SRG-OS-000108-GPOS-00055&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the system is a member of a domain this is Not Applicable.
+
+If one of the following settings does not exist and is not populated, this is a finding:
+
+Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\Readers
+Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\SmartCards</RawString>
     </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
@@ -1891,7 +2048,7 @@ If "Edition" is not "Windows 10 Enterprise", this is a finding.
 
 If "System type" is not "64-bit operating system…", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-63323" severity="low" conversionstatus="pass" title="WN10-00-000010" dscresource="None">
+    <Rule id="V-63323" severity="medium" conversionstatus="pass" title="WN10-00-000010" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Credential Guard uses virtualization based security to protect information that could be used in credential theft attacks if compromised. There are a number of system requirements that must be met in order for Credential Guard to be configured and enabled properly. Without a TPM enabled and ready for use, Credential Guard keys are stored in a less secure method using software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1911,9 +2068,7 @@ Review the sections in the center pane.
 "Status" must indicate it has been configured with a message such as "The TPM is ready for use" or "The TPM is on and ownership has been taken".
 TPM Manufacturer Information - Specific Version = 2.0 or 1.2
 
-If a TPM is not found or is not ready for use, this is a finding.
-
-NOTE:  The severity level for the requirement will be upgraded to CAT II starting January 2020.</RawString>
+If a TPM is not found or is not ready for use, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63337" severity="medium" conversionstatus="pass" title="WN10-00-000030" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If data at rest is unencrypted, it is vulnerable to disclosure.  Even if the operating system enforces permissions on data access, an adversary can remove non-volatile memory and read it directly, thereby circumventing operating system controls.   Encrypting the data ensures that confidentiality is protected even when the operating system is not running.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1921,7 +2076,9 @@ NOTE:  The severity level for the requirement will be upgraded to CAT II startin
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify all Windows 10 information systems (including SIPRNET) employ BitLocker for full disk encryption.
+      <RawString>Verify all Windows 10 information systems (including SIPRNet) employ BitLocker for full disk encryption.
+
+For virtual desktop implementations (VDIs) in which the virtual desktop instance is deleted or refreshed upon logoff, this is NA.
 
 If full disk encryption using BitLocker is not implemented, this is a finding.
 
@@ -2192,17 +2349,17 @@ Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD 
 
 If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding.
 
-If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
-
-Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=DoD Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: 22BBE981F0694D246CC1472ED2B021DC8540A22F
-NotAfter: 9/6/2019
+If an expired certificate ("NotAfter" date) is found, this is a finding.
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
 NotAfter: 1/22/2022
+
+Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Issuer: CN=DoD Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: A8C27332CCB4CA49554CE55D34062A7DD2850C02
+NotAfter: 8/26/2022
 
 Alternately use the Certificates MMC snap-in:
 
@@ -2234,8 +2391,8 @@ If an expired certificate ("Valid to" date) is not listed in the results, this i
 
 Issued To: DoD Root CA 2
 Issued By: DoD Interoperability Root CA 1
-Thumbprint: 22BBE981F0694D246CC1472ED2B021DC8540A22F
-Valid to: Friday, September 6, 2019
+Thumbprint: A8C27332CCB4CA49554CE55D34062A7DD2850C02
+Valid to: Friday, August 26, 2022
 
 Issued To: DoD Root CA 3
 Issued By: DoD Interoperability Root CA 2
@@ -2258,12 +2415,12 @@ Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Int
 
 If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding.
 
-If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
+If an expired certificate ("NotAfter" date) is found, this is a finding.
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
-NotAfter: 9/27/2019
+Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S.Government, C=US
+Thumbprint: AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9
+NotAfter: 8/26/2022 9:07:50 AM
 
 Alternately use the Certificates MMC snap-in:
 
@@ -2293,10 +2450,10 @@ If the certificate below is not listed or the value for the "Thumbprint" field i
 
 If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
 
-Issued To: DoD Root CA 3
-Issuer by: US DoD CCEB Interoperability Root CA 2
-Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
-Valid: Friday, September 27, 2019</RawString>
+Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S.Government, C=US
+Thumbprint: AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9
+NotAfter: 8/26/2022 9:07:50 AM</RawString>
     </Rule>
     <Rule id="V-63685" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Windows Defender SmartScreen helps protect systems from programs downloaded from the internet that may be malicious. Enabling Windows Defender SmartScreen will warn or prevent users from running potentially malicious programs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2374,7 +2531,7 @@ Verify the organization has a policy to turn off Bluetooth when not in use and p
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This is NA if the system does not have Bluetooth.
+      <RawString>This is NA if the system does not have Bluetooth, or if Bluetooth is turned off per the organizations policy.
 
 Search for "Bluetooth".
 View Bluetooth Settings.
@@ -2443,6 +2600,26 @@ The organization must have a policy that prohibits administrative accounts from 
 Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet.
 
 If accounts with administrative privileges are not prevented from using applications that access the Internet or with potential Internet sources, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-99555" severity="medium" conversionstatus="pass" title="WN10-SO-000280" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the password. A local Administrator account is not generally used and its password not may be changed as frequently as necessary. Changing the password for enabled Administrator accounts on a regular basis will limit its exposure.
+
+Organizations that use an automated tool, such Microsoft's Local Administrator Password Solution (LAPS), on domain-joined systems can configure this to occur more frequently. LAPS will change the password every "30" days by default.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the password last set date for the enabled local Administrator account.
+
+On the local domain joined workstation:
+
+Open "PowerShell".
+
+Enter "Get-LocalUser –Name * | Select-Object *”
+
+If the "PasswordLastSet" date is greater than "60" days old for the local Administrator account for administering the computer/domain, this is a finding.
+</RawString>
     </Rule>
   </ManualRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
@@ -3168,39 +3345,6 @@ Values that would not be a finding include:
 ON
 NOTSET (Default configuration)</RawString>
     </Rule>
-    <Rule id="V-77245" severity="medium" conversionstatus="pass" title="WN10-EP-000230" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>plugin-container.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name plugin-container.exe".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
-    </Rule>
   </ProcessMitigationRule>
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-63321" severity="medium" conversionstatus="pass" title="WN10-CC-000310" dscresource="RegistryPolicyFile">
@@ -3803,7 +3947,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>LocalAccountTokenFilterPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63599" severity="low" conversionstatus="pass" title="WN10-CC-000075" dscresource="RegistryPolicyFile">
+    <Rule id="V-63599" severity="high" conversionstatus="pass" title="WN10-CC-000075" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Credential Guard uses virtualization based security to protect information that could be used in credential theft attacks if compromised. This authentication information, which was stored in the Local Security Authority (LSA) in previous versions of Windows, is isolated from the rest of operating system and can only be accessed by privileged system software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3813,9 +3957,7 @@ Value: 0x00000000 (0)</RawString>
       <OrganizationValueTestString />
       <RawString>Confirm Credential Guard is running on domain-joined systems.
 
-For standalone systems, this is NA.
-
-For those devices that support Credential Guard, this feature must be enabled. For devices that do not support it, there is currently an enterprise risk acceptance in effect, thus this check is currently categorized as a CAT III. Organizations need to take the appropriate action to acquire and implement compatible hardware with Credential Guard enabled.
+For those devices that support Credential Guard, this feature must be enabled. Organizations need to take the appropriate action to acquire and implement compatible hardware with Credential Guard enabled.
 
 Virtualization based security, including Credential Guard, currently cannot be implemented in virtual desktop implementations (VDI) due to specific supporting requirements including a TPM, UEFI with Secure Boot, and the capability to run the Hyper-V feature within the virtual desktop.
 
@@ -3842,22 +3984,22 @@ Value Name: LsaCfgFlags
 Value Type: REG_DWORD
 Value: 0x00000001 (1) (Enabled with UEFI lock)
 
-NOTE:  The severity level for the requirement will be upgraded to CAT I starting January 2020.</RawString>
+</RawString>
       <ValueData>1</ValueData>
       <ValueName>LsaCfgFlags</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63607" severity="medium" conversionstatus="pass" title="WN10-CC-000085" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Compromised boot drivers can introduce malware prior to protection mechanisms that load after initialization.  The Early Launch Antimalware driver can limit allowed drivers based on classifications determined by the malware protection application.  At a minimum, drivers determined to be bad must not be allowed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;By being launched first by the kernel, ELAM ( Early Launch Antimalware) is ensured to be launched before any third-party software, and is therefore able to detect malware in the boot process and prevent it from initializing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Policies\EarlyLaunch</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '1|3|8|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '1|3|8'</OrganizationValueTestString>
       <RawString>The default behavior is for Early Launch Antimalware - Boot-Start Driver Initialization policy is to enforce "Good, unknown and bad but critical" (preventing "bad").
 
-If the registry value name below does not exist, this is not a finding.
+If the registry value name below does not exist, this a finding.
 
 If it exists and is configured with a value of "7", this is a finding.
 
@@ -3867,13 +4009,14 @@ Registry Path: \SYSTEM\CurrentControlSet\Policies\EarlyLaunch\
 Value Name: DriverLoadPolicy
 
 Value Type: REG_DWORD
-Value: 1, 3, or 8 (or if the Value Name does not exist)
+Value: 1, 3, or 8
 
 Possible values for this setting are:
 8 - Good only
 1 - Good and unknown
 3 - Good, unknown and bad but critical
-7 - All (which includes "Bad" and would be a finding)</RawString>
+7 - All (which includes "Bad" and would be a finding)
+</RawString>
       <ValueData />
       <ValueName>DriverLoadPolicy</ValueName>
       <ValueType>Dword</ValueType>
@@ -4762,50 +4905,6 @@ Value: 1</RawString>
       <ValueName>RequireSecuritySignature</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63705" severity="medium" conversionstatus="pass" title="WN10-CC-000240" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;The InPrivate browsing feature in Microsoft Edge prevents the storing of history, cookies, temporary Internet files, or other data.  Disabling this feature maintains this data for review as necessary.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Windows 10 LTSC\B versions do not include Microsoft Edge, this is NA for those systems.
-
-If the following registry value does not exist or is not configured as specified, this is a finding.
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main\
-
-Value Name: AllowInPrivate
-
-Type: REG_DWORD
-Value: 0x00000000 (0)</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>AllowInPrivate</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-63707" severity="medium" conversionstatus="pass" title="WN10-SO-000105" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;The server message block (SMB) protocol provides the basis for many network operations.   If this policy is enabled, the SMB client will request packet signing when communicating with an SMB server that is enabled or required to perform SMB packet signing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\
-
-Value Name: EnableSecuritySignature
-
-Value Type: REG_DWORD
-Value: 1</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>EnableSecuritySignature</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
     <Rule id="V-63709" severity="medium" conversionstatus="pass" title="WN10-CC-000245" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Passwords save locally for re-use when browsing may be subject to compromise.  Disabling the Edge password manager will prevent this for the browser.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -4938,27 +5037,6 @@ Type:  REG_DWORD
 Value:  6 (or greater)</RawString>
       <ValueData />
       <ValueName>MinimumPINLength</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-63723" severity="medium" conversionstatus="pass" title="WN10-SO-000125" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;The server message block (SMB) protocol provides the basis for many network operations.   Digitally signed SMB packets aid in preventing man-in-the-middle attacks.  If this policy is enabled, the SMB server will negotiate SMB packet signing as requested by the client.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\
-
-Value Name: EnableSecuritySignature
-
-Value Type: REG_DWORD
-Value: 1</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>EnableSecuritySignature</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63729" severity="medium" conversionstatus="pass" title="WN10-CC-000270" dscresource="RegistryPolicyFile">
@@ -5217,27 +5295,6 @@ Value Type: REG_DWORD
 Value: 1</RawString>
       <ValueData>1</ValueData>
       <ValueName>RestrictNullSessAccess</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-63763" severity="medium" conversionstatus="pass" title="WN10-SO-000175" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Services using Local System that use Negotiate when reverting to NTLM authentication may gain unauthorized access if allowed to authenticate anonymously vs. using the computer identity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\LSA</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SYSTEM\CurrentControlSet\Control\LSA\
-
-Value Name: UseMachineId
-
-Value Type: REG_DWORD
-Value: 1</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>UseMachineId</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63765" severity="medium" conversionstatus="pass" title="WN10-SO-000180" dscresource="Registry">
@@ -5929,29 +5986,6 @@ Value: NistP384 NistP256</RawString>
       <ValueName>EccCurves</ValueName>
       <ValueType>MultiString</ValueType>
     </Rule>
-    <Rule id="V-74415" severity="medium" conversionstatus="pass" title="WN10-CC-000228" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Clearing browser data on exit automatically deletes specified items when the last browser window closes.  This data could be used to identify malicious websites and files that could later be used for anti-virus and Intrusion Detection System (IDS) signatures.  Disabling this function will prevent the data from automatically being deleted when the browser closes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Privacy</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Windows 10 LTSC\B versions do not include Microsoft Edge, this is NA for those systems.
-
-If the following registry value does not exist or is not configured as specified, this is a finding.
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\MicrosoftEdge\ Privacy\
-
-Value Name: ClearBrowsingHistoryOnExit
-
-Type: REG_DWORD
-Value: 0x00000000 (0)</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>ClearBrowsingHistoryOnExit</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
     <Rule id="V-74417" severity="medium" conversionstatus="pass" title="WN10-CC-000252" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Windows Game Recording and Broadcasting is intended for use with games, however it could potentially record screen shots of other applications and expose sensitive data.  Disabling the feature will prevent this from occurring.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6119,14 +6153,14 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>LimitEnhancedDiagnosticDataWindowsAnalytics</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-88203" severity="medium" conversionstatus="pass" title="WN10-CC-000360" dscresource="RegistryPolicyFile">
+    <Rule id="V-88203" severity="medium" conversionstatus="pass" title="WN10-CC-000340" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;OneDrive provides access to external services for data storage, which must be restricted to authorized instances if enabled. Configuring this setting will restrict synchronizing of OneDrive accounts to DoD organization instances.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\OneDrive\AllowTenantList</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>both ValueName and ValueData equal the Organization's Tenant Guid, otherwise both should be '1111-2222-3333-4444'</OrganizationValueTestString>
       <RawString>If the organization is using a DoD instance of OneDrive, verify synchronizing is only allowed to the organization's DoD instance.
 
 If the organization does not have an instance of OneDrive, verify this is configured with the noted dummy entry to prevent synchronizing with other instances.
@@ -6142,8 +6176,9 @@ Value Type: REG_SZ
 Value: Organization's Tenant GUID
 
 If the organization does not have an instance of OneDrive the Value Name and Value must be 1111-2222-3333-4444, if not this is a finding.</RawString>
-      <ValueData>Organization's Tenant GUID</ValueData>
-      <ValueName>Organization's Tenant GUID</ValueName>
+      <ValueData />
+      <ValueName>
+      </ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-94719.a" severity="medium" conversionstatus="pass" title="WN10-CC-000365" dscresource="RegistryPolicyFile">
@@ -6224,12 +6259,179 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString>ValueData is set to 0x00000006 (6) or greater </OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\FVE\
+
 Value Name: MinimumPIN
 Type: REG_DWORD
 Value: 0x00000006 (6) or greater</RawString>
       <ValueData />
       <ValueName>MinimumPIN</ValueName>
       <ValueType>DWord</ValueType>
+    </Rule>
+    <Rule id="V-99557" severity="medium" conversionstatus="pass" title="WN10-EP-000310" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Kernel DMA Protection to protect PCs against drive-by Direct Memory Access (DMA) attacks using PCI hot plug devices connected to Thunderbolt™ 3 ports. Drive-by DMA attacks can lead to disclosure of sensitive information residing on a PC, or even injection of malware that allows attackers to bypass the lock screen or control PCs remotely.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Kernel DMA Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1803 of Windows 10.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \Software\Policies\Microsoft\Windows\Kernel DMA Protection
+
+Value Name: DeviceEnumerationPolicy
+Value Type: REG_DWORD
+Value: 0</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DeviceEnumerationPolicy</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-99559" severity="medium" conversionstatus="pass" title="WN10-CC-000370" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy controls whether a domain user can sign in using a convenience PIN to prevent enabling (Password Stuffer).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \Software\Policies\Microsoft\Windows\System
+
+Value Name: AllowDomainPINLogon
+Value Type: REG_DWORD
+Value data: 0</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>AllowDomainPINLogon</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-99561" severity="medium" conversionstatus="pass" title="WN10-CC-000385" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Securing Windows Ink which contains application and features oriented towards pen computing. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsInkWorkspace</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \Software\Policies\Microsoft\WindowsInkWorkspace
+
+Value Name: AllowWindowsInkWorkspace
+Value Type: REG_DWORD
+Value data: 1
+
+</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>AllowWindowsInkWorkspace</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-99563" severity="low" conversionstatus="pass" title="WN10-CC-000390" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Windows spotlight features may suggest apps and content from third-party software publishers in addition to Microsoft apps and content. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CloudContent</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
+
+If the following registry value does not exist or is not configured as specified, this is a finding:
+
+Registry Hive: HKEY_CURRENT_USER
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\CloudContent\
+
+Value Name: DisableThirdPartySuggestions
+
+Type: REG_DWORD
+Value: 0x00000001 (1)
+
+</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>DisableThirdPartySuggestions</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-100093" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;It is detrimental for operating systems to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
+
+Failing to disconnect from collaborative computing devices (i.e. cameras) can result in subsequent compromises of organizational information. Providing easy methods to physically disconnect from such devices after a collaborative computing session helps to ensure that participants actually carry out the disconnect activity without having to go through complex and tedious procedures.
+
+Satisfies: SRG-OS-000095-GPOS-00049, SRG-OS-000370-GPOS-00155
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the device or operating system does not have a camera installed, this requirement is not applicable.
+
+This requirement is not applicable to mobile devices (smartphones and tablets), where the use of the camera is a local AO decision.
+
+This requirement is not applicable to dedicated VTC suites located in approved VTC locations that are centrally managed.
+
+For an external camera, if there is not a method for the operator to manually disconnect camera at the end of collaborative computing sessions, this is a finding.
+
+For a built-in camera, the camera must be protected by a camera cover (e.g. laptop camera cover slide) when not in use. If the built-in camera is not protected with a camera cover, or if the built-in
+camera is not disabled in the bios, this is a finding.
+
+If the camera is not disconnected or covered, the following registry entry is required:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+RegistryPath\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam
+
+Value Name: Deny
+
+If "Value Name" is set to a value other than "Deny" and the collaborative computing device has not been authorized for use, this is a finding.
+</RawString>
+      <ValueData>Deny</ValueData>
+      <ValueName>Value</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-102617.a" severity="medium" conversionstatus="pass" title="WN10-CC-000328 " dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;A known vulnerability in Windows 10 could allow the execution of malicious code by either opening a compromised document or viewing it in the Windows Preview pane.
+
+Organizations must disable the Windows Preview pane and Windows Detail pane.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Registry Hive: HKEY_CURRENT_USER
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
+Value Type: REG_DWORD
+Value Name: NoPreviewPane
+Value: 1</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>NoPreviewPane</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-102617.b" severity="medium" conversionstatus="pass" title="WN10-CC-000328 " dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;A known vulnerability in Windows 10 could allow the execution of malicious code by either opening a compromised document or viewing it in the Windows Preview pane.
+
+Organizations must disable the Windows Preview pane and Windows Detail pane.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Registry Hive: HKEY_CURRENT_USER
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
+Value Type: REG_DWORD
+Value Name: NoReadingPane
+Value: 1</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>NoReadingPane</ValueName>
+      <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
@@ -6444,11 +6646,13 @@ Administrators</RawString>
       <Constant>SeSystemtimePrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high level capabilities.
 
-Accounts with the "Change the system time" user right can change the system time, which can impact authentication, as well as affect time stamps on event log entries.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Accounts with the "Change the system time" user right can change the system time, which can impact authentication, as well as affect time stamps on event log entries.
+
+The NT SERVICE\autotimesvc is added in v1909 cumulative update. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Change the system time</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,LOCAL SERVICE</Identity>
+      <Identity>Administrators,LOCAL SERVICE,NT SERVICE\autotimesvc</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6460,7 +6664,8 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If any groups or accounts other than the following are granted the "Change the system time" user right, this is a finding:
 
 Administrators
-LOCAL SERVICE</RawString>
+LOCAL SERVICE
+NT SERVICE\autotimesvc is added in v1909 cumulative update.</RawString>
     </Rule>
     <Rule id="V-63857" severity="medium" conversionstatus="pass" title="WN10-UR-000040" dscresource="UserRightsAssignment">
       <Constant>SeCreatePagefilePrivilege</Constant>
@@ -6798,28 +7003,6 @@ If any groups or accounts other than the following are granted the "Force shutdo
 
 Administrators</RawString>
     </Rule>
-    <Rule id="V-63887" severity="medium" conversionstatus="pass" title="WN10-UR-000105" dscresource="UserRightsAssignment">
-      <Constant>SeAuditPrivilege</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high level capabilities.
-
-The "Generate security audits" user right specifies users and processes that can generate Security Log audit records, which must only be the system service accounts defined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Generate security audits</DisplayName>
-      <DuplicateOf />
-      <Force>True</Force>
-      <Identity>LOCAL SERVICE,NETWORK SERVICE</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-If any groups or accounts other than the following are granted the "Generate security audits" user right, this is a finding:
-
-LOCAL SERVICE
-NETWORK SERVICE</RawString>
-    </Rule>
     <Rule id="V-63889" severity="medium" conversionstatus="pass" title="WN10-UR-000110" dscresource="UserRightsAssignment">
       <Constant>SeImpersonatePrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high level capabilities.
@@ -6843,28 +7026,6 @@ Administrators
 LOCAL SERVICE
 NETWORK SERVICE
 SERVICE</RawString>
-    </Rule>
-    <Rule id="V-63891" severity="medium" conversionstatus="pass" title="WN10-UR-000115" dscresource="UserRightsAssignment">
-      <Constant>SeIncreaseBasePriorityPrivilege</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high level capabilities.
-
-Accounts with the "Increase scheduling priority" user right can change a scheduling priority causing performance issues or a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Increase scheduling priority</DisplayName>
-      <DuplicateOf />
-      <Force>True</Force>
-      <Identity>Administrators,Window Manager\Window Manager Group</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-If any groups or accounts other than the following are granted the "Increase scheduling priority" user right, this is a finding:
-
-Administrators
-Window Manager\Window Manager Group</RawString>
     </Rule>
     <Rule id="V-63917" severity="medium" conversionstatus="pass" title="WN10-UR-000120" dscresource="UserRightsAssignment">
       <Constant>SeLoadDriverPrivilege</Constant>
