@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Fixed [#673](https://github.com/microsoft/PowerStig/issues/673): IIS Sever 10.0 STIG hardening rule V-100163 fails with error in Windows Server 2019 while using PowerSTIG 4.4.2
+
 ## [4.4.2] - 2020-07-06
 
 * Removed required dependency of Vmware.VsphereDSC due to cyclic redundancy error when importing PowerSTIG
