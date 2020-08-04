@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_V1R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 20 Mar 2020" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="5/29/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_V1R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 20 Mar 2020" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="8/4/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-100103" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -1333,9 +1333,39 @@ When using the URI mode for cookie settings under session state, IIS will reject
       <Key>cookieless</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
-Verify the "cookieless" is set to "UseCookies".</RawString>
+      <RawString>Open the IIS 10.0 Manager.
+Click the IIS 10.0 web server name.
+Under the "ASP.NET" section, select "Session State".
+Alternative method:
+Click the site name.
+Select "Configuration Editor" under the "Management" section.
+Note: If IIS 10.0 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.
+Under "Cookie Settings", verify the "Use Cookies" mode is selected from the "Mode:" drop-down list.
+Verify the "cookieless" is set to "UseCookies".
+If the "cookieless" is not set to "UseCookies", this is a finding.</RawString>
       <Value>UseCookies</Value>
+    </Rule>
+    <Rule id="V-100145.b" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="xWebConfigKeyValue">
+      <ConfigSection>/system.web/sessionState</ConfigSection>
+      <Description>&lt;VulnDiscussion&gt;ASP.NET provides a session state, which is available as the HttpSessionState class, as a method of storing session-specific information that is visible only within the session. ASP.NET session state identifies requests from the same browser during a limited time window as a session and provides the ability to persist variable values for the duration of that session.
+
+When using the URI mode for cookie settings under session state, IIS will reject and reissue session IDs that do not have active sessions. Configuring IIS to expire session IDs and regenerate tokens gives a potential attacker less time to capture a cookie and gain access to server content.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>timeout</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -le '00:20:00'</OrganizationValueTestString>
+      <RawString>Open the IIS 10.0 Manager.
+Click the IIS 10.0 web server name.
+Under the "ASP.NET" section, select "Session State".
+Alternative method:
+Click the site name.
+Select "Configuration Editor" under the "Management" section.
+Note: If IIS 10.0 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.
+Under Time-out (in minutes), verify “20 minutes or less” is selected.
+If the "Use Cookies” mode is selected and Time-out (in minutes) is configured for “20 minutes or less”, this is not a finding.</RawString>
+      <Value>
+      </Value>
     </Rule>
     <Rule id="V-100149.a" severity="medium" conversionstatus="pass" title="SRG-APP-000231-WSR-000144" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/machineKey</ConfigSection>
