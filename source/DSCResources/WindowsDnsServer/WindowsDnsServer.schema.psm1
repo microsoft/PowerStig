@@ -90,7 +90,7 @@ configuration WindowsDnsServer
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
     . "$resourcePath\windows.UserRightsAssignment.ps1"
 
-    Import-DscResource -ModuleName xDnsServer -ModuleVersion 1.11.0.0
+    Import-DscResource -ModuleName xDnsServer -ModuleVersion 1.16.0.0
     . "$resourcePath\windows.xDnsServerSetting.ps1"
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
