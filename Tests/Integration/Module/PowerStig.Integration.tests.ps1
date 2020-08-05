@@ -20,9 +20,11 @@ Describe "$moduleName module" {
         foreach ($moduleInfo in $dscModuleInfo)
         {
             $moduleData = $manifestRequiredModules | Where-Object -FilterScript {$PSItem.ModuleName -eq $moduleInfo.ModuleName}
-
-            It "Should require the same module listed in the manifest for DscResource $dscCompositeFile Module: $($moduleInfo.ModuleName)" {
-                $moduleInfo.ModuleVersion | Should -Be $moduleData.ModuleVersion
+            if ($moduleInfo.ModuleName -ne "Vmware.vSphereDSC")
+            {
+                It "Should require the same module listed in the manifest for DscResource $dscCompositeFile Module: $($moduleInfo.ModuleName)" {
+                    $moduleInfo.ModuleVersion | Should -Be $moduleData.ModuleVersion
+                }
             }
         }
     }

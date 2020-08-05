@@ -1,4 +1,8 @@
+<<<<<<< HEAD:source/StigData/Processed/SqlServer-2016-Instance-1.9.xml
 <DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V1R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 24 Apr 2020" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.9" created="5/28/2020">
+=======
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V1R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 24 Apr 2020" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.9" created="7/14/2020">
+>>>>>>> 80bb826bf632f2bdac811990f0e3805c68fcfbad:StigData/Processed/SqlServer-2016-Instance-1.7.xml
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-79119" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful Denial of Service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions per user is helpful in reducing these risks.
@@ -2825,7 +2829,7 @@ TLS Registry Settings:  https://docs.microsoft.com/en-us/windows-server/security
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 3.0\Client</Key>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Client</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>
@@ -2981,7 +2985,7 @@ TLS Registry Settings:  https://docs.microsoft.com/en-us/windows-server/security
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 3.0\Server</Key>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>
@@ -3137,7 +3141,7 @@ TLS Registry Settings:  https://docs.microsoft.com/en-us/windows-server/security
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 3.0\Client</Key>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Client</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>
@@ -3293,7 +3297,7 @@ TLS Registry Settings:  https://docs.microsoft.com/en-us/windows-server/security
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 3.0\Server</Key>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>
@@ -3320,6 +3324,162 @@ If any of the respective registry paths are non-existent or contain values other
 </RawString>
       <ValueData>0</ValueData>
       <ValueName>Enabled</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-97521.q" severity="medium" conversionstatus="pass" title="SRG-APP-000172-DB-000075" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting as a number of known vulnerabilities have been reported against Secure Sockets Layer (SSL) and earlier versions of TLS. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party.  SQL Server must use a minimum of FIPS 140-2-approved TLS version 1.2, and all non-FIPS-approved SSL and TLS versions must be disabled. NIST SP 800-52 Rev.2 specifies the preferred configurations for government systems.
+
+References:
+TLS Support 1.2 for SQL Server: https://support.microsoft.com/en-us/kb/3135244
+TLS Registry Settings:  https://docs.microsoft.com/en-us/windows-server/security/tls/tls-registry-settings
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>
+Access the SQL Server
+Access an administrator command prompt
+Type "regedit" to launch the Registry Editor
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2
+
+If this key does not exist, this is a Finding.
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault" and a value of "1" for "Enabled" for both Client and Server.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0
+
+Under each key, verify a REG_DWORD value of "1" for "DisabledByDefault" and a value of "0" for "Enabled" for both Client and Server subkeys
+
+If any of the respective registry paths are non-existent or contain values other than specified above, this is a finding. If Vendor documentation supporting the configuration is provided, reduce this finding to a CAT 3.
+</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>Enabled</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-97521.r" severity="medium" conversionstatus="pass" title="SRG-APP-000172-DB-000075" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting as a number of known vulnerabilities have been reported against Secure Sockets Layer (SSL) and earlier versions of TLS. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party.  SQL Server must use a minimum of FIPS 140-2-approved TLS version 1.2, and all non-FIPS-approved SSL and TLS versions must be disabled. NIST SP 800-52 Rev.2 specifies the preferred configurations for government systems.
+
+References:
+TLS Support 1.2 for SQL Server: https://support.microsoft.com/en-us/kb/3135244
+TLS Registry Settings:  https://docs.microsoft.com/en-us/windows-server/security/tls/tls-registry-settings
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>
+Access the SQL Server
+Access an administrator command prompt
+Type "regedit" to launch the Registry Editor
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2
+
+If this key does not exist, this is a Finding.
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault" and a value of "1" for "Enabled" for both Client and Server.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0
+
+Under each key, verify a REG_DWORD value of "1" for "DisabledByDefault" and a value of "0" for "Enabled" for both Client and Server subkeys
+
+If any of the respective registry paths are non-existent or contain values other than specified above, this is a finding. If Vendor documentation supporting the configuration is provided, reduce this finding to a CAT 3.
+</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>Enabled</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-97521.s" severity="medium" conversionstatus="pass" title="SRG-APP-000172-DB-000075" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting as a number of known vulnerabilities have been reported against Secure Sockets Layer (SSL) and earlier versions of TLS. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party.  SQL Server must use a minimum of FIPS 140-2-approved TLS version 1.2, and all non-FIPS-approved SSL and TLS versions must be disabled. NIST SP 800-52 Rev.2 specifies the preferred configurations for government systems.
+
+References:
+TLS Support 1.2 for SQL Server: https://support.microsoft.com/en-us/kb/3135244
+TLS Registry Settings:  https://docs.microsoft.com/en-us/windows-server/security/tls/tls-registry-settings
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>
+Access the SQL Server
+Access an administrator command prompt
+Type "regedit" to launch the Registry Editor
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2
+
+If this key does not exist, this is a Finding.
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault" and a value of "1" for "Enabled" for both Client and Server.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0
+
+Under each key, verify a REG_DWORD value of "1" for "DisabledByDefault" and a value of "0" for "Enabled" for both Client and Server subkeys
+
+If any of the respective registry paths are non-existent or contain values other than specified above, this is a finding. If Vendor documentation supporting the configuration is provided, reduce this finding to a CAT 3.
+</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisabledByDefault</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-97521.t" severity="medium" conversionstatus="pass" title="SRG-APP-000172-DB-000075" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting as a number of known vulnerabilities have been reported against Secure Sockets Layer (SSL) and earlier versions of TLS. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party.  SQL Server must use a minimum of FIPS 140-2-approved TLS version 1.2, and all non-FIPS-approved SSL and TLS versions must be disabled. NIST SP 800-52 Rev.2 specifies the preferred configurations for government systems.
+
+References:
+TLS Support 1.2 for SQL Server: https://support.microsoft.com/en-us/kb/3135244
+TLS Registry Settings:  https://docs.microsoft.com/en-us/windows-server/security/tls/tls-registry-settings
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>
+Access the SQL Server
+Access an administrator command prompt
+Type "regedit" to launch the Registry Editor
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2
+
+If this key does not exist, this is a Finding.
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault" and a value of "1" for "Enabled" for both Client and Server.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0
+
+Under each key, verify a REG_DWORD value of "1" for "DisabledByDefault" and a value of "0" for "Enabled" for both Client and Server subkeys
+
+If any of the respective registry paths are non-existent or contain values other than specified above, this is a finding. If Vendor documentation supporting the configuration is provided, reduce this finding to a CAT 3.
+</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisabledByDefault</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>

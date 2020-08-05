@@ -13,7 +13,10 @@ using module .\..\Rule.ProcessMitigation\ProcessMitigationRule.psm1
 using module .\..\Rule.Registry\RegistryRule.psm1
 using module .\..\Rule.SecurityOption\SecurityOptionRule.psm1
 using module .\..\Rule.Service\ServiceRule.psm1
+<<<<<<< HEAD
 using module .\..\Rule.SharePointSPWebAppGeneralSettings\SharePointSPWebAppGeneralSettingsRule.psm1
+=======
+>>>>>>> 80bb826bf632f2bdac811990f0e3805c68fcfbad
 using module .\..\Rule.SqlScriptQuery\SqlScriptQueryRule.psm1
 using module .\..\Rule.UserRight\UserRightRule.psm1
 using module .\..\Rule.WebAppPool\WebAppPoolRule.psm1
@@ -39,6 +42,7 @@ class LoadFactory
         $return = $null
         switch ($Rule.ParentNode.Name)
         {
+<<<<<<< HEAD
             'AccountPolicyRule'                         {$return = [AccountPolicyRule]::new($Rule)}
             'AuditPolicyRule'                           {$return = [AuditPolicyRule]::new($Rule)}
             'DnsServerSettingRule'                      {$return = [DnsServerSettingRule]::new($Rule)}
@@ -71,6 +75,39 @@ class LoadFactory
             'VsphereKernelActiveDumpPartitionRule'      {$return = [VsphereKernelActiveDumpPartitionRule]::new($Rule)}
             'VsphereNtpSettingsRule'                    {$return = [VsphereNtpSettingsRule]::new($Rule)}
             'VsphereVssSecurityRule'                    {$return = [VsphereVssSecurityRule]::new($Rule)}
+=======
+            'AccountPolicyRule'                    {$return = [AccountPolicyRule]::new($Rule)}
+            'AuditPolicyRule'                      {$return = [AuditPolicyRule]::new($Rule)}
+            'DnsServerSettingRule'                 {$return = [DnsServerSettingRule]::new($Rule)}
+            'DnsServerRootHintRule'                {$return = [DnsServerRootHintRule]::new($Rule)}
+            'DocumentRule'                         {$return = [DocumentRule]::new($Rule)}
+            'FileContentRule'                      {$return = [FileContentRule]::new($Rule)}
+            'GroupRule'                            {$return = [GroupRule]::new($Rule)}
+            'IisLoggingRule'                       {$return = [IisLoggingRule]::new($Rule)}
+            'MimeTypeRule'                         {$return = [MimeTypeRule]::new($Rule)}
+            'ManualRule'                           {$return = [ManualRule]::new($Rule)}
+            'PermissionRule'                       {$return = [PermissionRule]::new($Rule)}
+            'ProcessMitigationRule'                {$return = [ProcessMitigationRule]::new($Rule)}
+            'RegistryRule'                         {$return = [RegistryRule]::new($Rule)}
+            'SecurityOptionRule'                   {$return = [SecurityOptionRule]::new($Rule)}
+            'ServiceRule'                          {$return = [ServiceRule]::new($Rule)}
+            'SqlScriptQueryRule'                   {$return = [SqlScriptQueryRule]::new($Rule)}
+            'UserRightRule'                        {$return = [UserRightRule]::new($Rule)}
+            'WebAppPoolRule'                       {$return = [WebAppPoolRule]::new($Rule)}
+            'WebConfigurationPropertyRule'         {$return = [WebConfigurationPropertyRule]::new($Rule)}
+            'WindowsFeatureRule'                   {$return = [WindowsFeatureRule]::new($Rule)}
+            'WinEventLogRule'                      {$return = [WinEventLogRule]::new($Rule)}
+            'AuditSettingRule'                     {$return = [AuditSettingRule]::new($Rule)}
+            'SslSettingsRule'                      {$return = [SslSettingsRule]::new($Rule)}
+            'VsphereAdvancedSettingsRule'          {$return = [VsphereAdvancedSettingsRule]::new($Rule)}
+            'VsphereServiceRule'                   {$return = [VsphereServiceRule]::new($Rule)}
+            'VspherePortGroupSecurityRule'         {$return = [VspherePortGroupSecurityRule]::new($Rule)}
+            'VsphereAcceptanceLevelRule'           {$return = [VsphereAcceptanceLevelRule]::new($Rule)}
+            'VsphereSnmpAgentRule'                 {$return = [VsphereSnmpAgentRule]::new($Rule)}
+            'VsphereKernelActiveDumpPartitionRule' {$return = [VsphereKernelActiveDumpPartitionRule]::new($Rule)}
+            'VsphereNtpSettingsRule'               {$return = [VsphereNtpSettingsRule]::new($Rule)}
+            'VsphereVssSecurityRule'               {$return = [VsphereVssSecurityRule]::new($Rule)}
+>>>>>>> 80bb826bf632f2bdac811990f0e3805c68fcfbad
         }
 
         return $return

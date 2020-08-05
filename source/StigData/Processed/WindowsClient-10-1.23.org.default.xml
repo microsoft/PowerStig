@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="1.21">
+<OrganizationalSettings fullversion="1.23">
   <!-- Ensure ''V-63329'' -match '0|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-63329" ValueData="0" />
   <!-- Ensure ''V-63405'' -ge '15' -or ''V-63405'' -eq '0'-->
@@ -60,11 +60,8 @@
   <OrganizationalSetting id="V-63747" ValueData="0" />
   <!-- Ensure ''V-63841'' -match '2|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-63841" ValueData="2" />
-<<<<<<< HEAD
-=======
   <!-- Ensure both ValueName and ValueData equal the Organization's Tenant Guid, otherwise both should be '1111-2222-3333-4444'-->
   <OrganizationalSetting id="V-88203" ValueData="1111-2222-3333-4444" ValueName="1111-2222-3333-4444" />
->>>>>>> 80bb826bf632f2bdac811990f0e3805c68fcfbad
   <!-- Ensure ValueData is set to 0x00000006 (6) or greater -->
   <OrganizationalSetting id="V-94861" ValueData="" />
 </OrganizationalSettings>

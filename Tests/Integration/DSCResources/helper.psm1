@@ -2,6 +2,7 @@
 data exceptionRuleParameterValues
 {
     @{
+<<<<<<< HEAD
         PermissionRule                          = 'AccessControlEntry'
         SqlScriptQueryRule                      = 'SetScript'
         AuditPolicyRule                         = 'Ensure'
@@ -25,6 +26,30 @@ data exceptionRuleParameterValues
         UserRightRule                           = 'Identity'
         VsphereAdvancedSettingsRule             = 'AdvancedSettings'
         SharePointSPWebAppGeneralSettingsRule   = 'PropertyValue'
+=======
+        PermissionRule               = 'AccessControlEntry'
+        SqlScriptQueryRule           = 'SetScript'
+        AuditPolicyRule              = 'Ensure'
+        DnsServerSettingRule         = 'PropertyValue'
+        WebConfigurationPropertyRule = 'Value'
+        RegistryRule                 = 'ValueData'
+        FileContentRule              = 'Value'
+        AccountPolicyRule            = 'PolicyValue'
+        IISLoggingRule               = 'LogCustomFieldEntry'
+        DnsServerRootHintRule        = 'IpAddress'
+        SslSettingsRule              = 'Value'
+        GroupRule                    = 'MembersToExclude'
+        WebAppPoolRule               = 'Value'
+        WinEventLogRule              = 'IsEnabled'
+        SecurityOptionRule           = 'OptionValue'
+        ProcessMitigationRule        = 'Disable'
+        MimeTypeRule                 = 'Ensure'
+        WindowsFeatureRule           = 'Ensure'
+        AuditSettingRule             = 'Operator'
+        ServiceRule                  = 'StartupType'
+        UserRightRule                = 'Identity'
+        VsphereAdvancedSettingsRule  = 'AdvancedSettings'
+>>>>>>> 80bb826bf632f2bdac811990f0e3805c68fcfbad
     }
 }
 #endregion
@@ -166,10 +191,13 @@ function Get-ResourceMatchStatement
         {
             return '\[VMHostVssSecurity\]'
         }
+<<<<<<< HEAD
         'SharePointSPWebAppGeneralSettingsRule' 
         {
             return '\[SPWebAppGeneralSettings\]'
         }
+=======
+>>>>>>> 80bb826bf632f2bdac811990f0e3805c68fcfbad
     }
 }
 
