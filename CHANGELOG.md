@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server DNS - V1R15: [696](https://github.com/microsoft/PowerStig/issues/696)
 * Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 23: [678](https://github.com/microsoft/PowerStig/issues/678)
 * Update PowerSTIG to successfully parse/apply Windows Server 2019 Instance Ver. 1 Rel. 5: [#683](https://github.com/microsoft/PowerStig/issues/683)
 * Update PowerSTIG to successfully parse/apply Windows 2016 DC/MS Version 1, Rev 12: [#681](https://github.com/microsoft/PowerStig/issues/681)
