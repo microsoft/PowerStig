@@ -41,16 +41,19 @@ foreach ($stig in $stigList)
     $skipRuleTypeMultiple = 'SharePointSPWebAppGeneralSettingsRule'
     $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
 
-    $getRandomExceptionRuleParams = @{
-        RuleType        = 'SharePointSPWebAppGeneralSettingsRule'
-        PowerStigXml    = $powerstigXml
-        ParameterValue  = 1234567
+    $exception = @{
+        'V-59919' = @{
+            PropertyValue = 14
+        }
     }
-
-    $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
-    $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
-    $backCompatException = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility
-    $backCompatExceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2 -BackwardCompatibility
+    $exceptionMultiple = @{
+        'V-59919' = @{
+            PropertyValue = 14
+        }
+        'V-59957' = @{
+            PropertyValue = 'Permissive'
+        }
+    }
 
     . "$PSScriptRoot\Common.integration.ps1"
 }
