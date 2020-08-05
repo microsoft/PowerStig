@@ -9,8 +9,4 @@ $dynamicClassImport = Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClass
 if (Test-Path -Path $dynamicClassImport)
 {
     Remove-Item -Path $dynamicClassImport -Force -Recurse -Confirm:$false
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 80bb826bf632f2bdac811990f0e3805c68fcfbad

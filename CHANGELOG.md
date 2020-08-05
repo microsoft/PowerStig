@@ -2,12 +2,10 @@
 
 ## [Unreleased]
 
-<<<<<<< HEAD
 * Update PowerSTIG to successfully parse/apply MS SQL Server 2012 Instance Ver. 1 Rel. 20: [#639](https://github.com/microsoft/PowerStig/issues/639)
 * Update PowerSTIG to successfully parse/apply MS SQL Server 2016 Instance Ver. 1 Rel. 9: [#636](https://github.com/microsoft/PowerStig/issues/636)
 * Update PowerSTIG to successfully parse/apply Windows Server 2012 DNS STIG - Ver 1, Rel 14:  [#633](https://github.com/microsoft/PowerStig/issues/633)
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R4: [#634](https://github.com/microsoft/PowerStig/issues/634)
-=======
 * Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 23: [678](https://github.com/microsoft/PowerStig/issues/678)
 * Update PowerSTIG to successfully parse/apply Windows Server 2019 Instance Ver. 1 Rel. 5: [#683](https://github.com/microsoft/PowerStig/issues/683)
 * Update PowerSTIG to successfully parse/apply Windows 2016 DC/MS Version 1, Rev 12: [#681](https://github.com/microsoft/PowerStig/issues/681)
@@ -23,7 +21,6 @@
 * Update PowerSTIG to successfully parse/apply MS SQL Server 2012 Instance Ver. 1 Rel. 20: [#639](https://github.com/microsoft/PowerStig/issues/639)
 * Update PowerSTIG to successfully parse/apply MS SQL Server 2016 Instance Ver. 1 Rel. 9: [#636](https://github.com/microsoft/PowerStig/issues/636)
 * Update PowerSTIG to successfully parse/apply Windows Server 2012 DNS STIG - Ver 1, Rel 14:  [#633](https://github.com/microsoft/PowerStig/issues/633)
->>>>>>> 80bb826bf632f2bdac811990f0e3805c68fcfbad
 * Update PowerSTIG to successfully parse Microsoft IIS Server/Site 10.0 STIG STIG V1R1: [#632](https://github.com/microsoft/PowerStig/issues/632)
 * Update PowerSTIG to successfully parse Microsoft Visio 2013 STIG V1R4: [#629](https://github.com/microsoft/PowerStig/issues/629)
 * Update PowerSTIG to successfully parse/apply Windows Defender Antivirus STIG - V1R8: [#625](https://github.com/microsoft/PowerStig/issues/625)
@@ -31,18 +28,12 @@
 * Update PowerSTIG to successfully parse/apply Microsoft IIS Server/Site 8.5 STIG - Ver 1, Rel10: [#622](https://github.com/microsoft/PowerStig/issues/622)
 * Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R3: [#604](https://github.com/microsoft/PowerStig/issues/604)
-<<<<<<< HEAD
-=======
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R4: [#634](https://github.com/microsoft/PowerStig/issues/634)
->>>>>>> 80bb826bf632f2bdac811990f0e3805c68fcfbad
 * Fixed [#647](https://github.com/microsoft/PowerStig/issues/647): Conflict when configuring multiple databases
 * Fixed [#616](https://github.com/microsoft/PowerStig/issues/616): Unable to Import PowerSTIG 4.4.0 Due to cyclic dependency Error
 * Fixed [#632](https://github.com/microsoft/PowerStig/issues/632): Update PowerSTIG to allow for workgroup level scansr
 * Fixed [#652](https://github.com/microsoft/PowerStig/issues/652): Invalid ValueName for InternetExplorer11 rules V-75169 and V-75171
-<<<<<<< HEAD
 * Update PowerSTIG to parse/apply SharePoint 2013 STIG - Ver 1, Rel 8 [#602](https://github.com/microsoft/PowerStig/issues/602)
-=======
->>>>>>> 80bb826bf632f2bdac811990f0e3805c68fcfbad
 
 ## [4.3.0] - 2020-03-27
 
