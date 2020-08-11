@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 25 Oct 2019" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.9" created="11/18/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R11_Manual-xccdf.xml" releaseinfo="Release: 11 Benchmark Date: 24 Jul 2020" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.11" created="8/5/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76679" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -144,13 +144,14 @@ All users performing remote administration must be authenticated.
 
 All remote sessions will be encrypted and they will utilize FIPS 140-2-approved protocols.
 
-FIPS 140-2-approved TLS versions include TLS V1.1 or greater.
+FIPS 140-2-approved TLS versions include TLS V1.2 or greater.
 
 Review with site management how remote administration, if applicable, is configured on the website.
 
 If remote management meets the criteria listed above, this is not a finding.
 
-If remote management is utilized and does not meet the criteria listed above, this is a finding.</RawString>
+If remote management is utilized and does not meet the criteria listed above, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-76743" severity="medium" conversionstatus="pass" title="SRG-APP-000316-WSR-000170" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;During an attack on the web server or any of the hosted applications, the system administrator may need to disconnect or disable access by users to stop the attack.
@@ -310,7 +311,8 @@ NIST SP 800-52 defines the approved TLS versions for government applications.&lt
       <OrganizationValueTestString />
       <RawString>Review the web server documentation and deployed configuration to determine which version of TLS is being used.
 
-If the TLS version is not TLS 1.1 or higher, according to NIST SP 800-52, or if non-FIPS-approved algorithms are enabled, this is a finding.</RawString>
+If the TLS version is not TLS 1.2 or higher, according to NIST SP 800-52, or if non-FIPS-approved algorithms are enabled, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-76767" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Some Component Object Model (COM) components are not required for most applications and should be removed if possible. Most notably, consider disabling the File System Object component; however, this will also remove the Dictionary object. Be aware some programs may require this component (e.g., Commerce Server), so it is highly recommended this be tested completely before implementing on the production web server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -325,6 +327,22 @@ If the key exist, the File System Object component is enabled.
 If the File System Object component is enabled and is not required for operations, this is a finding.
 
 Note: If the File System Object component is required for operations and has supporting documentation signed by the ISSO, this is not a finding.</RawString>
+    </Rule>
+    <Rule id="V-102893" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Anonymous SMTP relays are strictly prohibited. An anonymous SMTP relay can be a vector for many types of malicious activity not limited to server exploitation for the sending of SPAM mail, access to emails, phishing, DoS attacks, etc. Enabling TLS, authentication, and strictly assigning IP addresses that can communicate with the relay greatly reduce the risk of the implementation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Interview the System Administrator about the role of the IIS 8.5 web server.
+
+If the IIS 8.5 web server is running SMTP relay services, have the SA provide supporting documentation on how the server is hardened. A DoD-issued certificate, and specific allowed IP address should be configured.
+
+If the IIS 8.5 web server is not running SMTP relay services, this is Not Applicable.
+
+If the IIS web server running SMTP relay services without TLS enabled, this is a finding.
+
+If the IIS web server running SMTP relay services is not configured to only allow a specific IP address, from the same network as the relay, this is a finding.</RawString>
     </Rule>
   </DocumentRule>
   <IisLoggingRule dscresourcemodule="xWebAdministration">
@@ -449,8 +467,7 @@ Log record content that may be necessary to satisfy the requirement of this cont
       <LogTargetW3C />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: If SSL is installed on load balancer through which traffic is routed to the IIS 8.5 server, and the IIS 8.5 server ONLY receives traffic from the load balancer, the SSL requirement must be met on the load balancer.
-Access the IIS 8.5 web server IIS Manager.
+      <RawString>Access the IIS 8.5 web server IIS Manager.
 Click the IIS 8.5 web server name.
 Under "IIS", double-click the "Logging" icon.
 Verify the "Format:" under "Log File" is configured to "W3C".
@@ -510,10 +527,9 @@ Right-click the log file name to review.
 Click “Properties”.
 Click the “Security” tab.
 Verify log file access is restricted as follows. Otherwise, this is a finding.
-Eventlog - Full Control
+
 SYSTEM - Full Control
-Administrators - Full Control
-Web Managers - Read</RawString>
+Administrators - Full Control</RawString>
     </Rule>
     <Rule id="V-76697" severity="medium" conversionstatus="pass" title="SRG-APP-000125-WSR-000071" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Protection of log data includes assuring log data is not accidentally lost or deleted. Backing up log records to an unrelated system or onto separate media than the system the web server is actually running on helps to assure that, in the event of a catastrophic system failure, the log records will be retained.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -730,12 +746,14 @@ If passwords have not been changed from the default, this is a finding.</RawStri
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Open the IIS 8.5 Manager.
-
 Click the IIS 8.5 web server name.
-
-Double-click the “Authorization Rules” icon.
+Double-click the “.NET Authorization Rules” icon.
 
 If any user other than “Administrator” is listed, this is a finding.
+
+If .NET is not installed, this is Not Applicable.
+
+If the server is hosting SharePoint, this is Not Applicable.
 </RawString>
     </Rule>
     <Rule id="V-95633" severity="medium" conversionstatus="pass" title="SRG-APP-000001-WSR-000001" dscresource="None">
@@ -909,11 +927,28 @@ If any OS shell MIME types are configured, this is a finding.
         <Entry>
           <Type>
           </Type>
+          <Principal>ALL RESTRICTED APPLICATION PACKAGES</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>ReadAndExecute</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
           <Principal>Users</Principal>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
           <Rights>ReadAndExecute,ListDirectory</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subfolders and files only</Inheritance>
+          <Rights>FullControl</Rights>
         </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;This check verifies the key web server system configuration files are owned by the SA or the web administrator controlled account. These same files that control the configuration of the web server, and thus its behavior, must also be accessible by the account running the web service. If these files are altered by a malicious user, the web server would no longer be under the control of its managers and owners; properties in the web server configuration could be altered to compromise the entire server platform.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -924,26 +959,25 @@ If any OS shell MIME types are configured, this is a finding.
       <OrganizationValueTestString />
       <Path>%SystemDrive%\inetpub</Path>
       <RawString>Open Explorer and navigate to the inetpub directory.
-
-Right-click inetpub and select “Properties”.
-
+Right-click "inetpub" and select "Properties".
 Click the "Security" tab.
-
 Verify the permissions for the following users; if the permissions are less restrictive, this is a finding.
 
 System: Full control
 Administrators: Full control
 TrustedInstaller: Full control
 ALL APPLICATION PACKAGES (built-in security group): Read and execute
+ALL RESTRICTED APPLICATION PACKAGES (built-in security group): Read and execute
 Users: Read and execute, list folder contents
-Creator/Owner: Special permissions to subkeys</RawString>
+CREATOR OWNER: Full Control, Subfolders and files only</RawString>
     </Rule>
   </PermissionRule>
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-76759.a" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
-FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+NIST SP 800-52 specifies the preferred configurations for government systems.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -955,14 +989,14 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
 Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
 
 Navigate to:
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
 Verify a REG_DWORD value of "0" for "DisabledByDefault"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 
@@ -972,15 +1006,17 @@ Verify a REG_DWORD value of "1" for "DisabledByDefault"
 Verify a REG_DWORD value of "0" for "Enabled"
 
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
-      <ValueData>0</ValueData>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+</RawString>
+      <ValueData>1</ValueData>
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>DWORD</ValueType>
     </Rule>
     <Rule id="V-76759.b" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
-FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+NIST SP 800-52 specifies the preferred configurations for government systems.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -992,14 +1028,14 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
 Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
 
 Navigate to:
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
 Verify a REG_DWORD value of "0" for "DisabledByDefault"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 
@@ -1009,7 +1045,8 @@ Verify a REG_DWORD value of "1" for "DisabledByDefault"
 Verify a REG_DWORD value of "0" for "Enabled"
 
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+</RawString>
       <ValueData>0</ValueData>
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1017,7 +1054,8 @@ If any of the respective registry paths do not exist or are configured with the 
     <Rule id="V-76759.c" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
-FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+NIST SP 800-52 specifies the preferred configurations for government systems.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1029,14 +1067,14 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
 Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
 
 Navigate to:
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
 Verify a REG_DWORD value of "0" for "DisabledByDefault"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 
@@ -1046,7 +1084,8 @@ Verify a REG_DWORD value of "1" for "DisabledByDefault"
 Verify a REG_DWORD value of "0" for "Enabled"
 
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+</RawString>
       <ValueData>1</ValueData>
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1054,7 +1093,8 @@ If any of the respective registry paths do not exist or are configured with the 
     <Rule id="V-76759.d" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
-FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+NIST SP 800-52 specifies the preferred configurations for government systems.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1066,14 +1106,14 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
 Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
 
 Navigate to:
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
 Verify a REG_DWORD value of "0" for "DisabledByDefault"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 
@@ -1083,7 +1123,8 @@ Verify a REG_DWORD value of "1" for "DisabledByDefault"
 Verify a REG_DWORD value of "0" for "Enabled"
 
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+</RawString>
       <ValueData>1</ValueData>
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1091,7 +1132,8 @@ If any of the respective registry paths do not exist or are configured with the 
     <Rule id="V-76759.e" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
-FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+NIST SP 800-52 specifies the preferred configurations for government systems.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1103,14 +1145,14 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
 Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
 
 Navigate to:
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
 Verify a REG_DWORD value of "0" for "DisabledByDefault"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 
@@ -1120,7 +1162,8 @@ Verify a REG_DWORD value of "1" for "DisabledByDefault"
 Verify a REG_DWORD value of "0" for "Enabled"
 
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+</RawString>
       <ValueData>1</ValueData>
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1128,7 +1171,8 @@ If any of the respective registry paths do not exist or are configured with the 
     <Rule id="V-76759.f" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
-FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+NIST SP 800-52 specifies the preferred configurations for government systems.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1140,14 +1184,14 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
 Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
 
 Navigate to:
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
 Verify a REG_DWORD value of "0" for "DisabledByDefault"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 
@@ -1157,7 +1201,8 @@ Verify a REG_DWORD value of "1" for "DisabledByDefault"
 Verify a REG_DWORD value of "0" for "Enabled"
 
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+</RawString>
       <ValueData>0</ValueData>
       <ValueName>Enabled</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1165,7 +1210,47 @@ If any of the respective registry paths do not exist or are configured with the 
     <Rule id="V-76759.g" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
-FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+NIST SP 800-52 specifies the preferred configurations for government systems.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the IIS 8.5 Web Server.
+
+Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault"
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
+
+Verify a REG_DWORD value of "1" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "Enabled"
+
+
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>Enabled</ValueName>
+      <ValueType>DWORD</ValueType>
+    </Rule>
+    <Rule id="V-76759.h" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
+
+NIST SP 800-52 specifies the preferred configurations for government systems.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1177,14 +1262,14 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
 Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
 
 Navigate to:
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
 Verify a REG_DWORD value of "0" for "DisabledByDefault"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 
@@ -1194,15 +1279,17 @@ Verify a REG_DWORD value of "1" for "DisabledByDefault"
 Verify a REG_DWORD value of "0" for "Enabled"
 
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+</RawString>
       <ValueData>0</ValueData>
       <ValueName>Enabled</ValueName>
       <ValueType>DWORD</ValueType>
     </Rule>
-    <Rule id="V-76759.h" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
+    <Rule id="V-76759.i" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
-FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+NIST SP 800-52 specifies the preferred configurations for government systems.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1214,14 +1301,14 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
 Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
 
 Navigate to:
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
 Verify a REG_DWORD value of "0" for "DisabledByDefault"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 
@@ -1231,7 +1318,8 @@ Verify a REG_DWORD value of "1" for "DisabledByDefault"
 Verify a REG_DWORD value of "0" for "Enabled"
 
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+</RawString>
       <ValueData>0</ValueData>
       <ValueName>Enabled</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1249,12 +1337,21 @@ Cookies associate session information with client information for the duration o
       <Key>cookieless</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
+      <RawString>Note: If IIS 8.5 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.
+
+Open the IIS 8.5 Manager.
 Click the IIS 8.5 web server name.
 Under "ASP.Net", double-click on the "Session State" icon.
 Under "Cookie Settings", verify the "Mode" has "Use Cookies" selected from the drop-down list.
 If the "Cookie Settings" "Mode" is not set to "Use Cookies", this is a finding.
-Note: If IIS 8.5 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.</RawString>
+
+Alternative method:
+Click the site name.
+Select "Configuration Editor" under the "Management" section.
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
+Verify the "cookieless" is set to "UseCookies".
+If the "cookieless" is not set to "UseCookies", this is a finding.
+</RawString>
       <Value>UseCookies</Value>
     </Rule>
     <Rule id="V-76727.a" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="None">
@@ -1268,11 +1365,17 @@ Cookies associate session information with client information for the duration o
       <Key>cookieless</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
+      <RawString>Note: If IIS 8.5 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.
+Open the IIS 8.5 Manager.
 Click the IIS 8.5 web server name.
 Under the "ASP.NET" section, select "Session State".
-Note: If IIS 8.5 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.
-Under "Cookie Settings", verify the "Use Cookies" mode is selected from the "Mode:" drop-down list.</RawString>
+Alternative method:
+Click the site name.
+Select "Configuration Editor" under the "Management" section.
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
+Under "Cookie Settings", verify the "Use Cookies" mode is selected from the "Mode:" drop-down list.
+Verify the "cookieless" is set to "UseCookies".
+If the "cookieless" is not set to "UseCookies", this is a finding.</RawString>
       <Value>UseCookies</Value>
     </Rule>
     <Rule id="V-76727.b" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="xWebConfigKeyValue">
@@ -1286,10 +1389,14 @@ Cookies associate session information with client information for the duration o
       <Key>timeout</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -le '00:20:00'</OrganizationValueTestString>
-      <RawString>Open the IIS 8.5 Manager.
+      <RawString>Note: If IIS 8.5 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.
+Open the IIS 8.5 Manager.
 Click the IIS 8.5 web server name.
 Under the "ASP.NET" section, select "Session State".
-Note: If IIS 8.5 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.
+Alternative method:
+Click the site name.
+Select "Configuration Editor" under the "Management" section.
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
 Under Time-out (in minutes), verify “20 minutes or less” is selected.
 If the "Use Cookies” mode is selected and Time-out (in minutes) is configured for “20 minutes or less”, this is not a finding.</RawString>
       <Value>
@@ -1303,7 +1410,8 @@ If the "Use Cookies” mode is selected and Time-out (in minutes) is configured 
       <Key>validation</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
+      <RawString>If .NET is not installed, this is Not Applicable.
+Open the IIS 8.5 Manager.
 Click the IIS 8.5 web server name.
 Double-click the "Machine Key" icon in the website Home Pane.
 If "HMACSHA256" or stronger encryption is not selected for the Validation method and/or "Auto" is not selected for the Encryption method, this is a finding.
@@ -1318,7 +1426,8 @@ Verify "HMACSHA256"</RawString>
       <Key>decryption</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
+      <RawString>If .NET is not installed, this is Not Applicable.
+Open the IIS 8.5 Manager.
 Click the IIS 8.5 web server name.
 Double-click the "Machine Key" icon in the website Home Pane.
 If "HMACSHA256" or stronger encryption is not selected for the Validation method and/or "Auto" is not selected for the Encryption method, this is a finding.
@@ -1333,15 +1442,14 @@ If "HMACSHA256" or stronger encryption is not selected for the Validation method
       <Key>enabled</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
+      <RawString>If the Directory Browsing IIS Feature is disabled, this is Not Applicable.
 
+Open the IIS 8.5 Manager.
 Click the IIS 8.5 web server name.
-
 Double-click the "Directory Browsing" icon.
-
 Under the “Actions” pane verify "Directory Browsing" is disabled.
-
-If “Directory Browsing” is not disabled, this is a finding.</RawString>
+If “Directory Browsing” is not disabled, this is a finding.
+</RawString>
       <Value>false</Value>
     </Rule>
     <Rule id="V-76737" severity="medium" conversionstatus="pass" title="SRG-APP-000266-WSR-000159" dscresource="xWebConfigKeyValue">
