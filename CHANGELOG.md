@@ -2,11 +2,11 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Internet Explorer 11 STIG - Ver 1, Rel 19: [#707](https://github.com/microsoft/PowerStig/issues/707)
 * Update PowerSTIG To Use xWebAdministration version 3.2.0 : [#713](https://github.com/microsoft/PowerStig/issues/713)
 * Update PowerSTIG To Use xDnsServer version 1.16.0.0: [#695](https://github.com/microsoft/PowerStig/issues/695)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server DNS - V1R15: [#696](https://github.com/microsoft/PowerStig/issues/696)
 * Update PowerSTIG to successfully parse/apply SQL Server 2016 Instance V1R10: [#704](https://github.com/microsoft/PowerStig/issues/704)
-* Update PowerSTIG to successfully parse/apply Mozilla Firefox - V4R29: [#698](https://github.com/microsoft/PowerStig/issues/698)
 * Update PowerSTIG to successfully parse/apply IIS 10.0 Site/Server V1R2 STIGs: [#699](https://github.com/microsoft/PowerStig/issues/699)
 * Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 23: [#678](https://github.com/microsoft/PowerStig/issues/678)
 * Update PowerSTIG to successfully parse/apply Windows Server 2019 Instance Ver. 1 Rel. 5: [#683](https://github.com/microsoft/PowerStig/issues/683)
