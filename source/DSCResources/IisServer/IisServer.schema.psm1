@@ -83,7 +83,7 @@ configuration IisServer
     . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.WindowsFeature.ps1"
 
-    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.5.0.0
+    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 3.2.0
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
     . "$resourcePath\windows.xWebConfigProperty.ps1"
     . "$resourcePath\windows.xIisLogging.ps1"
