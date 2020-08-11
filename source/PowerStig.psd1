@@ -46,8 +46,8 @@ RequiredModules  = @(
     @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.4.0.0'},
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
-    @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
-    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'}
+    @{ModuleName = 'xDnsServer'; ModuleVersion = '1.16.0.0'},
+    @{ModuleName = 'xWebAdministration'; ModuleVersion = '3.2.0'}
 )
 
 # DSC resources to export from this module
