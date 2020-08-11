@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server DNS - V1R15: [#696](https://github.com/microsoft/PowerStig/issues/696)
 * Update PowerSTIG to successfully parse/apply SQL Server 2016 Instance V1R10: [#704](https://github.com/microsoft/PowerStig/issues/704)
 * Update PowerSTIG to successfully parse/apply Mozilla Firefox - V4R29: [#698](https://github.com/microsoft/PowerStig/issues/698)
 * Update PowerSTIG to successfully parse/apply IIS 10.0 Site/Server V1R2 STIGs: [#699](https://github.com/microsoft/PowerStig/issues/699)
