@@ -1,4 +1,4 @@
-<DISASTIG version="4" classification="UNCLASSIFIED" customname="" stigid="Firefox" description="The Mozilla Firefox Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_Mozilla_FireFox_STIG_V4R27_Manual-xccdf.xml" releaseinfo="Release: 27 Benchmark Date: 25 Oct 2019" title="Mozilla Firefox Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="4.27" created="11/19/2019">
+<DISASTIG version="4" classification="UNCLASSIFIED" customname="" stigid="Mozilla_FireFox_STIG" description="The Mozilla FireFox Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_Mozilla_FireFox_V4R29_Manual-xccdf.xml" releaseinfo="Release: 29 Benchmark Date: 24 Jul 2020" title="Mozilla FireFox Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="4.29" created="8/5/2020">
   <FileContentRule dscresourcemodule="FileContentDsc">
     <Rule id="V-15768" severity="medium" conversionstatus="pass" title="FireFox Preferences – Verification" dscresource="ReplaceText">
       <Description>&lt;VulnDiscussion&gt;When a web site asks for a certificate for user authentication, Firefox must be configured to have the user choose which certificate to present. Websites within DOD require user authentication for access which increases security for DoD information. Access will be denied to the user if certificate management is not configured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -22,7 +22,7 @@ underlying system.  This check verifies that the default setting has not been ch
       <Key>network.protocol-handler.external.shell</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Procedure: Open a browser window, type "about:config" in the address bar.
+      <RawString>Procedure: Open a browser window, type "about:config" in the address bar. 
 
 Criteria: If the value of "network.protocol-handler.external.shell" is not "false" or is not locked, then this is a finding. </RawString>
       <Value>false</Value>
@@ -46,7 +46,7 @@ PDF, FDF, XFDF, LSL, LSO, LSS, IQY, RQY, XLK, XLS, XLT, POT, PPS, PPT, DOS, DOT,
       <Key>browser.formfill.enable</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Type "about:config" in the address bar, verify that the preference name “browser.formfill.enable" is set to “false” and locked.
+      <RawString>Type "about:config" in the address bar, verify that the preference name “browser.formfill.enable" is set to “false” and locked. 
 
 Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
 </RawString>
@@ -121,8 +121,8 @@ Criteria: If the parameter is set incorrectly, then this is a finding.  If the s
       <Key>security.tls.version.max</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify Preference Name "security.tls.version.max" is set to the value "3" and locked.</RawString>
-      <Value>3</Value>
+      <RawString>Verify Preference Name "security.tls.version.max" is set to the value "4" and locked.</RawString>
+      <Value>4</Value>
     </Rule>
     <Rule id="V-15985" severity="medium" conversionstatus="pass" title="DTBF182 - JavaScript raise or lower  windows" dscresource="ReplaceText">
       <Description>&lt;VulnDiscussion&gt;JavaScript can make changes to the browser’s appearance. Allowing a website to use JavaScript to raise and lower browser windows may disguise an attack. Browser windows may not be set as active via JavaScript.
@@ -160,9 +160,9 @@ If the setting is not locked, this is a finding.</RawString>
       <Key>extensions.update.enabled</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Type "about:config" in the browser window. Verify the preference “extensions.update.enabled” is set to "false" and locked.
+      <RawString>Type "about:config" in the browser window. Verify the preference “extensions.update.enabled” is set to "false" and locked. 
 
-Criteria: If the parameter is set incorrectly, then this is a finding. If this setting is not locked, then this is a finding.
+Criteria: If the parameter is set incorrectly, then this is a finding. If this setting is not locked, then this is a finding. 
 </RawString>
       <Value>false</Value>
     </Rule>
@@ -173,9 +173,9 @@ Criteria: If the parameter is set incorrectly, then this is a finding. If this s
       <Key>browser.search.update</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Type "about:config" in the browser window. Verify the preference "browser.search.update”  is set to "false" and locked.
+      <RawString>Type "about:config" in the browser window. Verify the preference "browser.search.update”  is set to "false" and locked. 
 
-Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding. 
 </RawString>
       <Value>false</Value>
     </Rule>
@@ -194,47 +194,128 @@ If the value is locked, this is not a finding.
 </RawString>
       <Value>false</Value>
     </Rule>
-    <Rule id="V-79053.a" severity="medium" conversionstatus="pass" title="DTBF190 - Background data submission" dscresource="ReplaceText">
+    <Rule id="V-79053" severity="medium" conversionstatus="pass" title="DTBF190 - Background data submission" dscresource="ReplaceText">
       <Description>&lt;VulnDiscussion&gt;There should be no background submission of technical and other information from DoD computers to Mozilla with portions posted publically.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>datareporting.policy.dataSubmissionEnabled</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that the preference "datareporting.policy.dataSubmissionEnabled" is set and locked to "false".</RawString>
-      <Value>false</Value>
-    </Rule>
-    <Rule id="V-79053.b" severity="medium" conversionstatus="pass" title="DTBF190 - Background data submission" dscresource="ReplaceText">
-      <Description>&lt;VulnDiscussion&gt;There should be no background submission of technical and other information from DoD computers to Mozilla with portions posted publically.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>datareporting.healthreport.service.enabled</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the preference "datareporting.healthreport.service.enabled" is set and locked to "false".</RawString>
-      <Value>false</Value>
-    </Rule>
-    <Rule id="V-79053.c" severity="medium" conversionstatus="pass" title="DTBF190 - Background data submission" dscresource="ReplaceText">
-      <Description>&lt;VulnDiscussion&gt;There should be no background submission of technical and other information from DoD computers to Mozilla with portions posted publically.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>datareporting.healthreport.uploadEnabled</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the preference "datareporting.healthreport.uploadEnabled" is set and locked to "false".</RawString>
+      <RawString>Type "about:config" in the address bar of the browser.
+Verify that the preference "datareporting.policy.dataSubmissionEnabled" is set and locked to "false". Otherwise, this is a finding.</RawString>
       <Value>false</Value>
     </Rule>
     <Rule id="V-97529" severity="low" conversionstatus="pass" title="DTBF195 - Extensions" dscresource="ReplaceText">
-      <Description>&lt;VulnDiscussion&gt;Information needed by an attacker to begin looking for possible vulnerabilities in a web browser includes any information about the web browser and plug-ins or modules being used. When debugging or trace information is enabled in a production web browser, information about the web browser, such as web browser type, version, patches installed, plug-ins and modules installed, type of code being used by the hosted application, and any back-ends being used for data storage may be displayed. Since this information may be placed in logs and general messages during normal operation of the web browser, an attacker does not need to cause an error condition to gain this information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;While the risk associated with browser development tools is more related to the proper design of a web application, a risk vector remains within the browser. The developer tools allow end users and application developers to view and edit all types of web application related data via the browser. Page elements, source code, javascript, API calls, application data, etc. may all be viewed and potentially manipulated. Manipulation could be useful for troubleshooting legitimate issues, and this may be performed in a development environment. Manipulation could also be malicious and must be addressed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>devtools.policy.disabled</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Procedure: Open a browser window, type "about:config" in the address bar.
+      <RawString>Procedure: Open a browser window, type "about:config" in the address bar. 
 
 Criteria: If the value of "devtools.policy.disabled" is not "true", then this is a finding.</RawString>
       <Value>true</Value>
+    </Rule>
+    <Rule id="V-102875" severity="medium" conversionstatus="pass" title="DTBF200 - Telemetry" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;The Telemetry feature provides this capability by sending performance and usage info to Mozilla. As you use Firefox, Telemetry measures and collects non-personal information, such as performance, hardware, usage and customizations. It then sends this information to Mozilla on a daily basis and we use it to improve Firefox.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>toolkit.telemetry.enabled</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “toolkit.telemetry.enabled" is set to “false” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-102877" severity="medium" conversionstatus="pass" title="DTBF205 - Telemetry" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;The Telemetry feature provides this capability by sending performance and usage info to Mozilla. As you use Firefox, Telemetry measures and collects non-personal information, such as performance, hardware, usage and customizations. It then sends this information to Mozilla on a daily basis and we use it to improve Firefox.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>toolkit.telemetry.archive.enabled</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “toolkit.telemetry.archive.enabled" is set to “false” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-102879" severity="medium" conversionstatus="pass" title="DTBF210 - Fingerprinting" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;The Content Blocking/Tracking Protection feature stops Firefox from loading content from malicious sites. The content might be a script or an image, for example. If a site is on one of the tracker lists you set Firefox to use, then the fingerprinting script (or other tracking script/image) will not be loaded from that site.
+
+Fingerprinting scripts collect information about your browser and device configuration, such as your operating system, screen resolution, and other settings. By compiling these pieces of data, fingerprinters create a unique profile of you that can be used to track you around the Web.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>privacy.trackingprotection.fingerprinting.enabled</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “privacy.trackingprotection.fingerprinting.enabled" is set to “true” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-102881" severity="medium" conversionstatus="pass" title="DTBF215 - Cryptomining" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;The Content Blocking/Tracking Protection feature stops Firefox from loading content from malicious sites. The content might be a script or an image, for example. If a site is on one of the tracker lists you set Firefox to use, then the fingerprinting script (or other tracking script/image) will not be loaded from that site.
+
+Cryptomining scripts use your computer’s central processing unit (CPU) to invisibly mine cryptocurrency.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>privacy.trackingprotection.cryptomining.enabled</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “privacy.trackingprotection.cryptomining.enabled" is set to “true” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-102883" severity="medium" conversionstatus="pass" title="DTBF220 - Tracking" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;Tracking generally refers to content, cookies, or scripts that can collect your browsing data across multiple sites.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>browser.contentblocking.category</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “browser.contentblocking.category" is set to “strict” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>strict</Value>
+    </Rule>
+    <Rule id="V-102885" severity="medium" conversionstatus="pass" title="DTBF225 - Extensions" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;The Recommended Extensions program will make it easier for users to discover extensions that have been reviewed for security, functionality, and user experience.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>extensions.htmlaboutaddons.recommendations.enabled</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “extensions.htmlaboutaddons.recommendations.enabled" is set to “false” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-102887" severity="low" conversionstatus="pass" title="DTBF230 - Stream" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;Activity Stream for Firefox is a collection of activity in the browser that is recorded and displayed in new tabs/windows.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>browser.newtabpage.activity-stream.enabled</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “browser.newtabpage.activity-stream.enabled" is set to “false” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-102889" severity="medium" conversionstatus="pass" title="DTBF235 - Ciphers" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;A weak cipher is defined as an encryption/decryption algorithm that uses a key of insufficient length. Using an insufficient length for a key in an encryption/decryption algorithm opens up the possibility (or probability) that the encryption scheme could be broken.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>security.ssl3.rsa_des_ede3_sha</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “security.ssl3.rsa_des_ede3_sha" is set to “false” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>false</Value>
     </Rule>
   </FileContentRule>
   <ManualRule dscresourcemodule="None">
@@ -257,7 +338,7 @@ If there are no entries for the DoD Root CA 2, DoD Root CA 3, and DoD Root CA 4,
 Note: In a Windows environment, use of policy setting "security.enterprise_roots.enabled=true" will point Firefox to the Windows Trusted Root Certification Authority Store, this is not a finding.</RawString>
     </Rule>
     <Rule id="V-15770" severity="medium" conversionstatus="pass" title="DTBF100 -FireFox Preferences–auto-download actions" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The default action for file types for which a plugin is installed is to automatically download and execute the file using the associated plugin. Firefox allows you to change the specified download action so that the file is opened with a selected external application or saved to disk instead. View the list of installed browser plugins and related MIME types by entering about:plugins in the address bar.
+      <Description>&lt;VulnDiscussion&gt;The default action for file types for which a plugin is installed is to automatically download and execute the file using the associated plugin. Firefox allows you to change the specified download action so that the file is opened with a selected external application or saved to disk instead. View the list of installed browser plugins and related MIME types by entering about:plugins in the address bar. 
 
 When you click a link to download a file, the MIME type determines what action Firefox will take. You may already have a plugin installed that will automatically handle the download, such as Windows Media Player or QuickTime. Other times, you may see a dialog asking whether you want to save the file or open it with a specific application. When you tell Firefox to open or save the file and also check the option to "Do this automatically for files like this from now on", an entry appears for that type of file in the Firefox Applications panel, shown below.
 &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -265,23 +346,23 @@ When you click a link to download a file, the MIME type determines what action F
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Use Method 1 or 2 to check if the following extensions are listed in the browser configuration:  HTA, JSE, JS, MOCHA, SHS, VBE, VBS, SCT, WSC.   By default, most of these extensions will not show up on the Firefox listing.
+      <RawString>Use Method 1 or 2 to check if the following extensions are listed in the browser configuration:  HTA, JSE, JS, MOCHA, SHS, VBE, VBS, SCT, WSC.   By default, most of these extensions will not show up on the Firefox listing. 
 
-Criteria:
+Criteria: 
 
-Method 1: In about:plugins, Installed plug-in, inspect the entries in the Suffixes column.
+Method 1: In about:plugins, Installed plug-in, inspect the entries in the Suffixes column. 
 
 If any of the prohibited extensions are found, then for each of them, verify that it is not associated with an application that executes code. However, applications such as Notepad.exe that do not execute code may be associated with the extension.  If the extension is associated with an unauthorized application, then this is a finding.
 
-If the extension exists but is not associated with an application, then this is a finding.
+If the extension exists but is not associated with an application, then this is a finding. 
 
-Method 2:
+Method 2: 
 Use the Options User Interface Applications menu  to search for the prohibited extensions in the Content column of the table.
 
-If an extension that is not approved for automatic execution exists and the entry in the Action column is associated with an application that does not execute the code (e.g., Notepad), then do not mark this as a finding.
+If an extension that is not approved for automatic execution exists and the entry in the Action column is associated with an application that does not execute the code (e.g., Notepad), then do not mark this as a finding. 
 
 If the entry exists and the "Action" is 'Save File' or 'Always Ask',  then this is not a finding.
-
+ 
 If an extension exists and the entry in the Action column is associated with an application that does/can execute the code, then this is a finding.
 </RawString>
     </Rule>
@@ -304,40 +385,12 @@ Criteria: If the Mozilla ActiveX control and plugin support is present and enabl
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Method 1: View the following registry key:
+      <RawString>Method 1: View the following registry key: 
 HKLM\Software\Mozilla\Mozilla Firefox\CurrentVersion
 
 Method 2: Run Firefox. Click the ellipsis button &gt;&gt; Help &gt;&gt; About Firefox, and view the version number.
 
 Criteria: If the Firefox version is not a supported version, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-19743" severity="medium" conversionstatus="pass" title="DTBF070 - Firefox Preferences - Lock settings" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Locked settings prevent users from accessing about:config and changing the security settings set by the system administrator.  Locked settings should be placed in the mozilla.cfg file. The mozilla.cfg file is an encoded file of JavaScript commands. The encoding is a simple "byte-shifting" with an offset of 13 (Netscape 4 used a similar encoding, but with a 7 instead). This file also needs to be "called" from the configuration file local-settings.js&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that required settings are marked as locked in "about:config".
-Verify that "mozilla.cfg" file is used to lock required security settings.
-If settings are enable, and not locked, this is a finding.
-Sample file:
-//
-lockPref("browser.download.dir", "N:");
-lockPref("browser.download.downloadDir", "N:");
-lockPref("app.update.enabled", false);
-lockPref("extensions.update.enabled", false);
-lockPref("browser.shell.checkDefaultBrowser", false);
-lockPref("browser.search.update", false);
-lockPref("dom.disable_open_during_load", true);
-lockPref("dom.disable_window_move_resize", true);
-lockPref("dom.event.contextmenu.enabled", false);
-lockPref("dom.disable_window_status_change", true);
-lockPref("security.warn_leaving_secure", true);
-lockPref("security.default_personal_cert", "Ask Every Time");
-lockPref("signon.rememberSignons", false);
-lockPref("xpinstall.whitelist.required", true);
-lockPref(“network.protocol-handler.external.shell”,false);
-Note: Append line into local-settings.js file to include in the Mozilla config file.</RawString>
     </Rule>
   </ManualRule>
 </DISASTIG>

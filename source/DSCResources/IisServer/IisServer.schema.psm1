@@ -75,7 +75,7 @@ configuration IisServer
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.0.0
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.1
     . "$resourcePath\windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
@@ -83,7 +83,7 @@ configuration IisServer
     . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.WindowsFeature.ps1"
 
-    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.5.0.0
+    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 3.2.0
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
     . "$resourcePath\windows.xWebConfigProperty.ps1"
     . "$resourcePath\windows.xIisLogging.ps1"
