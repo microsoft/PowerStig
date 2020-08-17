@@ -166,13 +166,10 @@ function Get-ResourceMatchStatement
         {
             return '\[VMHostVssSecurity\]'
         }
-<<<<<<< HEAD
         'SharePointSPWebAppGeneralSettingsRule' 
         {
             return '\[SPWebAppGeneralSettings\]'
         }
-=======
->>>>>>> 80bb826bf632f2bdac811990f0e3805c68fcfbad
     }
 }
 
