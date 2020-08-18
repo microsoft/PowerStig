@@ -18,7 +18,7 @@ foreach ($target in $mitigationTargets)
         {
             $nameRules = $typeRules | Where-Object {$_.MitigationName -eq "$name"}
 
-            ProcessMitigation "$target-$type-$name-$nameRules.id"
+            ProcessMitigation "$target-$type-$name-$($nameRules.id)"
             {
                 MitigationTarget = $target
                 MitigationType   = $type
