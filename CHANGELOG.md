@@ -13,6 +13,7 @@
 * Update PowerSTIG to successfully parse/apply Windows 2012 R2 MS Version 2, Rev 19: [#676](https://github.com/microsoft/PowerStig/issues/676)
 * Update PowerSTIG To Use xWebAdministration version 3.2.0 : [#713](https://github.com/microsoft/PowerStig/issues/713)
 * Update PowerSTIG To Use xDnsServer version 1.16.0.0: [#695](https://github.com/microsoft/PowerStig/issues/695)
+* Update PowerSTIG To Use SecurityPolicyDsc version 2.10.0.0: [#690](https://github.com/microsoft/PowerStig/issues/690)
 * Release Process Update: Ensure the nuget package uses explicit DSC Resource Module Versions: [#667](https://github.com/microsoft/PowerStig/issues/667)
 * Fixed [#668](https://github.com/microsoft/PowerStig/issues/668): Incorrect key for SSL 3.0 rules in SqlServer-2016-Instance.*.xml
 * Fixed [#669](https://github.com/microsoft/PowerStig/issues/669): Missing TLS 1.2 configuration for rule V-97521
