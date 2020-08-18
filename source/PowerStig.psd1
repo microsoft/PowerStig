@@ -36,9 +36,9 @@ CLRVersion = '4.0'
 
 # Modules that must be imported into the global environment prior to importing this module
 RequiredModules  = @(
-    @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.2.0.0'},
+    @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.4.0.0'},
     @{ModuleName = 'AuditSystemDsc'; ModuleVersion = '1.1.0'},
-    @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.4.0.0'},
+    @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.4.1'},
     @{ModuleName = 'ComputerManagementDsc'; ModuleVersion = '6.2.0.0'},
     @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'},
     @{ModuleName = 'GPRegistryPolicyDsc'; ModuleVersion = '1.2.0'},
@@ -47,16 +47,8 @@ RequiredModules  = @(
     @{ModuleName = 'SharePointDSC'; ModuleVersion = '4.2.0'},
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
-    @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
-    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'},
-    @{ModuleName = 'VMware.VimAutomation.Sdk'; ModuleVersion = '12.0.0.15939651'},
-    @{ModuleName = 'VMware.VimAutomation.Common'; ModuleVersion = '12.0.0.15939652'},
-    @{ModuleName = 'VMware.Vim'; ModuleVersion ='7.0.0.15939650'},
-    @{ModuleName = 'VMware.VimAutomation.Cis.Core'; ModuleVersion = '12.0.0.15939657'},
-    @{ModuleName = 'VMware.VimAutomation.Core'; ModuleVersion = '12.0.0.15939655'},
-    @{ModuleName = 'VMware.VimAutomation.Storage'; ModuleVersion = '11.5.0.14901686'},
-    @{ModuleName = 'VMware.VimAutomation.Vds'; ModuleVersion = '11.2.0.12483615'},
-    @{ModuleName = 'Vmware.vSphereDsc'; ModuleVersion = '2.1.0.58'}
+    @{ModuleName = 'xDnsServer'; ModuleVersion = '1.16.0.0'},
+    @{ModuleName = 'xWebAdministration'; ModuleVersion = '3.2.0'}
 )
 
 # DSC resources to export from this module
