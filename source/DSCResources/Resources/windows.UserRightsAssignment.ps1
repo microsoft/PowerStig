@@ -38,18 +38,18 @@ foreach ($rule in $rules)
 
     foreach ($identity in $identitySplit)
     {
-        if (!([string]::isNullorWhitespace($domainName)) -and $domainGroupTranslation.Contains($identity))
+        if (-not ([string]::IsNullorWhitespace($domainName)) -and $domainGroupTranslation.Contains($identity))
         {
             [void] $identityList.Add($domainGroupTranslation.$identity -f $DomainName )
         }
-        elseif (!([string]::isNullorWhitespace($forestName)) -and $forestGroupTranslation.Contains($identity))
+        elseif (-not ([string]::IsNullorWhitespace($forestName)) -and $forestGroupTranslation.Contains($identity))
         {
             [void] $identityList.Add($forestGroupTranslation.$identity -f $ForestName )
         }
         # Default to adding the identify as provided for any non-default identities.
         else
         {
-            if($identity -notmatch "Schema Admins|Enterprise Admins|security|Domain Admins|auditors")
+            if ($identity -notmatch "Schema Admins|Enterprise Admins|security|Domain Admins|auditors")
             {
                 [void] $identityList.Add($identity)
             }
