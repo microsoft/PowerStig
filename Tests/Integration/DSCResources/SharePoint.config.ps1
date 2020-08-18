@@ -44,7 +44,11 @@ configuration SharePoint_config
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [pscredential]
-        $SetupAccount
+        $SetupAccount,
+
+        [Parameter()]
+        [string]
+        $BrowserFileHandling
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -65,6 +69,7 @@ configuration SharePoint_config
             'OrgSettings'
             'SetupAccount'
             'WebAppUrl'
+            'BrowserFileHandling'
         )
 
         $resourceParamString = New-ResourceParameterString -ResourceParameters $resourceParameters -PSBoundParams $psboundParams

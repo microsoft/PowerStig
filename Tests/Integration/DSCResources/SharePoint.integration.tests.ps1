@@ -11,12 +11,12 @@ $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeReso
 $password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'
 $SetupAccount = New-Object -TypeName pscredential -ArgumentList 'Admin', $password
 $WebAppUrl = 'test.com'
-#$BrowserFileHandling = 'Strict'
+$BrowserFileHandling = 'Strict'
 
 $additionalTestParameterList    = @{
     SetupAccount        = $SetupAccount
     WebAppUrl           = $WebAppUrl
-#    BrowserFileHandling = $BrowserFileHandling
+    BrowserFileHandling = $BrowserFileHandling
     ConfigurationData   = @{
         AllNodes = @(
             @{
@@ -42,9 +42,6 @@ foreach ($stig in $stigList)
     $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id -Count 4 #grab 4 random spwebappgeneralsettings rules and assign them to skiprulemultiple, then pass to common integration tests
     $skipRuleTypeMultiple = 'SharePointSPWebAppGeneralSettingsRule'
     $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
-
-    # manually coded exceptions (single and multiple)
-    # we only need to test one exception, then two exceptions. The goal is to see if they work.
 
     $exception = @{
         'V-59919' = @{

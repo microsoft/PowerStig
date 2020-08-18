@@ -72,7 +72,11 @@ configuration SharePoint
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string[]]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [string]
+        $BrowserFileHandling
     )
 
     ##### BEGIN DO NOT MODIFY #####
