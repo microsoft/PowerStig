@@ -8,24 +8,12 @@ $rulePropertyStringBuilder = New-Object -TypeName System.Text.StringBuilder
 
 foreach ($rule in $rules)
 {
-    if ($vulnIDs)
-    {
-        $vulnIDs += ' ' + $rule.ID
-    }
-    else
-    {
-        $vulnIDs = $rule.ID
-    }
+    $resourceTitle = "`"[$($rules.id -join ' ')]`""
     [void] $rulePropertyStringBuilder.AppendLine("`t" + $rule.PropertyName + " = '" + $rule.PropertyValue + "'")
 }
 
-[void] $configStringBuilder.AppendLine("`tPsDscRunAsCredential = " + '$SetupAccount')
-
-$blockTitle = "[$($vulnIDs)]"
-[void] $configStringBuilder.AppendLine("SPWebAppGeneralSettings $blockTitle`n{`n`tWebAppUrl = ""$WebAppUrl""")
-[void] $configStringBuilder.AppendLine($rulePropertyStringBuilder)
-[void] $configStringBuilder.AppendLine("`tPsDscRunAsCredential = `$SetupAccount")
-[void] $configStringBuilder.AppendLine('}')
+[void] $configStringBuilder.AppendLine("SPWebAppGeneralSettings $resourceTitle`n{`n`tWebAppUrl = ""$WebAppUrl""")
+[void] $configStringBuilder.AppendLine("$rulePropertyStringBuilder" + "`tPsDscRunAsCredential = `$SetupAccount`n}")
 $scriptblockString = $configStringBuilder
 $scriptblock = [scriptblock]::Create($scriptblockString)
 $scriptblock.Invoke()
