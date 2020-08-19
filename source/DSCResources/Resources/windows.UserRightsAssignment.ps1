@@ -28,42 +28,38 @@ if ($DomainName -and $ForestName)
     # This requires a local forest and/or domain name to be injected to ensure a valid account name.
     $DomainName = PowerStig\Get-DomainName -DomainName $DomainName -Format NetbiosName
     $ForestName = PowerStig\Get-DomainName -ForestName $ForestName -Format NetbiosName
+}
 
-    foreach ($rule in $rules)
+foreach ($rule in $rules)
+{
+    Write-Verbose -Message $rule
+    $identitySplit = $rule.Identity -split ","
+    [System.Collections.ArrayList] $identityList = @()
+
+    foreach ($identity in $identitySplit)
     {
-        Write-Verbose -Message $rule
-        $identitySplit = $rule.Identity -split ","
-        [System.Collections.ArrayList] $identityList = @()
-
-        foreach ($identity in $identitySplit)
+        if (-not ([string]::IsNullorWhitespace($domainName)) -and $domainGroupTranslation.Contains($identity))
         {
-            if ($domainGroupTranslation.Contains($identity))
-            {
-                [void] $identityList.Add($domainGroupTranslation.$identity -f $DomainName )
-            }
-            elseif ($forestGroupTranslation.Contains($identity))
-            {
-                [void] $identityList.Add($forestGroupTranslation.$identity -f $ForestName )
-            }
-            # Default to adding the identify as provided for any non-default identities.
-            else
+            [void] $identityList.Add($domainGroupTranslation.$identity -f $DomainName )
+        }
+        elseif (-not ([string]::IsNullorWhitespace($forestName)) -and $forestGroupTranslation.Contains($identity))
+        {
+            [void] $identityList.Add($forestGroupTranslation.$identity -f $ForestName )
+        }
+        # Default to adding the identify as provided for any non-default identities.
+        else
+        {
+            if ($identity -notmatch "Schema Admins|Enterprise Admins|security|Domain Admins|auditors")
             {
                 [void] $identityList.Add($identity)
             }
         }
-
-        UserRightsAssignment (Get-ResourceTitle -Rule $rule)
-        {
-            Policy   = ($rule.DisplayName -replace " ", "_")
-            Identity = $identityList
-            Force    = [bool] $rule.Force
-        }
     }
-}
-else
-{
-    foreach ($rule in $rules)
+
+    UserRightsAssignment (Get-ResourceTitle -Rule $rule)
     {
-        Write-Warning -Message "$($rule.id) not compiled to mof because DomainName and ForestName were not specified"
+        Policy   = ($rule.DisplayName -replace " ", "_")
+        Identity = $identityList
+        Force    = [bool] $rule.Force
     }
 }

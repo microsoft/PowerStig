@@ -36,7 +36,7 @@ CLRVersion = '4.0'
 
 # Modules that must be imported into the global environment prior to importing this module
 RequiredModules  = @(
-    @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.2.0.0'},
+    @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.4.0.0'},
     @{ModuleName = 'AuditSystemDsc'; ModuleVersion = '1.1.0'},
     @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.4.1'},
     @{ModuleName = 'ComputerManagementDsc'; ModuleVersion = '6.2.0.0'},
