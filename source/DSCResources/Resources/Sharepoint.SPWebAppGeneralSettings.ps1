@@ -3,9 +3,8 @@
 
 $rules = Select-Rule -Type SharePointSPWebAppGeneralSettingsRule -RuleList $stig.RuleList
 
-# change this variable name to something better
-$sb = New-Object -TypeName System.Text.StringBuilder
-[void] $sb.AppendLine("SPWebAppGeneralSettings {0}`n{`n`tWebAppUrl = ""$WebAppUrl""")
+$configStringBuilder = New-Object -TypeName System.Text.StringBuilder
+[void] $configStringBuilder.AppendLine("SPWebAppGeneralSettings {0}`n{`n`tWebAppUrl = ""$WebAppUrl""") -f $blockTitle
 
 foreach ($rule in $rules)
 {
@@ -17,11 +16,14 @@ foreach ($rule in $rules)
     {
         $vulnIDs = $rule.ID
     }
+    $ruleProperty = $rule.PropertyName + " = '" + $rule.PropertyValue +"'"
+    [void] $configStringBuilder.AppendLine("`t" + $ruleProperty)
 }
+
+[void] $configStringBuilder.AppendLine("`tPsDscRunAsCredential = " + '$SetupAccount')
 
 $blockTitle = "[$($vulnIDs)]"
 
-[void] $sb.AppendLine('}')
-$scriptblockString = $sb.ToString() -f $blockTitle
+[void] $configStringBuilder.AppendLine('}')
 $scriptblock = [scriptblock]::Create($scriptblockString)
 $scriptblock.Invoke()
