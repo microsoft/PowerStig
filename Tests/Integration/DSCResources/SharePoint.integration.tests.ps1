@@ -39,7 +39,7 @@ foreach ($stig in $stigList)
     $skipRuleType = "SharePointSPWebAppGeneralSettingsRule"
     $expectedSkipRuleTypeCount = $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
 
-    $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id -Count 4 #grab 4 random spwebappgeneralsettings rules and assign them to skiprulemultiple, then pass to common integration tests
+    $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id -Count 4
     $skipRuleTypeMultiple = 'SharePointSPWebAppGeneralSettingsRule'
     $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
 
