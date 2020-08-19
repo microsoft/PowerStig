@@ -19,6 +19,8 @@ foreach ($rule in $rules)
     [void] $rulePropertyStringBuilder.AppendLine("`t" + $rule.PropertyName + " = '" + $rule.PropertyValue + "'")
 }
 
+[void] $configStringBuilder.AppendLine("`tPsDscRunAsCredential = " + '$SetupAccount')
+
 $blockTitle = "[$($vulnIDs)]"
 [void] $configStringBuilder.AppendLine("SPWebAppGeneralSettings $blockTitle`n{`n`tWebAppUrl = ""$WebAppUrl""")
 [void] $configStringBuilder.AppendLine($rulePropertyStringBuilder)
