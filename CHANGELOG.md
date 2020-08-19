@@ -20,6 +20,7 @@
 * Fixed [#663](https://github.com/microsoft/PowerStig/issues/663): Missing OrgSettings for V-88203 - Win10 Client 1.19 and 1.21
 * Fixed [#673](https://github.com/microsoft/PowerStig/issues/673): IIS Sever 10.0 STIG hardening rule V-100163 fails with error in Windows Server 2019 while using PowerSTIG 4.4.2
 * Fixed: Removed Windows Server 2016 DC/MS R1V9 from processed STIGs folder
+* Fixed [#718](https://github.com/microsoft/PowerStig/issues/718): Allow application of applicable user rights assignments for non-domain and disconnected systems
 
 ## [4.4.2] - 2020-07-06
 
