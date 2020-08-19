@@ -87,7 +87,7 @@ configuration WindowsDnsServer
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.1
     . "$resourcePath\windows.AccessControl.ps1"
 
-    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
+    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.10.0.0
     . "$resourcePath\windows.UserRightsAssignment.ps1"
 
     Import-DscResource -ModuleName xDnsServer -ModuleVersion 1.16.0.0
