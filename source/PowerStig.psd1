@@ -36,18 +36,18 @@ CLRVersion = '4.0'
 
 # Modules that must be imported into the global environment prior to importing this module
 RequiredModules  = @(
-    @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.2.0.0'},
+    @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.4.0.0'},
     @{ModuleName = 'AuditSystemDsc'; ModuleVersion = '1.1.0'},
-    @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.4.0.0'},
+    @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.4.1'},
     @{ModuleName = 'ComputerManagementDsc'; ModuleVersion = '6.2.0.0'},
     @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'},
     @{ModuleName = 'GPRegistryPolicyDsc'; ModuleVersion = '1.2.0'},
     @{ModuleName = 'PSDscResources'; ModuleVersion = '2.10.0.0'},
-    @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.4.0.0'},
+    @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.10.0.0'},
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
-    @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
-    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'}
+    @{ModuleName = 'xDnsServer'; ModuleVersion = '1.16.0.0'},
+    @{ModuleName = 'xWebAdministration'; ModuleVersion = '3.2.0'}
 )
 
 # DSC resources to export from this module
@@ -96,7 +96,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'DSC','DesiredStateConfiguration','STIG','PowerStig'
+        Tags = 'DSC','DesiredStateConfiguration','STIG','PowerStig', 'PSModule'
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/Microsoft/PowerStig/blob/master/LICENSE'

@@ -2,19 +2,27 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply IIS Site/Server V1R11 STIGs: [#702](https://github.com/microsoft/PowerStig/issues/702)
+* Update PowerSTIG to successfully parse/apply Microsoft Internet Explorer 11 STIG - Ver 1, Rel 19: [#707](https://github.com/microsoft/PowerStig/issues/707)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server DNS - V1R15: [#696](https://github.com/microsoft/PowerStig/issues/696)
+* Update PowerSTIG to successfully parse/apply SQL Server 2016 Instance V1R10: [#704](https://github.com/microsoft/PowerStig/issues/704)
+* Update PowerSTIG to successfully parse/apply IIS 10.0 Site/Server V1R2 STIGs: [#699](https://github.com/microsoft/PowerStig/issues/699)
+* Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 23: [#678](https://github.com/microsoft/PowerStig/issues/678)
+* Update PowerSTIG to successfully parse/apply Windows Server 2019 Instance Ver. 1 Rel. 5: [#683](https://github.com/microsoft/PowerStig/issues/683)
+* Update PowerSTIG to successfully parse/apply Windows 2016 DC/MS Version 1, Rev 12: [#681](https://github.com/microsoft/PowerStig/issues/681)
+* Update PowerSTIG to successfully parse/apply Windows 2012 R2 MS Version 2, Rev 19: [#676](https://github.com/microsoft/PowerStig/issues/676)
+* Update PowerSTIG To Use AuditPolicyDsc version 1.4.0.0 : [#715](https://github.com/microsoft/PowerStig/issues/715)
+* Update PowerSTIG To Use xWebAdministration version 3.2.0 : [#713](https://github.com/microsoft/PowerStig/issues/713)
+* Update PowerSTIG To Use xDnsServer version 1.16.0.0: [#695](https://github.com/microsoft/PowerStig/issues/695)
+* Update PowerSTIG To Use SecurityPolicyDsc version 2.10.0.0: [#690](https://github.com/microsoft/PowerStig/issues/690)
 * Update PowerSTIG to support multiple STIGs per checklist [#567](https://github.com/microsoft/PowerStig/issues/567)
-* Fixed [#210](https://github.com/microsoft/PowerStig/issues/210): Include the Description attribute in PowerSTIG XML
-* Fixed [#647](https://github.com/microsoft/PowerStig/issues/647): Conflict when configuring multiple databases
-* Fixed [#632](https://github.com/microsoft/PowerStig/issues/632): Update PowerSTIG to allow for workgroup level scansr
-* Fixed [#652](https://github.com/microsoft/PowerStig/issues/652): Invalid ValueName for InternetExplorer11 rules V-75169 and V-75171
-* Fixed [#570](https://github.com/microsoft/PowerStig/issues/570): Example using ManualCheckFile with multiple Vulnerability objects. Updated file format to XML.
-* Fixed [#548](https://github.com/microsoft/PowerStig/issues/548): Target/Host Data is blank when creating a checklist
-* Fixed [#546](https://github.com/microsoft/PowerStig/issues/546): Typecase causing issue when trying to generate checklist
-* Fixed [#528](https://github.com/microsoft/PowerStig/issues/528): New-StigChecklist should not require a ManualCheckFile
-* Fixed [#443](https://github.com/microsoft/PowerStig/issues/443): missing cmdlet Get-StigXccdfBenchmark function
+* Release Process Update: Ensure the nuget package uses explicit DSC Resource Module Versions: [#667](https://github.com/microsoft/PowerStig/issues/667)
 * Fixed [#668](https://github.com/microsoft/PowerStig/issues/668): Incorrect key for SSL 3.0 rules in SqlServer-2016-Instance.*.xml
 * Fixed [#669](https://github.com/microsoft/PowerStig/issues/669): Missing TLS 1.2 configuration for rule V-97521
 * Fixed [#663](https://github.com/microsoft/PowerStig/issues/663): Missing OrgSettings for V-88203 - Win10 Client 1.19 and 1.21
+* Fixed [#673](https://github.com/microsoft/PowerStig/issues/673): IIS Sever 10.0 STIG hardening rule V-100163 fails with error in Windows Server 2019 while using PowerSTIG 4.4.2
+* Fixed: Removed Windows Server 2016 DC/MS R1V9 from processed STIGs folder
+* Fixed [#718](https://github.com/microsoft/PowerStig/issues/718): Allow application of applicable user rights assignments for non-domain and disconnected systems
 
 ## [4.4.2] - 2020-07-06
 
