@@ -299,9 +299,13 @@ function New-StigCheckList
 
         #region STIGS/iSTIG/VULN[]
 
+        # Parse out the STIG file name for lookups
+        $stigPathFileName = $XccdfPath.Split('\\')
+        $stigFileName = $stigPathFileName[$stigPathFileName.Length-1]
+
         # Pull in the processed XML file to check for duplicate rules for each vulnerability
         [XML]$xccdfBenchmark = Get-Content -Path $XccdfPath -Encoding UTF8
-        $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark
+        $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark -Path $XccdfPath
         $processedFileName = $fileList.Settings.FullName
         [XML]$processed = Get-Content -Path $processedFileName
 
@@ -339,7 +343,7 @@ function New-StigCheckList
             if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
             {
                 $setting = Get-SettingsFromMof -MofFile $MofFile -Id $vid
-                $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object {$_.id -eq $vid}
+                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
 
                 if ($setting)
                 {
@@ -361,7 +365,7 @@ function New-StigCheckList
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'single-dsc' -or $PSCmdlet.ParameterSetName -eq 'multi-dsc')
             {
-                $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object -FilterScript {$_.id -eq $vid}
+                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($manualCheck)
                 {
                     $status = $statusMap["$($manualCheck.Status)"]
