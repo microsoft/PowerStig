@@ -630,7 +630,7 @@ function Get-FindingDetails
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory = $true)]
         [AllowNull()]
         [PSObject]
         $Setting
@@ -669,7 +669,7 @@ function Get-FindingDetailsString
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory = $true)]
         [AllowNull()]
         [PSObject]
         $Setting
@@ -716,7 +716,7 @@ function Get-TargetNodeType
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory = $true)]
         [String]
         $targetNode
     )
