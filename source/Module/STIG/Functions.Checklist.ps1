@@ -5,39 +5,38 @@
 <#
     .SYNOPSIS
         Automatically creates a STIG Viewer checklist from DSC results (DscResults) or a compiled MOF (MofFile) parameter for a single endpoint. 
-        The function will test based upon the passed in STIG file (XccdfPath) or files (ChecklistSTIGFiles) parameter.
+        The function will test based upon the passed in STIG file or files (XccdfPath) parameter.
         Manual entries in the checklist can be injected from a ManualCheckListEntries file.
 
     .PARAMETER MofFile
         A MOF that was compiled with a PowerStig composite.
 
     .PARAMETER DscResults
-        The results of Test-DscConfiguration or DSC report server output for a node.
+        The results of Test-DscConfiguration or DSC report server output for a node. This can also be data retrieved from a DSC pull server with
+        some modifications. See the PowerSTIG wiki for more information.
 
     .PARAMETER XccdfPath
-        The path to a DISA STIG .xccdf file. PowerSTIG includes the files in the /PowerShell/StigData/Archive folder.
+        The path to a DISA STIG .xccdf file. PowerSTIG includes the supported files in the /PowerShell/StigData/Archive folder.
 
-    .PARAMETER ChecklistSTIGFiles 
-        A file that contains a list of STIG Xccdf files to use for the checklist output. This is a simple list of the paths to STIGs that should be checked.
-        See a sample at /PowerShell/StigData/Samples/ChecklistSTIGFiles.txt.
-        
     .PARAMETER OutputPath
-        The location where the checklist .ckl file will be created.
+        The location where the checklist .ckl file will be created. Must include the filename with .ckl on the end.
 
     .PARAMETER ManualChecklistEntries
-        Location of a .psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
+        Location of a .xml file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
 
         This file can be created manually or by exporting an Excel worksheet as XML. The file format should look like the following:
 
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <ManualChecklistEntries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <VulID id="V-79119" Status="NotAFinding">
-                <Details>See System Security Document.</Details>
-                <Comments>This is a test of a manual check file entry.</Comments>
-            </VulID>
-        </ManualChecklistEntries>
+        <stigManualChecklistData>
+        <stigRuleData>
+            <STIG>U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml</STIG>
+            <ID>V-36440</ID>
+            <Status>NotAFinding</Status>
+            <Comments>Not Applicable</Comments>
+            <Details>This machine is not part of a domain, so this rule does not apply.</Details>
+        </stigRuleData>
         
-        See a sample at /PowerShell/StigData/Samples/ManualCheckListEntriesExcelExport.xml.
+        See a sample at /PowerShell/StigData/Samples/ManualCheckListEntriesSample.xml.
 
     .EXAMPLE
         Generate a checklist for single STIG using a .MOF file:
@@ -58,10 +57,10 @@
         New-StigCheckList -DscResult $audit -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile 
 
     .EXAMPLE
-        Generate a checklist for multiple STIGs for an endpoint using a .MOF file:
+        Generate a checklist for multiple STIGs for an endpoint using a .MOF file and a file containing STIGs to check:
 
         $MofFile = 'C:\contoso.local.mof'
-        $ChecklistSTIGFiles = 'C:\ChecklistSTIGFiles.txt'
+        $XccdfPath = Get-Content 'C:\ChecklistSTIGFiles.txt'
         $outputPath = 'C:\SqlServer01_mof.ckl'
         $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesSqlServer01ExcelExport.xml'
         New-StigCheckList -DscResults $auditRehydrated -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
@@ -73,11 +72,11 @@
         $audit | Export-Clixml 'C:\TestDSC.xml'
         
         $auditRehydrated = import-clixml C:\TestDSC.xml
-        $ChecklistSTIGFiles = 'C:\ChecklistSTIGFiles.txt'
+        $XccdfPath = 'C:\STIGS\SQL Server\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml','C:\STIGS\Windows.Server.2012R2\U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R19_Manual-xccdf.xml'
         $outputPath = 'C:\SqlServer01_dsc.ckl'
         $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesSqlServer01ExcelExport.xml'
 
-        New-StigCheckList -DscResults $auditRehydrated -ChecklistSTIGFiles $ChecklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+        New-StigCheckList -DscResults $auditRehydrated -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
 #>
 function New-StigCheckList
 {
@@ -85,89 +84,90 @@ function New-StigCheckList
     [OutputType([XML])]
     param
     (
-        [Parameter(Mandatory = $true, ParameterSetName = 'single-mof')]
-        [Parameter(Mandatory = $true, ParameterSetName = 'multi-mof')]
+        [Parameter(Mandatory = $true, ParameterSetName = 'mof')]
+        [Alias('ReferenceConfiguration')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript(
+        {
+            If (Test-Path -Path $_ -PathType Leaf)
+            {
+                Return $True
+            } else {
+                Throw "$($_) is not a valid path to a .mof file. Provide a full valid path and filename."
+            }
+        }
+        )]
         [String]
         $MofFile,
 
-        [Parameter(Mandatory = $true, ParameterSetName = 'single-dsc')]
-        [Parameter(Mandatory = $true, ParameterSetName = 'multi-dsc')]
+        [Parameter(Mandatory = $true, ParameterSetName = 'dsc')]
         [PSObject]
         $DscResults,
 
-        [Parameter(Mandatory = $true, ParameterSetName = 'single-mof')]
-        [Parameter(Mandatory = $true, ParameterSetName = 'single-dsc')]
-        [String]
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript(
+        {
+            foreach ($filename in $_)
+            {
+                If (Test-Path -Path $filename -PathType Leaf)
+                {
+                    Return $True
+                } else {
+                    Throw "$($filename) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path and filename."
+                }
+            }
+        }
+        )]
+        [String[]]
         $XccdfPath,
 
-        [Parameter(Mandatory = $true, ParameterSetName = 'multi-mof')]
-        [Parameter(Mandatory = $true, ParameterSetName = 'multi-dsc')]
-        [String]
-        $ChecklistSTIGFiles,
-
         [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript(
+        {
+            If (Test-Path -Path $_ -PathType Leaf)
+            {
+                Return $True
+            } else {
+                Throw "$($_) is not a valid path to a ManualChecklistEntries.xml file. Provide a full valid path and filename."
+            }
+        }
+        )]
         [String]
         $ManualChecklistEntries,
 
         [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript(
+        {
+            If (Test-Path -Path $_.DirectoryName -PathType Container)
+            {
+                Return $True
+            } else {
+                Throw "$($_) is not a valid directory. Please provide a valid directory."
+            }
+            if ($_.Extension -ne '.ckl')
+            {
+                throw "$($_.FullName) is not a valid checklist extension. Please provide a full valid path ending in .ckl"
+            } else {
+                Return $True
+            }        
+        }
+        )]
         [System.IO.FileInfo]
         $OutputPath
     )
 
     # Validate parameters before continuing
-    if ($ManualChecklistEntries)
-    {
-        if (-not (Test-Path -Path $ManualChecklistEntries))
-        {
-            throw "$($ManualChecklistEntries) is not a valid path to a ManualChecklistEntries.xml file. Provide a full valid path."
-        }
-
-        [XML]$manualCheckData = Get-Content -Path $ManualChecklistEntries
-    }
-
-    if ($XccdfPath)
-    {
-        if (-not (Test-Path -Path $XccdfPath))
-        {
-            throw "$($XccdfPath) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path."
-        }
-
-        $checklistSTIGs = $XccdfPath
-    }
-
-    if ($ChecklistSTIGFiles)
-    {
-        if (-not (Test-Path -Path $ChecklistSTIGFiles))
-        {
-            throw "$($ChecklistSTIGFiles) is not a valid path to a ChecklistSTIGFiles.txt file. Provide a full valid path."
-        }
-
-        $checklistSTIGs = Get-Content -Path $ChecklistSTIGFiles
-    }
-
-    if (-not (Test-Path -Path $OutputPath.DirectoryName))
-    {
-        throw "$($OutputPath.DirectoryName) is not a valid directory. Please provide a valid directory."
-    }
-
-    if ($OutputPath.Extension -ne '.ckl')
-    {
-        throw "$($OutputPath.FullName) is not a valid checklist extension. Please provide a full valid path ending in .ckl"
-    }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file
-    if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
+    if ($PSCmdlet.ParameterSetName -eq 'mof')
     {
-        if (-not (Test-Path -Path $MofFile))
-        {
-            throw "$($MofFile) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
-        }
-
         $mofString = Get-Content -Path $MofFile -Raw
         $targetNode = Get-TargetNodeFromMof -MofString $mofString
-
     }
-    elseif ($PSCmdlet.ParameterSetName -eq 'single-dsc' -or $PSCmdlet.ParameterSetName -eq 'multi-dsc')
+    elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
     {
         # Check the returned object
         if ($null -eq $DscResults)
@@ -256,7 +256,7 @@ function New-StigCheckList
     $writer.WriteStartElement("STIGS")
 
     #region STIG_iteration
-    foreach ($XccdfPath in $checklistSTIGs)
+    foreach ($XccdfPathItem in $XccdfPath)
     {
 
         $writer.WriteStartElement("iSTIG")
@@ -265,7 +265,7 @@ function New-StigCheckList
 
         $writer.WriteStartElement("STIG_INFO")
 
-        $xccdfBenchmarkContent = Get-StigXccdfBenchmarkContent -Path $XccdfPath
+        $xccdfBenchmarkContent = Get-StigXccdfBenchmarkContent -Path $XccdfPathItem
 
         $stigInfoElements = [ordered] @{
             'version'        = $xccdfBenchmarkContent.version
@@ -273,7 +273,7 @@ function New-StigCheckList
             'customname'     = ''
             'stigid'         = $xccdfBenchmarkContent.id
             'description'    = $xccdfBenchmarkContent.description
-            'filename'       = Split-Path -Path $XccdfPath -Leaf
+            'filename'       = Split-Path -Path $XccdfPathItem -Leaf
             'releaseinfo'    = $xccdfBenchmarkContent.'plain-text'.InnerText
             'title'          = $xccdfBenchmarkContent.title
             'uuid'           = (New-Guid).Guid
@@ -300,12 +300,12 @@ function New-StigCheckList
         #region STIGS/iSTIG/VULN[]
 
         # Parse out the STIG file name for lookups
-        $stigPathFileName = $XccdfPath.Split('\\')
+        $stigPathFileName = $XccdfPathItem.Split('\\')
         $stigFileName = $stigPathFileName[$stigPathFileName.Length-1]
 
         # Pull in the processed XML file to check for duplicate rules for each vulnerability
-        [XML]$xccdfBenchmark = Get-Content -Path $XccdfPath -Encoding UTF8
-        $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark -Path $XccdfPath
+        [XML]$xccdfBenchmark = Get-Content -Path $XccdfPathItem -Encoding UTF8
+        $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark -Path $XccdfPathItem
         $processedFileName = $fileList.Settings.FullName
         [XML]$processed = Get-Content -Path $processedFileName
 
@@ -340,14 +340,14 @@ function New-StigCheckList
                 $writer.WriteEndElement(<#STIG_DATA#>)
             }
 
-            if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
+            if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
                 $setting = Get-SettingsFromMof -MofFile $MofFile -Id $vid
                 $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
 
                 if ($setting)
                 {
-                    $status = $statusMap['NotAFinding']
+                    $status = $statusMap['Open']
                     $comments = "To be addressed by PowerStig MOF via $setting"
                     $findingDetails = Get-FindingDetails -Setting $setting
 
@@ -363,7 +363,7 @@ function New-StigCheckList
                     $status = $statusMap['NotReviewed']
                 }
             }
-            elseif ($PSCmdlet.ParameterSetName -eq 'single-dsc' -or $PSCmdlet.ParameterSetName -eq 'multi-dsc')
+            elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
             {
                 $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($manualCheck)
@@ -413,12 +413,12 @@ function New-StigCheckList
 
                     if ($originalSetting)
                     {
-                        $status = $statusMap['NotAFinding']
+                        $status = $statusMap['Open']
                         $findingDetails = 'See {0} for Finding Details.' -f $convertedRule.DuplicateOf
                         $comments = 'Managed via PowerStigDsc - this rule is a duplicate of {0}' -f $convertedRule.DuplicateOf
                     }
                 }
-                elseif ($PSCmdlet.ParameterSetName -eq 'result')
+                elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
                 {
                     $originalSetting = Get-SettingsFromResult -DscResults $DscResults -id $convertedRule.DuplicateOf
 
@@ -442,10 +442,12 @@ function New-StigCheckList
             $writer.WriteEndElement(<#STATUS#>)
 
             $writer.WriteStartElement("FINDING_DETAILS")
+            $findingDetails = ConvertTo-SafeXml -unescapedXmlString $findingDetails
             $writer.WriteString($findingDetails)
             $writer.WriteEndElement(<#FINDING_DETAILS#>)
 
             $writer.WriteStartElement("COMMENTS")
+            $comments = ConvertTo-SafeXml -unescapedXmlString $comments
             $writer.WriteString($comments)
             $writer.WriteEndElement(<#COMMENTS#>)
 
@@ -496,7 +498,8 @@ function Get-VulnerabilityList
 
     foreach ($vulnerability in $XccdfBenchmark.Group)
     {
-        [XML]$vulnerabiltyDiscussionElement = "<discussionroot>$($vulnerability.Rule.description)</discussionroot>"
+        $vulnerabilityDiscussion = ConvertTo-SafeXml -unescapedXmlString $($vulnerability.Rule.description)
+        [XML]$vulnerabiltyDiscussionElement = "<discussionroot>$vulnerabilityDiscussion</discussionroot>"
 
         [void] $vulnerabilityList.Add(
             @(
@@ -758,4 +761,23 @@ function Get-TargetNodeType
 
     return ''
 }
+<#
+    .SYNOPSIS
+        Escapes invalid characters in the input to create safe XML output.
+        Note: Intended for contents of attributes, elements, etc.
+#>
+function ConvertTo-SafeXml
+{
+    [OutputType([xml])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [String]
+        [AllowEmptyString()]
+        $unescapedXmlString
+    )
 
+    $escapedXml = [System.Security.SecurityElement]::Escape($unescapedXmlString)
+    return $escapedXml
+}
