@@ -16,6 +16,7 @@
 * Update PowerSTIG To Use xDnsServer version 1.16.0.0: [#695](https://github.com/microsoft/PowerStig/issues/695)
 * Update PowerSTIG To Use SecurityPolicyDsc version 2.10.0.0: [#690](https://github.com/microsoft/PowerStig/issues/690)
 * Update PowerSTIG To Use ComputerManagementDsc version 8.4.0: [#720](https://github.com/microsoft/PowerStig/issues/720)
+* Update PowerSTIG To Include SkipCategory Parameter to Skip STIG Category/Severity Levels: [#711](https://github.com/microsoft/PowerStig/issues/711)
 * Release Process Update: Ensure the nuget package uses explicit DSC Resource Module Versions: [#667](https://github.com/microsoft/PowerStig/issues/667)
 * Fixed [#668](https://github.com/microsoft/PowerStig/issues/668): Incorrect key for SSL 3.0 rules in SqlServer-2016-Instance.*.xml
 * Fixed [#669](https://github.com/microsoft/PowerStig/issues/669): Missing TLS 1.2 configuration for rule V-97521
