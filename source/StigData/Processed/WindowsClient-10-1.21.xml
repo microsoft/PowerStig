@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V1R21_Manual-xccdf.xml" releaseinfo="Release: 21 Benchmark Date: 24 Apr 2020" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.21" created="7/30/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V1R21_Manual-xccdf.xml" releaseinfo="Release: 21 Benchmark Date: 24 Apr 2020" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.21" created="8/25/2020">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2881,18 +2881,6 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationName>ImageLoad OverrideBlockRemoteImages</MitigationName>
-      <MitigationTarget>FLTLDR.EXE</MitigationTarget>
-      <MitigationType>ImageLoad</MitigationType>
-      <MitigationValue>false</MitigationValue>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>FLTLDR.EXE:ImageLoad:ImageLoad OverrideBlockRemoteImages:False</RawString>
-    </Rule>
-    <Rule id="V-77209.c" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationName>OverrideEnableExportAddressFilter</MitigationName>
       <MitigationTarget>FLTLDR.EXE</MitigationTarget>
       <MitigationType>Payload</MitigationType>
@@ -2901,7 +2889,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <OrganizationValueTestString />
       <RawString>FLTLDR.EXE:Payload:OverrideEnableExportAddressFilter:False</RawString>
     </Rule>
-    <Rule id="V-77209.d" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
+    <Rule id="V-77209.c" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2913,7 +2901,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <OrganizationValueTestString />
       <RawString>FLTLDR.EXE:Payload:OverrideEnableExportAddressFilterPlus:False</RawString>
     </Rule>
-    <Rule id="V-77209.e" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
+    <Rule id="V-77209.d" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2925,7 +2913,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <OrganizationValueTestString />
       <RawString>FLTLDR.EXE:Payload:OverrideEnableImportAddressFilter:False</RawString>
     </Rule>
-    <Rule id="V-77209.f" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
+    <Rule id="V-77209.e" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2937,7 +2925,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <OrganizationValueTestString />
       <RawString>FLTLDR.EXE:Payload:OverrideEnableRopStackPivot:False</RawString>
     </Rule>
-    <Rule id="V-77209.g" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
+    <Rule id="V-77209.f" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2949,7 +2937,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <OrganizationValueTestString />
       <RawString>FLTLDR.EXE:Payload:OverrideEnableRopCallerCheck:False</RawString>
     </Rule>
-    <Rule id="V-77209.h" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
+    <Rule id="V-77209.g" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2961,7 +2949,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <OrganizationValueTestString />
       <RawString>FLTLDR.EXE:Payload:OverrideEnableRopSimExec:False</RawString>
     </Rule>
-    <Rule id="V-77209.i" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
+    <Rule id="V-77209.h" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
