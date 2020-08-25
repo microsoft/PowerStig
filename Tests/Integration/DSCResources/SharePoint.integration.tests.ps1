@@ -10,13 +10,11 @@ $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeReso
 
 $password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'
 $SetupAccount = New-Object -TypeName pscredential -ArgumentList 'Admin', $password
-$WebAppUrl = 'test.com'
-$BrowserFileHandling = 'Strict'
+$WebAppUrl = "test.com"
 
 $additionalTestParameterList    = @{
     SetupAccount        = $SetupAccount
     WebAppUrl           = $WebAppUrl
-    BrowserFileHandling = $BrowserFileHandling
     ConfigurationData   = @{
         AllNodes = @(
             @{
@@ -37,11 +35,11 @@ foreach ($stig in $stigList)
 
     $skipRule = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id
     $skipRuleType = "SharePointSPWebAppGeneralSettingsRule"
-    $expectedSkipRuleTypeCount = $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
+    $expectedSkipRuleTypeCount = 2 + $blankSkipRuleId.Count
 
-    $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id -Count 4
-    $skipRuleTypeMultiple = 'SharePointSPWebAppGeneralSettingsRule'
-    $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
+    $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id -Count 2
+    $skipRuleTypeMultiple = "SharePointSPWebAppGeneralSettingsRule"
+    $expectedSkipRuleTypeMultipleCount = ($blankSkipRuleId | Measure-Object).Count
 
     $exception = @{
         'V-59919' = @{
