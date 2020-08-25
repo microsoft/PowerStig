@@ -646,10 +646,6 @@ function Get-FindingDetails
         {
             return "No DSC resource was leveraged for this rule (Resource=None)"
         }
-        {$PSItem -match "^\[(x)?Registry\]"}
-        {
-            return "Registry Value = $($setting.ValueData)"
-        }
         {$PSItem -match "^\[UserRightsAssignment\]"}
         {
             return "UserRightsAssignment Identity = $($setting.Identity)"
