@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Windows 2012 R2 DC Version 2, Rev 21: [#677](https://github.com/microsoft/PowerStig/issues/677)
 * Update PowerSTIG to successfully parse/apply IIS Site/Server V1R11 STIGs: [#702](https://github.com/microsoft/PowerStig/issues/702)
 * Update PowerSTIG to successfully parse/apply Microsoft Internet Explorer 11 STIG - Ver 1, Rel 19: [#707](https://github.com/microsoft/PowerStig/issues/707)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server DNS - V1R15: [#696](https://github.com/microsoft/PowerStig/issues/696)

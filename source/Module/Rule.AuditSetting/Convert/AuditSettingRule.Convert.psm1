@@ -70,7 +70,14 @@ class AuditSettingRuleConvert : AuditSettingRule
                 $this.Query = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
                 $this.Property = 'FileSystem'
                 $this.Operator = '-match'
-                $this.DesiredValue = 'NTFS|ReFS'
+                if ($PSItem -Match "Cluster Share Volumes")
+                {
+                    $this.DesiredValue = 'NTFS|ReFS|CSV'
+                }
+                else
+                {
+                    $this.DesiredValue = 'NTFS|ReFS'
+                }
             }
         }
         $this.SetDuplicateRule()
