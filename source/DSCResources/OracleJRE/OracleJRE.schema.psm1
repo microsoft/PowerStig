@@ -74,7 +74,7 @@ configuration OracleJRE
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName FileContentDsc -ModuleVersion 1.1.0.108
+    Import-DscResource -ModuleName FileContentDsc -ModuleVersion 1.3.0.151
     . "$resourcePath\oraclejre.KeyValuePairFile.ps1"
 
     Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
