@@ -12,10 +12,13 @@
 * Update PowerSTIG to successfully parse/apply Windows Server 2019 Instance Ver. 1 Rel. 5: [#683](https://github.com/microsoft/PowerStig/issues/683)
 * Update PowerSTIG to successfully parse/apply Windows 2016 DC/MS Version 1, Rev 12: [#681](https://github.com/microsoft/PowerStig/issues/681)
 * Update PowerSTIG to successfully parse/apply Windows 2012 R2 MS Version 2, Rev 19: [#676](https://github.com/microsoft/PowerStig/issues/676)
+* Update PowerSTIG To Use WindowsDefenderDsc version 2.0.0 : [#657](https://github.com/microsoft/PowerStig/issues/657)
+* Update PowerSTIG To Use PSDSCResources version 2.12.0.0: [#723](https://github.com/microsoft/PowerStig/issues/723)
 * Update PowerSTIG To Use AuditPolicyDsc version 1.4.0.0 : [#715](https://github.com/microsoft/PowerStig/issues/715)
 * Update PowerSTIG To Use xWebAdministration version 3.2.0 : [#713](https://github.com/microsoft/PowerStig/issues/713)
 * Update PowerSTIG To Use xDnsServer version 1.16.0.0: [#695](https://github.com/microsoft/PowerStig/issues/695)
 * Update PowerSTIG To Use SecurityPolicyDsc version 2.10.0.0: [#690](https://github.com/microsoft/PowerStig/issues/690)
+* Update PowerSTIG To Use FileContentDsc version 1.3.0.151: [#722](https://github.com/microsoft/PowerStig/issues/722)
 * Update PowerSTIG To Use ComputerManagementDsc version 8.4.0: [#720](https://github.com/microsoft/PowerStig/issues/720)
 * Release Process Update: Ensure the nuget package uses explicit DSC Resource Module Versions: [#667](https://github.com/microsoft/PowerStig/issues/667)
 * Fixed [#668](https://github.com/microsoft/PowerStig/issues/668): Incorrect key for SSL 3.0 rules in SqlServer-2016-Instance.*.xml
