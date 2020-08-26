@@ -85,7 +85,7 @@ function New-StigCheckList
     param
     (
         [Parameter(Mandatory = $true, ParameterSetName = 'mof')]
-        [Alias('ReferenceConfiguration')]
+        [Alias('MofFile')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript(
         {
@@ -98,7 +98,7 @@ function New-StigCheckList
         }
         )]
         [String]
-        $MofFile,
+        $ReferenceConfiguration,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'dsc')]
         [PSObject]
