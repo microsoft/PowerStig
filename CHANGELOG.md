@@ -11,6 +11,7 @@
 * Update PowerSTIG to successfully parse/apply Windows Server 2019 Instance Ver. 1 Rel. 5: [#683](https://github.com/microsoft/PowerStig/issues/683)
 * Update PowerSTIG to successfully parse/apply Windows 2016 DC/MS Version 1, Rev 12: [#681](https://github.com/microsoft/PowerStig/issues/681)
 * Update PowerSTIG to successfully parse/apply Windows 2012 R2 MS Version 2, Rev 19: [#676](https://github.com/microsoft/PowerStig/issues/676)
+* Update PowerSTIG To Use WindowsDefenderDsc version 2.0.0 : [#657](https://github.com/microsoft/PowerStig/issues/657)
 * Update PowerSTIG To Use PSDSCResources version 2.12.0.0: [#723](https://github.com/microsoft/PowerStig/issues/723)
 * Update PowerSTIG To Use AuditPolicyDsc version 1.4.0.0 : [#715](https://github.com/microsoft/PowerStig/issues/715)
 * Update PowerSTIG To Use xWebAdministration version 3.2.0 : [#713](https://github.com/microsoft/PowerStig/issues/713)

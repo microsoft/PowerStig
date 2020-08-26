@@ -6,31 +6,25 @@ $mitigationTargets = $rules.MitigationTarget | Select-Object -Unique
 
 foreach ($target in $mitigationTargets)
 {
-    $targetrules = $rules | Where-Object {$_.MitigationTarget -eq "$target"}
-    $enableValue = @()
-    $disableValue = @()
-    $idValue = @()
+    $targetRules = $rules | Where-Object {$_.MitigationTarget -eq "$target"}
+    $mitigationTypes = $targetRules.MitigationType | Select-Object -Unique
 
-    foreach ($rule in $targetrules)
+    foreach ($type in $mitigationTypes)
     {
-        if ($rule.enable)
+        $typeRules = $targetRules | Where-Object {$_.MitigationType -eq "$type"}
+        $mitigationNames = $typeRules.MitigationName | Select-Object -Unique
+
+        foreach ($name in $mitigationNames)
         {
-            $enableValue  += $rule.enable
+            $nameRules = $typeRules | Where-Object {$_.MitigationName -eq "$name"}
+
+            ProcessMitigation "$target-$type-$name-$($nameRules.id)"
+            {
+                MitigationTarget = $target
+                MitigationType   = $type
+                MitigationName   = $name
+                MitigationValue  = $nameRules.MitigationValue
+            }
         }
-        if ($rule.disable)
-        {
-            $disableValue += $rule.disable
-        }
-
-        $idValue += $rule.id
-    }
-
-    $enableValue = $enableValue.split(',')
-
-    ProcessMitigation "$Target-$idValue"
-    {
-        MitigationTarget = $target
-        Enable           = $enableValue
-        Disable          = $disableValue
     }
 }
