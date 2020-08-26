@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V1R21_Manual-xccdf.xml" releaseinfo="Release: 21 Benchmark Date: 24 Apr 2020" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.21" created="7/16/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V1R21_Manual-xccdf.xml" releaseinfo="Release: 21 Benchmark Date: 24 Apr 2020" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.21" created="8/26/2020">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1025,7 +1025,7 @@ v1809 (Build 17763)</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <Property>FileSystem</Property>
-      <Query>SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'</Query>
+      <Query>SELECT * FROM Win32_Volume WHERE DriveType = '3'</Query>
       <RawString>Run "Computer Management".
 Navigate to Storage &gt;&gt; Disk Management.
 
@@ -1733,6 +1733,36 @@ OverrideEnableRopSimExec: False
 
 
 The PowerShell command produces a list of mitigations; only those with a required status are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
+    </Rule>
+    <Rule id="V-77245" severity="medium" conversionstatus="pass" title="WN10-EP-000230" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name plugin-container.exe".
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON", this is a finding:
+
+DEP:
+Enable: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
     <Rule id="V-77247" severity="medium" conversionstatus="pass" title="WN10-EP-000240" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3280,39 +3310,6 @@ If the status of "Heap: TerminateOnError" is "OFF", this is a finding.
 Values that would not be a finding include:
 ON
 NOTSET (Default configuration)</RawString>
-    </Rule>
-    <Rule id="V-77245" severity="medium" conversionstatus="pass" title="WN10-EP-000230" dscresource="ProcessMitigation">
-      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable />
-      <DuplicateOf />
-      <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>plugin-container.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name plugin-container.exe".
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON", this is a finding:
-
-DEP:
-Enable: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here. If the PowerShell command does not produce results, ensure the letter case of the filename within the command syntax matches the letter case of the actual filename on the system.</RawString>
     </Rule>
   </ProcessMitigationRule>
   <RegistryRule dscresourcemodule="PSDscResources">
