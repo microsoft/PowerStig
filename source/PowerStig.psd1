@@ -42,7 +42,7 @@ RequiredModules  = @(
     @{ModuleName = 'ComputerManagementDsc'; ModuleVersion = '8.4.0'},
     @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.3.0.151'},
     @{ModuleName = 'GPRegistryPolicyDsc'; ModuleVersion = '1.2.0'},
-    @{ModuleName = 'PSDscResources'; ModuleVersion = '2.10.0.0'},
+    @{ModuleName = 'PSDscResources'; ModuleVersion = '2.12.0.0'},
     @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.10.0.0'},
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
