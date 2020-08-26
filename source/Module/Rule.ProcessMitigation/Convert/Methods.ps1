@@ -24,8 +24,7 @@ function Get-MitigationTargetName
 
     try
     {
-        #$executableMatch = ($checkContent | Select-String -Pattern $regularExpression.MitigationTargetName -CaseSensitive).Matches.Value
-        switch($CheckContent)
+        switch ($CheckContent)
         {
             {$CheckContent -match "Get-ProcessMitigation -System"}
             {
@@ -227,23 +226,23 @@ function Split-MultipleProcessMitigations
     $processMitigations = @()
     $matchTargets = ($CheckContent | Select-String -Pattern $regularExpression.MitigationTarget -AllMatches).Matches.Value | Select-Object -Unique
 
-    if($matchTargets -eq "[application name]")
+    if ($matchTargets -eq "[application name]")
     {
         $matchTargets = ((($CheckContent | Select-String -Pattern ".*.EXE|.*.exe" -CaseSensitive).Matches.Value) -split (",")).replace("and ", "")
     }
 
     $matchTypes = ($CheckContent | Select-String -Pattern $regularExpression.MitigationType -AllMatches).Matches.Value | Select-Object -Unique
 
-    foreach($mitigationTarget in $matchTargets)
+    foreach ($mitigationTarget in $matchTargets)
     {
         foreach ($mitigationType in $MatchTypes)
         {
             $matchNamesGroup = ($CheckContent | Select-String -Pattern "(?<=$($mitigationType):\n)(.+[\n\r])+" -AllMatches).Matches.Value
             $matchNamesGroupSplit = ($matchNamesGroup.trim()).Split("`n")
-            foreach($matchName in $matchNamesGroupSplit)
+            foreach ($matchName in $matchNamesGroupSplit)
             {
                 $mitigationNames = ($matchName | Select-String -Pattern $regularExpression.MitigationName).Matches.Value
-                foreach($mitigationName in $mitigationNames)
+                foreach ($mitigationName in $mitigationNames)
                 {
                     $mitigationValue = ($matchName | Select-String -Pattern "(?<=$($mitigationName):\s)(\w+)" -AllMatches).Matches.Value
                     $processMitigations += '{0}:{1}:{2}:{3}' -f $mitigationTarget,$mitigationType,$mitigationName,$mitigationValue
