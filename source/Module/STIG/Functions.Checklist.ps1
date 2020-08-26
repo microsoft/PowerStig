@@ -4,12 +4,13 @@
 
 <#
     .SYNOPSIS
-        Automatically creates a STIG Viewer checklist from DSC results (DscResults) or a compiled MOF (MofFile) parameter for a single endpoint. 
+        Automatically creates a STIG Viewer checklist from DSC results (DscResults) or a compiled MOF (ReferenceConfiguration) parameter for a single endpoint. 
         The function will test based upon the passed in STIG file or files (XccdfPath) parameter.
         Manual entries in the checklist can be injected from a ManualCheckListEntries file.
 
-    .PARAMETER MofFile
+    .PARAMETER ReferenceConfiguration
         A MOF that was compiled with a PowerStig composite.
+        This parameter supports an alias of 'MofFile'
 
     .PARAMETER DscResults
         The results of Test-DscConfiguration or DSC report server output for a node. This can also be data retrieved from a DSC pull server with
@@ -41,16 +42,16 @@
     .EXAMPLE
         Generate a checklist for single STIG using a .MOF file:
         
-        $MofFile = 'C:\contoso.local.mof'
+        $ReferenceConfiguration = 'C:\contoso.local.mof'
         $xccdfPath = 'C:\SQL Server\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
         $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_mof.ckl'
         $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesExcelExport.xml'
-        New-StigCheckList -MofFile $MofFile -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+        New-StigCheckList -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
     
     .EXAMPLE
         Generate a checklist for a single STIG using DSC results obtained from Test-DscConfiguration:
 
-        $audit = Test-DscConfiguration -ComputerName localhost -MofFile 'C:\Dev\Utilities\SqlServerInstance_config\localhost.mof'
+        $audit = Test-DscConfiguration -ComputerName localhost -ReferenceConfiguration 'C:\Dev\Utilities\SqlServerInstance_config\localhost.mof'
         $xccdfPath = 'C:\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
         $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_dscresults.ckl'
         $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesSQL2016Instance.xml'
@@ -59,7 +60,6 @@
     .EXAMPLE
         Generate a checklist for multiple STIGs for an endpoint using a .MOF file and a file containing STIGs to check:
 
-        $MofFile = 'C:\contoso.local.mof'
         $XccdfPath = Get-Content 'C:\ChecklistSTIGFiles.txt'
         $outputPath = 'C:\SqlServer01_mof.ckl'
         $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesSqlServer01ExcelExport.xml'
@@ -93,7 +93,7 @@ function New-StigCheckList
             {
                 Return $True
             } else {
-                Throw "$($_) is not a valid path to a .mof file. Provide a full valid path and filename."
+                Throw "$($_) is not a valid path to a reference configuration (.mof) file. Provide a full valid path and filename."
             }
         }
         )]
@@ -164,7 +164,7 @@ function New-StigCheckList
     # Values for some of these fields can be read from the .mof file or the DSC results file
     if ($PSCmdlet.ParameterSetName -eq 'mof')
     {
-        $mofString = Get-Content -Path $MofFile -Raw
+        $mofString = Get-Content -Path $ReferenceConfiguration -Raw
         $targetNode = Get-TargetNodeFromMof -MofString $mofString
     }
     elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
@@ -342,7 +342,7 @@ function New-StigCheckList
 
             if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
-                $setting = Get-SettingsFromMof -MofFile $MofFile -Id $vid
+                $setting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $vid
                 $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
 
                 if ($setting)
@@ -409,7 +409,7 @@ function New-StigCheckList
                 # How is the duplicate rule handled? If it is handled, then this duplicate should have the same status
                 if ($PSCmdlet.ParameterSetName -eq 'mof')
                 {
-                    $originalSetting = Get-SettingsFromMof -MofFile $MofFile -Id $convertedRule.DuplicateOf
+                    $originalSetting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $convertedRule.DuplicateOf
 
                     if ($originalSetting)
                     {
@@ -559,12 +559,12 @@ function Get-MofContent
     (
         [Parameter(Mandatory = $true)]
         [String]
-        $MofFile
+        $ReferenceConfiguration
     )
 
     if (-not $script:mofContent)
     {
-        $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($MofFile, 4)
+        $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ReferenceConfiguration, 4)
     }
 
     return $script:mofContent
@@ -582,14 +582,14 @@ function Get-SettingsFromMof
     (
         [Parameter(Mandatory = $true)]
         [String]
-        $MofFile,
+        $ReferenceConfiguration,
 
         [Parameter(Mandatory = $true)]
         [String]
         $Id
     )
 
-    $mofContent = Get-MofContent -MofFile $MofFile
+    $mofContent = Get-MofContent -ReferenceConfiguration $ReferenceConfiguration
 
     $mofContentFound = $mofContent.Where({$PSItem.ResourceID -match $Id})
 
