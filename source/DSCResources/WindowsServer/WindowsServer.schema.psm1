@@ -99,7 +99,7 @@ configuration WindowsServer
     . "$resourcePath\windows.AuditPolicySubcategory.ps1"
 
     Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.2.0
-    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.Service.ps1"
@@ -108,7 +108,7 @@ configuration WindowsServer
     Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 2.0.0
     . "$resourcePath\windows.ProcessMitigation.ps1"
 
-    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
+    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.10.0.0
     . "$resourcePath\windows.AccountPolicy.ps1"
     . "$resourcePath\windows.UserRightsAssignment.ps1"
     . "$resourcePath\windows.SecurityOption.ps1"
