@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.18">
+<OrganizationalSettings fullversion="2.21">
   <!-- Ensure ServiceName/StartupType is populated with correct AntiVirus service information-->
   <OrganizationalSetting id="V-1074" ServiceName="" StartupType="" />
   <!-- Ensure ''V-1090'' -le '4'-->
