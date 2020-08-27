@@ -159,7 +159,10 @@ function New-StigCheckList
         $OutputPath
     )
 
-    # Validate parameters before continuing
+    if ($ManualChecklistEntries)
+    {
+        [xml]$manualCheckData = get-content -path $ManualChecklistEntries
+    }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file
     if ($PSCmdlet.ParameterSetName -eq 'mof')
