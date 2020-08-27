@@ -67,10 +67,17 @@ class AuditSettingRuleConvert : AuditSettingRule
             {$PSItem -Match "Disk Management"}
             {
                 Write-Verbose "[$($MyInvocation.MyCommand.Name)] File System Type"
-                $this.Query = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
+                $this.Query = "SELECT * FROM Win32_Volume WHERE DriveType = '3'"
                 $this.Property = 'FileSystem'
                 $this.Operator = '-match'
-                $this.DesiredValue = 'NTFS|ReFS'
+                if ($PSItem -Match "Cluster Share Volumes")
+                {
+                    $this.DesiredValue = 'NTFS|ReFS|CSVFS'
+                }
+                else
+                {
+                    $this.DesiredValue = 'NTFS|ReFS'
+                }
             }
         }
         $this.SetDuplicateRule()

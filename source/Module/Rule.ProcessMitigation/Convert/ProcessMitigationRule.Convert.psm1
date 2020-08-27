@@ -1,6 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
+using module .\..\..\Rule\Rule.psm1
 using module .\..\ProcessMitigationRule.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
@@ -42,7 +43,10 @@ class ProcessMitigationRuleConvert : ProcessMitigationRule
     ProcessMitigationRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetMitigationTarget()
-        $this.SetMitigationToEnable()
+        $this.SetMitigationType()
+        $this.SetMitigationName()
+        $this.SetMitigationValue()
+
         if ($this.conversionstatus -eq 'pass')
         {
             $this.SetDuplicateRule()
@@ -73,51 +77,53 @@ class ProcessMitigationRuleConvert : ProcessMitigationRule
 
     <#
         .SYNOPSIS
-            Enables the mitigation target
+            Sets the type of the mitigation
         .DESCRIPTION
             Sets the mitigation target to enabled. If the mitigation target is
             not set to enabled, it is set to disabled
     #>
-    [void] SetMitigationToEnable ()
+    [void] SetMitigationType ()
     {
-        $thisMitigation = Get-MitigationPolicyToEnable -CheckContent $this.SplitCheckContent
+        $mitigationType = Get-MitigationType -CheckContent $this.SplitCheckContent
 
-        if (-not $this.SetStatus($thisMitigation))
+        if (-not $this.SetStatus($mitigationType))
         {
-            $this.set_Enable($thisMitigation)
+            $this.set_MitigationType($mitigationType)
         }
     }
 
     <#
         .SYNOPSIS
-            Tests if a rule contains multiple checks
+            Sets the name of the mitigation
         .DESCRIPTION
-            Search the rule text to determine if multiple mitigationsare defined
-        .PARAMETER MitigationTarget
-            The object the mitigation applies to
+            Sets the mitigation target to enabled. If the mitigation target is
+            not set to enabled, it is set to disabled
     #>
-    <#{TODO}#> # HasMultipleRules is implemented inconsistently.
-    [bool] HasMultipleRules ()
+    [void] SetMitigationName ()
     {
-        return (Test-MultipleProcessMitigationRule -MitigationTarget $this.MitigationTarget)
+        $mitigationName = Get-MitigationName -CheckContent $this.SplitCheckContent
+
+        if (-not $this.SetStatus($mitigationName))
+        {
+            $this.set_MitigationName($mitigationName)
+        }
     }
 
-    <#
+        <#
         .SYNOPSIS
-            Splits a rule into multiple checks
+            Sets the Value of the mitigation
         .DESCRIPTION
-            Once a rule has been found to have multiple checks, the rule needs
-            to be split. This method splits a {0} into multiple rules. Each
-            split rule id is appended with a dot and letter to keep reporting
-            per the ID consistent. An example would be is V-1000 contained 2
-            checks, then SplitMultipleRules would return 2 objects with rule ids
-            V-1000.a and V-1000.b
-        .PARAMETER MitigationTarget
-            The object the mitigation applies to
+            Sets the mitigation target to enabled. If the mitigation target is
+            not set to enabled, it is set to disabled
     #>
-    [string[]] SplitMultipleRules ()
+    [void] SetMitigationValue ()
     {
-        return (Split-ProcessMitigationRule -MitigationTarget $this.MitigationTarget)
+        $mitigationValue = Get-MitigationValue -CheckContent $this.SplitCheckContent
+
+        if (-not $this.SetStatus($mitigationValue))
+        {
+            $this.set_MitigationValue($mitigationValue)
+        }
     }
 
     hidden [void] SetDscResource ()
@@ -140,5 +146,38 @@ class ProcessMitigationRuleConvert : ProcessMitigationRule
         }
         return $false
     }
+
+    <#
+        .SYNOPSIS
+            Tests if a rule contains multiple checks
+        .DESCRIPTION
+            Search the rule text to determine if multiple mitigationsare defined
+        .PARAMETER MitigationTarget
+            The object the mitigation applies to
+    #>
+    <#{TODO}#> # HasMultipleRules is implemented inconsistently.
+    static [bool] HasMultipleRules ([string] $CheckContent)
+    {
+        return Test-MultipleProcessMitigations -CheckContent ([ProcessMitigationRule]::SplitCheckContent($CheckContent))
+    }
+
+    <#
+        .SYNOPSIS
+            Splits a rule into multiple checks
+        .DESCRIPTION
+            Once a rule has been found to have multiple checks, the rule needs
+            to be split. This method splits a {0} into multiple rules. Each
+            split rule id is appended with a dot and letter to keep reporting
+            per the ID consistent. An example would be is V-1000 contained 2
+            checks, then SplitMultipleRules would return 2 objects with rule ids
+            V-1000.a and V-1000.b
+        .PARAMETER MitigationTarget
+            The object the mitigation applies to
+    #>
+    static [string[]] SplitMultipleRules ([string] $CheckContent)
+    {
+       return Split-MultipleProcessMitigations -CheckContent $CheckContent
+    }
+
     #endregion
 }

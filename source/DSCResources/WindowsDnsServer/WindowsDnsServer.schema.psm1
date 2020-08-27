@@ -93,12 +93,12 @@ configuration WindowsDnsServer
     Import-DscResource -ModuleName xDnsServer -ModuleVersion 1.16.0.0
     . "$resourcePath\windows.xDnsServerSetting.ps1"
 
-    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.Script.RootHint.ps1"
 
-    Import-DscResource -ModuleName ComputerManagementDsc -ModuleVersion 6.2.0.0
+    Import-DscResource -ModuleName ComputerManagementDsc -ModuleVersion 8.4.0
     . "$resourcePath\windows.WindowsEventLog.ps1"
 
 }
