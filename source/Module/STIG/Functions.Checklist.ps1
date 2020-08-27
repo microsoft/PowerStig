@@ -6,7 +6,7 @@
     .SYNOPSIS
         Automatically creates a STIG Viewer checklist from DSC results (DscResults) or a compiled MOF (ReferenceConfiguration) parameter for a single endpoint. 
         The function will test based upon the passed in STIG file or files (XccdfPath) parameter.
-        Manual entries in the checklist can be injected from a ManualCheckListEntries file.
+        Manual entries in the checklist can be injected from a ManualChecklistEntriesFile file.
 
     .PARAMETER ReferenceConfiguration
         A MOF that was compiled with a PowerStig composite.
@@ -22,7 +22,7 @@
     .PARAMETER OutputPath
         The location where the checklist .ckl file will be created. Must include the filename with .ckl on the end.
 
-    .PARAMETER ManualChecklistEntries
+    .PARAMETER ManualChecklistEntriesFile
         Location of a .xml file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
 
         This file can be created manually or by exporting an Excel worksheet as XML. The file format should look like the following:
@@ -37,7 +37,7 @@
             <Details>This machine is not part of a domain, so this rule does not apply.</Details>
         </stigRuleData>
         
-        See a sample at /PowerShell/StigData/Samples/ManualCheckListEntriesSample.xml.
+        See a sample at /PowerShell/StigData/Samples/ManualChecklistEntriesFileSample.xml.
 
     .EXAMPLE
         Generate a checklist for single STIG using a .MOF file:
@@ -45,8 +45,8 @@
         $ReferenceConfiguration = 'C:\contoso.local.mof'
         $xccdfPath = 'C:\SQL Server\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
         $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_mof.ckl'
-        $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesExcelExport.xml'
-        New-StigCheckList -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+        $ManualChecklistEntriesFile = 'C:\ManualChecklistEntriesFileExcelExport.xml'
+        New-StigCheckList -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntriesFile $ManualChecklistEntriesFile
     
     .EXAMPLE
         Generate a checklist for a single STIG using DSC results obtained from Test-DscConfiguration:
@@ -54,16 +54,16 @@
         $audit = Test-DscConfiguration -ComputerName localhost -ReferenceConfiguration 'C:\Dev\Utilities\SqlServerInstance_config\localhost.mof'
         $xccdfPath = 'C:\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
         $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_dscresults.ckl'
-        $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesSQL2016Instance.xml'
-        New-StigCheckList -DscResult $audit -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile 
+        $ManualChecklistEntriesFile = 'C:\ManualChecklistEntriesFileSQL2016Instance.xml'
+        New-StigCheckList -DscResult $audit -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntriesFile $ManualChecklistEntriesFile 
 
     .EXAMPLE
         Generate a checklist for multiple STIGs for an endpoint using a .MOF file and a file containing STIGs to check:
 
         $XccdfPath = Get-Content 'C:\ChecklistSTIGFiles.txt'
         $outputPath = 'C:\SqlServer01_mof.ckl'
-        $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesSqlServer01ExcelExport.xml'
-        New-StigCheckList -DscResults $auditRehydrated -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+        $ManualChecklistEntriesFile = 'C:\ManualChecklistEntriesFileSqlServer01ExcelExport.xml'
+        New-StigCheckList -DscResults $auditRehydrated -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntriesFile $ManualChecklistEntriesFile
 
     .EXAMPLE
         Generate a checklist for multiple STIGs for an endpoint using DSC results obtained from Test-DscConfiguration, dehydrated/rehydrated using CLIXML:
@@ -74,9 +74,9 @@
         $auditRehydrated = import-clixml C:\TestDSC.xml
         $XccdfPath = 'C:\STIGS\SQL Server\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml','C:\STIGS\Windows.Server.2012R2\U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R19_Manual-xccdf.xml'
         $outputPath = 'C:\SqlServer01_dsc.ckl'
-        $ManualChecklistEntriesFile = 'C:\ManualCheckListEntriesSqlServer01ExcelExport.xml'
+        $ManualChecklistEntriesFile = 'C:\ManualChecklistEntriesFileSqlServer01ExcelExport.xml'
 
-        New-StigCheckList -DscResults $auditRehydrated -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+        New-StigCheckList -DscResults $auditRehydrated -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntriesFile $ManualChecklistEntriesFile
 #>
 function New-StigCheckList
 {
@@ -91,9 +91,11 @@ function New-StigCheckList
         {
             If (Test-Path -Path $_ -PathType Leaf)
             {
-                Return $True
-            } else {
-                Throw "$($_) is not a valid path to a reference configuration (.mof) file. Provide a full valid path and filename."
+                return $true
+            } 
+            else
+            {
+                throw "$($_) is not a valid path to a reference configuration (.mof) file. Provide a full valid path and filename."
             }
         }
         )]
@@ -112,9 +114,11 @@ function New-StigCheckList
             {
                 If (Test-Path -Path $filename -PathType Leaf)
                 {
-                    Return $True
-                } else {
-                    Throw "$($filename) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path and filename."
+                    return $true
+                }
+                else
+                {
+                    throw "$($filename) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path and filename."
                 }
             }
         }
@@ -128,14 +132,16 @@ function New-StigCheckList
         {
             If (Test-Path -Path $_ -PathType Leaf)
             {
-                Return $True
-            } else {
-                Throw "$($_) is not a valid path to a ManualChecklistEntries.xml file. Provide a full valid path and filename."
+                return $true
+            }
+            else
+            {
+                throw "$($_) is not a valid path to a ManualChecklistEntriesFile.xml file. Provide a full valid path and filename."
             }
         }
         )]
         [String]
-        $ManualChecklistEntries,
+        $ManualChecklistEntriesFile,
 
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
@@ -143,15 +149,19 @@ function New-StigCheckList
         {
             If (Test-Path -Path $_.DirectoryName -PathType Container)
             {
-                Return $True
-            } else {
-                Throw "$($_) is not a valid directory. Please provide a valid directory."
+                return $true
+            }
+            else
+            {
+                throw "$($_) is not a valid directory. Please provide a valid directory."
             }
             if ($_.Extension -ne '.ckl')
             {
                 throw "$($_.FullName) is not a valid checklist extension. Please provide a full valid path ending in .ckl"
-            } else {
-                Return $True
+            }
+            else
+            {
+                return $true
             }        
         }
         )]
@@ -159,9 +169,9 @@ function New-StigCheckList
         $OutputPath
     )
 
-    if ($ManualChecklistEntries)
+    if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))
     {
-        [xml]$manualCheckData = Get-Content -path $ManualChecklistEntries
+        [xml]$manualCheckData = Get-Content -Path $ManualChecklistEntriesFile
     }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file
@@ -195,22 +205,22 @@ function New-StigCheckList
         "MACAddress"
         {
             $HostnameMACAddress = $targetNode
-            Break
+            break
         }
         "IPv4Address"
         {
             $HostnameIPAddress = $targetNode
-            Break
+            break
         }
         "IPv6Address"
         {
             $HostnameIPAddress = $targetNode
-            Break
+            break
         }
         "FQDN"
         {
             $HostnameFQDN = $targetNode
-            Break
+            break
         }
         default
         {
@@ -259,7 +269,7 @@ function New-StigCheckList
     $writer.WriteStartElement("STIGS")
 
     #region STIG_iteration
-    foreach ($XccdfPathItem in $XccdfPath)
+    foreach ($xccdfPathItem in $XccdfPath)
     {
 
         $writer.WriteStartElement("iSTIG")
@@ -276,7 +286,7 @@ function New-StigCheckList
             'customname'     = ''
             'stigid'         = $xccdfBenchmarkContent.id
             'description'    = $xccdfBenchmarkContent.description
-            'filename'       = Split-Path -Path $XccdfPathItem -Leaf
+            'filename'       = Split-Path -Path $xccdfPathItem -Leaf
             'releaseinfo'    = $xccdfBenchmarkContent.'plain-text'.InnerText
             'title'          = $xccdfBenchmarkContent.title
             'uuid'           = (New-Guid).Guid
@@ -307,10 +317,10 @@ function New-StigCheckList
         $stigFileName = $stigPathFileName[$stigPathFileName.Length-1]
 
         # Pull in the processed XML file to check for duplicate rules for each vulnerability
-        [XML]$xccdfBenchmark = Get-Content -Path $XccdfPathItem -Encoding UTF8
+        [XML] $xccdfBenchmark = Get-Content -Path $xccdfPathItem -Encoding UTF8
         $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark -Path $XccdfPathItem
         $processedFileName = $fileList.Settings.FullName
-        [XML]$processed = Get-Content -Path $processedFileName
+        [XML] $processed = Get-Content -Path $processedFileName
 
         $vulnerabilities = Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent
 
@@ -346,8 +356,7 @@ function New-StigCheckList
             if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
                 $setting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $vid
-                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
-
+                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($setting)
                 {
                     $status = $statusMap['Open']
@@ -368,7 +377,7 @@ function New-StigCheckList
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
             {
-                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($manualCheck)
                 {
                     $status = $statusMap["$($manualCheck.Status)"]
@@ -445,12 +454,12 @@ function New-StigCheckList
             $writer.WriteEndElement(<#STATUS#>)
 
             $writer.WriteStartElement("FINDING_DETAILS")
-            $findingDetails = ConvertTo-SafeXml -unescapedXmlString $findingDetails
+            $findingDetails = ConvertTo-SafeXml -UnescapedXmlString $findingDetails
             $writer.WriteString($findingDetails)
             $writer.WriteEndElement(<#FINDING_DETAILS#>)
 
             $writer.WriteStartElement("COMMENTS")
-            $comments = ConvertTo-SafeXml -unescapedXmlString $comments
+            $comments = ConvertTo-SafeXml -UnescapedXmlString $comments
             $writer.WriteString($comments)
             $writer.WriteEndElement(<#COMMENTS#>)
 
@@ -502,34 +511,34 @@ function Get-VulnerabilityList
     foreach ($vulnerability in $XccdfBenchmark.Group)
     {
         $vulnerabilityDiscussion = ConvertTo-SafeXml -unescapedXmlString $($vulnerability.Rule.description)
-        [XML]$vulnerabiltyDiscussionElement = "<discussionroot>$vulnerabilityDiscussion</discussionroot>"
+        [XML] $vulnerabiltyDiscussionElement = "<discussionroot>$vulnerabilityDiscussion</discussionroot>"
 
-        [void] $vulnerabilityList.Add(
+        [void]  $vulnerabilityList.Add(
             @(
-                [PSCustomObject]@{Name = 'Vuln_Num'; Value = $vulnerability.id},
-                [PSCustomObject]@{Name = 'Severity'; Value = $vulnerability.Rule.severity},
-                [PSCustomObject]@{Name = 'Group_Title'; Value = $vulnerability.title},
-                [PSCustomObject]@{Name = 'Rule_ID'; Value = $vulnerability.Rule.id},
-                [PSCustomObject]@{Name = 'Rule_Ver'; Value = $vulnerability.Rule.version},
-                [PSCustomObject]@{Name = 'Rule_Title'; Value = $vulnerability.Rule.title},
-                [PSCustomObject]@{Name = 'Vuln_Discuss'; Value = $vulnerabiltyDiscussionElement.discussionroot.VulnDiscussion},
-                [PSCustomObject]@{Name = 'IA_Controls'; Value = $vulnerabiltyDiscussionElement.discussionroot.IAControls},
-                [PSCustomObject]@{Name = 'Check_Content'; Value = $vulnerability.Rule.check.'check-content'},
-                [PSCustomObject]@{Name = 'Fix_Text'; Value = $vulnerability.Rule.fixtext.InnerText},
-                [PSCustomObject]@{Name = 'False_Positives'; Value = $vulnerabiltyDiscussionElement.discussionroot.FalsePositives},
-                [PSCustomObject]@{Name = 'False_Negatives'; Value = $vulnerabiltyDiscussionElement.discussionroot.FalseNegatives},
-                [PSCustomObject]@{Name = 'Documentable'; Value = $vulnerabiltyDiscussionElement.discussionroot.Documentable},
-                [PSCustomObject]@{Name = 'Mitigations'; Value = $vulnerabiltyDiscussionElement.discussionroot.Mitigations},
-                [PSCustomObject]@{Name = 'Potential_Impact'; Value = $vulnerabiltyDiscussionElement.discussionroot.PotentialImpacts},
-                [PSCustomObject]@{Name = 'Third_Party_Tools'; Value = $vulnerabiltyDiscussionElement.discussionroot.ThirdPartyTools},
-                [PSCustomObject]@{Name = 'Mitigation_Control'; Value = $vulnerabiltyDiscussionElement.discussionroot.MitigationControl},
-                [PSCustomObject]@{Name = 'Responsibility'; Value = $vulnerabiltyDiscussionElement.discussionroot.Responsibility},
-                [PSCustomObject]@{Name = 'Security_Override_Guidance'; Value = $vulnerabiltyDiscussionElement.discussionroot.SeverityOverrideGuidance},
-                [PSCustomObject]@{Name = 'Check_Content_Ref'; Value = $vulnerability.Rule.check.'check-content-ref'.href},
-                [PSCustomObject]@{Name = 'Weight'; Value = $vulnerability.Rule.Weight},
-                [PSCustomObject]@{Name = 'Class'; Value = 'Unclass'},
-                [PSCustomObject]@{Name = 'STIGRef'; Value = "$($XccdfBenchmark.title) :: $($XccdfBenchmark.'plain-text'.InnerText)"},
-                [PSCustomObject]@{Name = 'TargetKey'; Value = $vulnerability.Rule.reference.identifier}
+                [PSCustomObject] @{Name = 'Vuln_Num'; Value = $vulnerability.id},
+                [PSCustomObject] @{Name = 'Severity'; Value = $vulnerability.Rule.severity},
+                [PSCustomObject] @{Name = 'Group_Title'; Value = $vulnerability.title},
+                [PSCustomObject] @{Name = 'Rule_ID'; Value = $vulnerability.Rule.id},
+                [PSCustomObject] @{Name = 'Rule_Ver'; Value = $vulnerability.Rule.version},
+                [PSCustomObject] @{Name = 'Rule_Title'; Value = $vulnerability.Rule.title},
+                [PSCustomObject] @{Name = 'Vuln_Discuss'; Value = $vulnerabiltyDiscussionElement.discussionroot.VulnDiscussion},
+                [PSCustomObject] @{Name = 'IA_Controls'; Value = $vulnerabiltyDiscussionElement.discussionroot.IAControls},
+                [PSCustomObject] @{Name = 'Check_Content'; Value = $vulnerability.Rule.check.'check-content'},
+                [PSCustomObject] @{Name = 'Fix_Text'; Value = $vulnerability.Rule.fixtext.InnerText},
+                [PSCustomObject] @{Name = 'False_Positives'; Value = $vulnerabiltyDiscussionElement.discussionroot.FalsePositives},
+                [PSCustomObject] @{Name = 'False_Negatives'; Value = $vulnerabiltyDiscussionElement.discussionroot.FalseNegatives},
+                [PSCustomObject] @{Name = 'Documentable'; Value = $vulnerabiltyDiscussionElement.discussionroot.Documentable},
+                [PSCustomObject] @{Name = 'Mitigations'; Value = $vulnerabiltyDiscussionElement.discussionroot.Mitigations},
+                [PSCustomObject] @{Name = 'Potential_Impact'; Value = $vulnerabiltyDiscussionElement.discussionroot.PotentialImpacts},
+                [PSCustomObject] @{Name = 'Third_Party_Tools'; Value = $vulnerabiltyDiscussionElement.discussionroot.ThirdPartyTools},
+                [PSCustomObject] @{Name = 'Mitigation_Control'; Value = $vulnerabiltyDiscussionElement.discussionroot.MitigationControl},
+                [PSCustomObject] @{Name = 'Responsibility'; Value = $vulnerabiltyDiscussionElement.discussionroot.Responsibility},
+                [PSCustomObject] @{Name = 'Security_Override_Guidance'; Value = $vulnerabiltyDiscussionElement.discussionroot.SeverityOverrideGuidance},
+                [PSCustomObject] @{Name = 'Check_Content_Ref'; Value = $vulnerability.Rule.check.'check-content-ref'.href},
+                [PSCustomObject] @{Name = 'Weight'; Value = $vulnerability.Rule.Weight},
+                [PSCustomObject] @{Name = 'Class'; Value = 'Unclass'},
+                [PSCustomObject] @{Name = 'STIGRef'; Value = "$($XccdfBenchmark.title) :: $($XccdfBenchmark.'plain-text'.InnerText)"},
+                [PSCustomObject] @{Name = 'TargetKey'; Value = $vulnerability.Rule.reference.identifier}
 
                 # Some Stigs have multiple Control Correlation Identifiers (CCI)
                 $(
@@ -540,7 +549,7 @@ function Get-VulnerabilityList
 
                     foreach ($CCIREF in $CCIREFList)
                     {
-                        [PSCustomObject]@{Name = 'CCI_REF'; Value = $CCIREF}
+                        [PSCustomObject] @{Name = 'CCI_REF'; Value = $CCIREF}
                     }
                 )
             )
@@ -699,11 +708,11 @@ function Get-TargetNodeFromMof
     (
         [Parameter(Mandatory = $true)]
         [String]
-        $mofString
+        $MofString
     )
 
     $pattern = "((?<=@TargetNode=')(.*)(?='))"
-    $targetNodeSearch = $mofString | Select-String -Pattern $pattern
+    $targetNodeSearch = $MofString | Select-String -Pattern $pattern
     $targetNode = $targetNodeSearch.matches.value
     return $targetNode
 }
@@ -720,10 +729,10 @@ function Get-TargetNodeType
     (
         [Parameter(Mandatory = $true)]
         [String]
-        $targetNode
+        $TargetNode
     )
 
-    switch ($targetNode)
+    switch ($TargetNode)
     {
         # Do we have a MAC address?
         {
@@ -774,9 +783,9 @@ function ConvertTo-SafeXml
         [Parameter(Mandatory = $true)]
         [String]
         [AllowEmptyString()]
-        $unescapedXmlString
+        $UnescapedXmlString
     )
 
-    $escapedXml = [System.Security.SecurityElement]::Escape($unescapedXmlString)
+    $escapedXml = [System.Security.SecurityElement]::Escape($UnescapedXmlString)
     return $escapedXml
 }
