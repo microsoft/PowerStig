@@ -1,3 +1,0 @@
-C:\Dev\PowerStig\source\StigData\Archive\Adobe\U_Adobe_Acrobat_Reader_DC_Continuous_STIG_V1R6_Manual-xccdf.xml
-C:\Dev\PowerStig\source\StigData\Archive\InternetExplorer\U_MS_IE11_STIG_V1R17_Manual-xccdf.xml
-C:\Dev\PowerStig\source\StigData\Archive\SQL Server\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml
