@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R10_Manual-xccdf.xml" releaseinfo="Release: 10 Benchmark Date: 24 Jan 2020" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.10" created="2/26/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R10_Manual-xccdf.xml" releaseinfo="Release: 10 Benchmark Date: 24 Jan 2020" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.10" created="8/26/2020">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73359" severity="medium" conversionstatus="pass" title="SRG-OS-000112-GPOS-00057" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This policy setting determines whether the Kerberos Key Distribution Center (KDC) validates every request for a session ticket against the user rights policy of the target computer. The policy is enabled by default, which is the most secure setting for validating that access to target resources is not circumvented.
@@ -1351,7 +1351,7 @@ Preview versions must not be used in a production environment.</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <Property>FileSystem</Property>
-      <Query>SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'</Query>
+      <Query>SELECT * FROM Win32_Volume WHERE DriveType = '3'</Query>
       <RawString>Open "Computer Management".
 
 Select "Disk Management" under "Storage".
