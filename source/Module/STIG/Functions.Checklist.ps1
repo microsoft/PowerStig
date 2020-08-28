@@ -4,7 +4,7 @@
 
 <#
     .SYNOPSIS
-        Automatically creates a STIG Viewer checklist from DSC results (DscResults) or a compiled MOF (ReferenceConfiguration) parameter for a single endpoint. 
+        Automatically creates a STIG Viewer checklist from DSC results (DscResults) or a compiled MOF (ReferenceConfiguration) parameter for a single endpoint.
         The function will test based upon the passed in STIG file or files (XccdfPath) parameter.
         Manual entries in the checklist can be injected from a ManualChecklistEntriesFile file.
 
@@ -36,18 +36,18 @@
             <Comments>Not Applicable</Comments>
             <Details>This machine is not part of a domain, so this rule does not apply.</Details>
         </stigRuleData>
-        
+
         See a sample at /PowerShell/StigData/Samples/ManualChecklistEntriesFileSample.xml.
 
     .EXAMPLE
         Generate a checklist for single STIG using a .MOF file:
-        
+
         $ReferenceConfiguration = 'C:\contoso.local.mof'
         $xccdfPath = 'C:\SQL Server\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
         $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_mof.ckl'
         $ManualChecklistEntriesFile = 'C:\ManualChecklistEntriesFileExcelExport.xml'
         New-StigCheckList -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntriesFile $ManualChecklistEntriesFile
-    
+
     .EXAMPLE
         Generate a checklist for a single STIG using DSC results obtained from Test-DscConfiguration:
 
@@ -55,7 +55,7 @@
         $xccdfPath = 'C:\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
         $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_dscresults.ckl'
         $ManualChecklistEntriesFile = 'C:\ManualChecklistEntriesFileSQL2016Instance.xml'
-        New-StigCheckList -DscResult $audit -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntriesFile $ManualChecklistEntriesFile 
+        New-StigCheckList -DscResult $audit -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntriesFile $ManualChecklistEntriesFile
 
     .EXAMPLE
         Generate a checklist for multiple STIGs for an endpoint using a .MOF file and a file containing STIGs to check:
@@ -70,7 +70,7 @@
 
         $audit = Test-DscConfiguration -ComputerName localhost -MofFile 'C:\localhost.mof'
         $audit | Export-Clixml 'C:\TestDSC.xml'
-        
+
         $auditRehydrated = import-clixml C:\TestDSC.xml
         $XccdfPath = 'C:\STIGS\SQL Server\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml','C:\STIGS\Windows.Server.2012R2\U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R19_Manual-xccdf.xml'
         $outputPath = 'C:\SqlServer01_dsc.ckl'
@@ -89,10 +89,10 @@ function New-StigCheckList
         [ValidateNotNullOrEmpty()]
         [ValidateScript(
         {
-            If (Test-Path -Path $_ -PathType Leaf)
+            if (Test-Path -Path $_ -PathType Leaf)
             {
                 return $true
-            } 
+            }
             else
             {
                 throw "$($_) is not a valid path to a reference configuration (.mof) file. Provide a full valid path and filename."
@@ -112,7 +112,7 @@ function New-StigCheckList
         {
             foreach ($filename in $_)
             {
-                If (Test-Path -Path $filename -PathType Leaf)
+                if (Test-Path -Path $filename -PathType Leaf)
                 {
                     return $true
                 }
@@ -130,7 +130,7 @@ function New-StigCheckList
         [ValidateNotNullOrEmpty()]
         [ValidateScript(
         {
-            If (Test-Path -Path $_ -PathType Leaf)
+            if (Test-Path -Path $_ -PathType Leaf)
             {
                 return $true
             }
@@ -147,7 +147,7 @@ function New-StigCheckList
         [ValidateNotNullOrEmpty()]
         [ValidateScript(
         {
-            If (Test-Path -Path $_.DirectoryName -PathType Container)
+            if (Test-Path -Path $_.DirectoryName -PathType Container)
             {
                 return $true
             }
@@ -162,7 +162,7 @@ function New-StigCheckList
             else
             {
                 return $true
-            }        
+            }
         }
         )]
         [System.IO.FileInfo]
@@ -171,7 +171,7 @@ function New-StigCheckList
 
     if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))
     {
-        [xml]$manualCheckData = Get-Content -Path $ManualChecklistEntriesFile
+        [xml] $manualCheckData = Get-Content -Path $ManualChecklistEntriesFile
     }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file
@@ -432,7 +432,7 @@ function New-StigCheckList
                 }
                 elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
                 {
-                    $originalSetting = Get-SettingsFromResult -DscResults $DscResults -id $convertedRule.DuplicateOf
+                    $originalSetting = Get-SettingsFromResult -DscResults $DscResults -Id $convertedRule.DuplicateOf
 
                     if ($originalSetting.InDesiredState -eq 'True')
                     {
@@ -510,7 +510,7 @@ function Get-VulnerabilityList
 
     foreach ($vulnerability in $XccdfBenchmark.Group)
     {
-        $vulnerabilityDiscussion = ConvertTo-SafeXml -unescapedXmlString $($vulnerability.Rule.description)
+        $vulnerabilityDiscussion = ConvertTo-SafeXml -UnescapedXmlString $($vulnerability.Rule.description)
         [XML] $vulnerabiltyDiscussionElement = "<discussionroot>$vulnerabilityDiscussion</discussionroot>"
 
         [void]  $vulnerabilityList.Add(
@@ -544,7 +544,7 @@ function Get-VulnerabilityList
                 $(
                     # Extract only the cci entries
                     $CCIREFList = $vulnerability.Rule.ident |
-                    Where-Object {$PSItem.system -eq 'http://iase.disa.mil/cci'} |
+                    Where-Object -FilterScript {$PSItem.system -eq 'http://iase.disa.mil/cci'} |
                     Select-Object 'InnerText' -ExpandProperty 'InnerText'
 
                     foreach ($CCIREF in $CCIREFList)
@@ -686,15 +686,18 @@ function Get-FindingDetailsString
         $Setting
     )
 
-    foreach ($property in $setting.PSobject.properties) {
+    foreach ($property in $setting.PSobject.properties)
+    {
         if ($property.TypeNameOfValue -Match 'String')
         {
             $returnString += $($property.Name) + ' = '
             $returnString += $($setting.PSobject.properties[$property.Name].Value) + "`n"
         }
     }
+
     return $returnString
 }
+
 <#
     .SYNOPSIS
         Extracts the node targeted by the MOF file
@@ -716,6 +719,7 @@ function Get-TargetNodeFromMof
     $targetNode = $targetNodeSearch.matches.value
     return $targetNode
 }
+
 <#
     .SYNOPSIS
         Determines the type of node address
@@ -769,6 +773,7 @@ function Get-TargetNodeType
 
     return ''
 }
+
 <#
     .SYNOPSIS
         Escapes invalid characters in the input to create safe XML output.
