@@ -82,11 +82,11 @@ configuration IisSite
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
     . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.WindowsFeature.ps1"
 
-    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.5.0.0
+    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 3.2.0
     . "$resourcePath\windows.xWebSite.ps1"
     . "$resourcePath\windows.xWebAppPool.ps1"
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
