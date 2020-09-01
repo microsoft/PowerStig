@@ -6,7 +6,7 @@ try
 {
     $rulesToTest = @(
             @{
-                query        = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
+                query        = "SELECT * FROM Win32_Volume WHERE DriveType = '3' AND SystemVolume != 'True'"
                 property     = 'FileSystem'
                 desiredvalue = 'NTFS|ReFS'
                 operator     = '-match'

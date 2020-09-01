@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R18_Manual-xccdf.xml" releaseinfo="Release: 18 Benchmark Date: 25 Oct 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.18" created="4/21/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R21_Manual-xccdf.xml" releaseinfo="Release: 21 Benchmark Date: 17 Jun 2020" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.21" created="8/26/2020">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.  The higher this value is, the less effective the account lockout feature will be in protecting the local system.  The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1032,14 +1032,14 @@ Windows 2012 - any release candidates or versions prior to the initial release.<
     </Rule>
     <Rule id="V-1081" severity="high" conversionstatus="pass" title="NTFS Requirement" dscresource="AuditSetting">
       <Description>&lt;VulnDiscussion&gt;The ability to set access permissions and auditing is critical to maintaining the security and proper access controls of a system. To support this, local volumes must be formatted using a file system that supports NTFS attributes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DesiredValue>NTFS|ReFS</DesiredValue>
+      <DesiredValue>NTFS|ReFS|CSVFS</DesiredValue>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Operator>-match</Operator>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <Property>FileSystem</Property>
-      <Query>SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'</Query>
+      <Query>SELECT * FROM Win32_Volume WHERE DriveType = '3' AND SystemVolume != 'True'</Query>
       <RawString>Open "Computer Management".
 
 Select "Disk Management" under "Storage".
@@ -1047,6 +1047,8 @@ Select "Disk Management" under "Storage".
 For each local volume, if the file system does not indicate "NTFS", this is a finding.
 
 "ReFS" (Resilient File System) is also acceptable and would not be a finding.
+
+“CSV” (Cluster Share Volumes) is also acceptable and would not be a finding.
 
 This does not apply to system partitions such as the Recovery and EFI System Partition.</RawString>
     </Rule>
@@ -1224,7 +1226,7 @@ If the FTP session indicates access to areas of the system other than the specif
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Open "Devices and Printers" in Control Panel or through Search.
-If there are no printers configured, this is NA. (Exclude Microsoft Print to PDF and Microsoft XPS Document Writer, which do not support sharing.)
+If there are no printers configured, this is NA.(Exclude Microsoft Print to PDF and Microsoft XPS Document Writer, which do not support sharing.)
 
 For each configured printer:
 Right click on the printer.
@@ -2857,7 +2859,7 @@ If any unresolved SIDs exist and are not for currently valid accounts or groups,
     <Rule id="V-91777" severity="medium" conversionstatus="pass" title="WINAD-000015-DC" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The krbtgt account acts as a service account for the Kerberos Key Distribution Center (KDC) service. The account and password are created when a domain is created and the password is typically not changed. If the krbtgt account is compromised, attackers can create valid Kerberos Ticket Granting Tickets (TGT).
 
-The password must be changed twice to effectively remove the password history. Changing once, waiting for replication to complete and changing again reduces the risk of issues. Changing twice in rapid succession forces clients to re-authenticate (including application services) but is desired if a compromise is suspected.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+The password must be changed twice to effectively remove the password history.Changing once, waiting for replication to complete and the amount of time equal to or greater than the maximum Kerberos ticket lifetime, and changing again reduces the risk of issues. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -3529,7 +3531,7 @@ Viewing in File Explorer:
 For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 Default Permissions:
-\Program Files 
+\Program Files
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
@@ -5395,8 +5397,8 @@ Registry Path: \System\CurrentControlSet\Control\Lsa\
 Value Name: FullPrivilegeAuditing
 
 Value Type: REG_BINARY
-Value: 0</RawString>
-      <ValueData>0</ValueData>
+Value: 00</RawString>
+      <ValueData>00</ValueData>
       <ValueName>FullPrivilegeAuditing</ValueName>
       <ValueType>Binary</ValueType>
     </Rule>
@@ -8244,6 +8246,46 @@ If the patch is not installed on systems with PowerShell 4.0, this is a finding.
 PowerShell 5.x does not require the installation of an additional patch.</RawString>
       <ValueData>1</ValueData>
       <ValueName>EnableScriptBlockLogging</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-102619.a" severity="medium" conversionstatus="pass" title="WN12-CC-000142" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;A known vulnerability in Windows could allow the execution of malicious code by either opening a compromised document or viewing it in the Windows Preview pane.
+
+Organizations must disable the Windows Preview pane and Windows Detail pane.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Registry Hive: HKEY_CURRENT_USER
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
+Value Type: REG_DWORD
+Value Name: NoPreviewPane
+Value: 1</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>NoPreviewPane</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-102619.b" severity="medium" conversionstatus="pass" title="WN12-CC-000142" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;A known vulnerability in Windows could allow the execution of malicious code by either opening a compromised document or viewing it in the Windows Preview pane.
+
+Organizations must disable the Windows Preview pane and Windows Detail pane.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Registry Hive: HKEY_CURRENT_USER
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
+Value Type: REG_DWORD
+Value Name: NoReadingPane
+Value: 1</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>NoReadingPane</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
