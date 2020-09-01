@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<stigManualChecklistData>
+   <stigRuleData>
+      <STIG>U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml</STIG>
+      <ID>V-36440</ID>
+      <Status>NotAFinding</Status>
+      <Comments>Not Applicable</Comments>
+      <Details>This machine is not part of a domain, so this rule does not apply.</Details>
+   </stigRuleData>
+   <stigRuleData>
+      <STIG>U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R17_Manual-xccdf.xml</STIG>
+      <ID>V-1070</ID>
+      <Status>NotAFinding</Status>
+      <Comments>Verified</Comments>
+      <Details>Physical security is documented via the Enterprise Physical Security Descriptor. Verified through independent audit.</Details>
+   </stigRuleData>
+   <stigRuleData>
+      <STIG>U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R17_Manual-xccdf.xml</STIG>
+      <ID>V-1072</ID>
+      <Status>NotAFinding</Status>
+      <Comments>Verified</Comments>
+      <Details>System Security Documentation annotates shared administration and service account usage. System configuration matches documentation</Details>
+   </stigRuleData>
+   <stigRuleData>
+      <STIG>U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R17_Manual-xccdf.xml</STIG>
+      <ID>V-1074</ID>
+      <Status>NotAFinding</Status>
+      <Comments>Verified</Comments>
+      <Details>Windows Defender is installed and appropriately patched with latest signatures updates applied</Details>
+   </stigRuleData>
+   <stigRuleData>
+      <STIG>U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R17_Manual-xccdf.xml</STIG>
+      <ID>V-1076</ID>
+      <Status>Open</Status>
+      <Comments>DRA</Comments>
+      <Details>Pending recovery exercise to verify procedures and media restoration performs without issues.</Details>
+   </stigRuleData>
+</stigManualChecklistData>

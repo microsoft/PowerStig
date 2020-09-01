@@ -19,8 +19,9 @@ using module .\..\Rule\Rule.psm1
 class ProcessMitigationRule : Rule
 {
     [string] $MitigationTarget
-    [string] $Enable
-    [string] $Disable <#(ExceptionValue)#>
+    [string] $MitigationType
+    [string] $MitigationName
+    [string] $MitigationValue <#(ExceptionValue)#>
 
     <#
         .SYNOPSIS
