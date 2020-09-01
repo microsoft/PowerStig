@@ -8,7 +8,7 @@ try
         #region Test Setup
         $testRuleList = @(
             @{
-                Query = "SELECT * FROM Win32_Volume WHERE DriveType = '3'"
+                Query = "SELECT * FROM Win32_Volume WHERE DriveType = '3' AND SystemVolume != 'True'"
                 Property = 'FileSystem'
                 DesiredValue = 'NTFS|ReFS'
                 Operator = '-match'

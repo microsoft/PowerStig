@@ -29,6 +29,7 @@
 * Fixed: Removed Windows Server 2016 DC/MS R1V9 from processed STIGs folder
 * Fixed [#718](https://github.com/microsoft/PowerStig/issues/718): Allow application of applicable user rights assignments for non-domain and disconnected systems
 * Fixed [#731](https://github.com/microsoft/PowerStig/issues/731): Update Windows 10 Client Org Default Setting For Rule V-63405 to "15"
+* Fixed [#735](https://github.com/microsoft/PowerStig/issues/735): Rule V-63353 won't reach desired state if system partition is Fat32
 
 ## [4.4.2] - 2020-07-06
 

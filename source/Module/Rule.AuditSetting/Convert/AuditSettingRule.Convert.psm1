@@ -67,7 +67,7 @@ class AuditSettingRuleConvert : AuditSettingRule
             {$PSItem -Match "Disk Management"}
             {
                 Write-Verbose "[$($MyInvocation.MyCommand.Name)] File System Type"
-                $this.Query = "SELECT * FROM Win32_Volume WHERE DriveType = '3'"
+                $this.Query = "SELECT * FROM Win32_Volume WHERE DriveType = '3' AND SystemVolume != 'True'"
                 $this.Property = 'FileSystem'
                 $this.Operator = '-match'
                 if ($PSItem -Match "Cluster Share Volumes")
