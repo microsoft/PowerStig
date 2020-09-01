@@ -1025,7 +1025,7 @@ v1809 (Build 17763)</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <Property>FileSystem</Property>
-      <Query>SELECT * FROM Win32_Volume WHERE DriveType = '3'</Query>
+      <Query>SELECT * FROM Win32_Volume WHERE DriveType = '3' AND SystemVolume != 'True'</Query>
       <RawString>Run "Computer Management".
 Navigate to Storage &gt;&gt; Disk Management.
 

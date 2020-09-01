@@ -1351,7 +1351,7 @@ Preview versions must not be used in a production environment.</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <Property>FileSystem</Property>
-      <Query>SELECT * FROM Win32_Volume WHERE DriveType = '3'</Query>
+      <Query>SELECT * FROM Win32_Volume WHERE DriveType = '3' AND SystemVolume != 'True'</Query>
       <RawString>Open "Computer Management".
 
 Select "Disk Management" under "Storage".
@@ -3377,7 +3377,7 @@ Viewing in File Explorer:
 For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 Default permissions:
-\Program Files 
+\Program Files
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to

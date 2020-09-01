@@ -844,7 +844,7 @@ Windows 2012 - any release candidates or versions prior to the initial release.<
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <Property>FileSystem</Property>
-      <Query>SELECT * FROM Win32_Volume WHERE DriveType = '3'</Query>
+      <Query>SELECT * FROM Win32_Volume WHERE DriveType = '3' AND SystemVolume != 'True'</Query>
       <RawString>Open "Computer Management".
 
 Select "Disk Management" under "Storage".
@@ -2535,7 +2535,7 @@ Viewing in File Explorer:
 For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 Default Permissions:
-\Program Files 
+\Program Files
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
