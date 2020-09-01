@@ -9,7 +9,7 @@
   <!-- Ensure ''V-63329'' -match '0|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-63329" ValueData="0" />
   <!-- Ensure ''V-63405'' -ge '15' -or ''V-63405'' -eq '0'-->
-  <OrganizationalSetting id="V-63405" PolicyValue="0" />
+  <OrganizationalSetting id="V-63405" PolicyValue="15" />
   <!-- Ensure ''V-63409'' -le '3' -and ''V-63409'' -ne '0'-->
   <OrganizationalSetting id="V-63409" PolicyValue="3" />
   <!-- Ensure ''V-63413'' -ge '15'-->
