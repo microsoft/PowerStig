@@ -36,6 +36,90 @@ function Get-ResourceTitle
     return "[$($Rule.Id)][$($Rule.severity)][$($Rule.title)]"
 }
 
+function Get-AuditOnlyQuery {
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $Rule,
+
+        [Parameter()]
+        [string]
+        $Instance
+    )
+
+    if ($Instance) {
+        $Rule.Query = "$($Rule.Query):$Instance"
+    }
+    return $Rule.Query
+}
+
+function Get-AuditOnlyExpectedValue {
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $Rule,
+
+        [Parameter()]
+        [string]
+        $Instance
+    )
+
+    if ($Instance) {
+        $Rule.ExpectedValue = "$($Rule.ExpectedValue):$Instance"
+    }
+    return $Rule.ExpectedValue
+}
+
+<# function Get-AuditOnlyQuery {
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $Rule,
+
+        [Parameter()]
+        [string]
+        $Instance
+    )
+
+    $Query = [regex]::Escape($Rule.Query)
+
+    if ($Instance) {
+        $Query = "$($Query):$($Instance)"
+    }
+    return $Query
+}
+
+function Get-AuditOnlyExpectedValue {
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $Rule,
+
+        [Parameter()]
+        [string]
+        $Instance
+    )
+
+    $ExpectedValue = [regex]::Escape($Rule.ExpectedValue)
+
+    if ($Instance) {
+        $ExpectedValue = "$($ExpectedValue):$($Instance)"
+    }
+    return $ExpectedValue
+} #>
+
 <#
     .SYNOPSIS
         Filters the STIG items to a specifc type.
@@ -299,6 +383,8 @@ function Format-SqlScriptVariable
 #end region
 
 Export-ModuleMember -Variable 'resourcePath' -Function @(
+    'Get-AuditOnlyQuery'
+    'Get-AuditOnlyExpectedValue'
     'Get-ResourceTitle'
     'Select-Rule'
     'Get-UniqueString'
