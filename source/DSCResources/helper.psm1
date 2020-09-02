@@ -36,6 +36,14 @@ function Get-ResourceTitle
     return "[$($Rule.Id)][$($Rule.severity)][$($Rule.title)]"
 }
 
+<#
+    .SYNOPSIS
+        Retrieves the Query information from the STIG rule. The function is used to make the compiled MOF file easier to read due to using the $using: statement.
+    .PARAMETER Rule
+        The Stig rule that is being created.
+    .PARAMETER Instance
+        The target instance name.
+#>
 function Get-AuditOnlyQuery {
     [CmdletBinding()]
     [OutputType([string])]
@@ -56,6 +64,14 @@ function Get-AuditOnlyQuery {
     return $Rule.Query
 }
 
+<#
+    .SYNOPSIS
+        Retrieves the ExpectedValue information from the STIG rule. The function is used to make the compiled MOF file easier to read due to using the $using: statement.
+    .PARAMETER Rule
+        The Stig rule that is being created.
+    .PARAMETER Instance
+        The target instance name.
+#>
 function Get-AuditOnlyExpectedValue {
     [CmdletBinding()]
     [OutputType([string])]
