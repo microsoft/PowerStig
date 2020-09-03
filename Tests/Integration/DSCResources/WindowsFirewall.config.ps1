@@ -29,8 +29,8 @@ configuration WindowsFirewall_config
         $Exception,
 
         [Parameter()]
-        [hashtable]
-        $BackwardCompatibilityException,
+        [string[]]
+        $ResourceParameters,
 
         [Parameter()]
         [object]

@@ -22,8 +22,8 @@ configuration Vsphere_config
         $Exception,
 
         [Parameter()]
-        [hashtable]
-        $BackwardCompatibilityException,
+        [string[]]
+        $ResourceParameters,
 
         [Parameter()]
         [string[]]
@@ -70,21 +70,8 @@ configuration Vsphere_config
         $psboundParams.Remove('ConfigurationData')
         $psboundParams.Version = $psboundParams['TechnologyVersion']
         $psboundParams.Remove('TechnologyVersion')
-        $resourceParameters = @(
-            'Version'
-            'StigVersion'
-            'Exception'
-            'SkipRule'
-            'SkipRuleType'
-            'OrgSettings'
-            'HostIP'
-            'ServerIP'
-            'Credential'
-            'VirtualStandardSwitchGroup'
-            'VmGroup'
-        )
 
-        $resourceParamString = New-ResourceParameterString -ResourceParameters $resourceParameters -PSBoundParams $psboundParams
+        $resourceParamString = New-ResourceParameterString -ResourceParameters $ResourceParameters -PSBoundParams $psboundParams
         $resourceScriptBlockString = New-ResourceString -ResourceParameterString $resourceParamString -ResourceName Vsphere
         & ([scriptblock]::Create($resourceScriptBlockString))
     }

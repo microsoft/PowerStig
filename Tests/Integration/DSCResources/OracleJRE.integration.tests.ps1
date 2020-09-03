@@ -7,6 +7,7 @@ $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeRe
 . $configFile
 
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
+$resourceParameters = (Get-DscResource -Module PowerSTIG -Name $script:DSCCompositeResourceName).Properties.Name
 
 $additionalTestParameterList = @{
     configPath = 'C:\Windows\Sun\Java\Deployment\deployment.config'

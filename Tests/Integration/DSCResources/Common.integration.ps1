@@ -13,10 +13,11 @@ Describe ($title + " $($stig.StigVersion) mof output") {
     $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
     $testParameterList = @{
-        TechnologyVersion = $stig.TechnologyVersion
-        TechnologyRole    = $stig.TechnologyRole
-        StigVersion       = $stig.StigVersion
-        OutputPath        = $TestDrive
+        TechnologyVersion  = $stig.TechnologyVersion
+        TechnologyRole     = $stig.TechnologyRole
+        StigVersion        = $stig.StigVersion
+        OutputPath         = $TestDrive
+        ResourceParameters = $resourceParameters
     }
 
     # Add additional test parameters to current test configuration
@@ -89,17 +90,17 @@ Describe ($title + " $($stig.StigVersion) mof output") {
 
         Context 'Single Backward Compatibility Exception' {
             It "Should compile the MOF with STIG exception $($backCompatException.Keys) without throwing" {
-                {& $technologyConfig @testParameterList -BackwardCompatibilityException $backCompatException} | Should -Not -Throw
+                {& $technologyConfig @testParameterList -Exception $backCompatException} | Should -Not -Throw
             }
         }
 
         Context 'Multiple Backward Compatibility Exceptions' {
             It "Should compile the MOF with STIG exceptions $($backCompatExceptionMultiple.Keys) without throwing" {
-                {& $technologyConfig @testParameterList -BackwardCompatibilityException $backCompatExceptionMultiple} | Should -Not -Throw
+                {& $technologyConfig @testParameterList -Exception $backCompatExceptionMultiple} | Should -Not -Throw
             }
         }
 
-        Context 'Single Rule' {
+        Context 'Single Skip Rule' {
             It 'Should compile the MOF without throwing' {
                 {& $technologyConfig @testParameterList -SkipRule $skipRule } | Should -Not -Throw
             }
@@ -115,7 +116,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             }
         }
 
-        Context 'Multiple Rules' {
+        Context 'Multiple Skip Rules' {
             It 'Should compile the MOF without throwing' {
                 {& $technologyConfig @testParameterList -SkipRule $skipRuleMultiple} | Should -Not -Throw
             }

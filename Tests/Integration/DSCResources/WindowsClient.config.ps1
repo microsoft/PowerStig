@@ -21,8 +21,8 @@ configuration WindowsClient_config
         $Exception,
 
         [Parameter()]
-        [hashtable]
-        $BackwardCompatibilityException,
+        [string[]]
+        $ResourceParameters,
 
         [Parameter()]
         [string[]]
