@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-* Update PowerSTIG to increase code coverage of tests: [#737](https://github.com/microsoft/PowerStig/issues/737)
+* Update PowerSTIG to increase code coverage of unit tests: [#737](https://github.com/microsoft/PowerStig/issues/737)
 
 ## [4.5.0] - 2020-09-01
 
