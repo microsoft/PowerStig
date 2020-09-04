@@ -238,9 +238,12 @@ class STIG
                 # Using the category and severity enums to convert low/medium/high to CAT_III/CAT_II/CAT_I
                 if
                 (
-                    @($SkipRules) -contains $rule.Id -or
-                    @($SkipRuleType) -contains $type.Name -or
-                    @($SkipRuleCategory) -contains [category]([int][severity]$rule.severity)
+                    (
+                        @($SkipRules) -contains $rule.Id -or
+                        @($SkipRuleType) -contains $type.Name -or
+                        @($SkipRuleCategory) -contains [category]([int][severity]$rule.severity)
+                    ) -and
+                    $rule.dscresource -ne 'None'
                 )
                 {
                     Write-Warning -Message "$($rules.DISASTIG.stigid): $($rule.Id)/$($type.Name)/$($rule.severity) will be Skipped as specified by the configuration"
@@ -397,5 +400,5 @@ foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -File -Exclude $exclu
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-Export-ModuleMember -Function '*' -Variable '*'
 
+Export-ModuleMember -Function '*' -Variable '*'

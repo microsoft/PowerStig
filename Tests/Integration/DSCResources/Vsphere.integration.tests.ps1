@@ -7,7 +7,7 @@ $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeRe
 . $configFile
 
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
-$resourceInformation = $script:getDscResource | Where-Object -FilterScript {$PSItem.Name -eq $script:DSCCompositeResourceName}
+$resourceInformation = $global:getDscResource | Where-Object -FilterScript {$PSItem.Name -eq $script:DSCCompositeResourceName}
 $resourceParameters = $resourceInformation.Properties.Name
 
 $password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'

@@ -134,7 +134,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             }
         }
 
-        Context "$($stig.TechnologyRole) $($stig.StigVersion) Single Type" {
+        Context "$($stig.TechnologyRole) $($stig.StigVersion) Single Skip Rule Type" {
             It "Should compile the MOF without throwing" {
                 {& $technologyConfig @testParameterList -SkipRuleType $skipRuleType} | Should -Not -Throw
             }
@@ -150,7 +150,23 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             }
         }
 
-        Context 'Multiple Types' {
+        Context "$($stig.TechnologyRole) $($stig.StigVersion) Multiple Skip Rule Types" {
+            It "Should compile the MOF without throwing" {
+                {& $technologyConfig @testParameterList -SkipruleType $skipRuleTypeMultiple} | Should -Not -Throw
+            }
+            # Gets the mof content
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+
+            # Counts how many Skips there are and how many there should be.
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
+
+            It "Should have $expectedSkipRuleTypeMultipleCount Skipped settings" {
+                $dscMof.Count | Should -Be $expectedSkipRuleTypeMultipleCount
+            }
+        }
+
+        Context "$($stig.TechnologyRole) $($stig.StigVersion) Single Skip Rule Category" {
             It "Should compile the MOF without throwing" {
                 {& $technologyConfig @testParameterList -SkipruleType $skipRuleTypeMultiple} | Should -Not -Throw
             }
