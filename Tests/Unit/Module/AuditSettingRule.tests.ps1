@@ -34,7 +34,7 @@ try
 
                 "Microsoft Windows Version 1709 (OS Build 16299.0)"
 
-                or greater, this is a finding.
+                or greater, this is a  finding.
 
                 Note: Microsoft has extended support for previous versions providing critical and important updates for Windows 10 Enterprise.
 
