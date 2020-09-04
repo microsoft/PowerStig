@@ -23,6 +23,33 @@ try
 
                 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.'
             }
+            @{
+                IsExistingRule = $True
+                PropertyName = 'NoRecursion'
+                PropertyValue = '$True'
+                OrganizationValueRequired = $false
+                CheckContent = 'Note: If the Windows DNS server is in the classified network, this check is Not Applicable.
+
+                Note: In Windows DNS Server, if forwarders are configured, the recursion setting must also be enabled since disabling recursion will disable forwarders.
+
+                If forwarders are not used, recursion must be disabled. In both cases, the use of root hints must be disabled.
+
+                Log on to the DNS server using the Domain Admin or Enterprise Admin account.
+
+                Press Windows Key + R, execute dnsmgmt.msc.
+
+                On the opened DNS Manager snap-in from the left pane, right-click on the server name for the DNS server and select “Properties”.
+
+                Click on the “Forwarders” tab.
+
+                If forwarders are not being used, this is not applicable.
+
+                Review the IP address(es) for the forwarder(s) use.
+
+                If the DNS Server does not forward to another DoD-managed DNS server or to the DoD Enterprise Recursive Services (ERS), this is a finding.
+
+                If the "Use root hints if no forwarders are available" is selected, this is a finding.'
+            }
         )
         #endregion
 

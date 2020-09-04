@@ -76,7 +76,7 @@ Note: If additional software is needed supporting documentation must be signed b
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Obtain a list of the user accounts with access to the system, including all local and domain accounts. 
+      <RawString>Obtain a list of the user accounts with access to the system, including all local and domain accounts.
 
 Review the privileges to the web server for each account.
 
@@ -114,7 +114,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 
 Navigate to HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ContentIndex\Catalogs\.
 
-If this key exists, then indexing is enabled. 
+If this key exists, then indexing is enabled.
 
 If the key does not exist, this check is Not Applicable.
 
@@ -289,7 +289,7 @@ Verify, at a minimum, the following tuning settings in the registry.
 
 Access the IIS 8.5 web server registry.
 
-Verify the following keys are present and configured. The required setting depends upon the requirements of the application. 
+Verify the following keys are present and configured. The required setting depends upon the requirements of the application.
 
 Recommended settings are not provided as these settings have to be explicitly configured to show a conscientious tuning has been made.
 
@@ -341,7 +341,7 @@ Satisfies: SRG-APP-000092-WSR-000055, SRG-APP-000093-WSR-000053, SRG-APP-000095-
       <LogCustomFieldEntry />
       <LogFlags>Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer</LogFlags>
       <LogFormat />
-      <LogPeriod />
+      < />
       <LogTargetW3C />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -715,7 +715,7 @@ Access Apps menu. Under Administrative Tools, select Computer Management.
 
 In left pane, expand "Local Users and Groups" and click on "Users".
 
-Review the local users listed in the middle pane. 
+Review the local users listed in the middle pane.
 
 If any local accounts are present and are used by IIS 8.5 verify with System Administrator that default passwords have been changed.
 
