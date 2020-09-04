@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to increase code coverage of tests: [#737](https://github.com/microsoft/PowerStig/issues/737)
+
 ## [4.5.0] - 2020-09-01
 
 * Update PowerSTIG to successfully parse/apply Windows 2012 R2 DC Version 2, Rev 21: [#677](https://github.com/microsoft/PowerStig/issues/677)
