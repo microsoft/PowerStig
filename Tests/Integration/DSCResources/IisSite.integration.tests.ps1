@@ -7,7 +7,8 @@ $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeRe
 . $configFile
 
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
-$resourceParameters = (Get-DscResource -Module PowerSTIG -Name $script:DSCCompositeResourceName).Properties.Name
+$resourceInformation = $script:getDscResource | Where-Object -FilterScript {$PSItem.Name -eq $script:DSCCompositeResourceName}
+$resourceParameters = $resourceInformation.Properties.Name
 
 $additionalTestParameterList = @{
     WebsiteName = @('WarioSite', 'DKSite')
