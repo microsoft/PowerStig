@@ -86,6 +86,10 @@ if ($global:moduleName -ne 'STIG.Checklist')
     Set-DynamicClassFile @setDynamicClassFileParams
     . $setDynamicClassFileParams.DestinationPath
 }
+else
+{
+    import-module $script:moduleRoot\Module\Common\Common.psm1
+}
 
 <#
     Several classes check for duplicate rules against a global variable stigSettings.

@@ -2,7 +2,13 @@
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 
+#TODO Tests for all of checklist, not just exceptions
+
+$mofFile = "$PSScriptRoot\CheckListHelper\STIG.Checklist.mof"
+$xccdfPath = "$PSScriptRoot\CheckListHelper\U_MS_Windows_Server_2019_MS_STIG_V1R5_Manual-xccdf.xml"
+
 Describe 'New-StigCheckList' {
+
     # Test parameter validity -OutputPath
     It 'Should throw if an invalid path is provided' {
         {New-StigCheckList -MofFile 'test' -XccdfPath 'test' -OutputPath 'c:\asdf'} | Should -Throw
@@ -24,6 +30,14 @@ Describe 'New-StigCheckList' {
 
     It 'Should throw if an invalid combination of parameters for Xccdf validation is provided' {
         {New-StigCheckList -DscResult 'foo' -MofFile 'bar' -OutputPath 'C:\Test'} | Should -Throw
+    }
+
+    It 'Generate a checklist given correct parameters' {
+
+        {
+            $outputPath = Join-Path $Testdrive -ChildPath Checklist.ckl
+            New-StigChecklist -ReferenceConfiguration $mofFile -XccdfPath $xccdfPath -OutputPath $outputPath
+        } | should -Not -Throw
     }
 }
 
