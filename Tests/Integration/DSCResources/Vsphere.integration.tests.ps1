@@ -47,6 +47,13 @@ foreach ($stig in $stigList)
                                          ($powerstigXml.VsphereAcceptanceLevelRule.Rule | Measure-Object).Count +
                                          ($blankSkipRuleId | Measure-Object).Count
 
+    $singleSkipRuleCategory = 'CAT_I'
+    $multipleSkipRuleCategory = 'CAT_I', 'CAT_II'
+    $expectedSingleSkipRuleCategory = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $singleSkipRuleCategory
+    $expectedSingleSkipRuleCategoryCount = ($expectedSingleSkipRuleCategory | Measure-Object).Count + $blankSkipRuleId.Count
+    $expectedMultipleSkipRuleCategory = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $multipleSkipRuleCategory
+    $expectedMultipleSkipRuleCategoryCount = ($expectedMultipleSkipRuleCategory | Measure-Object).Count + $blankSkipRuleId.Count
+
     $getRandomExceptionRuleParams = @{
         RuleType       = 'VsphereAdvancedSettingsRule'
         PowerStigXml   = $powerstigXml

@@ -37,11 +37,19 @@ foreach ($stig in $stigList)
                                                 $powerstigXml.AccountPolicyRule.Rule.Count +
                                                 $blankSkipRuleId.Count
 
+        $singleSkipRuleCategory = 'CAT_I'
+        $multipleSkipRuleCategory = 'CAT_I', 'CAT_II'
+        $expectedSingleSkipRuleCategory = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $singleSkipRuleCategory
+        $expectedSingleSkipRuleCategoryCount = ($expectedSingleSkipRuleCategory | Measure-Object).Count + $blankSkipRuleId.Count
+        $expectedMultipleSkipRuleCategory = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $multipleSkipRuleCategory
+        $expectedMultipleSkipRuleCategoryCount = ($expectedMultipleSkipRuleCategory | Measure-Object).Count + $blankSkipRuleId.Count
+
         $getRandomExceptionRuleParams = @{
             RuleType       = 'RegistryRule'
             PowerStigXml   = $powerstigXml
             ParameterValue = 1234567
         }
+
         $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
         $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
         $backCompatException = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility

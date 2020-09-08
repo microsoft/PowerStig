@@ -30,6 +30,13 @@ foreach ($stig in $stigList)
     $skipRuleTypeMultiple = $null
     $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
 
+    $singleSkipRuleCategory = 'CAT_I'
+    $multipleSkipRuleCategory = 'CAT_I', 'CAT_II'
+    $expectedSingleSkipRuleCategory = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $singleSkipRuleCategory
+    $expectedSingleSkipRuleCategoryCount = ($expectedSingleSkipRuleCategory | Measure-Object).Count + $blankSkipRuleId.Count
+    $expectedMultipleSkipRuleCategory = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $multipleSkipRuleCategory
+    $expectedMultipleSkipRuleCategoryCount = ($expectedMultipleSkipRuleCategory | Measure-Object).Count + $blankSkipRuleId.Count
+
     $getRandomExceptionRuleParams = @{
         RuleType       = 'FileContentRule'
         PowerStigXml   = $powerstigXml

@@ -25,6 +25,10 @@ configuration IisServer_Config
         $SkipRuleType,
 
         [Parameter()]
+        [string[]]
+        $SkipRuleCategory,
+
+        [Parameter()]
         [hashtable]
         $Exception,
 

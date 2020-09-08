@@ -33,6 +33,10 @@ configuration WindowsClient_config
         $SkipRuleType,
 
         [Parameter()]
+        [string[]]
+        $SkipRuleCategory,
+
+        [Parameter()]
         [object]
         $OrgSettings,
 

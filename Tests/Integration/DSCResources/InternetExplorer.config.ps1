@@ -25,6 +25,10 @@ configuration InternetExplorer_config
         $SkipRuleType,
 
         [Parameter()]
+        [string[]]
+        $SkipRuleCategory,
+
+        [Parameter()]
         [hashtable]
         $Exception,
 

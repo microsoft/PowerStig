@@ -25,6 +25,10 @@ configuration WindowsServer_config
         $SkipRuleType,
 
         [Parameter()]
+        [string[]]
+        $SkipRuleCategory,
+
+        [Parameter()]
         [hashtable]
         $Exception,
 

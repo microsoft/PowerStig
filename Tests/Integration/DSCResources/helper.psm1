@@ -484,3 +484,83 @@ function New-ResourceString
 
     return $resourceString.ToString()
 }
+
+<#
+    .SYNOPSIS
+        Returns all rules of a specific category where DscResource is none.
+
+    .DESCRIPTION
+        Returns all rules of a specific category where DscResource is none.
+
+    .PARAMETER PowerStigXml
+        The xml object that represents the contents of a PowerStig processed STIG.
+
+    .PARAMETER RuleCategory
+        The category of a given rule, valid values are CAT_I, CAT_II & CAT_III.
+
+    .EXAMPLE
+        Get-CategoryRule -PowerStigXml $powerStigXml -RuleCategory 'CAT_I'
+
+        Returns all rules where the severity is 'high' and where DscResource -eq none.
+#>
+function Get-CategoryRule
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [System.Xml.XmlElement]
+        $PowerStigXml,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
+        [string[]]
+        $RuleCategory
+    )
+
+    $severityWhereMatch = (ConvertTo-Severity -Category $RuleCategory) -join '|'
+
+    # Only loop through rules which have a defined DSC Resource; should be only Document & Manual rules.
+    $dscResourceModule = $PowerStigXml.GetEnumerator() | Where-Object -FilterScript {$PSItem.dscresourcemodule -ne 'None'}
+
+    foreach ($resource in $dscResourceModule)
+    {
+        $resource.Rule | Where-Object -FilterScript {$PSItem.severity -match $severityWhereMatch}
+    }
+}
+
+function ConvertTo-Severity
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
+        [string[]]
+        $Category
+    )
+
+    $severity = @()
+
+    switch ($Category)
+    {
+        'CAT_I'
+        {
+            $severity += 'high'
+        }
+        'CAT_II'
+        {
+            $severity += 'medium'
+        }
+        'CAT_III'
+        {
+            $severity += 'low'
+        }
+    }
+
+    return $severity | Select-Object -Unique
+}

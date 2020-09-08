@@ -31,6 +31,13 @@ foreach ($stig in $stigList)
                                             $powerstigXml.IisLoggingRule.Rule.Count +
                                             $blankSkipRuleId.Count
 
+    $singleSkipRuleCategory = 'CAT_I'
+    $multipleSkipRuleCategory = 'CAT_I', 'CAT_II'
+    $expectedSingleSkipRuleCategory = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $singleSkipRuleCategory
+    $expectedSingleSkipRuleCategoryCount = ($expectedSingleSkipRuleCategory | Measure-Object).Count + $blankSkipRuleId.Count
+    $expectedMultipleSkipRuleCategory = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $multipleSkipRuleCategory
+    $expectedMultipleSkipRuleCategoryCount = ($expectedMultipleSkipRuleCategory | Measure-Object).Count + $blankSkipRuleId.Count
+
     $getRandomExceptionRuleParams = @{
         RuleType       = 'WebConfigurationPropertyRule'
         PowerStigXml   = $powerstigXml
