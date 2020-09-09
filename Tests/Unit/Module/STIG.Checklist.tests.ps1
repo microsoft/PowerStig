@@ -2,11 +2,6 @@
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 
-#TODO Tests for all of checklist, not just exceptions
-
-$mofFile = "$PSScriptRoot\CheckListHelper\STIG.Checklist.mof"
-$xccdfPath = "$PSScriptRoot\CheckListHelper\U_MS_Windows_Server_2019_MS_STIG_V1R5_Manual-xccdf.xml"
-
 Describe 'New-StigCheckList' {
 
     # Test parameter validity -OutputPath
@@ -35,7 +30,9 @@ Describe 'New-StigCheckList' {
     It 'Generate a checklist given correct parameters' {
 
         {
+            $mofFile = "$PSScriptRoot\UnitTestHelperFiles\STIG.Checklist.mof"
             $outputPath = Join-Path $Testdrive -ChildPath Checklist.ckl
+            $xccdfPath = "$PSScriptRoot\UnitTestHelperFiles\U_MS_Windows_Server_2019_MS_STIG_V1R5_Manual-xccdf.xml"
             New-StigChecklist -ReferenceConfiguration $mofFile -XccdfPath $xccdfPath -OutputPath $outputPath
         } | should -Not -Throw
     }

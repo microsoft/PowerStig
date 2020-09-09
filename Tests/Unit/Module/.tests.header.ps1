@@ -65,6 +65,12 @@ switch ($psStackCommand)
         . $functionCheckListFile
     }
 
+    'STIG.DomainName'
+    {
+        $functionDomainName = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Functions.DomainName.ps1'
+        . $functionDomainName
+    }
+
     'STIG'
     {
         $destinationPath = Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Convert.Main.ps1'
@@ -81,7 +87,7 @@ switch ($psStackCommand)
     }
 }
 
-if ($global:moduleName -ne 'STIG.Checklist')
+if ($global:moduleName -ne 'STIG.Checklist' -and $global:moduleName -ne 'STIG.DomainName')
 {
     Set-DynamicClassFile @setDynamicClassFileParams
     . $setDynamicClassFileParams.DestinationPath
