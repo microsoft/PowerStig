@@ -186,6 +186,88 @@ try
                 HKCU\Software\Policies\Microsoft\Office\16.0\excel\security\fileblock
 
                 Criteria: If the value XL4Workbooks is REG_DWORD = 2, this is not a finding.'
+            },
+            @{
+                Key                       = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\TCPIP\v6Transition'
+                ValueName                 = 'Force_Tunneling'
+                ValueData                 = 'Enabled'
+                ValueType                 = 'String'
+                Ensure                    = 'Present'
+                OrganizationValueRequired = $false
+                CheckContent              = 'If the following registry value does not exist or is not configured as specified, this is a finding:
+
+                Registry Hive: HKEY_LOCAL_MACHINE
+                Registry Path: \Software\Policies\Microsoft\Windows\TCPIP\v6Transition\
+
+                Value Name: Force_Tunneling
+
+                Type: REG_SZ
+                Value: Enabled'
+            },
+            @{
+                Key                       = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\LocationAndSensors'
+                ValueName                 = 'DisableLocation'
+                ValueData                 = '1'
+                ValueType                 = 'Dword'
+                Ensure                    = 'Present'
+                OrganizationValueRequired = $false
+                CheckContent              = 'If the following registry value does not exist or is not configured as specified, this is a finding:
+
+                Registry Hive: HKEY_LOCAL_MACHINE
+                Registry Path: \Software\Policies\Microsoft\Windows\LocationAndSensors\
+
+                Value Name: DisableLocation
+
+                Type: REG_DWORD
+                Value: 1 (Enabled)
+
+                If location services are approved for the system by the organization, this may be set to "Disabled" (0).  This must be documented with the ISSO.'
+            },
+            @{
+                Key                       = 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths'
+                ValueName                 = 'Machine'
+                ValueData                 = 'System\CurrentControlSet\Control\ProductOptions;System\CurrentControlSet\Control\Server Applications;Software\Microsoft\Windows NT\CurrentVersion'
+                ValueType                 = 'MultiString'
+                Ensure                    = 'Present'
+                OrganizationValueRequired = $false
+                CheckContent              = "If the following registry value does not exist or is not configured as specified, this is a finding:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths\
+
+Value Name: Machine
+
+Value Type: REG_MULTI_SZ
+Value: see below
+System\CurrentControlSet\Control\ProductOptions
+System\CurrentControlSet\Control\Server Applications
+Software\Microsoft\Windows NT\CurrentVersion
+
+Legitimate applications may add entries to this registry value.  If an application requires these entries to function properly and is documented with the ISSO, this would not be a finding.
+Documentation must contain supporting information from the vendor's instructions."
+            },
+            @{
+                Key                       = 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters'
+                ValueName                 = 'NullSessionPipes'
+                ValueData                 = 'netlogon;samr;lsarpc'
+                ValueType                 = 'MultiString'
+                Ensure                    = 'Present'
+                OrganizationValueRequired = $false
+                CheckContent              = "If the following registry value does not exist or is not configured as specified, this is a finding:
+
+                Registry Hive: HKEY_LOCAL_MACHINE
+                Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
+
+                Value Name: NullSessionPipes
+
+                Value Type: REG_MULTI_SZ
+                Value: netlogon, samr, lsarpc
+
+                The default configuration of systems promoted to domain controllers may include a blank entry in the first line prior to `"netlogon`", `"samr`", and `"lsarpc`".  This will appear in the registry as a blank
+                entry when viewing the registry key summary; however the value data for `"NullSessionPipes`" will contain the default entries.
+
+                Legitimate applications may add entries to this registry value. If an application requires these entries to function properly and is documented with the ISSO, this would not be a finding.
+                Documentation must contain supporting information from the vendor's instructions."
             }
         )
         #endregion
