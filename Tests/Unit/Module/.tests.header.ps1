@@ -71,6 +71,16 @@ switch ($psStackCommand)
         . $functionDomainName
     }
 
+    'STIG.PowerStigXml'
+    {
+        $functionPowerStigXml = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Convert\Functions.PowerStigXml.ps1'
+        . $functionPowerStigXml
+        $destinationPath = Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Rule.ps1'
+        [void] $setDynamicClassFileParams.Add('DestinationPath', $destinationPath)
+        [void] $setDynamicClassFileParams.Add('ClassModuleFileName', @('Rule.psm1', 'ConvertFactory.psm1'))
+    }
+
+
     'STIG'
     {
         $destinationPath = Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Convert.Main.ps1'
