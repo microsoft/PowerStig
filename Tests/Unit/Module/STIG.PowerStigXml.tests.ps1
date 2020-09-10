@@ -2,17 +2,6 @@
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 
-#Get-RegistryRuleExpressions
-#ConvertTo-PowerStigXml
-#Compare-PowerStigXml
-#New-OrganizationalSettingsXmlFile
-#get-StigObjectsWithOrgSettings
-#Get-OrgSettingPropertyFromStigRule
-#Get-HardCodedRuleLogFileEntry()
-#Get-BaseRulePropertyName()
-#Get-DynamicParameterRuleTypeName()
-#Get-RuleChangeLog()
-
 $xccdfs =  Get-ChildItem -path $PSScriptRoot\UnitTestHelperFiles -Include *xccdf.xml -Recurse
 
 foreach($xccdf in $xccdfs)
@@ -56,5 +45,22 @@ Describe 'Compare-PowerStigXml' {
     It 'Should return a PSObject' {
         $Compare = Compare-PowerStigXml -OldStigPath $dotNetSTIGS[0] -NewStigPath $dotNetSTIGS[1]
         $Compare.gettype().toString()  | Should be "System.Object[]"
+    }
+}
+
+Describe 'Get-BaseRulePropertyName' {
+
+    It 'Should return 11 base rule types' {
+        $BaseRulePropertyName = Get-BaseRulePropertyName
+        $BaseRulePropertyName.count  | Should be 11
+    }
+}
+
+Describe 'Get-DynamicParameterRuleTypeName' {
+
+    Get-BaseRulePropertyName
+    It 'Should return a runtime defined parameter dictionary' {
+        $DynamicParameterRuleTypeName = Get-DynamicParameterRuleTypeName
+        $DynamicParameterRuleTypeName.GetType().toString() | Should be "System.Management.Automation.RuntimeDefinedParameterDictionary"
     }
 }
