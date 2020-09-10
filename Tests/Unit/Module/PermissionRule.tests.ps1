@@ -40,7 +40,7 @@ try
             The default location is the "%SystemRoot%\SYSTEM32\WINEVT\LOGS" directory.  They may have been moved to another folder.
 
             If the permissions for these files are not as restrictive as the ACLs listed, this is a finding.'
-            }
+            },
             @{
                 Path = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\'
                 AccessControlEntry = @(
@@ -84,7 +84,7 @@ try
                 Administrators - Full Control - This key and subkeys
                 Backup Operators - Read - This key only
                 LOCAL SERVICE - Read - This key and subkeys'
-            }
+            },
             @{
                 # Windows 10 STIG V-63593
                 Path = 'HKLM:\SECURITY'
@@ -118,6 +118,126 @@ try
             permission.
 
             If the defaults have not been changed, these are not a finding.'
+            },
+            @{
+                Path = '%windir%\sysvol'
+                AccessControlEntry = @(
+                    [pscustomobject]@{
+                        Rights         = 'ReadAndExecute'
+                        Inheritance    = 'This folder subfolders and files'
+                        Principal      = 'Authenticated Users'
+                        ForcePrincipal = $false
+                        Type           = 'Allow'
+                    },
+                    [pscustomobject]@{
+                        Rights         = 'ReadAndExecute'
+                        Inheritance    = 'This folder subfolders and files'
+                        Principal      = 'Server Operators'
+                        ForcePrincipal = $false
+                        Type           = 'Allow'
+                    },
+                    [pscustomobject]@{
+                        Rights         = 'AppendData,ChangePermissions,CreateDirectories,CreateFiles,Delete,DeleteSubdirectoriesAndFiles,ExecuteFile,ListDirectory,Modify,Read,ReadAndExecute,ReadAttributes,ReadData,ReadExtendedAttributes,ReadPermissions,Synchronize,TakeOwnership,Traverse,Write,WriteAttributes,WriteData,WriteExtendedAttributes'
+                        Inheritance    = 'This folder only'
+                        Principal      = 'Administrators'
+                        ForcePrincipal = $false
+                        Type           = 'Allow'
+                    },
+                    [pscustomobject]@{
+                        Rights         = 'FullControl'
+                        Inheritance    = 'Subfolders and files only'
+                        Principal      = 'CREATOR OWNER'
+                        ForcePrincipal = $false
+                        Type           = 'Allow'
+                    },
+                    [pscustomobject]@{
+                        Rights         = 'FullControl'
+                        Inheritance    = 'Subfolders and files only'
+                        Principal      = 'Administrators'
+                        ForcePrincipal = $false
+                        Type           = 'Allow'
+                    },
+                    [pscustomobject]@{
+                        Rights         = 'FullControl'
+                        Inheritance    = 'This folder subfolders and files'
+                        Principal      = 'SYSTEM'
+                        ForcePrincipal = $false
+                        Type           = 'Allow'
+                    }
+                )
+                Force = $true
+                OrganizationValueRequired = $false
+                CheckContent = "Verify the permissions on the SYSVOL directory.
+
+                Open a command prompt.
+                Run `"net share`".
+                Make note of the directory location of the SYSVOL share.
+
+                By default this will be \Windows\SYSVOL\sysvol.  For this requirement, permissions will be verified at the first SYSVOL directory level.
+
+                Open File Explorer.
+                Navigate to \Windows\SYSVOL (or the directory noted previously if different).
+                Right click the directory and select properties.
+                Select the Security tab.
+                Click Advanced.
+
+                If any standard user accounts or groups have greater than read &amp; execute permissions, this is a finding. The default permissions noted below meet this requirement.
+
+                Type - Allow
+                Principal - Authenticated Users
+                Access - Read &amp; execute
+                Inherited from - None
+                Applies to - This folder, subfolder and files
+
+                Type - Allow
+                Principal - Server Operators
+                Access - Read &amp; execute
+                Inherited from - None
+                Applies to - This folder, subfolder and files
+
+                Type - Allow
+                Principal - Administrators
+                Access - Special
+                Inherited from - None
+                Applies to - This folder only
+                (Access - Special - Basic Permissions: all selected except Full control)
+
+                Type - Allow
+                Principal - CREATOR OWNER
+                Access - Full control
+                Inherited from - None
+                Applies to - Subfolders and files only
+
+                Type - Allow
+                Principal - Administrators
+                Access - Full control
+                Inherited from - None
+                Applies to - Subfolders and files only
+
+                Type - Allow
+                Principal - SYSTEM
+                Access - Full control
+                Inherited from - None
+                Applies to - This folder, subfolders and files
+
+                Alternately, use Icacls.exe to view the permissions of the SYSVOL directory.
+                Open a command prompt.
+                Run `"icacls c:\Windows\SYSVOL
+                The following results should be displayed:
+
+                NT AUTHORITY\Authenticated Users:(RX)
+                NT AUTHORITY\Authenticated Users:(OI)(CI)(IO)(GR,GE)
+                BUILTIN\Server Operators:(RX)
+                BUILTIN\Server Operators:(OI)(CI)(IO)(GR,GE)
+                BUILTIN\Administrators:(M,WDAC,WO)
+                BUILTIN\Administrators:(OI)(CI)(IO)(F)
+                NT AUTHORITY\SYSTEM:(F)
+                NT AUTHORITY\SYSTEM:(OI)(CI)(IO)(F)
+                BUILTIN\Administrators:(M,WDAC,WO)
+                CREATOR OWNER:(OI)(CI)(IO)(F)
+
+                (RX) - Read &amp; execute
+                Run `"icacls /help`" to view definitions of other permission codes."
             }
         )
         #endregion
