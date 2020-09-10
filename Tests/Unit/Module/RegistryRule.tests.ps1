@@ -382,6 +382,7 @@ Documentation must contain supporting information from the vendor's instructions
                 }
             }
         }
+
         Describe 'Match Static method' {
 
             $stringsToTest = @(
@@ -399,6 +400,7 @@ Documentation must contain supporting information from the vendor's instructions
                 [RegistryRuleConvert]::Match($stringsToTest.string) | Should -Be $false
             }
         }
+
         Describe 'Test-RegistryValueDataContainsRange' {
 
             $rangeStrings = @(
