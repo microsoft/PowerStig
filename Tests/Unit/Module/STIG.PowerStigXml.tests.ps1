@@ -7,7 +7,7 @@ foreach($xccdf in $xccdfs)
 {
     [xml]$test = get-content $xccdf
     $randomId = $test.Benchmark.Group.Id | Get-Random
-    Describe 'ConvertFrom-StigXccdf' {
+    <#Describe 'ConvertFrom-StigXccdf' {
 
         It 'Should return an object array' {
             $convertedXccdf = ConvertFrom-StigXccdf -Path $xccdf.FullName
@@ -26,7 +26,7 @@ foreach($xccdf in $xccdfs)
             }
 
         }
-    }
+    }#>
 
     Describe 'ConvertTo-PowerStigXml' {
 
