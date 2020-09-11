@@ -30,7 +30,7 @@ foreach($stig in $stigs)
     }
     '12'
     {
-        $xccdfs += $stig.group[1],$stig.group[2],$stig.group[3],$stig.group[4],$stig.group[10]
+        $xccdfs += $stig.group[1..12]
     }
    }
 }
