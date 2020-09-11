@@ -1,7 +1,39 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
-$xccdfs  = Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse
+$group = Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse
+$stigs = $group | Group-Object DirectoryName
+$xccdfs = @()
+foreach($stig in $stigs)
+{
+   switch ($stig.count)
+   {
+    '1'
+    {
+        $xccdfs += $stig.group
+    }
+    '2'
+    {
+        $xccdfs += $stig.group[1]
+    }
+    '4'
+    {
+        $xccdfs += $stig.group[1],$stig.group[3]
+    }
+    '6'
+    {
+        $xccdfs += $stig.group[1],$stig.group[3]
+    }
+    '8'
+    {
+        $xccdfs += $stig.group[1],$stig.group[3],$stig.group[5],$stig.group[7]
+    }
+    '12'
+    {
+        $xccdfs += $stig.group[1],$stig.group[2],$stig.group[3],$stig.group[4],$stig.group[10]
+    }
+   }
+}
 
 foreach($xccdf in $xccdfs)
 {
@@ -28,9 +60,9 @@ foreach($xccdf in $xccdfs)
         }
     }#>
 
-    Describe 'ConvertTo-PowerStigXml' {
+    Describe "ConvertTo-PowerStigXml $($xccdf.name)" {
 
-        It 'Should return an 2 XMLs' {
+        It 'Should return an 2 XML' {
             ConvertTo-PowerStigXml -Path $xccdf.FullName -Destination $TestDrive -CreateOrgSettingsFile -RuleIdFilter $randomId
             $converted = Get-ChildItem $testdrive
             $converted.FullName.EndsWith(".xml").Count | Should be 2
