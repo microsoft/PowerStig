@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-* Update PowerSTIG with new SkipRuleCategory Parameter to skip entire STIG Category/Severity Level(s): [711](https://github.com/microsoft/PowerStig/issues/711)
+* Update PowerSTIG with new SkipRuleSeverity Parameter to skip entire STIG Category/Severity Level(s): [711](https://github.com/microsoft/PowerStig/issues/711)
 
 ## [4.5.0] - 2020-09-01
 

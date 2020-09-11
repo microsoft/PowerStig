@@ -506,6 +506,7 @@ function New-ResourceString
 function Get-CategoryRule
 {
     [CmdletBinding()]
+    [OutputType([Xml.XmlElement])]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -514,7 +515,6 @@ function Get-CategoryRule
         $PowerStigXml,
 
         [Parameter(Mandatory = $true)]
-        [ValidateNotNullOrEmpty()]
         [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
         [string[]]
         $RuleCategory
@@ -531,6 +531,25 @@ function Get-CategoryRule
     }
 }
 
+<#
+    .SYNOPSIS
+        This function only exist to convert category (CAT_I, CAT_II, CAT_III) to severity (high, medium, low)
+
+    .DESCRIPTION
+        This function only exist to convert category (CAT_I, CAT_II, CAT_III) to severity (high, medium, low)
+        since the category and severity enums are not available during composite test execution.
+
+    .PARAMETER Category
+        Supply CAT_I, CAT_II, CAT_III to convert to the respective high, medium, low strings.
+
+    .EXAMPLE
+        ConvertTo-Severity -Category 'CAT_I'
+
+        Returns 'high' as a string.
+
+    .NOTES
+        Only used during composite test execution.
+#>
 function ConvertTo-Severity
 {
     [CmdletBinding()]
@@ -538,7 +557,6 @@ function ConvertTo-Severity
     param
     (
         [Parameter(Mandatory = $true)]
-        [ValidateNotNullOrEmpty()]
         [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
         [string[]]
         $Category

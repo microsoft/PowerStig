@@ -26,7 +26,7 @@ configuration Adobe_config
 
         [Parameter()]
         [string[]]
-        $SkipRuleCategory,
+        $SkipRuleSeverity,
 
         [Parameter()]
         [hashtable]

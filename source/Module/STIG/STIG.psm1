@@ -193,7 +193,7 @@ class STIG
     #endregion
 
     #region Load Rules
-    hidden [void] _LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType, [string[]] $SkipRuleCategory)
+    hidden [void] _LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType, [string[]] $SkipRuleSeverity)
     {
         [xml]$rules = [xml](Get-Content -Path $this.RuleFile)
         $overRideValues = @{}
@@ -241,7 +241,7 @@ class STIG
                     (
                         @($SkipRules) -contains $rule.Id -or
                         @($SkipRuleType) -contains $type.Name -or
-                        @($SkipRuleCategory) -contains [category]([int][severity]$rule.severity)
+                        @($SkipRuleSeverity) -contains [category]([int][severity]$rule.severity)
                     ) -and
                     $rule.dscresource -ne 'None'
                 )
@@ -306,9 +306,9 @@ class STIG
     {
         $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $SkipRuleType, $null)
     }
-    [void] LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType, [string[]] $SkipRuleCategory)
+    [void] LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType, [string[]] $SkipRuleSeverity)
     {
-        $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $SkipRuleType, $SkipRuleCategory)
+        $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $SkipRuleType, $SkipRuleSeverity)
     }
     #endregion
 
