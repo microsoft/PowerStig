@@ -1,8 +1,7 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
-
-$xccdfs =  Get-ChildItem -path $PSScriptRoot\UnitTestHelperFiles -Include *xccdf.xml -Recurse
+$xccdfs  = Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse
 
 foreach($xccdf in $xccdfs)
 {
