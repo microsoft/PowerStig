@@ -1,45 +1,14 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
-$group = Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse
-$stigs = $group | Group-Object DirectoryName
-$xccdfs = @()
-foreach($stig in $stigs)
-{
-   switch ($stig.count)
-   {
-    '1'
-    {
-        $xccdfs += $stig.group
-    }
-    '2'
-    {
-        $xccdfs += $stig.group[1]
-    }
-    '4'
-    {
-        $xccdfs += $stig.group[1],$stig.group[3]
-    }
-    '6'
-    {
-        $xccdfs += $stig.group[1],$stig.group[3]
-    }
-    '8'
-    {
-        $xccdfs += $stig.group[1],$stig.group[3],$stig.group[5],$stig.group[7]
-    }
-    '12'
-    {
-        $xccdfs += $stig.group[1..12]
-    }
-   }
-}
 
+$xccdfs = (Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object Name -match "Server_2019_MS|IIS_10-0_Server")[1,3]
 foreach($xccdf in $xccdfs)
 {
-    [xml]$test = get-content $xccdf
-    $randomId = $test.Benchmark.Group.Id | Get-Random
     Describe 'ConvertFrom-StigXccdf' {
+
+        [xml]$test = get-content $xccdf
+        $randomId = $test.Benchmark.Group.Id | Get-Random
 
         It 'Should return an object array' {
             $convertedXccdf = ConvertFrom-StigXccdf -Path $xccdf.FullName
@@ -56,7 +25,6 @@ foreach($xccdf in $xccdfs)
             {
                 $convertedXccdfId.Id | Should be $randomId
             }
-
         }
     }
 
