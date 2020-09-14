@@ -13,6 +13,10 @@ using module .\..\Rule.ProcessMitigation\ProcessMitigationRule.psm1
 using module .\..\Rule.Registry\RegistryRule.psm1
 using module .\..\Rule.SecurityOption\SecurityOptionRule.psm1
 using module .\..\Rule.Service\ServiceRule.psm1
+using module .\..\Rule.SharePointSPWebAppGeneralSettings\SharePointSPWebAppGeneralSettingsRule.psm1
+using module .\..\Rule.SharePointSPAlternateUrl\SharePointSPAlternateUrlRule.psm1
+using module .\..\Rule.SharePointSPLogLevel\SharePointSPLogLevelRule.psm1
+using module .\..\Rule.CipherSuites\CipherSuitesRule.psm1
 using module .\..\Rule.SqlScriptQuery\SqlScriptQueryRule.psm1
 using module .\..\Rule.UserRight\UserRightRule.psm1
 using module .\..\Rule.WebAppPool\WebAppPoolRule.psm1
@@ -53,6 +57,10 @@ class LoadFactory
             'RegistryRule'                         {$return = [RegistryRule]::new($Rule)}
             'SecurityOptionRule'                   {$return = [SecurityOptionRule]::new($Rule)}
             'ServiceRule'                          {$return = [ServiceRule]::new($Rule)}
+            'SharePointSPWebAppGeneralSettingsRule'{$return = [SharePointSPWebAppGeneralSettingsRule]::new($Rule)}
+            'SharePointSPLogLevelRule'             {$return = [SharePointSPLogLevelRule]::new($Rule)}
+            'SharePointSPAlternateUrlRule'         {$return = [SharePointSPAlternateUrlRule]::new($Rule)}
+            'CipherSuitesRule'                     {$return = [CipherSuitesRule]::new($Rule)}
             'SqlScriptQueryRule'                   {$return = [SqlScriptQueryRule]::new($Rule)}
             'UserRightRule'                        {$return = [UserRightRule]::new($Rule)}
             'WebAppPoolRule'                       {$return = [WebAppPoolRule]::new($Rule)}

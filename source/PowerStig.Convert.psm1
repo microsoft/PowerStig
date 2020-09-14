@@ -42,6 +42,10 @@ using module .\Module\Rule.VsphereSnmpAgent\Convert\VsphereSnmpAgentRule.Convert
 using module .\Module\Rule.VsphereKernelActiveDumpPartition\Convert\VsphereKernelActiveDumpPartitionRule.Convert.psm1
 using module .\Module\Rule.VsphereNtpSettings\Convert\VsphereNtpSettingsRule.Convert.psm1
 using module .\Module\Rule.VsphereVssSecurity\Convert\VsphereVssSecurityRule.Convert.psm1
+using module .\Module\Rule.SharePointSPWebAppGeneralSettings\Convert\SharePointSPWebAppGeneralSettingsRule.Convert.psm1
+using module .\Module\Rule.SharePointSPLogLevel\Convert\SharePointSPLogLevelRule.Convert.psm1
+using module .\Module\Rule.SharePointSPAlternateUrl\Convert\SharePointSPAlternateUrlRule.Convert.psm1
+using module .\Module\Rule.CipherSuites\Convert\CipherSuitesRule.Convert.psm1
 
 # load the public functions
 foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig\Convert" -Recurse -Filter '*.ps1' -Exclude 'Data.*.ps1' ) )
