@@ -7,6 +7,8 @@ $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeRe
 . $configFile
 
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
+$resourceInformation = $global:getDscResource | Where-Object -FilterScript {$PSItem.Name -eq $script:DSCCompositeResourceName}
+$resourceParameters = $resourceInformation.Properties.Name
 
 $additionalTestParameterList = @{
     configPath = 'C:\Windows\Sun\Java\Deployment\deployment.config'
@@ -27,6 +29,13 @@ foreach ($stig in $stigList)
     $skipRuleMultiple = Get-Random -InputObject $powerstigXml.FileContentRule.Rule.id -Count 2
     $skipRuleTypeMultiple = $null
     $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
+
+    $singleSkipRuleSeverity = 'CAT_I'
+    $multipleSkipRuleSeverity = 'CAT_I', 'CAT_II'
+    $expectedSingleSkipRuleSeverity = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $singleSkipRuleSeverity
+    $expectedSingleSkipRuleSeverityCount = ($expectedSingleSkipRuleSeverity | Measure-Object).Count + $blankSkipRuleId.Count
+    $expectedMultipleSkipRuleSeverity = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $multipleSkipRuleSeverity
+    $expectedMultipleSkipRuleSeverityCount = ($expectedMultipleSkipRuleSeverity | Measure-Object).Count + $blankSkipRuleId.Count
 
     $getRandomExceptionRuleParams = @{
         RuleType       = 'FileContentRule'
