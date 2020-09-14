@@ -17,6 +17,10 @@ using module .\..\..\Rule.ProcessMitigation\Convert\ProcessMitigationRule.Conver
 using module .\..\..\Rule.Registry\Convert\RegistryRule.Convert.psm1
 using module .\..\..\Rule.SecurityOption\Convert\SecurityOptionRule.Convert.psm1
 using module .\..\..\Rule.Service\Convert\ServiceRule.Convert.psm1
+using module .\..\..\Rule.SharePointSPWebAppGeneralSettings\Convert\SharePointSPWebAppGeneralSettingsRule.Convert.psm1
+using module .\..\..\Rule.SharePointSPLogLevel\Convert\SharePointSPLogLevelRule.Convert.psm1
+using module .\..\..\Rule.SharePointSPAlternateUrl\Convert\SharePointSPAlternateUrlRule.Convert.psm1
+using module .\..\..\Rule.CipherSuites\Convert\CipherSuitesRule.Convert.psm1
 using module .\..\..\Rule.SqlScriptQuery\Convert\SqlScriptQueryRule.Convert.psm1
 using module .\..\..\Rule.UserRight\Convert\UserRightRule.Convert.psm1
 using module .\..\..\Rule.WebAppPool\Convert\WebAppPoolRule.Convert.psm1
@@ -212,6 +216,30 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.AddRange(
                     [SplitFactory]::XccdfRule($Rule, 'ServiceRuleConvert', 'ServiceName')
+                )
+            }
+            {[SharePointSPWebAppGeneralSettingsRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SharePointSPWebAppGeneralSettingsRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[SharePointSPLogLevelRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SharePointSPLogLevelRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[SharePointSPAlternateUrlRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SharePointSPAlternateUrlRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[CipherSuitesRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [CipherSuitesRuleConvert]::new($Rule).AsRule()
                 )
             }
             {[SqlScriptQueryRuleConvert]::Match($PSItem)}
