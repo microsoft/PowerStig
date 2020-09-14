@@ -7,6 +7,8 @@ $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeRe
 . $configFile
 
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
+$resourceInformation = $global:getDscResource | Where-Object -FilterScript {$PSItem.Name -eq $script:DSCCompositeResourceName}
+$resourceParameters = $resourceInformation.Properties.Name
 
 $additionalTestParameterList = @{
     ForestName = 'integration.test'
@@ -32,6 +34,13 @@ foreach ($stig in $stigList)
     $skipRuleTypeMultiple = @('PermissionRule','UserRightRule')
     $expectedSkipRuleTypeMultipleCount = ($powerstigXml.PermissionRule.Rule + $powerstigXml.UserRightRule.Rule |
         Where-Object {[string]::IsNullOrEmpty($PsItem.DuplicateOf)}).Count + $blankSkipRuleId.Count
+
+    $singleSkipRuleSeverity = 'CAT_I'
+    $multipleSkipRuleSeverity = 'CAT_I', 'CAT_II'
+    $expectedSingleSkipRuleSeverity = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $singleSkipRuleSeverity
+    $expectedSingleSkipRuleSeverityCount = ($expectedSingleSkipRuleSeverity | Measure-Object).Count + $blankSkipRuleId.Count
+    $expectedMultipleSkipRuleSeverity = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $multipleSkipRuleSeverity
+    $expectedMultipleSkipRuleSeverityCount = ($expectedMultipleSkipRuleSeverity | Measure-Object).Count + $blankSkipRuleId.Count
 
     $getRandomExceptionRuleParams = @{
         RuleType       = 'UserRightRule'

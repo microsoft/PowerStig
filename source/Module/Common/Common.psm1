@@ -14,6 +14,17 @@ enum severity
 }
 
 <#
+    The category enum is used to define category and will assist in converting to [severity]
+    Do not change the order of either the severity enum or the category enum
+#>
+enum category
+{
+    CAT_III
+    CAT_II
+    CAT_I
+}
+
+<#
     The status enum is used to display the status of the STIG item processing
 #>
 enum status

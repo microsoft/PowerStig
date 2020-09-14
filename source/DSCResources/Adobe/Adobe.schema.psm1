@@ -60,12 +60,17 @@ configuration Adobe
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string[]]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
+        [string[]]
+        $SkipRuleSeverity
     )
 
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('Adobe', $AdobeApp, $StigVersion)
-    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
+    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.2.0

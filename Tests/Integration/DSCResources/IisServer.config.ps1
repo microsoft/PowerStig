@@ -25,12 +25,16 @@ configuration IisServer_Config
         $SkipRuleType,
 
         [Parameter()]
+        [string[]]
+        $SkipRuleSeverity,
+
+        [Parameter()]
         [hashtable]
         $Exception,
 
         [Parameter()]
-        [hashtable]
-        $BackwardCompatibilityException,
+        [string[]]
+        $ResourceParameters,
 
         [Parameter()]
         [object]
@@ -46,42 +50,14 @@ configuration IisServer_Config
 
     Node localhost
     {
-        & ([scriptblock]::Create("
-        IisServer ServerConfiguration
-        {
-            IisVersion  = '$TechnologyVersion'
-            StigVersion = '$StigVersion'
-            LogPath     = '$LogPath'
-            $(if ($OrgSettings -is [hashtable])
-            {
-                "Orgsettings = @{`n$($OrgSettings.Keys |
-                    ForEach-Object {"'{0}' = {1}{2} = '{3}'{4}`n" -f
-                        $PSItem, '@{', $($OrgSettings[$PSItem].Keys), $($OrgSettings[$PSItem][$OrgSettings[$PSItem].Keys]), '}'})}"
-            }
-            elseif ($null -ne $OrgSettings)
-            {
-                "Orgsettings = '$OrgSettings'"
-            })
-            $(if ($null -ne $Exception)
-            {
-                "Exception = @{`n$($Exception.Keys |
-                    ForEach-Object {"'{0}' = {1}{2} = '{3}'{4}`n" -f
-                        $PSItem, '@{', $($Exception[$PSItem].Keys), $($Exception[$PSItem][$Exception[$PSItem].Keys]), '}'})}"
-            })
-            $(if ($null -ne $BackwardCompatibilityException)
-            {
-                "Exception = @{`n$($BackwardCompatibilityException.Keys |
-                    ForEach-Object {"'{0}' = {1}`n" -f $PSItem, $BackwardCompatibilityException[$PSItem]})}"
-            })
-            $(if ($null -ne $SkipRule)
-            {
-                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-            }
-            if ($null -ne $SkipRuleType)
-            {
-                "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-            })
-        }")
-        )
+        $psboundParams = $PSBoundParameters
+        $psboundParams.IisVersion = $psboundParams['TechnologyVersion']
+        $psboundParams.Remove('TechnologyRole')
+        $psboundParams.Remove('ConfigurationData')
+        $psboundParams.Remove('TechnologyVersion')
+
+        $resourceParamString = New-ResourceParameterString -ResourceParameters $ResourceParameters -PSBoundParams $psboundParams
+        $resourceScriptBlockString = New-ResourceString -ResourceParameterString $resourceParamString -ResourceName IisServer
+        & ([scriptblock]::Create($resourceScriptBlockString))
     }
 }
