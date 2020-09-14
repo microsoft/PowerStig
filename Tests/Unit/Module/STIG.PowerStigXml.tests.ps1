@@ -40,7 +40,7 @@ foreach($xccdf in $xccdfs)
 
 Describe 'Compare-PowerStigXml' {
 
-    $dotNetSTIGS = Get-ChildItem -path $PSScriptRoot\UnitTestHelperFiles -Include DotNetFramework* -Recurse
+    $dotNetSTIGS = (Get-ChildItem -Path $script:moduleRoot\StigData\Processed -Recurse | Where-Object Name -match "(DotNetFramework-4-.*\d.xml)").FullName
     It 'Should return a PSObject' {
         $Compare = Compare-PowerStigXml -OldStigPath $dotNetSTIGS[0] -NewStigPath $dotNetSTIGS[1]
         $Compare.gettype().toString()  | Should be "System.Object[]"
