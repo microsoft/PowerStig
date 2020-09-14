@@ -56,7 +56,7 @@ Describe 'New-StigCheckList' {
 
         {
             $outputPath = Join-Path $Testdrive -ChildPath Checklist.ckl
-            $xccdfPath = ((Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object Name -match "Server_2019_MS")[1]).FullName
+            $xccdfPath = ((Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object -Property Name -Match "Server_2019_MS")[1]).FullName
             New-StigChecklist -ReferenceConfiguration $mofTest -XccdfPath $xccdfPath -OutputPath $outputPath
         } | should -Not -Throw
     }

@@ -2,32 +2,9 @@
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 
-$xccdfs = (Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object Name -match "Server_2019_MS|IIS_10-0_Server")[1,3]
-foreach($xccdf in $xccdfs)
+$xccdfs = (Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object -Property Name -Match "Server_2019_MS|IIS_10-0_Server")[1,3]
+foreach ($xccdf in $xccdfs)
 {
-    Describe 'ConvertFrom-StigXccdf' {
-
-        [xml]$test = get-content $xccdf
-        $randomId = $test.Benchmark.Group.Id | Get-Random
-
-        It 'Should return an object array' {
-            $convertedXccdf = ConvertFrom-StigXccdf -Path $xccdf.FullName
-            $convertedXccdf.gettype().toString()  | Should be "System.Object[]"
-        }
-
-        It 'Should return one rule' {
-            $convertedXccdfId = ConvertFrom-StigXccdf -Path $xccdf.FullName -RuleIdFilter $randomId
-            if($convertedXccdfId.id.Count -ge 2)
-            {
-                $convertedXccdfId.Id[0].split('.')[0] | Should be $randomId
-            }
-            else
-            {
-                $convertedXccdfId.Id | Should be $randomId
-            }
-        }
-    }
-
     Describe "ConvertTo-PowerStigXml $($xccdf.name)" {
 
         It 'Should return an 2 XML' {
@@ -40,7 +17,7 @@ foreach($xccdf in $xccdfs)
 
 Describe 'Compare-PowerStigXml' {
 
-    $dotNetSTIGS = (Get-ChildItem -Path $script:moduleRoot\StigData\Processed -Recurse | Where-Object Name -match "(DotNetFramework-4-.*\d.xml)").FullName
+    $dotNetSTIGS = (Get-ChildItem -Path $script:moduleRoot\StigData\Processed -Recurse | Where-Object -Property Name -Match "(DotNetFramework-4-.*\d.xml)").FullName
     It 'Should return a PSObject' {
         $Compare = Compare-PowerStigXml -OldStigPath $dotNetSTIGS[0] -NewStigPath $dotNetSTIGS[1]
         $Compare.gettype().toString()  | Should be "System.Object[]"
