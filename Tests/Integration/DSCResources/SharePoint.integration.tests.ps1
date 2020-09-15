@@ -37,8 +37,7 @@ foreach ($stig in $stigList)
 {
     $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
     $blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
-    $powerstigXml = [xml](Get-Content -Path $stig.Path) |
-        Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
+    $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
 
     $skipRule = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id
     $skipRuleType = "SharePointSPWebAppGeneralSettingsRule"
