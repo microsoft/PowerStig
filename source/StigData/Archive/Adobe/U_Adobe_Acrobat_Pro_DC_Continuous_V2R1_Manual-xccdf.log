@@ -1,3 +1,0 @@
-V-213126::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_CURRENT_USER\Software\Adobe\Adobe Acrobat\DC\Security\cDigSig\cEUTLDownload'; ValueData = '0'; ValueName = 'bLoadSettingsFromURL'; ValueType = 'Dword'}
-V-213138::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_CURRENT_USER\Software\Adobe\Adobe Acrobat\DC\Security\cDigSig\cAdobeDownload'; ValueData = '0'; ValueName = 'bLoadSettingsFromURL'; ValueType = 'Dword'}
-V-245874::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_CURRENT_USER\Software\Adobe\Adobe Acrobat\DC\AVGeneral'; ValueData = '1'; ValueName = 'bFIPSMode'; ValueType = 'Dword'}

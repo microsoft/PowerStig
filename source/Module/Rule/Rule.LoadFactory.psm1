@@ -15,8 +15,8 @@ using module .\..\Rule.SecurityOption\SecurityOptionRule.psm1
 using module .\..\Rule.Service\ServiceRule.psm1
 using module .\..\Rule.SharePointSPWebAppGeneralSettings\SharePointSPWebAppGeneralSettingsRule.psm1
 using module .\..\Rule.SharePointSPAlternateUrl\SharePointSPAlternateUrlRule.psm1
-using module .\..\Rule.SharePointSPLogLevel\SharePointSPLogLevelRule.psm1
-using module .\..\Rule.CipherSuites\CipherSuitesRule.psm1
+using module .\..\Rule.SharePointSPLoglevel\SharePointSPLogLevelRule.psm1
+using module .\..\Rule.CipherSuites\CipherSuitesRule.psm1
 using module .\..\Rule.SqlScriptQuery\SqlScriptQueryRule.psm1
 using module .\..\Rule.UserRight\UserRightRule.psm1
 using module .\..\Rule.WebAppPool\WebAppPoolRule.psm1
