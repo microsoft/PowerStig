@@ -24,6 +24,10 @@ data exceptionRuleParameterValues
         ServiceRule                  = 'StartupType'
         UserRightRule                = 'Identity'
         VsphereAdvancedSettingsRule  = 'AdvancedSettings'
+        SharePointSPWebAppGeneralSettingsRule = 'PropertyValue'
+        SharePointSPLogLevelRule     = 'SPLogLevelItems'
+        SharePointSPAlternateUrlRule = 'SPAlternateUrlItem'
+        CipherSuitesRule             = 'CipherSuitesOrder'
     }
 }
 #endregion
@@ -164,6 +168,22 @@ function Get-ResourceMatchStatement
         'VsphereVssSecurityRule'
         {
             return '\[VMHostVssSecurity\]'
+        }
+        'SharePointSPWebAppGeneralSettingsRule' 
+        {
+            return '\[SPWebAppGeneralSettings\]'
+        }
+        'SharePointSPLogLevelRule' 
+        {
+            return '\[SPLogLevel\]'
+        }        
+        'SharePointSPAlternateUrlRule' 
+        {
+            return '\[SPAlternateUrl\]'
+        }        
+        'CipherSuitesRule' 
+        {
+            return '\[CipherSuites\]'
         }
     }
 }
