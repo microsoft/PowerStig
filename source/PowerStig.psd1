@@ -61,6 +61,7 @@ DscResourcesToExport = @(
     'McAfee',
     'Office',
     'OracleJRE',
+    'SharePoint',
     'SqlServer',
     'WindowsClient',
     'WindowsDefender',

@@ -13,6 +13,13 @@ $resourceParameters = $resourceInformation.Properties.Name
 $password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'
 $SetupAccount = New-Object -TypeName pscredential -ArgumentList 'Admin', $password
 
+$WebAppUrl = 'https://sharePoint.contoso.com'
+
+<#
+$SPAlternateUrlItem = @{}
+$SPALternateUrlItem = @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Internet"; Internal = $false}
+#>
+#$SPLogLevelItems = @{}
 $SPLogLevelItems = @(
     @{"Area" = "SharePoint Server";"Name" = "Database";"TraceLevel" = "Verbose";"EventLevel" = "Error"},
     @{"Area" = "Business Connectivity Services";"Name" = "Business Data";"TraceLevel" = "Verbose";"EventLevel" = "Informational"},
@@ -30,7 +37,9 @@ $additionalTestParameterList    = @{
             }
         )
     }
+    WebAppUrl = $WebAppUrl
     SPLogLevelItems = $SPLogLevelItems
+ #   SPAlternateUrlItem = $SPAlternateUrlItem
 }
 
 foreach ($stig in $stigList)
