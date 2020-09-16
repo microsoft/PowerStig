@@ -199,10 +199,10 @@ try
             },
             @{
                 RuleType     = 'WindowsFeatureRule'
-                CheckContent = "HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Ensure = `$null; Name = `$null}"
+                CheckContent = "HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Ensure = `$null; Name = 'FeatureName'}"
                 DscResource  = 'WindowsFeature'
-                Ensure       = $null
-                Name         = $null
+                Ensure       = ''
+                Name         = "FeatureName"
             }
         )
 
