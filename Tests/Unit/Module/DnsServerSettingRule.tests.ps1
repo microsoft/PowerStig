@@ -24,9 +24,9 @@ try
                 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.'
             }
             @{
-                IsExistingRule = $True
+                IsExistingRule = $true
                 PropertyName = 'NoRecursion'
-                PropertyValue = '$True'
+                PropertyValue = '$true'
                 OrganizationValueRequired = $false
                 CheckContent = 'Note: If the Windows DNS server is in the classified network, this check is Not Applicable.
 

@@ -9,8 +9,8 @@ foreach ($xccdf in $xccdfs)
 
         It 'Should return an 2 XML' {
             ConvertTo-PowerStigXml -Path $xccdf.FullName -Destination $TestDrive -CreateOrgSettingsFile -RuleIdFilter $randomId
-            $converted = Get-ChildItem $testdrive
-            $converted.FullName.EndsWith(".xml").Count | Should be 2
+            $converted = Get-ChildItem -Path $testdrive
+            $converted.FullName.EndsWith(".xml").Count | Should -Be 2
         }
     }
 }
@@ -19,16 +19,16 @@ Describe 'Compare-PowerStigXml' {
 
     $dotNetSTIGS = (Get-ChildItem -Path $script:moduleRoot\StigData\Processed -Recurse | Where-Object -Property Name -Match "(DotNetFramework-4-.*\d.xml)").FullName
     It 'Should return a PSObject' {
-        $Compare = Compare-PowerStigXml -OldStigPath $dotNetSTIGS[0] -NewStigPath $dotNetSTIGS[1]
-        $Compare.gettype().toString()  | Should be "System.Object[]"
+        $compare = Compare-PowerStigXml -OldStigPath $dotNetSTIGS[0] -NewStigPath $dotNetSTIGS[1]
+        $compare.GetType().ToString()  | Should -Be "System.Object[]"
     }
 }
 
 Describe 'Get-BaseRulePropertyName' {
 
     It 'Should return 11 base rule types' {
-        $BaseRulePropertyName = Get-BaseRulePropertyName
-        $BaseRulePropertyName.count  | Should be 11
+        $baseRulePropertyName = Get-BaseRulePropertyName
+        $baseRulePropertyName.Count  | Should -Be 11
     }
 }
 
@@ -36,7 +36,7 @@ Describe 'Get-DynamicParameterRuleTypeName' {
 
     Get-BaseRulePropertyName
     It 'Should return a runtime defined parameter dictionary' {
-        $DynamicParameterRuleTypeName = Get-DynamicParameterRuleTypeName
-        $DynamicParameterRuleTypeName.GetType().toString() | Should be "System.Management.Automation.RuntimeDefinedParameterDictionary"
+        $dynamicParameterRuleTypeName = Get-DynamicParameterRuleTypeName
+        $dynamicParameterRuleTypeName.GetType().ToString() | Should -Be "System.Management.Automation.RuntimeDefinedParameterDictionary"
     }
 }

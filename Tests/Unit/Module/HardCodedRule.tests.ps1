@@ -201,8 +201,8 @@ try
                 RuleType     = 'WindowsFeatureRule'
                 CheckContent = "HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Ensure = `$null; Name = `$null}"
                 DscResource  = 'WindowsFeature'
-                IsEnabled    = $null
-                LogName      = $null
+                Ensure       = $null
+                Name         = $null
             }
         )
 

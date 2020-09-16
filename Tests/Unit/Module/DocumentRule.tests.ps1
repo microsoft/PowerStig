@@ -18,7 +18,7 @@ try
             @{
                 Id = "V-7069"
                 Severity = "medium"
-                title="APPNET0055 CAS and Policy Config File Backups"
+                title = "APPNET0055 CAS and Policy Config File Backups"
                 Dscresource = "None"
                 OrganizationValueRequired = $false
                 CheckContent = 'Ask the System Administrator if all CAS policy and policy configuration files are included in the system backup. If they are not, this is a finding.

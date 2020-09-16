@@ -21,8 +21,8 @@ $stigRule = Get-TestStigRule -CheckContent $testRule.CheckContent -ReturnGroupOn
 $convertedRule = New-Object -TypeName ($global:moduleName + 'Convert') -ArgumentList $stigRule
 
 Describe 'Exception Help' {
-    It 'Should Not Return $null' {
-        $convertedrule.GetExceptionHelp() | Should -not -BeNullOrEmpty
+    It 'Should not Return $null' {
+        $convertedrule.GetExceptionHelp() | Should -Not -BeNullOrEmpty
     }
 }
 

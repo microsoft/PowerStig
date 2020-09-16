@@ -11,30 +11,30 @@ $domainDistinguishedPart2 = "DC=Domain,DC=Test"
 $parts = @("Domain","Test")
 
 Describe 'Get-DomainName' {
-        # Test parameter validity -OutputPath
-        It 'Should return Domain FQDN' {
-            Get-DomainName -DomainName $DomainName -Format 'FQDN' | Should -Match $domainName
-        }
+    # Test parameter validity -OutputPath
+    It 'Should return Domain FQDN' {
+        Get-DomainName -DomainName $domainName -Format 'FQDN' | Should -Match $domainName
+    }
 
-        It 'Should return Forest FQDN' {
-            Get-DomainName -ForestName $ForestName  -Format 'FQDN' | Should -Match $forestName
-        }
+    It 'Should return Forest FQDN' {
+        Get-DomainName -ForestName $forestName -Format 'FQDN' | Should -Match $forestName
+    }
 
-        It 'Should return Domain NetbiosName' {
-            Get-DomainName -DomainName $DomainName -Format 'NetbiosName' | Should -Match ($domainName.Split("."))[0]
-        }
+    It 'Should return Domain NetbiosName' {
+        Get-DomainName -DomainName $domainName -Format 'NetbiosName' | Should -Match ($domainName.Split("."))[0]
+    }
 
-        It 'Should return Forest NetbiosName' {
-            Get-DomainName -ForestName $ForestName  -Format 'NetbiosName' | Should -Match ($forestName.Split("."))[0]
-        }
+    It 'Should return Forest NetbiosName' {
+        Get-DomainName -ForestName $forestName -Format 'NetbiosName' | Should -Match ($forestName.Split("."))[0]
+    }
 
-        It 'Should return Domain DistinguishedName' {
-            Get-DomainName -DomainName $DomainName -Format 'DistinguishedName' | Should Match $domainDistinguished
-        }
+    It 'Should return Domain DistinguishedName' {
+        Get-DomainName -DomainName $domainName -Format 'DistinguishedName' | Should -Match $domainDistinguished
+    }
 
-        It 'Should return Forest DistinguishedName' {
-            Get-DomainName -ForestName $ForestName  -Format 'DistinguishedName' | Should Match $forestDistinguished
-        }
+    It 'Should return Forest DistinguishedName' {
+        Get-DomainName -ForestName $forestName -Format 'DistinguishedName' | Should -Match $forestDistinguished
+    }
 }
 
 Describe 'Get-DomainFQDN' {
@@ -47,18 +47,18 @@ Describe 'Get-DomainFQDN' {
 Describe 'Get-ForestFQDN' {
     # Test parameter validity -OutputPath
     It 'Should return $null' {
-        Get-ForestFQDN | Should BeNullOrEmpty
+        Get-ForestFQDN | Should -BeNullOrEmpty
     }
 }
 
 Describe 'Get-NetbiosName' {
     # Test parameter validity -OutputPath
     It 'Should test 2 parts and return Domain' {
-        Get-NetbiosName -FQDN $DomainName | Should -Match ($DomainName.Split("."))[0]
+        Get-NetbiosName -FQDN $domainName | Should -Match ($domainName.Split("."))[0]
     }
 
     It 'Should test 1 part and return Domain' {
-        Get-NetbiosName -FQDN "Domain" | Should -Match ($DomainName.Split("."))[0]
+        Get-NetbiosName -FQDN "Domain" | Should -Match ($domainName.Split("."))[0]
     }
 }
 
@@ -69,7 +69,7 @@ Describe 'Get-DistinguishedName' {
     }
 
     It 'Should test 2 parts and return "DC=Domain,DC=Test"' {
-        Get-DistinguishedName -FQDN $DomainName | Should -Match $domainDistinguishedPart2
+        Get-DistinguishedName -FQDN $domainName | Should -Match $domainDistinguishedPart2
     }
 }
 
