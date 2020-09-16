@@ -166,9 +166,9 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             }
         }
 
-        Context "$($stig.TechnologyRole) $($stig.StigVersion) Single Skip Rule Category" {
-            It "Should compile the MOF with $singleSkipRuleCategory SkipRuleCategory without throwing" {
-                {& $technologyConfig @testParameterList -SkipRuleCategory $singleSkipRuleCategory} | Should -Not -Throw
+        Context "When $($stig.TechnologyRole) $($stig.StigVersion) Single Skip Rule Severity Category is leveraged" {
+            It "Should compile the MOF with $singleSkipRuleSeverity SkipRuleSeverity without throwing" {
+                {& $technologyConfig @testParameterList -SkipRuleSeverity $singleSkipRuleSeverity} | Should -Not -Throw
             }
             # Gets the mof content
             $configurationDocumentPath = "$TestDrive\localhost.mof"
@@ -177,14 +177,14 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             # Counts how many Skips there are and how many there should be.
             $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
-            It "Should have $expectedSingleSkipRuleCategoryCount Skipped settings" {
-                $dscMof.Count | Should -Be $expectedSingleSkipRuleCategoryCount
+            It "Should have $expectedSingleSkipRuleSeverityCount Skipped settings" {
+                $dscMof.Count | Should -Be $expectedSingleSkipRuleSeverityCount
             }
         }
 
-        Context "$($stig.TechnologyRole) $($stig.StigVersion) Multiple Skip Rule Category" {
-            It "Should compile the MOF with $($multipleSkipRuleCategory -join ',') without throwing" {
-                {& $technologyConfig @testParameterList -SkipRuleCategory $multipleSkipRuleCategory} | Should -Not -Throw
+        Context "When $($stig.TechnologyRole) $($stig.StigVersion) Multiple Skip Rule Severity Categories are leveraged" {
+            It "Should compile the MOF with $($multipleSkipRuleSeverity -join ',') without throwing" {
+                {& $technologyConfig @testParameterList -SkipRuleSeverity $multipleSkipRuleSeverity} | Should -Not -Throw
             }
             # Gets the mof content
             $configurationDocumentPath = "$TestDrive\localhost.mof"
@@ -193,8 +193,8 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             # Counts how many Skips there are and how many there should be.
             $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
-            It "Should have $expectedMultipleSkipRuleCategoryCount Skipped settings" {
-                $dscMof.Count | Should -Be $expectedMultipleSkipRuleCategoryCount
+            It "Should have $expectedMultipleSkipRuleSeverityCount Skipped settings" {
+                $dscMof.Count | Should -Be $expectedMultipleSkipRuleSeverityCount
             }
         }
 

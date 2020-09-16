@@ -26,7 +26,7 @@ configuration IisServer_Config
 
         [Parameter()]
         [string[]]
-        $SkipRuleCategory,
+        $SkipRuleSeverity,
 
         [Parameter()]
         [hashtable]

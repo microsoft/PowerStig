@@ -26,7 +26,7 @@ configuration OracleJRE_config
 
         [Parameter()]
         [string[]]
-        $SkipRuleCategory,
+        $SkipRuleSeverity,
 
         [Parameter()]
         [hashtable]
