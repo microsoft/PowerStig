@@ -55,7 +55,7 @@ Pester:
    - tests/Unit
   ExcludeTag:
   Tag:
-  CodeCoverageThreshold: 55 # Set to 0 to bypass
+  CodeCoverageThreshold: 79 # Set to 0 to bypass
   CodeCoverageOutputFile: JaCoCo_coverage.xml
   CodeCoverageOutputFileEncoding: ascii
 
