@@ -73,7 +73,7 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
     #>
     [void] SetOrganizationValueTestString ()
     {
-        $OrganizationValueTestString = Get-VsphereNtpSettingsOrganizationValueTestString -Id $this.id
+        $OrganizationValueTestString = Get-VsphereNtpSettingsOrganizationValueTestString -CheckContent $this.SplitCheckContent
 
         if (-not $this.SetStatus($OrganizationValueTestString))
         {

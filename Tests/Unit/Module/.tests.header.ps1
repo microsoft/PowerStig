@@ -65,6 +65,26 @@ switch ($psStackCommand)
         . $functionCheckListFile
     }
 
+    'STIG.DomainName'
+    {
+        $functionDomainName = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Functions.DomainName.ps1'
+        . $functionDomainName
+    }
+
+    'STIG.PowerStigXml'
+    {
+        $functionPowerStigXml = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Convert\Functions.PowerStigXml.ps1'
+        . $functionPowerStigXml
+        $functionReport = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Convert\Functions.Report.ps1'
+        . $functionReport
+        $dscResourceData = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Convert\Data.ps1'
+        . $dscResourceData
+        $destinationPath = Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Rule.ps1'
+        [void] $setDynamicClassFileParams.Add('DestinationPath', $destinationPath)
+        [void] $setDynamicClassFileParams.Add('ClassModuleFileName', @('Rule.psm1', 'ConvertFactory.psm1','DocumentRule.Convert.psm1','Stig.psm1'))
+    }
+
+
     'STIG'
     {
         $destinationPath = Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Convert.Main.ps1'
@@ -81,10 +101,14 @@ switch ($psStackCommand)
     }
 }
 
-if ($global:moduleName -ne 'STIG.Checklist')
+if ($global:moduleName -ne 'STIG.Checklist' -and $global:moduleName -ne 'STIG.DomainName')
 {
     Set-DynamicClassFile @setDynamicClassFileParams
     . $setDynamicClassFileParams.DestinationPath
+}
+else
+{
+    import-module $script:moduleRoot\Module\Common\Common.psm1
 }
 
 <#
