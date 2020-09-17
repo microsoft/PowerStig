@@ -238,6 +238,34 @@ try
 
                 (RX) - Read &amp; execute
                 Run `"icacls /help`" to view definitions of other permission codes."
+            },
+            @{
+                Path = '%windir%\NTDS\*.*'
+                AccessControlEntry = @(
+                    [pscustomobject]@{
+                        Rights         = 'FullControl'
+                        Inheritance    = ''
+                        Principal      = 'NT AUTHORITY\SYSTEM'
+                        ForcePrincipal = $false
+                    }
+                )
+                Force = $true
+                OrganizationValueRequired = $false
+                CheckContent = 'Verify the permissions on the content of the NTDS directory.
+                Open the registry editor (regedit).
+                Navigate to HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NTDS\Parameters.
+                Note the directory locations in the values for:
+                Database log files path
+                DSA Database file
+                By default they will be \Windows\NTDS. If the locations are different, the following will need to be run for each.
+                Open an elevated command prompt (Win+x, Command Prompt (Admin)).
+                Navigate to the NTDS directory (\Windows\NTDS by default).
+                Run "icacls *.*".
+                If the permissions on each file are not at least as restrictive as the following, this is a finding.
+                NT AUTHORITY\SYSTEM:(I)(F)
+                (I) - permission inherited from parent container
+                (F) - full access
+                Do not use File Explorer to attempt to view permissions of the NTDS folder. Accessing the folder through File Explorer will change the permissions on the folder.'
             }
         )
         #endregion
