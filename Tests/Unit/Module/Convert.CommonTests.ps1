@@ -20,6 +20,12 @@ $stigRule = Get-TestStigRule -CheckContent $testRule.CheckContent -ReturnGroupOn
 # Create an instance of the convert class that is currently being tested
 $convertedRule = New-Object -TypeName ($global:moduleName + 'Convert') -ArgumentList $stigRule
 
+Describe 'Exception Help' {
+    It 'Should not Return $null' {
+        $convertedrule.GetExceptionHelp() | Should -Not -BeNullOrEmpty
+    }
+}
+
 Describe "$($convertedRule.GetType().Name) Class Instance" {
     # Only run the base class test once
     if ($count -le 0)
@@ -104,7 +110,7 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
     $checkContent = [System.Web.HttpUtility]::HtmlDecode( $testRule.checkContent )
 
     # The manual rule is the default and does not contain a match method.
-    if ($convertedRule.GetType().Name -notmatch 'ManualRuleConvert')
+    if ($convertedRule.GetType().Name -notmatch 'ManualRuleConvert|GroupRuleConvert')
     {
         <#
             To dynamically call a static method, we have to get the static method
@@ -119,3 +125,4 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         }
     }
 }
+

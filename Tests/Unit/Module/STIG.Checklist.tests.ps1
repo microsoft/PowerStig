@@ -3,6 +3,32 @@
 #endregion
 
 Describe 'New-StigCheckList' {
+
+    configuration Example
+    {
+        param
+        (
+            [parameter()]
+            [string]
+            $NodeName = "localhost"
+        )
+
+        Import-DscResource -ModuleName PowerStig
+
+        Node $NodeName
+        {
+            WindowsServer BaseLine
+            {
+                OsVersion   = "2019"
+                OsRole      = "MS"
+                SkipRuleType = "AccountPolicyRule","AuditPolicyRule","AuditSettingRule","DocumentRule","ManualRule","PermissionRule","SecurityOptionRule","UserRightRule","WindowsFeatureRule","ProcessMitigationRule","RegistryRule"
+            }
+        }
+    }
+    Example -OutputPath $TestDrive
+
+    $mofTest = '{0}{1}' -f $TestDrive.fullname,"\localhost.mof"
+
     # Test parameter validity -OutputPath
     It 'Should throw if an invalid path is provided' {
         {New-StigCheckList -MofFile 'test' -XccdfPath 'test' -OutputPath 'c:\asdf'} | Should -Throw
@@ -24,6 +50,15 @@ Describe 'New-StigCheckList' {
 
     It 'Should throw if an invalid combination of parameters for Xccdf validation is provided' {
         {New-StigCheckList -DscResult 'foo' -MofFile 'bar' -OutputPath 'C:\Test'} | Should -Throw
+    }
+
+    It 'Generate a checklist given correct parameters' {
+
+        {
+            $outputPath = Join-Path $Testdrive -ChildPath Checklist.ckl
+            $xccdfPath = ((Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object -Property Name -Match "Server_2019_MS")[1]).FullName
+            New-StigChecklist -ReferenceConfiguration $mofTest -XccdfPath $xccdfPath -OutputPath $outputPath
+        } | Should -Not -Throw
     }
 }
 
