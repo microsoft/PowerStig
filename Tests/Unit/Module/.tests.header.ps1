@@ -108,7 +108,8 @@ if ($global:moduleName -ne 'STIG.Checklist' -and $global:moduleName -ne 'STIG.Do
 }
 else
 {
-    import-module $script:moduleRoot\Module\Common\Common.psm1
+    $commonModulePath = Join-Path -Path $script:moduleRoot -ChildPath 'Module\Common\Common.psm1'
+    Import-Module -Name $commonModulePath
 }
 
 <#
