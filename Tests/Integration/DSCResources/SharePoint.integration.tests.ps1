@@ -15,7 +15,7 @@ $SetupAccount = New-Object -TypeName pscredential -ArgumentList 'Admin', $passwo
 
 $WebAppUrl = 'https://sharePoint.contoso.com'
 
-$SPAlternateUrlItem = @{"Url" = "https://Other.contoso.com"; "WebAppName" = "Other web App"; "Zone" = "Intranet"; "Internal" = "$false"}
+$SPAlternateUrlItem = @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
 
 $SPLogLevelItems = @(
     @{"Area" = "SharePoint Server";"Name" = "Database";"TraceLevel" = "Verbose";"EventLevel" = "Error"},
