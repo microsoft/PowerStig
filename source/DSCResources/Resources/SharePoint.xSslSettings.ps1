@@ -3,18 +3,15 @@
 
 #https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/working-with-ssl-in-web-api
 
-$rules = $stig.RuleList | Select-Rule -Type SslSettingsRule
+$rules = Select-Rule -Type SslSettingsRule -RuleList $stig.RuleList
 
 $website = $SPAlternateUrlItem["WebAppName"]
 
-if ($rules)
+foreach ($rule in $rules)
 {
-    foreach ($website in $WebsiteName)
+    xSslSettings (Get-ResourceTitle -Rule $rule)
     {
-        xSslSettings "[$($rules.id -join ' ')]$website"
-        {
-            Name     = $website
-            Bindings = (Get-UniqueStringArray -InputObject $rules.Value)
-        }
+        Name     = $website
+        Bindings = (Get-UniqueStringArray -InputObject $rule.Value)
     }
 }
