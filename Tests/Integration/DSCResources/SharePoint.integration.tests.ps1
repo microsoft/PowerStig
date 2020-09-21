@@ -15,14 +15,11 @@ $SetupAccount = New-Object -TypeName pscredential -ArgumentList 'Admin', $passwo
 
 $WebAppUrl = 'https://sharePoint.contoso.com'
 
-<#
-$SPAlternateUrlItem = @{}
-$SPALternateUrlItem = @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Internet"; Internal = $false}
-#>
-#$SPLogLevelItems = @{}
+$SPAlternateUrlItem = @{"Url" = "https://Other.contoso.com"; "WebAppName" = "Other web App"; "Zone" = "Intranet"; "Internal" = "$false"}
+
 $SPLogLevelItems = @(
     @{"Area" = "SharePoint Server";"Name" = "Database";"TraceLevel" = "Verbose";"EventLevel" = "Error"},
-    @{"Area" = "Business Connectivity Services";"Name" = "Business Data";"TraceLevel" = "Verbose";"EventLevel" = "Informational"},
+    @{"Area" = "Business Connectivity Services";"Name" = "Business Data";"TraceLevel" = "Verbose";"EventLevel" = "Information"},
     @{"Area" = "Search";"Name" = "Content Processing";"TraceLevel" = "Verbose";"EventLevel" = "Error"}
 )
 
@@ -39,7 +36,7 @@ $additionalTestParameterList    = @{
     }
     WebAppUrl = $WebAppUrl
     SPLogLevelItems = $SPLogLevelItems
- #   SPAlternateUrlItem = $SPAlternateUrlItem
+    SPAlternateUrlItem = $SPAlternateUrlItem
 }
 
 foreach ($stig in $stigList)
@@ -69,10 +66,11 @@ foreach ($stig in $stigList)
         ParameterValue  = "Strict"
     }
 
+    <#
     $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
     $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
     $backCompatException = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility
     $backCompatExceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2 -BackwardCompatibility
-
+#>
     . "$PSScriptRoot\Common.integration.ps1"
 }

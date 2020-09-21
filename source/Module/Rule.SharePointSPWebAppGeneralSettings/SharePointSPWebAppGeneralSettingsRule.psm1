@@ -13,10 +13,10 @@ using module .\..\Rule\Rule.psm1
 #>
 class SharePointSPWebAppGeneralSettingsRule : Rule
 {
-    [string] $PropertyName
-    [string] $PropertyValue
-    [string] $Variable
-    [String] $VariableValue
+    [object] $PropertyName
+    [object] $PropertyValue
+    [object] $Variable
+    [object] $VariableValue
 
     <#
         .SYNOPSIS

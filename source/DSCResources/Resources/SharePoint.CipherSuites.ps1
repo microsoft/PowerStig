@@ -5,12 +5,10 @@ $rules = Select-Rule -Type SharePointSPAlternateUrlRule -RuleList $stig.RuleList
 
 foreach ($rule in $rules)
 {
-    SPAlternateUrl (Get-ResourceTitle -Rule $rule)
+    CipherSuites (Get-ResourceTitle -Rule $rule)
     {
-        Url                     = $SPAlternateUrlItem['Url']
-        Zone                    = $SPAlternateUrlItem['Zone']
-        WebAppName              = $SPAlternateUrlItem['WebAppName']
-        Internal                = $SPAlternateUrlItem['Internal']
+        IsSingleInstance        = 'Yes'
+        CipherSuitesOrder       = $CipherSuitesOrder
         Ensure                  = "Present"
         PsDscRunAsCredential    = $SetupAccount
     }

@@ -40,7 +40,7 @@ class CipherSuitesRuleConvert : CipherSuitesRule
     #>
     CipherSuitesRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        #$this.SetCipherSuitesOrder()	
+        $this.SetCipherSuitesOrder()	
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }
