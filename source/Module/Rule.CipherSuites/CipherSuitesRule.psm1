@@ -13,7 +13,7 @@ using module .\..\Rule\Rule.psm1
 #>
 class CipherSuitesRule : Rule
 {
-    [array]$CipherSuitesOrder
+    [Array[]]$CipherSuitesOrder
 
     <#
         .SYNOPSIS

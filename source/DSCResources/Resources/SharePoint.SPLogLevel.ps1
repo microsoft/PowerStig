@@ -12,10 +12,10 @@ foreach ($rule in $rules)
             foreach ($SPLogLevelItem in $SPLogLevelItems)
             {
                 MSFT_SPLogLevelItem {
-                    foreach ($key in $SPLogLevelItem.Keys)
-                    {
-                        "$key = $($SPLogLevelItem[$key])"
-                    }
+                    Name       = $SPLogLevelItem['Name']
+                    Area       = $SPLogLevelItem['Area']
+                    EventLevel = $SPLogLevelItem['EventLevel']
+                    TraceLevel = $SPLogLevelItem['TraceLevel']
                 }
             }
         )

@@ -57,7 +57,12 @@ configuration SharePoint_config
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [hashtable[]]
-        $SPLogLevelItems
+        $SPLogLevelItems,
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        [hashtable[]]
+        $SPAlternateUrlItem
     )
 
     Import-DscResource -ModuleName PowerStig

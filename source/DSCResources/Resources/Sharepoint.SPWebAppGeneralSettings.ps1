@@ -18,21 +18,25 @@ foreach ($rule in $rules)
         'SecurityValidation'
         {
             [bool]$SecurityValidation = [System.Convert]::ToBoolean($rule.PropertyValue)
+            break
         }
         
         'SecurityValidationTimeOutMinutes'
         {
             [int]$SecurityValidationTimeOutMinutes = $rule.PropertyValue 
+            break
         }
 
         'BrowserFileHandling'
         {
-            [string]$BrowserFileHandling = $rule.PropertyValue 
+            [string]$BrowserFileHandling = $rule.PropertyValue
+            break
         }
 
         'AllowOnlineWebPartCatalog'
         {
             [bool]$AllowOnlineWebPartCatalog = [System.Convert]::ToBoolean($rule.PropertyValue)
+            break
         }
     }
 }
@@ -41,7 +45,7 @@ SPWebAppGeneralSettings $blockTitle
 {
     WebAppUrl                           = "$WebAppUrl"
     AllowOnlineWebPartCatalog           = $AllowOnlineWebPartCatalog
-    BrowserFileHandling                 = $BrowserFileHandling
+    BrowserFileHandling                 = "$BrowserFileHandling"
     SecurityValidationTimeOutMinutes    = $SecurityValidationTimeOutMinutes
     SecurityValidation                  = $SecurityValidation    
     PsDscRunAsCredential                = $SetupAccount

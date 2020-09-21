@@ -13,13 +13,13 @@ using module ..\..\PowerStig.psm1
         A hashtable of SPLogLevels within an array to configure the Area and Category within ULS logs
 
         $SPLogLevelItems = @(@{"Area" = "SharePoint Server";"Name" = "Database";"TraceLevel" = "Verbose";"EventLevel" = "Error"},
-            @{"Area" = "Business Connectivity Services";"Name" = "Business Data";"TraceLevel" = "Verbose";"EventLevel" = "Informational"},
+            @{"Area" = "Business Connectivity Services";"Name" = "Business Data";"TraceLevel" = "Verbose";"EventLevel" = "Information"},
             @{"Area" = "Search";"Name" = "Content Processing";"TraceLevel" = "Verbose";"EventLevel" = "Error"}
         )
     .PARAMETER SPAlternateUrlItem
         A hashtable to configure Alternate Url on Web Applications
 
-        $SPALternateUrlItem = @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Internet"; Internal = $false}
+        $SPAlternateUrlItem = @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Internet"; Internal = $false}
 
     .PARAMETER StigVersion
         The version of the SharePoint STIG to apply and/or monitor
@@ -68,7 +68,7 @@ configuration SharePoint
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [hashtable]
+        [hashtable[]]
         $SPAlternateUrlItem,
 
         [Parameter()]
@@ -110,9 +110,13 @@ configuration SharePoint
     Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.2.0
     . "$resourcePath\SharePoint.SPWebAppGeneralSettings.ps1"
     . "$resourcePath\SharePoint.SPLogLevel.ps1"
+    . "$resourcePath\SharePoint.SPAlternateUrl.ps1"
 
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 3.2.0
-    . "$resourcePath\SharePoint.xSslSettings.ps1"
+    . "$resourcePath\SharePoint.xSslSettings.ps1" 
+
+    Import-DscResource -ModuleName sChannelDsc -ModuleVersion 1.2.0
+    . "$resourcePath\SharePoint.CipherSuites.ps1"
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.12.0.0
     . "$resourcePath\windows.Script.skip.ps1"
