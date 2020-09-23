@@ -61,7 +61,7 @@ configuration SharePoint_config
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [hashtable[]]
+        [hashtable]
         $SPAlternateUrlItem
     )
 

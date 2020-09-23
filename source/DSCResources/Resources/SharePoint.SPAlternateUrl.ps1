@@ -20,13 +20,3 @@ foreach ($rule in $rules)
         PsDscRunAsCredential    = $SetupAccount
     }
 }
-
-<#   SPAlternateUrl (Get-ResourceTitle -Rule $rule)
-    {
-        Url                     = $SPAlternateUrlItem['Url']
-        Zone                    = $SPAlternateUrlItem['Zone']
-        WebAppName              = $SPAlternateUrlItem['WebAppName']
-        Internal                = $SPAlternateUrlItem['Internal']
-        Ensure                  = "Present"
-        PsDscRunAsCredential    = $SetupAccount
-    }#>

@@ -135,7 +135,7 @@ class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
     #>
     [string] GetRuleType ([string[]] $CheckContent)
     {
-        $ruleType = "SharePointSPWebAppGeneralSettings"
+        $ruleType = "SharePointSPWebAppGeneralSettingsRule"
 
         return $ruleType
     }
@@ -156,7 +156,7 @@ class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
     {
         if
         (
-            $CheckContent -Match "prohibited mobile code" -or
+           $CheckContent -Match "prohibited mobile code" -or
             $CheckContent -Match "SharePoint server configuration to ensure a session lock" -or
             $CheckContent -Match "ensure user sessions are terminated upon user logoff" -or
             $CheckContent -Match "ensure access to the online web part gallery is configured"
@@ -201,11 +201,11 @@ class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
         }
         if ($CheckContent -Match "ensure user sessions are terminated upon user logoff")
         {
-            $PropertyValue = $true
+            $PropertyValue = "$true"
         }
         if ($CheckContent -Match "ensure access to the online web part gallery is configured")
         {
-            $PropertyValue = $false
+            $PropertyValue = "$false"
         }
         if ($CheckContent -Match "prohibited mobile code")
         {

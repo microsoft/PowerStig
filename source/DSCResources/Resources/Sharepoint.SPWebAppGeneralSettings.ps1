@@ -2,52 +2,28 @@
 # Licensed under the MIT License.
 
 $rules = Select-Rule -Type SharePointSPWebAppGeneralSettingsRule -RuleList $stig.RuleList
+#$rules = $stig.RuleList | Select-Rule -Type 'SharePointSPWebAppGeneralSettingsRule'
+
+$configStringBuilder = New-Object -TypeName System.Text.StringBuilder
+#$rulePropertyStringBuilder = New-Object -TypeName System.Text.StringBuilder
 
 foreach ($rule in $rules)
 {
-    if ($vulnIDs)
-    {
-        $vulnIDs += ' ' + $rule.ID
-    }
-    else
-    {
-        $vulnIDs = $rule.ID
-    }
-    switch ($rule.PropertyName)
-    {   
-        'SecurityValidation'
-        {
-            [bool]$SecurityValidation = [System.Convert]::ToBoolean($rule.PropertyValue)
-            break
-        }
-        
-        'SecurityValidationTimeOutMinutes'
-        {
-            [int]$SecurityValidationTimeOutMinutes = $rule.PropertyValue 
-            break
-        }
-
-        'BrowserFileHandling'
-        {
-            [string]$BrowserFileHandling = $rule.PropertyValue
-            break
-        }
-
-        'AllowOnlineWebPartCatalog'
-        {
-            [bool]$AllowOnlineWebPartCatalog = [System.Convert]::ToBoolean($rule.PropertyValue)
-            break
-        }
-    }
+    $resourceTitle = "[$($rules.id -join ' ')]"
+  #  [void] $rulePropertyStringBuilder.AppendLine("$($rule.PropertyName) =  $($rule.PropertyValue)")
 }
-$blockTitle = "[$($vulnIDs)]"
-SPWebAppGeneralSettings $blockTitle
+
+[void] $configStringBuilder.AppendLine("SPWebAppGeneralSettings '$resourceTitle'")
+[void] $configStringBuilder.AppendLine("{")
+[void] $configStringBuilder.AppendLine("WebAppUrl = '$WebAppUrl'")
+foreach ($rule in $rules)
 {
-    WebAppUrl                           = "$WebAppUrl"
-    AllowOnlineWebPartCatalog           = $AllowOnlineWebPartCatalog
-    BrowserFileHandling                 = "$BrowserFileHandling"
-    SecurityValidationTimeOutMinutes    = $SecurityValidationTimeOutMinutes
-    SecurityValidation                  = $SecurityValidation    
-    PsDscRunAsCredential                = $SetupAccount
+ #   $resourceTitle = "[$($rules.id -join ' ')]"
+    [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  '$($rule.PropertyValue)'")
 }
-
+[void] $configStringBuilder.AppendLine("PsDscRunAsCredential = `$SetupAccount")
+[void] $configStringBuilder.AppendLine("}")
+#$scriptblockString = $configStringBuilder.ToString()
+[scriptblock]::Create($configStringBuilder.ToString()).Invoke($rules)
+#$scriptblock = [scriptblock]::Create($scriptblockString)
+#$scriptblock.Invoke()
