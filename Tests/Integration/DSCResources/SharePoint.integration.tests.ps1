@@ -51,7 +51,7 @@ foreach ($stig in $stigList)
 
     $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id -Count 4
     $skipRuleTypeMultiple = 'SharePointSPWebAppGeneralSettingsRule'
-    $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
+    $expectedSkipRuleTypeMultipleCount = $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
 
     $singleSkipRuleSeverity = 'CAT_I'
     $multipleSkipRuleSeverity = 'CAT_I', 'CAT_II'
