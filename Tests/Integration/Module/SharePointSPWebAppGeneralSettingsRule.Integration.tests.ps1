@@ -101,7 +101,7 @@ try
             }
 
             It "Should return Property Value:'$($testCases.PropertyValue)'"{
-                $rule.PropertyName | Should be $testCases.PropertyName
+                $rule.PropertyValue | Should be $testCases.PropertyValue
             }
 
             It "Should set the correct DscResource" {
