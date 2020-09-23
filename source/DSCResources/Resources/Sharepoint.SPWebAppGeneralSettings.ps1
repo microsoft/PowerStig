@@ -19,7 +19,14 @@ foreach ($rule in $rules)
 foreach ($rule in $rules)
 {
  #   $resourceTitle = "[$($rules.id -join ' ')]"
-    [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  '$($rule.PropertyValue)'")
+    if($rule.PropertyValue -eq 'true' -or $rule.PropertyValue -eq 'False')
+    {
+        $CorrectedString = "`$$($rule.PropertyValue)"  
+        [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  $CorrectedString")
+    }else 
+    {
+        [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  '$($rule.PropertyValue)'")
+    }
 }
 [void] $configStringBuilder.AppendLine("PsDscRunAsCredential = `$SetupAccount")
 [void] $configStringBuilder.AppendLine("}")
