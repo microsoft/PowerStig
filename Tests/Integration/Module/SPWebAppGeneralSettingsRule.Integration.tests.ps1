@@ -87,21 +87,21 @@ try
     Describe 'SPWebAppGeneralSettings Conversion' {
         foreach ($testCase in $testCases)
         {
-            [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $testCase.checkContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
             $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It 'Should return a SharePointSPWebAppGeneralSettingsRule Object' {
-                $rule.GetType() | Should Be 'SharePointSPWebAppGeneralSettingsRule'
+            It 'Should return a SPWebAppGeneralSettingsRule Object' {
+                $rule.GetType() | Should Be 'SPWebAppGeneralSettingsRule'
             }
 
-            It "Should return Property Name:'$($testCases.PropertyName)'" {
-                $rule.PropertyName | Should Be $testCases.PropertyName
+            It "Should return Property Name:'$($testCase.PropertyName)'" {
+                $rule.PropertyName | Should Be $testCase.PropertyName
             }
 
-            It "Should return Property Value:'$($testCases.PropertyValue)'"{
-                $rule.PropertyValue | Should be $testCases.PropertyValue
+            It "Should return Property Value:'$($testCase.PropertyValue)'"{
+                $rule.PropertyValue | Should be $testCase.PropertyValue
             }
 
             It "Should set the correct DscResource" {

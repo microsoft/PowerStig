@@ -55,7 +55,7 @@ class CipherSuitesRuleConvert : CipherSuitesRule
             group and sets the policy Name. If the named group is null, the
             convert status is set to fail.
     #>
-    [void]SetCipherSuitesOrder ()
+    [void] SetCipherSuitesOrder ()
     {
         if ($this.OrgRuleContainsRange())
         {

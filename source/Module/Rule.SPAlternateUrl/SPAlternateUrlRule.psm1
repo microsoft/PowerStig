@@ -11,7 +11,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER PropertyName
         The PropertyName content
 #>
-class SharePointSPAlternateUrlRule : Rule
+class SPAlternateUrlRule : Rule
 {
     [hashtable]$SPAlternateUrlItem
 
@@ -19,7 +19,7 @@ class SharePointSPAlternateUrlRule : Rule
         .SYNOPSIS
             Default constructor to support the AsRule cast method
     #>
-    SharePointSPAlternateUrlRule ()
+    SPAlternateUrlRule ()
     {
     }
 
@@ -29,7 +29,7 @@ class SharePointSPAlternateUrlRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    SharePointSPAlternateUrlRule ([xml.xmlelement] $Rule) : base ($Rule)
+    SPAlternateUrlRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -41,7 +41,7 @@ class SharePointSPAlternateUrlRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    SharePointSPAlternateUrlRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
+    SPAlternateUrlRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

@@ -54,6 +54,10 @@ using module .\Module\Rule.SqlDatabase\Convert\SqlDatabaseRule.Convert.psm1
 using module .\Module\Rule.SharePointSPWebAppGeneralSettings\Convert\SharePointSPWebAppGeneralSettingsRule.Convert.psm1
 using module .\Module\Rule.SharePointSPLogLevel\Convert\SharePointSPLogLevelRule.Convert.psm1
 using module .\Module\Rule.SharePointSPAlternateUrl\Convert\SharePointSPAlternateUrlRule.Convert.psm1
+using module .\Module\Rule.SPWebAppGeneralSettings\Convert\SPWebAppGeneralSettingsRule.Convert.psm1
+using module .\Module\Rule.SPLogLevel\Convert\SPLogLevelRule.Convert.psm1
+using module .\Module\Rule.SPAlternateUrl\Convert\SPAlternateUrlRule.Convert.psm1
+using module .\Module\Rule.SPWebAppBlockedFileTypes\Convert\SPWebAppBlockedFileTypesRule.Convert.psm1
 using module .\Module\Rule.CipherSuites\Convert\CipherSuitesRule.Convert.psm1
 
 # load the public functions

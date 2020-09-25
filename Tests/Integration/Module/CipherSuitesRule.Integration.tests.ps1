@@ -150,7 +150,7 @@ try
     Describe 'CipherSuites Conversion' {
         foreach ($testCase in $testCases)
         {
-            [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $testCase.checkContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
             $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
@@ -159,14 +159,14 @@ try
                 $rule.GetType() | Should Be 'CipherSuitesRule'
             }
 
-            It "Should return Property Name:'$($testCases.CipherSuitesOrder)'" {
-                $rule.CipherSuitesOrder | Should Be $testCases.CipherSuitesOrder
+            It "Should return Cipher Suites Order:'$($testCase.CipherSuitesOrder)'" {
+                $rule.CipherSuitesOrder | Should Be $testCase.CipherSuitesOrder
             }
             It 'Should not have OrganizationValueRequired set' {
-                $rule.OrganizationValueRequired | Should Be $testRule.organizationValueRequired
+                $rule.OrganizationValueRequired | Should Be $testCase.organizationValueRequired
             }
             It 'Should have the correct test string' {
-                $rule.OrganizationValueTestString | Should Be $testRule.organizationValueTestString
+                $rule.OrganizationValueTestString | Should Be $testCase.organizationValueTestString
             }
             It "Should set the correct DscResource" {
                 $rule.DscResource | Should Be 'CipherSuites'

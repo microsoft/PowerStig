@@ -45,13 +45,13 @@ foreach ($stig in $stigList)
     $blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
     $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
 
-    $skipRule = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id
-    $skipRuleType = "SharePointSPWebAppGeneralSettingsRule"
-    $expectedSkipRuleTypeCount = $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
+    $skipRule = Get-Random -InputObject $powerstigXml.SPWebAppGeneralSettingsRule.Rule.id
+    $skipRuleType = "SPWebAppGeneralSettingsRule"
+    $expectedSkipRuleTypeCount = $powerstigXml.SPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
 
-    $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.id -Count 4
-    $skipRuleTypeMultiple = 'SharePointSPWebAppGeneralSettingsRule'
-    $expectedSkipRuleTypeMultipleCount = $powerstigXml.SharePointSPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
+    $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SPWebAppGeneralSettingsRule.Rule.id -Count 4
+    $skipRuleTypeMultiple = 'SPWebAppGeneralSettingsRule'
+    $expectedSkipRuleTypeMultipleCount = $powerstigXml.SPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
 
     $singleSkipRuleSeverity = 'CAT_I'
     $multipleSkipRuleSeverity = 'CAT_I', 'CAT_II'
@@ -61,7 +61,7 @@ foreach ($stig in $stigList)
     $expectedMultipleSkipRuleSeverityCount = ($expectedMultipleSkipRuleSeverity | Measure-Object).Count + $blankSkipRuleId.Count
 
     $getRandomExceptionRuleParams = @{
-        RuleType        = 'SharePointSPWebAppGeneralSettingsRule'
+        RuleType        = 'SPWebAppGeneralSettingsRule'
         PowerStigXml    = $powerstigXml
         ParameterValue  = "Strict"
     }

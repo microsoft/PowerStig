@@ -105,7 +105,7 @@ class SslSettingsRuleConvert : SslSettingsRule
     {
         if (
 	    ($CheckContent -Match 'SSL Settings')-or 
-            (($CheckContent -Match "Public URL for zone" -or $CheckContent -match "https, this is a finding.") -and $CheckContent -Match "SharePoint Server") #Same as line 74 SharePointSPAlternateUrlRule.convert,psm1
+            (($CheckContent -Match "Public URL for zone" -or $CheckContent -match "https, this is a finding.") -and $CheckContent -Match "SharePoint Server") #Same as line 74 SPAlternateUrlRule.convert,psm1
 	)
         {
             return $true

@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
-using module .\..\SharePointSPWebAppGeneralSettingsRule.psm1
+using module .\..\SPWebAppGeneralSettingsRule.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
@@ -17,13 +17,13 @@ foreach ($supportFile in $supportFileList)
     .DESCRIPTION
         
 #>
-class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSettingsRule
+class SPWebAppGeneralSettingsRuleConvert : SPWebAppGeneralSettingsRule
 {
     <#
         .SYNOPSIS
             Empty constructor for SplitFactory
     #>
-    SharePointSPWebAppGeneralSettingsRuleConvert ()
+    SPWebAppGeneralSettingsRuleConvert ()
     {
     }
 
@@ -33,7 +33,7 @@ class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    SharePointSPWebAppGeneralSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
+    SPWebAppGeneralSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.PropertyName = $this.GetPropertyName($this.SplitCheckContent)
         $this.PropertyValue = $this.GetPropertyValue($this.SplitCheckContent)
@@ -135,7 +135,7 @@ class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSe
     #>
     [string] GetRuleType ([string[]] $CheckContent)
     {
-        $ruleType = "SharePointSPWebAppGeneralSettingsRule"
+        $ruleType = "SPWebAppGeneralSettingsRule"
 
         return $ruleType
     }
