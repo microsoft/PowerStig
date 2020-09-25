@@ -177,6 +177,7 @@ class PermissionRuleConvert : PermissionRule
             $CheckContent -NotMatch 'If any private assets' -and
             $CheckContent -NotMatch "roles.sql" -and
             $CheckContent -NotMatch '#.*\s+grep\s+.*'
+            $CheckContent -NotMatch "SharePoint server configuration"
         )
         {
             return $true
