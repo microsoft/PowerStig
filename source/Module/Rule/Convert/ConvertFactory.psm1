@@ -17,9 +17,10 @@ using module .\..\..\Rule.ProcessMitigation\Convert\ProcessMitigationRule.Conver
 using module .\..\..\Rule.Registry\Convert\RegistryRule.Convert.psm1
 using module .\..\..\Rule.SecurityOption\Convert\SecurityOptionRule.Convert.psm1
 using module .\..\..\Rule.Service\Convert\ServiceRule.Convert.psm1
-using module .\..\..\Rule.SharePointSPWebAppGeneralSettings\Convert\SharePointSPWebAppGeneralSettingsRule.Convert.psm1
-using module .\..\..\Rule.SharePointSPLogLevel\Convert\SharePointSPLogLevelRule.Convert.psm1
-using module .\..\..\Rule.SharePointSPAlternateUrl\Convert\SharePointSPAlternateUrlRule.Convert.psm1
+using module .\..\..\Rule.SPWebAppGeneralSettings\Convert\SPWebAppGeneralSettingsRule.Convert.psm1
+using module .\..\..\Rule.SPLogLevel\Convert\SPLogLevelRule.Convert.psm1
+using module .\..\..\Rule.SPAlternateUrl\Convert\SPAlternateUrlRule.Convert.psm1
+using module .\..\..\Rule.SPWebAppBlockedFileTypes\Convert\SPWebAppBlockedFileTypesRule.Convert.psm1
 using module .\..\..\Rule.CipherSuites\Convert\CipherSuitesRule.Convert.psm1
 using module .\..\..\Rule.SqlScriptQuery\Convert\SqlScriptQueryRule.Convert.psm1
 using module .\..\..\Rule.UserRight\Convert\UserRightRule.Convert.psm1
@@ -209,22 +210,28 @@ class ConvertFactory
                     [SplitFactory]::XccdfRule($Rule, 'ServiceRuleConvert', 'ServiceName')
                 )
             }
-            {[SharePointSPWebAppGeneralSettingsRuleConvert]::Match($PSItem)}
+            {[SPWebAppGeneralSettingsRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add(
-                    [SharePointSPWebAppGeneralSettingsRuleConvert]::new($Rule).AsRule()
+                    [SPWebAppGeneralSettingsRuleConvert]::new($Rule).AsRule()
                 )
             }
-            {[SharePointSPLogLevelRuleConvert]::Match($PSItem)}
+            {[SPLogLevelRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add(
-                    [SharePointSPLogLevelRuleConvert]::new($Rule).AsRule()
+                    [SPLogLevelRuleConvert]::new($Rule).AsRule()
                 )
             }
-            {[SharePointSPAlternateUrlRuleConvert]::Match($PSItem)}
+            {[SPAlternateUrlRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add(
-                    [SharePointSPAlternateUrlRuleConvert]::new($Rule).AsRule()
+                    [SPAlternateUrlRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[SPWebAppBlockedFileTypesRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SPWebAppBlockedFileTypesRuleConvert]::new($Rule).AsRule()
                 )
             }
             {[CipherSuitesRuleConvert]::Match($PSItem)}

@@ -111,6 +111,7 @@ configuration SharePoint
     . "$resourcePath\SharePoint.SPWebAppGeneralSettings.ps1"
     . "$resourcePath\SharePoint.SPLogLevel.ps1"
     . "$resourcePath\SharePoint.SPAlternateUrl.ps1"
+    . "$resourcePath\Sharepoint.SPWebAppBlockedFileTypes.ps1"
 
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 3.2.0
     . "$resourcePath\SharePoint.xSslSettings.ps1" 

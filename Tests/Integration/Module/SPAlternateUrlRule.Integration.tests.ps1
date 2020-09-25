@@ -8,6 +8,7 @@ try
         @{
             SPAlternateUrlItem = $null # @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
             DscResource     = 'SPAlternateUrl'
+            SSLSettingsValue = 'Ssl,SslRequireCert'
             CheckContent    = "Review the SharePoint server configuration to ensure the confidentiality of information during aggregation, packaging, and transformation in preparation for transmission is maintained.
 
             In SharePoint Central Administration, click Application Management.
@@ -24,6 +25,7 @@ try
         @{
             SPAlternateUrlItem = $null # @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
             DscResource     = 'SPAlternateUrl'
+            SSLSettingsValue = 'Ssl,SslRequireCert'
             CheckContent    = "Review the SharePoint server to ensure cryptographic mechanisms preventing the unauthorized disclosure of information during transmission are employed, unless the transmitted data is otherwise protected by alternative physical measures.
 
             In SharePoint Central Administration, click Application Management.
@@ -40,6 +42,7 @@ try
         @{
             SPAlternateUrlItem = $null # @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
             DscResource     = 'SPAlternateUrl'
+            SSLSettingsValue = 'Ssl,SslRequireCert'
             CheckContent    = 'Review the SharePoint server configuration to ensure approved cryptography is being utilized to protect the confidentiality of remote access sessions.
 
             Navigate to Central Administration.
@@ -52,6 +55,7 @@ try
         @{
             SPAlternateUrlItem = $null # @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
             DscResource     = 'SPAlternateUrl'
+            SSLSettingsValue = 'Ssl,SslRequireCert'
             CheckContent    = 'Review the SharePoint server configuration to ensure SSL Mutual authentication of both client and server during the entire session.
 
             Navigate to Central Administration.
@@ -64,6 +68,7 @@ try
         @{
             SPAlternateUrlItem = $null # @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
             DscResource     = 'SPAlternateUrl'
+            SSLSettingsValue = 'Ssl,SslRequireCert'
             CheckContent    = 'Review the SharePoint server configuration to ensure cryptography is being used to protect the integrity of the remote access session.
 
             Navigate to Central Administration.
@@ -75,25 +80,52 @@ try
         }
     )
 
-    Describe 'SPAlternateUrl Conversion' {
+    Describe 'SPAlternateUrl with Multiple Service Rule Conversion' {
         foreach ($testCase in $testCases)
         {
-            [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $testCase.checkContent -XccdfTitle 'MS SharePoint 2013 Security Technical Implementation Guide'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
             $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It 'Should return a SharePointSPLogLevelRule Object' {
-                $rule.GetType() | Should Be 'SharePointSPLogLevelRule'
+            It 'Should return Multiple ServiceRule Objects' {
+                $rule.Count | Should Be 2
             }
-            It "Should return Property Name:'$($testCases.SPAlternateUrlItem)'" {
-                $rule.SPAlternateUrlItem | Should Be $testCases.SPAlternateUrlItem
+    
+            Context 'First Split Rule' {
+    
+                $rule = $rule[0]
+    
+                It 'Should return an ServiceRule Object' {
+                    $rule.GetType() | Should Be 'SPAlternateUrlRule'
+                }
+                It "Should return SPAlternate Url Item:'$($testCase.SPAlternateUrlItem)'" {
+                    $rule.SPAlternateUrlItem | Should Be $testCase.SPAlternateUrlItem
+                }
+                It "Should set the correct DscResource" {
+                    $rule.DscResource | Should Be 'SPAlternateUrl'
+                }
+                It 'Should set the status to pass' {
+                    $rule.conversionstatus | Should be 'pass'
+                }
             }
-            It "Should set the correct DscResource" {
-                $rule.DscResource | Should Be 'SPAlternateUrl'
-            }
-            It 'Should set the status to pass' {
-                $rule.conversionstatus | Should be 'pass'
+    
+            Context 'Second Split Rule' {
+    
+                $rule = $rule[1]
+    
+                It 'Should return an SSLSettingsRule Object' {
+                    $rule.GetType() | Should Be 'SSLSettingsRule'
+                }
+                It "Should return Value:'$($testCase.SSLSettingsValue)'" {
+                    $rule.Value | Should Be $testCase.SSLSettingsValue
+                }
+                It "Should set the correct DscResource" {
+                    $rule.DscResource | Should Be 'xSSLSettings'
+                }
+                It 'Should set the status to pass' {
+                    $rule.conversionstatus | Should be 'pass'
+                }
             }
         }
     }

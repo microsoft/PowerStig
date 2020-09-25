@@ -28,16 +28,16 @@ try
     Describe 'SPLogLevel Conversion' {
         foreach ($testCase in $testCases)
         {
-            [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $testCase.checkContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
             $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It 'Should return a SharePointSPLogLevelRule Object' {
-                $rule.GetType() | Should Be 'SharePointSPLogLevelRule'
+            It 'Should return a SPLogLevelRule Object' {
+                $rule.GetType() | Should Be 'SPLogLevelRule'
             }
-            It "Should return hash SPlogLevelItems:'$($testCases.SPLogLevelItems)'" {
-                $rule.SPLogLevelItems | Should Be $testCases.SPLogLevelItems
+            It "Should return hash Log Level Items:'$($testCase.SPLogLevelItems)'" {
+                $rule.SPLogLevelItems | Should Be $testCase.SPLogLevelItems
             }
             It "Should set the correct DscResource" {
                 $rule.DscResource | Should Be 'SPLogLevel'

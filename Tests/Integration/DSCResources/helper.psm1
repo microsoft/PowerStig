@@ -24,9 +24,10 @@ data exceptionRuleParameterValues
         ServiceRule                  = 'StartupType'
         UserRightRule                = 'Identity'
         VsphereAdvancedSettingsRule  = 'AdvancedSettings'
-        SharePointSPWebAppGeneralSettingsRule = 'PropertyValue'
-        SharePointSPLogLevelRule     = 'SPLogLevelItems'
-        SharePointSPAlternateUrlRule = 'SPAlternateUrlItem'
+        SPWebAppGeneralSettingsRule     = 'PropertyValue'
+        SPLogLevelRule                  = 'SPLogLevelItems'
+        SPAlternateUrlRule              = 'SPAlternateUrlItem'
+        SPWebAppBlockedFileTypesRule = 'BlockedFileTypes'
         CipherSuitesRule             = 'CipherSuitesOrder'
     }
 }
@@ -169,18 +170,22 @@ function Get-ResourceMatchStatement
         {
             return '\[VMHostVssSecurity\]'
         }
-        'SharePointSPWebAppGeneralSettingsRule' 
+        'SPWebAppGeneralSettingsRule' 
         {
             return '\[SPWebAppGeneralSettings\]'
         }
-        'SharePointSPLogLevelRule' 
+        'SPLogLevelRule' 
         {
             return '\[SPLogLevel\]'
         }        
-        'SharePointSPAlternateUrlRule' 
+        'SPAlternateUrlRule' 
         {
             return '\[SPAlternateUrl\]'
-        }        
+        }   
+        'SPWebAppBlockedFileTypesRule' 
+        {
+            return '\[SPWebAppBlockedFileTypes\]'
+        }      
         'CipherSuitesRule' 
         {
             return '\[CipherSuites\]'

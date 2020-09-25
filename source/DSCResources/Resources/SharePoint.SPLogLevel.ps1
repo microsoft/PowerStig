@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Select-Rule -Type SharePointSPLogLevelRule -RuleList $stig.RuleList
+$rules = Select-Rule -Type SPLogLevelRule -RuleList $stig.RuleList
 
 foreach ($rule in $rules)
 {
