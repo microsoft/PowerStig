@@ -17,7 +17,7 @@ $WebAppUrl = 'https://sharePoint.contoso.com'
 
 $SPAlternateUrlItem = @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
 
-$SPLogLevelItems = @(
+$SPLogLevelItem = @(
     @{"Area" = "SharePoint Server";"Name" = "Database";"TraceLevel" = "Verbose";"EventLevel" = "Error"},
     @{"Area" = "Business Connectivity Services";"Name" = "Business Data";"TraceLevel" = "Verbose";"EventLevel" = "Information"},
     @{"Area" = "Search";"Name" = "Content Processing";"TraceLevel" = "Verbose";"EventLevel" = "Error"}
@@ -35,7 +35,7 @@ $additionalTestParameterList    = @{
         )
     }
     WebAppUrl = $WebAppUrl
-    SPLogLevelItems = $SPLogLevelItems
+    SPLogLevelItems = $SPLogLevelItem
     SPAlternateUrlItem = $SPAlternateUrlItem
 }
 
@@ -65,12 +65,5 @@ foreach ($stig in $stigList)
         PowerStigXml    = $powerstigXml
         ParameterValue  = "Strict"
     }
-
-    <#
-    $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
-    $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
-    $backCompatException = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility
-    $backCompatExceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2 -BackwardCompatibility
-#>
     . "$PSScriptRoot\Common.integration.ps1"
 }

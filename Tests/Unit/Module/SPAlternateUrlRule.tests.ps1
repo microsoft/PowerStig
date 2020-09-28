@@ -8,7 +8,7 @@ try
         #region Test Setup
         $testRuleList = @(
             @{
-                SPAlternateUrlItem = $null # @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
+                SPAlternateUrlItem = $null 
                 DscResource     = 'SPAlternateUrl'
                 CheckContent    = "Review the SharePoint server configuration to ensure the confidentiality of information during aggregation, packaging, and transformation in preparation for transmission is maintained.
     
@@ -23,7 +23,7 @@ try
                 If SharePoint communications between all components and clients are protected by alternative physical measures that have been approved by the AO, this is not a finding."
             },
             @{
-                SPAlternateUrlItem = $null # @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
+                SPAlternateUrlItem = $null 
                 DscResource     = 'SPAlternateUrl'
                 CheckContent    = "Review the SharePoint server to ensure cryptographic mechanisms preventing the unauthorized disclosure of information during transmission are employed, unless the transmitted data is otherwise protected by alternative physical measures.
     
@@ -38,7 +38,7 @@ try
                 If SharePoint communications between all components and clients are protected by alternative physical measures that have been approved by the AO, this is not a finding."
             },
             @{
-                SPAlternateUrlItem = $null # @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
+                SPAlternateUrlItem = $null 
                 DscResource     = 'SPAlternateUrl'
                 CheckContent    = 'Review the SharePoint server configuration to ensure approved cryptography is being utilized to protect the confidentiality of remote access sessions.
     
@@ -49,7 +49,7 @@ try
                 Review the “Public URL for zone” column values. If any URL does not begin with “https”, this is a finding.'
             },
             @{
-                SPAlternateUrlItem = $null # @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
+                SPAlternateUrlItem = $null
                 DscResource     = 'SPAlternateUrl'
                 CheckContent    = 'Review the SharePoint server configuration to ensure SSL Mutual authentication of both client and server during the entire session.
     

@@ -1,5 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+
 #region Method Functions
 
 <#
@@ -21,8 +22,6 @@ function Test-OrgRuleRange
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     $string = $CheckContent
-    #$string = Get-SecurityPolicyString -CheckContent $checkContent
-    #$string = Get-TestStringTokenList -String $string
 
     # This array is joined into an or '|' before being evaluated
     $matchList = @('.*(DES or RC4).*(?:this is a finding\.)')

@@ -12,7 +12,7 @@ using module ..\..\PowerStig.psm1
     .PARAMETER SPLogLevelItems
         A hashtable of SPLogLevels within an array to configure the Area and Category within ULS logs
 
-        $SPLogLevelItems = @(@{"Area" = "SharePoint Server";"Name" = "Database";"TraceLevel" = "Verbose";"EventLevel" = "Error"},
+        $SPLogLevelItem = @(@{"Area" = "SharePoint Server";"Name" = "Database";"TraceLevel" = "Verbose";"EventLevel" = "Error"},
             @{"Area" = "Business Connectivity Services";"Name" = "Business Data";"TraceLevel" = "Verbose";"EventLevel" = "Information"},
             @{"Area" = "Search";"Name" = "Content Processing";"TraceLevel" = "Verbose";"EventLevel" = "Error"}
         )
@@ -64,7 +64,7 @@ configuration SharePoint
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [hashtable[]]
-        $SPLogLevelItems,
+        $SPLogLevelItem,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]

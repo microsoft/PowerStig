@@ -13,7 +13,7 @@ using module .\..\Rule\Rule.psm1
 #>
 class SPAlternateUrlRule : Rule
 {
-    [hashtable]$SPAlternateUrlItem
+    [hashtable] $SPAlternateUrlItem
 
     <#
         .SYNOPSIS

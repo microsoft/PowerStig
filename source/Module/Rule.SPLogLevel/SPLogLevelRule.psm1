@@ -13,7 +13,7 @@ using module .\..\Rule\Rule.psm1
 #>
 class SPLogLevelRule : Rule
 {
-    [array]$SPLogLevelItems
+    [array] $SPLogLevelItem
 
     <#
         .SYNOPSIS

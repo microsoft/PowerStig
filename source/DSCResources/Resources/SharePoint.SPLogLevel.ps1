@@ -9,13 +9,13 @@ foreach ($rule in $rules)
     {
         Name = "CustomLoggingSettingsByPowerSTIG"
         SPLogLevelSetting = @(
-            foreach ($SPLogLevelItem in $SPLogLevelItems)
+            foreach ($LogLevelItem in $SPLogLevelItem)
             {
                 MSFT_SPLogLevelItem {
-                    Name       = $SPLogLevelItem['Name']
-                    Area       = $SPLogLevelItem['Area']
-                    EventLevel = $SPLogLevelItem['EventLevel']
-                    TraceLevel = $SPLogLevelItem['TraceLevel']
+                    Name       = $LogLevelItem['Name']
+                    Area       = $LogLevelItem['Area']
+                    EventLevel = $LogLevelItem['EventLevel']
+                    TraceLevel = $LogLevelItem['TraceLevel']
                 }
             }
         )
