@@ -57,7 +57,7 @@ configuration SharePoint_config
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [hashtable[]]
-        $SPLogLevelItems,
+        $SPLogLevelItem,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]

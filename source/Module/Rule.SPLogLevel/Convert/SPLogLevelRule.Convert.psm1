@@ -40,7 +40,6 @@ class SPLogLevelRuleConvert : SPLogLevelRule
     #>
     SPLogLevelRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-       # $this.SetSPLogLevelItems()
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }

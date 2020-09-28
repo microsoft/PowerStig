@@ -79,6 +79,7 @@ class CipherSuitesRuleConvert : CipherSuitesRule
         }
         return $false
     }
+    
     <#
         .SYNOPSIS
             Sets the organizational value with the correct range.

@@ -21,8 +21,6 @@ function Test-OrgRuleRange
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     $string = $CheckContent
-    #$string = Get-SecurityPolicyString -CheckContent $checkContent
-    #$string = Get-TestStringTokenList -String $string
 
     # This array is joined into an or '|' before being evaluated
     $matchList = @(
