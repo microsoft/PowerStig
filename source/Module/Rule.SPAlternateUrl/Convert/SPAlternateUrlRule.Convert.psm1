@@ -66,11 +66,13 @@ class SPAlternateUrlRuleConvert : SPAlternateUrlRule
     #>
     static [bool] Match ([string] $CheckContent)
     {
-        if(($CheckContent -Match "Public URL for zone" -or $CheckContent -match "https, this is a finding.") -and $CheckContent -Match "SharePoint Server") #Same as line 103 in SslSettingsRule.Convert.psm1
+        if (($CheckContent -Match "Public URL for zone" -or $CheckContent -match "https, this is a finding.") -and $CheckContent -Match "SharePoint Server") # Same as line 103 in SslSettingsRule.Convert.psm1
         {
             return $true
         }
+
         return $false
     }
+    
     #endregion
 }

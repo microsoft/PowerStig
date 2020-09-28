@@ -40,7 +40,7 @@ class CipherSuitesRuleConvert : CipherSuitesRule
     #>
     CipherSuitesRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        $this.SetCipherSuitesOrder()	
+        $this.SetCipherSuitesOrder()
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }
@@ -77,6 +77,7 @@ class CipherSuitesRuleConvert : CipherSuitesRule
         {
             return $true
         }
+
         return $false
     }
     
@@ -125,5 +126,6 @@ class CipherSuitesRuleConvert : CipherSuitesRule
     {
         return ($CheckContent -Match ".*SSL Configuration Settings.*SSL Cipher Suite Order.*" -or $CheckContent -Match ".*SSL Cipher Suite Order.*Enabled.*this is a finding.")
     }
+    
     #endregion
 }

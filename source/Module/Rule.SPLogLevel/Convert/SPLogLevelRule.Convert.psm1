@@ -68,5 +68,6 @@ class SPLogLevelRuleConvert : SPLogLevelRule
     {
         return ($CheckContent -Match ".*event categories.*trace levels.*")
     }
+    
     #endregion
 }

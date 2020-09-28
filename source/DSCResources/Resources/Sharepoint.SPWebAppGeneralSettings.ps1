@@ -17,13 +17,14 @@ foreach ($rule in $rules)
 {
     if($rule.PropertyValue -eq 'true' -or $rule.PropertyValue -eq 'False')
     {
-        $CorrectedString = "`$$($rule.PropertyValue)"  
-        [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  $CorrectedString")
+        $correctedString = "`$$($rule.PropertyValue)"  
+        [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  $correctedString")
     }else 
     {
         [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  '$($rule.PropertyValue)'")
     }
 }
+
 [void] $configStringBuilder.AppendLine("PsDscRunAsCredential = `$SetupAccount")
 [void] $configStringBuilder.AppendLine("}")
 [scriptblock]::Create($configStringBuilder.ToString()).Invoke($rules)

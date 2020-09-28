@@ -61,6 +61,7 @@ class SPWebAppBlockedFileTypesRuleConvert : SPWebAppBlockedFileTypesRule
         {
             return $true
         }
+
         return $false
     }
 
@@ -94,18 +95,15 @@ class SPWebAppBlockedFileTypesRuleConvert : SPWebAppBlockedFileTypesRule
         .DESCRIPTION
             Is used to match this rule to the apporpriate STIG at compile time
     #>
-
-    
-#(($CheckContent -Match "Public URL for zone") -or (($CheckContent -match "https, this is a finding.") -and ($CheckContent -Match "SharePoint Server")))
-
-
     static [bool] Match ([string] $CheckContent)
     {
-        if(($CheckContent -Match "SharePoint Server") -and ($CheckContent -match ".*blocked file types.* SSP. If the SSP .* blocked file types list, this is a finding."))
+        if (($CheckContent -Match "SharePoint Server") -and ($CheckContent -match ".*blocked file types.* SSP. If the SSP .* blocked file types list, this is a finding."))
         {
             return $true
         }
+        
         return $false
     }
+
     #endregion
 }
