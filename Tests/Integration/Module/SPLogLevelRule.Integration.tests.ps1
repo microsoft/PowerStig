@@ -6,7 +6,7 @@ try
 {
     $testCases = @(
         @{
-            SPLogLevelItems = $null
+            SPLogLevelItem = $null
             DscResource     = 'SPLogLevel'
             CheckContent    = "Review the SharePoint server configuration to ensure designated organizational personnel are allowed to select which auditable events are to be audited by specific components of the system.
 
@@ -36,8 +36,8 @@ try
             It 'Should return a SPLogLevelRule Object' {
                 $rule.GetType() | Should Be 'SPLogLevelRule'
             }
-            It "Should return hash Log Level Items:'$($testCase.SPLogLevelItems)'" {
-                $rule.SPLogLevelItems | Should Be $testCase.SPLogLevelItems
+            It "Should return hash Log Level Items:'$($testCase.SPLogLevelItem)'" {
+                $rule.SPLogLevelItem | Should Be $testCase.SPLogLevelItem
             }
             It "Should set the correct DscResource" {
                 $rule.DscResource | Should Be 'SPLogLevel'
