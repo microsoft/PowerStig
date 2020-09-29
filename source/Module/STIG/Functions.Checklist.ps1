@@ -128,18 +128,6 @@ function New-StigCheckList
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [ValidateScript(
-        {
-            if (Test-Path -Path $_ -PathType Leaf)
-            {
-                return $true
-            }
-            else
-            {
-                throw "$($_) is not a valid path to a ManualChecklistEntriesFile.xml file. Provide a full valid path and filename."
-            }
-        }
-        )]
         [String]
         $ManualChecklistEntriesFile,
 
@@ -171,7 +159,14 @@ function New-StigCheckList
 
     if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))
     {
-        [xml] $manualCheckData = Get-Content -Path $ManualChecklistEntriesFile
+        if ($ManualChecklistEntriesFile -like "*.psd1")
+        {
+            [string]$manualCheckData = Get-Content -Path $ManualChecklistEntriesFile
+        }
+        else
+        {
+            [xml] $manualCheckData = Get-Content -Path $ManualChecklistEntriesFile
+        }
     }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file
@@ -356,7 +351,19 @@ function New-StigCheckList
             if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
                 $setting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $vid
-                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+                if($manualCheckData)
+                {
+                    $manualCheck = $manualCheckData | Where-Object {$_.VulID -eq $VID}
+                    if ($manualCheckData.getType().Name -eq "XmlDocument")
+                    {
+                        $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+                    }
+                    elseif ($manualCheckData.getType().Name -eq "String")
+                    {
+                        $manualCheck = $manualCheckData | Where-Object {$_.VulID -eq $VID}
+                    }
+                }
+
                 if ($setting)
                 {
                     $status = $statusMap['Open']
@@ -377,7 +384,15 @@ function New-StigCheckList
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
             {
-                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+                if ($manualCheckData.getType().Name -eq "XmlDocument")
+                {
+                    $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+                }
+                elseif ($manualCheckData.getType().Name -eq "String")
+                {
+                    $manualCheck = $manualCheckData | Where-Object {$_.VulID -eq $VID}
+                }
+
                 if ($manualCheck)
                 {
                     $status = $statusMap["$($manualCheck.Status)"]
