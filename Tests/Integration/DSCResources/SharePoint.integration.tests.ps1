@@ -35,7 +35,7 @@ $additionalTestParameterList    = @{
         )
     }
     WebAppUrl = $WebAppUrl
-    SPLogLevelItems = $SPLogLevelItem
+    SPLogLevelItem = $SPLogLevelItem
     SPAlternateUrlItem = $SPAlternateUrlItem
 }
 
