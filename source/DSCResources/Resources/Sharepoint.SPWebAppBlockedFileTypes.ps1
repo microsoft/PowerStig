@@ -8,8 +8,7 @@ foreach ($rule in $rules)
     SPWebAppBlockedFileTypes (Get-ResourceTitle -Rule $rule)
     {
         WebAppUrl               = $WebAppUrl
-        CipherSuitesOrder       = $BlockedFileTypes
-        Ensure                  = "Present"
+        Blocked                 = $BlockedFileTypes
         PsDscRunAsCredential    = $SetupAccount
     }
 }
