@@ -4,6 +4,7 @@
 
 * Update PowerSTIG to Increase Code Coverage of Unit Tests: [#737](https://github.com/microsoft/PowerStig/issues/737)
 * Update PowerSTIG with new SkipRuleSeverity Parameter to skip entire STIG Category/Severity Level(s): [711](https://github.com/microsoft/PowerStig/issues/711)
+* Update PowerSTIG to Provide Rule Data from Processed xml: [#747](https://github.com/microsoft/PowerStig/issues/747)
 
 ## [4.5.0] - 2020-09-01
 
