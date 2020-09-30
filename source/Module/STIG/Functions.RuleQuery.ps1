@@ -1,13 +1,35 @@
 using module ..\Rule\Rule.psm1
 
+<#
+    .SYNOPSIS
+        Get the STIG Rule Details for a given rule supported by PowerSTIG.
+
+    .DESCRIPTION
+        Get the STIG Rule Details for a given rule supported by PowerSTIG.
+
+    .PARAMETER VulnId
+        VulnId within PowerSTIG is typically labled as the RuleId, which
+        may not be consistent with DISA terminology.
+
+    .PARAMETER ProcessedXmlPath
+        Either the folder where the processed xml resides or a specific xml path.
+        The default is .\StigData\Processed\*.xml
+
+    .EXAMPLE
+        PS> Get-StigRuleDetail -VulnId 'V-1114', 'V-1115'
+
+        This example will return the rule details for V-1114 and V-1115 from the Windows Server
+        2012 R2 Member Server and Domain Controller STIGs.
+#>
 function Get-StigRuleDetail
 {
     [CmdletBinding()]
-    [OutputType()]
+    [OutputType([PSCustomObject])]
     param
     (
         [Parameter(Mandatory = $true)]
         [ValidateScript({$_ -match '^V-\d{1,}(|\.[a-z])$'})]
+        [Alias("RuleId")]
         [string[]]
         $VulnId,
 
@@ -25,22 +47,29 @@ function Get-StigRuleDetail
         return
     }
 
+    # hashtable to store rule property lookups when multiple rule types are specified
     $ruleTypeProperty = @{}
 
     foreach ($technologyXml in $processedXml)
     {
+        # based on the VulnId specificed use XPath to search the xml object
         $ruleIdXPath = '//Rule[@id = "{0}"]' -f $technologyXml.Pattern
         [xml] $xml = Get-Content -Path $technologyXml.Path
         $ruleData = $xml.DISASTIG.SelectNodes($ruleIdXPath)
         $ruleType = $ruleData.ParentNode.ToString()
+
+        # if the current rule type is not stored in the hashtable, run Get-UniqueRuleTypeProperty and store the results for future use
         if (-not $ruleTypeProperty.ContainsKey($ruleType))
         {
             $uniqueRuleTypeProperty = Get-UniqueRuleTypeProperty -Rule $ruleData
             $ruleTypeProperty.Add($ruleType, $uniqueRuleTypeProperty)
         }
 
+        # pulling the VulnDiscussion as the description out of the xml using a regex capture group
         $ruleDescriptionMatch = [regex]::Match($ruleData.description.Replace("`n", ' '), '<VulnDiscussion>(?<description>.*)<\/VulnDiscussion>')
         $ruleDescriptionValue = $ruleDescriptionMatch.Groups.Item('description').Value
+
+        # using PSv3 "ordered" to create an ordered hashtable for PSCustomObject property list display order
         $ruleDetail = [ordered] @{
             StigId                      = $xml.DISASTIG.stigid
             StigVersion                 = $xml.DISASTIG.fullversion
@@ -55,6 +84,7 @@ function Get-StigRuleDetail
             OrganizationValueTestString = $ruleData.OrganizationValueTestString
         }
 
+        # adding the rule specific properties to the ordered hashtable and then casting to PSCustomObject
         foreach ($value in $ruleTypeProperty[$ruleType])
         {
             $ruleDetail.Add($value, $ruleData.$value)
@@ -64,10 +94,26 @@ function Get-StigRuleDetail
     }
 }
 
+<#
+    .SYNOPSIS
+        Get the unique rule type properties given a specific rule type.
+
+    .DESCRIPTION
+        Get the unique rule type properties given a specific rule type.
+
+    .PARAMETER Rule
+        A rule by leveraging the selected XmlNodeList from a processed xml.
+
+    .EXAMPLE
+        PS> Get-UniqueRuleTypeProperty -Rule $xml.DISASTIG.RegistryRule.Rule[0]
+
+        Returns the delta properties between the RegistryRule and Base Rule class
+
+#>
 function Get-UniqueRuleTypeProperty
 {
     [CmdletBinding()]
-    [OutputType()]
+    [OutputType([string[]])]
     param
     (
         [Parameter(Mandatory = $true)]
