@@ -20,7 +20,17 @@ using module ..\..\PowerStig.psm1
         A hashtable to configure Alternate Url on Web Applications
 
         $SPAlternateUrlItem = @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Internet"; Internal = $false}
+    .PARAMETER WebAppUrlandBlockedFileTypesList
+        A hashtable of Web App Url and Blocked File Types within an array to configure Blocked File Types on any Web App that you want
 
+        $WebAppUrlandBlockedFileTypesList = @(@{"WebAppUrl" = "https://other.contoso.com";"List" = @("txt", "exe", "dll")},
+            @{"WebAppUrl" = "prod.contoso.com";"List" = @("txt", "exe", "msi")},
+            @{"WebAppUrl" = "test.contoso.com";"List" = @("txt", "exe", "msi")}
+        )
+    .PARAMETER CipherSuitesOrder
+        An array of ciphers to be applied to your server
+
+        $CipherSuitesOrder = @("TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384","TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384","TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256","TLS_DHE_RSA_WITH_AES_256_GCM_SHA384","TLS_DHE_RSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384","TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256","TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384","TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256","TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA","TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA","TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA","TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA","TLS_DHE_RSA_WITH_AES_256_CBC_SHA","TLS_DHE_RSA_WITH_AES_128_CBC_SHA","TLS_RSA_WITH_AES_256_GCM_SHA384","TLS_RSA_WITH_AES_128_GCM_SHA256","TLS_RSA_WITH_AES_256_CBC_SHA256","TLS_RSA_WITH_AES_128_CBC_SHA256","TLS_RSA_WITH_AES_256_CBC_SHA","TLS_RSA_WITH_AES_128_CBC_SHA","TLS_RSA_WITH_3DES_EDE_CBC_SHA","TLS_DHE_DSS_WITH_AES_256_CBC_SHA256","TLS_DHE_DSS_WITH_AES_128_CBC_SHA256","TLS_DHE_DSS_WITH_AES_256_CBC_SHA","TLS_DHE_DSS_WITH_AES_128_CBC_SHA","TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA","TLS_RSA_WITH_RC4_128_SHA","TLS_RSA_WITH_RC4_128_MD5","TLS_RSA_WITH_NULL_SHA256","TLS_RSA_WITH_NULL_SHA")
     .PARAMETER StigVersion
         The version of the SharePoint STIG to apply and/or monitor
     .PARAMETER Exception
@@ -65,6 +75,16 @@ configuration SharePoint
         [ValidateNotNullOrEmpty()]
         [hashtable[]]
         $SPLogLevelItem,
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        [hashtable[]]
+        $WebAppUrlandBlockedFileTypesList,
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        [array]
+        $CipherSuitesOrder,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]

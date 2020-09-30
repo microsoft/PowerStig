@@ -23,6 +23,11 @@ $SPLogLevelItem = @(
     @{"Area" = "Search";"Name" = "Content Processing";"TraceLevel" = "Verbose";"EventLevel" = "Error"}
 )
 
+$WebAppUrlandBlockedFileTypesList = @(@{"WebAppUrl" = "https://other.contoso.com";"List" = @("txt", "exe", "dll")},
+            @{"WebAppUrl" = "prod.contoso.com";"List" = @("txt", "exe", "msi")},
+            @{"WebAppUrl" = "test.contoso.com";"List" = @("txt", "exe", "msi")}
+        )
+
 $additionalTestParameterList    = @{
     SetupAccount = $SetupAccount
     ConfigurationData           = @{
@@ -37,6 +42,7 @@ $additionalTestParameterList    = @{
     WebAppUrl = $WebAppUrl
     SPLogLevelItem = $SPLogLevelItem
     SPAlternateUrlItem = $SPAlternateUrlItem
+    WebAppUrlandBlockedFileTypesList = $WebAppUrlandBlockedFileTypesList
 }
 
 foreach ($stig in $stigList)

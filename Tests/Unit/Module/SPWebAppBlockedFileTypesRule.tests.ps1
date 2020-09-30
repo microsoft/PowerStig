@@ -8,11 +8,8 @@ try
         #region Test Setup
         $testRuleList = @(
             @{
-                BlockedFileTypes = $null
-                WebAppUrl = $null
+                WebAppUrlandBlockedFileTypesList = $null
                 DscResource     = 'SPWebAppBlockedFileTypes'
-                OrganizationValueRequired = $true
-                OrganizationValueTestString = "'{0}' 'matches the `"blacklist`" document in the application's SSP'"
                 CheckContent    = "Review the SharePoint server configuration to ensure non-privileged users are prevented from circumventing malicious code protection capabilities.
     
                 Confirm that the list of blocked file types configured in Central Administration matches the `"blacklist`" document in the application's SSP. See TechNet for default file types that are blocked: http://technet.microsoft.com/en-us/library/cc262496.aspx

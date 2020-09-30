@@ -40,14 +40,14 @@ class CipherSuitesRuleConvert : CipherSuitesRule
     #>
     CipherSuitesRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        $this.SetCipherSuitesOrder()
+       # $this.SetCipherSuitesOrder()
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }
 
     #region Methods
 
-        <#
+    <#
         .SYNOPSIS
             Sets the Security Option name that was extracted from the xccdf.
         .DESCRIPTION
