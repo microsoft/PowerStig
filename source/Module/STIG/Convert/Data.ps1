@@ -49,5 +49,10 @@ data dscResourceModule
         VsphereSnmpAgentRule                 = Vmware.vSphereDSC
         VsphereNtpSettingsRule               = Vmware.vSphereDSC
         VsphereVssSecurityRule               = Vmware.vSphereDSC
+        SPWebAppGeneralSettingsRule          = SharePointDsc
+        SPWebAppBlockedFileTypesRule         = SharePointDsc
+        SPLogLevelRule                       = SharePointDsc
+        SPAlternateUrlRule                   = SharePointDsc
+        CipherSuitesRule                     = sChannelDsc
 '@
 }
