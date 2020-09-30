@@ -7,7 +7,8 @@ foreach ($rule in $rules)
 {
     foreach ($WebApp in $WebAppUrlandBlockedFileTypesList)
     {
-        SPWebAppBlockedFileTypes (Get-ResourceTitle -Rule $rule)
+        $resourceTitle = (Get-ResourceTitle -Rule $rule) + "::[" + "$($WebApp['WebAppUrl'])]"
+        SPWebAppBlockedFileTypes $resourceTitle
         {
             WebAppUrl               = $WebApp['WebAppUrl']
             Blocked                 = $WebApp['List']
