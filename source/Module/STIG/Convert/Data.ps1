@@ -58,5 +58,10 @@ data dscResourceModule
         SqlLoginRule                         = SqlServerDsc
         SqlProtocolRule                      = SqlServerDsc
         SqlDatabaseRule                      = SqlServerDsc
+        SPWebAppGeneralSettingsRule          = SharePointDsc
+        SPWebAppBlockedFileTypesRule         = SharePointDsc
+        SPLogLevelRule                       = SharePointDsc
+        SPAlternateUrlRule                   = SharePointDsc
+        CipherSuitesRule                     = sChannelDsc
 '@
 }

@@ -49,9 +49,11 @@ foreach ($stig in $stigList)
     $skipRuleType = "SPWebAppGeneralSettingsRule"
     $expectedSkipRuleTypeCount = $powerstigXml.SPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
 
-    $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SPWebAppGeneralSettingsRule.Rule.id -Count 4
-    $skipRuleTypeMultiple = 'SPWebAppGeneralSettingsRule'
-    $expectedSkipRuleTypeMultipleCount = $powerstigXml.SPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
+    $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SPWebAppGeneralSettingsRule.Rule.id -Count 2
+    $skipRuleTypeMultiple = @('SPWebAppGeneralSettingsRule','SPWebAppBlockedFileTypesRule')
+    $expectedSkipRuleTypeMultipleCount = $powerstigXml.SPWebAppGeneralSettingsRule.Rule.Count + 
+                                          $powerstigXml.SPWebAppBlockedFileTypesRule.Rule.Count + 
+                                          $blankSkipRuleId.Count
 
     $singleSkipRuleSeverity = 'CAT_I'
     $multipleSkipRuleSeverity = 'CAT_I', 'CAT_II'

@@ -1,5 +1,5 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="9/29/2020">
-  <CipherSuitesRule dscresourcemodule="">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="9/30/2020">
+  <CipherSuitesRule dscresourcemodule="sChannelDsc">
     <Rule id="V-59965" severity="high" conversionstatus="pass" title="SRG-APP-000196" dscresource="CipherSuites">
       <CipherSuitesOrder />
       <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS, and versions of SharePoint will have different suites available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -664,7 +664,7 @@ This policy limits the Farm Account privileges in AD.  However, default permissi
 If the farm service account is a member of any other groups than WSS_RESTRICTED_WPG, WSS_ADMIN_WPG, and WSS_WPG on the local server where SharePoint is installed, this is a finding.</RawString>
     </Rule>
   </ManualRule>
-  <SPAlternateUrlRule dscresourcemodule="">
+  <SPAlternateUrlRule dscresourcemodule="SharePointDsc">
     <Rule id="V-59937.a" severity="high" conversionstatus="pass" title="SRG-APP-000014" dscresource="SPAlternateUrl">
       <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
 
@@ -759,7 +759,7 @@ If SharePoint communications between all components and clients are protected by
       <SPAlternateUrlItem />
     </Rule>
   </SPAlternateUrlRule>
-  <SPLogLevelRule dscresourcemodule="">
+  <SPLogLevelRule dscresourcemodule="SharePointDsc">
     <Rule id="V-59953" severity="medium" conversionstatus="pass" title="SRG-APP-000090" dscresource="SPLogLevel">
       <Description>&lt;VulnDiscussion&gt;Audit records can be generated from various components within the information system, such as network interfaces, hard disks, modems, etc. From an application perspective, certain specific application functionalities may be audited as well.
 
@@ -786,7 +786,7 @@ If the selected event categories/trace levels are inconsistent with those define
       <SPLogLevelItem />
     </Rule>
   </SPLogLevelRule>
-  <SPWebAppBlockedFileTypesRule dscresourcemodule="">
+  <SPWebAppBlockedFileTypesRule dscresourcemodule="SharePointDsc">
     <Rule id="V-59987" severity="high" conversionstatus="pass" title="SRG-APP-000273" dscresource="SPWebAppBlockedFileTypes">
       <BlockedFileTypes />
       <Description>&lt;VulnDiscussion&gt;Malicious code protection software must be protected to prevent a non-privileged user or malicious piece of software from disabling the protection mechanism. A common tactic of malware is to identify the type of malicious code protection software running on the system and deactivate it. Malicious code includes viruses, worms, Trojan horses, and Spyware.
@@ -814,7 +814,7 @@ Repeat check for each web application.</RawString>
       <WebAppUrl />
     </Rule>
   </SPWebAppBlockedFileTypesRule>
-  <SPWebAppGeneralSettingsRule dscresourcemodule="">
+  <SPWebAppGeneralSettingsRule dscresourcemodule="SharePointDsc">
     <Rule id="V-59919" severity="medium" conversionstatus="pass" title="SRG-APP-000003" dscresource="SharePointSPWebAppGeneralSettings">
       <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their application session prior to vacating the vicinity, applications need to be able to identify when a user's application session has idled and take action to initiate the session lock.
 
