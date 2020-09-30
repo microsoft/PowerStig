@@ -62,7 +62,17 @@ configuration SharePoint_config
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [hashtable]
-        $SPAlternateUrlItem
+        $SPAlternateUrlItem,
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        [hashtable[]]
+        $WebAppUrlandBlockedFileTypesList,
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        [array]
+        $CipherSuitesOrder
     )
 
     Import-DscResource -ModuleName PowerStig

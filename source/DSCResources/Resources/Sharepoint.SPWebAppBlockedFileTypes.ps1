@@ -5,10 +5,13 @@ $rules = Select-Rule -Type SPWebAppBlockedFileTypesRule -RuleList $stig.RuleList
 
 foreach ($rule in $rules)
 {
-    SPWebAppBlockedFileTypes (Get-ResourceTitle -Rule $rule)
+    foreach ($WebApp in $WebAppUrlandBlockedFileTypesList)
     {
-        WebAppUrl               = $WebAppUrl
-        Blocked                 = $BlockedFileTypes
-        PsDscRunAsCredential    = $SetupAccount
+        SPWebAppBlockedFileTypes (Get-ResourceTitle -Rule $rule)
+        {
+            WebAppUrl               = $WebApp['WebAppUrl']
+            Blocked                 = $WebApp['List']
+            PsDscRunAsCredential    = $SetupAccount
+        }
     }
 }

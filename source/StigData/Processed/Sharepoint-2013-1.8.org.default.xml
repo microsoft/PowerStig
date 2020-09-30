@@ -5,17 +5,4 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="1.8">
-  <!-- Ensure ''V-59965'' 'must be an array of cipher suites that are not DES or RC4'-->
-  <OrganizationalSetting id="V-59965" CipherSuitesOrder="" />
-  <!-- Ensure ''V-59967'' 'must be an array of cipher suites that are not DES or RC4'-->
-  <OrganizationalSetting id="V-59967" CipherSuitesOrder="" />
-  <!-- Ensure ''V-59969'' 'must be an array of cipher suites that are not DES or RC4'-->
-  <OrganizationalSetting id="V-59969" CipherSuitesOrder="" />
-  <!-- Ensure ''V-59971'' 'must be an array of cipher suites that are not DES or RC4'-->
-  <OrganizationalSetting id="V-59971" CipherSuitesOrder="" />
-  <!-- Ensure ''V-59987'' 'matches the "blacklist" document in the application's SSP'-->
-  <OrganizationalSetting id="V-59987" BlockedFileTypes="" WebAppUrl="" />
-  <!-- Ensure ''V-59989'' 'must be an array of cipher suites that are not DES or RC4'-->
-  <OrganizationalSetting id="V-59989" CipherSuitesOrder="" />
-</OrganizationalSettings>
+<OrganizationalSettings fullversion="1.8" />

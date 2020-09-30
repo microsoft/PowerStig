@@ -6,11 +6,8 @@ try
 {
     $testCases = @(
         @{
-            BlockedFileTypes = $null
-            WebAppUrl = $null
+            $WebAppUrlandBlockedFileTypesList = $null
             DscResource     = 'SharePointDsc'
-            OrganizationValueRequired = $true
-            OrganizationValueTestString = "'{0}' 'matches the `"blacklist`" document in the application's SSP'"
             CheckContent    = "Review the SharePoint server configuration to ensure non-privileged users are prevented from circumventing malicious code protection capabilities.
 
             Confirm that the list of blocked file types configured in Central Administration matches the `"blacklist`" document in the application's SSP. See TechNet for default file types that are blocked: http://technet.microsoft.com/en-us/library/cc262496.aspx
@@ -47,12 +44,6 @@ try
             }
             It "Should return Web App Url:'$($testCase.WebAppUrl)'" {
                 $rule.WebAppUrl | Should Be $testCase.WebAppUrl
-            }
-            It 'Should not have OrganizationValueRequired set' {
-                $rule.OrganizationValueRequired | Should Be $testCase.organizationValueRequired
-            }
-            It 'Should have the correct test string' {
-                $rule.OrganizationValueTestString | Should Be $testCase.organizationValueTestString
             }
             It "Should set the correct DscResource" {
                 $rule.DscResource | Should Be 'SPWebAppBlockedFileTypes'

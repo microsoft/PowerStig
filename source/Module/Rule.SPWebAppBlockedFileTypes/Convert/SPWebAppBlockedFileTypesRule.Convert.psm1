@@ -40,13 +40,13 @@ class SPWebAppBlockedFileTypesRuleConvert : SPWebAppBlockedFileTypesRule
     #>
     SPWebAppBlockedFileTypesRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        $this.SetSPWebAppBlockedFileTypes()
+    #    $this.SetSPWebAppBlockedFileTypes()
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }
 
     #region Methods
-
+<#
     [void] SetSPWebAppBlockedFileTypes()
     {
         if ($this.OrgRuleContainsRange())
@@ -76,7 +76,7 @@ class SPWebAppBlockedFileTypesRuleConvert : SPWebAppBlockedFileTypesRule
             $this.set_OrganizationValueTestString($thisValueTestString)
         }
     }
-
+#>
     hidden [void] SetDscResource ()
     {
         if ($null -eq $this.DuplicateOf)

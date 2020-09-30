@@ -13,8 +13,9 @@ using module .\..\Rule\Rule.psm1
 #>
 class SPWebAppBlockedFileTypesRule : Rule
 {
-    [string] $WebAppUrl
-    [array] $BlockedFileTypes
+  #  [string] $WebAppUrl
+ #   [array] $BlockedFileTypes
+    [hashtable] $WebAppUrlandBlockedFileTypesList
 
     <#
         .SYNOPSIS

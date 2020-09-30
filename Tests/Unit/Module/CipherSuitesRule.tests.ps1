@@ -10,8 +10,6 @@ try
             @{
                 CipherSuitesOrder = $null
                 DscResource     = 'CipherSuites'
-                OrganizationValueRequired = $true
-                OrganizationValueTestString = "'{0}' 'must be an array of cipher suites that are not DES or RC4'"
                 CheckContent    = 'Review the SharePoint server configuration to ensure mechanisms are used for authentication to a cryptographic module that meet the requirements of applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication.
     
                 Open MMC.
@@ -37,8 +35,6 @@ try
             @{
                 CipherSuitesOrder = $null
                 DscResource     = 'CipherSuites'
-                OrganizationValueRequired = $true
-                OrganizationValueTestString = "'{0}' 'must be an array of cipher suites that are not DES or RC4'"
                 CheckContent    = 'Review the SharePoint server configuration to ensure FIPS-validated cryptography is employed to protect unclassified information.
     
                 Open MMC.
@@ -64,8 +60,6 @@ try
             @{
                 CipherSuitesOrder = $null
                 DscResource     = 'CipherSuites'
-                OrganizationValueRequired = $true
-                OrganizationValueTestString = "'{0}' 'must be an array of cipher suites that are not DES or RC4'"
                 CheckContent    = 'Review the SharePoint server configuration to ensure FIPS-validated cryptography is employed to protect unclassified information when such information must be separated from individuals who have the necessary clearances yet lack the necessary access approvals.
     
                 Open MMC.
@@ -91,8 +85,6 @@ try
             @{
                 CipherSuitesOrder = $null
                 DscResource     = 'CipherSuites'
-                OrganizationValueRequired = $true
-                OrganizationValueTestString = "'{0}' 'must be an array of cipher suites that are not DES or RC4'"
                 CheckContent    = 'Review the SharePoint server configuration to ensure required cryptographic protections using cryptographic modules complying with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance are implemented.
     
                 Open MMC.
@@ -118,8 +110,6 @@ try
             @{
                 CipherSuitesOrder = $null
                 DscResource     = 'CipherSuites'
-                OrganizationValueRequired = $true
-                OrganizationValueTestString = "'{0}' 'must be an array of cipher suites that are not DES or RC4'"
                 CheckContent    = 'Review the SharePoint server configuration to ensure NSA-approved cryptography is employed to protect classified information.
     
                 Open MMC.
