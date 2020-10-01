@@ -8,7 +8,7 @@ try
         #region Test Setup
         $testRuleList = @(
             @{
-                SPLogLevelItems = $null
+                SPLogLevelItem = $null
                 OrganizationValueRequired = $false
                 CheckContent = "Review the SharePoint server configuration to ensure designated organizational personnel are allowed to select which auditable events are to be audited by specific components of the system.
 

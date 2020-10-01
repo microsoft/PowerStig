@@ -6,8 +6,7 @@ try
 {
     $testCases = @(
         @{
-            $WebAppUrlandBlockedFileTypesList = $null
-            DscResource     = 'SharePointDsc'
+            WebAppUrlandBlockedFileTypesList = $null
             CheckContent    = "Review the SharePoint server configuration to ensure non-privileged users are prevented from circumventing malicious code protection capabilities.
 
             Confirm that the list of blocked file types configured in Central Administration matches the `"blacklist`" document in the application's SSP. See TechNet for default file types that are blocked: http://technet.microsoft.com/en-us/library/cc262496.aspx
@@ -39,11 +38,8 @@ try
                 $rule.GetType() | Should Be 'SPWebAppBlockedFileTypesRule'
             }
 
-            It "Should return Blocked File Types:'$($testCase.BlockedFileTypes)'" {
-                $rule.BlockedFileTypes | Should Be $testCase.BlockedFileTypes
-            }
-            It "Should return Web App Url:'$($testCase.WebAppUrl)'" {
-                $rule.WebAppUrl | Should Be $testCase.WebAppUrl
+            It "Should return hash of Blocked File Types:'$($testCase.WebAppUrlandBlockedFileTypesList)'" {
+                $rule.WebAppUrlandBlockedFileTypesList | Should Be $testCase.WebAppUrlandBlockedFileTypesList
             }
             It "Should set the correct DscResource" {
                 $rule.DscResource | Should Be 'SPWebAppBlockedFileTypes'
