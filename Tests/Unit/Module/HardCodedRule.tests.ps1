@@ -196,6 +196,13 @@ try
                 DscResource  = 'xWinEventLog'
                 IsEnabled    = 'True'
                 LogName      = 'Microsoft-Windows-DnsServer/Analytical'
+            },
+            @{
+                RuleType     = 'WindowsFeatureRule'
+                CheckContent = "HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Ensure = `$null; Name = 'FeatureName'}"
+                DscResource  = 'WindowsFeature'
+                Ensure       = ''
+                Name         = "FeatureName"
             }
         )
 

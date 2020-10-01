@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Increase Code Coverage of Unit Tests: [#737](https://github.com/microsoft/PowerStig/issues/737)
 * Update PowerSTIG with new SkipRuleSeverity Parameter to skip entire STIG Category/Severity Level(s): [711](https://github.com/microsoft/PowerStig/issues/711)
 * Update PowerSTIG to successfully parse/apply SharePoint 2013 SPAlternateUrl, CipherSuite, SPLogLevel, SPWebAppBlockedFileTypes, and SPWebAppGeneralSettings: [744](https://github.com/microsoft/PowerStig/issues/744)
 

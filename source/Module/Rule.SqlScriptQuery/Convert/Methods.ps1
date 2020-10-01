@@ -1144,7 +1144,7 @@ function Get-ShutdownOnErrorSetScript
         $CheckContent
     )
 
-    $setScript += "DECLARE @new_trace_id INT; "
+    $setScript = "DECLARE @new_trace_id INT; "
     $setScript += "DECLARE @traceid INT; "
     $setScript += "SET @traceId  = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
     $setScript += "EXECUTE master.dbo.sp_trace_create "
@@ -1754,7 +1754,7 @@ function Get-SqlRuleType
 
 <#
     .SYNOPSIS
-        Determines if a SQL rule requires a variable to 
+        Determines if a SQL rule requires a variable to
 #>
 function Test-VariableRequired
 {
