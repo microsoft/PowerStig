@@ -16,12 +16,12 @@ using module ..\Rule\Rule.psm1
         The default is .\StigData\Processed\*.xml
 
     .EXAMPLE
-        PS> Get-StigRuleDetail -VulnId 'V-1114', 'V-1115'
+        PS> Get-StigRule -VulnId 'V-1114', 'V-1115'
 
         This example will return the rule details for V-1114 and V-1115 from the Windows Server
         2012 R2 Member Server and Domain Controller STIGs.
 #>
-function Get-StigRuleDetail
+function Get-StigRule
 {
     [CmdletBinding()]
     [OutputType([PSCustomObject])]
@@ -43,7 +43,7 @@ function Get-StigRuleDetail
 
     if ($null -eq $processedXml)
     {
-        Write-Warning -Message 'The VulnId(s) specified were not found in the given path'
+        Write-Warning -Message "The VulnId(s) specified were not found in $ProcessedXmlPath"
         return
     }
 
@@ -117,13 +117,57 @@ function Get-UniqueRuleTypeProperty
     param
     (
         [Parameter(Mandatory = $true)]
-        [System.Xml.XmlNodeList]
+        [Object]
         $Rule
     )
 
     $blankRule = New-Object -TypeName Rule
     $commonProperties = ($blankRule | Get-Member -MemberType Property).Name
-    $ruleProperty = ($Rule | Get-Member -MemberType Property).Name
+    $ruleProperty = ($Rule | Get-Member -MemberType '*Property').Name
     $compareObjResult = Compare-Object -ReferenceObject $ruleProperty -DifferenceObject $commonProperties
     return $compareObjResult.InputObject
+}
+
+function Get-StigRuleExceptionString
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [PSObject[]]
+        $Rule,
+
+        [Parameter()]
+        [switch]
+        $Formatted
+    )
+
+    begin
+    {
+        $ruleTypeProperty = @{}
+    }
+
+    process
+    {
+        foreach ($ruleData in $Rule)
+        {
+            if (-not $ruleTypeProperty.ContainsKey($ruleData.RuleType))
+            {
+                $uniqueRuleTypeProperty = Get-UniqueRuleTypeProperty -Rule $ruleData
+                $ruleTypeProperty.Add($ruleData.RuleType, $uniqueRuleTypeProperty)
+            }
+
+            $ruleDetail = [ordered] @{
+                RuleType = $ruleData.RuleType
+            }
+
+            foreach ($value in $ruleTypeProperty[$ruleData.RuleType])
+            {
+                $ruleDetail.Add($value, $ruleData.$value)
+            }
+
+
+        }
+    }
 }

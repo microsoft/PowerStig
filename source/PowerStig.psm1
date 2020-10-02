@@ -19,5 +19,6 @@ Export-ModuleMember -Function @(
     'Get-StigVersionNumber',
     'Get-PowerStigFilelist',
     'Split-BenchmarkId',
-    'Get-StigRuleDetail'
+    'Get-StigRule',
+    'Get-StigRuleExceptionString'
 )
