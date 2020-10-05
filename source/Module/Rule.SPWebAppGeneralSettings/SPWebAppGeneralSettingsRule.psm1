@@ -15,8 +15,6 @@ class SPWebAppGeneralSettingsRule : Rule
 {
     [object] $PropertyName
     [object] $PropertyValue
-    [object] $Variable
-    [object] $VariableValue
 
     <#
         .SYNOPSIS

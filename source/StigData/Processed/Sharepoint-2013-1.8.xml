@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="9/30/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="10/5/2020">
   <CipherSuitesRule dscresourcemodule="sChannelDsc">
     <Rule id="V-59965" severity="high" conversionstatus="pass" title="SRG-APP-000196" dscresource="CipherSuites">
       <CipherSuitesOrder />
@@ -837,8 +837,6 @@ Verify that each web application meets this requirement.
 - Verify that the Security Validation is "On" and set to expire after 15 minutes or less. 
 
 If Security Validation is "Off" or if the default time-out period is not set to 15 minutes or less for any of the web applications, this is a finding.</RawString>
-      <Variable />
-      <VariableValue />
     </Rule>
     <Rule id="V-59957" severity="high" conversionstatus="pass" title="SRG-APP-000112" dscresource="SharePointSPWebAppGeneralSettings">
       <Description>&lt;VulnDiscussion&gt;Decisions regarding the utilization of mobile code within organizational information systems need to include evaluations that help determine the potential for the code to cause damage to the system if used maliciously.
@@ -869,8 +867,6 @@ For each Web Application in the Farm:
 -Under Browser File Handling, verify that "Strict" is selected.
 
 If "Strict" is not selected, this is a finding.</RawString>
-      <Variable />
-      <VariableValue />
     </Rule>
     <Rule id="V-59977" severity="high" conversionstatus="pass" title="SRG-APP-000220" dscresource="SharePointSPWebAppGeneralSettings">
       <Description>&lt;VulnDiscussion&gt;This requirement focuses on communications protection at the application session, versus network packet level.
@@ -896,8 +892,6 @@ Repeat the following steps for each web application:
 -In the "Web Page Security Validation" section, verify that "Security Validation is:" is set to "On" and that the "Security Validation Expires:" setting is set to 15 minutes.
 
 Otherwise, this is a finding.</RawString>
-      <Variable />
-      <VariableValue />
     </Rule>
     <Rule id="V-59991" severity="medium" conversionstatus="pass" title="SRG-APP-000208" dscresource="SharePointSPWebAppGeneralSettings">
       <Description>&lt;VulnDiscussion&gt;Web Part galleries are groupings of Web Parts. There are four Web Part galleries: Closed Web Parts, Site Name Gallery, Server Gallery, and Online Gallery. The Online Gallery is a collection of Microsoft MSNBC Web Parts located on the Internet. Allowing users to access the Online Web Part Gallery causes a significant performance hit on the server, due to the server attempting to connect to the MSNBC online gallery. This could result in a Denial-of-Service. The Online Gallery could contain Web Parts from unknown third parties, which could increase the risk of a malicious code execution attack. Preventing users from accessing the Online Web Part Gallery decreases the system's attack surface.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -920,8 +914,6 @@ For each web application in the web application section, perform the following:
 -Verify "Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance" option in the Online Web Part Gallery section is selected.
 
 If the "Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance" option in the Online Web Part Gallery section is not checked, this is a finding.</RawString>
-      <Variable />
-      <VariableValue />
     </Rule>
   </SPWebAppGeneralSettingsRule>
   <SslSettingsRule dscresourcemodule="xWebAdministration">

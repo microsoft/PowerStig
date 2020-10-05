@@ -40,43 +40,12 @@ class SPWebAppBlockedFileTypesRuleConvert : SPWebAppBlockedFileTypesRule
     #>
     SPWebAppBlockedFileTypesRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-    #    $this.SetSPWebAppBlockedFileTypes()
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }
 
     #region Methods
-<#
-    [void] SetSPWebAppBlockedFileTypes()
-    {
-        if ($this.OrgRuleContainsRange())
-        {
-            $this.SetOrganizationValue()
-        }
-    }
-    
-    [bool] OrgRuleContainsRange ()
-    {
-        if (Test-OrgRuleRange -CheckContent $this.SplitCheckContent)
-        {
-            return $true
-        }
 
-        return $false
-    }
-
-    [void] SetOrganizationValue ()
-    {
-        $this.set_OrganizationValueRequired($true)
-
-        $thisValueTestString = "'{0}' 'matches the `"blacklist`" document in the application's SSP'"
-
-        if (-not $this.SetStatus($thisValueTestString))
-        {
-            $this.set_OrganizationValueTestString($thisValueTestString)
-        }
-    }
-#>
     hidden [void] SetDscResource ()
     {
         if ($null -eq $this.DuplicateOf)
