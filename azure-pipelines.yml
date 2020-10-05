@@ -153,6 +153,7 @@ stages:
       - job: Code_Coverage
         displayName: 'Publish Code Coverage'
         dependsOn: Test_Unit
+        condition: succeededOrFailed()
         pool:
           vmImage: 'ubuntu 16.04'
         timeoutInMinutes: 0
