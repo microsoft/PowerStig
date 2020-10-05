@@ -106,6 +106,7 @@ stages:
 
           - task: PublishBuildArtifacts@1
             displayName: 'Publish Test Artifact'
+            condition: succeededOrFailed()
             inputs:
               pathToPublish: 'output/testResults/'
               artifactName: 'testResults'
