@@ -96,6 +96,7 @@ function Get-StigRule
         {
             $ruleDetail = [ordered] @{
                 RuleType = $ruleType
+                VulnId   = $ruleData.id
             }
         }
 
