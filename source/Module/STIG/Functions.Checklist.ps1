@@ -136,7 +136,7 @@ function New-StigCheckList
             }
             else
             {
-                throw "$($_) is not a valid path to a ManualChecklistEntriesFile.xml file. Provide a full valid path and filename."
+                throw "$($_) is not a valid path to a Manual Checklist Entries File file. Provide a full valid path and filename."
             }
         }
         )]
@@ -171,7 +171,24 @@ function New-StigCheckList
 
     if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))
     {
-        [xml] $manualCheckData = Get-Content -Path $ManualChecklistEntriesFile
+        <#
+            ******* TO-DO ******* need function to detect correct STIG ID for psd1 since it is used in the xml version
+        #>
+        $manualCheckListPath = Get-Item -Path $ManualChecklistEntriesFile
+        switch ($manualCheckListPath.Extension)
+        {
+            '.xml'
+            {
+                $manualCheckData = ConvertTo-ManualCheckListHashTable -Path $ManualChecklistEntriesFile
+                break
+            }
+            '.psd1'
+            {
+                $manualCheckData = Import-PowerShellDataFile -Path $ManualChecklistEntriesFile
+                break
+            }
+        }
+
     }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file
@@ -356,6 +373,7 @@ function New-StigCheckList
             if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
                 $setting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $vid
+                # **** logic conversion here, to reference hashtable structure rather than xml structure
                 $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($setting)
                 {
@@ -377,6 +395,7 @@ function New-StigCheckList
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
             {
+                # **** logic conversion here, to reference hashtable structure rather than xml structure
                 $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($manualCheck)
                 {
@@ -793,4 +812,30 @@ function ConvertTo-SafeXml
 
     $escapedXml = [System.Security.SecurityElement]::Escape($UnescapedXmlString)
     return $escapedXml
+}
+
+function ConvertTo-ManualCheckListHashTable
+{
+    [OutputType([hashtable[]])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+
+    # Import ManualCheckList xml contents to convert to hashtable to match psd1 back compat
+    [xml] $xmlToConvert = Get-Content @PSBoundParameters
+
+    foreach ($stigRuleData in $xmlToConvert.stigManualChecklistData.stigRuleData)
+    {
+        $stigRuleManualCheck = @{}
+        $stigRuleDataPropertyNames = (Get-Member -InputObject $stigRuleData -MemberType 'Property').Name
+        foreach ($stigRuleDataPropertyName in $stigRuleDataPropertyNames)
+        {
+            $stigRuleManualCheck.Add($stigRuleDataPropertyName, $stigRuleData.$stigRuleDataPropertyName)
+        }
+        $stigRuleManualCheck
+    }
 }
