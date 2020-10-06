@@ -27,7 +27,7 @@ function Get-StigRule
     [OutputType([PSCustomObject])]
     param
     (
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true, Position = 0)]
         [ValidateScript({$_ -match '^V-\d{1,}(|\.[a-z])$'})]
         [Alias("RuleId")]
         [string[]]
@@ -36,7 +36,11 @@ function Get-StigRule
         [Parameter()]
         [ValidateScript({Test-Path -Path $_})]
         [string]
-        $ProcessedXmlPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\StigData\Processed\*.xml')
+        $ProcessedXmlPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\StigData\Processed\*.xml'),
+
+        [Parameter()]
+        [switch]
+        $Detailed
     )
 
     $processedXml = Select-String -Path $ProcessedXmlPath -Pattern $VulnId -Exclude '*.org.default.xml' | Sort-Object -Property Pattern
@@ -67,21 +71,32 @@ function Get-StigRule
 
         # pulling the VulnDiscussion as the description out of the xml using a regex capture group
         $ruleDescriptionMatch = [regex]::Match($ruleData.description.Replace("`n", ' '), '<VulnDiscussion>(?<description>.*)<\/VulnDiscussion>')
-        $ruleDescriptionValue = $ruleDescriptionMatch.Groups.Item('description').Value
+
+        # address edge case where an out of place OS Control charactor [char]157 in the STIG's description, i.e. Adobe Reader / V-64919, removing it
+        $ruleDescriptionValue = $ruleDescriptionMatch.Groups.Item('description').Value -replace '\u009D'
 
         # using PSv3 "ordered" to create an ordered hashtable for PSCustomObject property list display order
-        $ruleDetail = [ordered] @{
-            StigId                      = $xml.DISASTIG.stigid
-            StigVersion                 = $xml.DISASTIG.fullversion
-            VulnId                      = $ruleData.id
-            Severity                    = $ruleData.severity
-            Title                       = $ruleData.title
-            Description                 = $ruleDescriptionValue
-            RuleType                    = $ruleType
-            DscResource                 = $ruleData.dscresource
-            DuplicateOf                 = $ruleData.DuplicateOf
-            OrganizationValueRequired   = $ruleData.OrganizationValueRequired
-            OrganizationValueTestString = $ruleData.OrganizationValueTestString
+        if ($PSBoundParameters.ContainsKey('Detailed'))
+        {
+            $ruleDetail = [ordered] @{
+                StigId                      = $xml.DISASTIG.stigid
+                StigVersion                 = $xml.DISASTIG.fullversion
+                VulnId                      = $ruleData.id
+                Severity                    = $ruleData.severity
+                Title                       = $ruleData.title
+                Description                 = $ruleDescriptionValue
+                RuleType                    = $ruleType
+                DscResource                 = $ruleData.dscresource
+                DuplicateOf                 = $ruleData.DuplicateOf
+                OrganizationValueRequired   = $ruleData.OrganizationValueRequired
+                OrganizationValueTestString = $ruleData.OrganizationValueTestString
+            }
+        }
+        else
+        {
+            $ruleDetail = [ordered] @{
+                RuleType = $ruleType
+            }
         }
 
         # adding the rule specific properties to the ordered hashtable and then casting to PSCustomObject
@@ -123,7 +138,7 @@ function Get-UniqueRuleTypeProperty
 
     $blankRule = New-Object -TypeName Rule
     $commonProperties = ($blankRule | Get-Member -MemberType Property).Name
-    $ruleProperty = ($Rule | Get-Member -MemberType '*Property').Name
+    $ruleProperty = ($Rule | Get-Member -MemberType 'NoteProperty', 'Property').Name
     $compareObjResult = Compare-Object -ReferenceObject $ruleProperty -DifferenceObject $commonProperties
     return $compareObjResult.InputObject
 }
