@@ -862,6 +862,8 @@ function ConvertTo-ManualCheckListHashTable
                     $stigFileName = Get-StigXccdfFileName -VulnId $stigRuleManualCheck.VulID -XccdfPath $XccdfPath
                     $stigRuleManualCheck.Add('STIG', $stigFileName)
                     $stigRuleManualCheck.Add('Details', $stigRuleManualCheck.Comments)
+                    $stigRuleManualCheck.Add('ID', $stigRuleManualCheck['VulId'])
+                    $stigRuleManualCheck.Remove('VulId')
                     $stigRuleManualCheck
                 }
             }
