@@ -136,7 +136,7 @@ function New-StigCheckList
             }
             else
             {
-                throw "$($_) is not a valid path to a ManualChecklistEntriesFile.xml file. Provide a full valid path and filename."
+                throw "$($_) is not a valid path to a Manual Checklist Entries File file. Provide a full valid path and filename."
             }
         }
         )]
@@ -171,7 +171,7 @@ function New-StigCheckList
 
     if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))
     {
-        [xml] $manualCheckData = Get-Content -Path $ManualChecklistEntriesFile
+        $manualCheckData = ConvertTo-ManualCheckListHashTable -Path $ManualChecklistEntriesFile
     }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file
@@ -356,7 +356,7 @@ function New-StigCheckList
             if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
                 $setting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $vid
-                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+                $manualCheck = $manualCheckData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($setting)
                 {
                     $status = $statusMap['Open']
@@ -377,7 +377,7 @@ function New-StigCheckList
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
             {
-                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+                $manualCheck = $manualCheckData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($manualCheck)
                 {
                     $status = $statusMap["$($manualCheck.Status)"]
@@ -793,4 +793,112 @@ function ConvertTo-SafeXml
 
     $escapedXml = [System.Security.SecurityElement]::Escape($UnescapedXmlString)
     return $escapedXml
+}
+
+<#
+    .SYNOPSIS
+    Short description
+
+    .DESCRIPTION
+    Long description
+
+    .PARAMETER Path
+    Parameter description
+
+    .EXAMPLE
+    An example
+
+    .NOTES
+    General notes
+#>
+function ConvertTo-ManualCheckListHashTable
+{
+    [OutputType([hashtable[]])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+
+    $fileDetail = Get-Item @PSBoundParameters
+
+    switch ($fileDetail.Extension)
+    {
+        '.xml'
+        {
+            # Import ManualCheckList xml contents to convert to hashtable to match psd1 back compat
+            [xml] $xmlToConvert = Get-Content @PSBoundParameters
+
+            foreach ($stigRuleData in $xmlToConvert.stigManualChecklistData.stigRuleData)
+            {
+                $stigRuleManualCheck = @{}
+                $stigRuleDataPropertyNames = (Get-Member -InputObject $stigRuleData -MemberType 'Property').Name
+                foreach ($stigRuleDataPropertyName in $stigRuleDataPropertyNames)
+                {
+                    $stigRuleManualCheck.Add($stigRuleDataPropertyName, $stigRuleData.$stigRuleDataPropertyName)
+                }
+                $stigRuleManualCheck
+            }
+        }
+        '.psd1'
+        {
+            $formattedPsd1ToConvert = (Get-Content @PSBoundParameters -Raw) -replace '"|@{' -split '}'
+            $convertedPsd1HashTable = $formattedPsd1ToConvert | ConvertFrom-StringData
+            foreach ($convertedHash in $convertedPsd1HashTable)
+            {
+                if ($convertedHash.Count -ne 0)
+                {
+                    $stigFileName = Get-StigXccdfFileName -VulnId $convertedHash.VulID
+                    $convertedHash.Add('STIG', $stigFileName.FileName)
+                    $convertedHash.Add('Details', $convertedHash.Comments)
+                    $convertedHash
+                }
+            }
+        }
+    }
+}
+
+<#
+    .SYNOPSIS
+    Short description
+
+    .DESCRIPTION
+    Long description
+
+    .PARAMETER VulnId
+    Parameter description
+
+    .EXAMPLE
+    An example
+
+    .NOTES
+    General notes
+#>
+function Get-StigXccdfFileName
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $VulnId
+    )
+
+    $processedXmlPath = Join-Path -Path $PSScriptRoot -ChildPath '..\..\StigData\Processed\*.xml'
+    $processedXml = Select-String -Path $processedXmlPath -Pattern $VulnId -Exclude '*.org.default.xml' | Sort-Object -Property Pattern
+
+    $stigVersionData = @()
+    foreach ($xmlPath in $processedXml.Path)
+    {
+        [xml] $xml = Get-Content -Path $xmlPath
+        $stigVersionData += [PSCustomObject] @{
+            Version  = [version] $xml.DISASTIG.fullversion
+            FileName = $xml.DISASTIG.filename
+        }
+    }
+
+    $stigVersionData | Sort-Object -Property Version -Descending | Select-Object -First 1
 }
