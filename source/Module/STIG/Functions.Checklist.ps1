@@ -797,19 +797,24 @@ function ConvertTo-SafeXml
 
 <#
     .SYNOPSIS
-    Short description
+        Converts the xml or psd1 in to a consistent data structure (hashtable) for use with the New-StigCheckList function.
 
     .DESCRIPTION
-    Long description
+        Converts the xml or psd1 in to a consistent data structure (hashtable) for use with the New-StigCheckList function.
 
     .PARAMETER Path
-    Parameter description
+        Location of a .xml or .psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG i.e.: Document/Manual Rules.
+
+    .PARAMETER XccdfPath
+        The path to a DISA STIG .xccdf file. PowerSTIG includes the supported files in the /PowerShell/StigData/Archive folder.
 
     .EXAMPLE
-    An example
+        PS> ConvertTo-ManualCheckListHashTable -Path C:\dev\ManualEntryData.psd1 -XccdfPath $xccdfPath
+
+        Returns a hashtable that constains checklist data that will be used to inject into the ckl in the New-StigCheckList function.
 
     .NOTES
-    General notes
+        Internal use only function, not for Export-ModuleMember
 #>
 function ConvertTo-ManualCheckListHashTable
 {
@@ -819,17 +824,21 @@ function ConvertTo-ManualCheckListHashTable
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $Path
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [string[]]
+        $XccdfPath
     )
 
-    $fileDetail = Get-Item @PSBoundParameters
+    $fileDetail = Get-Item -Path $Path
 
     switch ($fileDetail.Extension)
     {
         '.xml'
         {
             # Import ManualCheckList xml contents to convert to hashtable to match psd1 back compat
-            [xml] $xmlToConvert = Get-Content @PSBoundParameters
+            [xml] $xmlToConvert = Get-Content -Path $Path
 
             foreach ($stigRuleData in $xmlToConvert.stigManualChecklistData.stigRuleData)
             {
@@ -844,16 +853,16 @@ function ConvertTo-ManualCheckListHashTable
         }
         '.psd1'
         {
-            $formattedPsd1ToConvert = (Get-Content @PSBoundParameters -Raw) -replace '"|@{' -split '}'
+            $formattedPsd1ToConvert = (Get-Content -Path $Path -Raw) -replace '"|@{' -split '}'
             $convertedPsd1HashTable = $formattedPsd1ToConvert | ConvertFrom-StringData
-            foreach ($convertedHash in $convertedPsd1HashTable)
+            foreach ($stigRuleManualCheck in $convertedPsd1HashTable)
             {
-                if ($convertedHash.Count -ne 0)
+                if ($stigRuleManualCheck.Count -ne 0)
                 {
-                    $stigFileName = Get-StigXccdfFileName -VulnId $convertedHash.VulID
-                    $convertedHash.Add('STIG', $stigFileName.FileName)
-                    $convertedHash.Add('Details', $convertedHash.Comments)
-                    $convertedHash
+                    $stigFileName = Get-StigXccdfFileName -VulnId $stigRuleManualCheck.VulID -XccdfPath $XccdfPath
+                    $stigRuleManualCheck.Add('STIG', $stigFileName)
+                    $stigRuleManualCheck.Add('Details', $stigRuleManualCheck.Comments)
+                    $stigRuleManualCheck
                 }
             }
         }
@@ -862,19 +871,24 @@ function ConvertTo-ManualCheckListHashTable
 
 <#
     .SYNOPSIS
-    Short description
+        Used to detect the correct STIG property when a psd1 is specified.
 
     .DESCRIPTION
-    Long description
+        Used to detect the correct STIG property when a psd1 is specified.
 
     .PARAMETER VulnId
-    Parameter description
+        The VulnId or RuleId for a given STIG Rule
+
+    .PARAMETER XccdfPath
+        The path to a DISA STIG .xccdf file. PowerSTIG includes the supported files in the /PowerShell/StigData/Archive folder.
 
     .EXAMPLE
-    An example
+        PS> Get-StigXccdfFileName -VulnId 'V-1114' -XccdfPath C:\PowerStig\StigData\Archive\Windows.Server.2012R2\U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R19_Manual-xccdf.xml
+
+        Returns U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R19_Manual-xccdf.xml as the correct xccdf file specified by the user.
 
     .NOTES
-    General notes
+        Internal use only function, not for Export-ModuleMember
 #>
 function Get-StigXccdfFileName
 {
@@ -884,7 +898,11 @@ function Get-StigXccdfFileName
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $VulnId
+        $VulnId,
+
+        [Parameter(Mandatory = $true)]
+        [string[]]
+        $XccdfPath
     )
 
     $processedXmlPath = Join-Path -Path $PSScriptRoot -ChildPath '..\..\StigData\Processed\*.xml'
@@ -900,5 +918,26 @@ function Get-StigXccdfFileName
         }
     }
 
-    $stigVersionData | Sort-Object -Property Version -Descending | Select-Object -First 1
+    # populate the STIG value based on Xccdf Path passed by user
+    $compareObjectParams = @{
+        ReferenceObject  = $(Split-Path -Path $XccdfPath -Leaf)
+        DifferenceObject = $stigVersionData.FileName
+        IncludeEqual     = $true
+        ExcludeDifferent = $true
+    }
+
+    $xccdfFileDetection = (Compare-Object @compareObjectParams).InputObject
+
+    if ($xccdfFileDetection.Count -eq 1)
+    {
+        return $xccdfFileDetection
+    }
+    elseif ($xccdfFileDetection.Count -gt 1)
+    {
+        throw 'Unable to determine correct Xccdf file for psd1 usage, ensure that the correct Xccdf file(s) are used.'
+    }
+    else
+    {
+        return ($stigVersionData | Sort-Object -Property Version -Descending | Select-Object -First 1).FileName
+    }
 }
