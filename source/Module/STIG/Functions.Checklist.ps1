@@ -356,7 +356,6 @@ function New-StigCheckList
             if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
                 $setting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $vid
-                # **** logic conversion here, to reference hashtable structure rather than xml structure
                 $manualCheck = $manualCheckData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($setting)
                 {
@@ -378,7 +377,6 @@ function New-StigCheckList
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
             {
-                # **** logic conversion here, to reference hashtable structure rather than xml structure
                 $manualCheck = $manualCheckData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($manualCheck)
                 {
