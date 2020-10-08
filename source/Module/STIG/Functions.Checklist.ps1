@@ -25,7 +25,7 @@
     .PARAMETER ManualChecklistEntriesFile
         Location of a .xml or .psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG i.e.: Document/Manual Rules.
 
-        This file can be created manually or by exporting an Excel worksheet as XML. The file format should look like the following:
+        This file can be created manually or by exporting an Excel worksheet as XML or psd1. The file format should look like the following:
 
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <stigManualChecklistData>
