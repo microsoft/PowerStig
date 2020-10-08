@@ -136,7 +136,7 @@ function New-StigCheckList
             }
             else
             {
-                throw "$($_) is not a valid path to a Manual Checklist Entries File file. Provide a full valid path and filename."
+                throw "$($_) is not a valid path to a Manual Checklist Entries File. Provide a full valid path and filename."
             }
         }
         )]
