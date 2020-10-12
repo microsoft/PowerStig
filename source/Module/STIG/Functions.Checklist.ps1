@@ -23,9 +23,9 @@
         The location where the checklist .ckl file will be created. Must include the filename with .ckl on the end.
 
     .PARAMETER ManualChecklistEntriesFile
-        Location of a .xml file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
+        Location of a .xml or .psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG i.e.: Document/Manual Rules.
 
-        This file can be created manually or by exporting an Excel worksheet as XML. The file format should look like the following:
+        This file can be created manually or by exporting an Excel worksheet as XML or psd1. The file format should look like the following:
 
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <stigManualChecklistData>
@@ -136,7 +136,7 @@ function New-StigCheckList
             }
             else
             {
-                throw "$($_) is not a valid path to a ManualChecklistEntriesFile.xml file. Provide a full valid path and filename."
+                throw "$($_) is not a valid path to a Manual Checklist Entries File. Provide a full valid path and filename."
             }
         }
         )]
@@ -171,7 +171,7 @@ function New-StigCheckList
 
     if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))
     {
-        [xml] $manualCheckData = Get-Content -Path $ManualChecklistEntriesFile
+        $manualCheckData = ConvertTo-ManualCheckListHashTable -Path $ManualChecklistEntriesFile -XccdfPath $XccdfPath
     }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file
@@ -356,7 +356,7 @@ function New-StigCheckList
             if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
                 $setting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $vid
-                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+                $manualCheck = $manualCheckData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($setting)
                 {
                     $status = $statusMap['Open']
@@ -377,7 +377,7 @@ function New-StigCheckList
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
             {
-                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+                $manualCheck = $manualCheckData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
                 if ($manualCheck)
                 {
                     $status = $statusMap["$($manualCheck.Status)"]
@@ -793,4 +793,153 @@ function ConvertTo-SafeXml
 
     $escapedXml = [System.Security.SecurityElement]::Escape($UnescapedXmlString)
     return $escapedXml
+}
+
+<#
+    .SYNOPSIS
+        Converts the xml or psd1 in to a consistent data structure (hashtable) for use with the New-StigCheckList function.
+
+    .DESCRIPTION
+        Converts the xml or psd1 in to a consistent data structure (hashtable) for use with the New-StigCheckList function.
+
+    .PARAMETER Path
+        Location of a .xml or .psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG i.e.: Document/Manual Rules.
+
+    .PARAMETER XccdfPath
+        The path to a DISA STIG .xccdf file. PowerSTIG includes the supported files in the /PowerShell/StigData/Archive folder.
+
+    .EXAMPLE
+        PS> ConvertTo-ManualCheckListHashTable -Path C:\dev\ManualEntryData.psd1 -XccdfPath $xccdfPath
+
+        Returns a hashtable that constains checklist data that will be used to inject into the ckl in the New-StigCheckList function.
+
+    .NOTES
+        Internal use only function, not for Export-ModuleMember
+#>
+function ConvertTo-ManualCheckListHashTable
+{
+    [OutputType([hashtable[]])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [string[]]
+        $XccdfPath
+    )
+
+    $fileDetail = Get-Item -Path $Path
+
+    switch ($fileDetail.Extension)
+    {
+        '.xml'
+        {
+            # Import ManualCheckList xml contents to convert to hashtable to match psd1 back compat
+            [xml] $xmlToConvert = Get-Content -Path $Path
+
+            foreach ($stigRuleData in $xmlToConvert.stigManualChecklistData.stigRuleData)
+            {
+                $stigRuleManualCheck = @{}
+                $stigRuleDataPropertyNames = (Get-Member -InputObject $stigRuleData -MemberType 'Property').Name
+                foreach ($stigRuleDataPropertyName in $stigRuleDataPropertyNames)
+                {
+                    $stigRuleManualCheck.Add($stigRuleDataPropertyName, $stigRuleData.$stigRuleDataPropertyName)
+                }
+                $stigRuleManualCheck
+            }
+        }
+        '.psd1'
+        {
+            $formattedPsd1ToConvert = (Get-Content -Path $Path -Raw) -replace '"|@{' -split '}'
+            $convertedPsd1HashTable = $formattedPsd1ToConvert | ConvertFrom-StringData
+            foreach ($stigRuleManualCheck in $convertedPsd1HashTable)
+            {
+                if ($stigRuleManualCheck.Count -ne 0)
+                {
+                    $stigFileName = Get-StigXccdfFileName -VulnId $stigRuleManualCheck.VulID -XccdfPath $XccdfPath
+                    $stigRuleManualCheck.Add('STIG', $stigFileName)
+                    $stigRuleManualCheck.Add('Details', $stigRuleManualCheck.Comments)
+                    $stigRuleManualCheck.Add('ID', $stigRuleManualCheck['VulId'])
+                    $stigRuleManualCheck.Remove('VulId')
+                    $stigRuleManualCheck
+                }
+            }
+        }
+    }
+}
+
+<#
+    .SYNOPSIS
+        Used to detect the correct STIG property when a psd1 is specified.
+
+    .DESCRIPTION
+        Used to detect the correct STIG property when a psd1 is specified.
+
+    .PARAMETER VulnId
+        The VulnId or RuleId for a given STIG Rule
+
+    .PARAMETER XccdfPath
+        The path to a DISA STIG .xccdf file. PowerSTIG includes the supported files in the /PowerShell/StigData/Archive folder.
+
+    .EXAMPLE
+        PS> Get-StigXccdfFileName -VulnId 'V-1114' -XccdfPath C:\PowerStig\StigData\Archive\Windows.Server.2012R2\U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R19_Manual-xccdf.xml
+
+        Returns U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R19_Manual-xccdf.xml as the correct xccdf file specified by the user.
+
+    .NOTES
+        Internal use only function, not for Export-ModuleMember
+#>
+function Get-StigXccdfFileName
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $VulnId,
+
+        [Parameter(Mandatory = $true)]
+        [string[]]
+        $XccdfPath
+    )
+
+    $processedXmlPath = Join-Path -Path $PSScriptRoot -ChildPath '..\..\StigData\Processed\*.xml'
+    $processedXml = Select-String -Path $processedXmlPath -Pattern $VulnId -Exclude '*.org.default.xml' | Sort-Object -Property Pattern
+
+    $stigVersionData = @()
+    foreach ($xmlPath in $processedXml.Path)
+    {
+        [xml] $xml = Get-Content -Path $xmlPath
+        $stigVersionData += [PSCustomObject] @{
+            Version  = [version] $xml.DISASTIG.fullversion
+            FileName = $xml.DISASTIG.filename
+        }
+    }
+
+    # populate the STIG value based on Xccdf Path passed by user
+    $compareObjectParams = @{
+        ReferenceObject  = $(Split-Path -Path $XccdfPath -Leaf)
+        DifferenceObject = $stigVersionData.FileName
+        IncludeEqual     = $true
+        ExcludeDifferent = $true
+    }
+
+    $xccdfFileDetection = (Compare-Object @compareObjectParams).InputObject
+
+    if ($xccdfFileDetection.Count -eq 1)
+    {
+        return $xccdfFileDetection
+    }
+    elseif ($xccdfFileDetection.Count -gt 1)
+    {
+        throw 'Unable to determine correct Xccdf file for psd1 usage, ensure that the correct Xccdf file(s) are used.'
+    }
+    else
+    {
+        return ($stigVersionData | Sort-Object -Property Version -Descending | Select-Object -First 1).FileName
+    }
 }
