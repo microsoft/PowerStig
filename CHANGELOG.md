@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [4.5.1] - 2020-10-12
+
 * Fixed [#746](https://github.com/microsoft/PowerStig/issues/746): Functions.Checklist Manual Checks need to leverage psd1 files - Backward Compat Issue
 
 ## [4.5.0] - 2020-09-01
