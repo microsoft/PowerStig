@@ -23,9 +23,15 @@
         The location where the checklist .ckl file will be created. Must include the filename with .ckl on the end.
 
     .PARAMETER ManualChecklistEntriesFile
+<<<<<<< HEAD
         Location of a .xml or .psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG i.e.: Document/Manual Rules.
 
         This file can be created manually or by exporting an Excel worksheet as XML or psd1. The file format should look like the following:
+=======
+        Location of a .xml file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
+
+        This file can be created manually or by exporting an Excel worksheet as XML. The file format should look like the following:
+>>>>>>> origin/master
 
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <stigManualChecklistData>
@@ -38,6 +44,7 @@
         </stigRuleData>
 
         See a sample at /PowerShell/StigData/Samples/ManualChecklistEntriesFileSample.xml.
+<<<<<<< HEAD
 
     .EXAMPLE
         Generate a checklist for single STIG using a .MOF file:
@@ -66,6 +73,36 @@
         New-StigCheckList -DscResults $auditRehydrated -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntriesFile $ManualChecklistEntriesFile
 
     .EXAMPLE
+=======
+
+    .EXAMPLE
+        Generate a checklist for single STIG using a .MOF file:
+
+        $ReferenceConfiguration = 'C:\contoso.local.mof'
+        $xccdfPath = 'C:\SQL Server\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
+        $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_mof.ckl'
+        $ManualChecklistEntriesFile = 'C:\ManualChecklistEntriesFileExcelExport.xml'
+        New-StigCheckList -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntriesFile $ManualChecklistEntriesFile
+
+    .EXAMPLE
+        Generate a checklist for a single STIG using DSC results obtained from Test-DscConfiguration:
+
+        $audit = Test-DscConfiguration -ComputerName localhost -ReferenceConfiguration 'C:\Dev\Utilities\SqlServerInstance_config\localhost.mof'
+        $xccdfPath = 'C:\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
+        $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_dscresults.ckl'
+        $ManualChecklistEntriesFile = 'C:\ManualChecklistEntriesFileSQL2016Instance.xml'
+        New-StigCheckList -DscResult $audit -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntriesFile $ManualChecklistEntriesFile
+
+    .EXAMPLE
+        Generate a checklist for multiple STIGs for an endpoint using a .MOF file and a file containing STIGs to check:
+
+        $XccdfPath = Get-Content 'C:\ChecklistSTIGFiles.txt'
+        $outputPath = 'C:\SqlServer01_mof.ckl'
+        $ManualChecklistEntriesFile = 'C:\ManualChecklistEntriesFileSqlServer01ExcelExport.xml'
+        New-StigCheckList -DscResults $auditRehydrated -XccdfPath $XccdfPath -OutputPath $outputPath -ManualChecklistEntriesFile $ManualChecklistEntriesFile
+
+    .EXAMPLE
+>>>>>>> origin/master
         Generate a checklist for multiple STIGs for an endpoint using DSC results obtained from Test-DscConfiguration, dehydrated/rehydrated using CLIXML:
 
         $audit = Test-DscConfiguration -ComputerName localhost -MofFile 'C:\localhost.mof'
@@ -136,7 +173,11 @@ function New-StigCheckList
             }
             else
             {
+<<<<<<< HEAD
                 throw "$($_) is not a valid path to a Manual Checklist Entries File. Provide a full valid path and filename."
+=======
+                throw "$($_) is not a valid path to a ManualChecklistEntriesFile.xml file. Provide a full valid path and filename."
+>>>>>>> origin/master
             }
         }
         )]
@@ -171,7 +212,11 @@ function New-StigCheckList
 
     if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))
     {
+<<<<<<< HEAD
         $manualCheckData = ConvertTo-ManualCheckListHashTable -Path $ManualChecklistEntriesFile -XccdfPath $XccdfPath
+=======
+        [xml] $manualCheckData = Get-Content -Path $ManualChecklistEntriesFile
+>>>>>>> origin/master
     }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file
@@ -356,7 +401,11 @@ function New-StigCheckList
             if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
                 $setting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $vid
+<<<<<<< HEAD
                 $manualCheck = $manualCheckData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+=======
+                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+>>>>>>> origin/master
                 if ($setting)
                 {
                     $status = $statusMap['Open']
@@ -377,7 +426,11 @@ function New-StigCheckList
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
             {
+<<<<<<< HEAD
                 $manualCheck = $manualCheckData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+=======
+                $manualCheck = $manualCheckData.stigManualChecklistData.stigRuleData | Where-Object -FilterScript {$_.STIG -eq $stigFileName -and $_.ID -eq $vid}
+>>>>>>> origin/master
                 if ($manualCheck)
                 {
                     $status = $statusMap["$($manualCheck.Status)"]
@@ -452,6 +505,7 @@ function New-StigCheckList
             $writer.WriteStartElement("STATUS")
             $writer.WriteString($status)
             $writer.WriteEndElement(<#STATUS#>)
+<<<<<<< HEAD
 
             $writer.WriteStartElement("FINDING_DETAILS")
             $findingDetails = ConvertTo-SafeXml -UnescapedXmlString $findingDetails
@@ -476,6 +530,32 @@ function New-StigCheckList
 
         #endregion STIGS/iSTIG/VULN[]
 
+=======
+
+            $writer.WriteStartElement("FINDING_DETAILS")
+            $findingDetails = ConvertTo-SafeXml -UnescapedXmlString $findingDetails
+            $writer.WriteString($findingDetails)
+            $writer.WriteEndElement(<#FINDING_DETAILS#>)
+
+            $writer.WriteStartElement("COMMENTS")
+            $comments = ConvertTo-SafeXml -UnescapedXmlString $comments
+            $writer.WriteString($comments)
+            $writer.WriteEndElement(<#COMMENTS#>)
+
+            $writer.WriteStartElement("SEVERITY_OVERRIDE")
+            $writer.WriteString('')
+            $writer.WriteEndElement(<#SEVERITY_OVERRIDE#>)
+
+            $writer.WriteStartElement("SEVERITY_JUSTIFICATION")
+            $writer.WriteString('')
+            $writer.WriteEndElement(<#SEVERITY_JUSTIFICATION#>)
+
+            $writer.WriteEndElement(<#VULN#>)
+        }
+
+        #endregion STIGS/iSTIG/VULN[]
+
+>>>>>>> origin/master
         $writer.WriteEndElement(<#iSTIG#>)
     }
 
@@ -794,6 +874,7 @@ function ConvertTo-SafeXml
     $escapedXml = [System.Security.SecurityElement]::Escape($UnescapedXmlString)
     return $escapedXml
 }
+<<<<<<< HEAD
 
 <#
     .SYNOPSIS
@@ -943,3 +1024,5 @@ function Get-StigXccdfFileName
         return ($stigVersionData | Sort-Object -Property Version -Descending | Select-Object -First 1).FileName
     }
 }
+=======
+>>>>>>> origin/master

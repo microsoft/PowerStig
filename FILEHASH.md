@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # PowerSTIG File Hashes : Module Version 4.5.1
+=======
+# PowerSTIG File Hashes : Module Version 4.5.0
+>>>>>>> origin/master
 
 Hashes for **PowerSTIG** files are listed in the following table:
 
