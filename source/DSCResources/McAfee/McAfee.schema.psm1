@@ -66,15 +66,20 @@ configuration McAfee
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string[]]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
+        [string[]]
+        $SkipRuleSeverity
     )
 
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('McAfee', $Version, $TechnologyRole, $StigVersion)
-    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
+    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
 }

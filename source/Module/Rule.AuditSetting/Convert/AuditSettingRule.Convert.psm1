@@ -2,14 +2,6 @@
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
 using module .\..\AuditSettingRule.psm1
-
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
-foreach ($supportFile in $supportFileList)
-{
-    Write-Verbose "Loading $($supportFile.FullName)"
-    . $supportFile.FullName
-}
 # Header
 
 <#
@@ -67,10 +59,17 @@ class AuditSettingRuleConvert : AuditSettingRule
             {$PSItem -Match "Disk Management"}
             {
                 Write-Verbose "[$($MyInvocation.MyCommand.Name)] File System Type"
-                $this.Query = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
+                $this.Query = "SELECT * FROM Win32_Volume WHERE DriveType = '3' AND SystemVolume != 'True'"
                 $this.Property = 'FileSystem'
                 $this.Operator = '-match'
-                $this.DesiredValue = 'NTFS|ReFS'
+                if ($PSItem -Match "Cluster Share Volumes")
+                {
+                    $this.DesiredValue = 'NTFS|ReFS|CSVFS'
+                }
+                else
+                {
+                    $this.DesiredValue = 'NTFS|ReFS'
+                }
             }
         }
         $this.SetDuplicateRule()

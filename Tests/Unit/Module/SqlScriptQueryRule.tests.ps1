@@ -160,6 +160,153 @@ try
                 FixText = "Remove the publicly available `"AdventureWorks`" database from SQL Server by running the following query:
                 DROP DATABASE AdventureWorks"
             }
+            SaAccountRename = @{
+                GetScript    = "SELECT name FROM sys.server_principals WHERE TYPE = 'S' and name not like '%##%'"
+                SetScript    = "alter login sa with name = [`$(saAccountName)]"
+                TestScript   = "SELECT name FROM sys.server_principals WHERE TYPE = 'S' and name = 'sa'"
+                CheckContent = "Verify the SQL Server default 'sa' account name has been changed.
+                Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins.
+                If SQL Server default 'sa' account name is in the 'Logins' list, this is a finding."
+                FixText      = "Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins &gt;&gt; click 'sa' account name.
+                Hit &lt;F2&gt; while the name is highlighted in order to edit the name.
+                Rename the 'sa' account."
+            }
+            TraceFileLimit = @{
+                GetScript    = "SELECT * FROM ::fn_trace_getinfo(NULL)"
+                SetScript    = "DECLARE @new_trace_id INT; DECLARE @maxsize bigint DECLARE @maxRolloverFiles int DECLARE @traceId int DECLARE @traceFilePath nvarchar(500) SET @traceFilePath = N'`$(TraceFilePath)' SET @traceId = (Select Id from sys.traces where path LIKE (@traceFilePath + '%')) SET @maxsize = `$(MaxTraceFileSize) SET @maxRolloverFiles = `$(MaxRollOverFileCount) EXEC sp_trace_setstatus @traceid, @status = 2 EXECUTE master.dbo.sp_trace_create     @new_trace_id OUTPUT,     6,     @traceFilePath,     @maxsize,     NULL,     @maxRolloverFiles "
+                TestScript   = "DECLARE @traceFilePath nvarchar(500) DECLARE @desiredFileSize bigint DECLARE @desiredMaxFiles int DECLARE @currentFileSize bigint DECLARE @currentMaxFiles int SET @traceFilePath = N'`$(TraceFilePath)' SET @currentFileSize = (SELECT max_size from sys.traces where path LIKE (@traceFilePath + '%')) SET @currentMaxFiles = (SELECT max_files from sys.traces where path LIKE (@traceFilePath + '%')) IF (@currentFileSize != `$(MaxTraceFileSize)) BEGIN PRINT 'file size not in desired state' SELECT max_size from sys.traces where path LIKE (@traceFilePath + '%') END IF (@currentMaxFiles != `$(MaxRollOverFileCount)) BEGIN PRINT 'max files not in desired state'SELECT max_files from sys.traces where path LIKE (@traceFilePath + '%') END"
+                CheckContent = "Check the SQL Server audit setting on the maximum number of files of the trace used for the auditing requirement.
+                Select * from sys.traces. Determine the audit being used to fulfill the overall auditing requirement. Examine the max_files and max_size parameters. SQL will overwrite the oldest files when the max_files parameter has been exceeded. Care must be taken to ensure that this does not happen, or data will be lost.
+                The amount of space determined for logging by SQL Server is calculated by multiplying the maximum number of files by the maximum file size.
+                If auditing will outgrow the space reserved for logging before being overwritten, this is a finding."
+                FixText      = "Configure the maximum number of audit log files that are to be generated, staying within the number of logs the system was sized to support.
+                Update the max_files parameter of the audits to ensure the correct number of files is defined."
+            }
+            ShutdownOnError = @{
+                GetScript    = "SELECT * FROM ::fn_trace_getinfo(NULL)"
+                SetScript    = "DECLARE @new_trace_id INT; DECLARE @traceid INT; SET @traceId  = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) EXECUTE master.dbo.sp_trace_create     @results = @new_trace_id OUTPUT,     @options = 6,     @traceFilePath = N'`$(TraceFilePath)'"
+                TestScript   = "DECLARE @traceId int SET @traceId = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) IF (@traceId IS NULL) SELECT traceId FROM ::fn_trace_getinfo(NULL) ELSE Print NULL"
+                CheckContent = "From the query prompt:
+                SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
+                All currently defined traces for the SQL Server instance will be listed. If no traces are returned, this is a finding.
+                Determine the trace being used for the auditing requirement. Replace # in the following code with a traceid being used for the auditing requirements.
+                From the query prompt, determine whether the trace options include the value 4, which means SHUTDOWN_ON_ERROR:
+                SELECT CAST(value AS INT)
+                FROM sys.fn_trace_getinfo(#)
+                where property = 1;
+                If the query does not return a value, this is a finding.
+                If a value is returned but is not 4 or 6, this is a finding.
+                (6 represents the combination of values 2 and 4.  2 means TRACE_FILE_ROLLOVER.)
+                NOTE:  Microsoft has flagged the trace techniques and tools used in this STIG as deprecated. They will be removed at some point after SQL Server 2014. The replacement feature is Extended Events. If Extended Events are in use and configured to satisfy this requirement, this is not a finding.  The following code can be used to check Extended Events settings.
+                /**********************************
+                Check to verify shutdown on failure is set.
+                The following settings are what should be returned:
+                name = &lt;name of audit&gt;
+                on_failure = 1
+                on_failure_desc = SHUTDOWN SERVER INSTANCE
+                **********************************/
+                SELECT name, on_failure, on_failure_desc
+                FROM sys.server_audits "
+                FixText      = "If a trace does not exist, create a trace specification that complies with requirements.
+                If a trace exists, but is not set to SHUTDOWN_ON_ERROR, modify the SQL Server audit setting to immediately shutdown the database in the event of an audit failure by setting property 1 to a value of 4 or 6 for the audit.
+                (See the SQL Server Help page for sys.sp_trace_create for implementation details.)"
+            }
+            ViewAnyDatabase = @{
+                GetScript    = "SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'View any database' AND who.type_desc = 'SERVER_ROLE' ORDER BY who.name"
+                SetScript    = "REVOKE External access assembly TO '`$(ViewAnyDbUser)'"
+                TestScript   = "SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'View any database' AND who.type_desc = 'SERVER_ROLE' AND who.name != '`$(ViewAnyDbUser)' ORDER BY who.name"
+                CheckContent = "Obtain the list of roles that are authorized for the SQL Server 'View any database' permission and what 'Grant', 'Grant With', and/or 'Deny' privilege is authorized. Obtain the list of roles with that permission by running the following query:
+                SELECT
+                       who.name AS [Principal Name],
+                       who.type_desc AS [Principal Type],
+                       who.is_disabled AS [Principal Is Disabled],
+                       what.state_desc AS [Permission State],
+                       what.permission_name AS [Permission Name]
+                FROM
+                       sys.server_permissions what
+                       INNER JOIN sys.server_principals who
+                              ON who.principal_id = what.grantee_principal_id
+                WHERE
+                       what.permission_name = 'View any database'
+                AND    who.type_desc = 'SERVER_ROLE'
+                ORDER BY
+                       who.name
+                ;
+                GO
+                If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission and users with that role are not authorized to have the permission, this is a finding.
+                Alternatively, to provide a combined list for all requirements of this type:
+                SELECT
+                    what.permission_name AS [Permission Name],
+                    what.state_desc AS [Permission State],
+                    who.name AS [Principal Name],
+                    who.type_desc AS [Principal Type],
+                    who.is_disabled AS [Principal Is Disabled]
+                FROM
+                    sys.server_permissions what
+                    INNER JOIN sys.server_principals who
+                        ON who.principal_id = what.grantee_principal_id
+                WHERE
+                    what.permission_name IN
+                    (
+                    'Administer bulk operations',
+                    'Alter any availability group',
+                    'Alter any connection',
+                    'Alter any credential',
+                    'Alter any database',
+                    'Alter any endpoint ',
+                    'Alter any event notification ',
+                    'Alter any event session ',
+                    'Alter any linked server',
+                    'Alter any login',
+                    'Alter any server audit',
+                    'Alter any server role',
+                    'Alter resources',
+                    'Alter server state ',
+                    'Alter Settings ',
+                    'Alter trace',
+                    'Authenticate server ',
+                    'Control server',
+                    'Create any database ',
+                    'Create availability group',
+                    'Create DDL event notification',
+                    'Create endpoint',
+                    'Create server role',
+                    'Create trace event notification',
+                    'External access assembly',
+                    'Shutdown',
+                    'Unsafe Assembly',
+                    'View any database',
+                    'View any definition',
+                    'View server state'
+                    )
+                AND who.type_desc = 'SERVER_ROLE'
+                ORDER BY
+                    what.permission_name,
+                    who.name
+                ;
+                GO
+                "
+                FixText      = "Remove the `"View any database`" permission access from the role that is not authorized by executing the following query:
+                REVOKE View any database TO &lt;'role name'&gt;"
+            }
+            ChangeDatabaseOwner= @{
+                GetScript    = "select suser_sname(owner_sid) AS 'Owner' from sys.databases where name = `$(Database)"
+                SetScript    = "ALTER AUTHORIZATION ON DATABASE::`$(Database) to `$(DatabaseOwner)"
+                TestScript   = "SELECT suser_sname(owner_sid) AS 'Owner' FROM sys.databases WHERE name = N'`$(Database)' and suser_sname(owner_sid) != N'`$(DatabaseOwner)';"
+                Variable     = "DatabaseOwner={0}"
+                CheckContent = "Review system documentation to identify SQL Server accounts authorized to own database objects.
+                If the SQL Server database ownership list does not exist or needs to be updated, this is a finding.
+                Run the following SQL query to determine SQL Server ownership of all database objects:
+                SELECT name AS 'Database name'
+                     , SUSER_SNAME(owner_sid) AS 'Database Owner'
+                     , state_desc AS 'Database state'
+                  FROM sys.databases"
+                FixText      = "Add and/or update system documentation to include any accounts authorized for object ownership and remove any account not authorized.
+                Reassign database ownership to authorized database owner account:
+                Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Databases &gt;&gt; right click &lt;'database name'&gt; &gt;&gt; Properties &gt;&gt; Files.
+                Select new database `"Owner`":
+                Navigate to click on […] &gt;&gt; Select new Database Owner &gt;&gt; Browse… &gt;&gt; click on box to indicate account &gt;&gt; &lt;'OK'&gt; &gt;&gt; &lt;'OK'&gt; &gt;&gt; &lt;'OK'&gt;"
+            }
         }
         #endregion
         #region Method Tests

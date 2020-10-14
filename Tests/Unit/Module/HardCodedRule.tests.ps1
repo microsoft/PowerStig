@@ -110,11 +110,12 @@ try
             },
             @{
                 RuleType         = 'ProcessMitigationRule'
-                CheckContent     = "HardCodedRule(ProcessMitigationRule)@{DscResource = 'ProcessMitigation'; Disable = ''; Enable = 'SEHOP'; MitigationTarget = 'System'}"
+                CheckContent     = "HardCodedRule(ProcessMitigationRule)@{DscResource = 'ProcessMitigation'; MitigationTarget = 'System'; MitigationType = 'DEP'; MitigationName = 'Enable';  MitigationValue = 'false';}"
                 DscResource      = 'ProcessMitigation'
-                Disable          = ''
-                Enable           = 'SEHOP'
                 MitigationTarget = 'System'
+                MitigationType = 'DEP'
+                MitigationName = 'Enable'
+                MitigationValue = 'false'
             },
             @{
                 RuleType     = 'RegistryRule'
@@ -195,6 +196,13 @@ try
                 DscResource  = 'xWinEventLog'
                 IsEnabled    = 'True'
                 LogName      = 'Microsoft-Windows-DnsServer/Analytical'
+            },
+            @{
+                RuleType     = 'WindowsFeatureRule'
+                CheckContent = "HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Ensure = `$null; Name = 'FeatureName'}"
+                DscResource  = 'WindowsFeature'
+                Ensure       = ''
+                Name         = "FeatureName"
             }
         )
 

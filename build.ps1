@@ -247,6 +247,7 @@ Begin
     'DscResource.Test'              = '0.13.1'
     'DscResource.AnalyzerRules'     = 'latest'
     'powershell-yaml'               = 'latest'
+    'Vmware.VsphereDSC'             = '2.1.0.58'
     # The modules below are dynamically inserted from the Begin block of .\build.ps1
 
 '@

@@ -84,24 +84,29 @@ configuration SqlServer
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string[]]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
+        [string[]]
+        $SkipRuleSeverity
     )
 
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('SqlServer', $SqlVersion, $SqlRole, $StigVersion)
-    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
+    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 13.3.0
     . "$resourcePath\SqlServer.ScriptQuery.ps1"
 
-    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
+    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.10.0.0
     . "$resourcePath\Windows.SecurityOption.ps1"
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.0.0
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.1
     . "$resourcePath\Windows.AccessControl.ps1"
 
-    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
 }

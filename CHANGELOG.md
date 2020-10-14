@@ -2,20 +2,58 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Increase Code Coverage of Unit Tests: [#737](https://github.com/microsoft/PowerStig/issues/737)
+* Update PowerSTIG with new SkipRuleSeverity Parameter to skip entire STIG Category/Severity Level(s): [711](https://github.com/microsoft/PowerStig/issues/711)
+
+## [4.5.0] - 2020-09-01
+
+* Update PowerSTIG to successfully parse/apply Windows 2012 R2 DC Version 2, Rev 21: [#677](https://github.com/microsoft/PowerStig/issues/677)
+* Update PowerSTIG to successfully parse/apply IIS Site/Server V1R11 STIGs: [#702](https://github.com/microsoft/PowerStig/issues/702)
+* Update PowerSTIG to successfully parse/apply Microsoft Internet Explorer 11 STIG - Ver 1, Rel 19: [#707](https://github.com/microsoft/PowerStig/issues/707)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server DNS - V1R15: [#696](https://github.com/microsoft/PowerStig/issues/696)
+* Update PowerSTIG to successfully parse/apply SQL Server 2016 Instance V1R10: [#704](https://github.com/microsoft/PowerStig/issues/704)
+* Update PowerSTIG to successfully parse/apply IIS 10.0 Site/Server V1R2 STIGs: [#699](https://github.com/microsoft/PowerStig/issues/699)
+* Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 23: [#678](https://github.com/microsoft/PowerStig/issues/678)
+* Update PowerSTIG to successfully parse/apply Windows Server 2019 Instance Ver. 1 Rel. 5: [#683](https://github.com/microsoft/PowerStig/issues/683)
+* Update PowerSTIG to successfully parse/apply Windows 2016 DC/MS Version 1, Rev 12: [#681](https://github.com/microsoft/PowerStig/issues/681)
+* Update PowerSTIG to successfully parse/apply Windows 2012 R2 MS Version 2, Rev 19: [#676](https://github.com/microsoft/PowerStig/issues/676)
+* Update PowerSTIG To Use WindowsDefenderDsc version 2.0.0 : [#657](https://github.com/microsoft/PowerStig/issues/657)
+* Update PowerSTIG To Use PSDSCResources version 2.12.0.0: [#723](https://github.com/microsoft/PowerStig/issues/723)
+* Update PowerSTIG To Use AuditPolicyDsc version 1.4.0.0 : [#715](https://github.com/microsoft/PowerStig/issues/715)
+* Update PowerSTIG To Use xWebAdministration version 3.2.0 : [#713](https://github.com/microsoft/PowerStig/issues/713)
+* Update PowerSTIG To Use xDnsServer version 1.16.0.0: [#695](https://github.com/microsoft/PowerStig/issues/695)
+* Update PowerSTIG To Use SecurityPolicyDsc version 2.10.0.0: [#690](https://github.com/microsoft/PowerStig/issues/690)
+* Update PowerSTIG To Use FileContentDsc version 1.3.0.151: [#722](https://github.com/microsoft/PowerStig/issues/722)
+* Update PowerSTIG To Use ComputerManagementDsc version 8.4.0: [#720](https://github.com/microsoft/PowerStig/issues/720)
+* Update PowerSTIG to support multiple STIGs per checklist [#567](https://github.com/microsoft/PowerStig/issues/567)
+* Release Process Update: Ensure the nuget package uses explicit DSC Resource Module Versions: [#667](https://github.com/microsoft/PowerStig/issues/667)
+* Fixed [#668](https://github.com/microsoft/PowerStig/issues/668): Incorrect key for SSL 3.0 rules in SqlServer-2016-Instance.*.xml
+* Fixed [#669](https://github.com/microsoft/PowerStig/issues/669): Missing TLS 1.2 configuration for rule V-97521
+* Fixed [#663](https://github.com/microsoft/PowerStig/issues/663): Missing OrgSettings for V-88203 - Win10 Client 1.19 and 1.21
+* Fixed [#673](https://github.com/microsoft/PowerStig/issues/673): IIS Sever 10.0 STIG hardening rule V-100163 fails with error in Windows Server 2019 while using PowerSTIG 4.4.2
+* Fixed: Removed Windows Server 2016 DC/MS R1V9 from processed STIGs folder
+* Fixed [#718](https://github.com/microsoft/PowerStig/issues/718): Allow application of applicable user rights assignments for non-domain and disconnected systems
+* Fixed [#731](https://github.com/microsoft/PowerStig/issues/731): Update Windows 10 Client Org Default Setting For Rule V-63405 to "15"
+* Fixed [#735](https://github.com/microsoft/PowerStig/issues/735): Rule V-63353 won't reach desired state if system partition is Fat32
+
+## [4.4.2] - 2020-07-06
+
+* Removed required dependency of Vmware.VsphereDSC due to cyclic redundancy error when importing PowerSTIG
 * Update PowerSTIG to successfully parse/apply MS SQL Server 2012 Instance Ver. 1 Rel. 20: [#639](https://github.com/microsoft/PowerStig/issues/639)
 * Update PowerSTIG to successfully parse/apply MS SQL Server 2016 Instance Ver. 1 Rel. 9: [#636](https://github.com/microsoft/PowerStig/issues/636)
 * Update PowerSTIG to successfully parse/apply Windows Server 2012 DNS STIG - Ver 1, Rel 14:  [#633](https://github.com/microsoft/PowerStig/issues/633)
-* Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R4: [#634](https://github.com/microsoft/PowerStig/issues/634)
 * Update PowerSTIG to successfully parse Microsoft IIS Server/Site 10.0 STIG STIG V1R1: [#632](https://github.com/microsoft/PowerStig/issues/632)
 * Update PowerSTIG to successfully parse Microsoft Visio 2013 STIG V1R4: [#629](https://github.com/microsoft/PowerStig/issues/629)
 * Update PowerSTIG to successfully parse/apply Windows Defender Antivirus STIG - V1R8: [#625](https://github.com/microsoft/PowerStig/issues/625)
 * Update PowerSTIG to successfully parse Microsoft SQL Server 2012 Database STIG V1R20: [#618](https://github.com/microsoft/PowerStig/issues/618)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS Server/Site 8.5 STIG - Ver 1, Rel10: [#622](https://github.com/microsoft/PowerStig/issues/622)
 * Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
-* Update PowerSTIG to parse and apply Ubuntu 18.04 LTS V1R1: [#608](https://github.com/microsoft/PowerStig/issues/608)
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R3: [#604](https://github.com/microsoft/PowerStig/issues/604)
+* Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R4: [#634](https://github.com/microsoft/PowerStig/issues/634)
+* Fixed [#647](https://github.com/microsoft/PowerStig/issues/647): Conflict when configuring multiple databases
 * Fixed [#616](https://github.com/microsoft/PowerStig/issues/616): Unable to Import PowerSTIG 4.4.0 Due to cyclic dependency Error
 * Fixed [#632](https://github.com/microsoft/PowerStig/issues/632): Update PowerSTIG to allow for workgroup level scansr
+* Fixed [#652](https://github.com/microsoft/PowerStig/issues/652): Invalid ValueName for InternetExplorer11 rules V-75169 and V-75171
 
 ## [4.3.0] - 2020-03-27
 
