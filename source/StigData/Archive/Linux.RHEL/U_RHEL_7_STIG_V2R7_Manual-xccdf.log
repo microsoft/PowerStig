@@ -1,7 +1,6 @@
 V-72089::space_left = 225::space_left = 25
 V-72163::*::HardCodedRule(nxFileLineRule)@{DscResource = 'nxFileLine'; ContainsLine = '-w /etc/sudoers -p wa -k privileged-actions'; DoesNotContainPattern = '#\s*-w /etc/sudoers -p wa -k privileged-actions'; FilePath = '/etc/audit/rules.d/audit.rules'}<splitRule>HardCodedRule(nxFileLineRule)@{DscResource = 'nxFileLine'; ContainsLine = '-w /etc/sudoers.d/ -p wa -k privileged-actions'; DoesNotContainPattern = '#\s*-w /etc/sudoers.d/ -p wa -k privileged-actions'; FilePath = '/etc/audit/rules.d/audit.rules'}
 V-72225::*::HardCodedRule(nxFileLineRule)@{DscResource = 'nxFileLine'; ContainsLine = 'banner /etc/issue'; DoesNotContainPattern = '#\s*banner\s*/etc/issue'; FilePath = '/etc/ssh/sshd_config'}
-V-72433::*::HardCodedRule(nxFileLineRule)@{DscResource = 'nxFileLine'; ContainsLine = 'cert_policy = ca, ocsp_on, signature;'; DoesNotContainPattern = '#\s*cert_policy = ca, ocsp_on, signature;'; FilePath = '/etc/pam_pkcs11/pam_pkcs11.conf'}
 V-81003::# cat /etc/pam.d/passwd | grep -i substack | grep -i system-auth::# grep /etc/pam.d/passwd
 V-81017::# cat /etc/audisp/plugins.d/au-remote.conf | grep -v "^#"::# grep /etc/audisp/plugins.d/au-remote.conf
 V-81017::format = string::If commented out

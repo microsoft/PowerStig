@@ -6,6 +6,8 @@ data exclusionRuleList
 {
     ConvertFrom-StringData -StringData @'
         V-73523 = ''
+        V-72433 = 'RHEL:Cannot automate with nxFileLineRule due to text position in conf file'
+        V-77823 = 'RHEL:Cannot automate with nxFileLineRule due to text position in conf file'
         V-6599 = 'McAfee:The GUID of the weekly on-demand client scan task varies by system'
         V-6600 = 'McAfee:The GUID of the weekly on-demand client scan task varies by system'
         V-6601 = 'McAfee:The GUID of the weekly on-demand client scan task varies by system'
