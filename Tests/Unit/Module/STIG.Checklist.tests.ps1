@@ -25,6 +25,7 @@ Describe 'New-StigCheckList' {
             }
         }
     }
+
     Example -OutputPath $TestDrive
 
     $mofTest = '{0}{1}' -f $TestDrive.fullname,"\localhost.mof"
