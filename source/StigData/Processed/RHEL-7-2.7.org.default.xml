@@ -26,6 +26,8 @@
   <OrganizationalSetting id="V-72083" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the value of the "disk_full_action" option is set to "SYSLOG", "SINGLE", or "HALT".-->
   <OrganizationalSetting id="V-72087" ContainsLine="" DoesNotContainPattern="" />
+  <!-- Ensure the value of the "space_left" keyword is not set to 25 percent of the total partition size-->
+  <OrganizationalSetting id="V-72089" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the value of the "action_mail_acct" keyword is set to "root" and/or other accounts for security personnel.-->
   <OrganizationalSetting id="V-72093" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding." -->

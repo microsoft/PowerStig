@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 24 Apr 2020" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="6/17/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 24 Apr 2020" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="10/21/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-71849" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -1096,6 +1096,36 @@ services = nss, pam
 
 If the "pam" service is not present on all "services" lines, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-72433" severity="medium" conversionstatus="pass" title="SRG-OS-000375-GPOS-00160" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Using an authentication device, such as a CAC or token that is separate from the information system, ensures that even if the information system is compromised, that compromise will not affect credentials stored on the authentication device.
+
+Multifactor solutions that require devices separate from information systems gaining access include, for example, hardware tokens providing time-based or challenge-response authenticators and smart cards such as the U.S. Government Personal Identity Verification card and the DoD Common Access Card.
+
+A privileged account is defined as an information system account with authorizations of a privileged user.
+
+Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
+
+This requirement only applies to components where this is specific to the function of the device or has the concept of an organizational user (e.g., VPN, proxy capability). This does not apply to authentication for the purpose of configuring the device itself (management).
+
+Satisfies: SRG-OS-000375-GPOS-00160, SRG-OS-000375-GPOS-00161, SRG-OS-000375-GPOS-00162&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system implements certificate status checking for PKI authentication.
+
+Check to see if Online Certificate Status Protocol (OCSP) is enabled on the system with the following command:
+
+# grep cert_policy /etc/pam_pkcs11/pam_pkcs11.conf | grep -v "^#"
+
+cert_policy = ca, ocsp_on, signature;
+cert_policy = ca, ocsp_on, signature;
+cert_policy = ca, ocsp_on, signature;
+
+There should be at least three lines returned. 
+
+If "ocsp_on" is not present in all uncommented "cert_policy" lines in "/etc/pam_pkcs11/pam_pkcs11.conf", this is a finding.</RawString>
+    </Rule>
     <Rule id="V-73159" severity="medium" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. "pwquality" enforces complex password construction configuration and has the ability to limit brute-force attacks on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1226,6 +1256,22 @@ Check to see if the DCCP kernel module is disabled with the following command:
 blacklist dccp
 
 If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-77823" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system must require authentication upon booting into single-user and maintenance modes.
+
+Check that the operating system requires authentication upon booting into single-user mode with the following command:
+
+# grep -i execstart /usr/lib/systemd/system/rescue.service | grep -i sulogin
+
+ExecStart=-/bin/sh -c "/usr/sbin/sulogin; /usr/bin/systemctl --fail --no-block default"
+
+If "ExecStart" does not have "/usr/sbin/sulogin" as an option, this is a finding.</RawString>
     </Rule>
     <Rule id="V-77825" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Address space layout randomization (ASLR) makes it more difficult for an attacker to predict the location of attack code he or she has introduced into a process's address space during an attempt at exploitation. Additionally, ASLR also makes it more difficult for an attacker to know the location of existing code in order to repurpose it using return-oriented programming (ROP) techniques.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3199,7 +3245,7 @@ If the required value is not set, this is a finding.</RawString>
       <Description>&lt;VulnDiscussion&gt;Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system. Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.
 
 Operating systems need to track periods of inactivity and disable application identifiers after zero days of inactivity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*INACTIVE\s*=\s*0</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*INACTIVE.*$|^INACTIVE\s*=\s*(?!0)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/default/useradd</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3322,7 +3368,7 @@ If no results are returned or "SELINUXTYPE" is not set to "targeted", this is a 
     <Rule id="V-71995" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00228" dscresource="nxFileLine">
       <ContainsLine>UMASK 077</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Setting the most restrictive default permissions ensures that when new accounts are created, they do not have unnecessary access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^\s*UMASK\s*(?!077\b)\d*\s*$|^#\s*UMASK.*</DoesNotContainPattern>
+      <DoesNotContainPattern>^\s*UMASK(?!\s077\b)\s*\d*\s*$|^#\s*UMASK.*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/login.defs</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3428,14 +3474,16 @@ disk_full_action = single
 If the value of the "disk_full_action" option is not "syslog", "single", or "halt", or the line is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-72089" severity="medium" conversionstatus="pass" title="SRG-OS-000343-GPOS-00134" dscresource="nxFileLine">
-      <ContainsLine>space_left = 25</ContainsLine>
+      <ContainsLine>
+      </ContainsLine>
       <Description>&lt;VulnDiscussion&gt;If security personnel are not notified immediately when storage volume reaches 75 percent utilization, they are unable to plan for audit record storage capacity expansion.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*space_left\s*=\s*25</DoesNotContainPattern>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/auditd.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the value of the "space_left" keyword is not set to 25 percent of the total partition size</OrganizationValueTestString>
       <RawString>Verify the operating system initiates an action to notify the SA and ISSO (at a minimum) when allocated audit record storage volume reaches 75 percent of the repository maximum audit record storage capacity.
 
 Check the system configuration to determine the partition the audit records are being written to with the following command:
@@ -3463,7 +3511,7 @@ If the value of the "space_left" keyword is not set to 25 percent of the total p
     <Rule id="V-72091" severity="medium" conversionstatus="pass" title="SRG-OS-000343-GPOS-00134" dscresource="nxFileLine">
       <ContainsLine>space_left_action = email</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;If security personnel are not notified immediately when the threshold for the repository maximum audit record storage capacity is reached, they are unable to expand the audit record storage capacity before records are lost.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*space_left_action\s*=\s*email</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*space_left_action.*$|^space_left_action\s*=\s*(?!email$)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/auditd.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5966,39 +6014,6 @@ server_args = -s /var/lib/tftpboot
 
 If the "server_args" line does not have a "-s" option and a subdirectory is not assigned, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-72433" severity="medium" conversionstatus="pass" title="SRG-OS-000375-GPOS-00160" dscresource="nxFileLine">
-      <ContainsLine>cert_policy = ca, ocsp_on, signature;</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Using an authentication device, such as a CAC or token that is separate from the information system, ensures that even if the information system is compromised, that compromise will not affect credentials stored on the authentication device.
-
-Multifactor solutions that require devices separate from information systems gaining access include, for example, hardware tokens providing time-based or challenge-response authenticators and smart cards such as the U.S. Government Personal Identity Verification card and the DoD Common Access Card.
-
-A privileged account is defined as an information system account with authorizations of a privileged user.
-
-Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
-
-This requirement only applies to components where this is specific to the function of the device or has the concept of an organizational user (e.g., VPN, proxy capability). This does not apply to authentication for the purpose of configuring the device itself (management).
-
-Satisfies: SRG-OS-000375-GPOS-00160, SRG-OS-000375-GPOS-00161, SRG-OS-000375-GPOS-00162&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*cert_policy = ca, ocsp_on, signature;</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam_pkcs11/pam_pkcs11.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system implements certificate status checking for PKI authentication.
-
-Check to see if Online Certificate Status Protocol (OCSP) is enabled on the system with the following command:
-
-# grep cert_policy /etc/pam_pkcs11/pam_pkcs11.conf | grep -v "^#"
-
-cert_policy = ca, ocsp_on, signature;
-cert_policy = ca, ocsp_on, signature;
-cert_policy = ca, ocsp_on, signature;
-
-There should be at least three lines returned. 
-
-If "ocsp_on" is not present in all uncommented "cert_policy" lines in "/etc/pam_pkcs11/pam_pkcs11.conf", this is a finding.</RawString>
-    </Rule>
     <Rule id="V-73163" severity="medium" conversionstatus="pass" title="SRG-OS-000342-GPOS-00133" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
@@ -6102,25 +6117,6 @@ Check the auditing rules in "/etc/audit/audit.rules" with the following command:
 -w /etc/security/opasswd -p wa -k identity
 
 If the command does not return a line, or the line is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-77823" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="nxFileLine">
-      <ContainsLine>ExecStart=-/bin/sh -c "/usr/sbin/sulogin; /usr/bin/systemctl --fail --no-block default"</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*ExecStart\s*=\s*-/bin/sh\s*-c\s*"/usr/sbin/sulogin;\s*/usr/bin/systemctl\s*--fail\s*--no-block\s*default"</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/usr/lib/systemd/system/rescue.service</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system must require authentication upon booting into single-user and maintenance modes.
-
-Check that the operating system requires authentication upon booting into single-user mode with the following command:
-
-# grep -i execstart /usr/lib/systemd/system/rescue.service | grep -i sulogin
-
-ExecStart=-/bin/sh -c "/usr/sbin/sulogin; /usr/bin/systemctl --fail --no-block default"
-
-If "ExecStart" does not have "/usr/sbin/sulogin" as an option, this is a finding.</RawString>
     </Rule>
     <Rule id="V-78999.a" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
       <ContainsLine>-a always,exit -F arch=b32 -S create_module -k module-change</ContainsLine>
@@ -6347,7 +6343,7 @@ Off-loading is a common process in information systems with limited audit storag
 When the remote buffer is full, audit logs will not be collected and sent to the central log server.
 
 Satisfies: SRG-OS-000342-GPOS-00133, SRG-OS-000479-GPOS-00224&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*overflow_action\s*=\s*syslog</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*overflow_action.*$|^overflow_action\s*=\s*(?!syslog$)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audisp/audispd.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6370,7 +6366,7 @@ Off-loading is a common process in information systems with limited audit storag
 When audit logs are not labeled before they are sent to a central log server, the audit data will not be able to be analyzed and tied back to the correct system.
 
 Satisfies: SRG-OS-000342-GPOS-00133, SRG-OS-000479-GPOS-00224&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*name_format\s*=\s*hostname</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*name_format.*$|^name_format\s*=\s*(?!hostname$)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audisp/audispd.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
