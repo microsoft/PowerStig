@@ -28,9 +28,9 @@ data doesNotContainPattern
         'Unattended-Upgrade::Remove-Unused-Dependencies "true";'    = '\s*Unattended-Upgrade::Remove-Unused-Dependencies\s*("false"|false|true).*|#\s*Unattended-Upgrade::Remove-Unused-Dependencies.*'
         'Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";' = '\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages\s*("false"|false|true).*|#\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages.*'
         'session required pam_lastlog.so showfailed'                = '\s*session\s*(?!required)\w*\s*pam_lastlog\.so.*|#\s*session\s*\w*\s*pam_lastlog\.so.*'
-        'ucredit=-1'                                                = '^\s*ucredit\s*=\s*(?!-1$)\w*$|#\s*ucredit=.*'
-        'lcredit=-1'                                                = '^\s*lcredit\s*=\s*(?!-1$)\w*$|#\s*lcredit=.*'
-        'dcredit=-1'                                                = '^\s*dcredit\s*=\s*(?!-1$)\w*$|#\s*dcredit=.*'
+        'ucredit=-1'                                                = '^#\s*ucredit.*$|^ucredit\s*=\s*(?!-1)\w*$'
+        'lcredit=-1'                                                = '^#\s*lcredit.*$|^lcredit\s*=\s*(?!-1)\w*$'
+        'dcredit=-1'                                                = '^#\s*dcredit.*$|^dcredit\s*=\s*(?!-1)\w*$'
         'difok = 8'                                                 = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*' # Org
         'difok=8'                                                   = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*' # Org
         'PASS_MIN_DAYS 1'                                           = '^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*' # Org
@@ -39,7 +39,7 @@ data doesNotContainPattern
         'minlen = 15'                                               = '^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*' # Org
         'dictcheck=1'                                               = '^\s*dictcheck\s*=\s*((?!1)|[1]\d+)\d*$|#\s*dictcheck.*'
         'enforcing = 1'                                             = '^\s*enforcing\s*=\s*((?!1)|[1]\d+)\d*$|#\s*enforcing.*'
-        'ocredit=-1'                                                = '^\s*ocredit\s*=\s*(?!-1)\d*$|#\s*ocredit=.*'
+        'ocredit=-1'                                                = '^#\s*ocredit.*$|^ocredit\s*=\s*(?!-1)\w*$'
         '* hard maxlogins 10'                                       = '^\s*\*\s*hard\s*maxlogins\s*([1][1-9]|[2-9]\d+|[1-9][0-9]\d+)$|^#\s*\*\s*hard\s*maxlogins.*'
         'TMOUT=900'                                                 = '^\s*TMOUT\s*=\s*[0-8]?[0-9]?[0-9]?$|^#\s*TMOUT.*' # Org
         'readonly TMOUT'                                            = '^\s*readonly\s+(?!TMOUT\b).*$|^\s*#\s*readonly.*$' # Org
@@ -156,7 +156,7 @@ data doesNotContainPattern
         'clean_requirements_on_remove=1' = 'DynamicallyGeneratedDoesNotContainPattern'
         'ClientAliveCountMax 0' = 'DynamicallyGeneratedDoesNotContainPattern'
         'Compression delayed' = 'DynamicallyGeneratedDoesNotContainPattern'
-        'CREATE_HOME yes' = 'DynamicallyGeneratedDoesNotContainPattern'
+        'CREATE_HOME yes' = '^#\s*CREATE_HOME.*$|^CREATE_HOME\s*(?!yes)\w*$'
         'crypt_style = sha512' = 'DynamicallyGeneratedDoesNotContainPattern'
         'dcredit = -1' = 'DynamicallyGeneratedDoesNotContainPattern'
         'direction = out' = 'DynamicallyGeneratedDoesNotContainPattern'
@@ -182,7 +182,7 @@ data doesNotContainPattern
         'name_format = hostname' = '^#\s*name_format.*$|^name_format\s*=\s*(?!hostname$)\w*$'
         'network_failure_action = syslog' = 'DynamicallyGeneratedDoesNotContainPattern'
         'overflow_action = syslog' = '^#\s*overflow_action.*$|^overflow_action\s*=\s*(?!syslog$)\w*$'
-        'password substack system-auth' = 'DynamicallyGeneratedDoesNotContainPattern'
+        'password substack system-auth' = '^\s*password\s\s+substack\s\s+system-auth\s*$|^#\s*password\s*substack\s*system-auth.*'
         'path = /sbin/audisp-remote' = 'DynamicallyGeneratedDoesNotContainPattern'
         'PermitRootLogin no' = 'DynamicallyGeneratedDoesNotContainPattern'
         'PrintLastLog yes' = 'DynamicallyGeneratedDoesNotContainPattern'
