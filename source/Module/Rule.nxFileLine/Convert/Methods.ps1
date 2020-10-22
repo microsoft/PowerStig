@@ -121,6 +121,15 @@ function Get-nxFileLineDoesNotContainPattern
     [OutputType([string])]
     param()
 
+    $doesNotContainPatternExclusionRuleId = @(
+        'V-71863'
+    )
+
+    if ($doesNotContainPatternExclusionRuleId -contains $this.Id)
+    {
+        return 'PatternNotRequired'
+    }
+
     try
     {
         if ($doesNotContainPattern.ContainsKey($this.ContainsLine))

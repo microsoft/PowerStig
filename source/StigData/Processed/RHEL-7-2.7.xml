@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 24 Apr 2020" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="10/21/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 24 Apr 2020" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="10/22/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-71849" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -1702,25 +1702,6 @@ AIDE does not have a configuration that will send a notification, so the cron jo
 
 If the file integrity application does not notify designated personnel of changes, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-71989" severity="high" conversionstatus="pass" title="SRG-OS-000445-GPOS-00199" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without verification of the security functions, security functions may not operate correctly and the failure may go unnoticed. Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters.
-
-This requirement applies to operating systems performing security function verification/testing and/or systems and environments that require this functionality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If an HBSS or HIPS is active on the system, this is Not Applicable.
-
-Verify the operating system verifies correct operation of all security functions.
-
-Check if "SELinux" is active and in "Enforcing" mode with the following command:
-
-# getenforce
-Enforcing
-
-If "SELinux" is not active and not in "Enforcing" mode, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-71993" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A locally logged-on user who presses Ctrl-Alt-Delete, when at the console, can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In the GNOME graphical environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2939,7 +2920,7 @@ By using this IS (which includes any device attached to this IS), you consent to
 -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
 
 Satisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000024-GPOS-00007&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*You\s*are\s*accessing\s*a\s*U.S.\s*Government\s*(USG)\s*Information\s*System\s*(IS)\s*that\s*is\s*provided\s*for\s*USG-authorized\s*use\s*only.\s*By\s*using\s*this\s*IS\s*(which\s*includes\s*any\s*device\s*attached\s*to\s*this\s*IS),\s*you\s*consent\s*to\s*the\s*following\s*conditions:\s*-The\s*USG\s*routinely\s*intercepts\s*and\s*monitors\s*communications\s*on\s*this\s*IS\s*for\s*purposes\s*including,\s*but\s*not\s*limited\s*to,\s*penetration\s*testing,\s*COMSEC\s*monitoring,\s*network\s*operations\s*and\s*defense,\s*personnel\s*misconduct\s*(PM),\s*law\s*enforcement\s*(LE),\s*and\s*counterintelligence\s*(CI)\s*investigations.\s*-At\s*any\s*time,\s*the\s*USG\s*may\s*inspect\s*and\s*seize\s*data\s*stored\s*on\s*this\s*IS.\s*-Communications\s*using,\s*or\s*data\s*stored\s*on,\s*this\s*IS\s*are\s*not\s*private,\s*are\s*subject\s*to\s*routine\s*monitoring,\s*interception,\s*and\s*search,\s*and\s*may\s*be\s*disclosed\s*or\s*used\s*for\s*any\s*USG-authorized\s*purpose.\s*-This\s*IS\s*includes\s*security\s*measures\s*(e.g.,\s*authentication\s*and\s*access\s*controls)\s*to\s*protect\s*USG\s*interests--not\s*for\s*your\s*personal\s*benefit\s*or\s*privacy.\s*-Notwithstanding\s*the\s*above,\s*using\s*this\s*IS\s*does\s*not\s*constitute\s*consent\s*to\s*PM,\s*LE\s*or\s*CI\s*investigative\s*searching\s*or\s*monitoring\s*of\s*the\s*content\s*of\s*privileged\s*communications,\s*or\s*work\s*product,\s*related\s*to\s*personal\s*representation\s*or\s*services\s*by\s*attorneys,\s*psychotherapists,\s*or\s*clergy,\s*and\s*their\s*assistants.\s*Such\s*communications\s*and\s*work\s*product\s*are\s*private\s*and\s*confidential.\s*See\s*User\s*Agreement\s*for\s*details.</DoesNotContainPattern>
+      <DoesNotContainPattern>PatternNotRequired</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/issue</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3035,7 +3016,7 @@ If the value of "dcredit" is not set to a negative value, this is a finding.</Ra
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
 
 Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^\s*ocredit\s*=\s*(?!-1)\d*$|#\s*ocredit=.*</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*ocredit.*$|^ocredit\s*=\s*(?!-1)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/security/pwquality.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3225,7 +3206,7 @@ If the command does not return a "minlen" value of 15 or greater, this is a find
     <Rule id="V-71939" severity="high" conversionstatus="pass" title="SRG-OS-000106-GPOS-00053" dscresource="nxFileLine">
       <ContainsLine>PermitEmptyPasswords no</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^\s*PermitEmptyPasswords\s*((?!no\b).)*$|^#\s*PermitEmptyPasswords.*$|^\s*PermitEmptyPasswords\s*$</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*PermitEmptyPasswords.*$|^PermitEmptyPasswords\s*(?!no\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3245,7 +3226,7 @@ If the required value is not set, this is a finding.</RawString>
       <Description>&lt;VulnDiscussion&gt;Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system. Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.
 
 Operating systems need to track periods of inactivity and disable application identifiers after zero days of inactivity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^#\s*INACTIVE.*$|^INACTIVE\s*=\s*(?!0)\w*$</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*INACTIVE.*$|^INACTIVE\s*=\s*(?!0\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/default/useradd</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3285,7 +3266,7 @@ If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commen
     <Rule id="V-71957" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="nxFileLine">
       <ContainsLine>PermitUserEnvironment no</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Failure to restrict system access to authenticated users negatively impacts operating system security.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^\s*PermitUserEnvironment\s*((?!no\b).)*$|^#\s*PermitUserEnvironment.*$|^\s*PermitUserEnvironment\s*$</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*PermitUserEnvironment.*$|^PermitUserEnvironment\s*(?!no\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3303,7 +3284,7 @@ If the "PermitUserEnvironment" keyword is not set to "no", is missing, or is com
     <Rule id="V-71959" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="nxFileLine">
       <ContainsLine>HostbasedAuthentication no</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Failure to restrict system access to authenticated users negatively impacts operating system security.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*HostbasedAuthentication\s*no</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*HostbasedAuthentication.*$|^HostbasedAuthentication\s*(?!no\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3318,12 +3299,34 @@ HostbasedAuthentication no
 
 If the "HostbasedAuthentication" keyword is not set to "no", is missing, or is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-71991" severity="high" conversionstatus="pass" title="SRG-OS-000445-GPOS-00199" dscresource="nxFileLine">
-      <ContainsLine>SELINUXTYPE = targeted</ContainsLine>
+    <Rule id="V-71989" severity="high" conversionstatus="pass" title="SRG-OS-000445-GPOS-00199" dscresource="nxFileLine">
+      <ContainsLine>SELINUX=enforcing</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without verification of the security functions, security functions may not operate correctly and the failure may go unnoticed. Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters.
 
 This requirement applies to operating systems performing security function verification/testing and/or systems and environments that require this functionality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*SELINUXTYPE\s*=\s*targeted</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*SELINUX.*$|^SELINUX\s*=\s*(?!enforcing)\w*$</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/selinux/config</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If an HBSS or HIPS is active on the system, this is Not Applicable.
+
+Verify the operating system verifies correct operation of all security functions.
+
+Check if "SELinux" is active and in "Enforcing" mode with the following command:
+
+# getenforce
+Enforcing
+
+If "SELinux" is not active and not in "Enforcing" mode, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-71991" severity="high" conversionstatus="pass" title="SRG-OS-000445-GPOS-00199" dscresource="nxFileLine">
+      <ContainsLine>SELINUXTYPE=targeted</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without verification of the security functions, security functions may not operate correctly and the failure may go unnoticed. Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters.
+
+This requirement applies to operating systems performing security function verification/testing and/or systems and environments that require this functionality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^#\s*SELINUXTYPE.*$|^SELINUXTYPE\s*=\s*(?!targeted\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/selinux/config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3388,7 +3391,7 @@ If the value for the "UMASK" parameter is not "077", or the "UMASK" parameter is
     <Rule id="V-72013" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>CREATE_HOME yes</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;If local interactive users are not assigned a valid home directory, there is no place for the storage and control of files they should own.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*CREATE_HOME\s*yes</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*CREATE_HOME.*$|^CREATE_HOME\s*(?!yes\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/login.defs</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5679,7 +5682,7 @@ If "ClientAliveInterval" has a value that is greater than "600" and is not docum
     <Rule id="V-72239" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>RhostsRSAAuthentication no</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*RhostsRSAAuthentication\s*no</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*RhostsRSAAuthentication.*$|^RhostsRSAAuthentication\s*(?!no\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5707,7 +5710,7 @@ If the value is returned as "yes", the returned line is commented out, or no out
 Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
 
 Satisfies: SRG-OS-000163-GPOS-00072, SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*ClientAliveCountMax\s*0</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*ClientAliveCountMax.*$|^ClientAliveCountMax\s*(?!0\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5725,7 +5728,7 @@ If "ClientAliveCountMax" is not set to "0", this is a finding.</RawString>
     <Rule id="V-72243" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>IgnoreRhosts yes</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*IgnoreRhosts\s*yes</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*IgnoreRhosts.*$|^IgnoreRhosts\s*(?!yes\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5744,7 +5747,7 @@ If the value is returned as "no", the returned line is commented out, or no outp
     <Rule id="V-72245" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>PrintLastLog yes</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Providing users with feedback on when account accesses via SSH last occurred facilitates user recognition and reporting of unauthorized account use.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*PrintLastLog\s*yes</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*PrintLastLog.*$|^PrintLastLog\s*(?!yes\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5762,7 +5765,7 @@ If the "PrintLastLog" keyword is set to "no", is missing, or is commented out, t
     <Rule id="V-72247" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>PermitRootLogin no</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Even though the communications channel may be encrypted, an additional layer of security is gained by extending the policy of not logging on directly as root. In addition, logging on with a user-specific account provides individual accountability of actions performed on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*PermitRootLogin\s*no</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*PermitRootLogin.*$|^PermitRootLogin\s*(?!no\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5780,7 +5783,7 @@ If the "PermitRootLogin" keyword is set to "yes", is missing, or is commented ou
     <Rule id="V-72249" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>IgnoreUserKnownHosts yes</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*IgnoreUserKnownHosts\s*yes</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*IgnoreUserKnownHosts.*$|^IgnoreUserKnownHosts\s*(?!yes\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5796,47 +5799,32 @@ IgnoreUserKnownHosts yes
 
 If the value is returned as "no", the returned line is commented out, or no output is returned, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-72251.a" severity="high" conversionstatus="pass" title="SRG-OS-000074-GPOS-00042" dscresource="nxFileLine">
+    <Rule id="V-72251" severity="high" conversionstatus="pass" title="SRG-OS-000074-GPOS-00042" dscresource="nxFileLine">
       <ContainsLine>Protocol 2</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;SSHv1 is an insecure implementation of the SSH protocol and has many well-known vulnerability exploits. Exploits of the SSH daemon could provide immediate root access to the system.
 
 Satisfies: SRG-OS-000074-GPOS-00042, SRG-OS-000480-GPOS-00227&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^\s*Protocol\s*([0-1]|[3-9]|\d{2,})\s*$|#\s*Protocol.*|^\s*Protocol\s*$</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*Protocol.*$|^Protocol\s*(?!2\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Check the version of the operating system with the following command:
+
 # cat /etc/redhat-release
+
 If the release is 7.4 or newer this requirement is Not Applicable.
+
 Verify the SSH daemon is configured to only use the SSHv2 protocol.
+
 Check that the SSH daemon is configured to only use the SSHv2 protocol with the following command:
+
 # grep -i protocol /etc/ssh/sshd_config
 Protocol 2
-If any protocol line other than "Protocol 2" is uncommented, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-72251.b" severity="high" conversionstatus="pass" title="SRG-OS-000074-GPOS-00042" dscresource="nxFileLine">
-      <ContainsLine>#Protocol 1,2</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;SSHv1 is an insecure implementation of the SSH protocol and has many well-known vulnerability exploits. Exploits of the SSH daemon could provide immediate root access to the system.
-
-Satisfies: SRG-OS-000074-GPOS-00042, SRG-OS-000480-GPOS-00227&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*#Protocol\s*1,2</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/ssh/sshd_config</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Check the version of the operating system with the following command:
-# cat /etc/redhat-release
-If the release is 7.4 or newer this requirement is Not Applicable.
-Verify the SSH daemon is configured to only use the SSHv2 protocol.
-Check that the SSH daemon is configured to only use the SSHv2 protocol with the following command:
-# grep -i protocol /etc/ssh/sshd_config
 #Protocol 1,2
-If any protocol line other than "Protocol 2" is uncommented, this is a finding.
-</RawString>
+
+If any protocol line other than "Protocol 2" is uncommented, this is a finding.</RawString>
     </Rule>
     <Rule id="V-72253" severity="medium" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="nxFileLine">
       <ContainsLine>MACs hmac-sha2-256,hmac-sha2-512</ContainsLine>
@@ -5861,7 +5849,7 @@ If any ciphers other than "hmac-sha2-256" or "hmac-sha2-512" are listed or the r
     <Rule id="V-72259" severity="medium" conversionstatus="pass" title="SRG-OS-000364-GPOS-00151" dscresource="nxFileLine">
       <ContainsLine>GSSAPIAuthentication no</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;GSSAPI authentication is used to provide additional authentication mechanisms to applications. Allowing GSSAPI authentication through SSH exposes the system's GSSAPI to remote hosts, increasing the attack surface of the system. GSSAPI authentication must be disabled unless needed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*GSSAPIAuthentication\s*no</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*GSSAPIAuthentication.*$|^GSSAPIAuthentication\s*(?!no\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5879,7 +5867,7 @@ If the "GSSAPIAuthentication" keyword is missing, is set to "yes" and is not doc
     <Rule id="V-72261" severity="medium" conversionstatus="pass" title="SRG-OS-000364-GPOS-00151" dscresource="nxFileLine">
       <ContainsLine>KerberosAuthentication no</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Kerberos authentication for SSH is often implemented using Generic Security Service Application Program Interface (GSSAPI). If Kerberos is enabled through SSH, the SSH daemon provides a means of access to the system's Kerberos implementation. Vulnerabilities in the system's Kerberos implementation may then be subject to exploitation. To reduce the attack surface of the system, the Kerberos authentication mechanism within SSH must be disabled for systems not using this capability.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*KerberosAuthentication\s*no</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*KerberosAuthentication.*$|^KerberosAuthentication\s*(?!no\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5897,7 +5885,7 @@ If the "KerberosAuthentication" keyword is missing, or is set to "yes" and is no
     <Rule id="V-72263" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>StrictModes yes</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;If other users have access to modify user-specific SSH configuration files, they may be able to log on to the system as another user.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*StrictModes\s*yes</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*StrictModes.*$|^StrictModes\s*(?!yes\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5918,7 +5906,7 @@ If "StrictModes" is set to "no", is missing, or the returned line is commented o
     <Rule id="V-72265" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>UsePrivilegeSeparation sandbox</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;SSH daemon privilege separation causes the SSH process to drop root privileges when not needed, which would decrease the impact of software vulnerabilities in the unprivileged section.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*UsePrivilegeSeparation\s*sandbox</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*UsePrivilegeSeparation.*$|^UsePrivilegeSeparation\s*(?!sandbox\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5937,7 +5925,7 @@ If the "UsePrivilegeSeparation" keyword is set to "no", is missing, or the retur
     <Rule id="V-72267" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>Compression delayed</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;If compression is allowed in an SSH connection prior to authentication, vulnerabilities in the compression software could result in compromise of the system from an unauthenticated connection, potentially with root privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*Compression\s*delayed</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*Compression.*$|^Compression\s*(?!delayed\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5973,7 +5961,7 @@ If "pam_lastlog" is missing from "/etc/pam.d/postlogin" file, or the silent opti
     <Rule id="V-72303" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>X11Forwarding yes</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Open X displays allow an attacker to capture keystrokes and execute commands remotely.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*X11Forwarding\s*yes</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*X11Forwarding.*$|^X11Forwarding\s*(?!yes\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6201,7 +6189,7 @@ If both the "b32" and "b64" audit rules are not defined for the "finit_module" s
     <Rule id="V-81003" severity="medium" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="nxFileLine">
       <ContainsLine>password substack system-auth</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Pluggable authentication modules (PAM) allow for a modular approach to integrating authentication methods. PAM operates in a top-down processing model and if the modules are not listed in the correct order, an important security function could be bypassed if stack entries are not centralized.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*password\s*substack\s*system-auth</DoesNotContainPattern>
+      <DoesNotContainPattern>^\s*password\s\s+substack\s\s+system-auth\s*$|^#\s*password\s*substack\s*system-auth.*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/pam.d/passwd</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
