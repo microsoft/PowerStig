@@ -11,15 +11,15 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER PropertyName
         The PropertyName content
 #>
-class SPLogLevelRule : Rule
+class SPIrmSettingsRule : Rule
 {
-    [array] $SPLogLevelItem
-
+    [bool] $SPIrmSettingsUseADRMS
+    [string] $SPIrmSettingsRMSserver
     <#
         .SYNOPSIS
             Default constructor to support the AsRule cast method
     #>
-    SPLogLevelRule ()
+    SPIrmSettingsRule ()
     {
     }
 
@@ -29,7 +29,7 @@ class SPLogLevelRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    SPLogLevelRule ([xml.xmlelement] $Rule) : base ($Rule)
+    SPIrmSettingsRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -41,7 +41,7 @@ class SPLogLevelRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    SPLogLevelRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
+    SPIrmSettingsRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

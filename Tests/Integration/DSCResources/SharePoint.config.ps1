@@ -56,18 +56,8 @@ configuration SharePoint_config
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [hashtable[]]
-        $SPLogLevelItem,
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
         [hashtable]
         $SPAlternateUrlItem,
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        [hashtable[]]
-        $WebAppUrlandBlockedFileTypesList,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]

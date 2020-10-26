@@ -18,9 +18,8 @@ using module .\..\..\Rule.Registry\Convert\RegistryRule.Convert.psm1
 using module .\..\..\Rule.SecurityOption\Convert\SecurityOptionRule.Convert.psm1
 using module .\..\..\Rule.Service\Convert\ServiceRule.Convert.psm1
 using module .\..\..\Rule.SPWebAppGeneralSettings\Convert\SPWebAppGeneralSettingsRule.Convert.psm1
-using module .\..\..\Rule.SPLogLevel\Convert\SPLogLevelRule.Convert.psm1
+using module .\..\..\Rule.SPIrmSettings\Convert\SPIrmSettingsRule.Convert.psm1
 using module .\..\..\Rule.SPAlternateUrl\Convert\SPAlternateUrlRule.Convert.psm1
-using module .\..\..\Rule.SPWebAppBlockedFileTypes\Convert\SPWebAppBlockedFileTypesRule.Convert.psm1
 using module .\..\..\Rule.CipherSuites\Convert\CipherSuitesRule.Convert.psm1
 using module .\..\..\Rule.SqlScriptQuery\Convert\SqlScriptQueryRule.Convert.psm1
 using module .\..\..\Rule.UserRight\Convert\UserRightRule.Convert.psm1
@@ -216,22 +215,16 @@ class ConvertFactory
                     [SPWebAppGeneralSettingsRuleConvert]::new($Rule).AsRule()
                 )
             }
-            {[SPLogLevelRuleConvert]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add(
-                    [SPLogLevelRuleConvert]::new($Rule).AsRule()
-                )
-            }
             {[SPAlternateUrlRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add(
                     [SPAlternateUrlRuleConvert]::new($Rule).AsRule()
                 )
             }
-            {[SPWebAppBlockedFileTypesRuleConvert]::Match($PSItem)}
+            {[SPIrmSettingsRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add(
-                    [SPWebAppBlockedFileTypesRuleConvert]::new($Rule).AsRule()
+                    [SPIrmSettingsRuleConvert]::new($Rule).AsRule()
                 )
             }
             {[CipherSuitesRuleConvert]::Match($PSItem)}
