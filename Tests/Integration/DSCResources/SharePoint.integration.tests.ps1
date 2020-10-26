@@ -15,8 +15,6 @@ $SetupAccount = New-Object -TypeName pscredential -ArgumentList 'Admin', $passwo
 
 $WebAppUrl = 'https://sharePoint.contoso.com'
 
-$SPAlternateUrlItem = @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
-
 $additionalTestParameterList    = @{
     SetupAccount = $SetupAccount
     ConfigurationData           = @{
@@ -29,7 +27,6 @@ $additionalTestParameterList    = @{
         )
     }
     WebAppUrl = $WebAppUrl
-    SPAlternateUrlItem = $SPAlternateUrlItem
 }
 
 foreach ($stig in $stigList)
@@ -43,10 +40,8 @@ foreach ($stig in $stigList)
     $expectedSkipRuleTypeCount = $powerstigXml.SPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
 
     $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SPWebAppGeneralSettingsRule.Rule.id -Count 2
-    $skipRuleTypeMultiple = @('SPWebAppGeneralSettingsRule','SPAlternateUrlRule')
-    $expectedSkipRuleTypeMultipleCount = $powerstigXml.SPWebAppGeneralSettingsRule.Rule.Count + 
-                                          ($powerstigXml.SPAlternateUrlRule.Rule.id).count + 
-                                          $blankSkipRuleId.Count
+    $skipRuleTypeMultiple = @('SPWebAppGeneralSettingsRule')
+    $expectedSkipRuleTypeMultipleCount = $powerstigXml.SPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
 
     $singleSkipRuleSeverity = 'CAT_I'
     $multipleSkipRuleSeverity = 'CAT_I', 'CAT_II'

@@ -6,7 +6,7 @@ try
 {
     $testCases = @(
         @{
-            SPAlternateUrlItem = $null 
+            AlternateUrlItem = $null 
             DscResource     = 'SPAlternateUrl'
             SSLSettingsValue = 'Ssl,SslRequireCert'
             CheckContent    = "Review the SharePoint server configuration to ensure the confidentiality of information during aggregation, packaging, and transformation in preparation for transmission is maintained.
@@ -23,7 +23,7 @@ try
             ConversionStatus = 'pass'
         },
         @{
-            SPAlternateUrlItem = $null 
+            AlternateUrlItem = $null 
             DscResource     = 'SPAlternateUrl'
             SSLSettingsValue = 'Ssl,SslRequireCert'
             CheckContent    = "Review the SharePoint server to ensure cryptographic mechanisms preventing the unauthorized disclosure of information during transmission are employed, unless the transmitted data is otherwise protected by alternative physical measures.
@@ -40,7 +40,7 @@ try
             ConversionStatus = 'pass'
         },
         @{
-            SPAlternateUrlItem = $null 
+            AlternateUrlItem = $null 
             DscResource     = 'SPAlternateUrl'
             SSLSettingsValue = 'Ssl,SslRequireCert'
             CheckContent    = 'Review the SharePoint server configuration to ensure approved cryptography is being utilized to protect the confidentiality of remote access sessions.
@@ -53,7 +53,7 @@ try
             ConversionStatus = 'pass'
         },
         @{
-            SPAlternateUrlItem = $null 
+            AlternateUrlItem = $null 
             DscResource     = 'SPAlternateUrl'
             SSLSettingsValue = 'Ssl,SslRequireCert'
             CheckContent    = 'Review the SharePoint server configuration to ensure SSL Mutual authentication of both client and server during the entire session.
@@ -66,7 +66,7 @@ try
             ConversionStatus = 'pass'
         },
         @{
-            SPAlternateUrlItem = $null 
+            AlternateUrlItem = $null 
             DscResource     = 'SPAlternateUrl'
             SSLSettingsValue = 'Ssl,SslRequireCert'
             CheckContent    = 'Review the SharePoint server configuration to ensure cryptography is being used to protect the integrity of the remote access session.
@@ -99,8 +99,8 @@ try
                 It 'Should return an ServiceRule Object' {
                     $rule.GetType() | Should Be 'SPAlternateUrlRule'
                 }
-                It "Should return SPAlternate Url Item:'$($testCase.SPAlternateUrlItem)'" {
-                    $rule.SPAlternateUrlItem | Should Be $testCase.SPAlternateUrlItem
+                It "Should return SPAlternate Url Item:'$($testCase.AlternateUrlItem)'" {
+                    $rule.AlternateUrlItem | Should Be $testCase.AlternateUrlItem
                 }
                 It "Should set the correct DscResource" {
                     $rule.DscResource | Should Be 'SPAlternateUrl'

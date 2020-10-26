@@ -25,7 +25,6 @@ data exceptionRuleParameterValues
         UserRightRule                = 'Identity'
         VsphereAdvancedSettingsRule  = 'AdvancedSettings'
         SPWebAppGeneralSettingsRule     = 'PropertyValue'
-        SPAlternateUrlRule              = 'SPAlternateUrlItem'
         CipherSuitesRule             = 'CipherSuitesOrder'
     }
 }
@@ -171,11 +170,7 @@ function Get-ResourceMatchStatement
         'SPWebAppGeneralSettingsRule' 
         {
             return '\[SPWebAppGeneralSettings\]'
-        }      
-        'SPAlternateUrlRule' 
-        {
-            return '\[SPAlternateUrl\]'
-        }      
+        }
         'CipherSuitesRule' 
         {
             return '\[CipherSuites\]'

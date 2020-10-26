@@ -59,7 +59,6 @@ data dscResourceModule
         SqlProtocolRule                      = SqlServerDsc
         SqlDatabaseRule                      = SqlServerDsc
         SPWebAppGeneralSettingsRule          = SharePointDsc
-        SPAlternateUrlRule                   = SharePointDsc
         SPIrmSettingsRule                    = SharePointDsc
         CipherSuitesRule                     = sChannelDsc
 '@
