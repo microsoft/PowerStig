@@ -7,26 +7,10 @@ using module ..\..\PowerStig.psm1
 <#
     .SYNOPSIS
         A composite DSC resource to manage the SharePoint STIG settings.
+    .PARAMETER WebAppUrl
+        The URL of the web app to set the general settings for
     .PARAMETER SharePointVersion
         The version of SharePoint being used E.g. '2013'
-    .PARAMETER SPLogLevelItems
-        A hashtable of SPLogLevels within an array to configure the Area and Category within ULS logs
-
-        $SPLogLevelItem = @(@{"Area" = "SharePoint Server";"Name" = "Database";"TraceLevel" = "Verbose";"EventLevel" = "Error"},
-            @{"Area" = "Business Connectivity Services";"Name" = "Business Data";"TraceLevel" = "Verbose";"EventLevel" = "Information"},
-            @{"Area" = "Search";"Name" = "Content Processing";"TraceLevel" = "Verbose";"EventLevel" = "Error"}
-        )
-    .PARAMETER SPAlternateUrlItem
-        A hashtable to configure Alternate Url on Web Applications
-
-        $SPAlternateUrlItem = @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Internet"; Internal = $false}
-    .PARAMETER WebAppUrlandBlockedFileTypesList
-        A hashtable of Web App Url and Blocked File Types within an array to configure Blocked File Types on any Web App that you want
-
-        $WebAppUrlandBlockedFileTypesList = @(@{"WebAppUrl" = "https://other.contoso.com";"List" = @("txt", "exe", "dll")},
-            @{"WebAppUrl" = "prod.contoso.com";"List" = @("txt", "exe", "msi")},
-            @{"WebAppUrl" = "test.contoso.com";"List" = @("txt", "exe", "msi")}
-        )
     .PARAMETER CipherSuitesOrder
         An array of ciphers to be applied to your server
 
@@ -78,11 +62,6 @@ configuration SharePoint
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [hashtable]
-        $SPAlternateUrlItem,
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
 
@@ -119,10 +98,6 @@ configuration SharePoint
 
     Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.2.0
     . "$resourcePath\SharePoint.SPWebAppGeneralSettings.ps1"
-    . "$resourcePath\SharePoint.SPAlternateUrl.ps1"
-
-    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 3.2.0
-    . "$resourcePath\SharePoint.xSslSettings.ps1" 
 
     Import-DscResource -ModuleName sChannelDsc -ModuleVersion 1.2.0
     . "$resourcePath\SharePoint.CipherSuites.ps1"

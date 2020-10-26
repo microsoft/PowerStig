@@ -56,11 +56,6 @@ configuration SharePoint_config
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [hashtable]
-        $SPAlternateUrlItem,
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
         [array]
         $CipherSuitesOrder
     )

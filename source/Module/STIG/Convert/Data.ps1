@@ -50,7 +50,6 @@ data dscResourceModule
         VsphereNtpSettingsRule               = Vmware.vSphereDSC
         VsphereVssSecurityRule               = Vmware.vSphereDSC
         SPWebAppGeneralSettingsRule          = SharePointDsc
-        SPAlternateUrlRule                   = SharePointDsc
         SPIrmSettingsRule                    = SharePointDsc
         CipherSuitesRule                     = sChannelDsc
 '@
