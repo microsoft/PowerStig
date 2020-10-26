@@ -14,7 +14,6 @@ using module .\..\Rule.Registry\RegistryRule.psm1
 using module .\..\Rule.SecurityOption\SecurityOptionRule.psm1
 using module .\..\Rule.Service\ServiceRule.psm1
 using module .\..\Rule.SPWebAppGeneralSettings\SPWebAppGeneralSettingsRule.psm1
-using module .\..\Rule.SPIrmSettings\SPIrmSettingsRule.psm1
 using module .\..\Rule.SqlScriptQuery\SqlScriptQueryRule.psm1
 using module .\..\Rule.UserRight\UserRightRule.psm1
 using module .\..\Rule.WebAppPool\WebAppPoolRule.psm1
@@ -56,7 +55,6 @@ class LoadFactory
             'SecurityOptionRule'                   {$return = [SecurityOptionRule]::new($Rule)}
             'ServiceRule'                          {$return = [ServiceRule]::new($Rule)}
             'SPWebAppGeneralSettingsRule'           {$return = [SPWebAppGeneralSettingsRule]::new($Rule)}
-            'SPIrmSettingsRule'                     {$return = [SPIrmSettingsRule]::new($rule)}
             'SqlScriptQueryRule'                   {$return = [SqlScriptQueryRule]::new($Rule)}
             'UserRightRule'                        {$return = [UserRightRule]::new($Rule)}
             'WebAppPoolRule'                       {$return = [WebAppPoolRule]::new($Rule)}
