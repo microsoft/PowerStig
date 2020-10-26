@@ -52,12 +52,7 @@ configuration SharePoint_config
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [pscredential]
-        $SetupAccount,
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        [array]
-        $CipherSuitesOrder
+        $SetupAccount
     )
 
     Import-DscResource -ModuleName PowerStig

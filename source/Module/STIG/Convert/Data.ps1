@@ -51,6 +51,5 @@ data dscResourceModule
         VsphereVssSecurityRule               = Vmware.vSphereDSC
         SPWebAppGeneralSettingsRule          = SharePointDsc
         SPIrmSettingsRule                    = SharePointDsc
-        CipherSuitesRule                     = sChannelDsc
 '@
 }

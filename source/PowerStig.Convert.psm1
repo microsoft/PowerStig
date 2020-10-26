@@ -43,7 +43,6 @@ using module .\Module\Rule.VsphereKernelActiveDumpPartition\Convert\VsphereKerne
 using module .\Module\Rule.VsphereNtpSettings\Convert\VsphereNtpSettingsRule.Convert.psm1
 using module .\Module\Rule.VsphereVssSecurity\Convert\VsphereVssSecurityRule.Convert.psm1
 using module .\Module\Rule.SPWebAppGeneralSettings\Convert\SPWebAppGeneralSettingsRule.Convert.psm1
-using module .\Module\Rule.CipherSuites\Convert\CipherSuitesRule.Convert.psm1
 using module .\Module\Rule.SPIrmSettings\Convert\SPIrmSettingsRule.Convert.psm1
 
 # load the public functions
