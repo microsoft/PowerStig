@@ -59,6 +59,5 @@ data dscResourceModule
         SqlProtocolRule                      = SqlServerDsc
         SqlDatabaseRule                      = SqlServerDsc
         SPWebAppGeneralSettingsRule          = SharePointDsc
-        SPIrmSettingsRule                    = SharePointDsc
 '@
 }
