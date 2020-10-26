@@ -24,8 +24,7 @@ data exceptionRuleParameterValues
         ServiceRule                  = 'StartupType'
         UserRightRule                = 'Identity'
         VsphereAdvancedSettingsRule  = 'AdvancedSettings'
-        SPWebAppGeneralSettingsRule     = 'PropertyValue'
-        CipherSuitesRule             = 'CipherSuitesOrder'
+        SPWebAppGeneralSettingsRule  = 'PropertyValue'
     }
 }
 #endregion
@@ -170,10 +169,6 @@ function Get-ResourceMatchStatement
         'SPWebAppGeneralSettingsRule' 
         {
             return '\[SPWebAppGeneralSettings\]'
-        }
-        'CipherSuitesRule' 
-        {
-            return '\[CipherSuites\]'
         }
     }
 }

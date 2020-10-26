@@ -60,6 +60,5 @@ data dscResourceModule
         SqlDatabaseRule                      = SqlServerDsc
         SPWebAppGeneralSettingsRule          = SharePointDsc
         SPIrmSettingsRule                    = SharePointDsc
-        CipherSuitesRule                     = sChannelDsc
 '@
 }

@@ -11,10 +11,6 @@ using module ..\..\PowerStig.psm1
         The URL of the web app to set the general settings for
     .PARAMETER SharePointVersion
         The version of SharePoint being used E.g. '2013'
-    .PARAMETER CipherSuitesOrder
-        An array of ciphers to be applied to your server
-
-        $CipherSuitesOrder = @("TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384","TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384","TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256","TLS_DHE_RSA_WITH_AES_256_GCM_SHA384","TLS_DHE_RSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384","TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256","TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384","TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256","TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA","TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA","TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA","TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA","TLS_DHE_RSA_WITH_AES_256_CBC_SHA","TLS_DHE_RSA_WITH_AES_128_CBC_SHA","TLS_RSA_WITH_AES_256_GCM_SHA384","TLS_RSA_WITH_AES_128_GCM_SHA256","TLS_RSA_WITH_AES_256_CBC_SHA256","TLS_RSA_WITH_AES_128_CBC_SHA256","TLS_RSA_WITH_AES_256_CBC_SHA","TLS_RSA_WITH_AES_128_CBC_SHA","TLS_RSA_WITH_3DES_EDE_CBC_SHA","TLS_DHE_DSS_WITH_AES_256_CBC_SHA256","TLS_DHE_DSS_WITH_AES_128_CBC_SHA256","TLS_DHE_DSS_WITH_AES_256_CBC_SHA","TLS_DHE_DSS_WITH_AES_128_CBC_SHA","TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA","TLS_RSA_WITH_RC4_128_SHA","TLS_RSA_WITH_RC4_128_MD5","TLS_RSA_WITH_NULL_SHA256","TLS_RSA_WITH_NULL_SHA")
     .PARAMETER StigVersion
         The version of the SharePoint STIG to apply and/or monitor
     .PARAMETER Exception
@@ -57,11 +53,6 @@ configuration SharePoint
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [array]
-        $CipherSuitesOrder,
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
 
@@ -98,9 +89,6 @@ configuration SharePoint
 
     Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.2.0
     . "$resourcePath\SharePoint.SPWebAppGeneralSettings.ps1"
-
-    Import-DscResource -ModuleName sChannelDsc -ModuleVersion 1.2.0
-    . "$resourcePath\SharePoint.CipherSuites.ps1"
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.12.0.0
     . "$resourcePath\windows.Script.skip.ps1"

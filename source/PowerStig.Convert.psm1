@@ -55,7 +55,6 @@ using module .\Module\Rule.SharePointSPWebAppGeneralSettings\Convert\SharePointS
 using module .\Module\Rule.SharePointSPLogLevel\Convert\SharePointSPLogLevelRule.Convert.psm1
 using module .\Module\Rule.SharePointSPAlternateUrl\Convert\SharePointSPAlternateUrlRule.Convert.psm1
 using module .\Module\Rule.SPWebAppGeneralSettings\Convert\SPWebAppGeneralSettingsRule.Convert.psm1
-using module .\Module\Rule.CipherSuites\Convert\CipherSuitesRule.Convert.psm1
 using module .\Module\Rule.SPIrmSettings\Convert\SPIrmSettingsRule.Convert.psm1
 
 # load the public functions
