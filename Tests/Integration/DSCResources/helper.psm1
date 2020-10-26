@@ -25,9 +25,7 @@ data exceptionRuleParameterValues
         UserRightRule                = 'Identity'
         VsphereAdvancedSettingsRule  = 'AdvancedSettings'
         SPWebAppGeneralSettingsRule     = 'PropertyValue'
-        SPLogLevelRule                  = 'SPLogLevelItems'
         SPAlternateUrlRule              = 'SPAlternateUrlItem'
-        SPWebAppBlockedFileTypesRule = 'BlockedFileTypes'
         CipherSuitesRule             = 'CipherSuitesOrder'
     }
 }
@@ -173,18 +171,10 @@ function Get-ResourceMatchStatement
         'SPWebAppGeneralSettingsRule' 
         {
             return '\[SPWebAppGeneralSettings\]'
-        }
-        'SPLogLevelRule' 
-        {
-            return '\[SPLogLevel\]'
-        }        
+        }      
         'SPAlternateUrlRule' 
         {
             return '\[SPAlternateUrl\]'
-        }   
-        'SPWebAppBlockedFileTypesRule' 
-        {
-            return '\[SPWebAppBlockedFileTypes\]'
         }      
         'CipherSuitesRule' 
         {

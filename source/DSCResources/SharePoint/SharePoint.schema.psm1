@@ -73,16 +73,6 @@ configuration SharePoint
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [hashtable[]]
-        $SPLogLevelItem,
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        [hashtable[]]
-        $WebAppUrlandBlockedFileTypesList,
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
         [array]
         $CipherSuitesOrder,
 
@@ -129,9 +119,7 @@ configuration SharePoint
 
     Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.2.0
     . "$resourcePath\SharePoint.SPWebAppGeneralSettings.ps1"
-    . "$resourcePath\SharePoint.SPLogLevel.ps1"
     . "$resourcePath\SharePoint.SPAlternateUrl.ps1"
-    . "$resourcePath\Sharepoint.SPWebAppBlockedFileTypes.ps1"
 
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 3.2.0
     . "$resourcePath\SharePoint.xSslSettings.ps1" 

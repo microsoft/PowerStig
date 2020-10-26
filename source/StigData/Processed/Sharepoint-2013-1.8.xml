@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="10/5/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="10/8/2020">
   <CipherSuitesRule dscresourcemodule="sChannelDsc">
     <Rule id="V-59965" severity="high" conversionstatus="pass" title="SRG-APP-000196" dscresource="CipherSuites">
       <CipherSuitesOrder />
@@ -147,80 +147,6 @@ If any DES or RC4 cipher suites exist in the list, this is a finding.</RawString
     </Rule>
   </CipherSuitesRule>
   <DocumentRule dscresourcemodule="None">
-    <Rule id="V-59945" severity="medium" conversionstatus="pass" title="SRG-APP-000043" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.
-
-An example of flow control restrictions includes the following: keeping export-controlled information from being transmitted in the clear to the Internet. Information flow control policies and enforcement mechanisms are commonly employed by organizations to control the flow of information between designated sources and destinations (e.g., users, networks, devices) within information systems and between interconnected systems.
-
-Application-specific examples of flow control enforcement can be found in information protection software (e.g., guards, proxies, application layer gateways, and cross domain solutions) employing rule sets or establishing configuration settings restricting information system services or providing message-filtering capability based on content (e.g., using key word searches or document characteristics).
-
-Flow control is based on the characteristics of the information and/or the information path. Applications providing flow control must identify data type, specification, and usage when transferring information between different security domains so policy restrictions may be applied.
-
-A security domain is defined as a domain implementing a security policy and administered by a single authority.
-
-Data type, specification, and usage includes using file naming to reflect the type of data being transferred and limiting data transfer based on file type.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: If no data is exchanged between different security domains, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
-
-Review the SharePoint server configuration to ensure data type, specification, and usage when transferring information between different security domains are identified so policy restrictions may be applied.
-
-An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
-
-In Central Administration, click Security.
-
-On the Security page, in the Information policy list, click "Configure information rights management".
-
-If "Do not use IRM on this server" is selected, or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-59947" severity="medium" conversionstatus="pass" title="SRG-APP-000047" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The application enforces approved authorizations for controlling the flow of information within the system and between interconnected systems in accordance with applicable policy.
-
-Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.
-
-Specific examples of flow control enforcement can be found in boundary protection devices (e.g., proxies, gateways, guards, encrypted tunnels, firewalls, and routers) employing rule sets or establishing configuration settings restricting information system services, providing a packet-filtering capability based on header information or message-filtering capability based on content (e.g., using key word searches or document characteristics).
-
-Actions to support this requirement include, but are not limited to checking all transferred information for malware, implementing dirty word list searches on transferred information, and applying the same protection measures to metadata (e.g., security attributes) that is applied to the information payload.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: If no unsanctioned information is transferred, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
-
-Review the SharePoint server configuration to ensure the transfer of unsanctioned information in accordance with security policy is prohibited.
-
-An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
-
-In Central Administration, click Security.
-
-On the Security page, in the Information policy list, click "Configure information rights management".
-
-If "Do not use IRM on this server" is selected or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-59973" severity="medium" conversionstatus="pass" title="SRG-APP-000204" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;When data is exchanged between information systems, the security attributes associated with said data need to be maintained.
-
-Security attributes are an abstraction representing the basic properties or characteristics of an entity with respect to safeguarding information, typically associated with internal data structures (e.g., records, buffers, files) within the information system and used to enable the implementation of access control and flow control policies, reflect special dissemination, handling or distribution instructions, or support other aspects of the information security policy.
-
-Security attributes may be explicitly or implicitly associated with the information contained within the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: If no data is exchanged between systems, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
-
-Review the SharePoint server configuration to ensure the integrity of security attributes exchanged between systems is validated. 
-
-An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
-
-In Central Administration, click Security.
-
-On the Security page, in the Information policy list, click "Configure information rights management".
-
-If "Do not use IRM on this server" is selected, or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
-    </Rule>
     <Rule id="V-60011" severity="medium" conversionstatus="pass" title="SRG-APP-000208" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Configuring anti-virus settings ensures documents will be scanned for viruses upon download from and upload to the SharePoint server. Anti-virus settings are not configured by default, therefore leaving the documents downloaded from or uploaded to SharePoint open to potential viruses.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -759,6 +685,88 @@ If SharePoint communications between all components and clients are protected by
       <SPAlternateUrlItem />
     </Rule>
   </SPAlternateUrlRule>
+  <SPIrmSettingsRule dscresourcemodule="SharePointDsc">
+    <Rule id="V-59945" severity="medium" conversionstatus="pass" title="SRG-APP-000043" dscresource="SPIrmSettings">
+      <Description>&lt;VulnDiscussion&gt;Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.
+
+An example of flow control restrictions includes the following: keeping export-controlled information from being transmitted in the clear to the Internet. Information flow control policies and enforcement mechanisms are commonly employed by organizations to control the flow of information between designated sources and destinations (e.g., users, networks, devices) within information systems and between interconnected systems.
+
+Application-specific examples of flow control enforcement can be found in information protection software (e.g., guards, proxies, application layer gateways, and cross domain solutions) employing rule sets or establishing configuration settings restricting information system services or providing message-filtering capability based on content (e.g., using key word searches or document characteristics).
+
+Flow control is based on the characteristics of the information and/or the information path. Applications providing flow control must identify data type, specification, and usage when transferring information between different security domains so policy restrictions may be applied.
+
+A security domain is defined as a domain implementing a security policy and administered by a single authority.
+
+Data type, specification, and usage includes using file naming to reflect the type of data being transferred and limiting data transfer based on file type.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: If no data is exchanged between different security domains, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
+
+Review the SharePoint server configuration to ensure data type, specification, and usage when transferring information between different security domains are identified so policy restrictions may be applied.
+
+An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
+
+In Central Administration, click Security.
+
+On the Security page, in the Information policy list, click "Configure information rights management".
+
+If "Do not use IRM on this server" is selected, or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
+      <SPIrmSettingsRMSserver />
+      <SPIrmSettingsUseADRMS>False</SPIrmSettingsUseADRMS>
+    </Rule>
+    <Rule id="V-59947" severity="medium" conversionstatus="pass" title="SRG-APP-000047" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The application enforces approved authorizations for controlling the flow of information within the system and between interconnected systems in accordance with applicable policy.
+
+Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.
+
+Specific examples of flow control enforcement can be found in boundary protection devices (e.g., proxies, gateways, guards, encrypted tunnels, firewalls, and routers) employing rule sets or establishing configuration settings restricting information system services, providing a packet-filtering capability based on header information or message-filtering capability based on content (e.g., using key word searches or document characteristics).
+
+Actions to support this requirement include, but are not limited to checking all transferred information for malware, implementing dirty word list searches on transferred information, and applying the same protection measures to metadata (e.g., security attributes) that is applied to the information payload.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf>V-59945</DuplicateOf>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: If no unsanctioned information is transferred, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
+
+Review the SharePoint server configuration to ensure the transfer of unsanctioned information in accordance with security policy is prohibited.
+
+An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
+
+In Central Administration, click Security.
+
+On the Security page, in the Information policy list, click "Configure information rights management".
+
+If "Do not use IRM on this server" is selected or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
+      <SPIrmSettingsRMSserver />
+      <SPIrmSettingsUseADRMS>False</SPIrmSettingsUseADRMS>
+    </Rule>
+    <Rule id="V-59973" severity="medium" conversionstatus="pass" title="SRG-APP-000204" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When data is exchanged between information systems, the security attributes associated with said data need to be maintained.
+
+Security attributes are an abstraction representing the basic properties or characteristics of an entity with respect to safeguarding information, typically associated with internal data structures (e.g., records, buffers, files) within the information system and used to enable the implementation of access control and flow control policies, reflect special dissemination, handling or distribution instructions, or support other aspects of the information security policy.
+
+Security attributes may be explicitly or implicitly associated with the information contained within the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf>V-59945</DuplicateOf>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: If no data is exchanged between systems, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
+
+Review the SharePoint server configuration to ensure the integrity of security attributes exchanged between systems is validated. 
+
+An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
+
+In Central Administration, click Security.
+
+On the Security page, in the Information policy list, click "Configure information rights management".
+
+If "Do not use IRM on this server" is selected, or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
+      <SPIrmSettingsRMSserver />
+      <SPIrmSettingsUseADRMS>False</SPIrmSettingsUseADRMS>
+    </Rule>
+  </SPIrmSettingsRule>
   <SPLogLevelRule dscresourcemodule="SharePointDsc">
     <Rule id="V-59953" severity="medium" conversionstatus="pass" title="SRG-APP-000090" dscresource="SPLogLevel">
       <Description>&lt;VulnDiscussion&gt;Audit records can be generated from various components within the information system, such as network interfaces, hard disks, modems, etc. From an application perspective, certain specific application functionalities may be audited as well.

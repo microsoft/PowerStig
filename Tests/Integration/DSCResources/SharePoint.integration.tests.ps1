@@ -17,17 +17,6 @@ $WebAppUrl = 'https://sharePoint.contoso.com'
 
 $SPAlternateUrlItem = @{Url = "https://Other.contoso.com"; WebAppName = "Other web App"; Zone = "Default"; Internal = "$False"}
 
-$SPLogLevelItem = @(
-    @{"Area" = "SharePoint Server";"Name" = "Database";"TraceLevel" = "Verbose";"EventLevel" = "Error"},
-    @{"Area" = "Business Connectivity Services";"Name" = "Business Data";"TraceLevel" = "Verbose";"EventLevel" = "Information"},
-    @{"Area" = "Search";"Name" = "Content Processing";"TraceLevel" = "Verbose";"EventLevel" = "Error"}
-)
-
-$WebAppUrlandBlockedFileTypesList = @(@{"WebAppUrl" = "https://other.contoso.com";"List" = @("txt", "exe", "dll")},
-            @{"WebAppUrl" = "prod.contoso.com";"List" = @("txt", "exe", "msi")},
-            @{"WebAppUrl" = "test.contoso.com";"List" = @("txt", "exe", "msi")}
-        )
-
 $additionalTestParameterList    = @{
     SetupAccount = $SetupAccount
     ConfigurationData           = @{
@@ -40,9 +29,7 @@ $additionalTestParameterList    = @{
         )
     }
     WebAppUrl = $WebAppUrl
-    SPLogLevelItem = $SPLogLevelItem
     SPAlternateUrlItem = $SPAlternateUrlItem
-    WebAppUrlandBlockedFileTypesList = $WebAppUrlandBlockedFileTypesList
 }
 
 foreach ($stig in $stigList)
@@ -56,9 +43,9 @@ foreach ($stig in $stigList)
     $expectedSkipRuleTypeCount = $powerstigXml.SPWebAppGeneralSettingsRule.Rule.Count + $blankSkipRuleId.Count
 
     $skipRuleMultiple = Get-Random -InputObject $powerstigXml.SPWebAppGeneralSettingsRule.Rule.id -Count 2
-    $skipRuleTypeMultiple = @('SPWebAppGeneralSettingsRule','SPWebAppBlockedFileTypesRule')
+    $skipRuleTypeMultiple = @('SPWebAppGeneralSettingsRule','SPAlternateUrlRule')
     $expectedSkipRuleTypeMultipleCount = $powerstigXml.SPWebAppGeneralSettingsRule.Rule.Count + 
-                                          ($powerstigXml.SPWebAppBlockedFileTypesRule.Rule.id).count + 
+                                          ($powerstigXml.SPAlternateUrlRule.Rule.id).count + 
                                           $blankSkipRuleId.Count
 
     $singleSkipRuleSeverity = 'CAT_I'
