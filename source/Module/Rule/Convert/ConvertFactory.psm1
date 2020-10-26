@@ -36,6 +36,7 @@ using module .\..\..\Rule.VsphereVssSecurity\Convert\VsphereVssSecurityRule.Conv
 using module .\..\..\Rule.nxPackage\Convert\nxPackageRule.Convert.psm1
 using module .\..\..\Rule.nxService\Convert\nxServiceRule.Convert.psm1
 using module .\..\..\Rule.nxFileLine\Convert\nxFileLineRule.Convert.psm1
+using module .\..\..\Rule.nxFile\Convert\nxFileRule.Convert.psm1
 
 class SplitFactory
 {
@@ -315,6 +316,12 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.AddRange(
                     [SplitFactory]::XccdfRule($Rule, 'nxFileLineRuleConvert')
+                )
+            }
+            {[nxFileRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [nxFileRuleConvert]::new($Rule).AsRule()
                 )
             }
             <#

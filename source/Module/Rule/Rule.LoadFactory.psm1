@@ -32,6 +32,7 @@ using module .\..\Rule.VsphereVssSecurity\VsphereVssSecurityRule.psm1
 using module .\..\Rule.nxPackage\nxPackageRule.psm1
 using module .\..\Rule.nxService\nxServiceRule.psm1
 using module .\..\Rule.nxFileLine\nxFileLineRule.psm1
+using module .\..\Rule.nxFile\nxFileRule.psm1
 
 class LoadFactory
 {
@@ -74,6 +75,7 @@ class LoadFactory
             'nxPackageRule'                        {$return = [nxPackageRule]::new($Rule)}
             'nxServiceRule'                        {$return = [nxServiceRule]::new($Rule)}
             'nxFileLineRule'                       {$return = [nxFileLineRule]::new($Rule)}
+            'nxFileRule'                           {$return = [nxFileRule]::new($Rule)}
         }
 
         return $return

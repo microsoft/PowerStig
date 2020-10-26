@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 24 Apr 2020" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="10/22/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 24 Apr 2020" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="10/26/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-71849" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -58,7 +58,7 @@ Satisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000024-GPOS-00007, SRG-OS-000228-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the operating system via a graphical user logon.
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Check to see if the operating system displays a banner at the logon screen with the following command:
 
@@ -137,7 +137,7 @@ The session lock is implemented at the point where session activity can be deter
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system initiates a session lock a for graphical user interfaces when the screensaver is activated. 
+      <RawString>Verify the operating system initiates a session lock a for graphical user interfaces when the screensaver is activated.
 
 Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
 
@@ -158,7 +158,7 @@ If the "lock-delay" setting is missing, or is not set to "5" or less, this is a 
 
 Check that the system is configured to create "SHA512" hashed passwords with the following command:
 
-# grep -i sha512 /etc/libuser.conf 
+# grep -i sha512 /etc/libuser.conf
 
 crypt_style = sha512
 
@@ -194,7 +194,7 @@ Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion
 
 auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
 auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
-account required pam_faillock.so 
+account required pam_faillock.so
 
 If the "deny" parameter is set to "0" or a value less than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
 
@@ -204,7 +204,7 @@ If the "fail_interval" parameter is set to "0" or is set to a value less than "9
 
 If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
 
-Note: The maximum configurable value for "unlock_time" is "604800". 
+Note: The maximum configurable value for "unlock_time" is "604800".
 
 If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
 
@@ -212,7 +212,7 @@ If any line referencing the "pam_faillock.so" module is commented out, this is a
 
 auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
 auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
-account required pam_faillock.so 
+account required pam_faillock.so
 
 If the "deny" parameter is set to "0" or a value less than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
 
@@ -222,7 +222,7 @@ If the "fail_interval" parameter is set to "0" or is set to a value less than "9
 
 If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding.
 
-Note: The maximum configurable value for "unlock_time" is "604800". 
+Note: The maximum configurable value for "unlock_time" is "604800".
 If any line referencing the "pam_faillock.so" module is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-71945" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="None">
@@ -236,21 +236,21 @@ Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion
       <RawString>Verify the operating system automatically locks the root account until it is released by an administrator when three unsuccessful logon attempts in 15 minutes are made.
 
 # grep pam_faillock.so /etc/pam.d/password-auth
-auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900 
-auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900 
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
 account required pam_faillock.so
 
 If the "even_deny_root" setting is not defined on both lines with the "pam_faillock.so" module, is commented out, or is missing from a line, this is a finding.
 
 # grep pam_faillock.so /etc/pam.d/system-auth
-auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900 
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
 auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
 account required pam_faillock.so
 
 If the "even_deny_root" setting is not defined on both lines with the "pam_faillock.so" module, is commented out, or is missing from a line, this is a finding.</RawString>
     </Rule>
     <Rule id="V-71947" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
+      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization.
 
 When operating systems provide the capability to escalate a functional capability, it is critical the user re-authenticate.
 
@@ -277,7 +277,7 @@ If any uncommented line is found with a "NOPASSWD" tag, this is a finding.</RawS
       <OrganizationValueTestString />
       <RawString>Verify the operating system does not allow an unattended or automatic logon to the system via a graphical user interface.
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Check for the value of the "AutomaticLoginEnable" in the "/etc/gdm/custom.conf" file with the following command:
 
@@ -294,7 +294,7 @@ If the value of "AutomaticLoginEnable" is not set to "false", this is a finding.
       <OrganizationValueTestString />
       <RawString>Verify the operating system does not allow an unrestricted logon to the system via a graphical user interface.
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Check for the value of the "TimedLoginEnable" parameter in "/etc/gdm/custom.conf" file with the following command:
 
@@ -358,7 +358,7 @@ Check that yum verifies the signature of packages from a repository prior to ins
 # grep gpgcheck /etc/yum.conf
 gpgcheck=1
 
-If "gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the certificates for patches and other operating system components are verified. 
+If "gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the certificates for patches and other operating system components are verified.
 
 If there is no process to validate certificates that is approved by the organization, this is a finding.</RawString>
     </Rule>
@@ -379,7 +379,7 @@ Check that yum verifies the signature of local packages prior to install with th
 # grep localpkg_gpgcheck /etc/yum.conf
 localpkg_gpgcheck=1
 
-If "localpkg_gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the signatures of local packages and other operating system components are verified. 
+If "localpkg_gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the signatures of local packages and other operating system components are verified.
 
 If there is no process to validate the signatures of local packages that is approved by the organization, this is a finding.</RawString>
     </Rule>
@@ -431,7 +431,7 @@ If "clean_requirements_on_remove" is not set to "1", "True", or "yes", or is not
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system security patches and updates are installed and up to date. Updates are required to be applied with a frequency determined by the site or Program Management Office (PMO). 
+      <RawString>Verify the operating system security patches and updates are installed and up to date. Updates are required to be applied with a frequency determined by the site or Program Management Office (PMO).
 
 Obtain the list of available package security updates from Red Hat. The URL for updates is https://rhn.redhat.com/errata/. It is important to note that updates provided by Red Hat may not be present on the system if the underlying packages are not installed.
 
@@ -441,13 +441,13 @@ Check that the available package security updates have been installed on the sys
 Loaded plugins: langpacks, product-id, subscription-manager
 ID     | Command line             | Date and time    | Action(s)      | Altered
 -------------------------------------------------------------------------------
-    70 | install aide             | 2016-05-05 10:58 | Install       |     1   
+    70 | install aide             | 2016-05-05 10:58 | Install       |     1
     69 | update -y                | 2016-05-04 14:34 | Update     |   18 EE
-    68 | install vlc                | 2016-04-21 17:12 | Install        |   21   
+    68 | install vlc                | 2016-04-21 17:12 | Install        |   21
     67 | update -y                | 2016-04-21 17:04 | Update     |     7 EE
     66 | update -y                | 2016-04-15 16:47 | E, I, U         |   84 EE
 
-If package updates have not been performed on the system within the timeframe that the site/program documentation requires, this is a finding. 
+If package updates have not been performed on the system within the timeframe that the site/program documentation requires, this is a finding.
 
 Typical update frequency may be overridden by Information Assurance Vulnerability Alert (IAVA) notifications from CYBERCOM.
 
@@ -475,7 +475,7 @@ halt:x:7:0:halt:/sbin:/sbin/halt
 games:x:12:100:games:/usr/games:/sbin/nologin
 gopher:x:13:30:gopher:/var/gopher:/sbin/nologin
 
-Accounts such as "games" and "gopher" are not authorized accounts as they do not support authorized system functions. 
+Accounts such as "games" and "gopher" are not authorized accounts as they do not support authorized system functions.
 
 If the accounts on the system do not match the provided documentation, or accounts that do not support an authorized system function are present, this is a finding.</RawString>
     </Rule>
@@ -566,7 +566,7 @@ Note: GRUB 2 reads its configuration from the "/boot/grub2/grub.cfg" file on tra
 
 If the kernel command line is configured to use FIPS mode, check to see if the system is in FIPS mode with the following command:
 
-# cat /proc/sys/crypto/fips_enabled 
+# cat /proc/sys/crypto/fips_enabled
 1
 
 If a "dracut-fips" package is not installed, the kernel command line does not have a fips entry, or the system has a value of "0" for "fips_enabled" in "/proc/sys/crypto", this is a finding.</RawString>
@@ -586,7 +586,7 @@ Check for the existence of alternate boot loader configuration files with the fo
 # find / -name grub.cfg
 /boot/grub2/grub.cfg
 
-If a "grub.cfg" is found in any subdirectories other than "/boot/grub2" and "/boot/efi/EFI/redhat", ask the System Administrator if there is documentation signed by the ISSO to approve the use of removable media as a boot loader. 
+If a "grub.cfg" is found in any subdirectories other than "/boot/grub2" and "/boot/efi/EFI/redhat", ask the System Administrator if there is documentation signed by the ISSO to approve the use of removable media as a boot loader.
 
 Check that the grub configuration file has the set root command in each menu entry with the following commands:
 
@@ -611,7 +611,7 @@ Satisfies: SRG-OS-000046-GPOS-00022, SRG-OS-000047-GPOS-00023&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>Confirm the audit configuration regarding how auditing processing failures are handled.
 
-Check to see what level "auditctl" is set to with following command: 
+Check to see what level "auditctl" is set to with following command:
 
 # auditctl -s | grep -i "fail"
 
@@ -667,7 +667,7 @@ This can be set as a global domain (with the * wildcard) but may be set differen
 If the "maxlogins" item is missing, commented out, or the value is not set to "10" or less for all domains that have the "maxlogins" item assigned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-72223" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
+      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
 
 Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -707,7 +707,7 @@ sssd.service - System Security Services Daemon
 Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
 Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
 
-If the "sssd.service" is "active", then LDAP is being used. 
+If the "sssd.service" is "active", then LDAP is being used.
 
 Determine the "id_provider" the LDAP is currently using:
 
@@ -743,7 +743,7 @@ sssd.service - System Security Services Daemon
 Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
 Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
 
-If the "sssd.service" is "active", then LDAP is being used. 
+If the "sssd.service" is "active", then LDAP is being used.
 
 Determine the "id_provider" the LDAP is currently using:
 
@@ -942,7 +942,7 @@ Check that the operating system implements the "default send_redirects" variable
 
 # /sbin/sysctl -a | grep 'net.ipv4.conf.default.send_redirects'
 
-net.ipv4.conf.default.send_redirects = 0 
+net.ipv4.conf.default.send_redirects = 0
 
 If the returned line does not have a value of "0", this is a finding.</RawString>
     </Rule>
@@ -1043,7 +1043,7 @@ If the "IPsec" service is active, check to see if any tunnels are configured in 
 
 # grep -iw conn /etc/ipsec.conf /etc/ipsec.d/*.conf
 
-If there are indications that a "conn" parameter is configured for a tunnel, ask the System Administrator if the tunnel is documented with the ISSO. 
+If there are indications that a "conn" parameter is configured for a tunnel, ask the System Administrator if the tunnel is documented with the ISSO.
 
 If "libreswan" is installed, "IPsec" is active, and an undocumented tunnel is active, this is a finding.</RawString>
     </Rule>
@@ -1122,7 +1122,7 @@ cert_policy = ca, ocsp_on, signature;
 cert_policy = ca, ocsp_on, signature;
 cert_policy = ca, ocsp_on, signature;
 
-There should be at least three lines returned. 
+There should be at least three lines returned.
 
 If "ocsp_on" is not present in all uncommented "cert_policy" lines in "/etc/pam_pkcs11/pam_pkcs11.conf", this is a finding.</RawString>
     </Rule>
@@ -1132,7 +1132,7 @@ If "ocsp_on" is not present in all uncommented "cert_policy" lines in "/etc/pam_
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system uses "pwquality" to enforce the password complexity rules. 
+      <RawString>Verify the operating system uses "pwquality" to enforce the password complexity rules.
 
 Check for the use of "pwquality" with the following command:
 
@@ -1217,7 +1217,7 @@ Satisfies: SRG-OS-000375-GPOS-00161,SRG-OS-000375-GPOS-00162&lt;/VulnDiscussion&
       <OrganizationValueTestString />
       <RawString>Verify the operating system uniquely identifies and authenticates users using multifactor authentication via a graphical user logon.
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Determine which profile the system database is using with the following command:
 
@@ -1289,7 +1289,7 @@ If "kernel.randomize_va_space" is not configured in the /etc/sysctl.conf file or
 
 Check that the operating system implements virtual address space randomization with the following command:
 
-# /sbin/sysctl -a | grep kernel.randomize_va_space 
+# /sbin/sysctl -a | grep kernel.randomize_va_space
 
 kernel.randomize_va_space = 2
 
@@ -1545,7 +1545,7 @@ If any results are returned that are not associated with a system account, this 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>To verify that null passwords cannot be used, run the following command: 
+      <RawString>To verify that null passwords cannot be used, run the following command:
 
 # grep nullok /etc/pam.d/system-auth /etc/pam.d/password-auth
 
@@ -1554,7 +1554,7 @@ If this produces any output, it may be possible to log on with accounts with emp
 If null passwords can be used, this is a finding.</RawString>
     </Rule>
     <Rule id="V-71949" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
+      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization.
 
 When operating systems provide the capability to escalate a functional capability, it is critical the user reauthenticate.
 
@@ -1576,7 +1576,7 @@ If any uncommented line is found with a "!authenticate" tag, this is a finding.<
 
 Organizational users include organizational employees or individuals the organization deems to have equivalent status of employees (e.g., contractors). Organizational users (and processes acting on behalf of users) must be uniquely identified and authenticated to all accesses, except for the following:
 
-1) Accesses explicitly identified and documented by the organization. Organizations document specific user actions that can be performed on the information system without identification or authentication; 
+1) Accesses explicitly identified and documented by the organization. Organizations document specific user actions that can be performed on the information system without identification or authentication;
 
 and
 
@@ -1629,7 +1629,7 @@ joe staff_u s0-s0:c0.c1023 *
 
 All administrators must be mapped to the "sysadm_u", "staff_u", or an appropriately tailored confined role as defined by the organization.
 
-All authorized non-administrative users must be mapped to the "user_u" role. 
+All authorized non-administrative users must be mapped to the "user_u" role.
 
 If they are not mapped in this way, this is a finding.</RawString>
     </Rule>
@@ -1680,7 +1680,7 @@ Check to see if AIDE is installed on the system with the following command:
 
 # yum list installed aide
 
-If AIDE is not installed, ask the SA how file integrity checks are performed on the system. 
+If AIDE is not installed, ask the SA how file integrity checks are performed on the system.
 
 Check for the presence of a cron job running routinely on the system that executes AIDE to scan for changes to the system baseline. The commands used in the example will use a daily occurrence.
 
@@ -1949,7 +1949,7 @@ Note: The example will be for the user "smithj", who has a home directory of "/h
 If any files are found with an owner different than the group home directory user, check to see if the user is a member of that group with the following command:
 
 # grep smithj /etc/group
-sa:x:100:juan,shelley,bob,smithj 
+sa:x:100:juan,shelley,bob,smithj
 smithj:x:521:smithj
 
 If the user is not a member of a group that group owns file(s) in a local interactive user's home directory, this is a finding.</RawString>
@@ -2018,7 +2018,7 @@ Note: The example will be for the smithj user, who has a home directory of "/hom
 smithj:1000:/home/smithj
 
 # grep 1000 /etc/group
-users:x:1000:smithj,jonesj,jacksons 
+users:x:1000:smithj,jonesj,jacksons
 
 Note: This may miss interactive users that have been assigned a privileged User Identifier (UID). Evidence of interactive use may be obtained from a number of log files containing system logon information.
 
@@ -2131,7 +2131,7 @@ Check the file systems that are mounted at boot time with the following command:
 # more /etc/fstab
 
 UUID=a411dc99-f2a1-4c87-9e05-184977be8539 /home   ext4   rw,relatime,discard,data=ordered,nosuid 0 2
-                                                            
+
 If a file system found in "/etc/fstab" refers to the user home directory file system and it does not have the "nosuid" option set, this is a finding.</RawString>
     </Rule>
     <Rule id="V-72043" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
@@ -2314,11 +2314,11 @@ Check to see if Advanced Intrusion Detection Environment (AIDE) is installed on 
 
 # yum list installed aide
 
-If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system. 
+If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system.
 
 If there is no application installed to perform file integrity checks, this is a finding.
 
-Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory. 
+Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory.
 
 Use the following command to determine if the file is in another location:
 
@@ -2329,8 +2329,8 @@ Check the "aide.conf" file to determine if the "acl" rule has been added to the 
 An example rule that includes the "acl" rule is below:
 
 All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All # apply the custom rule to the files in bin 
-/sbin All # apply the same custom rule to the files in sbin 
+/bin All # apply the custom rule to the files in bin
+/sbin All # apply the same custom rule to the files in sbin
 
 If the "acl" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or ACLs are not being checked by another file integrity tool, this is a finding.</RawString>
     </Rule>
@@ -2361,8 +2361,8 @@ Check the "aide.conf" file to determine if the "xattrs" rule has been added to t
 An example rule that includes the "xattrs" rule follows:
 
 All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All # apply the custom rule to the files in bin 
-/sbin All # apply the same custom rule to the files in sbin 
+/bin All # apply the custom rule to the files in bin
+/sbin All # apply the same custom rule to the files in sbin
 
 If the "xattrs" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or extended attributes are not being checked by another file integrity tool, this is a finding.</RawString>
     </Rule>
@@ -2380,11 +2380,11 @@ Check to see if Advanced Intrusion Detection Environment (AIDE) is installed on 
 
 # yum list installed aide
 
-If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system. 
+If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system.
 
 If there is no application installed to perform file integrity checks, this is a finding.
 
-Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory. 
+Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory.
 
 Use the following command to determine if the file is in another location:
 
@@ -2395,8 +2395,8 @@ Check the "aide.conf" file to determine if the "sha512" rule has been added to t
 An example rule that includes the "sha512" rule follows:
 
 All=p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All # apply the custom rule to the files in bin 
-/sbin All # apply the same custom rule to the files in sbin 
+/bin All # apply the custom rule to the files in bin
+/sbin All # apply the same custom rule to the files in sbin
 
 If the "sha512" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or another file integrity tool is not using FIPS 140-2 approved cryptographic hashes for validating file contents and directories, this is a finding.</RawString>
     </Rule>
@@ -2415,12 +2415,12 @@ Note: If another logging package is used, substitute the utility configuration f
 # grep @ /etc/rsyslog.conf /etc/rsyslog.d/*.conf
 *.* @@logagg.site.mil
 
-If there are no lines in the "/etc/rsyslog.conf" or "/etc/rsyslog.d/*.conf" files that contain the "@" or "@@" symbol(s), and the lines with the correct symbol(s) to send output to another system do not cover all "rsyslog" output, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media. 
+If there are no lines in the "/etc/rsyslog.conf" or "/etc/rsyslog.d/*.conf" files that contain the "@" or "@@" symbol(s), and the lines with the correct symbol(s) to send output to another system do not cover all "rsyslog" output, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media.
 
 If the lines are commented out or there is no evidence that the audit logs are being sent to another system, this is a finding.</RawString>
     </Rule>
     <Rule id="V-72213" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Virus scanning software can be used to protect a system from penetration from computer viruses and to limit their spread through intermediate systems.  
+      <Description>&lt;VulnDiscussion&gt;Virus scanning software can be used to protect a system from penetration from computer viruses and to limit their spread through intermediate systems.
 
 The virus scanning software should be configured to perform scans dynamically on accessed files. If this capability is not available, the system must be configured to scan, at a minimum, all altered files on the system on a daily basis.
 
@@ -2452,15 +2452,15 @@ Check which services are currently active with the following command:
 # firewall-cmd --list-all
 public (default, active)
   interfaces: enp0s3
-  sources: 
+  sources:
   services: dhcpv6-client dns http https ldaps rpc-bind ssh
-  ports: 
+  ports:
   masquerade: no
-  forward-ports: 
-  icmp-blocks: 
-  rich rules: 
+  forward-ports:
+  icmp-blocks:
+  rich rules:
 
-Ask the System Administrator for the site or program PPSM CLSA. Verify the services allowed by the firewall match the PPSM CLSA. 
+Ask the System Administrator for the site or program PPSM CLSA. Verify the services allowed by the firewall match the PPSM CLSA.
 
 If there are additional ports, protocols, or services that are not in the PPSM CLSA, or there are ports, protocols, or services that are prohibited by the PPSM Category Assurance List (CAL), this is a finding.</RawString>
     </Rule>
@@ -2580,7 +2580,7 @@ If any "shosts.equiv" files are found on the system, this is a finding.</RawStri
 Determine if "postfix" is installed with the following commands:
 
 # yum list installed postfix
-postfix-2.6.6-6.el7.x86_64.rpm 
+postfix-2.6.6-6.el7.x86_64.rpm
 
 If postfix is not installed, this is Not Applicable.
 
@@ -2634,7 +2634,7 @@ If either of these commands returns any output, this is a finding.</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the "firewalld" package is not installed, ask the System Administrator (SA) if another firewall application (such as iptables) is installed. If an application firewall is not installed, this is a finding. 
+      <RawString>If the "firewalld" package is not installed, ask the System Administrator (SA) if another firewall application (such as iptables) is installed. If an application firewall is not installed, this is a finding.
 
 Verify the system's access control program is configured to grant or deny system access to specific hosts.
 
@@ -2683,7 +2683,7 @@ The session lock is implemented at the point where session activity can be deter
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system prevents a user from overriding a screensaver lock after a 15-minute period of inactivity for graphical user interfaces. 
+      <RawString>Verify the operating system prevents a user from overriding a screensaver lock after a 15-minute period of inactivity for graphical user interfaces.
 
 Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
 
@@ -2710,9 +2710,9 @@ The session lock is implemented at the point where session activity can be deter
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system prevents a user from overriding session idle delay after a 15-minute period of inactivity for graphical user interfaces. 
+      <RawString>Verify the operating system prevents a user from overriding session idle delay after a 15-minute period of inactivity for graphical user interfaces.
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console. 
+Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
 
 Determine which profile the system database is using with the following command:
 # grep system-db /etc/dconf/profile/user
@@ -2740,7 +2740,7 @@ The ability to enable/disable a session lock is given to the user by default. Di
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system prevents a user from overriding the screensaver lock-enabled setting for the graphical user interface. 
+      <RawString>Verify the operating system prevents a user from overriding the screensaver lock-enabled setting for the graphical user interface.
 
 Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
 
@@ -2770,7 +2770,7 @@ The ability to enable/disable a session lock is given to the user by default. Di
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system prevents a user from overriding the screensaver idle-activation-enabled setting for the graphical user interface. 
+      <RawString>Verify the operating system prevents a user from overriding the screensaver idle-activation-enabled setting for the graphical user interface.
 
 Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
 
@@ -2885,72 +2885,6 @@ If the output does not match the example, this is a finding.</RawString>
     </Rule>
   </ManualRule>
   <nxFileLineRule dscresourcemodule="nx">
-    <Rule id="V-71863" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="nxFileLine">
-      <ContainsLine>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
-
-By using this IS (which includes any device attached to this IS), you consent to the following conditions:
-
--The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
-
--At any time, the USG may inspect and seize data stored on this IS.
-
--Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
-
--This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
-
--Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants.  Such communications and work product are private and confidential.  See User Agreement for details.</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Display of a standardized and approved use notification before granting access to the operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.
-
-System use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.
-
-The banner must be formatted in accordance with applicable DoD policy. Use the following verbiage for operating systems that can accommodate banners of 1300 characters:
-
-"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
-
-By using this IS (which includes any device attached to this IS), you consent to the following conditions:
-
--The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
-
--At any time, the USG may inspect and seize data stored on this IS.
-
--Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
-
--This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
-
--Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
-
-Satisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000024-GPOS-00007&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>PatternNotRequired</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/issue</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the operating system via a command line user logon.
-
-Check to see if the operating system displays a banner at the command line logon screen with the following command:
-
-# more /etc/issue
-
-The command should return the following text:
-"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
-
-By using this IS (which includes any device attached to this IS), you consent to the following conditions:
-
--The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
-
--At any time, the USG may inspect and seize data stored on this IS.
-
--Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
-
--This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
-
--Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
-
-If the operating system does not display a graphical logon banner or the banner does not match the Standard Mandatory DoD Notice and Consent Banner, this is a finding.
-
-If the text in the "/etc/issue" file does not match the Standard Mandatory DoD Notice and Consent Banner, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-71903" severity="medium" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="nxFileLine">
       <ContainsLine>ucredit = -1</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
@@ -2966,7 +2900,7 @@ Password complexity is one factor of several that determines how long it takes t
 
 Check the value for "ucredit" in "/etc/security/pwquality.conf" with the following command:
 
-# grep ucredit /etc/security/pwquality.conf 
+# grep ucredit /etc/security/pwquality.conf
 ucredit = -1
 
 If the value of "ucredit" is not set to a negative value, this is a finding.</RawString>
@@ -2986,8 +2920,8 @@ Password complexity is one factor of several that determines how long it takes t
 
 Check the value for "lcredit" in "/etc/security/pwquality.conf" with the following command:
 
-# grep lcredit /etc/security/pwquality.conf 
-lcredit = -1 
+# grep lcredit /etc/security/pwquality.conf
+lcredit = -1
 
 If the value of "lcredit" is not set to a negative value, this is a finding.</RawString>
     </Rule>
@@ -3006,8 +2940,8 @@ Password complexity is one factor of several that determines how long it takes t
 
 Check the value for "dcredit" in "/etc/security/pwquality.conf" with the following command:
 
-# grep dcredit /etc/security/pwquality.conf 
-dcredit = -1 
+# grep dcredit /etc/security/pwquality.conf
+dcredit = -1
 
 If the value of "dcredit" is not set to a negative value, this is a finding.</RawString>
     </Rule>
@@ -3028,7 +2962,7 @@ Note: The value to require a number of special characters to be set is expressed
 
 Check the value for "ocredit" in "/etc/security/pwquality.conf" with the following command:
 
-# grep ocredit /etc/security/pwquality.conf 
+# grep ocredit /etc/security/pwquality.conf
 ocredit=-1
 
 If the value of "ocredit" is not set to a negative value, this is a finding.</RawString>
@@ -3050,7 +2984,7 @@ Password complexity is one factor of several that determines how long it takes t
 
 Check for the value of the "difok" option in "/etc/security/pwquality.conf" with the following command:
 
-# grep difok /etc/security/pwquality.conf 
+# grep difok /etc/security/pwquality.conf
 difok = 8
 
 If the value of "difok" is set to less than "8", this is a finding.</RawString>
@@ -3072,7 +3006,7 @@ Password complexity is one factor of several that determines how long it takes t
 
 Check for the value of the "minclass" option in "/etc/security/pwquality.conf" with the following command:
 
-# grep minclass /etc/security/pwquality.conf 
+# grep minclass /etc/security/pwquality.conf
 minclass = 4
 
 If the value of "minclass" is set to less than "4", this is a finding.</RawString>
@@ -3094,7 +3028,7 @@ Password complexity is one factor of several that determines how long it takes t
 
 Check for the value of the "maxrepeat" option in "/etc/security/pwquality.conf" with the following command:
 
-# grep maxrepeat /etc/security/pwquality.conf 
+# grep maxrepeat /etc/security/pwquality.conf
 maxrepeat = 3
 
 If the value of "maxrepeat" is set to more than "3", this is a finding.</RawString>
@@ -3116,7 +3050,7 @@ Password complexity is one factor of several that determines how long it takes t
 
 Check for the value of the "maxclassrepeat" option in "/etc/security/pwquality.conf" with the following command:
 
-# grep maxclassrepeat /etc/security/pwquality.conf 
+# grep maxclassrepeat /etc/security/pwquality.conf
 maxclassrepeat = 4
 
 If the value of "maxclassrepeat" is set to more than "4", this is a finding.</RawString>
@@ -3152,7 +3086,7 @@ If the "/etc/login.defs" configuration file does not exist or allows for passwor
       <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the operating system enforces 24 hours/1 day as the minimum password lifetime for new user accounts.
 
-Check for the value of "PASS_MIN_DAYS" in "/etc/login.defs" with the following command: 
+Check for the value of "PASS_MIN_DAYS" in "/etc/login.defs" with the following command:
 
 # grep -i pass_min_days /etc/login.defs
 PASS_MIN_DAYS     1
@@ -3428,7 +3362,7 @@ To determine the remote server that the records are being sent to, use the follo
 # grep -i remote_server /etc/audisp/audisp-remote.conf
 remote_server = 10.0.21.1
 
-If a remote server is not configured, or the line is commented out, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media. 
+If a remote server is not configured, or the line is commented out, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media.
 
 If there is no evidence that the audit logs are being off-loaded to another system or media, this is a finding.</RawString>
     </Rule>
@@ -3452,7 +3386,7 @@ To determine if the transfer is encrypted, use the following command:
 # grep -i enable_krb5 /etc/audisp/audisp-remote.conf
 enable_krb5 = yes
 
-If the value of the "enable_krb5" option is not set to "yes" or the line is commented out, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media. 
+If the value of the "enable_krb5" option is not set to "yes" or the line is commented out, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media.
 
 If there is no evidence that the transfer of the audit logs being off-loaded to another system or media is encrypted, this is a finding.</RawString>
     </Rule>
@@ -3507,7 +3441,7 @@ If the audit records are not being written to a partition specifically created f
 Determine what the threshold is for the system to take action when 75 percent of the repository maximum audit record storage capacity is reached:
 
 # grep -iw space_left /etc/audit/auditd.conf
-space_left = 225 
+space_left = 225
 
 If the value of the "space_left" keyword is not set to 25 percent of the total partition size, this is a finding.</RawString>
     </Rule>
@@ -4766,9 +4700,9 @@ Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000470-GPOS-00214, SRG-OS-000473-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when unsuccessful account access events occur. 
+      <RawString>Verify the operating system generates audit records when unsuccessful account access events occur.
 
-Check the file system rule in "/etc/audit/audit.rules" with the following commands: 
+Check the file system rule in "/etc/audit/audit.rules" with the following commands:
 
 # grep -i /var/run/faillock /etc/audit/audit.rules
 
@@ -4789,13 +4723,13 @@ Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000470-GPOS-00214, SRG-OS-000473-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful account access events occur. 
+      <RawString>Verify the operating system generates audit records when successful account access events occur.
 
-Check the file system rules in "/etc/audit/audit.rules" with the following commands: 
+Check the file system rules in "/etc/audit/audit.rules" with the following commands:
 
 # grep -i /var/log/lastlog /etc/audit/audit.rules
 
--w /var/log/lastlog -p wa -k logins 
+-w /var/log/lastlog -p wa -k logins
 
 If the command does not return any output, this is a finding.</RawString>
     </Rule>
@@ -4929,7 +4863,7 @@ Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "su" command occur.
 
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -iw /usr/bin/su /etc/audit/audit.rules
 
@@ -4952,7 +4886,7 @@ Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "sudo" command occur.
 
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -iw /usr/bin/sudo /etc/audit/audit.rules
 
@@ -4973,9 +4907,9 @@ Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to access the "/etc/sudoers" file and files in the "/etc/sudoers.d/" directory. 
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to access the "/etc/sudoers" file and files in the "/etc/sudoers.d/" directory.
 
-Check for modification of the following files being audited by performing the following commands to check the file system rules in "/etc/audit/audit.rules": 
+Check for modification of the following files being audited by performing the following commands to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i "/etc/sudoers" /etc/audit/audit.rules
 
@@ -5000,9 +4934,9 @@ Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to access the "/etc/sudoers" file and files in the "/etc/sudoers.d/" directory. 
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to access the "/etc/sudoers" file and files in the "/etc/sudoers.d/" directory.
 
-Check for modification of the following files being audited by performing the following commands to check the file system rules in "/etc/audit/audit.rules": 
+Check for modification of the following files being audited by performing the following commands to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i "/etc/sudoers" /etc/audit/audit.rules
 
@@ -5029,7 +4963,7 @@ Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "newgrp" command occur.
 
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /usr/bin/newgrp /etc/audit/audit.rules
 
@@ -5052,7 +4986,7 @@ Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "chsh" command occur.
 
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /usr/bin/chsh /etc/audit/audit.rules
 
@@ -5138,11 +5072,11 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "umount" command occur.
 
-Check that the following system call is being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules": 
+Check that the following system call is being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -iw "/usr/bin/umount" /etc/audit/audit.rules
 
--a always,exit -F path=/usr/bin/umount -F auid&gt;=1000 -F auid!=4294967295 -k privileged-mount 
+-a always,exit -F path=/usr/bin/umount -F auid&gt;=1000 -F auid!=4294967295 -k privileged-mount
 
 If the command does not return any output, this is a finding.</RawString>
     </Rule>
@@ -5161,7 +5095,7 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "postdrop" command occur.
 
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -iw /usr/sbin/postdrop /etc/audit/audit.rules
 
@@ -5182,9 +5116,9 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "postqueue" command occur. 
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "postqueue" command occur.
 
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -iw /usr/sbin/postqueue /etc/audit/audit.rules
 
@@ -5205,9 +5139,9 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "ssh-keysign" command occur. 
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "ssh-keysign" command occur.
 
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -iw /usr/libexec/openssh/ssh-keysign /etc/audit/audit.rules
 
@@ -5228,9 +5162,9 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "crontab" command occur. 
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "crontab" command occur.
 
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -iw /usr/bin/crontab /etc/audit/audit.rules
 
@@ -5247,19 +5181,19 @@ If the command does not return any output, this is a finding.</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "pam_timestamp_check" command occur. 
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "pam_timestamp_check" command occur.
 
 Check the auditing rules in "/etc/audit/audit.rules" with the following command:
 
 # grep -iw "/usr/sbin/pam_timestamp_check" /etc/audit/audit.rules
 
--a always,exit -F path=/usr/sbin/pam_timestamp_check -F auid&gt;=1000 -F auid!=4294967295 -k privileged-pam 
+-a always,exit -F path=/usr/sbin/pam_timestamp_check -F auid&gt;=1000 -F auid!=4294967295 -k privileged-pam
 
 If the command does not return any output, this is a finding.</RawString>
     </Rule>
     <Rule id="V-72187.a" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
       <ContainsLine>-a always,exit -F arch=b32 -S init_module -k module-change</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -5279,7 +5213,7 @@ If both the "b32" and "b64" audit rules are not defined for the "init_module" sy
     </Rule>
     <Rule id="V-72187.b" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
       <ContainsLine>-a always,exit -F arch=b64 -S init_module -k module-change</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -5299,7 +5233,7 @@ If both the "b32" and "b64" audit rules are not defined for the "init_module" sy
     </Rule>
     <Rule id="V-72189.a" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
       <ContainsLine>-a always,exit -F arch=b32 -S delete_module -k module-change</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -5319,7 +5253,7 @@ If both the "b32" and "b64" audit rules are not defined for the "delete_module" 
     </Rule>
     <Rule id="V-72189.b" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
       <ContainsLine>-a always,exit -F arch=b64 -S delete_module -k module-change</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -5339,7 +5273,7 @@ If both the "b32" and "b64" audit rules are not defined for the "delete_module" 
     </Rule>
     <Rule id="V-72191" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
       <ContainsLine>-w /usr/bin/kmod -p x -F auid!=4294967295 -k module-change</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -5350,7 +5284,7 @@ Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "kmod" command occur. 
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "kmod" command occur.
 
 Check the auditing rules in "/etc/audit/audit.rules" with the following command:
 
@@ -5995,7 +5929,7 @@ tftp-server.x86_64 x.x-x.el7 rhel-7-server-rpms
 
 If a TFTP server is not installed, this is Not Applicable.
 
-If a TFTP server is installed, check for the server arguments with the following command: 
+If a TFTP server is installed, check for the server arguments with the following command:
 
 # grep server_args /etc/xinetd.d/tftp
 server_args = -s /var/lib/tftpboot
@@ -6108,7 +6042,7 @@ If the command does not return a line, or the line is commented out, this is a f
     </Rule>
     <Rule id="V-78999.a" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
       <ContainsLine>-a always,exit -F arch=b32 -S create_module -k module-change</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -6128,7 +6062,7 @@ If both the "b32" and "b64" audit rules are not defined for the "create_module" 
     </Rule>
     <Rule id="V-78999.b" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
       <ContainsLine>-a always,exit -F arch=b64 -S create_module -k module-change</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -6148,7 +6082,7 @@ If both the "b32" and "b64" audit rules are not defined for the "create_module" 
     </Rule>
     <Rule id="V-79001.a" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
       <ContainsLine>-a always,exit -F arch=b32 -S finit_module -k module-change</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -6168,7 +6102,7 @@ If both the "b32" and "b64" audit rules are not defined for the "finit_module" s
     </Rule>
     <Rule id="V-79001.b" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
       <ContainsLine>-a always,exit -F arch=b64 -S finit_module -k module-change</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -6369,6 +6303,73 @@ name_format = hostname
 If the "name_format" option is not "hostname", "fqd", or "numeric", or the line is commented out, this is a finding.</RawString>
     </Rule>
   </nxFileLineRule>
+  <nxFileRule dscresourcemodule="nx">
+    <Rule id="V-71863" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="nxFile">
+      <Contents>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
+-At any time, the USG may inspect and seize data stored on this IS.
+
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants.  Such communications and work product are private and confidential.  See User Agreement for details.</Contents>
+      <Description>&lt;VulnDiscussion&gt;Display of a standardized and approved use notification before granting access to the operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.
+
+System use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.
+
+The banner must be formatted in accordance with applicable DoD policy. Use the following verbiage for operating systems that can accommodate banners of 1300 characters:
+
+"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
+-At any time, the USG may inspect and seize data stored on this IS.
+
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
+
+Satisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000024-GPOS-00007&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/issue</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the operating system via a command line user logon.
+
+Check to see if the operating system displays a banner at the command line logon screen with the following command:
+
+# more /etc/issue
+
+The command should return the following text:
+"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
+-At any time, the USG may inspect and seize data stored on this IS.
+
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
+
+If the operating system does not display a graphical logon banner or the banner does not match the Standard Mandatory DoD Notice and Consent Banner, this is a finding.
+
+If the text in the "/etc/issue" file does not match the Standard Mandatory DoD Notice and Consent Banner, this is a finding.</RawString>
+    </Rule>
+  </nxFileRule>
   <nxPackageRule dscresourcemodule="nx">
     <Rule id="V-71897" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;:  A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, operating systems need to be able to identify when a user's session has idled and take action to initiate the session lock.
@@ -6391,7 +6392,7 @@ screen-4.3.1-3-x86_64.rpm
 If the screen package is not installed, check to see if the tmux package is installed with the following command:
 
 #yum list installed tmux
-tmux-1.8-4.el7.x86_64.rpm 
+tmux-1.8-4.el7.x86_64.rpm
 
 If either the screen package or the tmux package is not installed, this is a finding.</RawString>
     </Rule>
@@ -6447,7 +6448,7 @@ Examples of non-essential capabilities include, but are not limited to, games, s
 
 The telnet service provides an unencrypted remote access service that does not provide for the confidentiality and integrity of user passwords or the remote session.
 
-If a privileged user were to log on using this service, the privileged user password could be compromised. 
+If a privileged user were to log on using this service, the privileged user password could be compromised.
 
 Check to see if the telnet-server package is installed with the following command:
 
@@ -6456,9 +6457,9 @@ Check to see if the telnet-server package is installed with the following comman
 If the telnet-server package is installed, this is a finding.</RawString>
     </Rule>
     <Rule id="V-72233" severity="medium" conversionstatus="pass" title="SRG-OS-000423-GPOS-00187" dscresource="nxPackage">
-      <Description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered. 
+      <Description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered.
 
-This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification. 
+This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification.
 
 Protecting the confidentiality and integrity of organizational information can be accomplished by physical means (e.g., employing physical distribution systems) or by logical means (e.g., employing cryptographic techniques). If physical means of protection are employed, logical means (cryptography) do not have to be employed, and vice versa.
 
@@ -6495,9 +6496,9 @@ Check to see if "firewalld" is installed with the following command:
 # yum list installed firewalld
 firewalld-0.3.9-11.el7.noarch.rpm
 
-If the "firewalld" package is not installed, ask the System Administrator if another firewall application (such as iptables) is installed. 
+If the "firewalld" package is not installed, ask the System Administrator if another firewall application (such as iptables) is installed.
 
-If an application firewall is not installed, this is a finding. 
+If an application firewall is not installed, this is a finding.
 
 Check to see if the firewall is loaded and active with the following command:
 
@@ -6507,11 +6508,11 @@ firewalld.service - firewalld - dynamic firewall daemon
    Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled)
    Active: active (running) since Tue 2014-06-17 11:14:49 CEST; 5 days ago
 
-If "firewalld" does not show a status of "loaded" and "active", this is a finding. 
+If "firewalld" does not show a status of "loaded" and "active", this is a finding.
 
 Check the state of the firewall:
 
-# firewall-cmd --state 
+# firewall-cmd --state
 running
 
 If "firewalld" does not show a state of "running", this is a finding.</RawString>
@@ -6628,9 +6629,9 @@ If the "auditd" status is not active, this is a finding.</RawString>
       <State>Running</State>
     </Rule>
     <Rule id="V-72235" severity="medium" conversionstatus="pass" title="SRG-OS-000423-GPOS-00187" dscresource="nxService">
-      <Description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered. 
+      <Description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered.
 
-This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification. 
+This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification.
 
 Protecting the confidentiality and integrity of organizational information can be accomplished by physical means (e.g., employing physical distribution systems) or by logical means (e.g., employing cryptographic techniques). If physical means of protection are employed, then logical means (cryptography) do not have to be employed, and vice versa.
 
@@ -6671,9 +6672,9 @@ Check to see if "firewalld" is installed with the following command:
 # yum list installed firewalld
 firewalld-0.3.9-11.el7.noarch.rpm
 
-If the "firewalld" package is not installed, ask the System Administrator if another firewall application (such as iptables) is installed. 
+If the "firewalld" package is not installed, ask the System Administrator if another firewall application (such as iptables) is installed.
 
-If an application firewall is not installed, this is a finding. 
+If an application firewall is not installed, this is a finding.
 
 Check to see if the firewall is loaded and active with the following command:
 
@@ -6683,11 +6684,11 @@ firewalld.service - firewalld - dynamic firewall daemon
    Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled)
    Active: active (running) since Tue 2014-06-17 11:14:49 CEST; 5 days ago
 
-If "firewalld" does not show a status of "loaded" and "active", this is a finding. 
+If "firewalld" does not show a status of "loaded" and "active", this is a finding.
 
 Check the state of the firewall:
 
-# firewall-cmd --state 
+# firewall-cmd --state
 running
 
 If "firewalld" does not show a state of "running", this is a finding.</RawString>

@@ -36,6 +36,7 @@ using module .\..\..\Rule.VsphereVssSecurity\VsphereVssSecurityRule.psm1
 using module .\..\..\Rule.nxPackage\nxPackageRule.psm1
 using module .\..\..\Rule.nxService\nxServiceRule.psm1
 using module .\..\..\Rule.nxFileLine\nxFileLineRule.psm1
+using module .\..\..\Rule.nxFile\nxFileRule.psm1
 
 <#
     .SYNOPSIS
