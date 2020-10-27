@@ -1,152 +1,103 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="10/8/2020">
-  <CipherSuitesRule dscresourcemodule="sChannelDsc">
-    <Rule id="V-59965" severity="high" conversionstatus="pass" title="SRG-APP-000196" dscresource="CipherSuites">
-      <CipherSuitesOrder />
-      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS, and versions of SharePoint will have different suites available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="10/27/2020">
+  <DocumentRule dscresourcemodule="None">
+    <Rule id="V-59945" severity="medium" conversionstatus="pass" title="SRG-APP-000043" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.
+
+An example of flow control restrictions includes the following: keeping export-controlled information from being transmitted in the clear to the Internet. Information flow control policies and enforcement mechanisms are commonly employed by organizations to control the flow of information between designated sources and destinations (e.g., users, networks, devices) within information systems and between interconnected systems.
+
+Application-specific examples of flow control enforcement can be found in information protection software (e.g., guards, proxies, application layer gateways, and cross domain solutions) employing rule sets or establishing configuration settings restricting information system services or providing message-filtering capability based on content (e.g., using key word searches or document characteristics).
+
+Flow control is based on the characteristics of the information and/or the information path. Applications providing flow control must identify data type, specification, and usage when transferring information between different security domains so policy restrictions may be applied.
+
+A security domain is defined as a domain implementing a security policy and administered by a single authority.
+
+Data type, specification, and usage includes using file naming to reflect the type of data being transferred and limiting data transfer based on file type.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure required cryptographic protections using cryptographic modules complying with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance are implemented.
+      <RawString>Note: If no data is exchanged between different security domains, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
 
-Open MMC.
+Review the SharePoint server configuration to ensure data type, specification, and usage when transferring information between different security domains are identified so policy restrictions may be applied.
 
-Click "File", "Add/Remove Snap-in", and "add Group Policy Object Editor".
+An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
 
-Enter a name for the Group Policy Object, or accept the default.
+In Central Administration, click Security.
 
-Click "Finish".
+On the Security page, in the Information policy list, click "Configure information rights management".
 
-Click "OK".
-
-Navigate to Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Network &gt;&gt; SSL Configuration settings.
-
-Right-click "SSL Configuration Settings", click "SSL Cipher Suite Order", click "Edit".
-
-In the "SSL Cipher Suite Order" dialog box, if "Enabled" is not selected, this is a finding.
-
-Under Options, in the "SSL Cipher Suites" text box, a list of cipher suites will be displayed.
-
-If any DES or RC4 cipher suites exist in the list, this is a finding.</RawString>
+If "Do not use IRM on this server" is selected, or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
     </Rule>
-    <Rule id="V-59967" severity="high" conversionstatus="pass" title="SRG-APP-000197" dscresource="None">
-      <CipherSuitesOrder />
-      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS, and versions of SharePoint will have different suites available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59965</DuplicateOf>
+    <Rule id="V-59947" severity="medium" conversionstatus="pass" title="SRG-APP-000047" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The application enforces approved authorizations for controlling the flow of information within the system and between interconnected systems in accordance with applicable policy.
+
+Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.
+
+Specific examples of flow control enforcement can be found in boundary protection devices (e.g., proxies, gateways, guards, encrypted tunnels, firewalls, and routers) employing rule sets or establishing configuration settings restricting information system services, providing a packet-filtering capability based on header information or message-filtering capability based on content (e.g., using key word searches or document characteristics).
+
+Actions to support this requirement include, but are not limited to checking all transferred information for malware, implementing dirty word list searches on transferred information, and applying the same protection measures to metadata (e.g., security attributes) that is applied to the information payload.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure FIPS-validated cryptography is employed to protect unclassified information.
+      <RawString>Note: If no unsanctioned information is transferred, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
 
-Open MMC.
+Review the SharePoint server configuration to ensure the transfer of unsanctioned information in accordance with security policy is prohibited.
 
-Click "File", "Add/Remove Snap-in", and "add Group Policy Object Editor".
+An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
 
-Enter a name for the Group Policy Object, or accept the default.
+In Central Administration, click Security.
 
-Click "Finish".
+On the Security page, in the Information policy list, click "Configure information rights management".
 
-Click "OK".
-
-Navigate to Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Network &gt;&gt; SSL Configuration settings
-
-Right-click "SSL Configuration Settings", click "SSL Cipher Suite Order", click "Edit".
-
-In the "SSL Cipher Suite Order" dialog box, if "Enabled" is not selected, this is a finding.
-
-Under Options, in the "SSL Cipher Suites" text box, a list of cipher suites will be displayed.
-
-If any DES or RC4 cipher suites exist in the list, this is a finding.</RawString>
+If "Do not use IRM on this server" is selected or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
     </Rule>
-    <Rule id="V-59969" severity="high" conversionstatus="pass" title="SRG-APP-000198" dscresource="None">
-      <CipherSuitesOrder />
-      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS, and versions of SharePoint will have different suites available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59965</DuplicateOf>
+    <Rule id="V-59973" severity="medium" conversionstatus="pass" title="SRG-APP-000204" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When data is exchanged between information systems, the security attributes associated with said data need to be maintained.
+
+Security attributes are an abstraction representing the basic properties or characteristics of an entity with respect to safeguarding information, typically associated with internal data structures (e.g., records, buffers, files) within the information system and used to enable the implementation of access control and flow control policies, reflect special dissemination, handling or distribution instructions, or support other aspects of the information security policy.
+
+Security attributes may be explicitly or implicitly associated with the information contained within the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure NSA-approved cryptography is employed to protect classified information.
+      <RawString>Note: If no data is exchanged between systems, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
 
-Open MMC.
+Review the SharePoint server configuration to ensure the integrity of security attributes exchanged between systems is validated. 
 
-Click "File", "Add/Remove Snap-in", and "add Group Policy Object Editor".
+An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
 
-Enter a name for the Group Policy Object, or accept the default.
+In Central Administration, click Security.
 
-Click "Finish".
+On the Security page, in the Information policy list, click "Configure information rights management".
 
-Click "OK".
-
-Navigate to Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Network &gt;&gt; SSL Configuration settings.
-
-Right-click "SSL Configuration Settings", click "SSL Cipher Suite Order", click "Edit".
-
-In the "SSL Cipher Suite Order" dialog box, if "Enabled" is not selected, this is a finding.
-
-Under Options, in the "SSL Cipher Suites" text box, a list of cipher suites will be displayed.
-
-If any DES or RC4 cipher suites exist in the list, this is a finding.</RawString>
+If "Do not use IRM on this server" is selected, or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
     </Rule>
-    <Rule id="V-59971" severity="high" conversionstatus="pass" title="SRG-APP-000199" dscresource="None">
-      <CipherSuitesOrder />
-      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS, and versions of SharePoint will have different suites available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59965</DuplicateOf>
+    <Rule id="V-59987" severity="high" conversionstatus="pass" title="SRG-APP-000273" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Malicious code protection software must be protected to prevent a non-privileged user or malicious piece of software from disabling the protection mechanism. A common tactic of malware is to identify the type of malicious code protection software running on the system and deactivate it. Malicious code includes viruses, worms, Trojan horses, and Spyware.
+
+Examples include the capability for non-administrative users to turn off or otherwise disable anti-virus.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure FIPS-validated cryptography is employed to protect unclassified information when such information must be separated from individuals who have the necessary clearances yet lack the necessary access approvals.
+      <RawString>Review the SharePoint server configuration to ensure non-privileged users are prevented from circumventing malicious code protection capabilities.
 
-Open MMC.
+Confirm that the list of blocked file types configured in Central Administration matches the "blacklist" document in the application's SSP. See TechNet for default file types that are blocked: http://technet.microsoft.com/en-us/library/cc262496.aspx
 
-Click "File", "Add/Remove Snap-in", and "add Group Policy Object Editor".
+Navigate to Central Administration.
 
-Enter a name for the Group Policy Object, or accept the default.
+Click "Manage web applications".
 
-Click "Finish".
+Select the web application by clicking its name.
 
-Click "OK".
+Select "Blocked File Types" from the ribbon.
 
-Navigate to Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Network &gt;&gt; SSL Configuration settings.
+Compare the list of blocked file types to those listed in the SSP. If the SSP has file types that are not in the blocked file types list, this is a finding.
 
-Right-click "SSL Configuration Settings", click "SSL Cipher Suite Order", click "Edit".
-
-In the "SSL Cipher Suite Order" dialog box, if "Enabled" is not selected, this is a finding.
-
-Under Options, in the "SSL Cipher Suites" text box, a list of cipher suites will be displayed.
-
-If any DES or RC4 cipher suites exist in the list, this is a finding.</RawString>
+Repeat check for each web application.</RawString>
     </Rule>
-    <Rule id="V-59989" severity="high" conversionstatus="pass" title="SRG-APP-000179" dscresource="None">
-      <CipherSuitesOrder />
-      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS, and versions of SharePoint will have different suites available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59965</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure mechanisms are used for authentication to a cryptographic module that meet the requirements of applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication.
-
-Open MMC.
-
-Click "File", "Add/Remove Snap-in", and "add Group Policy Object Editor".
-
-Enter a name for the Group Policy Object, or accept the default.
-
-Click "Finish".
-
-Click "OK".
-
-Navigate to Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Network &gt;&gt; SSL Configuration settings.
-
-Right-click "SSL Configuration Settings", click "SSL Cipher Suite Orde"r, click "Edit".
-
-In the "SSL Cipher Suite Order" dialog box, if "Enabled" is not selected, this is a finding.
-
-Under Options, in the "SSL Cipher Suites" text box, a list of cipher suites will be displayed.
-
-If any DES or RC4 cipher suites exist in the list, this is a finding.</RawString>
-    </Rule>
-  </CipherSuitesRule>
-  <DocumentRule dscresourcemodule="None">
     <Rule id="V-60011" severity="medium" conversionstatus="pass" title="SRG-APP-000208" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Configuring anti-virus settings ensures documents will be scanned for viruses upon download from and upload to the SharePoint server. Anti-virus settings are not configured by default, therefore leaving the documents downloaded from or uploaded to SharePoint open to potential viruses.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -187,6 +138,38 @@ Under the Web Designer Galleries menu, click Site Content Types.
 Define a set of Content Types that can hold "security attributes", e.g., FOUO, etc. 
 
 For each required Content Type, under "Change Content Type Column" ensure "Required (Must contain information) is selected. Otherwise, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-59937" severity="high" conversionstatus="pass" title="SRG-APP-000014" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
+
+Remote network access is accomplished by leveraging common communication protocols and establishing a remote connection. These connections will typically occur over either the public Internet or the Public Switched Telephone Network (PSTN). Since neither of these Internetworking mechanisms are private nor secure, if cryptography is not used, then the session data traversing the remote connection could be intercepted and compromised. Cryptography provides a means to secure the remote connection to prevent unauthorized access to the data traversing the remote access connection, thereby providing a degree of confidentiality. The encryption strength of mechanism is selected based on the security categorization of the information traversing the remote connection.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure approved cryptography is being utilized to protect the confidentiality of remote access sessions.
+
+Navigate to Central Administration.
+
+Under “System Settings”, click “Configure Alternate Access mappings”.
+
+Review the “Public URL for zone” column values. If any URL does not begin with “https”, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-59939" severity="high" conversionstatus="pass" title="SRG-APP-000015" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
+
+Remote network access is accomplished by leveraging common communication protocols and establishing a remote connection. These connections will typically occur over the public Internet, the Public Switched Telephone Network (PSTN), or sometimes both. Since neither of these Internetworking mechanisms are private nor secure, if cryptography is not used, then the session data traversing the remote connection could be intercepted and potentially modified. Cryptography provides a means to secure the remote connection to prevent unauthorized access to the data traversing the remote access connection, thereby providing a degree of integrity. The encryption strength of a mechanism is selected based on the security categorization of the information traversing the remote connection.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure cryptography is being used to protect the integrity of the remote access session.
+
+Navigate to Central Administration.
+
+Under “System Settings”, click “Configure Alternate Access mappings”.
+
+Review the “Public URL for zone” column values. If any URL does not begin with “https”, this is a finding.</RawString>
     </Rule>
     <Rule id="V-59941" severity="medium" conversionstatus="pass" title="SRG-APP-000019" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
@@ -274,6 +257,30 @@ By using this IS (which includes any device attached to this IS), you consent to
 -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
 -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
 -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."</RawString>
+    </Rule>
+    <Rule id="V-59953" severity="medium" conversionstatus="pass" title="SRG-APP-000090" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Audit records can be generated from various components within the information system, such as network interfaces, hard disks, modems, etc. From an application perspective, certain specific application functionalities may be audited as well.
+
+The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records (i.e., auditable events, time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, filenames involved, and access control or flow control rules invoked).
+
+Organizations may define the organizational personnel accountable for determining which application components shall provide auditable events.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure designated organizational personnel are allowed to select which auditable events are to be audited by specific components of the system.
+
+Navigate to Central Administration.
+
+Click "Monitoring".
+
+Click "Configure Diagnostic Logging".
+
+Validate that the selected event categories and trace levels match those defined by the organization's system security plan.
+
+Remember that a base set of events are always audited.
+
+If the selected event categories/trace levels are inconsistent with those defined in the organization's system security plan, this is a finding.</RawString>
     </Rule>
     <Rule id="V-59955" severity="medium" conversionstatus="pass" title="SRG-APP-000106" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;It is critical when a system is at risk of failing to process audit logs as required; actions are automatically taken to mitigate the failure or risk of failure.
@@ -366,6 +373,126 @@ If it is selected and the web application zone is not defined in the system secu
 
 Repeat steps for each web application.</RawString>
     </Rule>
+    <Rule id="V-59967" severity="high" conversionstatus="pass" title="SRG-APP-000197" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS, and versions of SharePoint will have different suites available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure FIPS-validated cryptography is employed to protect unclassified information.
+
+Open MMC.
+
+Click "File", "Add/Remove Snap-in", and "add Group Policy Object Editor".
+
+Enter a name for the Group Policy Object, or accept the default.
+
+Click "Finish".
+
+Click "OK".
+
+Navigate to Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Network &gt;&gt; SSL Configuration settings
+
+Right-click "SSL Configuration Settings", click "SSL Cipher Suite Order", click "Edit".
+
+In the "SSL Cipher Suite Order" dialog box, if "Enabled" is not selected, this is a finding.
+
+Under Options, in the "SSL Cipher Suites" text box, a list of cipher suites will be displayed.
+
+If any DES or RC4 cipher suites exist in the list, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-59969" severity="high" conversionstatus="pass" title="SRG-APP-000198" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS, and versions of SharePoint will have different suites available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure NSA-approved cryptography is employed to protect classified information.
+
+Open MMC.
+
+Click "File", "Add/Remove Snap-in", and "add Group Policy Object Editor".
+
+Enter a name for the Group Policy Object, or accept the default.
+
+Click "Finish".
+
+Click "OK".
+
+Navigate to Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Network &gt;&gt; SSL Configuration settings.
+
+Right-click "SSL Configuration Settings", click "SSL Cipher Suite Order", click "Edit".
+
+In the "SSL Cipher Suite Order" dialog box, if "Enabled" is not selected, this is a finding.
+
+Under Options, in the "SSL Cipher Suites" text box, a list of cipher suites will be displayed.
+
+If any DES or RC4 cipher suites exist in the list, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-59971" severity="high" conversionstatus="pass" title="SRG-APP-000199" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS, and versions of SharePoint will have different suites available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure FIPS-validated cryptography is employed to protect unclassified information when such information must be separated from individuals who have the necessary clearances yet lack the necessary access approvals.
+
+Open MMC.
+
+Click "File", "Add/Remove Snap-in", and "add Group Policy Object Editor".
+
+Enter a name for the Group Policy Object, or accept the default.
+
+Click "Finish".
+
+Click "OK".
+
+Navigate to Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Network &gt;&gt; SSL Configuration settings.
+
+Right-click "SSL Configuration Settings", click "SSL Cipher Suite Order", click "Edit".
+
+In the "SSL Cipher Suite Order" dialog box, if "Enabled" is not selected, this is a finding.
+
+Under Options, in the "SSL Cipher Suites" text box, a list of cipher suites will be displayed.
+
+If any DES or RC4 cipher suites exist in the list, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-59975" severity="high" conversionstatus="pass" title="SRG-APP-000219" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;This control focuses on communications protection at the session, versus packet level.
+
+At the application layer, session IDs are tokens generated by web applications to uniquely identify an application user's session. Web applications utilize session tokens or session IDs in order to establish application user identity. Proper use of session IDs addresses man-in-the-middle attacks, including session hijacking or insertion of false information into a session. This control is only implemented where deemed necessary by the organization (e.g., sessions in service-oriented architectures providing web-based services).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure SSL Mutual authentication of both client and server during the entire session.
+
+Navigate to Central Administration.
+
+Under “System Settings”, click “Configure Alternate Access mappings”.
+
+Review the “Public URL for zone” column values. If any URL does not begin with “https”, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-59979" severity="high" conversionstatus="pass" title="SRG-APP-000230" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), SSL VPN, or IPSec tunnel.
+
+Alternative physical protection measures include protected distribution systems. Protective Distribution Systems (PDS) are used to transmit unencrypted classified NSI through an area of lesser classification or control. Inasmuch as the classified NSI is unencrypted, the PDS must provide adequate electrical, electromagnetic, and physical safeguards to deter exploitation. Refer to NSTSSI No. 7003 for additional details on a PDS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure the confidentiality of information during aggregation, packaging, and transformation in preparation for transmission is maintained.
+
+In SharePoint Central Administration, click Application Management.
+
+On the Application Management page, in the Web Applications list, click Manage web applications.
+
+On the Web Applications Management page, verify that each Web Application URL begins with https.
+
+If the URL does not begin with https, this is a finding.
+
+If SharePoint communications between all components and clients are protected by alternative physical measures that have been approved by the AO, this is not a finding.</RawString>
+    </Rule>
     <Rule id="V-59981" severity="high" conversionstatus="pass" title="SRG-APP-000236" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The information system isolates security functions from nonsecurity functions by means of an isolation boundary (implemented via partitions and domains) controlling access to and protecting the integrity of, the hardware, software, and firmware that perform those security functions. The information system maintains a separate execution domain (e.g., address space) for each executing process.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -405,6 +532,54 @@ If Central Administration can be accessed over a production network, this is a f
 Attempt to connect directly to a SharePoint server (i.e., via remote desktop) without first connecting to a management network VPN.
 
 If a remote desktop session can be established via a production network, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-59985" severity="high" conversionstatus="pass" title="SRG-APP-000264" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), SSL VPN, or IPSEC tunnel.
+
+Alternative physical protection measures include Protected Distribution Systems (PDS). PDS are used to transmit unencrypted classified NSI through an area of lesser classification or control. Inasmuch as the classified NSI is unencrypted, the PDS must provide adequate electrical, electromagnetic, and physical safeguards to deter exploitation. Refer to NSTSSI No. 7003 for additional details on a PDS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server to ensure cryptographic mechanisms preventing the unauthorized disclosure of information during transmission are employed, unless the transmitted data is otherwise protected by alternative physical measures.
+
+In SharePoint Central Administration, click Application Management.
+
+On the Application Management page, in the Web Applications list, click Manage web applications.
+
+On the Web Applications Management page, verify that each Web Application URL begins with https.
+
+If the URL does not begin with https, this is a finding.
+
+If SharePoint communications between all components and clients are protected by alternative physical measures that have been approved by the AO, this is not a finding.</RawString>
+    </Rule>
+    <Rule id="V-59989" severity="high" conversionstatus="pass" title="SRG-APP-000179" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS, and versions of SharePoint will have different suites available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the SharePoint server configuration to ensure mechanisms are used for authentication to a cryptographic module that meet the requirements of applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance for such authentication.
+
+Open MMC.
+
+Click "File", "Add/Remove Snap-in", and "add Group Policy Object Editor".
+
+Enter a name for the Group Policy Object, or accept the default.
+
+Click "Finish".
+
+Click "OK".
+
+Navigate to Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Network &gt;&gt; SSL Configuration settings.
+
+Right-click "SSL Configuration Settings", click "SSL Cipher Suite Orde"r, click "Edit".
+
+In the "SSL Cipher Suite Order" dialog box, if "Enabled" is not selected, this is a finding.
+
+Under Options, in the "SSL Cipher Suites" text box, a list of cipher suites will be displayed.
+
+If any DES or RC4 cipher suites exist in the list, this is a finding.</RawString>
     </Rule>
     <Rule id="V-59993" severity="medium" conversionstatus="pass" title="SRG-APP-000212" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;SharePoint must prevent the presentation of information system management-related functionality at an interface utilized by general, (i.e., non-privileged), users. 
@@ -590,237 +765,41 @@ This policy limits the Farm Account privileges in AD.  However, default permissi
 If the farm service account is a member of any other groups than WSS_RESTRICTED_WPG, WSS_ADMIN_WPG, and WSS_WPG on the local server where SharePoint is installed, this is a finding.</RawString>
     </Rule>
   </ManualRule>
-  <SPAlternateUrlRule dscresourcemodule="SharePointDsc">
-    <Rule id="V-59937.a" severity="high" conversionstatus="pass" title="SRG-APP-000014" dscresource="SPAlternateUrl">
-      <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
-
-Remote network access is accomplished by leveraging common communication protocols and establishing a remote connection. These connections will typically occur over either the public Internet or the Public Switched Telephone Network (PSTN). Since neither of these Internetworking mechanisms are private nor secure, if cryptography is not used, then the session data traversing the remote connection could be intercepted and compromised. Cryptography provides a means to secure the remote connection to prevent unauthorized access to the data traversing the remote access connection, thereby providing a degree of confidentiality. The encryption strength of mechanism is selected based on the security categorization of the information traversing the remote connection.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+  <RegistryRule dscresourcemodule="PSDscResources">
+    <Rule id="V-59965" severity="high" conversionstatus="pass" title="SRG-APP-000196" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for SharePoint. Different versions of the Windows Server OS, and versions of SharePoint will have different suites available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure approved cryptography is being utilized to protect the confidentiality of remote access sessions.
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>ValueData does not contain DES or RC4 Types</OrganizationValueTestString>
+      <RawString>Review the SharePoint server configuration to ensure required cryptographic protections using cryptographic modules complying with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance are implemented.
 
-Navigate to Central Administration.
+Open MMC.
 
-Under “System Settings”, click “Configure Alternate Access mappings”.
+Click "File", "Add/Remove Snap-in", and "add Group Policy Object Editor".
 
-Review the “Public URL for zone” column values. If any URL does not begin with “https”, this is a finding.</RawString>
-      <SPAlternateUrlItem />
+Enter a name for the Group Policy Object, or accept the default.
+
+Click "Finish".
+
+Click "OK".
+
+Navigate to Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Network &gt;&gt; SSL Configuration settings.
+
+Right-click "SSL Configuration Settings", click "SSL Cipher Suite Order", click "Edit".
+
+In the "SSL Cipher Suite Order" dialog box, if "Enabled" is not selected, this is a finding.
+
+Under Options, in the "SSL Cipher Suites" text box, a list of cipher suites will be displayed.
+
+If any DES or RC4 cipher suites exist in the list, this is a finding.</RawString>
+      <ValueData />
+      <ValueName>Functions</ValueName>
+      <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-59939.a" severity="high" conversionstatus="pass" title="SRG-APP-000015" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
-
-Remote network access is accomplished by leveraging common communication protocols and establishing a remote connection. These connections will typically occur over the public Internet, the Public Switched Telephone Network (PSTN), or sometimes both. Since neither of these Internetworking mechanisms are private nor secure, if cryptography is not used, then the session data traversing the remote connection could be intercepted and potentially modified. Cryptography provides a means to secure the remote connection to prevent unauthorized access to the data traversing the remote access connection, thereby providing a degree of integrity. The encryption strength of a mechanism is selected based on the security categorization of the information traversing the remote connection.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59937.a</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure cryptography is being used to protect the integrity of the remote access session.
-
-Navigate to Central Administration.
-
-Under “System Settings”, click “Configure Alternate Access mappings”.
-
-Review the “Public URL for zone” column values. If any URL does not begin with “https”, this is a finding.</RawString>
-      <SPAlternateUrlItem />
-    </Rule>
-    <Rule id="V-59975.a" severity="high" conversionstatus="pass" title="SRG-APP-000219" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;This control focuses on communications protection at the session, versus packet level.
-
-At the application layer, session IDs are tokens generated by web applications to uniquely identify an application user's session. Web applications utilize session tokens or session IDs in order to establish application user identity. Proper use of session IDs addresses man-in-the-middle attacks, including session hijacking or insertion of false information into a session. This control is only implemented where deemed necessary by the organization (e.g., sessions in service-oriented architectures providing web-based services).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59937.a</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure SSL Mutual authentication of both client and server during the entire session.
-
-Navigate to Central Administration.
-
-Under “System Settings”, click “Configure Alternate Access mappings”.
-
-Review the “Public URL for zone” column values. If any URL does not begin with “https”, this is a finding.</RawString>
-      <SPAlternateUrlItem />
-    </Rule>
-    <Rule id="V-59979.a" severity="high" conversionstatus="pass" title="SRG-APP-000230" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), SSL VPN, or IPSec tunnel.
-
-Alternative physical protection measures include protected distribution systems. Protective Distribution Systems (PDS) are used to transmit unencrypted classified NSI through an area of lesser classification or control. Inasmuch as the classified NSI is unencrypted, the PDS must provide adequate electrical, electromagnetic, and physical safeguards to deter exploitation. Refer to NSTSSI No. 7003 for additional details on a PDS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59937.a</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure the confidentiality of information during aggregation, packaging, and transformation in preparation for transmission is maintained.
-
-In SharePoint Central Administration, click Application Management.
-
-On the Application Management page, in the Web Applications list, click Manage web applications.
-
-On the Web Applications Management page, verify that each Web Application URL begins with https.
-
-If the URL does not begin with https, this is a finding.
-
-If SharePoint communications between all components and clients are protected by alternative physical measures that have been approved by the AO, this is not a finding.</RawString>
-      <SPAlternateUrlItem />
-    </Rule>
-    <Rule id="V-59985.a" severity="high" conversionstatus="pass" title="SRG-APP-000264" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), SSL VPN, or IPSEC tunnel.
-
-Alternative physical protection measures include Protected Distribution Systems (PDS). PDS are used to transmit unencrypted classified NSI through an area of lesser classification or control. Inasmuch as the classified NSI is unencrypted, the PDS must provide adequate electrical, electromagnetic, and physical safeguards to deter exploitation. Refer to NSTSSI No. 7003 for additional details on a PDS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59937.a</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server to ensure cryptographic mechanisms preventing the unauthorized disclosure of information during transmission are employed, unless the transmitted data is otherwise protected by alternative physical measures.
-
-In SharePoint Central Administration, click Application Management.
-
-On the Application Management page, in the Web Applications list, click Manage web applications.
-
-On the Web Applications Management page, verify that each Web Application URL begins with https.
-
-If the URL does not begin with https, this is a finding.
-
-If SharePoint communications between all components and clients are protected by alternative physical measures that have been approved by the AO, this is not a finding.</RawString>
-      <SPAlternateUrlItem />
-    </Rule>
-  </SPAlternateUrlRule>
-  <SPIrmSettingsRule dscresourcemodule="SharePointDsc">
-    <Rule id="V-59945" severity="medium" conversionstatus="pass" title="SRG-APP-000043" dscresource="SPIrmSettings">
-      <Description>&lt;VulnDiscussion&gt;Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.
-
-An example of flow control restrictions includes the following: keeping export-controlled information from being transmitted in the clear to the Internet. Information flow control policies and enforcement mechanisms are commonly employed by organizations to control the flow of information between designated sources and destinations (e.g., users, networks, devices) within information systems and between interconnected systems.
-
-Application-specific examples of flow control enforcement can be found in information protection software (e.g., guards, proxies, application layer gateways, and cross domain solutions) employing rule sets or establishing configuration settings restricting information system services or providing message-filtering capability based on content (e.g., using key word searches or document characteristics).
-
-Flow control is based on the characteristics of the information and/or the information path. Applications providing flow control must identify data type, specification, and usage when transferring information between different security domains so policy restrictions may be applied.
-
-A security domain is defined as a domain implementing a security policy and administered by a single authority.
-
-Data type, specification, and usage includes using file naming to reflect the type of data being transferred and limiting data transfer based on file type.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: If no data is exchanged between different security domains, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
-
-Review the SharePoint server configuration to ensure data type, specification, and usage when transferring information between different security domains are identified so policy restrictions may be applied.
-
-An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
-
-In Central Administration, click Security.
-
-On the Security page, in the Information policy list, click "Configure information rights management".
-
-If "Do not use IRM on this server" is selected, or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
-      <SPIrmSettingsRMSserver />
-      <SPIrmSettingsUseADRMS>False</SPIrmSettingsUseADRMS>
-    </Rule>
-    <Rule id="V-59947" severity="medium" conversionstatus="pass" title="SRG-APP-000047" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The application enforces approved authorizations for controlling the flow of information within the system and between interconnected systems in accordance with applicable policy.
-
-Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.
-
-Specific examples of flow control enforcement can be found in boundary protection devices (e.g., proxies, gateways, guards, encrypted tunnels, firewalls, and routers) employing rule sets or establishing configuration settings restricting information system services, providing a packet-filtering capability based on header information or message-filtering capability based on content (e.g., using key word searches or document characteristics).
-
-Actions to support this requirement include, but are not limited to checking all transferred information for malware, implementing dirty word list searches on transferred information, and applying the same protection measures to metadata (e.g., security attributes) that is applied to the information payload.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59945</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: If no unsanctioned information is transferred, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
-
-Review the SharePoint server configuration to ensure the transfer of unsanctioned information in accordance with security policy is prohibited.
-
-An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
-
-In Central Administration, click Security.
-
-On the Security page, in the Information policy list, click "Configure information rights management".
-
-If "Do not use IRM on this server" is selected or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
-      <SPIrmSettingsRMSserver />
-      <SPIrmSettingsUseADRMS>False</SPIrmSettingsUseADRMS>
-    </Rule>
-    <Rule id="V-59973" severity="medium" conversionstatus="pass" title="SRG-APP-000204" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;When data is exchanged between information systems, the security attributes associated with said data need to be maintained.
-
-Security attributes are an abstraction representing the basic properties or characteristics of an entity with respect to safeguarding information, typically associated with internal data structures (e.g., records, buffers, files) within the information system and used to enable the implementation of access control and flow control policies, reflect special dissemination, handling or distribution instructions, or support other aspects of the information security policy.
-
-Security attributes may be explicitly or implicitly associated with the information contained within the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59945</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: If no data is exchanged between systems, and has been documented by the Data Owner, IRM is not required. This requirement is Not Applicable.
-
-Review the SharePoint server configuration to ensure the integrity of security attributes exchanged between systems is validated. 
-
-An IRM must be enabled in SharePoint. The Windows Rights Management Services (RMS) (or a comparable IRM product) can either be located through Active Directory or specified.
-
-In Central Administration, click Security.
-
-On the Security page, in the Information policy list, click "Configure information rights management".
-
-If "Do not use IRM on this server" is selected, or if a configuration error message is displayed (such as "... IRM will not work until the client is configured properly"), this is a finding.</RawString>
-      <SPIrmSettingsRMSserver />
-      <SPIrmSettingsUseADRMS>False</SPIrmSettingsUseADRMS>
-    </Rule>
-  </SPIrmSettingsRule>
-  <SPLogLevelRule dscresourcemodule="SharePointDsc">
-    <Rule id="V-59953" severity="medium" conversionstatus="pass" title="SRG-APP-000090" dscresource="SPLogLevel">
-      <Description>&lt;VulnDiscussion&gt;Audit records can be generated from various components within the information system, such as network interfaces, hard disks, modems, etc. From an application perspective, certain specific application functionalities may be audited as well.
-
-The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records (i.e., auditable events, time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, filenames involved, and access control or flow control rules invoked).
-
-Organizations may define the organizational personnel accountable for determining which application components shall provide auditable events.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure designated organizational personnel are allowed to select which auditable events are to be audited by specific components of the system.
-
-Navigate to Central Administration.
-
-Click "Monitoring".
-
-Click "Configure Diagnostic Logging".
-
-Validate that the selected event categories and trace levels match those defined by the organization's system security plan.
-
-Remember that a base set of events are always audited.
-
-If the selected event categories/trace levels are inconsistent with those defined in the organization's system security plan, this is a finding.</RawString>
-      <SPLogLevelItem />
-    </Rule>
-  </SPLogLevelRule>
-  <SPWebAppBlockedFileTypesRule dscresourcemodule="SharePointDsc">
-    <Rule id="V-59987" severity="high" conversionstatus="pass" title="SRG-APP-000273" dscresource="SPWebAppBlockedFileTypes">
-      <Description>&lt;VulnDiscussion&gt;Malicious code protection software must be protected to prevent a non-privileged user or malicious piece of software from disabling the protection mechanism. A common tactic of malware is to identify the type of malicious code protection software running on the system and deactivate it. Malicious code includes viruses, worms, Trojan horses, and Spyware.
-
-Examples include the capability for non-administrative users to turn off or otherwise disable anti-virus.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure non-privileged users are prevented from circumventing malicious code protection capabilities.
-
-Confirm that the list of blocked file types configured in Central Administration matches the "blacklist" document in the application's SSP. See TechNet for default file types that are blocked: http://technet.microsoft.com/en-us/library/cc262496.aspx
-
-Navigate to Central Administration.
-
-Click "Manage web applications".
-
-Select the web application by clicking its name.
-
-Select "Blocked File Types" from the ribbon.
-
-Compare the list of blocked file types to those listed in the SSP. If the SSP has file types that are not in the blocked file types list, this is a finding.
-
-Repeat check for each web application.</RawString>
-      <WebAppUrlandBlockedFileTypesList />
-    </Rule>
-  </SPWebAppBlockedFileTypesRule>
+  </RegistryRule>
   <SPWebAppGeneralSettingsRule dscresourcemodule="SharePointDsc">
     <Rule id="V-59919" severity="medium" conversionstatus="pass" title="SRG-APP-000003" dscresource="SharePointSPWebAppGeneralSettings">
       <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their application session prior to vacating the vicinity, applications need to be able to identify when a user's application session has idled and take action to initiate the session lock.
@@ -924,99 +903,4 @@ For each web application in the web application section, perform the following:
 If the "Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance" option in the Online Web Part Gallery section is not checked, this is a finding.</RawString>
     </Rule>
   </SPWebAppGeneralSettingsRule>
-  <SslSettingsRule dscresourcemodule="xWebAdministration">
-    <Rule id="V-59937.b" severity="high" conversionstatus="pass" title="SRG-APP-000014" dscresource="xSslSettings">
-      <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
-
-Remote network access is accomplished by leveraging common communication protocols and establishing a remote connection. These connections will typically occur over either the public Internet or the Public Switched Telephone Network (PSTN). Since neither of these Internetworking mechanisms are private nor secure, if cryptography is not used, then the session data traversing the remote connection could be intercepted and compromised. Cryptography provides a means to secure the remote connection to prevent unauthorized access to the data traversing the remote access connection, thereby providing a degree of confidentiality. The encryption strength of mechanism is selected based on the security categorization of the information traversing the remote connection.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure approved cryptography is being utilized to protect the confidentiality of remote access sessions.
-
-Navigate to Central Administration.
-
-Under “System Settings”, click “Configure Alternate Access mappings”.
-
-Review the “Public URL for zone” column values. If any URL does not begin with “https”, this is a finding.</RawString>
-      <Value>Ssl,SslRequireCert</Value>
-    </Rule>
-    <Rule id="V-59939.b" severity="high" conversionstatus="pass" title="SRG-APP-000015" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
-
-Remote network access is accomplished by leveraging common communication protocols and establishing a remote connection. These connections will typically occur over the public Internet, the Public Switched Telephone Network (PSTN), or sometimes both. Since neither of these Internetworking mechanisms are private nor secure, if cryptography is not used, then the session data traversing the remote connection could be intercepted and potentially modified. Cryptography provides a means to secure the remote connection to prevent unauthorized access to the data traversing the remote access connection, thereby providing a degree of integrity. The encryption strength of a mechanism is selected based on the security categorization of the information traversing the remote connection.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59937.b</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure cryptography is being used to protect the integrity of the remote access session.
-
-Navigate to Central Administration.
-
-Under “System Settings”, click “Configure Alternate Access mappings”.
-
-Review the “Public URL for zone” column values. If any URL does not begin with “https”, this is a finding.</RawString>
-      <Value>Ssl,SslRequireCert</Value>
-    </Rule>
-    <Rule id="V-59975.b" severity="high" conversionstatus="pass" title="SRG-APP-000219" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;This control focuses on communications protection at the session, versus packet level.
-
-At the application layer, session IDs are tokens generated by web applications to uniquely identify an application user's session. Web applications utilize session tokens or session IDs in order to establish application user identity. Proper use of session IDs addresses man-in-the-middle attacks, including session hijacking or insertion of false information into a session. This control is only implemented where deemed necessary by the organization (e.g., sessions in service-oriented architectures providing web-based services).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59937.b</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure SSL Mutual authentication of both client and server during the entire session.
-
-Navigate to Central Administration.
-
-Under “System Settings”, click “Configure Alternate Access mappings”.
-
-Review the “Public URL for zone” column values. If any URL does not begin with “https”, this is a finding.</RawString>
-      <Value>Ssl,SslRequireCert</Value>
-    </Rule>
-    <Rule id="V-59979.b" severity="high" conversionstatus="pass" title="SRG-APP-000230" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), SSL VPN, or IPSec tunnel.
-
-Alternative physical protection measures include protected distribution systems. Protective Distribution Systems (PDS) are used to transmit unencrypted classified NSI through an area of lesser classification or control. Inasmuch as the classified NSI is unencrypted, the PDS must provide adequate electrical, electromagnetic, and physical safeguards to deter exploitation. Refer to NSTSSI No. 7003 for additional details on a PDS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59937.b</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure the confidentiality of information during aggregation, packaging, and transformation in preparation for transmission is maintained.
-
-In SharePoint Central Administration, click Application Management.
-
-On the Application Management page, in the Web Applications list, click Manage web applications.
-
-On the Web Applications Management page, verify that each Web Application URL begins with https.
-
-If the URL does not begin with https, this is a finding.
-
-If SharePoint communications between all components and clients are protected by alternative physical measures that have been approved by the AO, this is not a finding.</RawString>
-      <Value>Ssl,SslRequireCert</Value>
-    </Rule>
-    <Rule id="V-59985.b" severity="high" conversionstatus="pass" title="SRG-APP-000264" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), SSL VPN, or IPSEC tunnel.
-
-Alternative physical protection measures include Protected Distribution Systems (PDS). PDS are used to transmit unencrypted classified NSI through an area of lesser classification or control. Inasmuch as the classified NSI is unencrypted, the PDS must provide adequate electrical, electromagnetic, and physical safeguards to deter exploitation. Refer to NSTSSI No. 7003 for additional details on a PDS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59937.b</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server to ensure cryptographic mechanisms preventing the unauthorized disclosure of information during transmission are employed, unless the transmitted data is otherwise protected by alternative physical measures.
-
-In SharePoint Central Administration, click Application Management.
-
-On the Application Management page, in the Web Applications list, click Manage web applications.
-
-On the Web Applications Management page, verify that each Web Application URL begins with https.
-
-If the URL does not begin with https, this is a finding.
-
-If SharePoint communications between all components and clients are protected by alternative physical measures that have been approved by the AO, this is not a finding.</RawString>
-      <Value>Ssl,SslRequireCert</Value>
-    </Rule>
-  </SslSettingsRule>
 </DISASTIG>
