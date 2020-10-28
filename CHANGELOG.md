@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server DNS STIG - Ver 2, Rel 1: [#760](https://github.com/microsoft/PowerStig/issues/760)
 * Update spacing in DoD logon script: [#757](https://github.com/microsoft/PowerStig/issues/757)
 * Update PowerSTIG to Increase Code Coverage of Unit Tests: [#737](https://github.com/microsoft/PowerStig/issues/737)
 * Update PowerSTIG with new SkipRuleSeverity Parameter to skip entire STIG Category/Severity Level(s): [#711](https://github.com/microsoft/PowerStig/issues/711)
