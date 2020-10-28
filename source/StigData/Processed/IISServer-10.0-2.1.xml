@@ -1341,7 +1341,21 @@ If the "cookieless" is not set to "UseCookies", this is a finding.
 Note: If IIS 10.0 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.</RawString>
       <Value>UseCookies</Value>
     </Rule>
-    <Rule id="V-218805.a" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="None">
+    <Rule id="V-218805.a" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="xWebConfigKeyValue">
+      <ConfigSection>/system.web/sessionState</ConfigSection>
+      <Description>&lt;VulnDiscussion&gt;ASP.NET provides a session state, which is available as the HttpSessionState class, as a method of storing session-specific information that is visible only within the session. ASP.NET session state identifies requests from the same browser during a limited time window as a session and provides the ability to persist variable values for the duration of that session.
+
+When using the URI mode for cookie settings under session state, IIS will reject and reissue session IDs that do not have active sessions. Configuring IIS to expire session IDs and regenerate tokens gives a potential attacker less time to capture a cookie and gain access to server content.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>timeout</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -le '00:20:00'</OrganizationValueTestString>
+      <RawString>Under Time-out (in minutes), verify “20 minutes or less” is selected.</RawString>
+      <Value>
+      </Value>
+    </Rule>
+    <Rule id="V-218805.b" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="None">
       <ConfigSection>/system.web/sessionState</ConfigSection>
       <Description>&lt;VulnDiscussion&gt;ASP.NET provides a session state, which is available as the HttpSessionState class, as a method of storing session-specific information that is visible only within the session. ASP.NET session state identifies requests from the same browser during a limited time window as a session and provides the ability to persist variable values for the duration of that session.
 
