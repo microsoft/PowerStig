@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Office System 2013 STIG - Ver 2, Rel 1: [#769](https://github.com/microsoft/PowerStig/issues/769)
 * Update spacing in DoD logon script: [#757](https://github.com/microsoft/PowerStig/issues/757)
 * Update PowerSTIG to Increase Code Coverage of Unit Tests: [#737](https://github.com/microsoft/PowerStig/issues/737)
 * Update PowerSTIG with new SkipRuleSeverity Parameter to skip entire STIG Category/Severity Level(s): [#711](https://github.com/microsoft/PowerStig/issues/711)
