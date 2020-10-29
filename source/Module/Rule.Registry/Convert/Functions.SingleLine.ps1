@@ -434,7 +434,7 @@ function Get-RegistryValueNameFromSLStig
 
     if ($valueName)
     {
-        $valueName = $valueName.Matches.Value -replace '[\u201C\u201D]|["���]', ''
+        $valueName = $valueName.Matches.Value -replace "[\u201C\u201D]|[`"���]|[']"
 
         if ($valueName.Count -gt 1)
         {
