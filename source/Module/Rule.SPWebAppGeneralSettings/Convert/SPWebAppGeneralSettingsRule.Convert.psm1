@@ -13,9 +13,11 @@ foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-        
+        Convert the contents of an xccdf check-content element into a SharePoint WebAppGeneralSetting object
     .DESCRIPTION
-        
+        The SPWebAppGeneralSettingsRule class is used to extract the WebApp General settings from the
+        check-content of the xccdf. Once a STIG rule is identified a WebApp General Settings rule,
+        it is passed to the SPWebAppGeneralSettingsRule class for parsing and validation.
 #>
 class SPWebAppGeneralSettingsRuleConvert : SPWebAppGeneralSettingsRule
 {
@@ -35,17 +37,53 @@ class SPWebAppGeneralSettingsRuleConvert : SPWebAppGeneralSettingsRule
     #>
     SPWebAppGeneralSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        $this.PropertyName = $this.GetPropertyName($this.SplitCheckContent)
-        $this.PropertyValue = $this.GetPropertyValue($this.SplitCheckContent)
+        $this.SetPropertyName($this.SplitCheckContent)
+        $this.SetPropertyValue($this.SplitCheckContent)
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }
 
+    #region Methods
+
+    <#
+        .SYNOPSIS
+            Extracts the Property Name from the check-content and sets
+            the value
+        .DESCRIPTION
+            Gets the  Property Name from the xccdf content and sets the
+            value. 
+    #>
+    [void]SetPropertyName ($CheckContent)
+    {
+        $thisPropertyName = Get-PropertyName -CheckContent $CheckContent
+
+        if (-not $this.SetStatus($thisPropertyName))
+        {
+            $this.set_PropertyName($thisPropertyName)
+        }
+    }
+    <#
+        .SYNOPSIS
+            Extracts the Property Value from the check-content and sets
+            the value
+        .DESCRIPTION
+            Gets the Property Value from the xccdf content and sets the
+            value.
+    #>
+    [void] SetPropertyValue ($CheckContent)
+    {
+        $thisPropertyValue = Get-PropertyValue -CheckContent $CheckContent
+
+        if (-not $this.SetStatus($thisPropertyValue))
+        {
+            $this.set_PropertyValue($thisPropertyValue)
+        }
+    }
     hidden [void] SetDscResource ()
     {
         if ($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = 'SharePointSPWebAppGeneralSettings'
+            $this.DscResource = 'SPWebAppGeneralSettings'
         }
         else
         {
@@ -57,8 +95,9 @@ class SPWebAppGeneralSettingsRuleConvert : SPWebAppGeneralSettingsRule
     {
         if
         (
+            $CheckContent -Match "SharePoint server configuration" -and
             $CheckContent -Match "prohibited mobile code" -or
-            $CheckContent -Match "SharePoint server configuration to ensure a session lock" -or
+            $CheckContent -Match "ensure a session lock" -or
             $CheckContent -Match "ensure user sessions are terminated upon user logoff" -or
             $CheckContent -Match "ensure access to the online web part gallery is configured"
         )
@@ -69,51 +108,5 @@ class SPWebAppGeneralSettingsRuleConvert : SPWebAppGeneralSettingsRule
         return $false
     }
 
-    [string] GetPropertyName([string]$CheckContent)
-    {
-        $PropertyName = ''
-        if ($CheckContent -Match "prohibited mobile code")
-        {
-            $PropertyName = 'BrowserFileHandling'
-        }
-        if ($CheckContent -Match "SharePoint server configuration to ensure a session lock")
-        {
-            $PropertyName = 'SecurityValidationTimeOutMinutes'
-        }
-        if ($CheckContent -Match "ensure user sessions are terminated upon user logoff")
-        {
-            $PropertyName = 'SecurityValidation'
-        }
-        if ($CheckContent -Match "ensure access to the online web part gallery is configured")
-        {
-            $PropertyName = 'AllowOnlineWebPartCatalog'
-        }
-
-        return $PropertyName
-    }
-
-    [string] GetPropertyValue ([string] $CheckContent)
-    {
-        $PropertyValue = ''
-        if ($CheckContent -Match "set to expire after 15 minutes or less")
-        {
-            $CheckContentPattern = [regex]::new('((\d\d)(?=\sminutes of inactivity))')
-            $myMatches = $CheckContentPattern.Matches($CheckContent)
-            $PropertyValue = $myMatches.Value
-        }
-        if ($CheckContent -Match "ensure user sessions are terminated upon user logoff")
-        {
-            $PropertyValue = "$true"
-        }
-        if ($CheckContent -Match "ensure access to the online web part gallery is configured")
-        {
-            $PropertyValue = "$false"
-        }
-        if ($CheckContent -Match "prohibited mobile code")
-        {
-            $PropertyValue = "Strict"
-        }
-        
-        return $PropertyValue
-    }
+    #endregion
 }

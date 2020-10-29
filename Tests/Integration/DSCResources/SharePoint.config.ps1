@@ -51,7 +51,7 @@ configuration SharePoint_config
 
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [pscredential]
+        [System.Management.Automation.PSCredential]
         $SetupAccount
     )
 
