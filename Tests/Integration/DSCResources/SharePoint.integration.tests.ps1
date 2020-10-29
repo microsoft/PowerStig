@@ -11,7 +11,7 @@ $resourceInformation = $global:getDscResource | Where-Object -FilterScript {$PSI
 $resourceParameters = $resourceInformation.Properties.Name
 
 $password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'
-$SetupAccount = New-Object -TypeName pscredential -ArgumentList 'Admin', $password
+$SetupAccount = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList 'Admin', $password
 
 $WebAppUrl = 'https://sharePoint.contoso.com'
 

@@ -43,10 +43,10 @@ configuration SharePoint
 
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [pscredential]
+        [System.Management.Automation.PSCredential]
         $SetupAccount,
 
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [string]
         $SharePointVersion,

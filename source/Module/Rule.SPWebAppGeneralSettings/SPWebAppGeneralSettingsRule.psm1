@@ -13,8 +13,8 @@ using module .\..\Rule\Rule.psm1
 #>
 class SPWebAppGeneralSettingsRule : Rule
 {
-    [object] $PropertyName
-    [object] $PropertyValue
+    [string] $PropertyName
+    [string] $PropertyValue
 
     <#
         .SYNOPSIS

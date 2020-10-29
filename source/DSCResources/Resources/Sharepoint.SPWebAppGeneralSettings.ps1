@@ -5,10 +5,7 @@ $rules = Select-Rule -Type SPWebAppGeneralSettingsRule -RuleList $stig.RuleList
 
 $configStringBuilder = New-Object -TypeName System.Text.StringBuilder
 
-foreach ($rule in $rules)
-{
-    $resourceTitle = "[$($rules.id -join ' ')]"
-}
+$resourceTitle = "[$($rules.id -join ' ')]"
 
 [void] $configStringBuilder.AppendLine("SPWebAppGeneralSettings '$resourceTitle'")
 [void] $configStringBuilder.AppendLine("{")
@@ -19,7 +16,8 @@ foreach ($rule in $rules)
     {
         $correctedString = "`$$($rule.PropertyValue)"  
         [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  $correctedString")
-    }else 
+    }
+    else 
     {
         [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  '$($rule.PropertyValue)'")
     }
@@ -27,4 +25,4 @@ foreach ($rule in $rules)
 
 [void] $configStringBuilder.AppendLine("PsDscRunAsCredential = `$SetupAccount")
 [void] $configStringBuilder.AppendLine("}")
-[scriptblock]::Create($configStringBuilder.ToString()).Invoke($rules)
+[scriptblock]::Create($configStringBuilder.ToString()).Invoke()

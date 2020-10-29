@@ -8,7 +8,7 @@ try
         @{
             PropertyName    = 'SecurityValidation'
             PropertyValue   = 'True'
-            DscResource     = 'SharePointSPWebAppGeneralSettings'
+            DscResource     = 'SPWebAppGeneralSettings'
             CheckContent    = 'Review the SharePoint server configuration to ensure user sessions are terminated upon user logoff, and when idle time limit is exceeded.
 
             Navigate to Central Administration website.
@@ -28,7 +28,7 @@ try
         @{
             PropertyName    = 'SecurityValidationTimeOutMinutes'
             PropertyValue   = '15'
-            DscResource     = 'SharePointSPWebAppGeneralSettings'
+            DscResource     = 'SPWebAppGeneralSettings'
             CheckContent    = 'Review the SharePoint server configuration to ensure a session lock occurs after 15 minutes of inactivity.
 
             In SharePoint Central Administration, click Application Management. 
@@ -47,7 +47,7 @@ try
         @{
             PropertyName    = 'BrowserFileHandling'
             PropertyValue   = 'Strict'
-            DscResource     = 'SharePointSPWebAppGeneralSettings'
+            DscResource     = 'SPWebAppGeneralSettings'
             CheckContent    = 'Review the SharePoint server configuration to ensure the execution of prohibited mobile code is prevented.
 
             Navigate to Central Administration.
@@ -66,7 +66,7 @@ try
         @{
             PropertyName    = 'AllowOnlineWebPartCatalog'
             PropertyValue   = 'False'
-            DscResource     = 'SharePointSPWebAppGeneralSettings'
+            DscResource     = 'SPWebAppGeneralSettings'
             CheckContent    = 'Review the SharePoint server configuration to ensure access to the online web part gallery is configured for limited access.
 
             Log on to Central Administration.
@@ -84,32 +84,21 @@ try
         }
     )
 
-    Describe 'SPWebAppGeneralSettings Conversion' {
-        foreach ($testCase in $testCases)
-        {
-            [xml] $stigRule = Get-TestStigRule -CheckContent $testCase.checkContent -XccdfTitle Windows
-            $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $stigRule.Save( $TestFile )
-            $rule = ConvertFrom-StigXccdf -Path $TestFile
+    Describe 'SPWebAppGeneralSettings Rule Conversion' {
+        Context "When SPWebAppGeneralSettings is converted" {
+            It 'Should return a correctly converted "<PropertyName>" Rule' -TestCases $testCases {
+                param ($PropertyName, $PropertyValue, $DscResource)
 
-            It 'Should return a SPWebAppGeneralSettingsRule Object' {
-                $rule.GetType() | Should Be 'SPWebAppGeneralSettingsRule'
-            }
+                [xml] $stigRule = Get-TestStigRule -CheckContent $testCase.checkContent -XccdfTitle Windows
+                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+                $stigRule.Save( $TestFile )
+                $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should return Property Name:'$($testCase.PropertyName)'" {
-                $rule.PropertyName | Should Be $testCase.PropertyName
-            }
-
-            It "Should return Property Value:'$($testCase.PropertyValue)'"{
-                $rule.PropertyValue | Should be $testCase.PropertyValue
-            }
-
-            It "Should set the correct DscResource" {
-                $rule.DscResource | Should Be 'SharePointSPWebAppGeneralSettings'
-            }
-            
-            It 'Should set the status to pass' {
-                $rule.conversionstatus | Should be 'pass'
+                $rule.GetType()        | Should -Be 'SPWebAppGeneralSettingsRule'
+                $rule.PropertyName     | Should -Be $PropertyName
+                $rule.PropertyValue    | Should -Be $PropertyValue
+                $rule.DscResource      | Should -Be 'SPWebAppGeneralSettings'
+                $rule.conversionstatus | Should -Be 'pass'
             }
         }
     }
