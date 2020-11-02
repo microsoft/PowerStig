@@ -92,4 +92,5 @@ configuration SharePoint
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.12.0.0
     . "$resourcePath\windows.Script.skip.ps1"
+    . "$resourcePath\windows.Registry.ps1"
 }

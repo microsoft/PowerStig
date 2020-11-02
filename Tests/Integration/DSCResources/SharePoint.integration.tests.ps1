@@ -16,7 +16,6 @@ $SetupAccount = New-Object -TypeName System.Management.Automation.PSCredential -
 $WebAppUrl = 'https://sharePoint.contoso.com'
 
 $additionalTestParameterList    = @{
-    SetupAccount = $SetupAccount
     ConfigurationData           = @{
         AllNodes = @(
             @{
@@ -27,6 +26,7 @@ $additionalTestParameterList    = @{
         )
     }
     WebAppUrl = $WebAppUrl
+    SetupAccount = $SetupAccount
 }
 
 foreach ($stig in $stigList)
