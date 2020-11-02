@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Office System 2013 STIG - Ver 2, Rel 1: [#769](https://github.com/microsoft/PowerStig/issues/769)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server DNS STIG - Ver 2, Rel 1: [#760](https://github.com/microsoft/PowerStig/issues/760)
 * Update PowerSTIG to successfully parse/apply Microsoft SQL Server 2016 Instance Version 2; Release 1: [#761](https://github.com/microsoft/PowerStig/issues/761)
 * Update PowerSTIG to successfully parse/apply Microsoft Outlook 2016 Version 2; Release 1: [#767](https://github.com/microsoft/PowerStig/issues/767)
