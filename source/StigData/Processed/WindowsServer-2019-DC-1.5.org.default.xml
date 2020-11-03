@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="1.3">
+<OrganizationalSettings fullversion="1.5">
   <!-- Ensure ''V-92961'' -le '900' -and ''V-92961'' -gt '0'-->
   <OrganizationalSetting id="V-92961" ValueData="900" />
   <!-- Ensure ''V-93149'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
@@ -38,6 +38,22 @@
   <OrganizationalSetting id="V-93449" PolicyValue="7" />
   <!-- Ensure ''V-93451'' -le '5'-->
   <OrganizationalSetting id="V-93451" PolicyValue="5" />
+  <!-- Ensure location for DoD Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-93487.a" Location="" />
+  <!-- Ensure location for DoD Root CA 3 certificate is present-->
+  <OrganizationalSetting id="V-93487.b" Location="" />
+  <!-- Ensure location for DoD Root CA 4 certificate is present-->
+  <OrganizationalSetting id="V-93487.c" Location="" />
+  <!-- Ensure location for DoD Root CA 5 certificate is present-->
+  <OrganizationalSetting id="V-93487.d" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 1 certificate is present-->
+  <OrganizationalSetting id="V-93489.a" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-93489.b" Location="" />
+  <!-- Ensure location for US DoD CCEB Interoperability Root CA 1 certificate is present-->
+  <OrganizationalSetting id="V-93491.a" Location="" />
+  <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-93491.b" Location="" />
   <!-- Ensure ''V-93523'' -match '1|2'-->
   <OrganizationalSetting id="V-93523" ValueData="1" />
   <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->

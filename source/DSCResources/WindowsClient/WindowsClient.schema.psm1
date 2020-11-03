@@ -112,5 +112,8 @@ configuration WindowsClient
     Import-DscResource -ModuleName AuditSystemDsc -ModuleVersion 1.1.0
     . "$resourcePath\windows.AuditSetting.ps1"
 
+    Import-DscResource -ModuleName CertificateDsc -ModuleVersion 5.0.0
+    . "$resourcePath\windows.RootCertificate.ps1"
+
     . "$resourcePath\windows.RefreshRegistryPolicy.ps1"
 }

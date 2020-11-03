@@ -32,6 +32,22 @@
   <OrganizationalSetting id="V-93285" ValueData="30" />
   <!-- Ensure ''V-93287'' -match '1|2'-->
   <OrganizationalSetting id="V-93287" ValueData="1" />
+  <!-- Ensure location for DoD Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-93487.a" Location="" />
+  <!-- Ensure location for DoD Root CA 3 certificate is present-->
+  <OrganizationalSetting id="V-93487.b" Location="" />
+  <!-- Ensure location for DoD Root CA 4 certificate is present-->
+  <OrganizationalSetting id="V-93487.c" Location="" />
+  <!-- Ensure location for DoD Root CA 5 certificate is present-->
+  <OrganizationalSetting id="V-93487.d" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 1 certificate is present-->
+  <OrganizationalSetting id="V-93489.a" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-93489.b" Location="" />
+  <!-- Ensure location for US DoD CCEB Interoperability Root CA 1 certificate is present-->
+  <OrganizationalSetting id="V-93491.a" Location="" />
+  <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-93491.b" Location="" />
   <!-- Ensure ''V-93523'' -match '1|2'-->
   <OrganizationalSetting id="V-93523" ValueData="1" />
   <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->

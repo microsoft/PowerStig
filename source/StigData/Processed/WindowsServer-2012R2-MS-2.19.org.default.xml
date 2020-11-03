@@ -60,12 +60,26 @@
   <OrganizationalSetting id="V-26581" ValueData="32768" />
   <!-- Ensure ''V-26582'' -ge '32768'-->
   <OrganizationalSetting id="V-26582" ValueData="32768" />
+  <!-- Ensure location for DoD Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-32272.a" Location="" />
+  <!-- Ensure location for DoD Root CA 3 certificate is present-->
+  <OrganizationalSetting id="V-32272.b" Location="" />
+  <!-- Ensure location for DoD Root CA 4 certificate is present-->
+  <OrganizationalSetting id="V-32272.c" Location="" />
+  <!-- Ensure location for DoD Root CA 5 certificate is present-->
+  <OrganizationalSetting id="V-32272.d" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 1 certificate is present-->
+  <OrganizationalSetting id="V-32274.a" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-32274.b" Location="" />
   <!-- Ensure ''V-36707'' -match '1|2'-->
   <OrganizationalSetting id="V-36707" ValueData="1" />
   <!-- Ensure ServiceName/StartupType is populated with correct Certificate Revocation Checking service information-->
   <OrganizationalSetting id="V-36736" ServiceName="" StartupType="" />
   <!-- Ensure ''V-36773'' -le '900' -and ''V-36773'' -gt '0'-->
   <OrganizationalSetting id="V-36773" ValueData="900" />
+  <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-40237" Location="" />
   <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->
   <OrganizationalSetting id="V-42420" ServiceName="" StartupType="" />
 </OrganizationalSettings>
