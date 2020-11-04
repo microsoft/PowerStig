@@ -48,6 +48,7 @@ RequiredModules  = @(
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '2.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.16.0.0'},
     @{ModuleName = 'xWebAdministration'; ModuleVersion = '3.2.0'}
+    @{ModuleName = 'CertificateDsc'; ModuleVersion = '5.0.0'}
 )
 
 # DSC resources to export from this module
