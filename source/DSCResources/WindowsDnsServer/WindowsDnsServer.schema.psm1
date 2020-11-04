@@ -106,4 +106,6 @@ configuration WindowsDnsServer
     Import-DscResource -ModuleName ComputerManagementDsc -ModuleVersion 8.4.0
     . "$resourcePath\windows.WindowsEventLog.ps1"
 
+    # DISA STIG Warning Message when v2.1 or greater verison of STIG is specified
+    . "$resourcePath\disaWarning.Message.ps1"
 }
