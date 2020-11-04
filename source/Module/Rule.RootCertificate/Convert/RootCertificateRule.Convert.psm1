@@ -4,6 +4,13 @@ using module .\..\..\Common\Common.psm1
 using module .\..\..\Rule\Rule.psm1
 using module .\..\RootCertificateRule.psm1
 
+$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
+foreach ($supportFile in $supportFileList)
+{
+    Write-Verbose "Loading $($supportFile.FullName)"
+    . $supportFile.FullName
+}
 # Header
 
 <#
@@ -94,7 +101,7 @@ class RootCertificateRuleConvert : RootCertificateRule
     #>
     [void] SetOrganizationValueTestString ()
     {
-        $OrganizationValueTestString = Get-OrganizationValueTestString -Name $this.CertificateName
+        $OrganizationValueTestString = Get-OrganizationValueTestString -CertificateName $this.CertificateName
 
         if (-not $this.SetStatus($OrganizationValueTestString))
         {

@@ -174,9 +174,9 @@ function Get-OrganizationValueTestString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $Name
+        $CertificateName
     )
 
-    $organizationValueTestString = "{0}{1}{2}" -f "location for ", $Name, " certificate is present"
+    $organizationValueTestString = "{0}{1}{2}" -f "location for ", $CertificateName, " certificate is present"
     return $organizationValueTestString
 }

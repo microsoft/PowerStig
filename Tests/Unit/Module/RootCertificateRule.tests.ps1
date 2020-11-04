@@ -9,6 +9,7 @@ try
         $testRuleList = @(
             @{
                 CertificateName = "US DoD CCEB Interoperability Root CA 2"
+                Thumbprint = "929BF3196896994C0A201DF4A5B71F603FEFBF2E"
                 OrganizationValueRequired = $true
                 OrganizationValueTestString = "location for US DoD CCEB Interoperability Root CA 2 certificate is present"
                 CheckContent = 'Verify the US DoD CCEB Interoperability Root CA cross-certificate is installed on unclassified systems as an Untrusted Certificate.

@@ -5,7 +5,7 @@ $rules = $stig.RuleList | Select-Rule -Type RootCertificateRule
 
 foreach ( $rule in $rules )
 {
-    if($rule.Name -contains "Interoperability")
+    if($rule.CertificateName -contains "Interoperability")
     {
         CertificateImport (Get-ResourceTitle -Rule $rule)
         {
