@@ -87,11 +87,11 @@ try
     Describe 'SPWebAppGeneralSettings Rule Conversion' {
         Context "When SPWebAppGeneralSettings is converted" {
             It 'Should return a correctly converted "<PropertyName>" Rule' -TestCases $testCases {
-                param ($PropertyName, $PropertyValue, $DscResource)
+                param ($PropertyName, $PropertyValue, $DscResource, $CheckContent)
 
-                [xml] $stigRule = Get-TestStigRule -CheckContent $testCase.checkContent -XccdfTitle Windows
+                [xml] $stigRule = Get-TestStigRule -CheckContent $CheckContent -XccdfTitle 'SharePoint'
                 $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-                $stigRule.Save( $TestFile )
+                $stigRule.Save($TestFile)
                 $rule = ConvertFrom-StigXccdf -Path $TestFile
 
                 $rule.GetType()        | Should -Be 'SPWebAppGeneralSettingsRule'
