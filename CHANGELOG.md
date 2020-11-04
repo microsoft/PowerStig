@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Provide Method to install DoD Root Certs for Server and Client OS: [#755](https://github.com/microsoft/PowerStig/issues/755)
 * Update spacing in DoD logon script: [#757](https://github.com/microsoft/PowerStig/issues/757)
 * Update PowerSTIG to Increase Code Coverage of Unit Tests: [#737](https://github.com/microsoft/PowerStig/issues/737)
 * Update PowerSTIG with new SkipRuleSeverity Parameter to skip entire STIG Category/Severity Level(s): [#711](https://github.com/microsoft/PowerStig/issues/711)
