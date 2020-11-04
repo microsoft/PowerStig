@@ -9,20 +9,20 @@ foreach ( $rule in $rules )
     {
         CertificateImport (Get-ResourceTitle -Rule $rule)
         {
-            ThumbprintName = $rule.Thumbprint
-            Location       = 'LocalMachine'
-            Store          = 'Disallowed'
-            Path           = $rule.Location
+            Thumbprint = $rule.Thumbprint
+            Location   = 'LocalMachine'
+            Store      = 'Disallowed'
+            Path       = $rule.Location
         }
     }
     else
     {
         CertificateImport (Get-ResourceTitle -Rule $rule)
         {
-            ThumbprintName = $rule.Thumbprint
-            Location       = 'LocalMachine'
-            Store          = 'Root'
-            Path           = $rule.Location
+            Thumbprint = $rule.Thumbprint
+            Location   = 'LocalMachine'
+            Store      = 'Root'
+            Path       = $rule.Location
         }
     }
 }
