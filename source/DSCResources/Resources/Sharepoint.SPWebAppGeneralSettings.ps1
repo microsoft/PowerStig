@@ -14,7 +14,7 @@ foreach ($rule in $rules)
 {
     if($rule.PropertyValue -eq 'true' -or $rule.PropertyValue -eq 'False')
     {
-        $correctedString = "`$$($rule.PropertyValue)"  
+        $correctedString = "`$($rule.PropertyValue)"  
         [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  $correctedString")
     }
     else 
