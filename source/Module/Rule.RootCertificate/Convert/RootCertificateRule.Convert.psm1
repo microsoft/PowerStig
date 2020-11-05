@@ -42,7 +42,7 @@ class RootCertificateRuleConvert : RootCertificateRule
     {
         $this.SetRootCertificateName()
         $this.SetRootCertificateThumbprint()
-        $this.SetOrganizationValueTestString()
+        $this.SetRootCertificateOrganizationValueTestString()
         $this.SetDscResource()
     }
 
@@ -99,13 +99,13 @@ class RootCertificateRuleConvert : RootCertificateRule
     .DESCRIPTION
         Extracts the organizational value from the Certificate Name and then sets the value
     #>
-    [void] SetOrganizationValueTestString ()
+    [void] SetRootCertificateOrganizationValueTestString ()
     {
-        $OrganizationValueTestString = Get-OrganizationValueTestString -CertificateName $this.CertificateName
+        $rootCertificateOrganizationValueTestString = Get-RootCertificateOrganizationValueTestString -CertificateName $this.CertificateName
 
-        if (-not $this.SetStatus($OrganizationValueTestString))
+        if (-not $this.SetStatus($rootCertificateOrganizationValueTestString))
         {
-            $this.set_OrganizationValueTestString($OrganizationValueTestString)
+            $this.set_OrganizationValueTestString($rootCertificateOrganizationValueTestString)
             $this.set_OrganizationValueRequired($true)
         }
     }
@@ -137,9 +137,6 @@ class RootCertificateRuleConvert : RootCertificateRule
             Tests if a rule contains multiple checks
         .DESCRIPTION
             Search the rule text to determine if multiple {0} are defined
-        .PARAMETER Name
-            The feature name from the rule text from the check-content element
-            in the xccdf
     #>
 
     static [bool] HasMultipleRules ([string] $CheckContent)

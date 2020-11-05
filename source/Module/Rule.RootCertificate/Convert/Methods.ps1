@@ -166,7 +166,7 @@ function Split-MultipleRootCertificateRule
     .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
-function Get-OrganizationValueTestString
+function Get-RootCertificateOrganizationValueTestString
 {
     [CmdletBinding()]
     [OutputType([string])]
