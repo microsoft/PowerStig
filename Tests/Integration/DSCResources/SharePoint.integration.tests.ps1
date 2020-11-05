@@ -15,8 +15,8 @@ $SetupAccount = New-Object -TypeName System.Management.Automation.PSCredential -
 
 $WebAppUrl = 'https://sharePoint.contoso.com'
 
-$additionalTestParameterList    = @{
-    ConfigurationData           = @{
+$additionalTestParameterList = @{
+    ConfigurationData = @{
         AllNodes = @(
             @{
                 NodeName = 'localhost'
