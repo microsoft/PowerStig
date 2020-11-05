@@ -43,9 +43,7 @@
   <!-- Ensure location for DoD Interoperability Root CA 1 certificate is present-->
   <OrganizationalSetting id="V-63587.b" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-63589.a" Location="" />
-  <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-63589.b" Location="" />
+  <OrganizationalSetting id="V-63589" Location="" />
   <!-- Ensure ''V-63595.b'' -match '1|3'-->
   <OrganizationalSetting id="V-63595.b" ValueData="1" />
   <!-- Ensure ''V-63607'' -match '1|3|8'-->

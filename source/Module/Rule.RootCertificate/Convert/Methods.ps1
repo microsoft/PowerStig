@@ -24,7 +24,7 @@ function Set-RootCertificateName
     {
         if($CheckContent -match "Issuer:\sCN")
         {
-            $certificateName = ($CheckContent | Select-String -Pattern '(?<=Issuer:\sCN=)[^,]+' -AllMatches).Matches.Value
+            $certificateName = ($CheckContent | Select-String -Pattern '(?<=Issuer:\sCN=)[^,]+' -AllMatches).Matches.Value | Select-Object -Unique
         }
         else
         {
