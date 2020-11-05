@@ -141,7 +141,8 @@ function Get-UniqueRuleTypeProperty
     $commonProperties = ($blankRule | Get-Member -MemberType Property).Name
     $ruleProperty = ($Rule | Get-Member -MemberType 'NoteProperty', 'Property').Name
     $compareObjResult = Compare-Object -ReferenceObject $ruleProperty -DifferenceObject $commonProperties
-    return $compareObjResult.InputObject
+    $filteredCompareResult = $compareObjResult | Where-Object -FilterScript {$PSItem.SideIndicator -eq '<=' -and $PSItem -notmatch 'Stig(Id|Version)|VulnId|RuleType'}
+    return $filteredCompareResult.InputObject
 }
 
 function Get-StigRuleExceptionString
@@ -174,16 +175,33 @@ function Get-StigRuleExceptionString
                 $ruleTypeProperty.Add($ruleData.RuleType, $uniqueRuleTypeProperty)
             }
 
-            $ruleDetail = [ordered] @{
-                RuleType = $ruleData.RuleType
-            }
+            $ruleDetail = [ordered] @{}
 
             foreach ($value in $ruleTypeProperty[$ruleData.RuleType])
             {
-                $ruleDetail.Add($value, $ruleData.$value)
+                if ($value -ne $ruleData.RuleType)
+                {
+                    $ruleDetail.Add($value, $ruleData.$value)
+                }
             }
 
+            $exceptionString = New-Object -TypeName System.Text.StringBuilder
+            [void] $exceptionString.Append("$($ruleData.VulnId) = @{")
+            foreach ($key in $ruleDetail.Keys)
+            {
+                [void] $exceptionString.Append("$key = '$($ruleDetail[$key])'; ")
+            }
 
+            $exceptionString = $exceptionString.ToString() -replace ';\s$', '}'
+
+            if ($Formatted)
+            {
+                $exceptionString -replace ';\s?', "`n  " -replace '@{', "@{`n  " -replace '}', "`n}"
+            }
+            else
+            {
+                $exceptionString
+            }
         }
     }
 }
