@@ -50,6 +50,8 @@
   <OrganizationalSetting id="V-93489.a" Location="" />
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-93489.b" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-93489.c" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 1 certificate is present-->
   <OrganizationalSetting id="V-93491.a" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
