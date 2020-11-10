@@ -71,6 +71,12 @@ switch ($psStackCommand)
         . $functionDomainName
     }
 
+    'STIG.RuleQuery'
+    {
+        $functionRuleQuery = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Functions.RuleQuery.ps1'
+        . $functionRuleQuery
+    }
+
     'STIG.PowerStigXml'
     {
         $functionPowerStigXml = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Convert\Functions.PowerStigXml.ps1'
@@ -83,7 +89,6 @@ switch ($psStackCommand)
         [void] $setDynamicClassFileParams.Add('DestinationPath', $destinationPath)
         [void] $setDynamicClassFileParams.Add('ClassModuleFileName', @('Rule.psm1', 'ConvertFactory.psm1','DocumentRule.Convert.psm1','Stig.psm1'))
     }
-
 
     'STIG'
     {
@@ -101,7 +106,10 @@ switch ($psStackCommand)
     }
 }
 
-if ($global:moduleName -ne 'STIG.Checklist' -and $global:moduleName -ne 'STIG.DomainName')
+if
+(
+    $global:moduleName -notmatch 'STIG.(Checklist|DomainName|RuleQuery)'
+)
 {
     Set-DynamicClassFile @setDynamicClassFileParams
     . $setDynamicClassFileParams.DestinationPath

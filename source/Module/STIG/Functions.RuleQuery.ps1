@@ -124,7 +124,6 @@ function Get-StigRule
         PS> Get-UniqueRuleTypeProperty -Rule $xml.DISASTIG.RegistryRule.Rule[0]
 
         Returns the delta properties between the RegistryRule and Base Rule class
-
 #>
 function Get-UniqueRuleTypeProperty
 {
@@ -145,6 +144,46 @@ function Get-UniqueRuleTypeProperty
     return $filteredCompareResult.InputObject
 }
 
+<#
+    .SYNOPSIS
+        Returns a string of all properties of a given rule and structured for use within a PowerSTIG configuraiton.
+
+    .DESCRIPTION
+        Returns a string of all properties of a given rule and structured for use within a PowerSTIG configuraiton.
+
+    .PARAMETER Rule
+        A rule object which was created through Get-StigRule
+
+    .PARAMETER Formatted
+        By default the function will return a single line string which represents the rule exception, when Formatted
+        is supplied, the funciton will return a formatted string, i.e.:
+
+        V-1155 = @{
+            Constant = 'SeDenyNetworkLogonRight'
+            DisplayName = 'Deny access to this computer from the network'
+            Force = 'False'
+            Identity = ''
+        }
+
+    .EXAMPLE
+        PS> $rule = Get-StigRule -RuleId V-1155 | Select-Object -First 1
+        PS> Get-StigRuleExceptionString -Rule $rule
+
+        Returns the following exception string:
+        V-1155 = @{Constant = 'SeDenyNetworkLogonRight'; DisplayName = 'Deny access to this computer from the network'; Force = 'False'; Identity = ''}
+
+    .EXAMPLE
+        PS> $rule = Get-StigRule -RuleId V-1155 | Select-Object -First 1
+        PS> Get-StigRuleExceptionString -Rule $rule -Formatted
+
+        Returns the following exception string:
+        V-1155 = @{
+          Constant = 'SeDenyNetworkLogonRight'
+          DisplayName = 'Deny access to this computer from the network'
+          Force = 'False'
+          Identity = ''
+        }
+#>
 function Get-StigRuleExceptionString
 {
     [CmdletBinding()]
