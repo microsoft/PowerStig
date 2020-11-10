@@ -53,7 +53,7 @@ Pester:
    - DSCResources
   Script:
    - tests/Unit
-  ExcludeTag:
+  ExcludeTag: Changelog
   Tag:
   CodeCoverageThreshold: 80 # Set to 0 to bypass
   CodeCoverageOutputFile: JaCoCo_coverage.xml
