@@ -93,7 +93,7 @@ class RootCertificateRuleConvert : RootCertificateRule
     #>
     [bool] IsOrganizationalSetting ()
     {
-        if ([String]::IsNullOrEmpty($this.CertificateName))
+        if ($null -ne $this.CertificateName)
         {
             return $true
         }
