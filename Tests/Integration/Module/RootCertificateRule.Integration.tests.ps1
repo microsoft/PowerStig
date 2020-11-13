@@ -6,9 +6,9 @@ try
 {
     $stigRulesToTest = @(
         @{
-            CertificateName          = 'US DoD CCEB Interoperability Root CA 2'
-            Thumbprint        = '929BF3196896994C0A201DF4A5B71F603FEFBF2E'
-            CheckContent = 'Verify the US DoD CCEB Interoperability Root CA cross-certificate is installed on unclassified systems as an Untrusted Certificate.
+            CertificateName = 'US DoD CCEB Interoperability Root CA 2'
+            Thumbprint      = '929BF3196896994C0A201DF4A5B71F603FEFBF2E'
+            CheckContent    = 'Verify the US DoD CCEB Interoperability Root CA cross-certificate is installed on unclassified systems as an Untrusted Certificate.
 
             Run "PowerShell" as an administrator.
             
@@ -62,7 +62,7 @@ try
 
     Describe 'RootCertificate Rule Conversion' {
 
-        foreach ( $stig in $stigRulesToTest )
+        foreach ($stig in $stigRulesToTest)
         {
             [xml] $stigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle 'IIS'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'

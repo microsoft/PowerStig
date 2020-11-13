@@ -22,7 +22,7 @@ function Set-RootCertificateName
 
     if ($checkContent.Count -gt 1)
     {
-        if($CheckContent -match "Issuer:\sCN")
+        if ($CheckContent -match "Issuer:\sCN")
         {
             $certificateName = ($CheckContent | Select-String -Pattern '(?<=Issuer:\sCN=)[^,]+' -AllMatches).Matches.Value | Select-Object -Unique
         }
@@ -70,7 +70,7 @@ function Set-RootCertificateThumbprint
     {
         $certificateThumbprint = ($CheckContent | Select-String -Pattern '(?<=Thumbprint:\s).*' -AllMatches).Matches.Value | Select-Object -Unique
     }
-    elseif($CheckContent -match 'Root\sCA')
+    elseif ($CheckContent -match 'Root\sCA')
     {
         $certificateThumbprint = ($CheckContent | Select-String -Pattern "(?<=,).*").Matches.Value
     }

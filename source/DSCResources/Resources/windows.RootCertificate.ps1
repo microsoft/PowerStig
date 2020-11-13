@@ -1,28 +1,24 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = $stig.RuleList | Select-Rule -Type RootCertificateRule
+$rules = Select-Rule -RuleList $stig.RuleList -Type RootCertificateRule
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
-    if($rule.CertificateName -match "Interoperability")
+    if ($rule.CertificateName -match "Interoperability")
     {
-        CertificateImport (Get-ResourceTitle -Rule $rule)
-        {
-            Thumbprint = $rule.Thumbprint
-            Location   = 'LocalMachine'
-            Store      = 'Disallowed'
-            Path       = $rule.Location
-        }
+        $storeLocation = 'Disallowed'
     }
     else
     {
-        CertificateImport (Get-ResourceTitle -Rule $rule)
-        {
-            Thumbprint = $rule.Thumbprint
-            Location   = 'LocalMachine'
-            Store      = 'Root'
-            Path       = $rule.Location
-        }
+        $storeLocation = 'Root'
+    }
+
+    CertificateImport (Get-ResourceTitle -Rule $rule)
+    {
+        Thumbprint = $rule.Thumbprint
+        Location   = 'LocalMachine'
+        Store      = $storeLocation
+        Path       = $rule.Location
     }
 }

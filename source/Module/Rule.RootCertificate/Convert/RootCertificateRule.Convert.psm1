@@ -42,18 +42,21 @@ class RootCertificateRuleConvert : RootCertificateRule
     {
         $this.SetRootCertificateName()
         $this.SetRootCertificateThumbprint()
-        $this.SetRootCertificateOrganizationValueTestString()
+        if ($this.IsOrganizationalSetting())
+        {
+            $this.SetRootCertificateOrganizationValueTestString()
+        }
         $this.SetDscResource()
     }
 
     # Methods
     <#
-    .SYNOPSIS
-        Extracts the Root Certificate Name from the check-content and sets the Certificate Name
-    .DESCRIPTION
-        Gets the Root Certificate Name from the xccdf content.
-        If the value that is returned is not valid, the parser status is
-        set to fail.
+        .SYNOPSIS
+            Extracts the Root Certificate Name from the check-content and sets the Certificate Name
+        .DESCRIPTION
+            Gets the Root Certificate Name from the xccdf content.
+            If the value that is returned is not valid, the parser status is
+            set to fail.
     #>
     [void] SetRootCertificateName ()
     {
@@ -66,12 +69,12 @@ class RootCertificateRuleConvert : RootCertificateRule
     }
 
     <#
-    .SYNOPSIS
-        Extracts the Root Certificate Thumbprint from the check-content and sets the Certificate Thumbprint
-    .DESCRIPTION
-        Gets the Root Certificate Thumbprint from the xccdf content.
-        If the value that is returned is not valid, the parser status is
-        set to fail.
+        .SYNOPSIS
+            Extracts the Root Certificate Thumbprint from the check-content and sets the Certificate Thumbprint
+        .DESCRIPTION
+            Gets the Root Certificate Thumbprint from the xccdf content.
+            If the value that is returned is not valid, the parser status is
+            set to fail.
     #>
     [void] SetRootCertificateThumbprint()
     {
@@ -83,21 +86,28 @@ class RootCertificateRuleConvert : RootCertificateRule
     }
 
     <#
-    .SYNOPSIS
-        Sets organizational value to required because all certificates require a location parameter defined by config
-    .DESCRIPTION
-        The organizational settings is always required for root certificate rules
+        .SYNOPSIS
+            Sets organizational value to required because all certificates require a location parameter defined by config
+        .DESCRIPTION
+            The organizational settings is always required for root certificate rules
     #>
     [bool] IsOrganizationalSetting ()
     {
-        return $true
+        if ([String]::IsNullOrEmpty($this.CertificateName))
+        {
+            return $true
+        }
+        else
+        {
+            return $false
+        }
     }
 
     <#
-    .SYNOPSIS
-        Set the organizational value
-    .DESCRIPTION
-        Extracts the organizational value from the Certificate Name and then sets the value
+        .SYNOPSIS
+            Set the organizational value
+        .DESCRIPTION
+            Extracts the organizational value from the Certificate Name and then sets the value
     #>
     [void] SetRootCertificateOrganizationValueTestString ()
     {
