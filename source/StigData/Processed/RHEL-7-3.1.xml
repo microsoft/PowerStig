@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="11/12/2020">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="11/17/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -3547,7 +3547,7 @@ If the value of the "action_mail_acct" keyword is not set to "root" and other ac
       <Description>&lt;VulnDiscussion&gt;Misuse of privileged functions, either intentionally or unintentionally by authorized users, or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*execve\s*-C\s*uid!\s*=\s*euid\s*-F\s*euid\s*=\s*0\s*-k\s*setuid</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3563,7 +3563,7 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
       <Description>&lt;VulnDiscussion&gt;Misuse of privileged functions, either intentionally or unintentionally by authorized users, or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*execve\s*-C\s*uid!\s*=\s*euid\s*-F\s*euid\s*=\s*0\s*-k\s*setuid</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3579,7 +3579,7 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
       <Description>&lt;VulnDiscussion&gt;Misuse of privileged functions, either intentionally or unintentionally by authorized users, or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*execve\s*-C\s*gid!\s*=\s*egid\s*-F\s*egid\s*=\s*0\s*-k\s*setgid</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3595,7 +3595,7 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
       <Description>&lt;VulnDiscussion&gt;Misuse of privileged functions, either intentionally or unintentionally by authorized users, or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*execve\s*-C\s*gid!\s*=\s*egid\s*-F\s*egid\s*=\s*0\s*-k\s*setgid</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3617,7 +3617,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000392-GPOS-00172, SRG-OS-000458-GPOS-00203, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*chown\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3639,7 +3639,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000392-GPOS-00172, SRG-OS-000458-GPOS-00203, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*chown\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3661,7 +3661,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000392-GPOS-00172, SRG-OS-000458-GPOS-00203, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*fchown\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3683,7 +3683,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000392-GPOS-00172, SRG-OS-000458-GPOS-00203, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*fchown\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3705,7 +3705,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000392-GPOS-00172, SRG-OS-000458-GPOS-00203, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*lchown\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3727,7 +3727,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000392-GPOS-00172, SRG-OS-000458-GPOS-00203, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*lchown\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3749,7 +3749,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000392-GPOS-00172, SRG-OS-000458-GPOS-00203, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*fchownat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3771,7 +3771,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000392-GPOS-00172, SRG-OS-000458-GPOS-00203, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*fchownat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3793,7 +3793,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*chmod\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3815,7 +3815,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*chmod\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3837,7 +3837,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*fchmod\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3859,7 +3859,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*fchmod\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3881,7 +3881,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*fchmodat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3903,7 +3903,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*fchmodat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3925,7 +3925,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*setxattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3947,7 +3947,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*setxattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3969,7 +3969,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*fsetxattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -3991,7 +3991,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*fsetxattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4013,7 +4013,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*lsetxattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4035,7 +4035,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*lsetxattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4057,7 +4057,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*removexattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4079,7 +4079,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*removexattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4101,7 +4101,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*fremovexattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4123,7 +4123,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*fremovexattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4145,7 +4145,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*lremovexattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4167,7 +4167,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000458-GPOS-00203, SRG-OS-000392-GPOS-00172, SRG-OS-000064-GPOS-00033&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*lremovexattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4189,7 +4189,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*creat\s*F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4213,7 +4213,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*creat\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4237,7 +4237,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*creat\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4261,7 +4261,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*creat\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4285,7 +4285,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*open\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4309,7 +4309,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*open\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4333,7 +4333,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*open\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4357,7 +4357,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*open\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4381,7 +4381,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*openat\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4405,7 +4405,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*openat\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4429,7 +4429,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*openat\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4453,7 +4453,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*openat\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4477,7 +4477,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*open_by_handle_at\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4501,7 +4501,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*open_by_handle_at\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4525,7 +4525,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*open_by_handle_at\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4549,7 +4549,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*open_by_handle_at\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4573,7 +4573,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*truncate\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4597,7 +4597,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*truncate\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4621,7 +4621,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*truncate\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4645,7 +4645,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*truncate\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4669,7 +4669,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*ftruncate\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4693,7 +4693,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*ftruncate\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4717,7 +4717,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*ftruncate\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4741,7 +4741,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000458-GPOS-00203, SRG-OS-000461-GPOS-00205, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*ftruncate\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*access</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4765,7 +4765,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/semanage\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4790,7 +4790,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/setsebool\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4815,7 +4815,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chcon\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4840,7 +4840,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/setfiles\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4863,7 +4863,7 @@ Audit records can be generated from various components within the information sy
 Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000470-GPOS-00214, SRG-OS-000473-GPOS-00218&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-w\s*/var/run/faillock\s*-p\s*wa\s*-k\s*logins</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4886,7 +4886,7 @@ Audit records can be generated from various components within the information sy
 Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000470-GPOS-00214, SRG-OS-000473-GPOS-00218&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-w\s*/var/log/lastlog\s*-p\s*wa\s*-k\s*logins</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4911,7 +4911,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/passwd\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-passwd</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4936,7 +4936,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/unix_chkpwd\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-passwd</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4961,7 +4961,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/gpasswd\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-passwd</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4986,7 +4986,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chage\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-passwd</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5011,7 +5011,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/userhelper\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-passwd</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5036,7 +5036,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/su\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5061,7 +5061,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/sudo\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5140,7 +5140,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/newgrp\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5165,7 +5165,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chsh\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5190,7 +5190,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*mount\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-mount</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5213,7 +5213,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*mount\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-mount</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5236,7 +5236,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/mount\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-mount</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5259,7 +5259,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/umount\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-mount</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5284,7 +5284,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/postdrop\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-postfix</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5309,7 +5309,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/postqueue\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-postfix</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5334,7 +5334,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/libexec/openssh/ssh-keysign\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-ssh</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5359,7 +5359,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/crontab\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-cron</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5380,7 +5380,7 @@ If the command does not return any output, this is a finding.</RawString>
 When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/pam_timestamp_check\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-pam</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5403,7 +5403,7 @@ Audit records can be generated from various components within the information sy
 Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*create_module\s*-k\s*module-change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5423,7 +5423,7 @@ Audit records can be generated from various components within the information sy
 Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*create_module\s*-k\s*module-change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5443,7 +5443,7 @@ Audit records can be generated from various components within the information sy
 Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*init_module\s*-k\s*module-change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5463,7 +5463,7 @@ Audit records can be generated from various components within the information sy
 Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*init_module\s*-k\s*module-change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5483,7 +5483,7 @@ Audit records can be generated from various components within the information sy
 Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*finit_module\s*-k\s*module-change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5503,7 +5503,7 @@ Audit records can be generated from various components within the information sy
 Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*finit_module\s*-k\s*module-change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5523,7 +5523,7 @@ Audit records can be generated from various components within the information sy
 Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*delete_module\s*-k\s*module-change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5543,7 +5543,7 @@ Audit records can be generated from various components within the information sy
 Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*delete_module\s*-k\s*module-change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5565,7 +5565,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-w\s*/usr/bin/kmod\s*-p\s*x\s*-F\s*auid!\s*=\s*unset\s*-k\s*module-change</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5588,7 +5588,7 @@ Audit records can be generated from various components within the information sy
 Satisfies: SRG-OS-000004-GPOS-00004, SRG-OS-000239-GPOS-00089, SRG-OS-000240-GPOS-00090, SRG-OS-000241-GPOS-00091, SRG-OS-000303-GPOS-00120, SRG-OS-000476-GPOS-00221&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-w\s*/etc/passwd\s*-p\s*wa\s*-k\s*identity</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5609,7 +5609,7 @@ If the command does not return a line, or the line is commented out, this is a f
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-w\s*/etc/group\s*-p\s*wa\s*-k\s*identity</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5630,7 +5630,7 @@ If the command does not return a line, or the line is commented out, this is a f
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-w\s*/etc/gshadow\s*-p\s*wa\s*-k\s*identity</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5651,7 +5651,7 @@ If the command does not return a line, or the line is commented out, this is a f
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-w\s*/etc/shadow\s*-p\s*wa\s*-k\s*identity</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5672,7 +5672,7 @@ If the command does not return a line, or the line is commented out, this is a f
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-w\s*/etc/security/opasswd\s*-p\s*wa\s*-k\s*identity</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5695,7 +5695,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000466-GPOS-00210, SRG-OS-000467-GPOS-00211, SRG-OS-000468-GPOS-00212, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*rename\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5715,7 +5715,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000466-GPOS-00210, SRG-OS-000467-GPOS-00211, SRG-OS-000468-GPOS-00212, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*rename\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5735,7 +5735,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000466-GPOS-00210, SRG-OS-000467-GPOS-00211, SRG-OS-000468-GPOS-00212, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*renameat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5755,7 +5755,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000466-GPOS-00210, SRG-OS-000467-GPOS-00211, SRG-OS-000468-GPOS-00212, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*renameat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5775,7 +5775,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000466-GPOS-00210, SRG-OS-000467-GPOS-00211, SRG-OS-000468-GPOS-00212, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*rmdir\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5795,7 +5795,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000466-GPOS-00210, SRG-OS-000467-GPOS-00211, SRG-OS-000468-GPOS-00212, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*rmdir\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5815,7 +5815,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000466-GPOS-00210, SRG-OS-000467-GPOS-00211, SRG-OS-000468-GPOS-00212, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*unlink\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5835,7 +5835,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000466-GPOS-00210, SRG-OS-000467-GPOS-00211, SRG-OS-000468-GPOS-00212, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*unlink\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5855,7 +5855,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000466-GPOS-00210, SRG-OS-000467-GPOS-00211, SRG-OS-000468-GPOS-00212, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*unlinkat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5875,7 +5875,7 @@ When a user logs on, the auid is set to the uid of the account that is being aut
 Satisfies: SRG-OS-000466-GPOS-00210, SRG-OS-000467-GPOS-00211, SRG-OS-000468-GPOS-00212, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*unlinkat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/audit.rules</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />

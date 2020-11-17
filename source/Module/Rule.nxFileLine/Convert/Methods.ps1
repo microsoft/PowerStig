@@ -79,7 +79,7 @@ function Get-nxFileLineFilePath
         {
             'auditPath'
             {
-                return $Matches['auditPath']
+                return '/etc/audit/rules.d/audit.rules'
             }
             'tftpPath'
             {
