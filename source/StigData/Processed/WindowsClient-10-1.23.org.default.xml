@@ -44,6 +44,8 @@
   <OrganizationalSetting id="V-63661" ValueData="15" />
   <!-- Ensure ''V-63669'' -le '900' -and ''V-63669'' -gt '0'-->
   <OrganizationalSetting id="V-63669" ValueData="450" />
+  <!-- Ensure ''V-63681'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
+  <OrganizationalSetting id="V-63681" ValueData="US Department of Defense Warning Statement" />
   <!-- Ensure ''V-63687'' -le '10'-->
   <OrganizationalSetting id="V-63687" ValueData="10" />
   <!-- Ensure ''V-63689'' -match '0|ShouldBeAbsent'-->
