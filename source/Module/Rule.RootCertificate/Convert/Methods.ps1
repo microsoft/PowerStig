@@ -15,7 +15,7 @@ function Set-RootCertificateName
     [OutputType([object])]
     param
     (
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
         [string[]]
         $CheckContent
     )
@@ -61,7 +61,7 @@ function Set-RootCertificateThumbprint
     [OutputType([object])]
     param
     (
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
         [string[]]
         $CheckContent
     )
@@ -140,20 +140,19 @@ function Split-MultipleRootCertificateRule
 
     foreach ($certificate in $certificateNames)
     {
+        $multipleCertificateRule = @()
+
         if ($issuerNames.Count -eq $certificateNames.Count)
         {
-            $multipleCertificateRule = @()
             $multipleCertificateRule += ($issuerNames[$index] + "," + $certificateThumbprints[$index])
-            $multipleCertificatesRules += $multipleCertificateRule
-            $index += 1
         }
         else
         {
-            $multipleCertificateRule = @()
             $multipleCertificateRule += ($certificateNames[$index] + "," + $certificateThumbprints[$index])
-            $multipleCertificatesRules += $multipleCertificateRule
-            $index += 1
         }
+
+        $multipleCertificatesRules += $multipleCertificateRule
+        $index += 1
     }
 
     return $multipleCertificatesRules
@@ -177,6 +176,6 @@ function Get-RootCertificateOrganizationValueTestString
         $CertificateName
     )
 
-    $organizationValueTestString = "{0}{1}{2}" -f "location for ", $CertificateName, " certificate is present"
+    $organizationValueTestString = "location for {0} certificate is present" -f $CertificateName
     return $organizationValueTestString
 }
