@@ -6,4 +6,4 @@ V-204580::*::HardCodedRule(nxFileLineRule)@{DscResource = 'nxFileLine'; Contains
 V-204594::*::HardCodedRule(nxFileLineRule)@{DscResource = 'nxFileLine'; ContainsLine = 'Protocol 2'; DoesNotContainPattern = '^#\s*Protocol.*$|^Protocol\s*(?!2\b)\w*$'; FilePath = '/etc/ssh/sshd_config'}
 V-204405::# cat /etc/pam.d/passwd | grep -i substack | grep -i system-auth::# grep /etc/pam.d/passwd
 V-204506::# cat /etc/audisp/plugins.d/au-remote.conf | grep -v "^#"::# grep /etc/audisp/plugins.d/au-remote.conf
-V-204506::format = string::If commented out
+V-204506::If "active" is not set to "yes", "direction" is not set to "out", "path" is not set to "/sbin/audisp-remote", "type" is not set to "always", or any of the lines are commented out, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or storage media.::''

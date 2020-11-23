@@ -195,7 +195,7 @@ class nxFileLineRuleConvert : nxFileLineRule
                     $CheckContent -Match 'If\s+.*configuration\s+file\s+does\s+not\s+exist\s+or\s+allows\s+for.*,\s+this\s+is\s+a\s+finding' -or
                     $CheckContent -Match 'If\s+.*command(?:s|)\s+(?:does|do)\s+not\s+return\s+(?:any\s+|a\s+line\s+|)output.*,\s+this\s+is\s+a\s+finding' -or
                     $CheckContent -Match 'If\s+.*there\s+is\s+no\s+process\s+to\s+validate.*,\s+this\s+is\s+a\s+finding' -or
-                    $CheckContent -Match 'If\s+there\s+is\s+no\s+evidence\s+that\s+the\s+(?:transfer\s+of\s+the\s+|)audit\s+logs.*,\s+this\s+is\s+a\s+finding'
+                    $CheckContent -Match 'If\s+there\s+is\s+no\s+evidence\s+that\s+the\s+.*,\s+this\s+is\s+a\s+finding'
                 )
             ) -and
             $CheckContent -NotMatch 'ESXi' -and

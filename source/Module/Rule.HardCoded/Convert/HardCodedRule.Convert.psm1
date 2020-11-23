@@ -97,6 +97,7 @@ class HardCodedRuleConvert
         {
             $newRule.set_OrganizationValueRequired($true)
         }
+        $newRule.set_LegacyId(($XccdfRule.rule.ident | Where-Object -FilterScript {$PSItem.'#text' -match "^V-.*"}).'#text')
         $newRule.set_Severity($XccdfRule.rule.severity)
         $newRule.set_Description($XccdfRule.rule.description)
         $newRule.set_RawString($XccdfRule.Rule.check.'check-content')

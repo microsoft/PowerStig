@@ -53,7 +53,9 @@ function Test-ValueDataIsHardCoded
         'V-93147', # Windows Server 2019 - Legal Notice Display
         'V-63675', # Windows Client - Legal Notice Display
         'V-71863', # Redhat Linux (Command Line) - Legal Notice Display
+        'V-204395', # Redhat Linux (Command Line) - Legal Notice Display
         'V-72225', # Redhat Linux (SSH) - Legal Notice Display
+        'V-204580', # Redhat Linux (SSH) - Legal Notice Display
         'V-26359', # Windows Server 2012R2 - Legal Banner Dialog Box Title
         'V-73649', # Windows Server 2016 - Legal Banner Dialog Box Title
         'V-93149', # Windows Server 2019 - Legal Banner Dialog Box Title
@@ -95,7 +97,7 @@ function Get-HardCodedString
 
     switch ($stigId)
     {
-        {$PSItem -match 'V-(1089|63675|71863|72225|73647|93147)'}
+        {$PSItem -match 'V-(1089|63675|71863|72225|73647|93147|204395|204580)'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalNotice : $true"
             return $script:legalNoticeText
@@ -153,8 +155,11 @@ function Get-HardCodedString
         'V-17761', # Outlook 2013 - OrgSetting Value
         'V-72083', # Redhat - Audit Server IP
         'V-72087', # Redhat - Storage full auction (Audit)
+        'V-204511', # Redhat - Storage full auction (Audit)
         'V-72093', # Redhat - Admin accounts
+        'V-204515', # Redhat - Admin accounts
         'V-73163', # Redhat - Network Failure Action
+        'V-204512', # Redhat - Network Failure Action
         'V-75241', # Windows Defender - ASSignatureDue
         'V-75243', # Windows Defender - AVSignatureDue
         'V-100679', # Ubuntu - Admin accounts
@@ -234,12 +239,12 @@ function Get-HardCodedString
             $hardCodedString = 'the value of the "action_mail_acct" keyword is set to "root" and/or other accounts for security personnel.'
             continue
         }
-        {$PSItem -match 'V-72087|V-100681'}
+        {$PSItem -match 'V-72087|V-100681|V-204511'}
         {
             $hardCodedString = 'the value of the "disk_full_action" option is set to "SYSLOG", "SINGLE", or "HALT".'
             continue
         }
-        {$PSItem -match 'V-73163'}
+        {$PSItem -match 'V-73163|V-204512'}
         {
             $hardCodedString = 'the "network_failure_action" option is set to "SYSLOG", "SINGLE", or "HALT".'
             continue

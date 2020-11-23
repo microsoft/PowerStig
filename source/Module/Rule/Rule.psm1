@@ -43,6 +43,7 @@ foreach ($supportFile in $supportFileList)
 class Rule : ICloneable
 {
     [string] $Id
+    [string] $LegacyId
     [string] $Title
     [severity] $Severity
     [status] $ConversionStatus
@@ -102,6 +103,7 @@ class Rule : ICloneable
     {
         # This relaces the current Invokeclass method
         $this.Id = $Rule.Id
+        $this.LegacyId = ($rule.Rule.ident | Where-Object -FilterScript {$PSItem.'#text' -match "^V-.*"}).'#text'
         $this.Title = $Rule.Title
         $this.Severity = $Rule.rule.severity
         $this.Description = $Rule.rule.description
