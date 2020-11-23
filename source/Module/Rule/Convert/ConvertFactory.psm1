@@ -33,6 +33,7 @@ using module .\..\..\Rule.VsphereSnmpAgent\Convert\VsphereSnmpAgentRule.Convert.
 using module .\..\..\Rule.VsphereKernelActiveDumpPartition\Convert\VsphereKernelActiveDumpPartitionRule.Convert.psm1
 using module .\..\..\Rule.VsphereNtpSettings\Convert\VsphereNtpSettingsRule.Convert.psm1
 using module .\..\..\Rule.VsphereVssSecurity\Convert\VsphereVssSecurityRule.Convert.psm1
+using module .\..\..\Rule.RootCertificate\Convert\RootCertificateRule.Convert.psm1
 
 # Header
 
@@ -299,6 +300,12 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.Add(
                     [VsphereVssSecurityRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[RootCertificateRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.AddRange(
+                    [SplitFactory]::XccdfRule($Rule, 'RootCertificateRuleConvert')
                 )
             }
             <#
