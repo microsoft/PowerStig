@@ -90,12 +90,6 @@ switch ($psStackCommand)
         [void] $setDynamicClassFileParams.Add('ClassModuleFileName', @('Rule.psm1', 'ConvertFactory.psm1','DocumentRule.Convert.psm1','Stig.psm1'))
     }
 
-    'STIG.BackupRevert'
-    {
-        $functionBackupRevert = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Functions.BackupRevert.ps1'
-        . $functionBackupRevert
-    }
-
     'STIG'
     {
         $destinationPath = Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Convert.Main.ps1'
@@ -114,7 +108,7 @@ switch ($psStackCommand)
 
 if
 (
-    $global:moduleName -notmatch 'STIG.(Checklist|DomainName|RuleQuery|BackupRevert)'
+    $global:moduleName -notmatch 'STIG.(Checklist|DomainName|RuleQuery)'
 )
 {
     Set-DynamicClassFile @setDynamicClassFileParams
