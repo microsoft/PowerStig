@@ -41,6 +41,7 @@ data dscResourceModule
         SslSettingsRule                      = xWebAdministration
         AuditSettingRule                     = AuditSystemDsc
         FileContentRule                      = FileContentDsc
+        RootCertificateRule                  = CertificateDsc
         VsphereAdvancedSettingsRule          = Vmware.vSphereDSC
         VsphereServiceRule                   = Vmware.vSphereDSC
         VspherePortGroupSecurityRule         = Vmware.vSphereDSC
