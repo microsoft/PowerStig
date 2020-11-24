@@ -148,6 +148,7 @@ function Get-HardCodedString
         'V-26359', # Windows Server 2012R2 - Legal Banner Dialog Box Title
         'V-73649', # Windows Server 2016 - Legal Banner Dialog Box Title
         'V-93149', # Windows Server 2019 - Legal Banner Dialog Box Title
+        'V-63681', # Windows 10 Client - Legal Banner Dialog Box Title
         'V-17761', # Outlook 2013 - OrgSetting Value
         'V-75241', # Windows Defender - ASSignatureDue
         'V-75243' # Windows Defender - AVSignatureDue
@@ -200,7 +201,7 @@ function Get-HardCodedString
             $hardCodedString = "'{0}' -le '4'"
             continue
         }
-        {$PSItem -match 'V-26359|V-73649|V-93149'}
+        {$PSItem -match 'V-26359|V-73649|V-93149|V-63681'}
         {
             $hardCodedString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"
             continue
