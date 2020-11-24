@@ -44,7 +44,7 @@ RequiredModules  = @(
     @{ModuleName = 'GPRegistryPolicyDsc'; ModuleVersion = '1.2.0'},
     @{ModuleName = 'PSDscResources'; ModuleVersion = '2.12.0.0'},
     @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.10.0.0'},
-    @{ModuleName = 'SharePointDsc'; ModuleVersion = '4.2.0'},
+    @{ModuleName = 'SharePointDsc'; ModuleVersion = '4.4.0'},
     @{ModuleName = 'SChannelDsc'; ModuleVersion = '1.2.0'},
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '2.0.0'},
