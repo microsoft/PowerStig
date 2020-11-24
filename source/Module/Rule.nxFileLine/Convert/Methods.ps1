@@ -23,7 +23,11 @@ function Get-nxFileLineContainsLine
     try
     {
         $rawString = $CheckContent -join "`n"
-        if ($rawString -match $regularExpression.nxFileLineContainsLine)
+        if
+        (
+            $rawString -match $regularExpression.nxFileLineContainsLine -or
+            $rawString -match $regularExpression.nxFileLineContainsLineYumConf
+        )
         {
             $matchResults = $Matches['setting'] -split "`n"
             $results = @()

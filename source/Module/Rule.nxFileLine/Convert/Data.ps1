@@ -8,12 +8,13 @@
 data regularExpression
 {
     ConvertFrom-StringData -StringData @'
-        nxFileLineContainsLine        = #\\s+(?:grep|more).*\\s+(?<filePath>\\/[\\w.\\/-]*\\/[\\w.\\/-]*).*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
+        nxFileLineContainsLine        = #\\s+(?:grep|more|cat).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)\\/[\\w.\\/-]*\\/[\\w.\\/-]*).*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
+        nxFileLineContainsLineYumConf = #\\s+(?:grep|more|cat).*\\s+\\/etc\\/yum.conf\\s+(?<setting>.*)
         nxFileLineContainsLineExclude = The result must contain the following line:|If\\s+.*commented\\s+(?:out|line).*|#\\s+cat\\s+/etc/redhat-release
         nxFileLineFilePathAudit       = #\\s+grep.*(?<auditPath>\\/etc\\/audit\\/audit\\.rules).*
         nxFileLineFilePathTftp        = #\\s+grep.*(?<tftpPath>\\/etc\\/xinetd\\.d\\/tftp).*
         nxFileLineFilePathRescue      = #\\s+grep.*(?<rescuePath>\\/usr\\/lib\\/systemd\\/system\\/rescue\\.service).*
-        nxFileLineFilePath            = #\\s+(?:grep|more).*\\s+(?<filePath>\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
+        nxFileLineFilePath            = #\\s+(?:grep|more|cat).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
         nxFileLineFooterDetection     = ^If\\s+.*$
 '@
 }

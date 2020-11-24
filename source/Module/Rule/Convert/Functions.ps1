@@ -154,6 +154,7 @@ function Get-HardCodedString
         'V-93149', # Windows Server 2019 - Legal Banner Dialog Box Title
         'V-17761', # Outlook 2013 - OrgSetting Value
         'V-72083', # Redhat - Audit Server IP
+        'V-204509', # Redhat - Audit Server IP
         'V-72087', # Redhat - Storage full auction (Audit)
         'V-204511', # Redhat - Storage full auction (Audit)
         'V-72093', # Redhat - Admin accounts
@@ -229,12 +230,12 @@ function Get-HardCodedString
             $hardCodedString = "{0} -ge '1' -and {0} -le '7'"
             continue
         }
-        {$PSItem -match 'V-72083'}
+        {$PSItem -match 'V-72083|V-204509'}
         {
             $hardCodedString = 'the IP address of the log aggregation server is defined i.e.: remote_server = <IP Address>.'
             continue
         }
-        {$PSItem -match 'V-72093|V-100679'}
+        {$PSItem -match 'V-72093|V-100679|V-204515'}
         {
             $hardCodedString = 'the value of the "action_mail_acct" keyword is set to "root" and/or other accounts for security personnel.'
             continue
