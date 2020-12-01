@@ -193,7 +193,7 @@ class STIG
     #endregion
 
     #region Load Rules
-    hidden [void] _LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
+    hidden [void] _LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType, [string[]] $SkipRuleSeverity)
     {
         [xml]$rules = [xml](Get-Content -Path $this.RuleFile)
         $overRideValues = @{}
@@ -235,8 +235,18 @@ class STIG
         {
             foreach ($rule in $type.Rule)
             {
-                if (@($SkipRules) -contains $rule.Id -or @($SkipRuleType) -contains $type.Name)
+                # Using the category and severity enums to convert low/medium/high to CAT_III/CAT_II/CAT_I
+                if
+                (
+                    (
+                        @($SkipRules) -contains $rule.Id -or
+                        @($SkipRuleType) -contains $type.Name -or
+                        @($SkipRuleSeverity) -contains [category]([int][severity]$rule.severity)
+                    ) -and
+                    $rule.dscresource -ne 'None'
+                )
                 {
+                    Write-Warning -Message "$($rules.DISASTIG.stigid): $($rule.Id)/$($type.Name)/$($rule.severity) will be Skipped as specified by the configuration"
                     $importRule = [SkippedRule]::new($rule)
                 }
                 else
@@ -254,7 +264,7 @@ class STIG
                             }
                             else
                             {
-                                Write-Warning -Message "RuleId: $($rule.Id) in $($rule.ParentNode.ParentNode.stigid) contains an empty Organizational Value, setting rule as Skipped"
+                                Write-Warning -Message "$($rules.DISASTIG.stigid): $($rule.Id)/$($type.Name)/$($rule.severity) contains an empty Organizational Value, setting rule as Skipped"
                                 $importRule = [SkippedRule]::new($rule)
                             }
                         }
@@ -278,23 +288,27 @@ class STIG
     }
     [void] LoadRules()
     {
-        $this._LoadRules($null, $null, $null, $null)
+        $this._LoadRules($null, $null, $null, $null, $null)
     }
     [void] LoadRules([object] $OrgSettings)
     {
-        $this._LoadRules($OrgSettings, $null, $null, $null)
+        $this._LoadRules($OrgSettings, $null, $null, $null, $null)
     }
     [void] LoadRules([object] $OrgSettings, [hashtable] $Exceptions)
     {
-        $this._LoadRules($OrgSettings, $Exceptions, $null, $null)
+        $this._LoadRules($OrgSettings, $Exceptions, $null, $null, $null)
     }
     [void] LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules)
     {
-        $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $null)
+        $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $null, $null)
     }
     [void] LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
     {
-        $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $SkipRuleType)
+        $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $SkipRuleType, $null)
+    }
+    [void] LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType, [string[]] $SkipRuleSeverity)
+    {
+        $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $SkipRuleType, $SkipRuleSeverity)
     }
     #endregion
 
@@ -386,5 +400,5 @@ foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -File -Exclude $exclu
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-Export-ModuleMember -Function '*' -Variable '*'
 
+Export-ModuleMember -Function '*' -Variable '*'

@@ -75,12 +75,17 @@ configuration WindowsClient
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string[]]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
+        [string[]]
+        $SkipRuleSeverity
     )
 
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('WindowsClient', $OsVersion, $StigVersion)
-    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
+    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.1
@@ -106,6 +111,9 @@ configuration WindowsClient
 
     Import-DscResource -ModuleName AuditSystemDsc -ModuleVersion 1.1.0
     . "$resourcePath\windows.AuditSetting.ps1"
+
+    Import-DscResource -ModuleName CertificateDsc -ModuleVersion 5.0.0
+    . "$resourcePath\windows.RootCertificate.ps1"
 
     . "$resourcePath\windows.RefreshRegistryPolicy.ps1"
 }

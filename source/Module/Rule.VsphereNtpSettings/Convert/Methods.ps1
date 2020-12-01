@@ -47,15 +47,15 @@ function Get-VsphereNtpSettings
 function Get-VsphereNtpSettingsOrganizationValueTestString
 {
     [CmdletBinding()]
-    [OutputType([string])]
+    [OutputType([object])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [string]
-        $Id
+        [psobject]
+        $CheckContent
     )
 
-    if ($this.id -match "V-94039")
+    if ($CheckContent -match 'NTP service is not configured with authoritative DoD time sources')
     {
         return '{0} is set to a string array of authoritative DoD time sources'
     }

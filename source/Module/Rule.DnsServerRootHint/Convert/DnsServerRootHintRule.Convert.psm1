@@ -2,14 +2,6 @@
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
 using module .\..\DnsServerRootHintRule.psm1
-
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-$supportFileList = Get-ChildItem -Path $PSScriptRoot -File -Exclude $exclude
-foreach ($supportFile in $supportFileList)
-{
-    Write-Verbose "Loading $($supportFile.FullName)"
-    . $supportFile.FullName
-}
 # Header
 
 <#

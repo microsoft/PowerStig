@@ -484,3 +484,101 @@ function New-ResourceString
 
     return $resourceString.ToString()
 }
+
+<#
+    .SYNOPSIS
+        Returns all rules of a specific category where DscResource is none.
+
+    .DESCRIPTION
+        Returns all rules of a specific category where DscResource is none.
+
+    .PARAMETER PowerStigXml
+        The xml object that represents the contents of a PowerStig processed STIG.
+
+    .PARAMETER RuleCategory
+        The category of a given rule, valid values are CAT_I, CAT_II & CAT_III.
+
+    .EXAMPLE
+        Get-CategoryRule -PowerStigXml $powerStigXml -RuleCategory 'CAT_I'
+
+        Returns all rules where the severity is 'high' and where DscResource -eq none.
+#>
+function Get-CategoryRule
+{
+    [CmdletBinding()]
+    [OutputType([Xml.XmlElement])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [System.Xml.XmlElement]
+        $PowerStigXml,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
+        [string[]]
+        $RuleCategory
+    )
+
+    $severityWhereMatch = (ConvertTo-Severity -Category $RuleCategory) -join '|'
+
+    # Only loop through rules which have a defined DSC Resource; should be only Document & Manual rules.
+    $dscResourceModule = $PowerStigXml.GetEnumerator() | Where-Object -FilterScript {$PSItem.dscresourcemodule -ne 'None'}
+
+    foreach ($resource in $dscResourceModule)
+    {
+        $resource.Rule | Where-Object -FilterScript {$PSItem.severity -match $severityWhereMatch}
+    }
+}
+
+<#
+    .SYNOPSIS
+        This function only exist to convert category (CAT_I, CAT_II, CAT_III) to severity (high, medium, low)
+
+    .DESCRIPTION
+        This function only exist to convert category (CAT_I, CAT_II, CAT_III) to severity (high, medium, low)
+        since the category and severity enums are not available during composite test execution.
+
+    .PARAMETER Category
+        Supply CAT_I, CAT_II, CAT_III to convert to the respective high, medium, low strings.
+
+    .EXAMPLE
+        ConvertTo-Severity -Category 'CAT_I'
+
+        Returns 'high' as a string.
+
+    .NOTES
+        Only used during composite test execution.
+#>
+function ConvertTo-Severity
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
+        [string[]]
+        $Category
+    )
+
+    $severity = @()
+
+    switch ($Category)
+    {
+        'CAT_I'
+        {
+            $severity += 'high'
+        }
+        'CAT_II'
+        {
+            $severity += 'medium'
+        }
+        'CAT_III'
+        {
+            $severity += 'low'
+        }
+    }
+
+    return $severity | Select-Object -Unique
+}

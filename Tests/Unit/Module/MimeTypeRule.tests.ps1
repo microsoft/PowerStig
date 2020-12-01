@@ -27,7 +27,87 @@ try
                     .exe
 
                     If any OS shell MIME types are configured, this is a finding.'
+            },
+            @{
+                Ensure = 'absent'
+                MimeType = 'application/x-msdownload'
+                Extension = '.dll'
+                OrganizationValueRequired = $false
+                CheckContent = 'Open the IIS 8.5 Manager.
+
+                    Click the IIS 8.5 web server name.
+
+                    Under IIS, double-click the “MIME Types” icon.
+
+                    From the "Group by:" drop-down list, select "Content Type".
+
+                    From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
+
+                    If any OS shell MIME types are configured, this is a finding.
+
+                    .dll
+
+                    If any OS shell MIME types are configured, this is a finding.'
+            },
+            @{
+                Ensure = 'absent'
+                MimeType = 'application/x-bat'
+                Extension = '.bat'
+                OrganizationValueRequired = $false
+                CheckContent = 'Open the IIS 8.5 Manager.
+                    Click the IIS 8.5 web server name.
+
+                    Under IIS, double-click the “MIME Types” icon.
+
+                    From the "Group by:" drop-down list, select "Content Type".
+
+                    From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
+
+                    If any OS shell MIME types are configured, this is a finding.
+
+                    .bat'
+
+            },
+            @{
+                Ensure = 'absent'
+                MimeType = 'application/x-csh'
+                Extension = '.csh'
+                OrganizationValueRequired = $false
+                CheckContent = 'Open the IIS 8.5 Manager.
+
+                    Click the IIS 8.5 web server name.
+
+                    Under IIS, double-click the “MIME Types” icon.
+
+                    From the "Group by:" drop-down list, select "Content Type".
+
+                    From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
+
+                    If any OS shell MIME types are configured, this is a finding.
+
+                    .csh'
+
+            },
+            @{
+                Ensure = $null
+                MimeType = $null
+                Extension = '.not'
+                OrganizationValueRequired = $false
+                CheckContent = 'Open the IIS 8.5 Manager.
+
+                    Click the IIS 8.5 web server name.
+
+                    Under IIS, double-click the “MIME Types” icon.
+
+                    From the "Group by:" drop-down list, select "Content Type".
+
+                    From the list of extensions under "Application", verify MIME types for OS shell program extensions have been something, to include at a minimum, the following extensions:
+
+                    If any OS shell MIME types are configured, this is a finding.
+
+                    .not'
             }
+
         )
         #endregion
 
