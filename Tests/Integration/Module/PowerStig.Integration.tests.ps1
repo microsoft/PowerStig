@@ -32,7 +32,17 @@ Describe "$moduleName module" {
     Context 'Exported Commands' {
 
         $commands = (Get-Command -Module $moduleName).Name
-        $exportedCommands = @('Get-DomainName', 'Get-Stig', 'New-StigCheckList', 'Get-StigRuleList', 'Get-StigVersionNumber', 'Get-PowerStigFileList', 'Split-BenchmarkId')
+        $exportedCommands = @(
+            'Get-DomainName',
+            'Get-Stig',
+            'New-StigCheckList',
+            'Get-StigRuleList',
+            'Get-StigVersionNumber',
+            'Get-PowerStigFileList',
+            'Split-BenchmarkId',
+            'Get-StigRule',
+            'Get-StigRuleExceptionString'
+        )
 
         foreach ($export in $exportedCommands)
         {

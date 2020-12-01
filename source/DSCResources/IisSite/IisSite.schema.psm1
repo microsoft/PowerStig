@@ -74,12 +74,17 @@ configuration IisSite
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string[]]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
+        [string[]]
+        $SkipRuleSeverity
     )
 
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('IISSite', $IisVersion, $StigVersion)
-    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
+    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
@@ -92,6 +97,9 @@ configuration IisSite
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
     . "$resourcePath\windows.xWebConfigProperty.ps1"
     . "$resourcePath\windows.xSslSettings.ps1"
+
+    # DISA STIG Warning Message when v2.1 or greater verison of STIG is specified
+    . "$resourcePath\disaWarning.Message.ps1"
 }
 
 #endregion Composite

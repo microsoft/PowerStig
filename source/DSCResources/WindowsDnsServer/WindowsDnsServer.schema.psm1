@@ -76,12 +76,17 @@ configuration WindowsDnsServer
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string[]]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
+        [string[]]
+        $SkipRuleSeverity
     )
 
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('WindowsDnsServer', $OsVersion, $StigVersion)
-    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
+    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.1
@@ -101,4 +106,6 @@ configuration WindowsDnsServer
     Import-DscResource -ModuleName ComputerManagementDsc -ModuleVersion 8.4.0
     . "$resourcePath\windows.WindowsEventLog.ps1"
 
+    # DISA STIG Warning Message when v2.1 or greater verison of STIG is specified
+    . "$resourcePath\disaWarning.Message.ps1"
 }

@@ -55,7 +55,7 @@ Pester:
    - tests/Unit
   ExcludeTag:
   Tag:
-  CodeCoverageThreshold: 55 # Set to 0 to bypass
+  CodeCoverageThreshold: 80 # Set to 0 to bypass
   CodeCoverageOutputFile: JaCoCo_coverage.xml
   CodeCoverageOutputFileEncoding: ascii
 
@@ -63,6 +63,7 @@ DscTest:
   ExcludeTag:
     - "Common Tests - New Error-Level Script Analyzer Rules"
     - "Common Tests - Validate Localization"
+    - "Changelog"
   Tag:
   ExcludeSourceFile:
     - output

@@ -7,6 +7,8 @@ $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeRe
 . $configFile
 
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
+$resourceInformation = $global:getDscResource | Where-Object -FilterScript {$PSItem.Name -eq $script:DSCCompositeResourceName}
+$resourceParameters = $resourceInformation.Properties.Name
 
 $additionalTestParameterList = @{
     ForestName = 'integration.test'
@@ -35,11 +37,19 @@ foreach ($stig in $stigList)
                                                 $powerstigXml.AccountPolicyRule.Rule.Count +
                                                 $blankSkipRuleId.Count
 
+        $singleSkipRuleSeverity = 'CAT_I'
+        $multipleSkipRuleSeverity = 'CAT_I', 'CAT_II'
+        $expectedSingleSkipRuleSeverity = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $singleSkipRuleSeverity
+        $expectedSingleSkipRuleSeverityCount = ($expectedSingleSkipRuleSeverity | Measure-Object).Count + $blankSkipRuleId.Count
+        $expectedMultipleSkipRuleSeverity = Get-CategoryRule -PowerStigXml $powerstigXml -RuleCategory $multipleSkipRuleSeverity
+        $expectedMultipleSkipRuleSeverityCount = ($expectedMultipleSkipRuleSeverity | Measure-Object).Count + $blankSkipRuleId.Count
+
         $getRandomExceptionRuleParams = @{
             RuleType       = 'RegistryRule'
             PowerStigXml   = $powerstigXml
             ParameterValue = 1234567
         }
+
         $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
         $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
         $backCompatException = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility

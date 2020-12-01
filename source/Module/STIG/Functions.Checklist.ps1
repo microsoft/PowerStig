@@ -23,9 +23,9 @@
         The location where the checklist .ckl file will be created. Must include the filename with .ckl on the end.
 
     .PARAMETER ManualChecklistEntriesFile
-        Location of a .xml or .psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG i.e.: Document/Manual Rules.
+        Location of a .xml file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
 
-        This file can be created manually or by exporting an Excel worksheet as XML or psd1. The file format should look like the following:
+        This file can be created manually or by exporting an Excel worksheet as XML. The file format should look like the following:
 
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <stigManualChecklistData>
@@ -136,7 +136,7 @@ function New-StigCheckList
             }
             else
             {
-                throw "$($_) is not a valid path to a Manual Checklist Entries File. Provide a full valid path and filename."
+                throw "$($_) is not a valid path to a Manual Checklist Entries File file. Provide a full valid path and filename."
             }
         }
         )]
@@ -171,7 +171,7 @@ function New-StigCheckList
 
     if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))
     {
-        $manualCheckData = ConvertTo-ManualCheckListHashTable -Path $ManualChecklistEntriesFile -XccdfPath $XccdfPath
+        $manualCheckData = ConvertTo-ManualCheckListHashTable -Path $ManualChecklistEntriesFile
     }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file

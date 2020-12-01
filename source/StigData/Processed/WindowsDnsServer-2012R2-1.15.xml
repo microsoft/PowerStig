@@ -62,7 +62,7 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.</RawString>
     </Rule>
     <Rule id="V-58579" severity="medium" conversionstatus="pass" title="SRG-APP-000383-DNS-000047" dscresource="xDnsServerSetting">
-      <Description>&lt;VulnDiscussion&gt;A potential vulnerability of DNS is that an attacker can poison a name server's cache by sending queries that will cause the server to obtain host-to-IP address mappings from bogus name servers that respond with incorrect information. Once a name server has been poisoned, legitimate clients may be directed to non-existent hosts (which constitutes a denial of service), or, worse, hosts that masquerade as legitimate ones to obtain sensitive data or passwords. 
+      <Description>&lt;VulnDiscussion&gt;A potential vulnerability of DNS is that an attacker can poison a name server's cache by sending queries that will cause the server to obtain host-to-IP address mappings from bogus name servers that respond with incorrect information. Once a name server has been poisoned, legitimate clients may be directed to non-existent hosts (which constitutes a denial of service), or, worse, hosts that masquerade as legitimate ones to obtain sensitive data or passwords.
 
 To guard against poisoning, name servers authoritative for .mil domains should be separated functionally from name servers that resolve queries on behalf of internal clients. Organizations may achieve this separation by dedicating machines to each function or, if possible, by running two instances of the name server software on the same machine: one for the authoritative function and the other for the resolving function. In this design, each name server process may be bound to a different IP address or network interface to implement the required segregation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -95,7 +95,7 @@ If forwarders are not enabled and configured, and the "Disable recursion (also d
 </RawString>
     </Rule>
     <Rule id="V-58581" severity="medium" conversionstatus="pass" title="SRG-APP-000383-DNS-000047" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A potential vulnerability of DNS is that an attacker can poison a name server's cache by sending queries that will cause the server to obtain host-to-IP address mappings from bogus name servers that respond with incorrect information. Once a name server has been poisoned, legitimate clients may be directed to non-existent hosts (which constitutes a denial of service), or, worse, hosts that masquerade as legitimate ones to obtain sensitive data or passwords. 
+      <Description>&lt;VulnDiscussion&gt;A potential vulnerability of DNS is that an attacker can poison a name server's cache by sending queries that will cause the server to obtain host-to-IP address mappings from bogus name servers that respond with incorrect information. Once a name server has been poisoned, legitimate clients may be directed to non-existent hosts (which constitutes a denial of service), or, worse, hosts that masquerade as legitimate ones to obtain sensitive data or passwords.
 
 To guard against poisoning, name servers authoritative for .mil domains should be separated functionally from name servers that resolve queries on behalf of internal clients. Organizations may achieve this separation by dedicating machines to each function or, if possible, by running two instances of the name server software on the same machine: one for the authoritative function and the other for the resolving function. In this design, each name server process may be bound to a different IP address or network interface to implement the required segregation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-58579</DuplicateOf>
@@ -165,7 +165,7 @@ Press Windows Key + R, execute dnsmgmt.msc.
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS server, and then expand Forward Lookup Zones.
 
 From the expanded list, click to select the zone.
- 
+
 Confirm with the DNS administrator that the hosts defined in the zone files do not resolve to hosts in another zone with its fully qualified domain name.
 
 The exceptions are glue records supporting zone delegations, CNAME records supporting a system migration, or CNAME records that point to third-party Content Delivery Networks (CDN) or cloud computing platforms. In the case of third-party CDNs or cloud offerings, an approved mission need must be demonstrated. Additional exceptions are CNAME records in a multi-domain Active Directory environment pointing to hosts in other internal domains in the same multi-domain environment.
@@ -346,10 +346,10 @@ Open an elevated Windows PowerShell prompt on a DNS server using the Domain Admi
 Use the “Get-DnsServerDiagnostics” cmdlet to view the status of individual diagnostic events.
 
 Verify following diagnostic events are set to "True":
-Queries, Answers, Notifications, Update, QuestionTransactions, UnmatcheResponse, SendPackets, ReceivePackets, TcpPackets, UdpPackets, FullPackets, UseSystemEventLog 
-Also set to “True” should be: 
+Queries, Answers, Notifications, Update, QuestionTransactions, UnmatcheResponse, SendPackets, ReceivePackets, TcpPackets, UdpPackets, FullPackets, UseSystemEventLog
+Also set to “True” should be:
 EnableLoggingForLocalLookupEvent
-EnableLoggingForPluginDLLEvent 
+EnableLoggingForPluginDLLEvent
 EnableLoggingForRecursiveLookupEvent
 EnableLoggingForRemoteServerEvent
 EnableLoggingForRemoteServerEvent
@@ -371,7 +371,7 @@ The choice of digital signature algorithm will be based on recommended algorithm
 * RSA
 * Elliptic Curve DSA (ECDSA).
 
-Of these three algorithms, RSA and DSA are more widely available and considered candidates of choice for DNSSEC. In terms of performance, both RSA and DSA have comparable signature generation speeds, but DSA is much slower for signature verification. RSA is the recommended algorithm as far as this guideline is concerned. 
+Of these three algorithms, RSA and DSA are more widely available and considered candidates of choice for DNSSEC. In terms of performance, both RSA and DSA have comparable signature generation speeds, but DSA is much slower for signature verification. RSA is the recommended algorithm as far as this guideline is concerned.
 
 RSA with SHA-1 is currently the only cryptographic algorithm mandated to be implemented with DNSSEC, although other algorithm suites (i.e. RSA/SHA-256, ECDSA) are also specified.
 
@@ -424,7 +424,7 @@ If the results do not show the RRSIG and signature information, this is a findin
 </RawString>
     </Rule>
     <Rule id="V-58573" severity="medium" conversionstatus="pass" title="SRG-APP-000125-DNS-000012" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Protection of log data includes assuring log data is not accidentally lost or deleted. Backing up audit records to a different system or onto separate media than the system being audited on a defined frequency helps to assure, in the event of a catastrophic system failure, the audit records will be retained. 
+      <Description>&lt;VulnDiscussion&gt;Protection of log data includes assuring log data is not accidentally lost or deleted. Backing up audit records to a different system or onto separate media than the system being audited on a defined frequency helps to assure, in the event of a catastrophic system failure, the audit records will be retained.
 
 This helps to ensure a compromise of the information system being audited does not also result in a compromise of the audit records.
 
@@ -456,9 +456,9 @@ Press Windows Key + R, execute dnsmgmt.msc.
 
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS server, and then expand Forward Lookup Zones.
 
-From the expanded list, click to select the zone. 
+From the expanded list, click to select the zone.
 
-View the validity period for the DS Resource Record. 
+View the validity period for the DS Resource Record.
 
 If the validity period for the DS Resource Record for the child domain is less than two days (48 hours) or more than one week (168 hours), this is a finding.</RawString>
     </Rule>
@@ -470,7 +470,7 @@ A network administrator may choose to use a "hidden" master authoritative server
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Windows DNS Servers that are Active Directory integrated must be located where required to meet the Active Directory services. 
+      <RawString>Windows DNS Servers that are Active Directory integrated must be located where required to meet the Active Directory services.
 
 If all of the Windows DNS Servers are AD integrated, this check is Not Applicable.
 
@@ -585,9 +585,9 @@ Right-click the zone and select DNSSEC, Properties.
 
 Select the KSK Tab.
 
-Verify the "DNSKEY signature validity period (hours):” is set to at least 48 hours and no more than 168 hours. 
+Verify the "DNSKEY signature validity period (hours):” is set to at least 48 hours and no more than 168 hours.
 
-Select the ZSK Tab. 
+Select the ZSK Tab.
 Verify the "DNSKEY signature validity period (hours):" is set to at least 48 hours and no more than 168 hours.
 
 If either the KSK or ZSK Tab "DNSKEY signature validity period (hours):" values are set to less than 48 hours or more than 168 hours, this is a finding.
@@ -605,7 +605,7 @@ Log on to the DNS server using the Domain Admin or Enterprise Admin account.
 
 Open an elevated Windows PowerShell prompt on a DNS server using the Domain Admin or Enterprise Admin account.
 
-Type the following command: 
+Type the following command:
 
 PS C:\&gt; Get-DnsServerResourceRecord -ZoneName example.com &lt;enter&gt;
 
@@ -641,10 +641,10 @@ At a command prompt on any system, type:
 
 nslookup &lt;enter&gt;;
 
-At the nslookup prompt, type: 
+At the nslookup prompt, type:
 
 server ###.###.###.### &lt;enter&gt;;
-(where the ###.###.###.### is replaced by the IP of each NS record) 
+(where the ###.###.###.### is replaced by the IP of each NS record)
 
 Enter a FQDN for a known host record in the zone.
 
@@ -690,7 +690,7 @@ From the expanded list, click to select the zone.
 Review the SOA information for the zone and obtain the Serial Number.
 
 Access each secondary name server for the same zone and review the SOA information.
- 
+
 Verify the Serial Number is the same on all authoritative name servers.
 
 If the Serial Number is not the same on one or more authoritative name servers, this is a finding.</RawString>
@@ -712,8 +712,8 @@ Press Windows Key + R, execute dnsmgmt.msc.
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS server, and then expand Forward Lookup Zones.
 
 From the expanded list, click to select each zone.
- 
-Review the RRs for each zone and verify all of the DNSEC record types are included for the zone. 
+
+Review the RRs for each zone and verify all of the DNSEC record types are included for the zone.
 
 NOTE: The DS (Delegation Signer)record should also exist but the requirement for it is validated under WDNS-SC-000011.
 
@@ -728,7 +728,7 @@ If the zone does not show all of the DNSSEC record types, this is a finding.</Ra
 * Digital Signature Algorithm (DSA)
 * RSA
 * Elliptic Curve DSA (ECDSA).
-Of these three algorithms, RSA and DSA are more widely available and hence are considered candidates of choice for DNSSEC. In terms of performance, both RSA and DSA have comparable signature generation speeds, but DSA is much slower for signature verification. 
+Of these three algorithms, RSA and DSA are more widely available and hence are considered candidates of choice for DNSSEC. In terms of performance, both RSA and DSA have comparable signature generation speeds, but DSA is much slower for signature verification.
 
 RSA is the recommended algorithm as far as this guideline is concerned. RSA with SHA-1 is currently the only cryptographic algorithm mandated to be implemented with DNSSEC, although other algorithm suites (i.e. RSA/SHA-256, ECDSA) are also specified. It can be expected that name servers and clients will be able to use the RSA algorithm at the minimum. It is suggested that at least one ZSK for a zone use the RSA algorithm.
 
@@ -745,7 +745,7 @@ Press Windows Key + R, execute dnsmgmt.msc.
 
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS server, and then expand Forward Lookup Zones.
 
-From the expanded list, click to select the zone. 
+From the expanded list, click to select the zone.
 
 Review the zone's RRs in the right window pane.
 
@@ -756,11 +756,11 @@ Confirm the encryption algorithm specified in the DNSKEY's Data is at RsaSha1, a
 If the specified encryption algorithm is not RsaSha1 or stronger, this is a finding.</RawString>
     </Rule>
     <Rule id="V-58603" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000091" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Authoritative name servers for an enterprise may be configured to receive requests from both external and internal clients. 
+      <Description>&lt;VulnDiscussion&gt;Authoritative name servers for an enterprise may be configured to receive requests from both external and internal clients.
 
-External clients need to receive RRs that pertain only to public services (public Web server, mail server, etc.) 
+External clients need to receive RRs that pertain only to public services (public Web server, mail server, etc.)
 
-Internal clients need to receive RRs pertaining to public services as well as internal hosts. 
+Internal clients need to receive RRs pertaining to public services as well as internal hosts.
 
 The zone information that serves the RRs on both the inside and the outside of a firewall should be split into different physical files for these two types of clients (one file for external clients and one file for internal clients).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -782,9 +782,9 @@ If any RRs (Resource Records) on an internal DNS server resolve to IP addresses 
 If any RRs (Resource Records) on an external DNS server resolve to IP addresses located inside the network, this is a finding.</RawString>
     </Rule>
     <Rule id="V-58605" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000092" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Instead of having the same set of authoritative name servers serve different types of clients, an enterprise could have two different sets of authoritative name servers. 
+      <Description>&lt;VulnDiscussion&gt;Instead of having the same set of authoritative name servers serve different types of clients, an enterprise could have two different sets of authoritative name servers.
 
-One set, called external name servers, can be located within a DMZ; these would be the only name servers that are accessible to external clients and would serve RRs pertaining to hosts with public services (Web servers that serve external Web pages or provide B2C services, mail servers, etc.) 
+One set, called external name servers, can be located within a DMZ; these would be the only name servers that are accessible to external clients and would serve RRs pertaining to hosts with public services (Web servers that serve external Web pages or provide B2C services, mail servers, etc.)
 
 The other set, called internal name servers, is to be located within the firewall and should be configured so they are not reachable from outside and hence provide naming services exclusively to internal clients.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1048,7 +1048,7 @@ Click “Connection Security Rules”.
 
 Confirm at least one rule is configured for TCP 53.
 
-Double-click on each Rule to verify the following: 
+Double-click on each Rule to verify the following:
 
 On the “Authentication” tab, "Authentication mode:" is set to "Request authentication for inbound and outbound connections".
 
@@ -1228,7 +1228,7 @@ Press Windows Key + R, execute dnsmgmt.msc.
 
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS Server, and then expand Forward Lookup Zones.
 
-From the expanded list, click to select the zone. 
+From the expanded list, click to select the zone.
 
 Review the zone's RRs in the right window pane.
 
@@ -1289,7 +1289,7 @@ If the results do not show the RRSIG and signature information, this is a findin
 </RawString>
     </Rule>
     <Rule id="V-58655" severity="medium" conversionstatus="pass" title="SRG-APP-000420-DNS-000053" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The major threat associated with DNS forged responses or failures are the integrity of the DNS data returned in the response. The principle of DNSSEC is to mitigate this threat by providing data origin authentication, establishing trust in the source. By requiring remote clients to obtain origin authentication and integrity verification assurances for the host/service name to network address resolution information obtained through the service, data origin is validated. 
+      <Description>&lt;VulnDiscussion&gt;The major threat associated with DNS forged responses or failures are the integrity of the DNS data returned in the response. The principle of DNSSEC is to mitigate this threat by providing data origin authentication, establishing trust in the source. By requiring remote clients to obtain origin authentication and integrity verification assurances for the host/service name to network address resolution information obtained through the service, data origin is validated.
 
 Ensuring all name servers have static IP addresses makes it possible to configure restricted DNS communication, such as with DNSSEC, between the name servers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1411,7 +1411,7 @@ If the results do not show the RRSIG and signature information, this is a findin
     <Rule id="V-58661" severity="medium" conversionstatus="pass" title="SRG-APP-000422-DNS-000055" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The major threat associated with DNS forged responses or failures is the integrity of the DNS data returned in the response. The principle of DNSSEC is to mitigate this threat by providing data origin authentication, establishing trust in the source. By requiring remote clients to obtain origin authentication and integrity verification assurances for the host/service name to network address resolution information obtained through the service, data origin is validated.
 
-A DNS server is an example of an information system providing name/address resolution service. Digital signatures and cryptographic keys are examples of additional artifacts. DNS resource records are examples of authoritative data. Applications other than the DNS, to map between host/service names and network addresses, must provide other means to assure the authenticity and integrity of response data. 
+A DNS server is an example of an information system providing name/address resolution service. Digital signatures and cryptographic keys are examples of additional artifacts. DNS resource records are examples of authoritative data. Applications other than the DNS, to map between host/service names and network addresses, must provide other means to assure the authenticity and integrity of response data.
 
 In the case of DNS, employ DNSSEC to provide an additional data origin and integrity artifacts along with the authoritative data the system returns in response to DNS name/address resolution queries.
 
@@ -1437,7 +1437,7 @@ If the "Use WINS forward lookup" check box is selected, this is a finding.</RawS
     <Rule id="V-58663" severity="medium" conversionstatus="pass" title="SRG-APP-000422-DNS-000055" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The major threat associated with DNS forged responses or failures is the integrity of the DNS data returned in the response. The principle of DNSSEC is to mitigate this threat by providing data origin authentication, establishing trust in the source. By requiring remote clients to obtain origin authentication and integrity verification assurances for the host/service name to network address resolution information obtained through the service, data origin is validated.
 
-A DNS server is an example of an information system providing name/address resolution service. Digital signatures and cryptographic keys are examples of additional artifacts. DNS resource records are examples of authoritative data. Applications other than the DNS, to map between host/service names and network addresses, must provide other means to assure the authenticity and integrity of response data. 
+A DNS server is an example of an information system providing name/address resolution service. Digital signatures and cryptographic keys are examples of additional artifacts. DNS resource records are examples of authoritative data. Applications other than the DNS, to map between host/service names and network addresses, must provide other means to assure the authenticity and integrity of response data.
 
 In the case of DNS, employ DNSSEC to provide an additional data origin and integrity artifacts along with the authoritative data the system returns in response to DNS name/address resolution queries.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1487,7 +1487,7 @@ If the results do not show the RRSIG and signature information, this is a findin
     <Rule id="V-58665" severity="medium" conversionstatus="pass" title="SRG-APP-000214-DNS-000025" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If name server replies are invalid or cannot be validated, many networking functions and communication would be adversely affected. With DNS, the presence of Delegation Signer (DS) records associated with child zones informs clients of the security status of child zones. These records are crucial to the DNSSEC chain of trust model. Each parent domain's DS record is used to verify the DNSKEY record in its sub domain, from the top of the DNS hierarchy down.
 
-A DNS server is an example of an information system providing name/address resolution service. Digital signatures and cryptographic keys are examples of additional artifacts. DNS resource records are examples of authoritative data. Applications other than the DNS, to map between host/service names and network addresses, must provide other means to assure the authenticity and integrity of response data. 
+A DNS server is an example of an information system providing name/address resolution service. Digital signatures and cryptographic keys are examples of additional artifacts. DNS resource records are examples of authoritative data. Applications other than the DNS, to map between host/service names and network addresses, must provide other means to assure the authenticity and integrity of response data.
 
 In DNS, trust in the public key of the source is established by starting from a trusted name server and establishing the chain of trust down to the current source of response through successive verifications of signature of the public key of a child by its parent.
 
@@ -1562,7 +1562,7 @@ Press Windows Key + R, execute dnsmgmt.msc.
 
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS server, and then expand Forward Lookup Zones.
 
-From the expanded list, click to select the zone. 
+From the expanded list, click to select the zone.
 
 Review the records for the zone and ensure the complete RRSet of records are present: RRSIG, NSEC3, DNSKEY, indicating DNSSEC compliance.
 
@@ -1589,7 +1589,7 @@ In the results, verify the "DnsSecValidationRequired" is True.
 If there are no results to the get-dnsclientnrptpolicy cmdlet or the "DnsSecValidationRequired" is not True, this is a finding.</RawString>
     </Rule>
     <Rule id="V-58671" severity="medium" conversionstatus="pass" title="SRG-APP-000215-DNS-000026" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If name server replies are invalid or cannot be validated, many networking functions and communication would be adversely affected. With DNS, the presence of Delegation Signer (DS) records associated with child zones informs clients of the security status of child zones. These records are crucial to the DNSSEC chain of trust model. Each parent domain's DS record is used to verify the DNSKEY record in its sub domain, from the top of the DNS hierarchy down. 
+      <Description>&lt;VulnDiscussion&gt;If name server replies are invalid or cannot be validated, many networking functions and communication would be adversely affected. With DNS, the presence of Delegation Signer (DS) records associated with child zones informs clients of the security status of child zones. These records are crucial to the DNSSEC chain of trust model. Each parent domain's DS record is used to verify the DNSKEY record in its sub domain, from the top of the DNS hierarchy down.
 Like the DNSKEY resource record, the delegation signer (DS) resource record can be used to create a trust anchor for a signed zone. The DS record is smaller in size than a DNSKEY record because it contains only a hash of the public key.
 The DS record is not added to a zone during the signing process like some DNSSEC-related resource records, even if a delegation already exists in the zone. To add a DS record, you must manually add or import it. Fortunately, the DS resource record set (DSSET) is automatically added as a file to the Key Master when a zone is signed. The DSSET file can be used with the Import-DnsServerResourceRecordDS cmdlet to import DS records to the parent zone.
 
@@ -1892,7 +1892,7 @@ To meet the requirement for authentication between Windows DNS servers, IPsec wi
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>NOTE: This requirement applies to any Windows 2012 DNS Servers which host non-AD-integrated zones (file based) even if the DNS servers host AD-integrated zones, too.
- 
+
 If the Windows 2012 DNS Servers only host AD-integrated zones, this requirement is not applicable.
 
 To protect authenticity of zone transfers between Windows 2012 DNS Servers with file based zones, IPsec must be configured on each pair of name servers in a zone transfer transaction for those zones.
@@ -1916,7 +1916,7 @@ If Rules exist, double-click on each Rule to verify the following:
 For the "Authentication:" tab, click on the "Customize..." button.
 
 On the Authentication tab, verify "Authentication mode:" is set to "Request authentication for inbound and outbound connections".
- 
+
 Confirm the "Signing Algorithm" is set to "RSA (default)".
 
 Under "Method", ensure the "Advanced:" radio button is selected.
@@ -2034,7 +2034,7 @@ Fix Text: Sign, or re-sign, the hosted zone(s) on the DNS server being validated
 
 In the DNS Manager console tree on the DNS server being validated, navigate to Forward Lookup Zones.
 
-Right-click the zone (repeat for each hosted zone), point to DNSSEC, and then click Sign the Zone, either using saved parameters or custom parameters.  
+Right-click the zone (repeat for each hosted zone), point to DNSSEC, and then click Sign the Zone, either using saved parameters or custom parameters.
 </RawString>
     </Rule>
     <Rule id="V-58691" severity="medium" conversionstatus="pass" title="SRG-APP-000427-DNS-000060" dscresource="None">
@@ -2073,7 +2073,7 @@ Double-click on each Rule to verify the following:
 For the "Authentication:" tab, click on the "Customize..." button.
 
 On the Authentication tab, verify "Authentication mode:" is set to "Request authentication for inbound and outbound connections".
- 
+
 Confirm the "Signing Algorithm" is set to "RSA (default)".
 
 Under "Method", ensure the "Advanced:" radio button is selected. Click on the "Customize" button.
@@ -2096,7 +2096,7 @@ The DNS server must protect the confidentiality and integrity of shared keys (fo
       <OrganizationValueTestString />
       <RawString>To ensure the cryptographic keys are protected after being backed up to another medium (tape, disk, SAN, etc.), consult with the System Administrator to determine the backup policy in place for the DNS Server.
 
-Determine how and where backed up data is being stored. 
+Determine how and where backed up data is being stored.
 
 Verify the protection of the backup medium is secured to the same level, or higher, as the server itself.
 
@@ -2299,7 +2299,7 @@ Review the zone information and compare to the IP ranges for the environment.
 If any zone information is for a different IP range or domain, this is a finding.</RawString>
     </Rule>
     <Rule id="V-58713" severity="medium" conversionstatus="pass" title="SRG-APP-000473-DNS-000072" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters. Without verification, security functions may not operate correctly and this failure may go unnoticed. 
+      <Description>&lt;VulnDiscussion&gt;Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters. Without verification, security functions may not operate correctly and this failure may go unnoticed.
 
 Notifications provided by information systems include, for example, electronic alerts to system administrators, messages to local computer consoles, and/or hardware indications, such as lights.
 
@@ -2415,12 +2415,12 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If any accounts or groups other than the following are granted the "Manage auditing and security log" user right, this is a finding:
 
-Administrators 
+Administrators
 Auditors (if the site has an Auditors group that further limits this privilege.)
 
-If an application requires this user right, this would not be a finding. 
-Vendor documentation must support the requirement for having the user right. 
-The requirement must be documented with the ISSO. 
+If an application requires this user right, this would not be a finding.
+Vendor documentation must support the requirement for having the user right.
+The requirement must be documented with the ISSO.
 The application account must meet requirements for application account passwords.
 
 Verify the permissions on the DNS logs.
@@ -2513,7 +2513,7 @@ If any other user or group has greater than READ privileges to the %ALLUSERSPROF
       <Path>%ALLUSERSPROFILE%\Microsoft\Crypto\Keys</Path>
       <RawString>Access Services on the Windows DNS Server and locate the DNS Server Service.
 
-Determine the account under which the DNS Server Service is running. 
+Determine the account under which the DNS Server Service is running.
 
 Access Windows Explorer.
 
@@ -2580,9 +2580,9 @@ If any other user or group has greater than READ permissions to the %ALLUSERSPRO
 
 Log on to the DNS server using the Domain Admin or Enterprise Admin account.
 
-From a command prompt, run regedit. 
-In the User Account Control dialog box, click Continue. 
-In Registry Editor, locate and then click the following registry subkey: 
+From a command prompt, run regedit.
+In the User Account Control dialog box, click Continue.
+In Registry Editor, locate and then click the following registry subkey:
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters \
 Verify the value for “DisabledComponents” is “255 (0xff)”.
 
@@ -2616,12 +2616,12 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If any accounts or groups other than the following are granted the "Manage auditing and security log" user right, this is a finding:
 
-Administrators 
+Administrators
 Auditors (if the site has an Auditors group that further limits this privilege.)
 
-If an application requires this user right, this would not be a finding. 
-Vendor documentation must support the requirement for having the user right. 
-The requirement must be documented with the ISSO. 
+If an application requires this user right, this would not be a finding.
+Vendor documentation must support the requirement for having the user right.
+The requirement must be documented with the ISSO.
 The application account must meet requirements for application account passwords.
 
 Verify the permissions on the DNS logs.
@@ -2721,13 +2721,13 @@ If any option other than "Errors and warnings" or "All events" is selected, this
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
 
-Run “eventvwr.msc” at an elevated command prompt. 
+Run “eventvwr.msc” at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
 
 Right-click on the DNS Server, point to View, and then click "Show Analytic and Debug Logs".
 
-Right-click on Analytical and then click “Properties”. 
+Right-click on Analytical and then click “Properties”.
 
 Confirm the "Enable logging" check box is selected.
 
@@ -2761,7 +2761,7 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
- 
+
 Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
@@ -2837,7 +2837,7 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
- 
+
 Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
@@ -2875,7 +2875,7 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
- 
+
 Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
@@ -2913,7 +2913,7 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
- 
+
 Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
@@ -2951,8 +2951,8 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
- 
-Run eventvwr.msc at an elevated command prompt. 
+
+Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
 
