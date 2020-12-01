@@ -17,6 +17,9 @@
 * Update PowerSTIG with new SkipRuleSeverity Parameter to skip entire STIG Category/Severity Level(s): [#711](https://github.com/microsoft/PowerStig/issues/711)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10 SITE/SERVER STIG - Ver 2, Rel 1: [#759](https://github.com/microsoft/PowerStig/issues/759)
 * Update PowerSTIG to successfully parse/apply IIS 8.5 Site/Server V2R1 STIGs: [#762](https://github.com/microsoft/PowerStig/issues/762)
+
+## [4.5.1] - 2020-10-12
+
 * Fixed [#746](https://github.com/microsoft/PowerStig/issues/746): Functions.Checklist Manual Checks need to leverage psd1 files - Backward Compat Issue
 
 ## [4.5.0] - 2020-09-01
