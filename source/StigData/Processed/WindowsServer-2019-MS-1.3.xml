@@ -183,7 +183,7 @@ Satisfies: SRG-OS-000032-GPOS-00013, SRG-OS-000470-GPOS-00214, SRG-OS-000472-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -210,7 +210,7 @@ Satisfies: SRG-OS-000032-GPOS-00013, SRG-OS-000470-GPOS-00214, SRG-OS-000472-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -237,7 +237,7 @@ Satisfies: SRG-OS-000004-GPOS-00004, SRG-OS-000239-GPOS-00089, SRG-OS-000240-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -264,7 +264,7 @@ Satisfies: SRG-OS-000004-GPOS-00004, SRG-OS-000239-GPOS-00089, SRG-OS-000240-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -291,7 +291,7 @@ Satisfies: SRG-OS-000004-GPOS-00004, SRG-OS-000239-GPOS-00089, SRG-OS-000240-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -318,7 +318,7 @@ Satisfies: SRG-OS-000240-GPOS-00090, SRG-OS-000470-GPOS-00214&lt;/VulnDiscussion
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -345,7 +345,7 @@ Satisfies: SRG-OS-000240-GPOS-00090, SRG-OS-000470-GPOS-00214&lt;/VulnDiscussion
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -372,7 +372,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -399,7 +399,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -426,7 +426,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -453,7 +453,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -480,7 +480,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -507,7 +507,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -534,7 +534,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -561,7 +561,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -588,7 +588,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -615,7 +615,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -642,7 +642,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -669,7 +669,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -696,7 +696,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -723,7 +723,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -750,7 +750,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000471-GPOS-00215, SRG-OS-000471-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -777,7 +777,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000471-GPOS-00215, SRG-OS-000471-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -802,7 +802,7 @@ Credential Validation records events related to validation tests on credentials 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -827,7 +827,7 @@ Credential Validation records events related to validation tests on credentials 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -852,7 +852,7 @@ Plug and Play activity records events related to the successful connection of ex
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -877,7 +877,7 @@ Audit Group Membership records information related to the group membership of a 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -904,7 +904,7 @@ Satisfies: SRG-OS-000470-GPOS-00214, SRG-OS-000472-GPOS-00217, SRG-OS-000473-GPO
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -979,7 +979,7 @@ Removable Storage auditing under Object Access records events related to access 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -1006,7 +1006,7 @@ Removable Storage auditing under Object Access records events related to access 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -1035,7 +1035,7 @@ Satisfies: SRG-OS-000472-GPOS-00217, SRG-OS-000480-GPOS-00227&lt;/VulnDiscussion
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN19-SO-000050) for the detailed auditing subcategories to be effective.
 
 Use the "AuditPol" tool to review the current Audit Policy configuration:
 
@@ -1098,9 +1098,9 @@ Preview versions must not be used in a production environment.</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Determine whether there is a HIDS or HIPS on each server. 
+      <RawString>Determine whether there is a HIDS or HIPS on each server.
 
-If the HIPS component of HBSS is installed and active on the host and the alerts of blocked activity are being logged and monitored, this meets the requirement. 
+If the HIPS component of HBSS is installed and active on the host and the alerts of blocked activity are being logged and monitored, this meets the requirement.
 
 A HIDS device is not required on a system that has the role as the Network Intrusion Device (NID). However, this exception needs to be documented with the ISSO.
 
@@ -1169,7 +1169,7 @@ Copy or enter the lines below to the PowerShell window and enter. (Entering twic
  if ($lastLogin -eq $null) {
  $lastLogin = 'Never'
  }
- Write-Host $user.Name $lastLogin $enabled 
+ Write-Host $user.Name $lastLogin $enabled
 }"
 
 This will return a list of local accounts with the account name, last logon, and if the account is enabled (True/False).
@@ -1275,11 +1275,11 @@ If there are no printers configured, this is NA. (Exclude Microsoft Print to PDF
 
 For each printer:
 
-Select the printer and "Manage". 
+Select the printer and "Manage".
 
-Select "Printer Properties". 
+Select "Printer Properties".
 
-Select the "Sharing" tab. 
+Select the "Sharing" tab.
 
 If "Share this printer" is checked, select the "Security" tab.
 
@@ -1335,7 +1335,7 @@ If it has not, this is a finding.</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the audit records, at a minimum, are off-loaded for interconnected systems in real time and off-loaded for standalone systems weekly. 
+      <RawString>Verify the audit records, at a minimum, are off-loaded for interconnected systems in real time and off-loaded for standalone systems weekly.
 
 If they are not, this is a finding.</RawString>
     </Rule>
@@ -1516,7 +1516,7 @@ Under "System Summary", if "BIOS Mode" does not display "UEFI", this is a findin
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Some older systems may not have UEFI firmware. This is currently a CAT III; it will be raised in severity at a future date when broad support of Windows hardware and firmware requirements are expected to be met. Devices that have UEFI firmware must have Secure Boot enabled.  
+      <RawString>Some older systems may not have UEFI firmware. This is currently a CAT III; it will be raised in severity at a future date when broad support of Windows hardware and firmware requirements are expected to be met. Devices that have UEFI firmware must have Secure Boot enabled.
 
 Run "System Information".
 
@@ -1534,7 +1534,7 @@ If a value of "True" is not returned, this is a finding.</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify each user with administrative privileges has been assigned a unique administrative account separate from their standard user account. 
+      <RawString>Verify each user with administrative privileges has been assigned a unique administrative account separate from their standard user account.
 
 If users with administrative privileges do not have separate accounts for administrative functions and standard user functions, this is a finding.</RawString>
     </Rule>
@@ -2068,7 +2068,7 @@ Viewing in File Explorer:
 For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 Default permissions:
-\Program Files 
+\Program Files
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
@@ -5120,7 +5120,7 @@ Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000029-GPOS-00010, SRG-OS-000031-GPO
       <OrganizationValueTestString>'{0}' -le '900' -and '{0}' -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: InactivityTimeoutSecs
@@ -5212,7 +5212,7 @@ Satisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000024-GPOS-00007, SRG-OS-000228-GPO
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: LegalNoticeText
@@ -5261,7 +5261,7 @@ Satisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000228-GPOS-00088&lt;/VulnDiscussion
       <OrganizationValueTestString>'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: LegalNoticeCaption
@@ -5269,7 +5269,7 @@ Value Name: LegalNoticeCaption
 Value Type: REG_SZ
 Value: See message title options below
 
-"DoD Notice and Consent Banner", "US Department of Defense Warning Statement", or an organization-defined equivalent. 
+"DoD Notice and Consent Banner", "US Department of Defense Warning Statement", or an organization-defined equivalent.
 
 If an organization-defined title is used, it can in no case contravene or modify the language of the banner text required in WN19-SO-000150.
 
@@ -5279,7 +5279,7 @@ Automated tools may only search for the titles defined above. If an organization
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-93151" severity="medium" conversionstatus="pass" title="SRG-OS-000062-GPOS-00031" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. 
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 This setting allows administrators to enable more precise auditing capabilities.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5289,7 +5289,7 @@ This setting allows administrators to enable more precise auditing capabilities.
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: SCENoApplyLegacyAuditPolicy
@@ -5312,7 +5312,7 @@ Enabling "Include command line data for process creation events" will record the
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\
 
 Value Name: ProcessCreationIncludeCmdLine_Enabled
@@ -5335,7 +5335,7 @@ Enabling PowerShell script block logging will record detailed information from t
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
 
 Value Name: EnableScriptBlockLogging
@@ -5488,7 +5488,7 @@ Value: 0x00000002 (2)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: DisableIPSourceRouting
@@ -5509,7 +5509,7 @@ Value: 0x00000002 (2)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: EnableICMPRedirect
@@ -5884,7 +5884,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <OrganizationValueTestString />
       <RawString>Verify the registry value below. If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: DisableAutomaticRestartSignOn
@@ -5972,7 +5972,7 @@ https://docs.microsoft.com/en-us/windows/security/identity-protection/credential
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: LimitBlankPasswordUse
@@ -5995,7 +5995,7 @@ Value: 0x00000001 (1)</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: MaximumPasswordAge
@@ -6016,9 +6016,9 @@ Value: 0x0000001e (30) (or less, but not 0)</RawString>
       <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\
- 
+
 Value Name: scremoveoption
 
 Value Type: REG_SZ
@@ -6039,7 +6039,7 @@ If configuring this on servers causes issues, such as terminating users' remote 
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: RestrictAnonymousSAM
@@ -6060,7 +6060,7 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: EveryoneIncludesAnonymous
@@ -6165,7 +6165,7 @@ Value: 0x00000005 (5)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\LDAP\
 
 Value Name: LDAPClientIntegrity
@@ -6186,7 +6186,7 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0\
 
 Value Name: NTLMMinClientSec
@@ -6207,7 +6207,7 @@ Value: 0x20080000 (537395200)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0\
 
 Value Name: NTLMMinServerSec
@@ -6228,7 +6228,7 @@ Value: 0x20080000 (537395200)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Control\Session Manager\
 
 Value Name: ProtectionMode
@@ -6383,11 +6383,11 @@ Value: 0x00000004 (4)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Personalization</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the registry value below. 
+      <RawString>Verify the registry value below.
 
 If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\Personalization\
 
 Value Name: NoLockScreenSlideshow
@@ -6420,7 +6420,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-93403" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and will prevent uncontrolled updates to the system. 
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and will prevent uncontrolled updates to the system.
 
 This setting prevents the computer from downloading print driver packages over HTTP.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6475,7 +6475,7 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>Verify the registry value below. If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
 
 Value Name: DontDisplayNetworkSelectionUI
@@ -6686,7 +6686,7 @@ Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: FilterAdministratorToken
@@ -6711,7 +6711,7 @@ Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: ConsentPromptBehaviorUser
@@ -6736,7 +6736,7 @@ Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableLUA
@@ -6780,7 +6780,7 @@ Value:  0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: DisablePasswordChange
@@ -6801,7 +6801,7 @@ Value: 0x00000000 (0)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: NoLMHash
@@ -7009,7 +7009,7 @@ Value Name: Enabled
 
 Value Type: REG_DWORD
 Value: 0x00000001 (1)
- 
+
 Clients with this setting enabled will not be able to communicate via digitally encrypted or signed protocols with servers that do not support these algorithms. Both the browser and web server must be configured to use TLS; otherwise. the browser will not be able to connect to a secure site.</RawString>
       <ValueData>1</ValueData>
       <ValueName>Enabled</ValueName>
@@ -7075,7 +7075,7 @@ This setting may cause issues with some network scanning tools if local administ
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableUIADesktopToggle
@@ -7122,7 +7122,7 @@ Value: 0x00000002 (2) (Prompt for consent on the secure desktop)
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableInstallerDetection
@@ -7145,7 +7145,7 @@ Value: 0x00000001 (1)</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableSecureUIAPaths
@@ -7168,7 +7168,7 @@ Value: 0x00000001 (1)</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableVirtualization
@@ -7210,7 +7210,7 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: RestrictAnonymous
@@ -7231,7 +7231,7 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: RestrictNullSessAccess
@@ -7275,7 +7275,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: RequireSignOrSeal
@@ -7344,14 +7344,14 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: RequireStrongKey
 
 Value Type: REG_DWORD
 Value: 0x00000001 (1)
- 
+
 This setting may prevent a system from being joined to a domain if not configured consistently between systems.</RawString>
       <ValueData>1</ValueData>
       <ValueName>RequireStrongKey</ValueName>
@@ -7369,7 +7369,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\
 
 Value Name: RequireSecuritySignature
@@ -7392,7 +7392,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\
 
 Value Name: EnableSecuritySignature
@@ -7415,7 +7415,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: RequireSecuritySignature
@@ -7438,7 +7438,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: EnableSecuritySignature
