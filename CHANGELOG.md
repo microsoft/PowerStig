@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [4.6.0] - 2020-12-01
+
 * Provide Method to install DoD Root Certs for Server OS and Client OS: [#755](https://github.com/microsoft/PowerStig/issues/755)
 * Update Windows 10 Client STIGs based on ACAS results: [#778](https://github.com/microsoft/PowerStig/issues/778)
 * Update PowerSTIG to Provide Rule Data from Processed xml: [#747](https://github.com/microsoft/PowerStig/issues/747)
