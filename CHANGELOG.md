@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to include LegacyId to assist in determining Legacy Vuln Ids with the new DISA standard. [#788](https://github.com/microsoft/PowerStig/issues/788)
+
 ## [4.6.0] - 2020-12-01
 
 * Provide Method to install DoD Root Certs for Server OS and Client OS: [#755](https://github.com/microsoft/PowerStig/issues/755)
