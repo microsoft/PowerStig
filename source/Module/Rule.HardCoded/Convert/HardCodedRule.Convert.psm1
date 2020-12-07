@@ -75,13 +75,6 @@ class HardCodedRuleConvert
     #>
     [object] SetRule ([xml.xmlelement] $XccdfRule, [string] $TypeName)
     {
-        # Support for HardCodedRule Split rule with Legacy Id present
-        $legacyId = ($XccdfRule.rule.ident | Where-Object -FilterScript {$PSItem.'#text' -match "^V-.*"}).'#text'
-        if ($XccdfRule.id -match '^V-.*\.[a-z]$' -and [string]::IsNullOrEmpty($legacyId) -eq $false)
-        {
-            $legacyId = '{0}.{1}' -f $legacyId, $XccdfRule.id.Split('.')[1]
-        }
-
         $newRule = New-Object -TypeName $TypeName -ArgumentList $XccdfRule
         $propertyHashtable = Get-HardCodedRuleProperty -CheckContent $XccdfRule.Rule.Check.'check-content'
         foreach ($property in $propertyHashtable.Keys)
@@ -92,7 +85,7 @@ class HardCodedRuleConvert
         {
             $newRule.set_OrganizationValueRequired($true)
         }
-        $newRule.set_LegacyId($legacyId)
+        $newRule.SetLegacyId($XccdfRule)
         $newRule.set_Severity($XccdfRule.rule.severity)
         $newRule.set_Description($XccdfRule.rule.description)
         $newRule.set_RawString($XccdfRule.Rule.check.'check-content')
