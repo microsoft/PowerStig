@@ -6,6 +6,7 @@ data exclusionRuleList
 {
     ConvertFrom-StringData -StringData @'
         V-73523 = ''
+        V-225261 = 'Windows Server 2012R2 MS: Rule was previously excluded'
         V-6599 = 'McAfee:The GUID of the weekly on-demand client scan task varies by system'
         V-6600 = 'McAfee:The GUID of the weekly on-demand client scan task varies by system'
         V-6601 = 'McAfee:The GUID of the weekly on-demand client scan task varies by system'
