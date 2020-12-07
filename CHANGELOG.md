@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to include LegacyId to assist in determining Legacy Vuln Ids with the new DISA standard. [#788](https://github.com/microsoft/PowerStig/issues/788)
+* Update PowerSTIG to fix LegacyId logic. [#791](https://github.com/microsoft/PowerStig/issues/788)
 
 ## [4.6.0] - 2020-12-01
 
