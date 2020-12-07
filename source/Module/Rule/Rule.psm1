@@ -101,25 +101,23 @@ class Rule : ICloneable
     #>
     Rule ([xml.xmlelement] $Rule, [switch] $Convert)
     {
-        # This relaces the current Invokeclass method
         $this.Id = $Rule.Id
-        $this.LegacyId = ($rule.Rule.ident | Where-Object -FilterScript {$PSItem.'#text' -match "^V-.*"}).'#text'
         $this.Title = $Rule.Title
         $this.Severity = $Rule.rule.severity
         $this.Description = $Rule.rule.description
-        if ( Test-HtmlEncoding -CheckString  $Rule.rule.Check.('check-content') )
+        if (Test-HtmlEncoding -CheckString  $Rule.rule.Check.('check-content'))
         {
-            $this.RawString = ( ConvertFrom-HtmlEncoding -CheckString $Rule.rule.Check.('check-content') )
+            $this.RawString = (ConvertFrom-HtmlEncoding -CheckString $Rule.rule.Check.('check-content'))
         }
         else
         {
             $this.RawString = $Rule.rule.Check.('check-content')
         }
 
-        $this.SplitCheckContent = [Rule]::SplitCheckContent( $this.rawString )
-
+        $this.SplitCheckContent = [Rule]::SplitCheckContent($this.rawString)
         $this.IsNullOrEmpty = $false
         $this.OrganizationValueRequired = $false
+        $this.SetLegacyId($Rule)
     }
 
     #region Methods
@@ -426,12 +424,18 @@ class Rule : ICloneable
         return Get-HardCodedOrganizationValueTestString -StigId $this.id
     }
 
-    <#{TODO}#> <#Remove
-
-    hidden [void] SetDscResource ()
-    {
-        throw 'SetDscResource must be implemented in the child class'
-    }
+    <#
+        .SYNOPSIS
+            Sets the LegacyId from the raw xccdf xml (DISA Changes October 2020)
+        .DESCRIPTION
+            Sets the LegacyId from the raw xccdf xml (DISA Changes October 2020)
     #>
-    #endregion
+    hidden [void] SetLegacyId ([xml.xmlelement] $Rule)
+    {
+        $this.LegacyId = ($Rule.rule.ident | Where-Object -FilterScript {$PSItem.'#text' -match "^V-.*"}).'#text'
+        if ($Rule.id -match '^V-.*\.[a-z]$' -and [string]::IsNullOrEmpty($this.LegacyId) -eq $false)
+        {
+            $this.LegacyId = '{0}.{1}' -f $this.LegacyId, $Rule.id.Split('.')[1]
+        }
+    }
 }

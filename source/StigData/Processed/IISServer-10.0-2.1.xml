@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/3/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/7/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218784" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -831,7 +831,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.exe</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100131</LegacyId>
+      <LegacyId>V-100131.a</LegacyId>
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -853,7 +853,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.dll</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100131</LegacyId>
+      <LegacyId>V-100131.b</LegacyId>
       <MimeType>application/x-msdownload</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -875,7 +875,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.com</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100131</LegacyId>
+      <LegacyId>V-100131.c</LegacyId>
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -897,7 +897,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.bat</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100131</LegacyId>
+      <LegacyId>V-100131.d</LegacyId>
       <MimeType>application/x-bat</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -919,7 +919,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.csh</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100131</LegacyId>
+      <LegacyId>V-100131.e</LegacyId>
       <MimeType>application/x-csh</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1399,7 +1399,7 @@ When using the URI mode for cookie settings under session state, IIS will reject
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>timeout</Key>
-      <LegacyId>V-100145</LegacyId>
+      <LegacyId>V-100145.a</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -le '00:20:00'</OrganizationValueTestString>
       <RawString>Under Time-out (in minutes), verify “20 minutes or less” is selected.</RawString>
@@ -1414,7 +1414,7 @@ When using the URI mode for cookie settings under session state, IIS will reject
       <DuplicateOf>V-218804</DuplicateOf>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>cookieless</Key>
-      <LegacyId>V-100145</LegacyId>
+      <LegacyId>V-100145.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
@@ -1427,7 +1427,7 @@ Verify the "cookieless" is set to "UseCookies".</RawString>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>validation</Key>
-      <LegacyId>V-100149</LegacyId>
+      <LegacyId>V-100149.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Open the IIS 10.0 Manager.
@@ -1444,7 +1444,7 @@ Verify "HMACSHA256"</RawString>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>decryption</Key>
-      <LegacyId>V-100149</LegacyId>
+      <LegacyId>V-100149.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Open the IIS 10.0 Manager.
@@ -1525,7 +1525,7 @@ If the "keepSessionIdSecure" is not set to "True", this is a finding.</RawString
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>notListedCgisAllowed</Key>
-      <LegacyId>V-100183</LegacyId>
+      <LegacyId>V-100183.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Open the IIS 10.0 Manager.
@@ -1541,7 +1541,7 @@ Verify the "Allow unspecified CGI modules" check box is not checked</RawString>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>notListedIsapisAllowed</Key>
-      <LegacyId>V-100183</LegacyId>
+      <LegacyId>V-100183.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Open the IIS 10.0 Manager.

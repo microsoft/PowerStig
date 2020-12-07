@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/3/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/7/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-214455" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 8.5 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 8.5, “Request Filtering” and "Handler Mappings".
@@ -608,7 +608,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.exe</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-76797</LegacyId>
+      <LegacyId>V-76797.a</LegacyId>
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -631,7 +631,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.dll</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-76797</LegacyId>
+      <LegacyId>V-76797.b</LegacyId>
       <MimeType>application/x-msdownload</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -654,7 +654,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.com</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-76797</LegacyId>
+      <LegacyId>V-76797.c</LegacyId>
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -677,7 +677,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.bat</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-76797</LegacyId>
+      <LegacyId>V-76797.d</LegacyId>
       <MimeType>application/x-bat</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -700,7 +700,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.csh</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-76797</LegacyId>
+      <LegacyId>V-76797.e</LegacyId>
       <MimeType>application/x-csh</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1421,7 +1421,7 @@ Satisfies: SRG-APP-000439-WSR-000154, SRG-APP-000439-SSR-000155, SRG-APP-000439-
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>requireSSL</Key>
-      <LegacyId>V-76859</LegacyId>
+      <LegacyId>V-76859.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the "Section:" drop-down list, select "system.web/httpCookies".
@@ -1444,7 +1444,7 @@ Satisfies: SRG-APP-000439-WSR-000154, SRG-APP-000439-SSR-000155, SRG-APP-000439-
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>compressionEnabled</Key>
-      <LegacyId>V-76859</LegacyId>
+      <LegacyId>V-76859.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the "Section:" drop-down list, select "system.web/sessionState".
