@@ -38,5 +38,6 @@ data exclusionRuleList
         V-94025 = 'Vsphere: To Be added in a future release'
         V-94533 = 'Vsphere: To Be added in a future release'
         V-102627 = 'No automation available based on STIG Guidance, Fix text recommends setting up Windows Hello for non-domain systems'
+        V-220946 = 'No automation available based on STIG Guidance, Fix text recommends setting up Windows Hello for non-domain systems'
 '@
 }

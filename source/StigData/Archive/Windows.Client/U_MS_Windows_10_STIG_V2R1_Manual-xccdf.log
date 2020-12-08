@@ -1,0 +1,13 @@
+V-220745::"Minimum password length,"::"Minimum password length"
+V-220747::"Store password using reversible encryption"::"Store passwords using reversible encryption"
+V-220836::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System'; ValueData = 'Block'; ValueName = 'ShellSmartScreenLevel'; ValueType = 'String'}<splitRule>HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System'; ValueData = $null; ValueName = 'EnableSmartScreen'; ValueType = 'Dword'; OrganizationValueTestString = "{0} -eq 1|2"}
+V-220860::Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\::Registry Path: \SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
+V-220805::Registry Path: \SOFTWARE\Policies\Microsoft\ Cryptography\Configuration\SSL\00010002\::Registry Path: \SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002\
+V-220704::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\FVE'; ValueData = $null; ValueName = 'MinimumPIN'; ValueType = 'DWord'; OrganizationValueTestString = 'ValueData is set to 0x00000006 (6) or greater '}
+V-220870::Value data: 0::Value: 0x00000000 (0)
+V-220871::Value data: 1::Value: 0x00000001 (1)
+V-220793::RegistryPath\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam::Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam
+V-220793::This requirement is not applicable to mobile devices (smartphones and tablets), where the use of the camera is a local AO decision.::ValueType: REG_SZ
+V-220793::This requirement is not applicable to dedicated VTC suites located in approved VTC locations that are centrally managed.::Value: Deny
+V-220793::Value Name: Deny::ValueName: Value
+V-220961::NT SERVICE\autotimesvc is added in v1909 cumulative update.::NT SERVICE\autotimesvc
