@@ -43,7 +43,8 @@ function Get-StigRule
         $Detailed
     )
 
-    $processedXml = Select-String -Path $ProcessedXmlPath -Pattern $VulnId -Exclude '*.org.default.xml' | Sort-Object -Property Pattern
+    $vulnIdPattern = '<Rule\s+id\s*="{0}"' -f $VulnId
+    $processedXml = Select-String -Path $ProcessedXmlPath -Pattern $vulnIdPattern -Exclude '*.org.default.xml' | Sort-Object -Property Pattern
 
     if ($null -eq $processedXml)
     {
@@ -57,7 +58,8 @@ function Get-StigRule
     foreach ($technologyXml in $processedXml)
     {
         # based on the VulnId specificed use XPath to search the xml object
-        $ruleIdXPath = '//Rule[@id = "{0}"]' -f $technologyXml.Pattern
+        $vulnIdFromXml = $technologyXml.Pattern.Replace('<Rule\s+id\s*="', $null).Replace('"', $null)
+        $ruleIdXPath = '//Rule[@id = "{0}"]' -f $vulnIdFromXml
         [xml] $xml = Get-Content -Path $technologyXml.Path
         $ruleData = $xml.DISASTIG.SelectNodes($ruleIdXPath)
         $ruleType = $ruleData.ParentNode.ToString()
