@@ -30,7 +30,7 @@ function Set-RootCertificateName
         {
             $certificateName = ($CheckContent | Select-String -Pattern '(?<=Subject:\sCN=)[^,]+' -AllMatches).Matches.Value | Select-Object -Unique
         }
-      
+
     }
     elseif ($CheckContent -match 'Root\sCA')
     {
