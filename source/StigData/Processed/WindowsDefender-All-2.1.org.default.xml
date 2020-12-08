@@ -1,0 +1,23 @@
+<!--
+    The organizational settings file is used to define the local organizations
+    preferred setting within an allowed range of the STIG.
+
+    Each setting in this file is linked by STIG ID and the valid range is in an
+    associated comment.
+-->
+<OrganizationalSettings fullversion="2.1">
+  <!-- Ensure 'V-213450' -ge '0' -and 'V-213450' -le '7'-->
+  <OrganizationalSetting id="V-213450" ValueData="" />
+  <!-- Ensure 'V-213452' -ge '1' -and 'V-213452' -le '7'-->
+  <OrganizationalSetting id="V-213452" ValueData="" />
+  <!-- Ensure 'V-213453' -ge '1' -and 'V-213453' -le '7'-->
+  <OrganizationalSetting id="V-213453" ValueData="" />
+  <!-- Ensure ''V-213455'' -match '2|3'-->
+  <OrganizationalSetting id="V-213455" ValueData="" />
+  <!-- Ensure ''V-213464'' -match '2|3'-->
+  <OrganizationalSetting id="V-213464" ValueData="" />
+  <!-- Ensure ''V-213465'' -match '2|3'-->
+  <OrganizationalSetting id="V-213465" ValueData="" />
+  <!-- Ensure ''V-213466'' -match '2|3'-->
+  <OrganizationalSetting id="V-213466" ValueData="" />
+</OrganizationalSettings>
