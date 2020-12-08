@@ -26,9 +26,9 @@ Describe 'Compare-PowerStigXml' {
 
 Describe 'Get-BaseRulePropertyName' {
 
-    It 'Should return 11 base rule types' {
+    It 'Should return 12 base rule types' {
         $baseRulePropertyName = Get-BaseRulePropertyName
-        $baseRulePropertyName.Count  | Should -Be 11
+        $baseRulePropertyName.Count  | Should -Be 12
     }
 }
 

@@ -13,6 +13,7 @@
             <dc:subject>Technology</dc:subject>
             <dc:identifier>2350</dc:identifier>
         </reference>
+        <ident system="http://cyber.mil/legacy">{6}</ident>
         <ident system="http://cce.mitre.org">CCE--12345-6</ident>
         <ident system="http://iase.disa.mil/cci">CCI-123456</ident>
         <fixtext fixref="F-12345r1_fix">{4}</fixtext>

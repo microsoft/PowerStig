@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="10/28/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/7/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218744" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.
@@ -6,6 +6,7 @@
 For Handler Mappings, the ISSO must document and approve all allowable file extensions the website allows (white list) and denies (black list). The white list and black list will be compared to the Handler Mappings in IIS 8. Handler Mappings at the site level take precedence over Handler Mappings at the server level.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100209</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>For Handler Mappings, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Handler Mappings in IIS 10.0. Handler Mappings at the site level take precedence over Handler Mappings at the server level.
@@ -24,6 +25,7 @@ If any script file extensions from the black list are enabled, this is a finding
 For Request Filtering, the ISSO must document and approve all allowable file extensions the website allows (white list) and denies (black list) by the website. The white list and black list will be compared to the Request Filtering in IIS 10.0. Request Filtering at the site level take precedence over Request Filtering at the server level.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100211</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>For Request Filtering, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Request Filtering in IIS 10.0. Request Filtering at the site level take precedence over Request Filtering at the server level.
@@ -44,6 +46,7 @@ If any script file extensions from the black list are not denied, this is a find
 Accessing the hosted application through an IP address normally used for non-application functions opens the possibility of user access to resources, utilities, files, ports, and protocols that are protected on the desired application IP address.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100217</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -70,6 +73,7 @@ The web server must provide a capability to disconnect users to a hosted applica
 The web server capabilities used to disconnect or disable users from connecting to hosted applications and the web server must be documented to make certain that during an attack, the proper action is taken to conserve connectivity to any other hosted application if possible and to make certain log data is conserved for later forensic analysis.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100249</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Interview the System Administrator and Web Manager.
@@ -100,6 +104,7 @@ If there are not documented procedures with, at a minimum, the mentioned steps f
 The task of allocating log record storage capacity is usually performed during initial installation of the logging mechanism. The system administrator will usually coordinate the allocation of physical drive space with the web server administrator along with the physical location of the partition and disk. Refer to NIST SP 800-92 for specific requirements on log rotation and storage dependent on the impact of the web server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100251</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -130,6 +135,7 @@ Failure to comply with DoD ports, protocols, and services (PPS) requirements can
 The ISSM will ensure web servers are configured to use only authorized PPS in accordance with the Network Infrastructure STIG, DoD Instruction 8551.1, PPSM, and the associated PPS Assurance Category Assignments List.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100253</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the website to determine if HTTP and HTTPs (e.g., 80 and 443) are used in accordance with those ports and services registered and approved for use by the DoD PPSM. Any variation in PPS will be documented, registered, and approved by the PPSM.
@@ -154,6 +160,7 @@ In IIS 10.0, the administrator has the option of sending logging information to 
 Satisfies: SRG-APP-000092-WSR-000055, SRG-APP-000108-WSR-000166&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100199</LegacyId>
       <LogCustomFieldEntry />
       <LogFlags />
       <LogFormat />
@@ -184,6 +191,7 @@ Ascertaining the success or failure of an event is important during forensic ana
 Without sufficient information establishing the success or failure of the logged event, investigation into the cause of event is severely hindered. The success or failure also provides a means to measure the impact of an event and help authorized personnel to determine the appropriate response. Log record content that may be necessary to satisfy the requirement of this control includes, but is not limited to, time stamps, source and destination IP addresses, user/process identifiers, event descriptions, application-specific events, success/fail indications, file names involved, access control, or flow control rules invoked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100203</LegacyId>
       <LogCustomFieldEntry>
         <Entry>
           <SourceType>RequestHeader</SourceType>
@@ -226,6 +234,7 @@ Determining user accounts, processes running on behalf of the user, and running 
 Log record content that may be necessary to satisfy the requirement of this control includes: time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100205</LegacyId>
       <LogCustomFieldEntry>
         <Entry>
           <SourceType>RequestHeader</SourceType>
@@ -272,6 +281,7 @@ Ascertaining the correct source (e.g., source IP), of the events is important du
 A web server behind a load balancer or proxy server, when not configured correctly, will record the load balancer or proxy server as the source of every loggable event. When looking at the information forensically, this information is not helpful in the investigation of events. The web server must record with each event the client source of the event.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100201</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Interview the System Administrator to review the configuration of the IIS 10.0 architecture and determine if inbound web traffic is passed through a proxy.
@@ -300,6 +310,7 @@ If provisions have been made to log the client IP via another field (i.e., utili
       <Description>&lt;VulnDiscussion&gt;Many of the security problems that occur are not the result of a user gaining access to files or data for which the user does not have permissions, but rather users are assigned incorrect permissions to unauthorized data. The files, directories, and data stored on the web server must be evaluated and a determination made concerning authorized access to information and programs on the server. Only authorized users and administrative accounts will be allowed on the host server in order to maintain the web server, applications, and review the server operations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100221</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Check the account used for anonymous access to the website.
@@ -349,6 +360,7 @@ If the IUSR account or any account noted above used for anonymous access is a me
       <Description>&lt;VulnDiscussion&gt;The web document (home) directory is accessed by multiple anonymous users when the web server is in production. By locating the web document (home) directory on the same partition as the web server system file, the risk for unauthorized access to these protected files is increased. Additionally, having the web document (home) directory path on the same drive as the system folders also increases the potential for a drive space exhaustion attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100225</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -369,6 +381,7 @@ Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not ot
       <Description>&lt;VulnDiscussion&gt;The use of a DoD PKI certificate ensures clients the private website they are connecting to is legitimate, and is an essential part of the DoD defense-in-depth strategy.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100255</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -395,6 +408,7 @@ If HTTPS is not an available type under site bindings, and the Web Server ONLY c
       <Description>&lt;VulnDiscussion&gt;Application pools isolate sites and applications to address reliability, availability, and security issues. Sites and applications may be grouped according to configurations, although each site will be associated with a unique application pool.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100263</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
@@ -413,6 +427,7 @@ If any Application Pools are being used for more than one website, this is a fin
       <Description>&lt;VulnDiscussion&gt;CGI and ASP scripts represent one of the most common and exploitable means of compromising a web server. All CGI and ASP program files must be segregated into their own unique folder to simplify the protection of these files. ASP scripts must be placed into a unique folder only containing other ASP scripts. JAVA and other technology-specific scripts must also be placed into their own unique folders. The placement of CGI, ASP, or equivalent scripts to special folders gives the Web Manager or the System Administrator (SA) control over what goes into those folders and to facilitate access control at the folder level.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100279</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Determine whether scripts are used on the web server for the target website. Common file extensions include, but are not limited to: .cgi, .pl, .vbs, .class, .c, .php, and .asp. 
@@ -433,6 +448,7 @@ If scripts are not segregated from web content and in their own unique folders, 
 The use of CGI scripts represent one of the most common and exploitable means of compromising a web server. By definition, CGI scripts are executable by the operating system of the host server. While access control is provided via the web service, the execution of CGI programs is not limited unless the System Administrator (SA) or the Web Manager takes specific measures. CGI programs can access and alter data files, launch other programs, and use the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100281</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Determine whether scripts are used on the web server for the subject website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, and .asp.
@@ -465,6 +481,7 @@ If the permissions are less restrictive than listed above, this is a finding.</R
       <Description>&lt;VulnDiscussion&gt;Copies of backup files will not execute on the server, but they can be read by the anonymous user if special precautions are not taken. Such backup copies contain the same sensitive information as the actual script being executed and, as such, are useful to malicious users. Techniques and systems exist today to search web servers for such files and are able to exploit the information contained in them.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100283</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Determine whether scripts are used on the web server for the subject website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, .asp, and .aspx. The scope of this requirement is to analyze only within the web server content directories, not the entire underlying operating system.
@@ -485,6 +502,7 @@ If files with these extensions are found, this is a finding.</RawString>
       <Description>&lt;VulnDiscussion&gt;A consent banner will be in place to inform prospective entrants the website they are about to enter is a DoD website and their activity is subject to monitoring. The document, DoDI 8500.01, establishes the policy on the use of DoD information systems. It requires the use of a standard Notice and Consent Banner and standard text to be included in user agreements. The requirement for the banner is for websites with security and access controls. These are restricted and not publicly accessible. If the website does not require authentication/authorization for use, then the banner does not need to be present. A manual check of the document root directory for a banner page file (such as banner.html) or navigation to the website via a browser can be used to confirm the information provided from interviewing the web staff.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100285</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: This requirement is only applicable for private DoD websites.
@@ -527,6 +545,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.exe</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100207.a</LegacyId>
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -549,6 +568,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.dll</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100207.b</LegacyId>
       <MimeType>application/x-msdownload</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -571,6 +591,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.com</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100207.c</LegacyId>
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -593,6 +614,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.bat</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100207.d</LegacyId>
       <MimeType>application/x-bat</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -615,6 +637,7 @@ A shell is a program that serves as the basic interface between the user and the
       <Ensure>Absent</Ensure>
       <Extension>.csh</Extension>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100207.e</LegacyId>
       <MimeType>application/x-csh</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -635,6 +658,7 @@ If any OS shell MIME types are configured, this is a finding.
 NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100195</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a public IIS 10.0 web server, this is Not Applicable.
@@ -657,6 +681,7 @@ If the "Require SSL" check box is not selected, this is a finding.</RawString>
 NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-218737</DuplicateOf>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100197</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a private IIS 10.0 web server, this is Not Applicable.
@@ -680,6 +705,7 @@ If the "Require SSL" check box is not selected, this is a finding.</RawString>
 Satisfies: SRG-APP-000172-WSR-000104, SRG-APP-000224-WSR-000135, SRG-APP-000427-WSR-000186&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100219</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a public IIS 10.0 web server, this is Not Applicable.
@@ -702,6 +728,7 @@ If the "Clients Certificate Required" check box is not selected, this is a findi
 Satisfies: SRG-APP-000429-WSR-000113, SRG-APP-000439-WSR-000151, SRG-APP-000441-WSR-000181, SRG-APP-000442-WSR-000182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100257</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 10.0 server, and the IIS 10.0 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server.
@@ -737,6 +764,7 @@ By default, the World Wide Web (WWW) service establishes an overlapped recycle, 
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>idleTimeout</Key>
+      <LegacyId>V-100245</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:20:00' -and [TimeSpan]{0} -gt [TimeSpan]'00:00:00'</OrganizationValueTestString>
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -755,6 +783,7 @@ If the "Idle Time-out" is set to "0", this is a finding.</RawString>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>restartRequestsLimit</Key>
+      <LegacyId>V-100265</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -ne 0</OrganizationValueTestString>
       <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
@@ -780,6 +809,7 @@ If the "Request Limit" is set to a value of "0", this is a finding.</RawString>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>restartMemoryLimit</Key>
+      <LegacyId>V-100267</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -ne 0</OrganizationValueTestString>
       <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
@@ -805,6 +835,7 @@ If the value for "Virtual Memory Limit" is set to "0", this is a finding.</RawSt
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>restartPrivateMemoryLimit</Key>
+      <LegacyId>V-100269</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -ne 0</OrganizationValueTestString>
       <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
@@ -830,6 +861,7 @@ If the "Private Memory Limit" is set to a value of "0", this is a finding.</RawS
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>logEventOnRecycle</Key>
+      <LegacyId>V-100271</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
@@ -856,6 +888,7 @@ If both the "Regular time interval" and "Specific time" options are not set to "
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>pingingEnabled</Key>
+      <LegacyId>V-100273</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Open the Internet Information Services (IIS) Manager.
@@ -876,6 +909,7 @@ If the value for "Ping Enabled" is not set to "True", this is a finding.</RawStr
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>rapidFailProtection</Key>
+      <LegacyId>V-100275</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
@@ -900,6 +934,7 @@ If the "Rapid Fail Protection:Enabled" is not set to "True", this is a finding.<
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>rapidFailProtectionInterval</Key>
+      <LegacyId>V-100277</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:05:00'</OrganizationValueTestString>
       <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
@@ -932,6 +967,7 @@ ASP.NET provides a session state, which is available as the HttpSessionState cla
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>mode</Key>
+      <LegacyId>V-100191</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -973,6 +1009,7 @@ When using the URI mode for cookie settings under session state, IIS will reject
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>cookieless</Key>
+      <LegacyId>V-100193</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1001,6 +1038,7 @@ The session ID generator must be a FIPS 140-2-approved generator.&lt;/VulnDiscus
       <DuplicateOf>V-218735</DuplicateOf>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>mode</Key>
+      <LegacyId>V-100223</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1036,6 +1074,7 @@ If the system being reviewed is part of a Web Farm, interview the System Adminis
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>maxUrl</Key>
+      <LegacyId>V-100227</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -le 4096</OrganizationValueTestString>
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1058,6 +1097,7 @@ If the "maxUrl" value is not set to "4096" or less, this is a finding.</RawStrin
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>maxAllowedContentLength</Key>
+      <LegacyId>V-100229</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -le 30000000</OrganizationValueTestString>
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1080,6 +1120,7 @@ If the "maxAllowedContentLength" value is not explicitly set to "30000000" or le
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>maxQueryString</Key>
+      <LegacyId>V-100231</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -le 2048</OrganizationValueTestString>
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1102,6 +1143,7 @@ If the "Maximum Query String" value is not set to "2048" or less, this is a find
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>allowHighBitCharacters</Key>
+      <LegacyId>V-100233</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1125,6 +1167,7 @@ Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not ot
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>allowDoubleEscaping</Key>
+      <LegacyId>V-100235</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1146,6 +1189,7 @@ If the "Allow double escaping" check box is checked, this is a finding.</RawStri
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>allowUnlisted</Key>
+      <LegacyId>V-100237</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1169,6 +1213,7 @@ Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not ot
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>enabled</Key>
+      <LegacyId>V-100239</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1190,6 +1235,7 @@ If "Directory Browsing" is not "Disabled", this is a finding.</RawString>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>errormode</Key>
+      <LegacyId>V-100241</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1211,6 +1257,7 @@ If any error message is not set to "Detailed errors for local requests and custo
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>debug</Key>
+      <LegacyId>V-100243</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the ".NET feature" is not installed, this check is Not Applicable.
@@ -1236,6 +1283,7 @@ Acceptable values are 5 minutes for high-value applications, 10 minutes for medi
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>timeout</Key>
+      <LegacyId>V-100247</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -le '00:20:00'</OrganizationValueTestString>
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1261,6 +1309,7 @@ If "timeout" is not set to "00:20:00 or less”, this is a finding.</RawString>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>keepSessionIdSecure</Key>
+      <LegacyId>V-100259</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1288,6 +1337,7 @@ Satisfies: SRG-APP-000439-WSR-000154, SRG-APP-000439-SSR-000155, SRG-APP-000439-
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>requireSSL</Key>
+      <LegacyId>V-100261.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the "Section:" drop-down list, select "system.web/httpCookies".
@@ -1302,6 +1352,7 @@ Satisfies: SRG-APP-000439-WSR-000154, SRG-APP-000439-SSR-000155, SRG-APP-000439-
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>compressionEnabled</Key>
+      <LegacyId>V-100261.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the "Section:" drop-down list, select "system.web/sessionState".
@@ -1317,6 +1368,7 @@ WebDAV is not widely used and has serious security concerns because it may allow
       <DuplicateOf />
       <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100213</LegacyId>
       <Name>Web-DAV-Publishing</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
