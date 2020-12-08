@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2019 STIG - Ver 2, Rel 1  [#787](https://github.com/microsoft/PowerStig/issues/787)
 * Update PowerSTIG to include LegacyId to assist in determining Legacy Vuln Ids with the new DISA standard. [#788](https://github.com/microsoft/PowerStig/issues/788)
 * Update PowerSTIG to fix LegacyId logic. [#791](https://github.com/microsoft/PowerStig/issues/791)
 
