@@ -92,7 +92,7 @@ function Get-HardCodedString
 
     switch ($stigId)
     {
-        {$PSItem -match 'V-1089|V-63675|V-73647|V-93147|V-225465|V-205631)'}
+        {$PSItem -match 'V-1089|V-63675|V-73647|V-93147|V-225465|V-205631'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalNotice : $true"
             return $script:legalNoticeText
