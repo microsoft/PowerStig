@@ -104,9 +104,9 @@ function Test-MultipleRootCertificateRule
         $CheckContent
     )
 
-    $certificateNames = ($CheckContent | Select-String -Pattern '(?<=Subject:\sCN=)[^,]+' -AllMatches).Matches.Value | Select-Object -Unique
+    $certificateThumbprint = ($CheckContent | Select-String -Pattern '(?<=Thumbprint:\s).*' -AllMatches).Matches.Value | Select-Object -Unique
 
-    if ($certificateNames.count -gt 1)
+    if ($certificateThumbprint.count -gt 1)
     {
         return $true
     }
