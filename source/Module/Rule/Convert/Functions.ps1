@@ -51,6 +51,7 @@ function Test-ValueDataIsHardCoded
         'V-1089',  # Windows Server 2012R2 - Legal Notice Display
         'V-73647', # Windows Server 2016 - Legal Notice Display
         'V-93147', # Windows Server 2019 - Legal Notice Display
+        'V-205631', # Windows Server 2019 - Legal Notice Display
         'V-63675', # Windows Client - Legal Notice Display
         'V-26359', # Windows Server 2012R2 - Legal Banner Dialog Box Title
         'V-73649', # Windows Server 2016 - Legal Banner Dialog Box Title
@@ -94,7 +95,7 @@ function Get-HardCodedString
 
     switch ($stigId)
     {
-        {$PSItem -match 'V-(1089|63675|73647|93147)'}
+        {$PSItem -match 'V-(1089|63675|73647|93147|205631)'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalNotice : $true"
             return $script:legalNoticeText
