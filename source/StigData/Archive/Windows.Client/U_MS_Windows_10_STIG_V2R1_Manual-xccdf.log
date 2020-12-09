@@ -11,3 +11,6 @@ V-220793::This requirement is not applicable to mobile devices (smartphones and 
 V-220793::This requirement is not applicable to dedicated VTC suites located in approved VTC locations that are centrally managed.::Value: Deny
 V-220793::Value Name: Deny::ValueName: Value
 V-220961::NT SERVICE\autotimesvc is added in v1909 cumulative update.::NT SERVICE\autotimesvc
+V-220891::OverrideExportAddressFilter: False::OverrideEnableExportAddressFilter: False
+V-220891::OverrideExportAddressFilterPlus: False::OverrideEnableExportAddressFilterPlus: False
+V-220891::OverrideImportAddressFilter: False::OverrideEnableImportAddressFilter: False

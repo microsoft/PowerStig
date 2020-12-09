@@ -3295,6 +3295,45 @@ The PowerShell command produces a list of mitigations; only those with a require
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-77239.b</LegacyId>
+      <MitigationName>OverrideEnableExportAddressFilter</MitigationName>
+      <MitigationTarget>OIS.EXE</MitigationTarget>
+      <MitigationType>Payload</MitigationType>
+      <MitigationValue>false</MitigationValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>OIS.EXE:Payload:OverrideEnableExportAddressFilter:False</RawString>
+    </Rule>
+    <Rule id="V-220891.c" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="ProcessMitigation">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-77239.c</LegacyId>
+      <MitigationName>OverrideEnableExportAddressFilterPlus</MitigationName>
+      <MitigationTarget>OIS.EXE</MitigationTarget>
+      <MitigationType>Payload</MitigationType>
+      <MitigationValue>false</MitigationValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>OIS.EXE:Payload:OverrideEnableExportAddressFilterPlus:False</RawString>
+    </Rule>
+    <Rule id="V-220891.d" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="ProcessMitigation">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-77239.d</LegacyId>
+      <MitigationName>OverrideEnableImportAddressFilter</MitigationName>
+      <MitigationTarget>OIS.EXE</MitigationTarget>
+      <MitigationType>Payload</MitigationType>
+      <MitigationValue>false</MitigationValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>OIS.EXE:Payload:OverrideEnableImportAddressFilter:False</RawString>
+    </Rule>
+    <Rule id="V-220891.e" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="ProcessMitigation">
+      <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-77239.e</LegacyId>
       <MitigationName>OverrideEnableRopStackPivot</MitigationName>
       <MitigationTarget>OIS.EXE</MitigationTarget>
       <MitigationType>Payload</MitigationType>
@@ -3303,11 +3342,11 @@ The PowerShell command produces a list of mitigations; only those with a require
       <OrganizationValueTestString />
       <RawString>OIS.EXE:Payload:OverrideEnableRopStackPivot:False</RawString>
     </Rule>
-    <Rule id="V-220891.c" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="ProcessMitigation">
+    <Rule id="V-220891.f" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-77239.c</LegacyId>
+      <LegacyId>V-77239.f</LegacyId>
       <MitigationName>OverrideEnableRopCallerCheck</MitigationName>
       <MitigationTarget>OIS.EXE</MitigationTarget>
       <MitigationType>Payload</MitigationType>
@@ -3316,11 +3355,11 @@ The PowerShell command produces a list of mitigations; only those with a require
       <OrganizationValueTestString />
       <RawString>OIS.EXE:Payload:OverrideEnableRopCallerCheck:False</RawString>
     </Rule>
-    <Rule id="V-220891.d" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="ProcessMitigation">
+    <Rule id="V-220891.g" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-77239.d</LegacyId>
+      <LegacyId>V-77239.g</LegacyId>
       <MitigationName>OverrideEnableRopSimExec</MitigationName>
       <MitigationTarget>OIS.EXE</MitigationTarget>
       <MitigationType>Payload</MitigationType>
