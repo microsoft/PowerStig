@@ -259,7 +259,7 @@ function Get-RegistryValueTypeFromSLStig
     $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
 
     # McAfee STIG isn't written in a way that ValueType can be detected via CheckContent and/or FixText
-    if ($CheckContent -match 'Wow6432Node\\McAfee')
+    if ($CheckContent -match 'Wow6432Node\\McAfee|Google\\Chrome')
     {
         $valueType = 'DWORD'
     }

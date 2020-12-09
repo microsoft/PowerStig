@@ -405,6 +405,10 @@ class RegistryRuleConvert : RegistryRule
             (
                 $CheckContent -Match "HKLM|HKCU" -and
                 $CheckContent -Match "REG_DWORD"
+            ) -or
+            (
+                $CheckContent -Match "regedit" -and
+                $CheckContent -Match "omnibox"
             )
         )
         {
