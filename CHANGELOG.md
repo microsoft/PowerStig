@@ -6,6 +6,9 @@
 * Update PowerSTIG to fix LegacyId logic: [#791](https://github.com/microsoft/PowerStig/issues/791)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 MS STIG - Ver 3, Rel 1: [#785](https://github.com/microsoft/PowerStig/issues/785)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 1: [#783](https://github.com/microsoft/PowerStig/issues/783)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 1: [#786](https://github.com/microsoft/PowerStig/issues/786)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2019 STIG - Ver 2, Rel 1  [#787](https://github.com/microsoft/PowerStig/issues/787)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 DC STIG - Ver 3, Rel 1: [#784](https://github.com/microsoft/PowerStig/issues/784)
 
 ## [4.6.0] - 2020-12-01
 
