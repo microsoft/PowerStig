@@ -72,6 +72,8 @@
   <OrganizationalSetting id="V-220918" ValueData="30" />
   <!-- Ensure ''V-220920'' -le '900' -and ''V-220920'' -gt '0'-->
   <OrganizationalSetting id="V-220920" ValueData="450" />
+  <!-- Ensure ''V-220922'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
+  <OrganizationalSetting id="V-220922" ValueData="US Department of Defense Warning Statement" />
   <!-- Ensure ''V-220923'' -le '10'-->
   <OrganizationalSetting id="V-220923" ValueData="10" />
   <!-- Ensure ''V-220924'' -match '1|2'-->
