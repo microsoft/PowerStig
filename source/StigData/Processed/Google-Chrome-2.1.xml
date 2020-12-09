@@ -806,7 +806,7 @@ Windows method:
       <ValueName>AutoplayAllowed</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-221596" severity="medium" conversionstatus="fail" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+    <Rule id="V-221596" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Controls the whitelist of URL patterns that autoplay will always be enabled on.
 If the “AutoplayAllowed” policy is set to “True” then this policy will have no effect.
 If the “AutoplayAllowed” policy is set to “False” then any URL patterns set in this policy will still be allowed to play.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -826,7 +826,7 @@ Windows method:
  3. If the “AutoplayWhitelist” key does not exist and it does not contain a list of administrator-approved URLs, this is a finding.
 Suggested: the set or subset of [*.]mil and [*.]gov</RawString>
       <ValueData>*</ValueData>
-      <ValueName />
+      <ValueName>AutoplayWhitelist</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221597" severity="medium" conversionstatus="pass" title="SRG-APP-000206" dscresource="RegistryPolicyFile">

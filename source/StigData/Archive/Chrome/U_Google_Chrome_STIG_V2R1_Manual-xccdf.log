@@ -3,3 +3,4 @@ V-221562::3. If the a registry value name of 1 does not exist under that key or 
 V-221582::3. If this key "DefaultPluginsSetting"::3. If the "DefaultPluginsSetting" value name
 V-221597::3. If the “::3. If the "
 V-221599::3. If the key "DeveloperToolsAvailability"::3. If the "DeveloperToolsAvailability" value name
+V-221596::3. If the “AutoplayWhitelist” key::If the "AutoplayWhitelist" value name
