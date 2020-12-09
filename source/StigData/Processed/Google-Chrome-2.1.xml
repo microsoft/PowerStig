@@ -876,9 +876,9 @@ Windows method:
       <ValueName>WebRtcEventLogCollectionAllowed</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-221599" severity="low" conversionstatus="fail" title="SRG-APP-000266" dscresource="None">
+    <Rule id="V-221599" severity="low" conversionstatus="pass" title="SRG-APP-000266" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;While the risk associated with browser development tools is more related to the proper design of a web application, a risk vector remains within the browser. The developer tools allow end users and application developers to view and edit all types of web application related data via the browser. Page elements, source code, javascript, API calls, application data, etc. may all be viewed and potentially manipulated. Manipulation could be useful for troubleshooting legitimate issues, and this may be performed in a development environment. Manipulation could also be malicious and must be addressed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-221596</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
@@ -894,7 +894,7 @@ Windows method:
 2. Navigate to HKLM\Software\Policies\Google\Chrome\
 3. If the key "DeveloperToolsAvailability" does not exist or is not set to "2", this is a finding.</RawString>
       <ValueData>2</ValueData>
-      <ValueName />
+      <ValueName>DeveloperToolsAvailability</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-226401" severity="medium" conversionstatus="pass" title="SRG-APP-000206" dscresource="RegistryPolicyFile">
