@@ -11,9 +11,9 @@ $resourceInformation = $global:getDscResource | Where-Object -FilterScript {$PSI
 $resourceParameters = $resourceInformation.Properties.Name
 
 $password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'
-$SetupAccount = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList 'Admin', $password
+$setupAccount = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList 'Admin', $password
 
-$WebAppUrl = 'https://sharePoint.contoso.com'
+$webAppUrl = 'https://sharePoint.contoso.com'
 
 $additionalTestParameterList = @{
     ConfigurationData = @{
@@ -25,8 +25,8 @@ $additionalTestParameterList = @{
             }
         )
     }
-    WebAppUrl = $WebAppUrl
-    SetupAccount = $SetupAccount
+    WebAppUrl = $webAppUrl
+    SetupAccount = $setupAccount
 }
 
 foreach ($stig in $stigList)

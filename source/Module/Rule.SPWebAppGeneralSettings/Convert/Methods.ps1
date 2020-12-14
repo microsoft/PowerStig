@@ -1,7 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-#region Method Functions
 <#
     .SYNOPSIS
         Parses Check-Content element to retrieve the Property Name.
@@ -12,26 +11,26 @@ function Get-PropertyName
     [OutputType([string])]
     param
     (
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
 
-    switch -regex ($CheckContent)
+    switch -Regex ($CheckContent)
     {
-        "SharePoint server configuration.*prohibited mobile code" 
+        "SharePoint server configuration.*prohibited mobile code"
         {
             return 'BrowserFileHandling'
         }
-        "SharePoint server configuration.*session lock" 
+        "SharePoint server configuration.*session lock"
         {
             return 'SecurityValidationTimeOutMinutes'
         }
-        "SharePoint server configuration.*user sessions.*time limit is exceeded" 
+        "SharePoint server configuration.*user sessions.*time limit is exceeded"
         {
             return 'SecurityValidation'
         }
-        "SharePoint server configuration.*online web part gallery" 
+        "SharePoint server configuration.*online web part gallery"
         {
             return 'AllowOnlineWebPartCatalog'
         }
@@ -48,12 +47,12 @@ function Get-PropertyValue
     [OutputType([string])]
     param
     (
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
 
-    switch -regex ($CheckContent) 
+    switch -Regex ($CheckContent)
     {
         "Verify that the Security Validation.*set to expire after \d+ minutes or less."
         {
@@ -77,4 +76,3 @@ function Get-PropertyValue
         }
     }
 }
-#endregion
