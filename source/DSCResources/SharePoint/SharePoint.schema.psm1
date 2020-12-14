@@ -29,6 +29,8 @@ using module ..\..\PowerStig.psm1
     .PARAMETER SkipRuleType
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
+    .PARAMETER SkipRuleSeverity
+        All STIG rules with the specified severity category are skipped.
 #>
 
 configuration SharePoint
@@ -94,4 +96,5 @@ configuration SharePoint
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.12.0.0
     . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.Registry.ps1"
+    . "$resourcePath\windows.RefreshRegistryPolicy.ps1"
 }

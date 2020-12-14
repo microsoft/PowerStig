@@ -12,14 +12,14 @@ $resourceTitle = "[$($rules.id -join ' ')]"
 [void] $configStringBuilder.AppendLine("WebAppUrl = '$WebAppUrl'")
 foreach ($rule in $rules)
 {
-    if($rule.PropertyValue -eq 'true' -or $rule.PropertyValue -eq 'False')
+    if ($rule.PropertyValue -eq 'true' -or $rule.PropertyValue -eq 'false')
     {
-        $correctedString = "`$$($rule.PropertyValue)"  
-        [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  $correctedString")
+        $correctedString = "`$$($rule.PropertyValue)"
+        [void] $configStringBuilder.AppendLine("$($rule.PropertyName) = $correctedString")
     }
-    else 
+    else
     {
-        [void] $configStringBuilder.AppendLine("$($rule.PropertyName) =  '$($rule.PropertyValue)'")
+        [void] $configStringBuilder.AppendLine("$($rule.PropertyName) = '$($rule.PropertyValue)'")
     }
 }
 

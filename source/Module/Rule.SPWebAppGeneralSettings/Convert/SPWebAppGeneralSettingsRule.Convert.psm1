@@ -43,17 +43,15 @@ class SPWebAppGeneralSettingsRuleConvert : SPWebAppGeneralSettingsRule
         $this.SetDscResource()
     }
 
-    #region Methods
-
     <#
         .SYNOPSIS
             Extracts the Property Name from the check-content and sets
             the value
         .DESCRIPTION
             Gets the  Property Name from the xccdf content and sets the
-            value. 
+            value.
     #>
-    [void]SetPropertyName ($CheckContent)
+    [void] SetPropertyName ($CheckContent)
     {
         $thisPropertyName = Get-PropertyName -CheckContent $CheckContent
 
@@ -62,6 +60,7 @@ class SPWebAppGeneralSettingsRuleConvert : SPWebAppGeneralSettingsRule
             $this.set_PropertyName($thisPropertyName)
         }
     }
+
     <#
         .SYNOPSIS
             Extracts the Property Value from the check-content and sets
@@ -79,6 +78,7 @@ class SPWebAppGeneralSettingsRuleConvert : SPWebAppGeneralSettingsRule
             $this.set_PropertyValue($thisPropertyValue)
         }
     }
+
     hidden [void] SetDscResource ()
     {
         if ($null -eq $this.DuplicateOf)
@@ -104,9 +104,7 @@ class SPWebAppGeneralSettingsRuleConvert : SPWebAppGeneralSettingsRule
         {
             return $true
         }
-        
+
         return $false
     }
-
-    #endregion
 }
