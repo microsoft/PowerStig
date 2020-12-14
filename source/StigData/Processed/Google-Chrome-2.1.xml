@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/9/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/14/2020">
   <ManualRule dscresourcemodule="None">
     <Rule id="V-221584" severity="medium" conversionstatus="pass" title="SRG-APP-000456" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Google Chrome is being continually updated by the vendor in order to address identified security vulnerabilities. Running an older version of the browser can introduce security vulnerabilities to the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -14,7 +14,7 @@
     </Rule>
   </ManualRule>
   <RegistryRule dscresourcemodule="PSDscResources">
-    <Rule id="V-221558" severity="medium" conversionstatus="pass" title="SRG-APP-000039" dscresource="Registry">
+    <Rule id="V-221558" severity="medium" conversionstatus="pass" title="SRG-APP-000039" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Remote connections should never be allowed that bypass the firewall, as there is no way to verify if they can be trusted. Enables usage of STUN and relay servers when remote clients are trying to establish a connection to this machine. If this setting is enabled, then remote clients can discover and connect to this machine even if they are separated by a firewall. If this setting is disabled and outgoing UDP connections are filtered by the firewall, then this machine will only allow connections from client machines within the local network. If this policy is left not set the setting will be enabled.	&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -115,8 +115,8 @@ Windows method:
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\ExtensionInstallWhitelist</Key>
       <LegacyId>V-44729</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -eq '1 | oiigbmnaadbkfbmpbfijlflahbdbdgdf | a list of administrator-approved extension IDs'</OrganizationValueTestString>
       <RawString>Universal method: 
  1. In the omnibox (address bar) type chrome://policy 
  2. If ExtensionInstallWhitelist is not displayed under the Policy Name column or it is not set to oiigbmnaadbkfbmpbfijlflahbdbdgdf or a list of administrator approved extension IDs, then this is a finding.
@@ -125,8 +125,7 @@ Windows method:
  1. Start regedit
  2. Navigate to the key HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist
  3. If the ExtensionInstallWhitelist key is not set to 1 or oiigbmnaadbkfbmpbfijlflahbdbdgdf or a list of administrator-approved extension IDs, then this is a finding.</RawString>
-      <ValueData>
-      </ValueData>
+      <ValueData />
       <ValueName>ExtensionInstallWhitelist</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -135,10 +134,10 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44733</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -eq 'an organization approved encrypted search provider'</OrganizationValueTestString>
       <RawString>Universal method:        
    1. In the omnibox (address bar) type chrome://policy        
    2. If DefaultSearchProviderName is displayed under the Policy Name column or it is not set to an organization approved encrypted search provider that corresponds to the encrypted search provider set in DTBC-0008(ex. Google Encrypted, Bing Encrypted) under the Policy Value column, then this is a finding.
@@ -148,8 +147,7 @@ Windows method:
    2. Navigate to HKLM\Software\Policies\Google\Chrome\
    3. If the DefaultSearchProviderName value name does not exist or it is not set to an organization approved encrypted search provider that corresponds to the encrypted search provider set in DTBC-0008(ex. Google Encrypted, Bing Encrypted), then this is a finding.
 </RawString>
-      <ValueData>
-      </ValueData>
+      <ValueData />
       <ValueName>DefaultSearchProviderName</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -158,10 +156,10 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44735</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -eq 'an organization-approved encrypted search string'</OrganizationValueTestString>
       <RawString>If the system is on the SIPRNet, this requirement is NA.
 
 Universal method: 
@@ -172,8 +170,7 @@ Windows method:
  1. Start regedit
  2. Navigate to HKLM\Software\Policies\Google\Chrome\
  3. If the DefaultSearchProviderSearchURL value name does not exist or its value data is not set to an organization-approved encrypted search string (ex. https://www.google.com/search?q={searchTerms} or https://www.bing.com/search?q={searchTerms} ) this is a finding.</RawString>
-      <ValueData>
-      </ValueData>
+      <ValueData />
       <ValueName>DefaultSearchProviderSearchURL</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -534,10 +531,10 @@ Windows method:
       <ValueName>DefaultPluginsSetting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-221583" severity="medium" conversionstatus="fail" title="SRG-APP-000080" dscresource="RegistryPolicyFile">
+    <Rule id="V-221583" severity="medium" conversionstatus="pass" title="SRG-APP-000080" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Policy allows you to set a list of URL patterns that specify sites which are allowed to set session only cookies. If this policy is left not set the global default value will be used for all sites either from the 'DefaultCookiesSetting' policy if it is set, or the user's personal configuration otherwise. If the 'RestoreOnStartup' policy is set to restore URLs from previous sessions this policy will not be respected and cookies will be stored permanently for those sites.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <Ensure>Present</Ensure>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\CookiesSessionOnlyForUrls</Key>
       <LegacyId>V-44799</LegacyId>
@@ -550,20 +547,19 @@ Windows method:
  1. Start regedit
  2. Navigate to HKLM\Software\Policies\Google\Chrome\CookiesSessionOnlyForUrls
  3. If this key exists and has any defined values, this is a finding.</RawString>
-      <ValueData>
-      </ValueData>
+      <ValueData />
       <ValueName />
-      <ValueType>Dword</ValueType>
+      <ValueType />
     </Rule>
     <Rule id="V-221585" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy allows you to set a list of URL patterns that specify sites which are allowed to run the Flash plugin. If this policy is left not set, the global default value will be used for all sites either from the "DefaultPluginsSetting" policy if it is set, or the user’s personal configuration otherwise. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-52795</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -eq 'a list of administrator approved URLs'</OrganizationValueTestString>
       <RawString>Universal method:
  1. In the omnibox (address bar) type chrome://policy
  2. If PluginsAllowedForUrls is not displayed under the Policy Name column or it is not set to a list of administrator approved URLs under the Policy Value column, then this is a finding.
@@ -574,7 +570,7 @@ Windows method:
  3. If the PluginsAllowedForUrls key does not exist and it does not contain a list of administrator approved URLs then this is a finding.
 
 Suggested: the set or subset of [*.]mil and [*.]gov</RawString>
-      <ValueData>*</ValueData>
+      <ValueData />
       <ValueName>PluginsAllowedForUrls</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -630,10 +626,10 @@ Note that these restrictions apply to downloads triggered from web page content,
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-79931</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -eq '1|2'</OrganizationValueTestString>
       <RawString>If the system is on the SIPRNet, this requirement is NA.
 Universal method:
 1. In the omnibox (address bar) type chrome:// policy
@@ -643,7 +639,7 @@ Windows method:
 1. Start regedit
 2. Navigate to HKLM\Software\Policies\Google\Chrome\
 3. If the "DownloadRestrictions" value name does not exist or its value data is not set to "1" or "2", then this is a finding.</RawString>
-      <ValueData>1</ValueData>
+      <ValueData />
       <ValueName>DownloadRestrictions</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -656,7 +652,7 @@ When set, Google Chrome will not use SSL/TLS versions less than the specified ve
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-81583</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -667,8 +663,7 @@ Windows method:
  1. Start regedit
  2. Navigate to HKLM\Software\Policies\Google\Chrome\
  3. If the "SSLVersionMin" value name does not exist or its value data is not set to "tls1.1", this is a finding.</RawString>
-      <ValueData>
-      </ValueData>
+      <ValueData>tls1.1</ValueData>
       <ValueName>SSLVersionMin</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -813,19 +808,19 @@ If the “AutoplayAllowed” policy is set to “False” then any URL patterns 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-81589</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -eq 'a list of administrator-approved URLs</OrganizationValueTestString>
       <RawString>Universal method:
  1. In the omnibox (address bar) type chrome://policy
  2. If “AutoplayWhitelist” is not displayed under the “Policy Name” column or it is not set to a list of administrator-approved URLs under the “Policy Value” column, this is a finding.
 Windows method:
  1. Start regedit
  2. Navigate to HKLM\Software\Policies\Google\Chrome\
- 3. If the “AutoplayWhitelist” key does not exist and it does not contain a list of administrator-approved URLs, this is a finding.
+ If the "AutoplayWhitelist" value name does not exist and it does not contain a list of administrator-approved URLs, this is a finding.
 Suggested: the set or subset of [*.]mil and [*.]gov</RawString>
-      <ValueData>*</ValueData>
+      <ValueData />
       <ValueName>AutoplayWhitelist</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
