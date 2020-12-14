@@ -137,6 +137,10 @@ function Get-TestStigRule
         $FixText = 'This is a string of text that tells an admin how to fix an item if it is not currently configured properly and ignored by the parser',
 
         [Parameter(Parametersetname = 'UseExisting')]
+        [string]
+        $LegacyId = 'V-1111',
+
+        [Parameter(Parametersetname = 'UseExisting')]
         [Parameter(Parametersetname = 'FileProvided')]
         [switch]
         $ReturnGroupOnly,
@@ -162,7 +166,7 @@ function Get-TestStigRule
     {
         # Get the samplegroup element text and merge in the parameter strings
         $groupElement = Get-Content -Path "$PSScriptRoot\data\sampleGroup.xml.txt" -Encoding UTF8 -Raw
-        $groupElement = $groupElement -f $GroupId, $GroupTitle, $RuleTitle, $RuleDescription, $FixText, $CheckContent
+        $groupElement = $groupElement -f $GroupId, $GroupTitle, $RuleTitle, $RuleDescription, $FixText, $CheckContent, $LegacyId
     }
 
     # Get and merge the group element data into the xccdf xml document and create an xml object to return

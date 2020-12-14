@@ -2,7 +2,20 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 DC STIG - Ver 3, Rel 1: [#784](https://github.com/microsoft/PowerStig/issues/784)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 MS STIG - Ver 3, Rel 1: [#785](https://github.com/microsoft/PowerStig/issues/785)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 1: [#783](https://github.com/microsoft/PowerStig/issues/783)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 1: [#786](https://github.com/microsoft/PowerStig/issues/786)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 1: [#782](https://github.com/microsoft/PowerStig/issues/782)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2019 STIG - Ver 2, Rel 1  [#787](https://github.com/microsoft/PowerStig/issues/787)
+* Update PowerSTIG to include LegacyId to assist in determining Legacy Vuln Ids with the new DISA standard: [#788](https://github.com/microsoft/PowerStig/issues/788)
+* Update PowerSTIG to include LegacyId query via Get-StigRule function: [#800](https://github.com/microsoft/PowerStig/issues/800)
+* Update PowerSTIG to fix LegacyId logic: [#791](https://github.com/microsoft/PowerStig/issues/791)
+
+## [4.6.0] - 2020-12-01
+
 * Provide Method to install DoD Root Certs for Server OS and Client OS: [#755](https://github.com/microsoft/PowerStig/issues/755)
+* Update Windows 10 Client STIGs based on ACAS results: [#778](https://github.com/microsoft/PowerStig/issues/778)
 * Update PowerSTIG to Provide Rule Data from Processed xml: [#747](https://github.com/microsoft/PowerStig/issues/747)
 * Update PowerSTIG to send a warning to the user when using a composite that leverages the new DISA Ids: [#772](https://github.com/microsoft/PowerStig/issues/772)
 * Update PowerSTIG to successfully parse/apply Microsoft Office System 2013 STIG - Ver 2, Rel 1: [#769](https://github.com/microsoft/PowerStig/issues/769)
@@ -14,6 +27,9 @@
 * Update PowerSTIG with new SkipRuleSeverity Parameter to skip entire STIG Category/Severity Level(s): [#711](https://github.com/microsoft/PowerStig/issues/711)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10 SITE/SERVER STIG - Ver 2, Rel 1: [#759](https://github.com/microsoft/PowerStig/issues/759)
 * Update PowerSTIG to successfully parse/apply IIS 8.5 Site/Server V2R1 STIGs: [#762](https://github.com/microsoft/PowerStig/issues/762)
+
+## [4.5.1] - 2020-10-12
+
 * Fixed [#746](https://github.com/microsoft/PowerStig/issues/746): Functions.Checklist Manual Checks need to leverage psd1 files - Backward Compat Issue
 
 ## [4.5.0] - 2020-09-01

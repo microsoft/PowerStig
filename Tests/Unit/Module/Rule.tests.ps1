@@ -15,6 +15,9 @@ try
             It 'Should return the rule Id' {
                 $stig.id | Should Be 'V-1000'
             }
+            It 'Should return the legacy Id' {
+                $stig.legacyid | Should Be 'V-1111'
+            }
             It 'Should return the Severity' {
                 $stig.severity | Should Be 'medium'
             }

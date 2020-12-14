@@ -30,7 +30,6 @@ function Set-RootCertificateName
         {
             $certificateName = ($CheckContent | Select-String -Pattern '(?<=Subject:\sCN=)[^,]+' -AllMatches).Matches.Value | Select-Object -Unique
         }
-      
     }
     elseif ($CheckContent -match 'Root\sCA')
     {
@@ -104,9 +103,9 @@ function Test-MultipleRootCertificateRule
         $CheckContent
     )
 
-    $certificateNames = ($CheckContent | Select-String -Pattern '(?<=Subject:\sCN=)[^,]+' -AllMatches).Matches.Value | Select-Object -Unique
+    $certificateThumbprint = ($CheckContent | Select-String -Pattern '(?<=Thumbprint:\s).*' -AllMatches).Matches.Value | Select-Object -Unique
 
-    if ($certificateNames.count -gt 1)
+    if ($certificateThumbprint.count -gt 1)
     {
         return $true
     }
@@ -136,9 +135,8 @@ function Split-MultipleRootCertificateRule
     $certificateNames = ($CheckContent | Select-String -Pattern '(?<=Subject:\sCN=)[^,]+' -AllMatches).Matches.Value
     $certificateThumbprints = ($CheckContent | Select-String -Pattern '(?<=Thumbprint:\s).*' -AllMatches).Matches.Value | Select-Object -Unique
     $issuerNames = ($CheckContent | Select-String -Pattern '(?<=Issuer:\sCN=)[^,]+' -AllMatches).Matches.Value
-    $index = 0
 
-    foreach ($certificate in $certificateNames)
+    for ($index = 0; $certificateThumbprints.Count -gt $index; $index++)
     {
         $multipleCertificateRule = @()
 
@@ -152,7 +150,6 @@ function Split-MultipleRootCertificateRule
         }
 
         $multipleCertificatesRules += $multipleCertificateRule
-        $index += 1
     }
 
     return $multipleCertificatesRules

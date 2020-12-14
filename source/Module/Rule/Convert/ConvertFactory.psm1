@@ -351,6 +351,10 @@ class ConvertFactory
             foreach ($convertedrule in $ruleTypeList)
             {
                 $convertedrule.id = "$($Rule.id).$([CHAR][BYTE]$byte)"
+                if ([string]::IsNullOrEmpty($convertedrule.LegacyId) -eq $false)
+                {
+                    $convertedrule.LegacyId = "$($convertedrule.LegacyId).$([CHAR][BYTE]$byte)"
+                }
                 $byte ++
             }
         }

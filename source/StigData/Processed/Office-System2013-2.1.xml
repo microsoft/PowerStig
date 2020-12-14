@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Office_System_2013" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_OfficeSystem_2013_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft Office System 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="10/29/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Office_System_2013" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_OfficeSystem_2013_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft Office System 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/14/2020">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-228516" severity="medium" conversionstatus="pass" title="SRG-APP-000033" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Users of Office applications can see and use links to Microsoft Office SharePoint Server sites from those applications. Administrators configure published links to Office applications during initial deployment, and can add or change links as part of regular operations. These links appear on the My SharePoint Sites tab of the Open, Save, and Save As dialog boxes when opening and saving documents from these applications. Links can be targeted so that they only appear to users who are members of particular audiences.
@@ -7,6 +7,7 @@ If a malicious person gains access to the list of published links, they could mo
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\portal</Key>
+      <LegacyId>V-17670</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Server Settings "Disable the Office client from polling the SharePoint Server for published links" is set to "Enabled".
@@ -25,6 +26,7 @@ By default, this feature is enabled, if users choose to participate in the Custo
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\ptwatson</Key>
+      <LegacyId>V-17627</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Tools &gt;&gt; Options &gt;&gt; Spelling &gt;&gt; Proofing Data Collection "Improve Proofing Tools" is set to "Disabled".
@@ -43,6 +45,7 @@ By default, users can specify any location as a trusted location, and a computer
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\security\trusted locations</Key>
+      <LegacyId>V-17560</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings &gt;&gt; Trust Center "Allow mix of policy and user locations" is set to "Disabled".
@@ -62,6 +65,7 @@ XML expansion packs can be used to initialize and load malicious code, which mig
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\Common\Smart Tag</Key>
+      <LegacyId>V-17669</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Smart Documents (Word, Excel) "Disable Smart Document's use of manifests" is set to "Enabled".
@@ -79,6 +83,7 @@ If the value 'NeverLoadManifests' is REG_DWORD = 1, this is not a finding.</RawS
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\signatures</Key>
+      <LegacyId>V-17749</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Signing "Legacy format signatures" is set to "Enabled".
@@ -98,6 +103,7 @@ Fix Text: Set the policy value for User Configuration &gt;&gt; Administrative Te
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\signatures</Key>
+      <LegacyId>V-17805</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Signing "Suppress external signature services menu item" is set to "Enabled".
@@ -115,6 +121,7 @@ Criteria: If the value 'SuppressExtSigningSvcs' is REG_DWORD = 1, this is not a 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\fixedformat</Key>
+      <LegacyId>V-17660</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Microsoft Save As PDF and XPS add-ins "Disable inclusion of document properties in PDF and XPS output" is set to "Enabled".
@@ -133,6 +140,7 @@ By default, users can post blog entries to any compatible blogging service provi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\Common\Blog</Key>
+      <LegacyId>V-17581</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Miscellaneous "Control Blogging" is set to "Enabled (Only SharePoint blogs allowed)".
@@ -150,6 +158,7 @@ If the value 'DisableBlog' is REG_DWORD = 1, this is not a finding.</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\software\policies\Microsoft\office\15.0\common\officeupdate</Key>
+      <LegacyId>V-40859</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine)-&gt;Updates-&gt;"Hide option to enable or disable updates" is set to "Enabled".
@@ -169,6 +178,7 @@ Criteria: If the value HideEnableDisableUpdates is REG_DWORD = 1, this is not a 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\feedback</Key>
+      <LegacyId>V-40880</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Privacy &gt;&gt; Trust Center &gt;&gt;"Allow including screenshot with Office Feedback" is set to "Disabled".
@@ -186,6 +196,7 @@ If the value 'includescreenshot' is REG_DWORD = 0, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\wef\trustedcatalogs</Key>
+      <LegacyId>V-40882</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings &gt;&gt; Trust Center &gt;&gt; Trusted Catalogs "Allow Unsecure Apps and Catalogs" is set to "Disabled".
@@ -206,6 +217,7 @@ If the value 'requireserververification' is REG_DWORD = 1, this is not a finding
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\osm</Key>
+      <LegacyId>V-40886</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Telemetry Dashboard &gt;&gt; "Turn on privacy setting in Office Telemetry Agent" is set to "Enabled".
@@ -223,6 +235,7 @@ If the value 'enablefileobfuscation' is REG_DWORD = 1, this is not a finding.</R
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\general</Key>
+      <LegacyId>V-17664</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Privacy &gt;&gt; Trust Center "Disable Opt-in Wizard on first run" is set to "Enabled".
@@ -241,6 +254,7 @@ By default, users have the opportunity to opt into participation in the CEIP the
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common</Key>
+      <LegacyId>V-17612</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Privacy &gt;&gt; Trust Center "Enable Customer Experience Improvement Program" is set to "Disabled".
@@ -259,6 +273,7 @@ By default, users are allowed to download updates, add-ins, and patches from the
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common</Key>
+      <LegacyId>V-17740</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Privacy &gt;&gt; Trust Center "Automatically receive small updates to improve reliability" is set to "Disabled".
@@ -277,6 +292,7 @@ By default, Office users can use the Internet Fax feature. &lt;/VulnDiscussion&g
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\services\fax</Key>
+      <LegacyId>V-17661</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Services &gt;&gt; Fax "Disable Internet Fax feature" to "Enabled".
@@ -294,6 +310,7 @@ If the value 'NoFax' is REG_DWORD = 1, this is not a finding.</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\internet</Key>
+      <LegacyId>V-26630</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: This check is Not Applicable when the use of Office 365 is against the specific DoD instance of O365.
@@ -318,6 +335,7 @@ If the value 'UseOnlineContent' is REG_DWORD = 0, this is not a finding.
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\firstrun</Key>
+      <LegacyId>V-40860</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; First Run &gt;&gt; "Disable First Run Movie" is set to "Enabled".
@@ -335,6 +353,7 @@ Criteria: If the value 'disablemovie' is REG_DWORD = 1, this is not a finding.</
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\firstrun</Key>
+      <LegacyId>V-40861</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; First Run &gt;&gt; "Disable Office First Run on application boot" is set to "Enabled".
@@ -352,6 +371,7 @@ Criteria: If the value 'bootedrtm' is REG_DWORD = 1, this is not a finding.</Raw
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\signin</Key>
+      <LegacyId>V-40862</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Miscellaneous &gt;&gt; "Block signing into Office" is set to "Enabled: org ID only".
@@ -369,6 +389,7 @@ If the value 'signinoptions' is REG_DWORD = 2, this is not a finding.</RawString
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\gfx</Key>
+      <LegacyId>V-40863</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Miscellaneous &gt;&gt; "Do not automatically hyperlink screenshots" is set to "Enabled".
@@ -386,6 +407,7 @@ If the value 'disablescreenshotautohyperlink' is REG_DWORD = 1, this is not a fi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\general</Key>
+      <LegacyId>V-40864</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Miscellaneous .&gt; "Show OneDrive Sign In" is set to "Disabled".
@@ -403,6 +425,7 @@ If the value 'SkyDriveSignInOption' is REG_DWORD = 0, this is not a finding.</Ra
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\broadcast</Key>
+      <LegacyId>V-40875</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Present Online &gt;&gt; "Remove Office Presentation Service from the list of online presentation services in PowerPoint and Word" is set to "Enabled".
@@ -420,6 +443,7 @@ If the value 'disabledefaultservice' is REG_DWORD = 1, this is not a finding.</R
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\feedback</Key>
+      <LegacyId>V-40881</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Privacy &gt;&gt; Trust Center &gt;&gt; "Send Office Feedback" is set to "Disabled".
@@ -437,6 +461,7 @@ If the value 'enabled' is REG_DWORD = 0, this is not a finding.</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\roaming</Key>
+      <LegacyId>V-40884</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Services &gt;&gt; "Disable Roaming Office User Settings" is set to "Enabled".
@@ -454,6 +479,7 @@ If the value 'roamingsettingsdisabled' is REG_DWORD = 1, this is not a finding.<
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\osm</Key>
+      <LegacyId>V-40885</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Telemetry Dashboard &gt;&gt; "Turn on data uploading for Office Telemetry Agent" is set to "Disabled".
@@ -471,6 +497,7 @@ If the value 'enableupload' is REG_DWORD = 0, this is not a finding.</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\osm</Key>
+      <LegacyId>V-40887</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Telemetry Dashboard &gt;&gt; "Turn on telemetry data collection" is set to "Enabled".
@@ -488,6 +515,7 @@ If the value 'enablelogging' is REG_DWORD = 1, this is not a finding.</RawString
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\internet</Key>
+      <LegacyId>V-17759</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Tools | Options | General | Web Options... &gt;&gt; Files "Open Office documents as read/write while browsing" is set to "Disabled".
@@ -505,6 +533,7 @@ If the value 'OpenDocumentsReadWriteWhileBrowsing' for REG_DWORD = 0, this is no
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\internet</Key>
+      <LegacyId>V-17773</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Tools &gt;&gt; Options &gt;&gt; General &gt;&gt; Web Options &gt;&gt; Browsers "Rely on VML for displaying graphics in browsers" is set to "Disabled".
@@ -522,6 +551,7 @@ If the value 'RelyOnVML' is REG_DWORD = 0, this is not a finding.</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\Common\Security</Key>
+      <LegacyId>V-17741</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "Automation Security" is set to "Enabled (Use application macro security level)".
@@ -539,6 +569,7 @@ If the value "AutomationSecurity" is REG_DWORD =2, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\broadcast</Key>
+      <LegacyId>V-40879</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Present Online &gt;&gt; "Restrict programmatic access for creating online presentations in PowerPoint and Word" is set to "Enabled".
@@ -556,6 +587,7 @@ If the value 'disableprogrammaticaccess' is REG_DWORD = 1, this is not a finding
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\security</Key>
+      <LegacyId>V-17768</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "Protect document metadata for password protected files" is set to "Enabled".
@@ -573,6 +605,7 @@ If the value 'OpenXMLEncryptProperty' is REG_DWORD = 1, this is not a finding.</
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\security</Key>
+      <LegacyId>V-17619</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "Encryption type for password protected Office Open XML files" is set to "Enabled (Microsoft Enhanced RSA and AES Cryptographic Provider, AES 256,256)".
@@ -590,6 +623,7 @@ If the value 'OpenXMLEncryption' is REG_SZ = "Microsoft Enhanced RSA and AES Cry
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\security</Key>
+      <LegacyId>V-17617</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "Encryption type for password protected Office 97-2003 files" is set to "Enabled (Microsoft Enhanced RSA and AES Cryptographic Provider, AES 256,256)".
@@ -608,6 +642,7 @@ By default, users can add passwords to Excel 2013 workbooks, PowerPoint 2013 pre
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\security</Key>
+      <LegacyId>V-17665</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "Disable password to open UI" is set to "Disabled".
@@ -629,6 +664,7 @@ By default, if an Office application detects a security issue, the Message Bar i
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\trustcenter</Key>
+      <LegacyId>V-17590</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "Disable all Trust Bar notifications for security issues" is set to "Disabled".
@@ -649,6 +685,7 @@ If a control is not marked as SFI, it is marked Unsafe For Initialization (UFI),
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\VBA\Security</Key>
+      <LegacyId>V-17750.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "Load Controls in Forms3" is set to "Disabled".
@@ -669,6 +706,7 @@ If a control is not marked as SFI, it is marked Unsafe For Initialization (UFI),
       <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\VBA\Security</Key>
+      <LegacyId>V-17750.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "Load Controls in Forms3" is set to "Disabled".
@@ -686,6 +724,7 @@ If the value 'LoadControlsInForms' exists, this is a finding.</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\wef\trustedcatalogs</Key>
+      <LegacyId>V-40883</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings &gt;&gt; Trust Center &gt;&gt; Trusted Catalogs "Block the Office Store" is set to "Enabled".
@@ -703,6 +742,7 @@ If the value 'disableomexcatalogs' is REG_DWORD = 1, this is not a finding.</Raw
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\drm</Key>
+      <LegacyId>V-17765</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Manage Restricted Permissions "Prevent users from changing permissions on rights managed content" is set to "Disabled".
@@ -720,6 +760,7 @@ Criteria: If the value 'DisableCreation' is REG_DWORD = 0, this is not a finding
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\drm</Key>
+      <LegacyId>V-17583</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Manage Restricted Permissions "Allow users with earlier versions of Office to read with browsers" is set to "Disabled".
@@ -737,6 +778,7 @@ If the value 'IncludeHTML' is REG_DWORD = 0, this is not a finding.</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\drm</Key>
+      <LegacyId>V-17731</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Manage Restricted Permissions "Always require users to connect to verify permission" is set to "Enabled".
@@ -756,6 +798,7 @@ By default, if a control is marked SFI, the application loads the control in saf
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\Common\Security</Key>
+      <LegacyId>V-17547.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "ActiveX Control Initialization" is set to "Disabled".
@@ -774,6 +817,7 @@ By default, if a control is marked SFI, the application loads the control in saf
       <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\Common\Security</Key>
+      <LegacyId>V-17547.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "ActiveX Control Initialization" is set to "Disabled".
@@ -791,6 +835,7 @@ Links that Office considers unsafe include links to executable files, TIFF files
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\security</Key>
+      <LegacyId>V-17659</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "Suppress hyperlink warnings" is set to "Disabled".
@@ -807,6 +852,7 @@ Criteria: If the value 'DisableHyperLinkWarning' is REG_DWORD = 0, this is not a
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\documentinformationpanel</Key>
+      <LegacyId>V-17605</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Document Information Panel "Document Information Panel Beaconing UI" is set to "Enabled (Always show UI)".
@@ -824,6 +870,7 @@ If the value 'Beaconing' is REG_DWORD = 1, this is not a finding.</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\security</Key>
+      <LegacyId>V-17769</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "Protect document metadata for rights managed Office Open XML Files" is set to "Enabled".
@@ -841,6 +888,7 @@ If the value 'DRMEncryptProperty' is REG_DWORD = 1, this is not a finding.</RawS
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\security</Key>
+      <LegacyId>V-26704</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2013 &gt;&gt; Security Settings "Encrypt document properties" is set to "Enabled".
@@ -858,6 +906,7 @@ Criteria: If the value 'EncryptDocProps' is REG_DWORD = 1, this is not a finding
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Office\15.0\Common\OfficeUpdate</Key>
+      <LegacyId>V-40858.a</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>this value is set to 1 to enable AutomaticUpdates for Office </OrganizationValueTestString>
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine)-&gt;Updates-&gt;"Enable Automatic Updates" is set to "Enabled".
@@ -880,6 +929,7 @@ Criteria: If the value of WUServer and WUStatusServer are populated with an Intr
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate</Key>
+      <LegacyId>V-40858.b</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>WindowsUpdate server is specified for this rule </OrganizationValueTestString>
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine)-&gt;Updates-&gt;"Enable Automatic Updates" is set to "Enabled".
@@ -902,6 +952,7 @@ Criteria: If the value of WUServer and WUStatusServer are populated with an Intr
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate</Key>
+      <LegacyId>V-40858.c</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>WindowsUpdate statistics server is specified for this rule </OrganizationValueTestString>
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine)-&gt;Updates-&gt;"Enable Automatic Updates" is set to "Enabled".
@@ -924,6 +975,7 @@ Criteria: If the value of WUServer and WUStatusServer are populated with an Intr
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU</Key>
+      <LegacyId>V-40858.d</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>this value is set to 1 to enable the use of a WindowsUpdate Server </OrganizationValueTestString>
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine)-&gt;Updates-&gt;"Enable Automatic Updates" is set to "Enabled".

@@ -1,0 +1,85 @@
+<!--
+    The organizational settings file is used to define the local organizations
+    preferred setting within an allowed range of the STIG.
+
+    Each setting in this file is linked by STIG ID and the valid range is in an
+    associated comment.
+-->
+<OrganizationalSettings fullversion="3.1">
+  <!-- Ensure ''V-225266'' -ge '15' -or ''V-225266'' -eq '0'-->
+  <OrganizationalSetting id="V-225266" PolicyValue="15" />
+  <!-- Ensure ''V-225267'' -le '3' -and ''V-225267'' -ne '0'-->
+  <OrganizationalSetting id="V-225267" PolicyValue="3" />
+  <!-- Ensure ''V-225268'' -ge '15'-->
+  <OrganizationalSetting id="V-225268" PolicyValue="15" />
+  <!-- Ensure ''V-225269'' -ge '24'-->
+  <OrganizationalSetting id="V-225269" PolicyValue="24" />
+  <!-- Ensure ''V-225270'' -le '60' -and ''V-225270'' -ne '0'-->
+  <OrganizationalSetting id="V-225270" PolicyValue="60" />
+  <!-- Ensure ''V-225271'' -ne '0'-->
+  <OrganizationalSetting id="V-225271" PolicyValue="1" />
+  <!-- Ensure ''V-225272'' -ge '14'-->
+  <OrganizationalSetting id="V-225272" PolicyValue="14" />
+  <!-- Ensure ''V-225370'' -ge '32768'-->
+  <OrganizationalSetting id="V-225370" ValueData="32768" />
+  <!-- Ensure ''V-225371'' -ge '196608'-->
+  <OrganizationalSetting id="V-225371" ValueData="196608" />
+  <!-- Ensure ''V-225372'' -ge '32768'-->
+  <OrganizationalSetting id="V-225372" ValueData="32768" />
+  <!-- Ensure ''V-225373'' -ge '32768'-->
+  <OrganizationalSetting id="V-225373" ValueData="32768" />
+  <!-- Ensure ''V-225374'' -match '1|2'-->
+  <OrganizationalSetting id="V-225374" ValueData="1" />
+  <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->
+  <OrganizationalSetting id="V-225416" ServiceName="" StartupType="" />
+  <!-- Ensure ServiceName/StartupType is populated with correct Certificate Revocation Checking service information-->
+  <OrganizationalSetting id="V-225436" ServiceName="" StartupType="" />
+  <!-- Ensure location for DoD Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-225441.a" Location="" />
+  <!-- Ensure location for DoD Root CA 3 certificate is present-->
+  <OrganizationalSetting id="V-225441.b" Location="" />
+  <!-- Ensure location for DoD Root CA 4 certificate is present-->
+  <OrganizationalSetting id="V-225441.c" Location="" />
+  <!-- Ensure location for DoD Root CA 5 certificate is present-->
+  <OrganizationalSetting id="V-225441.d" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-225442.a" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 1 certificate is present-->
+  <OrganizationalSetting id="V-225442.b" Location="" />
+  <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-225443" Location="" />
+  <!-- Ensure ''V-225450'' -ne 'Administrator'-->
+  <OrganizationalSetting id="V-225450" OptionValue="" />
+  <!-- Ensure ''V-225451'' -ne 'Guest'-->
+  <OrganizationalSetting id="V-225451" OptionValue="" />
+  <!-- Ensure ''V-225460'' -le '30' -and ''V-225460'' -gt '0'-->
+  <OrganizationalSetting id="V-225460" ValueData="30" />
+  <!-- Ensure ''V-225464'' -le '900' -and ''V-225464'' -gt '0'-->
+  <OrganizationalSetting id="V-225464" ValueData="900" />
+  <!-- Ensure ''V-225466'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
+  <OrganizationalSetting id="V-225466" ValueData="DoD Notice and Consent Banner" />
+  <!-- Ensure ''V-225467'' -le '4'-->
+  <OrganizationalSetting id="V-225467" ValueData="4" />
+  <!-- Ensure ''V-225468'' -ge '14'-->
+  <OrganizationalSetting id="V-225468" ValueData="14" />
+  <!-- Ensure ''V-225469'' -match '1|2'-->
+  <OrganizationalSetting id="V-225469" ValueData="1" />
+  <!-- Ensure ''V-225473'' -le '15'-->
+  <OrganizationalSetting id="V-225473" ValueData="15" />
+  <!-- Ensure ''V-225482'' -le '300000'-->
+  <OrganizationalSetting id="V-225482" ValueData="300000" />
+  <!-- Ensure ''V-225487'' -le '5'-->
+  <OrganizationalSetting id="V-225487" ValueData="5" />
+  <!-- Ensure ''V-225488'' -le '3'-->
+  <OrganizationalSetting id="V-225488" ValueData="3" />
+  <!-- Ensure ''V-225489'' -le '3'-->
+  <OrganizationalSetting id="V-225489" ValueData="3" />
+  <!-- Ensure ''V-225490'' -le '90'-->
+  <OrganizationalSetting id="V-225490" ValueData="90" />
+  <!-- Ensure ''V-225516'' -le '4'-->
+  <OrganizationalSetting id="V-225516" ValueData="4" />
+  <!-- Ensure ''V-225555'' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'-->
+  <OrganizationalSetting id="V-225555" Identity="Administrators" />
+  <!-- Ensure ''V-225557'' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'-->
+  <OrganizationalSetting id="V-225557" Identity="Enterprise Admins,Domain Admins,Local account and member of Administrators group,Guests" />
+</OrganizationalSettings>
