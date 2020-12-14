@@ -8,6 +8,7 @@
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 1: [#786](https://github.com/microsoft/PowerStig/issues/786)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2019 STIG - Ver 2, Rel 1  [#787](https://github.com/microsoft/PowerStig/issues/787)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 DC STIG - Ver 3, Rel 1: [#784](https://github.com/microsoft/PowerStig/issues/784)
+* Update PowerSTIG to successfully parse/apply Google Chrome V1R19: [#709](https://github.com/microsoft/PowerStig/issues/709)
 
 ## [4.6.0] - 2020-12-01
 
