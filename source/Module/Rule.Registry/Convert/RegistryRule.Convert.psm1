@@ -369,7 +369,7 @@ class RegistryRuleConvert : RegistryRule
     {
         if ($null -eq $this.DuplicateOf)
         {
-            if ($FixText -match 'Administrative Templates' -or $this.key -match "(^hkcu|^HKEY_CURRENT_USER)" -or $this.ValueName -and $FixText  -notMatch "Google Chrome")
+            if ($FixText -match 'Administrative Templates' -or $this.key -match "(^hkcu|^HKEY_CURRENT_USER)" -and $FixText -notMatch "Google Chrome")
             {
                 $this.DscResource = 'RegistryPolicyFile'
             }
