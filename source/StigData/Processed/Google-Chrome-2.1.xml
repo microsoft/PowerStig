@@ -572,7 +572,7 @@ Windows method:
 Suggested: the set or subset of [*.]mil and [*.]gov</RawString>
       <ValueData />
       <ValueName>PluginsAllowedForUrls</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>MultiString</ValueType>
     </Rule>
     <Rule id="V-221586" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Disabling this function will prevent users from deleting their browsing history, which could be used to identify malicious websites and files that could later be used for anti-virus and Intrusion Detection System (IDS) signatures. Furthermore, preventing users from deleting browsing history could be used to identify abusive web surfing on government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
