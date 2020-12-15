@@ -106,7 +106,7 @@ Windows method:
 </RawString>
       <ValueData>*</ValueData>
       <ValueName>1</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>MultiString</ValueType>
     </Rule>
     <Rule id="V-221563" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;The whitelist should only contain organizationally approved extensions. This is to prevent a user from accidently whitelisitng a malicious extension. This policy allows you to specify which extensions are not subject to the blacklist. A blacklist value of ‘*’ means all extensions are blacklisted and users can only install extensions listed in the whitelist. By default, no extensions are whitelisted. If all extensions have been blacklisted by policy, then the whitelist policy can be used to allow specific extensions to be installed. Administrators should determine which extensions should be allowed to be installed by their users. If no extensions are whitelisted, then no extensions can be installed when combined with blacklisting all extensions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -127,7 +127,7 @@ Windows method:
  3. If the ExtensionInstallWhitelist key is not set to 1 or oiigbmnaadbkfbmpbfijlflahbdbdgdf or a list of administrator-approved extension IDs, then this is a finding.</RawString>
       <ValueData />
       <ValueName>ExtensionInstallWhitelist</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>MultiString</ValueType>
     </Rule>
     <Rule id="V-221564" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Specifies the name of the default search provider that is to be used, if left empty or not set, the host name specified by the search URL will be used. This policy is only considered if the 'DefaultSearchProviderEnabled' policy is enabled. When doing internet searches it is important to use an encrypted connection via https.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -149,7 +149,7 @@ Windows method:
 </RawString>
       <ValueData />
       <ValueName>DefaultSearchProviderName</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-221565" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Specifies the URL of the search engine used when doing a default search. The URL should contain the string '{searchTerms}', which will be replaced at query time by the terms the user is searching for. This option must be set when the 'DefaultSearchProviderEnabled' policy is enabled and will only be respected if this is the case.  When doing internet searches it is important to use an encrypted connection via https.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -172,7 +172,7 @@ Windows method:
  3. If the DefaultSearchProviderSearchURL value name does not exist or its value data is not set to an organization-approved encrypted search string (ex. https://www.google.com/search?q={searchTerms} or https://www.bing.com/search?q={searchTerms} ) this is a finding.</RawString>
       <ValueData />
       <ValueName>DefaultSearchProviderSearchURL</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-221566" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Policy enables the use of a default search provider. If you enable this setting, a default search is performed when the user types text in the omnibox that is not a URL. You can specify the default search provider to be used by setting the rest of the default search policies. If these are left empty, the user can choose the default provider. If you disable this setting, no search is performed when the user enters non-URL text in the omnibox. If you enable or disable this setting, users cannot change or override this setting in Google Chrome. If this policy is left not set, the default search provider is enabled, and the user will be able to set the search provider list.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -307,7 +307,7 @@ Windows method:
 </RawString>
       <ValueData>javascript://*</ValueData>
       <ValueName>URLBlacklist</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>MultiString</ValueType>
     </Rule>
     <Rule id="V-221573" severity="medium" conversionstatus="pass" title="SRG-APP-000047" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Policy enables Google Chrome to act as a proxy between Google Cloud Print and legacy printers connected to the machine. If this setting is enabled or not configured, users can enable the cloud print proxy by authentication with their Google account. If this setting is disabled, users cannot enable the proxy, and the machine will not be allowed to share it’s printers with Google Cloud Print. If this policy is not set, this will be enabled but the user will be able to change it.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -665,7 +665,7 @@ Windows method:
  3. If the "SSLVersionMin" value name does not exist or its value data is not set to "tls1.1", this is a finding.</RawString>
       <ValueData>tls1.1</ValueData>
       <ValueName>SSLVersionMin</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-221590" severity="medium" conversionstatus="pass" title="SRG-APP-000206" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Enables Google Chrome's Safe Browsing Extended Reporting and prevents users from changing this setting. Extended Reporting sends some system information and page content to Google servers to help detect dangerous apps and sites.
@@ -822,7 +822,7 @@ Windows method:
 Suggested: the set or subset of [*.]mil and [*.]gov</RawString>
       <ValueData />
       <ValueName>AutoplayWhitelist</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>MultiString</ValueType>
     </Rule>
     <Rule id="V-221597" severity="medium" conversionstatus="pass" title="SRG-APP-000206" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Enable URL-keyed anonymized data collection in Google Chrome and prevent users from changing this setting.
