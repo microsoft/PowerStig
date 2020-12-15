@@ -53,6 +53,12 @@ function Get-SingleLineRegistryPath
     foreach ($item in $global:SingleLineRegistryPath.Values)
     {
         $value = Get-SLRegistryPath -CheckContent $CheckContent -Hashtable $item
+
+        if ($value  -match "HKEY_LOCAL_MACHINE.*Chrome\\")
+        {
+            $value  = $value.TrimEnd("\")
+        }
+
         if ([String]::IsNullOrEmpty($value) -eq $false)
         {
             return $value | where-object {[string]::IsNullOrEmpty($_) -eq $false}

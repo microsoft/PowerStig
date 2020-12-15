@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/14/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/15/2020">
   <ManualRule dscresourcemodule="None">
     <Rule id="V-221584" severity="medium" conversionstatus="pass" title="SRG-APP-000456" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Google Chrome is being continually updated by the vendor in order to address identified security vulnerabilities. Running an older version of the browser can introduce security vulnerabilities to the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -19,7 +19,7 @@
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44711</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -44,7 +44,7 @@ Windows registry:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44723</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -68,7 +68,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44719</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -179,7 +179,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44737</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -202,7 +202,7 @@ Note: This policy will only display in the chrome://policy tab on domain joined 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44741</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -246,7 +246,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44753</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -268,7 +268,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44759</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -314,7 +314,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44765</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -335,7 +335,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44769</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -355,7 +355,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44771</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -378,7 +378,7 @@ Note: This policy will only display in the chrome://policy tab on domain joined 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44773</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -400,7 +400,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44775</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -424,7 +424,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44777</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -446,7 +446,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44789</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -468,7 +468,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44791</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -490,7 +490,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-44793</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -579,7 +579,7 @@ Suggested: the set or subset of [*.]mil and [*.]gov</RawString>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-75165</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -600,7 +600,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-79929</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -676,7 +676,7 @@ If this policy is left unset, the user will be able to change the setting and de
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-81585</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -699,7 +699,7 @@ If this policy is left not set, ”3” will be used, and the user will be able 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-81587</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -721,7 +721,7 @@ This policy is available only on Windows instances that are joined to a Microsof
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-81591</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -744,7 +744,7 @@ This policy is available only on Windows instances that are joined to a Microsof
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-81593</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -765,7 +765,7 @@ If this policy set to ”False”, Google Cast will be disabled.&lt;/VulnDiscuss
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-81597</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -786,7 +786,7 @@ If the policy is set to “True”, Google Chrome is allowed to autoplay media. 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-81581</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -833,7 +833,7 @@ If this policy is left not set, URL-keyed anonymized data collection will be ena
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-91203</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -856,7 +856,7 @@ This data collection by Chrome can only be triggered by Google's web services, s
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-91205</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -876,7 +876,7 @@ Windows method:
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-97525</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -899,7 +899,7 @@ If this policy is set to false, Google Chrome will not allow guest profiles to b
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-102867</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -923,7 +923,7 @@ If this setting is enabled or has no value, the user will be able to control Aut
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-102869</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -947,7 +947,7 @@ If this setting is enabled or has no value, the user will be able to control Aut
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-102871</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -971,7 +971,7 @@ If it is not set, the user may be asked whether to import, or importing may happ
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
       <LegacyId>V-102873</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
