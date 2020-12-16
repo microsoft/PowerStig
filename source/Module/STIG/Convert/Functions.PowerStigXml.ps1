@@ -156,7 +156,6 @@ function Get-RegistryRuleExpressions
                 {
                     $spInclude += "Data.Mcafee.ps1"
                 }
-
             }
         }
         else

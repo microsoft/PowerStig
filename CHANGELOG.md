@@ -8,6 +8,8 @@
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 1: [#786](https://github.com/microsoft/PowerStig/issues/786)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 1: [#782](https://github.com/microsoft/PowerStig/issues/782)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2019 STIG - Ver 2, Rel 1  [#787](https://github.com/microsoft/PowerStig/issues/787)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 DC STIG - Ver 3, Rel 1: [#784](https://github.com/microsoft/PowerStig/issues/784)
+* Update PowerSTIG to successfully parse/apply Google Chrome V1R19: [#709](https://github.com/microsoft/PowerStig/issues/709)
 * Update PowerSTIG to include LegacyId to assist in determining Legacy Vuln Ids with the new DISA standard: [#788](https://github.com/microsoft/PowerStig/issues/788)
 * Update PowerSTIG to include LegacyId query via Get-StigRule function: [#800](https://github.com/microsoft/PowerStig/issues/800)
 * Fixed: Update PowerSTIG to fix LegacyId logic: [#791](https://github.com/microsoft/PowerStig/issues/791)
