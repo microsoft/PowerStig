@@ -65,7 +65,7 @@ configuration Chrome
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('Google','Chrome',  $StigVersion)
+    $stig = [STIG]::New('Google','Chrome', $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
