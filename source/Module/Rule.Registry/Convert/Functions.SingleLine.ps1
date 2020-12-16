@@ -267,7 +267,7 @@ function Get-RegistryValueTypeFromSLStig
     # McAfee STIG isn't written in a way that ValueType can be detected via CheckContent and/or FixText
     if ($CheckContent -match 'Wow6432Node\\McAfee|Google\\Chrome')
     {
-        if($valueName -match "1|URLBlacklist")
+        if ($valueName -match "1|URLBlacklist")
         {
             $valueType = 'REG_MULTI_SZ'
         }
