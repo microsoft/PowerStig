@@ -429,6 +429,11 @@ function Split-BenchmarkId
             $returnId = 'OracleJRE_8'
             continue
         }
+        {$PSItem -match 'Google_Chrome_Current_Windows'}
+        {
+            $returnId = 'Google_Chrome'
+            continue
+        }
         {$PSItem -match "Windows"}
         {
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2

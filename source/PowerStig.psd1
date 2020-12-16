@@ -59,6 +59,7 @@ DscResourcesToExport = @(
     'IisServer',
     'IisSite',
     'InternetExplorer',
+    'Chrome',
     'McAfee',
     'Office',
     'OracleJRE',
