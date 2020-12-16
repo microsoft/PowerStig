@@ -531,7 +531,7 @@ Windows method:
       <ValueName>DefaultPluginsSetting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-221583" severity="medium" conversionstatus="pass" title="SRG-APP-000080" dscresource="RegistryPolicyFile">
+    <Rule id="V-221583" severity="medium" conversionstatus="pass" title="SRG-APP-000080" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Policy allows you to set a list of URL patterns that specify sites which are allowed to set session only cookies. If this policy is left not set the global default value will be used for all sites either from the 'DefaultCookiesSetting' policy if it is set, or the user's personal configuration otherwise. If the 'RestoreOnStartup' policy is set to restore URLs from previous sessions this policy will not be respected and cookies will be stored permanently for those sites.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Absent</Ensure>
