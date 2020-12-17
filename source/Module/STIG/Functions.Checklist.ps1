@@ -399,7 +399,7 @@ function New-StigCheckList
                             $status = $statusMap['NotAFinding']
                             if($null -ne $Verifier)
                             {
-                                $comments = "To be addressed by PowerStig MOF via {0} and verified by {1}" -f $setting, $Verifier
+                                $comments = "Addressed by PowerStig MOF via {0} and verified by {1}" -f $setting, $Verifier
                             }
                             else
                             {
