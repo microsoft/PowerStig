@@ -6,6 +6,8 @@ data exclusionRuleList
 {
     ConvertFrom-StringData -StringData @'
         V-73523 = ''
+        V-225261 = 'Windows Server 2012R2 MS: Rule was previously excluded'
+        V-226051 = 'Windows Server 2012R2 DC: Rule does not apply to 2012R2 only 2012'
         V-6599 = 'McAfee:The GUID of the weekly on-demand client scan task varies by system'
         V-6600 = 'McAfee:The GUID of the weekly on-demand client scan task varies by system'
         V-6601 = 'McAfee:The GUID of the weekly on-demand client scan task varies by system'
@@ -37,5 +39,6 @@ data exclusionRuleList
         V-94025 = 'Vsphere: To Be added in a future release'
         V-94533 = 'Vsphere: To Be added in a future release'
         V-102627 = 'No automation available based on STIG Guidance, Fix text recommends setting up Windows Hello for non-domain systems'
+        V-220946 = 'No automation available based on STIG Guidance, Fix text recommends setting up Windows Hello for non-domain systems'
 '@
 }

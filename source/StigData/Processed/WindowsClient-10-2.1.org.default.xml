@@ -1,0 +1,83 @@
+<!--
+    The organizational settings file is used to define the local organizations
+    preferred setting within an allowed range of the STIG.
+
+    Each setting in this file is linked by STIG ID and the valid range is in an
+    associated comment.
+-->
+<OrganizationalSettings fullversion="2.1">
+  <!-- Ensure ValueData is set to 0x00000006 (6) or greater -->
+  <OrganizationalSetting id="V-220704" ValueData="" />
+  <!-- Ensure ''V-220739'' -ge '15' -or ''V-220739'' -eq '0'-->
+  <OrganizationalSetting id="V-220739" PolicyValue="15" />
+  <!-- Ensure ''V-220740'' -le '3' -and ''V-220740'' -ne '0'-->
+  <OrganizationalSetting id="V-220740" PolicyValue="3" />
+  <!-- Ensure ''V-220741'' -ge '15'-->
+  <OrganizationalSetting id="V-220741" PolicyValue="15" />
+  <!-- Ensure ''V-220742'' -ge '24'-->
+  <OrganizationalSetting id="V-220742" PolicyValue="24" />
+  <!-- Ensure ''V-220743'' -le '60' -and ''V-220743'' -ne '0'-->
+  <OrganizationalSetting id="V-220743" PolicyValue="30" />
+  <!-- Ensure ''V-220744'' -ge '1'-->
+  <OrganizationalSetting id="V-220744" PolicyValue="1" />
+  <!-- Ensure ''V-220745'' -ge '14'-->
+  <OrganizationalSetting id="V-220745" PolicyValue="14" />
+  <!-- Ensure ''V-220779'' -ge '32768'-->
+  <OrganizationalSetting id="V-220779" ValueData="32768" />
+  <!-- Ensure ''V-220780'' -ge '1024000'-->
+  <OrganizationalSetting id="V-220780" ValueData="1024000" />
+  <!-- Ensure ''V-220781'' -ge '32768'-->
+  <OrganizationalSetting id="V-220781" ValueData="32768" />
+  <!-- Ensure ''V-220806'' -match '1|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-220806" ValueData="1" />
+  <!-- Ensure ''V-220811.b'' -match '1|3'-->
+  <OrganizationalSetting id="V-220811.b" ValueData="1" />
+  <!-- Ensure ''V-220813'' -match '1|3|8'-->
+  <OrganizationalSetting id="V-220813" ValueData="1" />
+  <!-- Ensure ''V-220818'' -match '1|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-220818" ValueData="1" />
+  <!-- Ensure 'V-220836.b' -eq 1|2-->
+  <OrganizationalSetting id="V-220836.b" ValueData="1" />
+  <!-- Ensure ''V-220837'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-220837" ValueData="0" />
+  <!-- Ensure ''V-220838'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-220838" ValueData="0" />
+  <!-- Ensure ''V-220839'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-220839" ValueData="0" />
+  <!-- Ensure ''V-220847'' -ge '6'-->
+  <OrganizationalSetting id="V-220847" ValueData="6" />
+  <!-- Ensure ''V-220854'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-220854" ValueData="0" />
+  <!-- Ensure ''V-220858'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-220858" ValueData="0" />
+  <!-- Ensure location for DoD Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-220903.a" Location="" />
+  <!-- Ensure location for DoD Root CA 3 certificate is present-->
+  <OrganizationalSetting id="V-220903.b" Location="" />
+  <!-- Ensure location for DoD Root CA 4 certificate is present-->
+  <OrganizationalSetting id="V-220903.c" Location="" />
+  <!-- Ensure location for DoD Root CA 5 certificate is present-->
+  <OrganizationalSetting id="V-220903.d" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-220905.a" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 1 certificate is present-->
+  <OrganizationalSetting id="V-220905.b" Location="" />
+  <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-220906" Location="" />
+  <!-- Ensure ''V-220911'' -ne 'Administrator'-->
+  <OrganizationalSetting id="V-220911" OptionValue="" />
+  <!-- Ensure ''V-220912'' -ne 'Guest'-->
+  <OrganizationalSetting id="V-220912" OptionValue="" />
+  <!-- Ensure ''V-220918'' -le '30' -and ''V-220918'' -gt '0'-->
+  <OrganizationalSetting id="V-220918" ValueData="30" />
+  <!-- Ensure ''V-220920'' -le '900' -and ''V-220920'' -gt '0'-->
+  <OrganizationalSetting id="V-220920" ValueData="450" />
+  <!-- Ensure ''V-220922'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
+  <OrganizationalSetting id="V-220922" ValueData="US Department of Defense Warning Statement" />
+  <!-- Ensure ''V-220923'' -le '10'-->
+  <OrganizationalSetting id="V-220923" ValueData="10" />
+  <!-- Ensure ''V-220924'' -match '1|2'-->
+  <OrganizationalSetting id="V-220924" ValueData="1" />
+  <!-- Ensure ''V-220955'' -match '2|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-220955" ValueData="2" />
+</OrganizationalSettings>

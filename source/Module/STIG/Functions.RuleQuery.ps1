@@ -11,6 +11,10 @@ using module ..\Rule\Rule.psm1
         VulnId within PowerSTIG is typically labled as the RuleId, which
         may not be consistent with DISA terminology.
 
+    .PARAMETER LegacyId
+        Specify the "previous" VulnId/RuleId, prior to DISA October 2020 Id
+        updates.
+
     .PARAMETER ProcessedXmlPath
         Either the folder where the processed xml resides or a specific xml path.
         The default is .\StigData\Processed\*.xml
@@ -27,11 +31,16 @@ function Get-StigRule
     [OutputType([PSCustomObject])]
     param
     (
-        [Parameter(Mandatory = $true, Position = 0)]
+        [Parameter(Mandatory = $true, Position = 0, ParameterSetName = 'VulnId')]
         [ValidateScript({$_ -match '^V-\d{1,}(|\.[a-z])$'})]
         [Alias("RuleId")]
         [string[]]
         $VulnId,
+
+        [Parameter(Mandatory = $true, ParameterSetName = 'LegacyId')]
+        [ValidateScript({$_ -match '^V-\d{1,}(|\.[a-z])$'})]
+        [string[]]
+        $LegacyId,
 
         [Parameter()]
         [ValidateScript({Test-Path -Path $_})]
@@ -43,7 +52,24 @@ function Get-StigRule
         $Detailed
     )
 
-    $processedXml = Select-String -Path $ProcessedXmlPath -Pattern $VulnId -Exclude '*.org.default.xml' | Sort-Object -Property Pattern
+    switch ($PSCmdlet.ParameterSetName)
+    {
+        'VulnId'
+        {
+            $vulnIdPattern = '<Rule\s+id\s*="{0}"' -f $VulnId
+            $patternReplacement = '<Rule\s+id\s*="'
+            $xmlXPathPattern = '//Rule[@id = "{0}"]'
+        }
+
+        'LegacyId'
+        {
+            $vulnIdPattern = '<LegacyId>{0}' -f $LegacyId
+            $patternReplacement = '<LegacyId>'
+            $xmlXPathPattern = '//Rule[LegacyId="{0}"]'
+        }
+    }
+
+    $processedXml = Select-String -Path $ProcessedXmlPath -Pattern $vulnIdPattern -Exclude '*.org.default.xml' | Sort-Object -Property Pattern
 
     if ($null -eq $processedXml)
     {
@@ -57,7 +83,8 @@ function Get-StigRule
     foreach ($technologyXml in $processedXml)
     {
         # based on the VulnId specificed use XPath to search the xml object
-        $ruleIdXPath = '//Rule[@id = "{0}"]' -f $technologyXml.Pattern
+        $vulnIdFromXml = $technologyXml.Pattern.Replace($patternReplacement, $null).Replace('"', $null)
+        $ruleIdXPath = $xmlXPathPattern -f $vulnIdFromXml
         [xml] $xml = Get-Content -Path $technologyXml.Path
         $ruleData = $xml.DISASTIG.SelectNodes($ruleIdXPath)
         $ruleType = $ruleData.ParentNode.ToString()
@@ -82,6 +109,7 @@ function Get-StigRule
                 StigId                      = $xml.DISASTIG.stigid
                 StigVersion                 = $xml.DISASTIG.fullversion
                 VulnId                      = $ruleData.id
+                LegacyId                    = $ruleData.LegacyId
                 Severity                    = $ruleData.severity
                 Title                       = $ruleData.title
                 Description                 = $ruleDescriptionValue

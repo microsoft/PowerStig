@@ -8,6 +8,7 @@ $xmlTestData = @'
     <Rule id="V-1000" severity="medium" conversionstatus="pass" title="SRG-APP-000000" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Test STIG Description&lt;/VulnDiscussion&gt;&lt;</Description>
       <DuplicateOf />
+      <LegacyId>V-1111</LegacyId>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\TestKeyData</Key>
@@ -57,6 +58,28 @@ try
                 $getStigRuleResult.OrganizationValueRequired | Should -Be 'False'
                 $getStigRuleResult.OrganizationValueTestString | Should -Be $([string]::Empty)
                 $getStigRuleResult.VulnId | Should -Be 'V-1000'
+                $getStigRuleResult.LegacyId | Should -Be 'V-1111'
+                $getStigRuleResult.Ensure | Should -Be 'Present'
+                $getStigRuleResult.Key | Should -Be 'HKEY_LOCAL_MACHINE\Software\Microsoft\TestKeyData'
+                $getStigRuleResult.ValueData | Should -Be 'TestValueData'
+                $getStigRuleResult.ValueName | Should -Be 'TestValueName'
+                $getStigRuleResult.ValueType | Should -Be 'String'
+            }
+
+            It 'Should return a V-1000 Rule PSCustomObject Detailed' {
+                $getStigRuleResult = Get-StigRule -LegacyId 'V-1111' -ProcessedXmlPath $testProcessedXml -Detailed
+                $getStigRuleResult.StigId | Should -Be 'TestSTIGData'
+                $getStigRuleResult.StigVersion | Should -Be '1.1'
+                $getStigRuleResult.Severity | Should -Be 'medium'
+                $getStigRuleResult.Title | Should -Be 'SRG-APP-000000'
+                $getStigRuleResult.Description | Should -Be 'Test STIG Description'
+                $getStigRuleResult.RuleType | Should -Be 'RegistryRule'
+                $getStigRuleResult.DscResource | Should -Be 'Registry'
+                $getStigRuleResult.DuplicateOf | Should -Be $([string]::Empty)
+                $getStigRuleResult.OrganizationValueRequired | Should -Be 'False'
+                $getStigRuleResult.OrganizationValueTestString | Should -Be $([string]::Empty)
+                $getStigRuleResult.VulnId | Should -Be 'V-1000'
+                $getStigRuleResult.LegacyId | Should -Be 'V-1111'
                 $getStigRuleResult.Ensure | Should -Be 'Present'
                 $getStigRuleResult.Key | Should -Be 'HKEY_LOCAL_MACHINE\Software\Microsoft\TestKeyData'
                 $getStigRuleResult.ValueData | Should -Be 'TestValueData'
