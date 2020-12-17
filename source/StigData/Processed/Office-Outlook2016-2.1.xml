@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Outlook_2016" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Outlook_2016_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft Outlook 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="10/28/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Outlook_2016" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Outlook_2016_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft Outlook 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/3/2020">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-228419" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Uniform Resource Locator (URL) standard allows user authentication to be included in URL strings in the form http://username:password@example.com. A malicious user might use this URL syntax to create a hyperlink that appears to open a legitimate website but actually opens a deceptive (spoofed) website. For example, the URL http://www.wingtiptoys.com@example.com appears to open http://www.wingtiptoys.com but actually opens http://example.com. To protect users from such attacks, Internet Explorer usually blocks any URLs using this syntax.
@@ -8,6 +8,7 @@ This functionality can be controlled separately for instances of Internet Explor
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_HTTP_USERNAME_PASSWORD_DISABLE</Key>
+      <LegacyId>V-71109</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 (Machine) -&gt; Security Settings -&gt; IE Security "Disable user name and password" is set to "Enabled" and 'outlook.exe' is checked.
@@ -27,6 +28,7 @@ This functionality can be controlled separately for instances of Internet Explor
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SAFE_BINDTOOBJECT</Key>
+      <LegacyId>V-71111</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 (Machine) -&gt; Security Settings -&gt; IE Security "Bind to Object" is set to "Enabled" and 'outlook.exe' is checked.
@@ -46,6 +48,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</Raw
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_UNC_SAVEDFILECHECK</Key>
+      <LegacyId>V-71113</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 (Machine) -&gt; Security Settings -&gt; IE Security "Saved from URL" is set to "Enabled" and 'outlook.exe' is checked.
@@ -65,6 +68,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</Raw
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_VALIDATE_NAVIGATE_URL</Key>
+      <LegacyId>V-71115</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 (Machine) -&gt; Security Settings -&gt; IE Security "Navigate URL" is set to "Enabled" and 'outlook.exe' is checked.
@@ -87,6 +91,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</Raw
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS</Key>
+      <LegacyId>V-71117</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 (Machine) -&gt; Security Settings -&gt; IE Security "Scripted Window Security Restrictions" is set to "Enabled" and 'outlook.exe' is checked.
@@ -106,6 +111,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</Raw
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ADDON_MANAGEMENT</Key>
+      <LegacyId>V-71119</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 (Machine) -&gt; Security Settings -&gt; IE Security "Add-on Management" is set to "Enabled" and 'outlook.exe' is checked.
@@ -125,6 +131,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</Raw
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WEBOC_POPUPMANAGEMENT</Key>
+      <LegacyId>V-71121</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 (Machine) -&gt; Security Settings -&gt; IE Security "Block popups" is set to "Enabled" and 'outlook.exe' is checked.
@@ -144,6 +151,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</Raw
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD</Key>
+      <LegacyId>V-71123</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 (Machine) -&gt; Security Settings -&gt; IE Security "Restrict File Download" is set to "Enabled" and 'outlook.exe' is checked.
@@ -163,6 +171,7 @@ Criteria: If the value of outlook.exe is REG_DWORD = 1, this is not a finding.</
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION</Key>
+      <LegacyId>V-71125</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 (Machine) -&gt; Security Settings -&gt; IE Security "Protection From Zone Elevation" is set to "Enabled" and 'outlook.exe' is checked.
@@ -182,6 +191,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</Raw
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL</Key>
+      <LegacyId>V-71127</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 (Machine) -&gt; Security Settings -&gt; IE Security "Restrict ActiveX Install" is set to "Enabled" and 'outlook.exe' is checked.
@@ -201,6 +211,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</Raw
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\pubcal</Key>
+      <LegacyId>V-71129</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Outlook Options -&gt; Preferences -&gt; Calendar Options -&gt; Office.com Sharing Service "Prevent publishing to Office.com" is set to "Enabled".
@@ -220,6 +231,7 @@ Criteria: If the value DisableOfficeOnline is REG_DWORD = 1, this is not a findi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\pubcal</Key>
+      <LegacyId>V-71131</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Outlook Options -&gt; Preferences -&gt; Calendar Options -&gt; Office.com Sharing Service "Prevent publishing to a DAV server" is set to "Enabled".
@@ -240,6 +252,7 @@ Criteria: If the value DisableDav is REG_DWORD = 1, this is not a finding.</RawS
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\pubcal</Key>
+      <LegacyId>V-71133</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Outlook Options -&gt; Preferences -&gt; Calendar Options -&gt; Office.com Sharing Service "Restrict level of calendar details users can publish" is set to "Enabled (Disables 'Full details' and 'Limited details')".
@@ -259,6 +272,7 @@ Criteria: If the value PublishCalendarDetailsPolicy is REG_DWORD = 4000 (hex) or
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\pubcal</Key>
+      <LegacyId>V-71135</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Outlook Options -&gt; Preferences -&gt; Calendar Options -&gt; Office.com Sharing Service "Access to published calendars" is set to "Enabled".
@@ -278,6 +292,7 @@ Criteria: If the value RestrictedAccessOnly is REG_DWORD = 1, this is not a find
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71145</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Outlook Options -&gt; Other -&gt; Advanced "Do not allow Outlook object model scripts to run for shared folders" is set to "Enabled".
@@ -298,6 +313,7 @@ Criteria: If the value SharedFolderScript is REG_DWORD = 0, this is not a findin
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71147</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Outlook Options -&gt; Other -&gt; Advanced "Do not allow Outlook object model scripts to run for public folders" is set to "Enabled".
@@ -317,6 +333,7 @@ Criteria: If the value PublicFolderScript is REG_DWORD = 0, this is not a findin
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71149</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security "Allow Active X One Off Forms" is set to "Enabled: Load only Outlook Controls".
@@ -336,6 +353,7 @@ Criteria: If the value AllowActiveXOneOffForms is REG_DWORD = 0, this is not a f
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71151</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security "Configure Add-In Trust Level" is set to "Enabled (Trust all loaded and installed COM addins)".
@@ -355,6 +373,7 @@ Criteria: If the value AddinTrust is REG_DWORD = 1, this is not a finding.</RawS
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71153</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security "Disable 'Remember password' for Internet e-mail accounts" is set to "Enabled".
@@ -374,6 +393,7 @@ Criteria: If the value EnableRememberPwd is REG_DWORD = 0, this is not a finding
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook</Key>
+      <LegacyId>V-71155</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security "Prevent users from customizing attachment security settings" is set to "Enabled".
@@ -393,6 +413,7 @@ Criteria: If the value DisallowAttachmentCustomization is REG_DWORD = 1, this is
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71157</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings "Outlook Security Mode" is set to "Enabled (Use Outlook Security Group Policy)".
@@ -412,6 +433,7 @@ Criteria: If the value AdminSecurityMode is REG_DWORD = 3, this is not a finding
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71159</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Attachment Security "Display Level 1 attachments" is set to "Disabled".
@@ -431,6 +453,7 @@ Criteria: If the value ShowLevel1Attach is REG_DWORD = 0, this is not a finding.
       <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71161</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Attachment Security "Remove file extensions blocked as Level 1" is set to "Disabled".
@@ -451,6 +474,7 @@ Criteria: If the registry key exists, this is a finding.</RawString>
       <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71163</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Attachment Security "Remove file extensions blocked as Level 2" is set to "Disabled".
@@ -471,6 +495,7 @@ Criteria: If the registry key exists, this is a finding.</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71165</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Custom Form Security "Allow scripts in one-off Outlook forms" is set to "Disabled".
@@ -490,6 +515,7 @@ Criteria: If the value EnableOneOffFormScripts is REG_DWORD = 0, this is not a f
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71167</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Custom Form Security "Set Outlook object model Custom Actions execution prompt" is set to "Enabled (Automatically Deny)".
@@ -509,6 +535,7 @@ Criteria: If the value PromptOOMCustomAction is REG_DWORD = 0, this is not a fin
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71169</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Programmatic Security "Configure Outlook object model prompt when sending mail" is set to "Enabled (Automatically Deny)".
@@ -529,6 +556,7 @@ Criteria: If the value PromptOOMSend is REG_DWORD = 0, this is not a finding.</R
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71171</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Programmatic Security "Configure Outlook object model prompt when accessing an address book" is set to "Enabled (Automatically Deny)".
@@ -549,6 +577,7 @@ Criteria: If the value PromptOOMAddressBookAccess is REG_DWORD = 0, this is not 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71173</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Programmatic Security "Configure Outlook object model prompt when reading address information" is set to "Enabled (Automatically Deny)".
@@ -569,6 +598,7 @@ Criteria: If the value PromptOOMAddressInformationAccess is REG_DWORD = 0, this 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71175</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Programmatic Security "Configure Outlook object model prompt when responding to meeting and task requests" is set to "Enabled (Automatically Deny)".
@@ -589,6 +619,7 @@ Criteria: If the value PromptOOMMeetingTaskRequestResponse is REG_DWORD = 0, thi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71177</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Programmatic Security "Configure Outlook object model prompt when executing Save As" is set to "Enabled (Automatically Deny)".
@@ -610,6 +641,7 @@ Criteria: If the value PromptOOMSaveAs is REG_DWORD = 0, this is not a finding.
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71179</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Programmatic Security "Configure Outlook object model prompt When accessing the Formula property of a UserProperty object" is set to "Enabled (Automatically Deny)".
@@ -629,6 +661,7 @@ Criteria: If the value PromptOOMFormulaAccess is REG_DWORD = 0, this is not a fi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\security</Key>
+      <LegacyId>V-71193</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Security Form Settings -&gt; Programmatic Security -&gt; Trusted Add-ins "Configure trusted add-ins" is set to "Disabled".
@@ -653,6 +686,7 @@ In some reported configurations, the value remains after disabling the setting b
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71195</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Cryptography "S/MIME interoperability with external clients" is set to "Enabled (Handle internally)".
@@ -672,6 +706,7 @@ Criteria: If the value ExternalSMime is REG_DWORD = 0, this is not a finding.</R
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71227</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Cryptography "Message Formats" is set to "Enabled (S\MIME)".
@@ -695,6 +730,7 @@ FIPS mode in Windows enforces 3DES, AES 256/192/128, SHA1, and SHA 512/384/256. 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71229</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Cryptography "Run in FIPS compliant mode" is set to "Enabled".
@@ -714,6 +750,7 @@ Criteria: If the value FIPSMode is REG_DWORD = 1, this is not a finding.</RawStr
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71231</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Cryptography "Send all signed messages as clear signed messages" is set to "Enabled".
@@ -733,6 +770,7 @@ Criteria: If the value ClearSign is REG_DWORD = 1, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71233</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Cryptography "S/MIME receipt requests behavior" is set to "Enabled (Never send S\MIME receipts)".
@@ -753,6 +791,7 @@ Criteria: If the value RespondToReceiptRequests is REG_DWORD = 2, this is not a 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71235</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Cryptography -&gt; Signature Status dialog box "Retrieving CRLs (Certificate Revocation Lists)" is set to "Enabled (When online always retrieve the CRL)".
@@ -772,6 +811,7 @@ Criteria: If the value UseCRLChasing is REG_DWORD = 1, this is not a finding.</R
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\mail</Key>
+      <LegacyId>V-71237</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2016 &gt;&gt; Security &gt;&gt; Automatic Picture Download Settings "Display pictures and external content in HTML e-mail" is set to "Enabled".
@@ -792,6 +832,7 @@ Criteria: If the value BlockExtContent is REG_DWORD = 1, this is not a finding.<
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\mail</Key>
+      <LegacyId>V-71239</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Automatic Picture Download Settings "Automatically download content for e-mail from people in Safe Senders and Safe Recipients Lists" is set to "Disabled".
@@ -811,6 +852,7 @@ Criteria: If the value UnblockSpecificSenders is REG_DWORD = 0, this is not a fi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\mail</Key>
+      <LegacyId>V-71241</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Automatic Picture Download Settings "Do not permit download of content from safe zones" is set to "Disabled".
@@ -830,6 +872,7 @@ Criteria: If the value UnblockSafeZone is REG_DWORD = 1, this is not a finding.<
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\mail</Key>
+      <LegacyId>V-71243</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Automatic Picture Download Settings "Block Trusted Zones" is set to "Enabled".
@@ -849,6 +892,7 @@ Criteria: If the value TrustedZone is REG_DWORD = 0, this is not a finding.</Raw
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\mail</Key>
+      <LegacyId>V-71245</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Automatic Picture Download Settings "Include Internet in Safe Zones for Automatic Picture Download" is set to "Disabled".
@@ -868,6 +912,7 @@ Criteria: If the value Internet is REG_DWORD = 0, this is not a finding.</RawStr
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\mail</Key>
+      <LegacyId>V-71247</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Automatic Picture Download Settings "Include Intranet in Safe Zones for Automatic Picture Download" is set to "Disabled".
@@ -887,6 +932,7 @@ Criteria: If the value Intranet is REG_DWORD = 0, this is not a finding.</RawStr
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71249</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Trust Center "Security setting for macros" is set to "Enabled (Warn for signed, disable unsigned)".
@@ -906,6 +952,7 @@ Criteria: If the value Level is REG_DWORD = 3, this is not a finding.</RawString
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\mail</Key>
+      <LegacyId>V-71251</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Trust Center "Allow hyperlinks in suspected phishing e-mail messages" is set to "Disabled".
@@ -925,6 +972,7 @@ Criteria: If the value JunkMailEnableLinks is REG_DWORD = 0, this is not a findi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\rpc</Key>
+      <LegacyId>V-71253</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Account Settings -&gt; Exchange "Enable RPC encryption" is set to "Enabled".
@@ -944,6 +992,7 @@ Criteria: If the value EnableRPCEncryption is REG_DWORD = 1, this is not a findi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71255</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Account Settings -&gt; Exchange "Authentication with Exchange Server" is set to "Enabled (Kerberos Password Authentication)".
@@ -963,6 +1012,7 @@ Criteria: If the value AuthenticationService is REG_DWORD = 16 (decimal) or 10 (
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\rss</Key>
+      <LegacyId>V-71259</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Account Settings -&gt; RSS Feeds "Download full text of articles as HTML attachments" is set to "Disabled".
@@ -982,6 +1032,7 @@ Criteria: If the value EnableFullTextHTML is REG_DWORD = 0, this is not a findin
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\webcal</Key>
+      <LegacyId>V-71261</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Account Settings -&gt; Internet Calendars "Automatically download attachments" is set to "Disabled".
@@ -1001,6 +1052,7 @@ Criteria: If the value EnableAttachments is REG_DWORD = 0, this is not a finding
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\webcal</Key>
+      <LegacyId>V-71263</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Account Settings -&gt; Internet Calendars "Do not include Internet Calendar integration in Outlook" is set to "Enabled".
@@ -1020,6 +1072,7 @@ Criteria: If the value Disable is REG_DWORD = 1, this is not a finding.</RawStri
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\meetings\profile</Key>
+      <LegacyId>V-71265</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Meeting Workspace "Disable user entries to server list" is set to "Enabled (Publish default, disallow others)".
@@ -1039,6 +1092,7 @@ Criteria: If the value ServerUI is REG_DWORD = 2, this is not a finding.</RawStr
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\options\rss</Key>
+      <LegacyId>V-71267</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Account Settings -&gt; RSS Feeds "Automatically download enclosures" is set to "Disabled".
@@ -1058,6 +1112,7 @@ Criteria: If the value EnableAttachments is REG_DWORD = 0, this is not a finding
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71271</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security "Prompt user to choose security settings if default settings fail" is set to "Disabled".
@@ -1077,6 +1132,7 @@ Criteria: If the value ForceDefaultProfile is REG_DWORD = 0, this is not a findi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71273</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Cryptography "Minimum encryption settings" is set to "Enabled: 168 bits".
@@ -1096,6 +1152,7 @@ Criteria: If the value MinEncKey is REG_DWORD = a8 (hex) or 168 (decimal), this 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71275</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Cryptography "Replies or forwards to signed/encrypted messages are signed/encrypted" is set to "Enabled".
@@ -1117,6 +1174,7 @@ Criteria: If the value NoCheckOnSessionSecurity is REG_DWORD = 1, this is not a 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
+      <LegacyId>V-71277</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Cryptography "Do not check e-mail address against address of certificates being used" is set to "Enabled".

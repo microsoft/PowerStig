@@ -85,6 +85,7 @@ class HardCodedRuleConvert
         {
             $newRule.set_OrganizationValueRequired($true)
         }
+        $newRule.SetLegacyId($XccdfRule)
         $newRule.set_Severity($XccdfRule.rule.severity)
         $newRule.set_Description($XccdfRule.rule.description)
         $newRule.set_RawString($XccdfRule.Rule.check.'check-content')
