@@ -2,18 +2,19 @@
 
 ## [Unreleased]
 
+## [4.7.0] - 2020-12-17
+
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 DC STIG - Ver 3, Rel 1: [#784](https://github.com/microsoft/PowerStig/issues/784)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 MS STIG - Ver 3, Rel 1: [#785](https://github.com/microsoft/PowerStig/issues/785)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 1: [#783](https://github.com/microsoft/PowerStig/issues/783)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 1: [#786](https://github.com/microsoft/PowerStig/issues/786)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 1: [#782](https://github.com/microsoft/PowerStig/issues/782)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2019 STIG - Ver 2, Rel 1  [#787](https://github.com/microsoft/PowerStig/issues/787)
-* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 DC STIG - Ver 3, Rel 1: [#784](https://github.com/microsoft/PowerStig/issues/784)
-* Update PowerSTIG to successfully parse/apply Google Chrome V1R19: [#709](https://github.com/microsoft/PowerStig/issues/709)
+* Update PowerSTIG to successfully parse/apply Google Chrome V2R1: [#709](https://github.com/microsoft/PowerStig/issues/709)
 * Update PowerSTIG to include LegacyId to assist in determining Legacy Vuln Ids with the new DISA standard: [#788](https://github.com/microsoft/PowerStig/issues/788)
 * Update PowerSTIG to include LegacyId query via Get-StigRule function: [#800](https://github.com/microsoft/PowerStig/issues/800)
 * Fixed: Update PowerSTIG to fix LegacyId logic: [#791](https://github.com/microsoft/PowerStig/issues/791)
-* Fixed: Update PowerSTIG to correctly parse Windows Server 2019 MS/DC - NTDS/LDAP Registry Rules: [#804](https://github.com/microsoft/PowerStig/issues/804)
+* Fixed: Update PowerSTIG to correctly parse Windows Server 2019 DC - LDAP SecurityOptionRule: [#804](https://github.com/microsoft/PowerStig/issues/804)
 
 ## [4.6.0] - 2020-12-01
 
