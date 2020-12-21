@@ -7,3 +7,5 @@ V-75153::Due to changes from Microsoft in the Server 2016/Server 2019 architectu
 V-75153::If there is a third-party antivirus product enforced on the system, the Windows Defender Antivirus must be uninstalled.::blank4
 V-75153::Procedure: Access Add Roles and Features Wizard >> Features::blank5
 V-75153::Criteria: If “Windows Defender Features (Installed) is selected, this is a finding.::blank6
+V-75241::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Signature Updates'; ValueName = 'ASSignatureDue'; ValueType = 'Dword'; ValueData = $null; OrganizationValueTestString = "{0} -ge '1' -and {0} -le '7'"}
+V-75243::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Signature Updates'; ValueName = 'AVSignatureDue'; ValueType = 'Dword'; ValueData = $null; OrganizationValueTestString = "{0} -ge '1' -and {0} -le '7'"}

@@ -141,11 +141,7 @@ function Get-HardCodedString
         'V-93149', # Windows Server 2019 - Legal Banner Dialog Box Title
         'V-205632', # Windows Server 2019 - Legal Banner Dialog Box Title
         'V-63681', # Windows 10 Client - Legal Banner Dialog Box Title
-        'V-220922', # Windows 10 Client - Legal Banner Dialog Box Title
-        'V-75241', # Windows Defender - ASSignatureDue
-        'V-213452', # Windows Defender - ASSignatureDue
-        'V-75243', # Windows Defender - AVSignatureDue
-        'V-213453' # Windows Defender - AVSignatureDue
+        'V-220922' # Windows 10 Client - Legal Banner Dialog Box Title
     )
 
     if ($stigIds -contains $stigId)
@@ -199,10 +195,6 @@ function Get-HardCodedString
         {
             $hardCodedString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"
             continue
-        }
-        {$PSItem -match 'V-75241|V-75243|V-213452|V-213453'}
-        {
-            $hardCodedString = "{0} -ge '1' -and {0} -le '7'"
         }
     }
 
