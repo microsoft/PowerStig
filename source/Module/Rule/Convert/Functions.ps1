@@ -126,10 +126,7 @@ function Get-HardCodedString
     )
 
     $stigIds = @(
-        'V-3472.b', # Windows Time Service - Configure NTP Client
-        'V-225361.b' # Windows Time Service - Configure NTP Client
-        'V-8322.b', # Time Synchronization
-        'V-226076.b', # Time Synchronization (2012 R2 DC)
+
         'V-26359', # Windows Server 2012R2 - Legal Banner Dialog Box Title
         'V-225466', # Windows Server 2012R2 (MS) - Legal Banner Dialog Box Title
         'V-226289', # Windows Server 2012R2 (DC) - Legal Banner Dialog Box Title
@@ -173,16 +170,6 @@ function Get-HardCodedString
 
     switch ($stigId)
     {
-        {$PSItem -match 'V-3472.b|V-225361.b'}
-        {
-            $hardCodedString = "'{0}' -notmatch 'time.windows.com'"
-            continue
-        }
-        {$PSItem -match 'V-8322.b|V-226076.b'}
-        {
-            $hardCodedString = "'{0}' -match '^(NoSync|NTP|NT5DS|AllSync)$'"
-            continue
-        }
         {$PSItem -match 'V-26359|V-73649|V-93149|V-63681|V-225466|V-226289|V-205632|V-220922|V-225037'}
         {
             $hardCodedString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"
