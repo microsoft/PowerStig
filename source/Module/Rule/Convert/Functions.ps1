@@ -61,7 +61,6 @@ function Test-ValueDataIsHardCoded
         'V-220922', # Windows Client - Legal Banner Dialog Box Title
         'V-73805', # Windows Server - Disable SMB1 'V-70639' is on the client
         'V-225259', # Windows Server - Disable SMB1 'V-70639' is on the client
-        'V-46477', # Internet Explorer - Publishers Certificate Revocation.
         'V-17761' # Outlook 2013 - OrgSetting Value
     )
 
@@ -111,11 +110,6 @@ function Get-HardCodedString
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] SMB1 : $true"
             return $script:smb1FeatureName
-        }
-        {$PSItem -match 'V-46477'}
-        {
-            Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] PublishersCertificateRevocation : $true"
-            return $script:publishersCertificateRevocation
         }
     }
 }
