@@ -130,9 +130,6 @@ function Get-HardCodedString
         'V-225361.b' # Windows Time Service - Configure NTP Client
         'V-8322.b', # Time Synchronization
         'V-226076.b', # Time Synchronization (2012 R2 DC)
-        'V-14235', # UAC - Admin Elevation Prompt
-        'V-225516', # UAC - Admin Elevation Prompt (2012 R2 MS)
-        'V-226339', # UAC - Admin Elevation Prompt (2012 R2 DC)
         'V-26359', # Windows Server 2012R2 - Legal Banner Dialog Box Title
         'V-225466', # Windows Server 2012R2 (MS) - Legal Banner Dialog Box Title
         'V-226289', # Windows Server 2012R2 (DC) - Legal Banner Dialog Box Title
@@ -184,11 +181,6 @@ function Get-HardCodedString
         {$PSItem -match 'V-8322.b|V-226076.b'}
         {
             $hardCodedString = "'{0}' -match '^(NoSync|NTP|NT5DS|AllSync)$'"
-            continue
-        }
-        {$PSItem -match 'V-14235|V-225516|V-226339'}
-        {
-            $hardCodedString = "'{0}' -le '4'"
             continue
         }
         {$PSItem -match 'V-26359|V-73649|V-93149|V-63681|V-225466|V-226289|V-205632|V-220922|V-225037'}
