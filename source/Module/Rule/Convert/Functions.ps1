@@ -41,7 +41,6 @@ function Test-ValueDataIsHardCoded
     )
 
     $stigIds = @(
-        'V-30935', # DotNet4 - Registry Setting
         'V-1089', # Windows Server 2012R2 - Legal Notice Display
         'V-225465', # Windows Server 2012R2 (MS) - Legal Notice Display
         'V-226288', # Windows Server 2012R2 (DC) - Legal Notice Display
@@ -108,12 +107,6 @@ function Get-HardCodedString
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalCaption : $true"
             return $script:legalNoticeCaption
         }
-        {$PSItem -match 'V-30935'}
-        {
-            Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] SupportedEncryptionTypes : $true"
-            return $script:supportedEncryptionTypes
-        }
-
         {$PSItem -match 'V-73805|V-225259'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] SMB1 : $true"
