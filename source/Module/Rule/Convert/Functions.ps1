@@ -61,7 +61,6 @@ function Test-ValueDataIsHardCoded
         'V-220922', # Windows Client - Legal Banner Dialog Box Title
         'V-73805', # Windows Server - Disable SMB1 'V-70639' is on the client
         'V-225259', # Windows Server - Disable SMB1 'V-70639' is on the client
-        'V-17761' # Outlook 2013 - OrgSetting Value
     )
 
     if ($stigIds -contains $stigId)
@@ -150,7 +149,6 @@ function Get-HardCodedString
         'V-205632', # Windows Server 2019 - Legal Banner Dialog Box Title
         'V-63681', # Windows 10 Client - Legal Banner Dialog Box Title
         'V-220922', # Windows 10 Client - Legal Banner Dialog Box Title
-        'V-17761', # Outlook 2013 - OrgSetting Value
         'V-75241', # Windows Defender - ASSignatureDue
         'V-213452', # Windows Defender - ASSignatureDue
         'V-75243', # Windows Defender - AVSignatureDue
@@ -207,11 +205,6 @@ function Get-HardCodedString
         {$PSItem -match 'V-26359|V-73649|V-93149|V-63681|V-225466|V-226289|V-205632|V-220922|V-225037'}
         {
             $hardCodedString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"
-            continue
-        }
-        {$PSItem -match 'V-17761'}
-        {
-            $hardCodedString = "'{0}' -ge '30' -and '{0}' -le '132'"
             continue
         }
         {$PSItem -match 'V-75241|V-75243|V-213452|V-213453'}
