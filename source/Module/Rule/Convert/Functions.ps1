@@ -58,9 +58,7 @@ function Test-ValueDataIsHardCoded
         'V-93149', # Windows Server 2019 - Legal Banner Dialog Box Title
         'V-205632', # Windows Server 2019 - Legal Banner Dialog Box Title
         'V-63681', # Windows Client - Legal Banner Dialog Box Title
-        'V-220922', # Windows Client - Legal Banner Dialog Box Title
-        'V-73805', # Windows Server - Disable SMB1 'V-70639' is on the client
-        'V-225259', # Windows Server - Disable SMB1 'V-70639' is on the client
+        'V-220922' # Windows Client - Legal Banner Dialog Box Title
     )
 
     if ($stigIds -contains $stigId)
@@ -104,11 +102,6 @@ function Get-HardCodedString
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalCaption : $true"
             return $script:legalNoticeCaption
-        }
-        {$PSItem -match 'V-73805|V-225259'}
-        {
-            Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] SMB1 : $true"
-            return $script:smb1FeatureName
         }
     }
 }
