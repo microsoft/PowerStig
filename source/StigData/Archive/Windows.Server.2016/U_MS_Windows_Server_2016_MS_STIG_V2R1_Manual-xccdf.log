@@ -7,3 +7,4 @@ V-224834::\Windows::C:\Windows
 V-224872::"Minimum password length,"::"Minimum password length"
 V-225078::- Administrators::- Administrators`r`nHyper-V
 V-225079::Passwords for application accounts with this user right must be protected as highly privileged accounts.::""
+V-225037::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'; ValueName = 'LegalNoticeCaption'; ValueType = 'String'; ValueData = $null; OrganizationValueTestString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"}
