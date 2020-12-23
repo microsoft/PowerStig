@@ -64,6 +64,10 @@ $global:SingleLineRegistryValueName += [ordered]@{
         Match  = 'Criteria: If the value '
         Select = '(?<=Criteria: If the value\s)([^\s]+)'
     }
+    Office9 = [ordered]@{ 
+        Match  = 'office\\16.0|HKCU\\keycue|Common\\COM Compatibility'
+        Select = '(?<=If the value for\s)\w+'
+    }
 }
 
 $global:SingleLineRegistryValueType += [ordered]@{
