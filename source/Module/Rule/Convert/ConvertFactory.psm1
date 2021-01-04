@@ -63,6 +63,7 @@ class SplitFactory
         {
             $splitMultipleRules = $instance.GetType().GetMethod('SplitMultipleRules')
             [string[]] $splitRules = $splitMultipleRules.Invoke($splitMultipleRules, $Rule.rule.Check.'check-content')
+            [int] $byte = 97
             foreach ($splitRule in $splitRules)
             {
                 <#
@@ -71,6 +72,8 @@ class SplitFactory
                 #>
                 $newRule = $Rule.Clone()
                 $newRule.rule.Check.'check-content' = $splitRule
+                $newRule.Id = "$($Rule.id).$([CHAR][BYTE]$byte)"
+                $byte ++
                 $ruleList += (New-Object -TypeName $TypeName -ArgumentList $newRule).AsRule()
             }
         }

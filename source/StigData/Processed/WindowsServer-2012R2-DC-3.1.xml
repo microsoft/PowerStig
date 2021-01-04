@@ -3884,7 +3884,7 @@ In AD, the lack of synchronized time could prevent clients from logging on or ac
       <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient</Key>
       <LegacyId>V-8322.b</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueTestString>'{0}' -match '^(NoSync|NTP|NT5DS|AllSync)$'</OrganizationValueTestString>
       <RawString>Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient\
 Type: REG_SZ
