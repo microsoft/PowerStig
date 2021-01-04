@@ -37,6 +37,9 @@ using module .\..\..\Rule.nxPackage\Convert\nxPackageRule.Convert.psm1
 using module .\..\..\Rule.nxService\Convert\nxServiceRule.Convert.psm1
 using module .\..\..\Rule.nxFileLine\Convert\nxFileLineRule.Convert.psm1
 using module .\..\..\Rule.nxFile\Convert\nxFileRule.Convert.psm1
+using module .\..\..\Rule.RootCertificate\Convert\RootCertificateRule.Convert.psm1
+
+# Header
 
 class SplitFactory
 {
@@ -300,6 +303,12 @@ class ConvertFactory
                     [VsphereVssSecurityRuleConvert]::new($Rule).AsRule()
                 )
             }
+            {[RootCertificateRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.AddRange(
+                    [SplitFactory]::XccdfRule($Rule, 'RootCertificateRuleConvert')
+                )
+            }
             {[nxPackageRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add(
@@ -324,6 +333,7 @@ class ConvertFactory
                     [nxFileRuleConvert]::new($Rule).AsRule()
                 )
             }
+
             <#
                 Some rules have a documentation requirement only for exceptions,
                 so the DocumentRule needs to be at the end of the switch as a

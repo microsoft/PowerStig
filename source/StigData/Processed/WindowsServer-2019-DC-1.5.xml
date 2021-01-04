@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2019_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2019_DC_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 17 Jun 2020" title="Windows Server 2019 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="8/26/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2019_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2019_DC_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 17 Jun 2020" title="Windows Server 2019 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="11/10/2020">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-93443" severity="medium" conversionstatus="pass" title="SRG-OS-000112-GPOS-00057" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This policy setting determines whether the Kerberos Key Distribution Center (KDC) validates every request for a session ticket against the user rights policy of the target computer. The policy is enabled by default, which is the most secure setting for validating that access to target resources is not circumvented.
@@ -1603,86 +1603,6 @@ See PKE documentation for other network domain suffixes.
 
 If the mappings are to certificates issued by a CA authorized by the Component's CIO, this is a CAT II finding.</RawString>
     </Rule>
-    <Rule id="V-93487" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
-
-Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>The certificates and thumbprints referenced below apply to unclassified systems; see PKE documentation for other networks.
-
-Open "Windows PowerShell" as an administrator.
-
-Execute the following command:
-
-Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*DoD*" | FL Subject, Thumbprint, NotAfter
-
-If the following certificate "Subject" and "Thumbprint" information is not displayed, this is a finding.
-
-If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
-
-Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: 8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561
-NotAfter: 12/5/2029
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: D73CA91102A2204A36459ED32213B467D7CE97FB
-NotAfter: 12/30/2029
-
-Subject: CN=DoD Root CA 4, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: B8269F25DBD937ECAFD4C35A9838571723F2D026
-NotAfter: 7/25/2032
-
-Subject: CN=DoD Root CA 5, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: 4ECB5CC3095670454DA1CBD410FC921F46B8564B
-NotAfter: 6/14/2041
-
-Alternately, use the Certificates MMC snap-in:
-
-Run "MMC".
-
-Select "File", "Add/Remove Snap-in".
-
-Select "Certificates" and click "Add".
-
-Select "Computer account" and click "Next".
-
-Select "Local computer: (the computer this console is running on)" and click "Finish".
-
-Click "OK".
-
-Expand "Certificates" and navigate to "Trusted Root Certification Authorities &gt;&gt; Certificates".
-
-For each of the DoD Root CA certificates noted below:
-
-Right-click on the certificate and select "Open".
-
-Select the "Details" Tab.
-
-Scroll to the bottom and select "Thumbprint".
-
-If the DoD Root CA certificates below are not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
-
-If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
-
-DoD Root CA 2
-Thumbprint: 8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561
-Valid to: Wednesday, December 5, 2029
-
-DoD Root CA 3
-Thumbprint: D73CA91102A2204A36459ED32213B467D7CE97FB
-Valid to: Sunday, December 30, 2029
-
-DoD Root CA 4
-Thumbprint: B8269F25DBD937ECAFD4C35A9838571723F2D026
-Valid to: Sunday, July 25, 2032
-
-DoD Root CA 5
-Thumbprint: 4ECB5CC3095670454DA1CBD410FC921F46B8564B
-Valid to: Friday, June 14, 2041</RawString>
-    </Rule>
     <Rule id="V-93513" severity="medium" conversionstatus="pass" title="SRG-OS-000396-GPOS-00176" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Directory data that is not appropriately encrypted is subject to compromise. Commercial-grade encryption does not provide adequate protection when the classification level of directory data in transit is higher than the level of the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2772,147 +2692,6 @@ DoD Public Key Enablement (PKE) Engineering Support maintains the InstallRoot ut
 
 http://iase.disa.mil/pki-pke/function_pages/tools.html</RawString>
     </Rule>
-    <Rule id="V-93489" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
-
-Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is applicable to unclassified systems. It is NA for others.
-
-Open "PowerShell" as an administrator.
-
-Execute the following command:
-
-Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
-
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding.
-
-If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
-
-Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=DoD Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: 22BBE981F0694D246CC1472ED2B021DC8540A22F
-NotAfter: 9/6/2019
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
-NotAfter: 2/17/2019
-
-Alternately, use the Certificates MMC snap-in:
-
-Run "MMC".
-
-Select "File", "Add/Remove Snap-in".
-
-Select "Certificates" and click "Add".
-
-Select "Computer account" and click "Next".
-
-Select "Local computer: (the computer this console is running on)" and click "Finish".
-
-Click "OK".
-
-Expand "Certificates" and navigate to "Untrusted Certificates &gt;&gt; Certificates".
-
-For each certificate with "DoD Root CA..." under "Issued To" and "DoD Interoperability Root CA..." under "Issued By":
-
-Right-click on the certificate and select "Open".
-
-Select the "Details" Tab.
-
-Scroll to the bottom and select "Thumbprint".
-
-If the certificates below are not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
-
-If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
-
-Issued To: DoD Root CA 2
-Issued By: DoD Interoperability Root CA 1
-Thumbprint: 22BBE981F0694D246CC1472ED2B021DC8540A22F
-Valid to: Friday, September 6, 2019
-
-Issued To: DoD Root CA 3
-Issued By: DoD Interoperability Root CA 2
-Thumbprint: FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
-Valid to: Sunday, September 23, 2018
-
-Issued To: DoD Root CA 3
-Issued By: DoD Interoperability Root CA 2
-Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
-Valid to: Sunday, February 17, 2019</RawString>
-    </Rule>
-    <Rule id="V-93491" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
-
-Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is applicable to unclassified systems. It is NA for others.
-
-Open "PowerShell" as an administrator.
-
-Execute the following command:
-
-Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
-
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding.
-
-If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
-
-Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
-NotAfter: 3/9/2019
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
-NotAfter: 9/27/2019
-
-Alternately, use the Certificates MMC snap-in:
-
-Run "MMC".
-
-Select "File", "Add/Remove Snap-in".
-
-Select "Certificates" and click "Add".
-
-Select "Computer account" and click "Next".
-
-Select "Local computer: (the computer this console is running on)" and click "Finish".
-
-Click "OK".
-
-Expand "Certificates" and navigate to "Untrusted Certificates &gt;&gt; Certificates".
-
-For each certificate with "US DoD CCEB Interoperability Root CA ..." under "Issued By":
-
-Right-click on the certificate and select "Open".
-
-Select the "Details" Tab.
-
-Scroll to the bottom and select "Thumbprint".
-
-If the certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
-
-If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
-
-Issued To: DoD Root CA 2
-Issued By: US DoD CCEB Interoperability Root CA 1
-Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
-Valid to: Saturday, March 9, 2019
-
-Issued To: DoD Root CA 3
-Issuer by: US DoD CCEB Interoperability Root CA 2
-Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
-Valid: Friday, September 27, 2019</RawString>
-    </Rule>
     <Rule id="V-93509" severity="low" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The failure to terminate inactive network connections increases the risk of a successful attack on the directory server. The longer an established session is in progress, the more time an attacker has to hijack the session, implement a means to passively intercept data, or compromise any protections on client access. For example, if an attacker gains control of a client computer, an existing (already authenticated) session with the directory server could allow access to the directory. The lack of confidentiality protection in LDAP-based sessions increases exposure to this vulnerability.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -3379,7 +3158,7 @@ Viewing in File Explorer:
 For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 Default permissions:
-\Program Files
+\Program Files 
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
@@ -6650,7 +6429,7 @@ By using this IS (which includes any device attached to this IS), you consent to
 
 -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
 
--Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants.  Such communications and work product are private and confidential.  See User Agreement for details.</ValueData>
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.</ValueData>
       <ValueName>LegalNoticeText</ValueName>
       <ValueType>String</ValueType>
     </Rule>
@@ -8828,6 +8607,125 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
+  <RootCertificateRule dscresourcemodule="CertificateDsc">
+    <Rule id="V-93487.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>DoD Root CA 2</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for DoD Root CA 2 certificate is present</OrganizationValueTestString>
+      <RawString>DoD Root CA 2,8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561</RawString>
+      <Thumbprint>8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561</Thumbprint>
+    </Rule>
+    <Rule id="V-93487.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>DoD Root CA 3</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for DoD Root CA 3 certificate is present</OrganizationValueTestString>
+      <RawString>DoD Root CA 3,D73CA91102A2204A36459ED32213B467D7CE97FB</RawString>
+      <Thumbprint>D73CA91102A2204A36459ED32213B467D7CE97FB</Thumbprint>
+    </Rule>
+    <Rule id="V-93487.c" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>DoD Root CA 4</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for DoD Root CA 4 certificate is present</OrganizationValueTestString>
+      <RawString>DoD Root CA 4,B8269F25DBD937ECAFD4C35A9838571723F2D026</RawString>
+      <Thumbprint>B8269F25DBD937ECAFD4C35A9838571723F2D026</Thumbprint>
+    </Rule>
+    <Rule id="V-93487.d" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>DoD Root CA 5</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for DoD Root CA 5 certificate is present</OrganizationValueTestString>
+      <RawString>DoD Root CA 5,4ECB5CC3095670454DA1CBD410FC921F46B8564B</RawString>
+      <Thumbprint>4ECB5CC3095670454DA1CBD410FC921F46B8564B</Thumbprint>
+    </Rule>
+    <Rule id="V-93489.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>DoD Interoperability Root CA 1</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for DoD Interoperability Root CA 1 certificate is present</OrganizationValueTestString>
+      <RawString>DoD Interoperability Root CA 1,22BBE981F0694D246CC1472ED2B021DC8540A22F</RawString>
+      <Thumbprint>22BBE981F0694D246CC1472ED2B021DC8540A22F</Thumbprint>
+    </Rule>
+    <Rule id="V-93489.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>DoD Interoperability Root CA 2</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for DoD Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
+      <RawString>DoD Interoperability Root CA 2,FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4</RawString>
+      <Thumbprint>FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4</Thumbprint>
+    </Rule>
+    <Rule id="V-93489.c" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>DoD Interoperability Root CA 2</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for DoD Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
+      <RawString>DoD Interoperability Root CA 2,FFAD03329B9E527A43EEC66A56F9CBB5393E6E13</RawString>
+      <Thumbprint>FFAD03329B9E527A43EEC66A56F9CBB5393E6E13</Thumbprint>
+    </Rule>
+    <Rule id="V-93491.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>US DoD CCEB Interoperability Root CA 1</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for US DoD CCEB Interoperability Root CA 1 certificate is present</OrganizationValueTestString>
+      <RawString>US DoD CCEB Interoperability Root CA 1,DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3</RawString>
+      <Thumbprint>DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3</Thumbprint>
+    </Rule>
+    <Rule id="V-93491.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>US DoD CCEB Interoperability Root CA 2</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for US DoD CCEB Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
+      <RawString>US DoD CCEB Interoperability Root CA 2,929BF3196896994C0A201DF4A5B71F603FEFBF2E</RawString>
+      <Thumbprint>929BF3196896994C0A201DF4A5B71F603FEFBF2E</Thumbprint>
+    </Rule>
+  </RootCertificateRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-93289" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="SecurityOption">
       <Description>&lt;VulnDiscussion&gt;Allowing anonymous SID/Name translation can provide sensitive information for accessing a system. Only authorized users must be able to perform such translations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>

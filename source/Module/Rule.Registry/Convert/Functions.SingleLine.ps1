@@ -53,6 +53,12 @@ function Get-SingleLineRegistryPath
     foreach ($item in $global:SingleLineRegistryPath.Values)
     {
         $value = Get-SLRegistryPath -CheckContent $CheckContent -Hashtable $item
+
+        if ($value  -match "HKEY_LOCAL_MACHINE.*Chrome\\")
+        {
+            $value  = $value.TrimEnd("\")
+        }
+
         if ([String]::IsNullOrEmpty($value) -eq $false)
         {
             return $value | where-object {[string]::IsNullOrEmpty($_) -eq $false}
@@ -259,9 +265,16 @@ function Get-RegistryValueTypeFromSLStig
     $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
 
     # McAfee STIG isn't written in a way that ValueType can be detected via CheckContent and/or FixText
-    if ($CheckContent -match 'Wow6432Node\\McAfee')
+    if ($CheckContent -match 'Wow6432Node\\McAfee|Google\\Chrome')
     {
-        $valueType = 'DWORD'
+        if ($valueName -match "1|URLBlacklist")
+        {
+            $valueType = 'REG_MULTI_SZ'
+        }
+        else
+        {
+            $valueType = 'DWORD'
+        }
     }
     else
     {
@@ -434,7 +447,7 @@ function Get-RegistryValueNameFromSLStig
 
     if ($valueName)
     {
-        $valueName = $valueName.Matches.Value -replace '[\u201C\u201D]|["���]', ''
+        $valueName = $valueName.Matches.Value -replace "[\u201C\u201D]|[`"���]|[']", $null
 
         if ($valueName.Count -gt 1)
         {

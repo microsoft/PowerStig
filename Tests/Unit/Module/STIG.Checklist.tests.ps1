@@ -62,3 +62,67 @@ Describe 'New-StigCheckList' {
     }
 }
 
+Describe 'ConvertTo-ManualCheckListHashTable' {
+    $xmlContentStringBuilder = [System.Text.StringBuilder]::new()
+    [void] $xmlContentStringBuilder.AppendLine('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>')
+    [void] $xmlContentStringBuilder.AppendLine('<stigManualChecklistData>')
+    [void] $xmlContentStringBuilder.AppendLine('<stigRuleData>')
+    [void] $xmlContentStringBuilder.AppendLine('<STIG>U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml</STIG>')
+    [void] $xmlContentStringBuilder.AppendLine('<ID>V-36440</ID>')
+    [void] $xmlContentStringBuilder.AppendLine('<Status>NotAFinding</Status>')
+    [void] $xmlContentStringBuilder.AppendLine('<Comments>Not Applicable</Comments>')
+    [void] $xmlContentStringBuilder.AppendLine('<Details>This machine is not part of a domain, so this rule does not apply.</Details>')
+    [void] $xmlContentStringBuilder.AppendLine('</stigRuleData>')
+    [void] $xmlContentStringBuilder.AppendLine('</stigManualChecklistData>')
+
+    Set-Content -Value $xmlContentStringBuilder.ToString() -Path (Join-Path -Path $TestDrive -ChildPath 'test.xml')
+
+    $xmlHashTableResult = @{
+        Comments = 'Not Applicable'
+        Status   = 'NotAFinding'
+        Details  = 'This machine is not part of a domain, so this rule does not apply.'
+        ID       = 'V-36440'
+        STIG     = 'U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml'
+    }
+
+    $psd1ContentStringBuilder = [System.Text.StringBuilder]::new()
+    [void] $psd1ContentStringBuilder.AppendLine('@{')
+    [void] $psd1ContentStringBuilder.AppendLine("`tVulID = `"V-36440`"")
+    [void] $psd1ContentStringBuilder.AppendLine("`tStatus = `"NotAFinding`"")
+    [void] $psd1ContentStringBuilder.AppendLine("`tComments = `"Not Applicable`"")
+    [void] $psd1ContentStringBuilder.AppendLine('}')
+
+    Set-Content -Value $psd1ContentStringBuilder.ToString() -Path (Join-Path -Path $TestDrive -ChildPath 'test.psd1')
+
+    $psd1HashTableResult = $xmlHashTableResult.Clone()
+    $psd1HashTableResult['Details'] = $psd1HashTableResult['Comments']
+
+
+    It 'Should convert xml content into a hashtable' {
+        $convertedXmlHashTable = ConvertTo-ManualCheckListHashTable -Path (Join-Path -Path $TestDrive -ChildPath 'test.xml') -XccdfPath 'C:\bogusXccdf.xml'
+        $convertedXmlHashTable.Keys.Count | Should -Be $xmlHashTableResult.Keys.Count
+        foreach ($key in $convertedXmlHashTable.Keys)
+        {
+            $convertedXmlHashTable[$key] | Should -Be $xmlHashTableResult[$key]
+        }
+    }
+
+    It 'Should convert specifically formatted psd1 content into a hashtable' {
+        Mock Get-StigXccdfFileName {return 'U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml'}
+        $convertedPsd1HashTable = ConvertTo-ManualCheckListHashTable -Path (Join-Path -Path $TestDrive -ChildPath 'test.psd1') -XccdfPath 'C:\bogusXccdf.xml'
+        $convertedPsd1HashTable.Keys.Count | Should -Be $psd1HashTableResult.Keys.Count
+        foreach ($key in $convertedPsd1HashTable.Keys)
+        {
+            $convertedPsd1HashTable[$key] | Should -Be $psd1HashTableResult[$key]
+        }
+    }
+}
+
+Describe 'Get-StigXccdfFileName' {
+    It 'Should return the correct Xccdf file name' {
+        Mock Get-Content {return '<DISASTIG filename="U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml" fullversion="1.8"></DISASTIG>'}
+        Mock Select-String {return [PSCustomObject]@{Path = 'C:\test\U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml'; Pattern = 'V-1111'}}
+        $getStigXccdfFileNameResult = Get-StigXccdfFileName -VulnId 'V-1111' -XccdfPath 'C:\test\U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml'
+        $getStigXccdfFileNameResult | Should -Be 'U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml'
+    }
+}

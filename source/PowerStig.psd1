@@ -47,7 +47,8 @@
         @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
         @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '2.0.0'},
         @{ModuleName = 'xDnsServer'; ModuleVersion = '1.16.0.0'},
-        @{ModuleName = 'xWebAdministration'; ModuleVersion = '3.2.0'}
+        @{ModuleName = 'xWebAdministration'; ModuleVersion = '3.2.0'},
+        @{ModuleName = 'CertificateDsc'; ModuleVersion = '5.0.0'},
         @{ModuleName = 'nx'; ModuleVersion = '1.0'}
     )
 
@@ -59,6 +60,7 @@
         'IisServer',
         'IisSite',
         'InternetExplorer',
+        'Chrome',
         'McAfee',
         'Office',
         'OracleJRE',
@@ -81,7 +83,9 @@
         'Get-StigRuleList',
         'Get-StigVersionNumber',
         'Get-PowerStigFilelist',
-        'Split-BenchmarkId'
+        'Split-BenchmarkId',
+        'Get-StigRule',
+        'Get-StigRuleExceptionString'
     )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.

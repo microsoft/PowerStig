@@ -63,6 +63,7 @@ DscTest:
   ExcludeTag:
     - "Common Tests - New Error-Level Script Analyzer Rules"
     - "Common Tests - Validate Localization"
+    - "Changelog"
   Tag:
   ExcludeSourceFile:
     - output
