@@ -175,11 +175,11 @@ function Get-HardCodedString
         'V-204515', # Redhat - Admin accounts
         'V-73163', # Redhat - Network Failure Action
         'V-204512', # Redhat - Network Failure Action
-        'V-75241', # Windows Defender - ASSignatureDue
-        'V-75243', # Windows Defender - AVSignatureDue
         'V-100679', # Ubuntu - Admin accounts
         'V-100681', # Ubuntu - Storage full auction (Audit)
-        'V-100885' # Ubuntu - Time Server information
+        'V-100885', # Ubuntu - Time Server information
+        'V-75241', # Windows Defender - ASSignatureDue
+        'V-75243', # Windows Defender - AVSignatureDue
         'V-213452', # Windows Defender - ASSignatureDue
         'V-75243', # Windows Defender - AVSignatureDue
         'V-213453' # Windows Defender - AVSignatureDue
