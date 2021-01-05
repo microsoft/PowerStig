@@ -27,7 +27,7 @@ data regularExpression
 
         registryValueName = ^\\s*?Value\\s*?Name\\s*?:
 
-        registryValueData = You are accessing[^"]+(?<=details.)|^\\s*?Value\\s*?:
+        registryValueData = ^\\s*?Value\\s*?:
         # Extracts multi string values
         MultiStringNamedPipe = (?m)(^)(System|Software)(.+)$
 

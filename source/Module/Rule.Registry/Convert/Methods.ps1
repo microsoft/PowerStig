@@ -387,25 +387,33 @@ function Get-RegistryValueDataFromWindowsStig
         $CheckContent
     )
 
-    $valueString = ( $checkContent | Select-String -Pattern $regularExpression.registryValueData )
-    <#
-        Get the second index of the list, which should be the data and remove spaces
-    #>
-    [string] $initialData = ( $valueString -replace $regularExpression.registryValueData )
-
-    if ( -not [string]::IsNullOrEmpty( $initialData ) )
+    if($This.ValueName -eq "LegalNoticeText")
     {
-        Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)]   Found : $true"
-
-        $return = $initialData.trim()
-
-        Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] Trimmed : $return"
+        $return = ($this.RawString | Select-String -Pattern 'You are accessing[^"]+(?<=details.)').Matches.Value
     }
     else
     {
-        Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)]   Found : $false"
-        # If the no data was found return, becasue there is nothing to further process.
-        return
+        $valueString = ($checkContent | Select-String -Pattern $regularExpression.registryValueData)
+
+        <#
+        Get the second index of the list, which should be the data and remove spaces
+        #>
+        [string] $initialData = ( $valueString -replace $regularExpression.registryValueData )
+
+        if ( -not [string]::IsNullOrEmpty( $initialData ) )
+        {
+            Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)]   Found : $true"
+
+            $return = $initialData.trim()
+
+            Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] Trimmed : $return"
+        }
+        else
+        {
+            Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)]   Found : $false"
+            # If the no data was found return, becasue there is nothing to further process.
+            return
+        }
     }
 
     $return
@@ -697,7 +705,8 @@ function Test-RegistryValueDataContainsRange
 
     # Is in a word boundary since it is a common pattern
     if ( $ValueDataString -match $regularExpression.registryValueRange -and
-         $ValueDataString -notmatch 'Disabled or' )
+         $ValueDataString -notmatch 'Disabled or' -and
+         $ValueDataString -notmatch 'You are accessing')
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
         return $true
