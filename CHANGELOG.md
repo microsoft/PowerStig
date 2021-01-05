@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to Add Checklist Accountability: [#808](https://github.com/microsoft/PowerStig/issues/808)
+
 ## [4.7.0] - 2020-12-17
 
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 DC STIG - Ver 3, Rel 1: [#784](https://github.com/microsoft/PowerStig/issues/784)

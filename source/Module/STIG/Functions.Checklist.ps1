@@ -397,7 +397,7 @@ function New-StigCheckList
                         if ($setting.InDesiredState -eq $true)
                         {
                             $status = $statusMap['NotAFinding']
-                            if($null -ne $Verifier)
+                            if ($PSBoundParameters.ContainsKey('Verifier'))
                             {
                                 $comments = "Addressed by PowerStig MOF via {0} and verified by {1}" -f $setting, $Verifier
                             }
