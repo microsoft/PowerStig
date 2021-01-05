@@ -166,7 +166,12 @@ function New-StigCheckList
         }
         )]
         [System.IO.FileInfo]
-        $OutputPath
+        $OutputPath,
+
+        [Parameter()]
+        [String]
+        $Verifier
+
     )
 
     if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))
@@ -392,7 +397,15 @@ function New-StigCheckList
                         if ($setting.InDesiredState -eq $true)
                         {
                             $status = $statusMap['NotAFinding']
-                            $comments = "Addressed by PowerStig MOF via $setting"
+                            if ($PSBoundParameters.ContainsKey('Verifier'))
+                            {
+                                $comments = "Addressed by PowerStig MOF via {0} and verified by {1}" -f $setting, $Verifier
+                            }
+                            else
+                            {
+                                $comments = "Addressed by PowerStig MOF via $setting"
+                            }
+
                             $findingDetails = Get-FindingDetails -Setting $setting
                         }
                         elseif ($setting.InDesiredState -eq $false)

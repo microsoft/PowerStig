@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 * Update PowerSTIG to remove old rule Ids in Hard Coded Framework: [#790](https://github.com/microsoft/PowerStig/issues/790)
+* Update PowerSTIG to Parse/Apply MS Office 365 ProPlus Ver 2, Rel 1: [#811](https://github.com/microsoft/PowerStig/issues/811)
+* Update PowerSTIG to Add Checklist Accountability: [#808](https://github.com/microsoft/PowerStig/issues/808)
 
 ## [4.7.0] - 2020-12-17
 
