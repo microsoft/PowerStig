@@ -387,7 +387,7 @@ function Get-RegistryValueDataFromWindowsStig
         $CheckContent
     )
 
-    if($This.ValueName -eq "LegalNoticeText")
+    if ($this.ValueName -eq "LegalNoticeText")
     {
         $return = ($this.RawString | Select-String -Pattern 'You are accessing[^"]+(?<=details.)').Matches.Value
     }
@@ -704,7 +704,7 @@ function Test-RegistryValueDataContainsRange
     )
 
     # Is in a word boundary since it is a common pattern
-    if ( $ValueDataString -match $regularExpression.registryValueRange -and
+    if ($ValueDataString -match $regularExpression.registryValueRange -and
          $ValueDataString -notmatch 'Disabled or' -and
          $ValueDataString -notmatch 'You are accessing')
     {
