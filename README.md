@@ -23,7 +23,7 @@ or comments.
 
 ## Released Module
 
-To see the released PowerStig module, go to the [PowerShell Gallery](https://www.powershellgallery.com/items?q=powerstig&x=19&y=15). We recommend that you use PowerShellGet to install PowerStig:
+To see the released PowerStig module, go to the [PowerShell Gallery](https://www.powershellgallery.com/packages/PowerSTIG). We recommend that you use PowerShellGet to install PowerStig:
 
 For example:
 
@@ -66,7 +66,7 @@ The PowerStig.Data classes provide methods to:
 1. Exclude a rule if it is already defined in another STIG (de-duplication) and automatically document the exception to policy
 1. Exclude an entire class of rules (intended for testing and integration) and automatically document the exception to policy
 
-For detailed information, please see the [StigData Wiki](https://github.com/Microsoft/PowerStig/wiki/Stig).  For STIG xml file hashes please refer to [File Hashes](https://github.com/Microsoft/PowerStig/blob/dev/FILEHASH.md).
+For detailed information, please see the [StigData Wiki](https://github.com/Microsoft/PowerStig/wiki/Stig). For STIG xml file hashes please refer to [File Hashes](https://github.com/Microsoft/PowerStig/blob/dev/FILEHASH.md).
 
 ## PowerStig.DSC
 
