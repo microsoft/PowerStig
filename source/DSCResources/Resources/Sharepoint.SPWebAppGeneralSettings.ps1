@@ -3,26 +3,29 @@
 
 $rules = Select-Rule -Type SPWebAppGeneralSettingsRule -RuleList $stig.RuleList
 
-$configStringBuilder = New-Object -TypeName System.Text.StringBuilder
-
-$resourceTitle = "[$($rules.id -join ' ')]"
-
-[void] $configStringBuilder.AppendLine("SPWebAppGeneralSettings '$resourceTitle'")
-[void] $configStringBuilder.AppendLine("{")
-[void] $configStringBuilder.AppendLine("WebAppUrl = '$WebAppUrl'")
-foreach ($rule in $rules)
+ForEach ($WebApp in $WebAppUrl)
 {
-    if ($rule.PropertyValue -eq 'true' -or $rule.PropertyValue -eq 'false')
-    {
-        $correctedString = "`$$($rule.PropertyValue)"
-        [void] $configStringBuilder.AppendLine("$($rule.PropertyName) = $correctedString")
-    }
-    else
-    {
-        [void] $configStringBuilder.AppendLine("$($rule.PropertyName) = '$($rule.PropertyValue)'")
-    }
-}
+    $configStringBuilder = New-Object -TypeName System.Text.StringBuilder
 
-[void] $configStringBuilder.AppendLine("PsDscRunAsCredential = `$SetupAccount")
-[void] $configStringBuilder.AppendLine("}")
-[scriptblock]::Create($configStringBuilder.ToString()).Invoke()
+    $resourceTitle = "[$($rules.id -join ' ')_$($WebApp)]"
+
+    [void] $configStringBuilder.AppendLine("SPWebAppGeneralSettings '$resourceTitle'")
+    [void] $configStringBuilder.AppendLine("{")
+    [void] $configStringBuilder.AppendLine("WebAppUrl = '$WebApp'")
+    foreach ($rule in $rules)
+    {
+        if ($rule.PropertyValue -eq 'true' -or $rule.PropertyValue -eq 'false')
+        {
+            $correctedString = "`$$($rule.PropertyValue)"
+            [void] $configStringBuilder.AppendLine("$($rule.PropertyName) = $correctedString")
+        }
+        else
+        {
+            [void] $configStringBuilder.AppendLine("$($rule.PropertyName) = '$($rule.PropertyValue)'")
+        }
+    }
+
+    [void] $configStringBuilder.AppendLine("PsDscRunAsCredential = `$SetupAccount")
+    [void] $configStringBuilder.AppendLine("}")
+    [scriptblock]::Create($configStringBuilder.ToString()).Invoke()
+}

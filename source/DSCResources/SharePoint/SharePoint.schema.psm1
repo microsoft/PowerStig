@@ -41,7 +41,7 @@ configuration SharePoint
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [string]
-        $WebAppUrl,
+        $WebAppUrl[],
 
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]

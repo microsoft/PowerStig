@@ -13,7 +13,7 @@ $resourceParameters = $resourceInformation.Properties.Name
 $password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'
 $setupAccount = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList 'Admin', $password
 
-$webAppUrl = 'https://sharePoint.contoso.com'
+$webAppUrl = 'https://sharePoint.contoso.com','http://partner.contoso.com'
 
 $additionalTestParameterList = @{
     ConfigurationData = @{
