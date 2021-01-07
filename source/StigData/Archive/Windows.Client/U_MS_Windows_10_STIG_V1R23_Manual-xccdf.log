@@ -13,3 +13,4 @@ V-100093::This requirement is not applicable to dedicated VTC suites located in 
 V-100093::Value Name: Deny::ValueName: Value
 V-63855::NT SERVICE\autotimesvc is added in v1909 cumulative update.::NT SERVICE\autotimesvc
 V-63681::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'; ValueName = 'LegalNoticeCaption'; ValueType = 'String'; ValueData = $null; OrganizationValueTestString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"}
+V-63675::confidential.  See User::confidential. See User
