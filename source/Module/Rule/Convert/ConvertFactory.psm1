@@ -58,7 +58,7 @@ class SplitFactory
         {
             throw "$TypeName does not have a static HasMultipleRules method"
         }
-
+Write-Warning "$($Rule.id)"
         if ($HasMultipleRules.Invoke($HasMultipleRules, $Rule.rule.Check.'check-content'))
         {
             $splitMultipleRules = $instance.GetType().GetMethod('SplitMultipleRules')
