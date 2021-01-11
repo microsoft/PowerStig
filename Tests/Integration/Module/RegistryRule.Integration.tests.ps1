@@ -146,20 +146,6 @@ try
             If the value "State" is "REG_DWORD = 23C00", this is not a finding.'
         },
         @{
-            Id                          = 'Rule7'
-            Hive                        = 'HKEY_CURRENT_USER'
-            Path                        = '\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen'
-            OrganizationValueRequired   = 'True'
-            OrganizationValueTestString = "'{0}' -ge '30' -and '{0}' -le '132'"
-            ValueData                   = $null
-            ValueName                   = 'PlainWrapLen'
-            ValueType                   = 'DWORD'
-            Ensure                      = 'Present'
-            DscResource                 = 'RegistryPolicyFile'
-            TechnologyRole              = 'Outlook'
-            CheckContent                = 'Criteria: If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = a value of between 30 and 132 (decimal)'
-        },
-        @{
             Id                          = 'Rule8'
             Hive                        = 'HKEY_LOCAL_MACHINE'
             Path                        = '\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default'

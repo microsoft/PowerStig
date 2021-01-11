@@ -376,56 +376,6 @@ class Rule : ICloneable
 
     <#
         .SYNOPSIS
-            Checks to see if the STIG is a hard coded return value
-        .DESCRIPTION
-            Accepts defeat in that the STIG string data for a select few checks
-            are too unwieldy to parse properly. The OVAL data does not provide
-            much more help in a few of the cases, so the STIG Id's for these
-            checks are hardcoded here to force a fixed value to be returned.
-    #>
-    hidden [bool] IsHardCoded ()
-    {
-        return Test-ValueDataIsHardCoded -StigId $this.id
-    }
-
-    <#
-        .SYNOPSIS
-            Returns a hard coded conversion value
-        .DESCRIPTION
-            Returns a hard coded conversion value
-    #>
-    hidden [string] GetHardCodedString ()
-    {
-        return Get-HardCodedString -StigId $this.id
-    }
-
-    <#
-        .SYNOPSIS
-            Checks to see if the STIG org value is a hard coded return value
-        .DESCRIPTION
-            Accepts defeat in that the STIG string data for a select few checks
-            are too unwieldy to parse properly. The OVAL data does not provide
-            much more help in a few of the cases, so the STIG Id's for these
-            checks are hardcoded here to force a fixed value to be returned.
-    #>
-    hidden [bool] IsHardCodedOrganizationValueTestString ()
-    {
-        return Test-IsHardCodedOrganizationValueTestString -StigId $this.id
-    }
-
-    <#
-        .SYNOPSIS
-            Returns a hard coded org value
-        .DESCRIPTION
-            Returns a hard coded org value
-    #>
-    hidden [string] GetHardCodedOrganizationValueTestString ()
-    {
-        return Get-HardCodedOrganizationValueTestString -StigId $this.id
-    }
-
-    <#
-        .SYNOPSIS
             Sets the LegacyId from the raw xccdf xml (DISA Changes October 2020)
         .DESCRIPTION
             Sets the LegacyId from the raw xccdf xml (DISA Changes October 2020)
