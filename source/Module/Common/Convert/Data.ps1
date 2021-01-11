@@ -40,5 +40,18 @@ data exclusionRuleList
         V-94533 = 'Vsphere: To Be added in a future release'
         V-102627 = 'No automation available based on STIG Guidance, Fix text recommends setting up Windows Hello for non-domain systems'
         V-220946 = 'No automation available based on STIG Guidance, Fix text recommends setting up Windows Hello for non-domain systems'
+        V-223296 = 'Office: Unknown user data required'
+        V-223297 = 'Office: Unknown user data required'
+        V-223298 = 'Office: Unknown user data required'
+        V-223299 = 'Office: Unknown user data required'
+        V-223300 = 'Office: Unknown user data required'
+        V-223301 = 'Office: Unknown user data required'
+        V-223302 = 'Office: Unknown user data required'
+        V-223303 = 'Office: Unknown user data required'
+        V-223304 = 'Office: Unknown user data required'
+        V-223305 = 'Office: Unknown user data required'
+        V-223306 = 'Office: Unknown user data required'
+        V-223307 = 'Office: Unknown user data required'
+        V-223308 = 'Office: Unknown user data required'
 '@
 }
