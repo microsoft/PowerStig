@@ -60,14 +60,7 @@ class nxFileRuleConvert : nxFileRule
     #>
     [void] SetContents ([string[]] $CheckContent)
     {
-        if ($this.IsHardCoded())
-        {
-            $contents = $this.GetHardCodedString()
-        }
-        else
-        {
-            $contents = Get-nxFileContents -CheckContent $CheckContent
-        }
+        $contents = Get-nxFileContents -CheckContent $CheckContent
 
         if (-not $this.SetStatus($contents))
         {

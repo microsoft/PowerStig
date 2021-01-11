@@ -44,13 +44,7 @@ class nxFileLineRuleConvert : nxFileLineRule
         $this.SetFilePath($rawString)
         $this.SetContainsLine($rawString)
         $this.SetDoesNotContainPattern()
-        if ($this.IsHardCodedOrganizationValueTestString())
-        {
-            $OrganizationValueTestString = $this.GetHardCodedOrganizationValueTestString()
-            $this.set_OrganizationValueTestString($OrganizationValueTestString)
-            $this.SetOrganizationValueRequired()
-        }
-        elseif ($this.TestStringForRange($rawString))
+        if ($this.TestStringForRange($rawString))
         {
             $this.SetOrganizationValueTestString($rawString)
             $this.SetOrganizationValueRequired()
@@ -83,15 +77,7 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     [void] SetContainsLine ([string[]] $CheckContent)
     {
-        if ($this.IsHardCoded())
-        {
-            $containsLine = $this.GetHardCodedString()
-        }
-        else
-        {
-            $containsLine = Get-nxFileLineContainsLine -CheckContent $CheckContent
-        }
-
+        $containsLine = Get-nxFileLineContainsLine -CheckContent $CheckContent
         if (-not $this.SetStatus($containsLine))
         {
             $this.set_ContainsLine($containsLine)
@@ -108,7 +94,6 @@ class nxFileLineRuleConvert : nxFileLineRule
     [void] SetFilePath ([string] $CheckContent)
     {
         $filePath = Get-nxFileLineFilePath -CheckContent $CheckContent
-
         if (-not $this.SetStatus($filePath))
         {
             $this.set_FilePath($filePath)
@@ -126,7 +111,6 @@ class nxFileLineRuleConvert : nxFileLineRule
     [void] SetDoesNotContainPattern ()
     {
         $doesNotContainPattern = Get-nxFileLineDoesNotContainPattern
-
         if (-not $this.SetStatus($doesNotContainPattern))
         {
             $this.set_DoesNotContainPattern($doesNotContainPattern)

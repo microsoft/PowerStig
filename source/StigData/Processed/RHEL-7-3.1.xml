@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="11/24/2020">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="1/11/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -3709,7 +3709,7 @@ Satisfies: SRG-OS-000342-GPOS-00133, SRG-OS-000479-GPOS-00224&lt;/VulnDiscussion
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72083</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the IP address of the log aggregation server is defined i.e.: remote_server = &lt;IP Address&gt;.</OrganizationValueTestString>
+      <OrganizationValueTestString>the IP address of the log aggregation server is defined; i.e.: remote_server = &lt;IPAddress&gt; </OrganizationValueTestString>
       <RawString>Verify the operating system off-loads audit records onto a different system or media from the system being audited.
 
 To determine the remote server that the records are being sent to, use the following command:
@@ -3758,7 +3758,7 @@ One method of off-loading audit logs in Red Hat Enterprise Linux is with the use
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72087</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the value of the "disk_full_action" option is set to "SYSLOG", "SINGLE", or "HALT".</OrganizationValueTestString>
+      <OrganizationValueTestString>the value of the "disk_full_action" option is set to "SYSLOG", "SINGLE", or "HALT"; i.e.: "disk_full_action = single" </OrganizationValueTestString>
       <RawString>Verify the action the operating system takes if the disk the audit records are written to becomes full.
 
 To determine the action that takes place if the disk is full on the remote server, use the following command:
@@ -3782,7 +3782,7 @@ One method of off-loading audit logs in Red Hat Enterprise Linux is with the use
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73163</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the "network_failure_action" option is set to "SYSLOG", "SINGLE", or "HALT".</OrganizationValueTestString>
+      <OrganizationValueTestString>the "network_failure_action" option is set to "SYSLOG", "SINGLE", or "HALT"; i.e.: "network_failure_action = syslog" </OrganizationValueTestString>
       <RawString>Verify the action the operating system takes if there is an error sending audit records to a remote system.
 
 Check the action that takes place if there is an error sending audit records to a remote system with the following command:
@@ -3860,7 +3860,7 @@ If the value of the "space_left_action" keyword is not set to "email", this is a
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72093</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the value of the "action_mail_acct" keyword is set to "root" and/or other accounts for security personnel.</OrganizationValueTestString>
+      <OrganizationValueTestString>the value of the "action_mail_acct" keyword is set to "root" and/or other accounts for security personnel; i.e.: "action_mail_acct = root" </OrganizationValueTestString>
       <RawString>Verify the operating system immediately notifies the SA and ISSO (at a minimum) via email when the threshold for the repository maximum audit record storage capacity is reached.
 
 Check what account the operating system emails when the threshold for the repository maximum audit record storage capacity is reached with the following command:
@@ -6791,7 +6791,7 @@ By using this IS (which includes any device attached to this IS), you consent to
 
 -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
 
--Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants.  Such communications and work product are private and confidential.  See User Agreement for details.</Contents>
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.</Contents>
       <Description>&lt;VulnDiscussion&gt;Display of a standardized and approved use notification before granting access to the operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.
 
 System use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.

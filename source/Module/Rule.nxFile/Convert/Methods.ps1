@@ -89,6 +89,10 @@ function Get-nxFileContents
                 }
             }
         }
+        elseif ($rawString -match 'You are accessing[^"]+(?<=details.)')
+        {
+            $results = $matches.Values
+        }
 
         return $results
     }
