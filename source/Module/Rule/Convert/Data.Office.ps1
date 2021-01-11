@@ -13,11 +13,6 @@ $global:SingleLineRegistryPath += [ordered]@{
         Match  = 'outlook\\security'
         Select = '((HKLM|HKCU).*\\security)'
     }
-    # Added for Outlook Stig V-17761.b
-    Office2 = [ordered]@{ 
-        Match  = 'value for hkcu.*Message\sPlain\sFormat\sMime'
-        Select = '(HKCU).*(?<=me)'
-    }
     # Added for Excel Stig V-71029
     Office3 = [ordered]@{ 
         Match  = '\\security\\filevalidation\\'
@@ -30,20 +25,10 @@ $global:SingleLineRegistryValueName += [ordered]@{
         Match  = 'If the REG_DWORD'
         Select = '((?<=for\s")(.*)(?<="))'
     }
-    # Added for Outlook Stig V-17761.b
-    Office2 = @{ 
-        Match  = 'Message Plain Format Mime'
-        Select = '((?<=il\\)(.*)(?<=e\s))'
-    }
     # Added for Outlook Stig V-17575
     Office3 = @{ 
         Match  = 'Configure trusted add-ins'
         Select = '(?<=ty\\).*(?=\sIn)'
-    }
-    # Added for Outlook Stig V-17761.a
-    Office4 = @{ 
-        Match  = 'a value of between'
-        Select = '((?<=gs\\)(.*)(?<=Len))'
     }
     # Added for Outlook Stig V-17774 and V-17775
     Office5 = @{ 
@@ -64,6 +49,10 @@ $global:SingleLineRegistryValueName += [ordered]@{
         Match  = 'Criteria: If the value '
         Select = '(?<=Criteria: If the value\s)([^\s]+)'
     }
+    Office9 = [ordered]@{ 
+        Match  = 'office\\16.0|HKCU\\keycue|Common\\COM Compatibility'
+        Select = '(?<=If the value for\s)\w+'
+    }
 }
 
 $global:SingleLineRegistryValueType += [ordered]@{
@@ -81,10 +70,5 @@ $global:SingleLineRegistryValueData += [ordered]@{
     Office1 = @{ 
         Match  = 'If the value PublishCalendarDetailsPolicy'
         Select = '((?<=is\s)(.*)(?=\sor))'
-    }
-    # Added for Outlook Stig V-17761.a
-    Office2 = @{ 
-        Match  = 'a value of between'
-        Select = '(?<=between\s)(.*)(?<=\s)'
     }
 }

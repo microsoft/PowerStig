@@ -52,12 +52,16 @@ Describe 'New-StigCheckList' {
         {New-StigCheckList -DscResult 'foo' -MofFile 'bar' -OutputPath 'C:\Test'} | Should -Throw
     }
 
+    It 'Should throw if a input for Verifier is not string' {
+        {New-StigCheckList -MofFile 'test' -XccdfPath 'test' -OutputPath 'c:\test\test.ckl' -Verifier 1234} | Should -Throw
+    }
+
     It 'Generate a checklist given correct parameters' {
 
         {
             $outputPath = Join-Path $Testdrive -ChildPath Checklist.ckl
             $xccdfPath = ((Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object -Property Name -Match "Server_2019_MS")[1]).FullName
-            New-StigChecklist -ReferenceConfiguration $mofTest -XccdfPath $xccdfPath -OutputPath $outputPath
+            New-StigChecklist -ReferenceConfiguration $mofTest -XccdfPath $xccdfPath -OutputPath $outputPath -Verifier "PowerSTIG User 12/17/2020"
         } | Should -Not -Throw
     }
 }
