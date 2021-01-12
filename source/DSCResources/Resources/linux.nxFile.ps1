@@ -5,9 +5,9 @@ $rules = Select-Rule -Type nxFileRule -RuleList $stig.RuleList
 
 foreach ($rule in $rules)
 {
-    nxFileLine (Get-ResourceTitle -Rule $rule)
+    nxFile (Get-ResourceTitle -Rule $rule)
     {
-        FilePath = $rule.FilePath
-        Contents = $rule.Contents
+        DestinationPath = $rule.FilePath
+        Contents        = $rule.Contents
     }
 }
