@@ -5,10 +5,26 @@ $rules = Select-Rule -Type nxServiceRule -RuleList $stig.RuleList
 
 foreach ($rule in $rules)
 {
-    nxService (Get-ResourceTitle -Rule $rule)
+    $ruleEnabled = $null
+    [void][bool]::TryParse($rule.Enabled, [ref] $ruleEnabled)
+
+    if ([string]::IsNullOrEmpty($rule.State))
     {
-        Name       = $rule.Name
-        Enabled    = $rule.Enabled
-        Controller = 'systemd'
+        nxService (Get-ResourceTitle -Rule $rule)
+        {
+            Name       = $rule.Name
+            Enabled    = $ruleEnabled
+            Controller = 'systemd'
+        }
+    }
+    else
+    {
+        nxService (Get-ResourceTitle -Rule $rule)
+        {
+            Name       = $rule.Name
+            Enabled    = $ruleEnabled
+            State      = $rule.State
+            Controller = 'systemd'
+        }
     }
 }

@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="1/12/2021">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="1/13/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -3531,6 +3531,32 @@ Check to see if the system is configured to create home directories for local in
 CREATE_HOME yes
 
 If the value for "CREATE_HOME" parameter is not set to "yes", the line is missing, or the line is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204496" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;The use of separate file systems for different paths can protect the system from failures resulting from a file system becoming full or failing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/fstab</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72065</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the "/tmp" directory is defined in the fstab with a device and mount point. </OrganizationValueTestString>
+      <RawString>Verify that a separate file system/partition has been created for "/tmp".
+
+Check that a file system/partition has been created for "/tmp" with the following command:
+
+# systemctl is-enabled tmp.mount
+enabled
+
+If the "tmp.mount" service is not enabled, check to see if "/tmp" is defined in the fstab with a device and mount point:
+
+# grep -i /tmp /etc/fstab
+UUID=a411dc99-f2a1-4c87-9e05-184977be8539 /tmp   ext4   rw,relatime,discard,data=ordered,nosuid,noexec, 0 0
+
+If "tmp.mount" service is not enabled or the "/tmp" directory is not defined in the fstab with a device and mount point, this is a finding. </RawString>
     </Rule>
     <Rule id="V-204506.a" severity="medium" conversionstatus="pass" title="SRG-OS-000342-GPOS-00133" dscresource="nxFileLine">
       <ContainsLine>active = yes</ContainsLine>
@@ -7164,7 +7190,7 @@ If the "autofs" status is set to "active" and is not documented with the Informa
       <Enabled>False</Enabled>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72057</LegacyId>
-      <Name>kdump.service</Name>
+      <Name>kdump</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify that kernel core dumps are disabled unless needed.
@@ -7181,31 +7207,7 @@ kernel arming.
 If the "kdump" service is active, ask the System Administrator if the use of the service is required and documented with the Information System Security Officer (ISSO).
 
 If the service is active and is not documented, this is a finding.</RawString>
-      <State>Stopped</State>
-    </Rule>
-    <Rule id="V-204496" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxService">
-      <Description>&lt;VulnDiscussion&gt;The use of separate file systems for different paths can protect the system from failures resulting from a file system becoming full or failing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Enabled>True</Enabled>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72065</LegacyId>
-      <Name>tmp.mount</Name>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that a separate file system/partition has been created for "/tmp".
-
-Check that a file system/partition has been created for "/tmp" with the following command:
-
-# systemctl is-enabled tmp.mount
-enabled
-
-If the "tmp.mount" service is not enabled, check to see if "/tmp" is defined in the fstab with a device and mount point:
-
-# grep -i /tmp /etc/fstab
-UUID=a411dc99-f2a1-4c87-9e05-184977be8539 /tmp   ext4   rw,relatime,discard,data=ordered,nosuid,noexec, 0 0
-
-If "tmp.mount" service is not enabled or the "/tmp" directory is not defined in the fstab with a device and mount point, this is a finding. </RawString>
-      <State>Running</State>
+      <State />
     </Rule>
     <Rule id="V-204503" severity="medium" conversionstatus="pass" title="SRG-OS-000038-GPOS-00016" dscresource="nxService">
       <Description>&lt;VulnDiscussion&gt;Without establishing what type of events occurred, it would be difficult to establish, correlate, and investigate the events leading up to an outage or attack.
@@ -7219,7 +7221,7 @@ Satisfies: SRG-OS-000038-GPOS-00016, SRG-OS-000039-GPOS-00017, SRG-OS-000042-GPO
       <Enabled>True</Enabled>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72079</LegacyId>
-      <Name>auditd.service</Name>
+      <Name>auditd</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the operating system produces audit records containing information to establish when (date and time) the events occurred.
@@ -7244,7 +7246,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000423-GPOS-00188, SRG-OS-000423-GPO
       <Enabled>True</Enabled>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72235</LegacyId>
-      <Name>sshd.service</Name>
+      <Name>sshd</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify SSH is loaded and active with the following command:

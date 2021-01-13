@@ -24,6 +24,8 @@
   <OrganizationalSetting id="V-204423" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding." -->
   <OrganizationalSetting id="V-204431" ContainsLine="" DoesNotContainPattern="" />
+  <!-- Ensure the "/tmp" directory is defined in the fstab with a device and mount point. -->
+  <OrganizationalSetting id="V-204496" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the IP address of the log aggregation server is defined; i.e.: remote_server = <IPAddress> -->
   <OrganizationalSetting id="V-204509" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the value of the "disk_full_action" option is set to "SYSLOG", "SINGLE", or "HALT"; i.e.: "disk_full_action = single" -->

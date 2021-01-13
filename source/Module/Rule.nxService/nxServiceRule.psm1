@@ -17,7 +17,7 @@ class nxServiceRule : Rule
 {
     [string] $Name
     [string] $State
-    [bool] $Enabled <#(ExceptionValue)#>
+    [string] $Enabled <#(ExceptionValue)#>
 
     <#
         .SYNOPSIS

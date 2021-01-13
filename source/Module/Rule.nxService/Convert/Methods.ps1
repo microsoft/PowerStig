@@ -23,7 +23,8 @@ function Get-nxServiceName
     try
     {
         $null = $FixText -match $regularExpression.nxServiceName
-        $nxServiceName = $Matches['serviceName']
+        # Due to, what appears to be, a bug in nxService, removing ".service" from the service name
+        $nxServiceName = $Matches['serviceName'] -replace '.service', $null
         return $nxServiceName
     }
     catch
