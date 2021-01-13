@@ -71,7 +71,6 @@
         'WindowsFirewall',
         'WindowsServer',
         'Vsphere',
-        'Ubuntu',
         'RHEL'
     )
 

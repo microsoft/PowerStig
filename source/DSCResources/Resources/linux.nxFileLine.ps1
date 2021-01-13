@@ -49,8 +49,8 @@ foreach ($rule in $rules)
     {
         nxFileLine (Get-ResourceTitle -Rule $rule)
         {
-            FilePath              = $rule.FilePath
-            ContainsLine          = $rule.ContainsLine
+            FilePath     = $rule.FilePath
+            ContainsLine = $rule.ContainsLine
         }
     }
 }
