@@ -66,7 +66,7 @@ configuration RHEL
 
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('RHEL', $OsVersion, $StigVersion)
-    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
+    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName nx -ModuleVersion 1.0

@@ -97,5 +97,10 @@ data exclusionRuleList
         V-204611 = 'RHEL: At present, unable to automate rule'
         V-204456 = 'RHEL: At present, unable to automate rule'
         V-228564 = 'RHEL: At present, unable to automate rule'
+        V-219151 = 'Ubuntu: At present, unable to automate rule'
+        V-219155 = 'Ubuntu: At present, unable to automate rule'
+        V-219211 = 'Ubuntu: At present, unable to automate rule'
+        V-219331 = 'Ubuntu: At present, unable to automate rule'
+        V-219341 = 'Ubuntu: At present, unable to automate rule'
 '@
 }

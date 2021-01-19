@@ -26,7 +26,8 @@ function Get-nxFileLineContainsLine
         if
         (
             $rawString -match $regularExpression.nxFileLineContainsLine -or
-            $rawString -match $regularExpression.nxFileLineContainsLineYumConf
+            $rawString -match $regularExpression.nxFileLineContainsLineYumConf -or
+            $rawString -match $regularExpression.nxFileLineContainsLineAuditUbuntu
         )
         {
             $matchResults = $Matches['setting'] -split "`n"
@@ -73,15 +74,18 @@ function Get-nxFileLineFilePath
 
     try
     {
-        $nxFileLineFilePathAggregate = '{0}|{1}|{2}|{3}' -f
+        $nxFileLineFilePathAggregate = '{0}|{1}|{2}|{3}|{4}' -f
             $regularExpression.nxFileLineFilePathAudit,
+            $regularExpression.nxFileLineFilePathAuditUbuntu,
             $regularExpression.nxFileLineFilePathTftp,
             $regularExpression.nxFileLineFilePathRescue,
             $regularExpression.nxFileLineFilePath
         $null = $CheckContent -match $nxFileLineFilePathAggregate
         switch ($Matches.Keys)
         {
-            'auditPath'
+            {
+                $PSItem -eq 'auditPath' -or $PSItem -eq 'auditPathUbuntu'
+            }
             {
                 return '/etc/audit/rules.d/audit.rules'
             }
@@ -227,8 +231,9 @@ function Split-nxFileLineMultipleEntries
 
     $splitCheckContent = @()
 
-    # Split CheckContent based on File Path:
-    [array] $splitFilePathLineNumber = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFilePath).LineNumber
+    # Split CheckContent based on File Path or 'sudo auditctl...':
+    $splitFilePathPatternAggregate = '{0}|{1}' -f $regularExpression.nxFileLineFilePath, $regularExpression.nxFileLineFilePathAuditUbuntu
+    [array] $splitFilePathLineNumber = ($CheckContent | Select-String -Pattern $splitFilePathPatternAggregate).LineNumber
 
     # Header for the rule should start at 0 through the first detected file path subtract 2 since Select-String LineNumber is not 0 based
     $headerLineRange = 0..($splitFilePathLineNumber[0] - 2)

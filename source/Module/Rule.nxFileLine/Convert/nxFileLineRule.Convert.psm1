@@ -169,9 +169,12 @@ class nxFileLineRuleConvert : nxFileLineRule
         if
         (
             # CheckContent match for Ubuntu STIG
-            $CheckContent -Match 'If\s+.*".*".*commented out.*this is a finding|If\s+.*"\w*".*is missing from.*file.*this is a finding' -or
             (
-                # CheckContent match for RHEL STIG
+                $CheckContent -Match 'If\s+.*".*".*commented out.*this is a finding|If\s+.*"\w*".*is missing from.*file.*this is a finding' -or
+                $CheckContent -Match '\s*sudo\s*aud(i)*tctl\s*-l\s*\|'
+            ) -or
+            # CheckContent match for RHEL STIG
+            (
                 $CheckContent -Match '#\s+(?:cat|grep|more).*/.*/.*(?:grep|).*' -and
                 (
                     $CheckContent -Match 'If\s+.*(?:"\w*"|"\w*\s*\w"|the\s+line\s+is\s+commented\s+out).*,\s+this\s+is\s+a\s+finding' -or
