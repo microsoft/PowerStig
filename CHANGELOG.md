@@ -6,6 +6,7 @@
 * Update PowerSTIG to Parse/Apply MS Office 365 ProPlus Ver 2, Rel 1: [#811](https://github.com/microsoft/PowerStig/issues/811)
 * Update PowerSTIG to Add Checklist Accountability: [#808](https://github.com/microsoft/PowerStig/issues/808)
 * Update PowerSTIG to move O365 Pro Plus log entries into Exclusion Rule list: [#815](https://github.com/microsoft/PowerStig/issues/815)
+* Update PowerSTIG to use WindowsDefenderDsc 2.1.0: [#822](https://github.com/microsoft/PowerStig/issues/822)
 
 ## [4.7.0] - 2020-12-17
 
