@@ -61,7 +61,12 @@ configuration RHEL
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string[]]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
+        [string[]]
+        $SkipRuleSeverity
     )
 
     ##### BEGIN DO NOT MODIFY #####
