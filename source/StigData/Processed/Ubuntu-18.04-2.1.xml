@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="1/19/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="1/21/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-219150" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information at rest refers to the state of information when it is located on a secondary storage device (e.g., disk drive and tape drive, when used for backups) within an operating system.
@@ -397,43 +397,6 @@ linux /vmlinuz-4.15.0-55-generic root=/dev/mapper/ubuntu--vg-root ro quiet splas
 linux /vmlinuz-4.15.0-55-generic root=/dev/mapper/ubuntu--vg-root ro recovery nomodeset audit=1
 
 If any linux lines do not contain "audit=1", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-219152" severity="low" conversionstatus="pass" title="SRG-OS-000343-GPOS-00134" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If security personnel are not notified immediately when storage volume reaches 75% utilization, they are unable to plan for audit record storage capacity expansion.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100529</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system notifies the System Administrator (SA) and Information System Security Officer (ISSO) (at a minimum) when allocated audit record storage volume reaches 75% of the repository maximum audit record storage capacity.
-
-Check that the Ubuntu operating system notifies the SA and ISSO (at a minimum) when allocated audit record storage volume reaches 75% of the repository maximum audit record storage capacity with the following command:
-
-# sudo grep ^space_left_action /etc/audit/auditd.conf
-
-space_left_action email
-
-# sudo grep ^space_left /etc/audit/auditd.conf
-
-space_left 250000
-
-If the "space_left" parameter is missing, set to blanks or set to a value less than 25% of the space free in the allocated audit record storage, this is a finding.
-
-If the "space_left_action" parameter is missing or set to blanks, this is a finding.
-
-If the "space_left_action" is set to "syslog", the system logs the event, but does not generate a notification, so this is a finding.
-
-If the "space_left_action" is set to "exec", the system executes a designated script. If this script informs the SA of the event, this is not a finding.
-
-If the "space_left_action" is set to "email" check the value of the "action_mail_acct" parameter with the following command:
-
-# sudo grep action_mail_acct /etc/audit/auditd.conf
-
-action_mail_acct root@localhost
-
-The "action_mail_acct" parameter, if missing, defaults to "root". If the "action_mail_acct parameter" is not set to the e-mail address of the system administrator(s) and/or ISSO, this is a finding.
-
-Note: If the email address of the system administrator is on a remote system a mail package must be available.</RawString>
     </Rule>
     <Rule id="V-219154" severity="low" conversionstatus="pass" title="SRG-OS-000479-GPOS-00224" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
@@ -1339,27 +1302,6 @@ true
 
 If "lock-enabled" is not set to "true", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219306" severity="medium" conversionstatus="pass" title="SRG-OS-000032-GPOS-00013" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Remote access services, such as those providing remote access to network devices and information systems, which lack automated monitoring capabilities, increase risk and make remote user access management difficult at best.
-
-Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
-
-Automated monitoring of remote access sessions allows organizations to detect cyber attacks and also ensure ongoing compliance with remote access policies by auditing connection activities of remote access capabilities, such as Remote Desktop Protocol (RDP), on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100835</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the Ubuntu operating system monitors all remote access methods.
-
-Check that remote access methods are being logged by running the following command:
-
-# grep -E -r '^(auth,authpriv\.\*|daemon\.\*)' /etc/rsyslog.*
-/etc/rsyslog.d/50-default.conf:auth,authpriv.* /var/log/auth.log
-/etc/rsyslog.d/50-default.conf:daemon.notice /var/log/messages
-
-If "auth.*", "authpriv.*" or "daemon.*" are not configured to be logged in at least one of the config files, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-219317" severity="medium" conversionstatus="pass" title="SRG-OS-000105-GPOS-00052" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without the use of multifactor authentication, the ease of access to privileged functions is greatly increased.
 
@@ -1753,6 +1695,90 @@ If the "/etc/cron.daily/aide" file does not exist or a cron job is not configure
     </Rule>
   </ManualRule>
   <nxFileLineRule dscresourcemodule="nx">
+    <Rule id="V-219152.a" severity="low" conversionstatus="pass" title="SRG-OS-000343-GPOS-00134" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;If security personnel are not notified immediately when storage volume reaches 75% utilization, they are unable to plan for audit record storage capacity expansion.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/auditd.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100529.a</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: If the space_left_action parameter is set to "email" set the action_mail_acct parameter to an e-mail address for the System Administrator (SA) and Information System Security Officer (ISSO). If the space_left_action parameter is set to "exec", make sure the command being execute notifies the System Administrator (SA) and Information System Security Officer (ISSO).</OrganizationValueTestString>
+      <RawString>Verify the Ubuntu operating system notifies the System Administrator (SA) and Information System Security Officer (ISSO) (at a minimum) when allocated audit record storage volume reaches 75% of the repository maximum audit record storage capacity.
+
+Check that the Ubuntu operating system notifies the SA and ISSO (at a minimum) when allocated audit record storage volume reaches 75% of the repository maximum audit record storage capacity with the following command:
+
+# sudo grep ^space_left_action /etc/audit/auditd.conf
+
+space_left_action email
+
+# sudo grep ^space_left /etc/audit/auditd.conf
+
+space_left 250000
+
+If the "space_left" parameter is missing, set to blanks or set to a value less than 25% of the space free in the allocated audit record storage, this is a finding.
+
+If the "space_left_action" parameter is missing or set to blanks, this is a finding.
+
+If the "space_left_action" is set to "syslog", the system logs the event, but does not generate a notification, so this is a finding.
+
+If the "space_left_action" is set to "exec", the system executes a designated script. If this script informs the SA of the event, this is not a finding.
+
+If the "space_left_action" is set to "email" check the value of the "action_mail_acct" parameter with the following command:
+
+# sudo grep action_mail_acct /etc/audit/auditd.conf
+
+action_mail_acct root@localhost
+
+The "action_mail_acct" parameter, if missing, defaults to "root". If the "action_mail_acct parameter" is not set to the e-mail address of the system administrator(s) and/or ISSO, this is a finding.
+
+Note: If the email address of the system administrator is on a remote system a mail package must be available.</RawString>
+    </Rule>
+    <Rule id="V-219152.b" severity="low" conversionstatus="pass" title="SRG-OS-000343-GPOS-00134" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;If security personnel are not notified immediately when storage volume reaches 75% utilization, they are unable to plan for audit record storage capacity expansion.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/auditd.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100529.b</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: Set the space_left parameter to be, at least, 25% of the repository maximum audit record storage capacity. </OrganizationValueTestString>
+      <RawString>Verify the Ubuntu operating system notifies the System Administrator (SA) and Information System Security Officer (ISSO) (at a minimum) when allocated audit record storage volume reaches 75% of the repository maximum audit record storage capacity.
+
+Check that the Ubuntu operating system notifies the SA and ISSO (at a minimum) when allocated audit record storage volume reaches 75% of the repository maximum audit record storage capacity with the following command:
+
+# sudo grep ^space_left_action /etc/audit/auditd.conf
+
+space_left_action email
+
+# sudo grep ^space_left /etc/audit/auditd.conf
+
+space_left 250000
+
+If the "space_left" parameter is missing, set to blanks or set to a value less than 25% of the space free in the allocated audit record storage, this is a finding.
+
+If the "space_left_action" parameter is missing or set to blanks, this is a finding.
+
+If the "space_left_action" is set to "syslog", the system logs the event, but does not generate a notification, so this is a finding.
+
+If the "space_left_action" is set to "exec", the system executes a designated script. If this script informs the SA of the event, this is not a finding.
+
+If the "space_left_action" is set to "email" check the value of the "action_mail_acct" parameter with the following command:
+
+# sudo grep action_mail_acct /etc/audit/auditd.conf
+
+action_mail_acct root@localhost
+
+The "action_mail_acct" parameter, if missing, defaults to "root". If the "action_mail_acct parameter" is not set to the e-mail address of the system administrator(s) and/or ISSO, this is a finding.
+
+Note: If the email address of the system administrator is on a remote system a mail package must be available.</RawString>
+    </Rule>
     <Rule id="V-219153.b" severity="low" conversionstatus="pass" title="SRG-OS-000479-GPOS-00224" dscresource="nxFileLine">
       <ContainsLine>active = yes</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
@@ -1802,7 +1828,7 @@ Off-loading is a common process in information systems with limited audit storag
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100531.c</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that both properties are defined correctly; i.e.: remote_server = &lt;your org server ip&gt;</OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: If the remote_server parameter is not set or is set with a local address, or is set with invalid address, this is a finding i.e.: remote_server = &lt;your remote audit log server ip&gt;</OrganizationValueTestString>
       <RawString>Verify the audit event multiplexor is configured to off-load audit records to a different system or storage media from the system being audited.
 
 Check that audisp-remote plugin is installed:
@@ -1946,7 +1972,7 @@ If the banner-message-text is missing, commented out, or the text does not match
 </RawString>
     </Rule>
     <Rule id="V-219170.a" severity="medium" conversionstatus="pass" title="SRG-OS-000228-GPOS-00088" dscresource="nxFileLine">
-      <ContainsLine>Banner /etc/issue Check the specified banner file to check that it matches the Standard Mandatory DoD Notice and Consent Banner exactly:</ContainsLine>
+      <ContainsLine>Banner /etc/issue</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Display of a standardized and approved use notification before granting access to the Ubuntu operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.
 
 System use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.
@@ -1968,9 +1994,9 @@ By using this IS (which includes any device attached to this IS), you consent to
 -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
 
 Satisfies: SRG-OS-000228-GPOS-00088, SRG-OS-000023-GPOS-00006&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*Banner\s*/etc/issue\s*Check\s*the\s*specified\s*banner\s*file\s*to\s*check\s*that\s*it\s*matches\s*the\s*Standard\s*Mandatory\s*DoD\s*Notice\s*and\s*Consent\s*Banner\s*exactly:</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*Banner\s*/etc/issue</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/issue</FilePath>
+      <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100567.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1985,7 +2011,13 @@ If the banner text does not match the Standard Mandatory DoD Notice and Consent 
 </RawString>
     </Rule>
     <Rule id="V-219170.b" severity="medium" conversionstatus="pass" title="SRG-OS-000228-GPOS-00088" dscresource="nxFileLine">
-      <ContainsLine>Banner /etc/issue Check the specified banner file to check that it matches the Standard Mandatory DoD Notice and Consent Banner exactly:</ContainsLine>
+      <ContainsLine>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+-At any time, the USG may inspect and seize data stored on this IS.
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Display of a standardized and approved use notification before granting access to the Ubuntu operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.
 
 System use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.
@@ -2007,7 +2039,7 @@ By using this IS (which includes any device attached to this IS), you consent to
 -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
 
 Satisfies: SRG-OS-000228-GPOS-00088, SRG-OS-000023-GPOS-00006&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*Banner\s*/etc/issue\s*Check\s*the\s*specified\s*banner\s*file\s*to\s*check\s*that\s*it\s*matches\s*the\s*Standard\s*Mandatory\s*DoD\s*Notice\s*and\s*Consent\s*Banner\s*exactly:</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*You\s*are\s*accessing\s*a\s*U.S.\s*Government\s*(USG)\s*Information\s*System\s*(IS)\s*that\s*is\s*provided\s*for\s*USG-authorized\s*use\s*only.\s*By\s*using\s*this\s*IS\s*(which\s*includes\s*any\s*device\s*attached\s*to\s*this\s*IS),\s*you\s*consent\s*to\s*the\s*following\s*conditions:\s*-The\s*USG\s*routinely\s*intercepts\s*and\s*monitors\s*communications\s*on\s*this\s*IS\s*for\s*purposes\s*including,\s*but\s*not\s*limited\s*to,\s*penetration\s*testing,\s*COMSEC\s*monitoring,\s*network\s*operations\s*and\s*defense,\s*personnel\s*misconduct\s*(PM),\s*law\s*enforcement\s*(LE),\s*and\s*counterintelligence\s*(CI)\s*investigations.\s*-At\s*any\s*time,\s*the\s*USG\s*may\s*inspect\s*and\s*seize\s*data\s*stored\s*on\s*this\s*IS.\s*-Communications\s*using,\s*or\s*data\s*stored\s*on,\s*this\s*IS\s*are\s*not\s*private,\s*are\s*subject\s*to\s*routine\s*monitoring,\s*interception,\s*and\s*search,\s*and\s*may\s*be\s*disclosed\s*or\s*used\s*for\s*any\s*USG-authorized\s*purpose.\s*-This\s*IS\s*includes\s*security\s*measures\s*(e.g.,\s*authentication\s*and\s*access\s*controls)\s*to\s*protect\s*USG\s*interests--not\s*for\s*your\s*personal\s*benefit\s*or\s*privacy.\s*-Notwithstanding\s*the\s*above,\s*using\s*this\s*IS\s*does\s*not\s*constitute\s*consent\s*to\s*PM,\s*LE\s*or\s*CI\s*investigative\s*searching\s*or\s*monitoring\s*of\s*the\s*content\s*of\s*privileged\s*communications,\s*or\s*work\s*product,\s*related\s*to\s*personal\s*representation\s*or\s*services\s*by\s*attorneys,\s*psychotherapists,\s*or\s*clergy,\s*and\s*their\s*assistants.\s*Such\s*communications\s*and\s*work\s*product\s*are\s*private\s*and\s*confidential.\s*See\s*User\s*Agreement\s*for\s*details.</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/issue</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2016,10 +2048,14 @@ Satisfies: SRG-OS-000228-GPOS-00088, SRG-OS-000023-GPOS-00006&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>Verify the Ubuntu operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the Ubuntu operating system via a ssh logon.
 Check that the Ubuntu operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the Ubuntu operating system via a ssh logon with the following command:
-# grep -i banner /etc/ssh/sshd_config
-Banner /etc/issue
-The command will return the banner option along with the name of the file that contains the ssh banner. If the line is commented out, this is a finding.
-Check the specified banner file to check that it matches the Standard Mandatory DoD Notice and Consent Banner exactly:
+# cat /etc/issue
+“You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+-At any time, the USG may inspect and seize data stored on this IS.
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.”
 If the banner text does not match the Standard Mandatory DoD Notice and Consent Banner exactly, this is a finding.
 </RawString>
     </Rule>
@@ -2036,7 +2072,7 @@ Password complexity is one factor of several that determines how long it takes t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100571</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "ucredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "ucredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the Ubuntu operating system enforces password complexity by requiring that at least one upper-case character be used.
 
 Determine if the field "ucredit" is set in the "/etc/security/pwquality.conf" file with the following command:
@@ -2059,7 +2095,7 @@ Password complexity is one factor of several that determines how long it takes t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100573</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "lcredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "lcredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the Ubuntu operating system enforces password complexity by requiring that at least one lower-case character be used.
 
 Determine if the field "lcredit" is set in the "/etc/security/pwquality.conf" file with the following command:
@@ -2082,7 +2118,7 @@ Password complexity is one factor of several that determines how long it takes t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100575</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "dcredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "dcredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the Ubuntu operating system enforces password complexity by requiring that at least one numeric character be used.
 
 Determine if the field "dcredit" is set in the "/etc/security/pwquality.conf" file with the following command:
@@ -2107,7 +2143,7 @@ If the password length is an odd number then number of changed characters must b
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100577</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "difok" parameter is less than "8", or is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "difok" parameter is less than "8", or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the Ubuntu operating system requires the change of at least 8 characters when passwords are changed.
 
 Determine if the field "difok" is set in the "/etc/security/pwquality.conf" file with the following command:
@@ -2128,7 +2164,7 @@ If the "difok" parameter is less than "8", or is commented out, this is a findin
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100579</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ENCRYPT_METHOD" does not equal SHA512 or greater, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ENCRYPT_METHOD" does not equal SHA512 or greater, this is a finding." </OrganizationValueTestString>
       <RawString>Verify that the shadow password suite configuration is set to encrypt password with a FIPS 140-2 approved cryptographic hashing algorithm.
 
 Check the hashing algorithm that is being used to hash passwords with the following command:
@@ -2150,7 +2186,7 @@ If "ENCRYPT_METHOD" does not equal SHA512 or greater, this is a finding.</RawStr
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100583</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is less than 1, or commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is less than 1, or commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify that the Ubuntu operating system enforces a 24 hours/1 day minimum password lifetime for new user accounts by running the following command:
 
 # grep -i pass_min_days /etc/login.defs
@@ -2170,7 +2206,7 @@ If the "PASS_MIN_DAYS" parameter value is less than 1, or commented out, this is
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100585</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is less than 60, or commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is less than 60, or commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify that the Ubuntu operating system enforces a 60-day maximum password lifetime for new user accounts by running the following command:
 
 # grep -i pass_max_days /etc/login.defs
@@ -2189,7 +2225,7 @@ If the "PASS_MAX_DAYS" parameter value is less than 60, or commented out, this i
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100587</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "remember" parameter value is not greater than or equal to 5, commented out, or not set at all this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "remember" parameter value is not greater than or equal to 5, commented out, or not set at all this is a finding." </OrganizationValueTestString>
       <RawString>Verify that the Ubuntu operating system prevents passwords from being reused for a minimum of five generations by running the following command:
 
 # grep -i remember /etc/pam.d/common-password
@@ -2211,7 +2247,7 @@ Password complexity, or strength, is a measure of the effectiveness of a passwor
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100589</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "minlen" parameter value is not 15 or higher, or is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "minlen" parameter value is not 15 or higher, or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify if the pwquality configuration file enforces a minimum 15-character password length, by running the following command:
 
 # grep -i minlen /etc/security/pwquality.conf
@@ -2284,7 +2320,45 @@ If the "dictcheck" parameter is not set to "1", or is commented out, this is a f
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100599.b</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding. </OrganizationValueTestString>
+      <RawString>Verify the Ubuntu operating system has the libpam-pwquality package installed, by running the following command:
+
+# dpkg -l libpam-pwquality
+
+ii libpam-pwquality:amd64 1.4.0-2 amd64 PAM module to check password strength
+
+If "libpam-pwquality" is not installed, this is a finding.
+
+Verify the operating system uses "pwquality" to enforce the password complexity rules.
+
+Verify the pwquality module is being enforced by the Ubuntu Operating System, by running the following command:
+
+# grep -i enforcing /etc/security/pwquality.conf
+
+enforcing = 1
+
+If the value of "enforcing" is not 1 or the line is commented out, this is a finding.
+
+Check for the use of "pwquality" with the following command:
+
+# sudo cat /etc/pam.d/common-password | grep requisite | grep pam_pwquality
+
+password requisite pam_pwquality.so retry=3 enforce_for_root
+
+If no output is returned or the line is commented out, this is a finding.
+If the value of "retry" is set to "0" or greater than "3", this is a finding.
+If "enforce_for_root" is missing from the configuration line, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-219186.c" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00225" dscresource="nxFileLine">
+      <ContainsLine>enforcing = 1</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. "pwquality" enforces complex password construction configuration and has the ability to limit brute-force attacks on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*enforcing\s*=\s*((?!1)|[1]\d+)\d*$|#\s*enforcing.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/security/pwquality.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100599.c</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the Ubuntu operating system has the libpam-pwquality package installed, by running the following command:
 
 # dpkg -l libpam-pwquality
@@ -2328,7 +2402,7 @@ Special characters are those characters that are not alphanumeric. Examples incl
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100647</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "ocredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "ocredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Determine if the field "ocredit" is set in the "/etc/security/pwquality.conf" file with the following command:
 
 # grep -i "ocredit" /etc/security/pwquality.conf
@@ -2655,7 +2729,7 @@ This requirement applies to each audit data storage repository (i.e., distinct i
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100679</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of the "action_mail_acct" keyword is not set to "root" and/or other accounts for security personnel, the "action_mail_acct" keyword is missing, or the returned line is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of the "action_mail_acct" keyword is not set to "root" and/or other accounts for security personnel, the "action_mail_acct" keyword is missing, or the returned line is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify that the System Administrator (SA) and Information System Security Officer (ISSO) (at a minimum) are notified in the event of an audit processing failure.
 
 Check that the Ubuntu operating system notifies the SA and ISSO (at a minimum) win the event of an audit processing failure with the following command:
@@ -2683,7 +2757,7 @@ When availability is an overriding concern, other approved actions in response t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100681</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: If the value of the "disk_full_action" option is not "SYSLOG", "SINGLE", or "HALT", or the line is commented out, this is a finding. </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: If the value of the "disk_full_action" option is not "SYSLOG", "SINGLE", or "HALT", or the line is commented out, this is a finding. </OrganizationValueTestString>
       <RawString>Verify the Ubuntu operating system takes the appropriate action when the audit storage volume is full.
 
 Check that the Ubuntu operating system takes the appropriate action when the audit storage volume is full with the following command:
@@ -5531,7 +5605,7 @@ This requirement addresses concurrent sessions for information system accounts a
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100825</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "maxlogins" item is missing or the value is not set to 10 or less, it is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "maxlogins" item is missing or the value is not set to 10 or less, it is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify that the Ubuntu operating system limits the number of concurrent sessions to ten for all accounts and/or account types by running the following command:
 
 # grep maxlogins /etc/security/limits.conf | grep -v '^* hard maxlogins'
@@ -5555,7 +5629,7 @@ The session lock is implemented at the point where session activity can be deter
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100829.a</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the Ubuntu operating system initiates a session logout after a 15-minute period of inactivity.
 Check that the proper auto logout script exists with the following command:
 # cat /etc/profile.d/autologout.sh
@@ -5576,7 +5650,7 @@ The session lock is implemented at the point where session activity can be deter
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100829.b</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the Ubuntu operating system initiates a session logout after a 15-minute period of inactivity.
 Check that the proper auto logout script exists with the following command:
 # cat /etc/profile.d/autologout.sh
@@ -5597,13 +5671,61 @@ The session lock is implemented at the point where session activity can be deter
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100829.c</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the Ubuntu operating system initiates a session logout after a 15-minute period of inactivity.
 Check that the proper auto logout script exists with the following command:
 # cat /etc/profile.d/autologout.sh
 export TMOUT
 If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.
 </RawString>
+    </Rule>
+    <Rule id="V-219306.a" severity="medium" conversionstatus="pass" title="SRG-OS-000032-GPOS-00013" dscresource="nxFileLine">
+      <ContainsLine>auth.*,authpriv.* /var/log/secure</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Remote access services, such as those providing remote access to network devices and information systems, which lack automated monitoring capabilities, increase risk and make remote user access management difficult at best.
+
+Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
+
+Automated monitoring of remote access sessions allows organizations to detect cyber attacks and also ensure ongoing compliance with remote access policies by auditing connection activities of remote access capabilities, such as Remote Desktop Protocol (RDP), on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*auth\.\*,\s*authpriv\.\*.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/rsyslog.d/50-default.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100835.a</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the Ubuntu operating system monitors all remote access methods.
+
+Check that remote access methods are being logged by running the following command:
+
+# grep -E -r '^(auth,authpriv\.\*|daemon\.\*)' /etc/rsyslog.*
+/etc/rsyslog.d/50-default.conf:auth,authpriv.* /var/log/auth.log
+/etc/rsyslog.d/50-default.conf:daemon.notice /var/log/messages
+
+If "auth.*", "authpriv.*" or "daemon.*" are not configured to be logged in at least one of the config files, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-219306.b" severity="medium" conversionstatus="pass" title="SRG-OS-000032-GPOS-00013" dscresource="nxFileLine">
+      <ContainsLine>daemon.notice /var/log/messages</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Remote access services, such as those providing remote access to network devices and information systems, which lack automated monitoring capabilities, increase risk and make remote user access management difficult at best.
+
+Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
+
+Automated monitoring of remote access sessions allows organizations to detect cyber attacks and also ensure ongoing compliance with remote access policies by auditing connection activities of remote access capabilities, such as Remote Desktop Protocol (RDP), on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*daemon.notice.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/rsyslog.d/50-default.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100835.b</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the Ubuntu operating system monitors all remote access methods.
+
+Check that remote access methods are being logged by running the following command:
+
+# grep -E -r '^(auth,authpriv\.\*|daemon\.\*)' /etc/rsyslog.*
+/etc/rsyslog.d/50-default.conf:auth,authpriv.* /var/log/auth.log
+/etc/rsyslog.d/50-default.conf:daemon.notice /var/log/messages
+
+If "auth.*", "authpriv.*" or "daemon.*" are not configured to be logged in at least one of the config files, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219307" severity="medium" conversionstatus="pass" title="SRG-OS-000033-GPOS-00014" dscresource="nxFileLine">
       <ContainsLine>Ciphers aes128-ctr,aes192-ctr,aes256-ctr</ContainsLine>
@@ -5724,7 +5846,7 @@ Satisfies: SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100845</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" does not exist, is not set to a value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" does not exist, is not set to a value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify that all network connections associated with SSH traffic are automatically terminated at the end of the session or after 10 minutes of inactivity.
 
 Check that the "ClientAliveInterval" variable is set to a value of "600" or less by performing the following command:
@@ -5818,45 +5940,92 @@ If the "UMASK" variable is set to "000", this is a finding with the severity rai
 
 If the value of "UMASK" is not set to "077", "UMASK" is commented out or "UMASK" is missing completely, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219339.a" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
+    <Rule id="V-219339.b" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
       <ContainsLine>install usb-storage /bin/true</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity.
 
 Peripherals include, but are not limited to, such devices as flash drives, external storage, and printers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*install\s*usb-storage\s*/bin/true</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/bin/true</FilePath>
+      <FilePath>/etc/modprobe.d/DISASTIG.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100919.a</LegacyId>
+      <LegacyId>V-100919.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify that Ubuntu operating system disables ability to load the USB storage kernel module.
+
 # grep usb-storage /etc/modprobe.d/* | grep "/bin/true"
+
 install usb-storage /bin/true
+
 If the command does not return any output, or the line is commented out, this is a finding.
+
 Verify the operating system disables the ability to use USB mass storage device.
-If the command does not return any output, or the line is commented out, this is a finding.
-</RawString>
+
+# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist"
+
+blacklist usb-storage
+
+If the command does not return any output, or the line is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219339.b" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
+    <Rule id="V-219339.c" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
       <ContainsLine>blacklist usb-storage</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity.
 
 Peripherals include, but are not limited to, such devices as flash drives, external storage, and printers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*blacklist\s*usb-storage</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/modprobe.d/</FilePath>
+      <FilePath>/etc/modprobe.d/DISASTIG.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100919.b</LegacyId>
+      <LegacyId>V-100919.c</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify that Ubuntu operating system disables ability to load the USB storage kernel module.
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist"
-blacklist usb-storage
+
+# grep usb-storage /etc/modprobe.d/* | grep "/bin/true"
+
+install usb-storage /bin/true
+
 If the command does not return any output, or the line is commented out, this is a finding.
-</RawString>
+
+Verify the operating system disables the ability to use USB mass storage device.
+
+# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist"
+
+blacklist usb-storage
+
+If the command does not return any output, or the line is commented out, this is a finding.</RawString>
     </Rule>
   </nxFileLineRule>
+  <nxFileRule dscresourcemodule="nx">
+    <Rule id="V-219339.a" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFile">
+      <Contents># Generated via PowerSTIG</Contents>
+      <Description>&lt;VulnDiscussion&gt;Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity.
+
+Peripherals include, but are not limited to, such devices as flash drives, external storage, and printers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/modprobe.d/DISASTIG.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100919.a</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Ubuntu operating system disables ability to load the USB storage kernel module.
+
+# grep usb-storage /etc/modprobe.d/* | grep "/bin/true"
+
+install usb-storage /bin/true
+
+If the command does not return any output, or the line is commented out, this is a finding.
+
+Verify the operating system disables the ability to use USB mass storage device.
+
+# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist"
+
+blacklist usb-storage
+
+If the command does not return any output, or the line is commented out, this is a finding.</RawString>
+    </Rule>
+  </nxFileRule>
   <nxPackageRule dscresourcemodule="nx">
     <Rule id="V-219153.a" severity="low" conversionstatus="pass" title="SRG-OS-000479-GPOS-00224" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration.

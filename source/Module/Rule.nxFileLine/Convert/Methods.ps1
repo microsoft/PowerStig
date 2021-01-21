@@ -44,6 +44,10 @@ function Get-nxFileLineContainsLine
                 }
             }
         }
+        elseif ($rawString -match 'You are accessing a U.S. Government \(USG\) [^"]+(?<=details.)')
+        {
+            $results = $matches.Values -replace '\.\r|:\r', ".`n"
+        }
 
         return $results
     }
@@ -197,7 +201,10 @@ function Test-nxFileLineMultipleEntries
     $filePathCount = @()
     foreach ($path in $filePath.Matches)
     {
-        $filePathCount += $path.Groups['filePath'].Value
+        if ($path.Groups['filePath'].Value -ne '/etc/issue')
+        {
+            $filePathCount += $path.Groups['filePath'].Value
+        }
     }
 
     $filePathUniqueCount = $filePathCount | Select-Object -Unique | Measure-Object

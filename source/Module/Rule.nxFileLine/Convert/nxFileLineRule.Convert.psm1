@@ -126,7 +126,7 @@ class nxFileLineRuleConvert : nxFileLineRule
     [void] SetOrganizationValueTestString ([string[]] $CheckContent)
     {
         $result = $CheckContent -match '\s*If.*(?:greater|less|and\/or\s*other|higher|more\s+than\s+"\w*").*this is a finding'
-        $formattedResult = 'that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "{0}" ' -f $result
+        $formattedResult = 'the following statement is true when leveraging the correct nxFileLine ContainsLine format: "{0}" ' -f $result
         if ($null -ne $result)
         {
             $this.set_OrganizationValueTestString($formattedResult)

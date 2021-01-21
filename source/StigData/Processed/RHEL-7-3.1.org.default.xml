@@ -6,23 +6,23 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="3.1">
-  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding." -->
   <OrganizationalSetting id="V-204406" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8", this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8", this is a finding." -->
   <OrganizationalSetting id="V-204411" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "minclass" is set to less than "4", this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "minclass" is set to less than "4", this is a finding." -->
   <OrganizationalSetting id="V-204412" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxrepeat" is set to more than "3", this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxrepeat" is set to more than "3", this is a finding." -->
   <OrganizationalSetting id="V-204413" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxclassrepeat" is set to more than "4", this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxclassrepeat" is set to more than "4", this is a finding." -->
   <OrganizationalSetting id="V-204414" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented out, this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented out, this is a finding." -->
   <OrganizationalSetting id="V-204418" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is not 60 or less, or is commented out, this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is not 60 or less, or is commented out, this is a finding." -->
   <OrganizationalSetting id="V-204420" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the command does not return a "minlen" value of 15 or greater, this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the command does not return a "minlen" value of 15 or greater, this is a finding." -->
   <OrganizationalSetting id="V-204423" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding." -->
   <OrganizationalSetting id="V-204431" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the "/tmp" directory is defined in the fstab with a device and mount point. -->
   <OrganizationalSetting id="V-204496" ContainsLine="" DoesNotContainPattern="" />
@@ -36,6 +36,6 @@
   <OrganizationalSetting id="V-204513" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the value of the "action_mail_acct" keyword is set to "root" and/or other accounts for security personnel; i.e.: "action_mail_acct = root" -->
   <OrganizationalSetting id="V-204515" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding." -->
   <OrganizationalSetting id="V-204587" ContainsLine="" DoesNotContainPattern="" />
 </OrganizationalSettings>
