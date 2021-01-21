@@ -42,12 +42,8 @@
   <OrganizationalSetting id="V-219227" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "maxlogins" item is missing or the value is not set to 10 or less, it is commented out, this is a finding." -->
   <OrganizationalSetting id="V-219301" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." -->
-  <OrganizationalSetting id="V-219303.a" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.-->
   <OrganizationalSetting id="V-219303.b" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." -->
-  <OrganizationalSetting id="V-219303.c" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" does not exist, is not set to a value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding." -->
   <OrganizationalSetting id="V-219311" ContainsLine="" DoesNotContainPattern="" />
 </OrganizationalSettings>
