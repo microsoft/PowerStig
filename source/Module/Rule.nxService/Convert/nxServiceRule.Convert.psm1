@@ -117,7 +117,13 @@ class nxServiceRuleConvert : nxServiceRule
         if
         (
             $CheckContent -Match 'systemctl\s*(is-enabled|is-active|status)' -and
-            $CheckContent -Match 'If\s+(?:|the\s+)"\w*".*status.*,\s*this\s*is\s*a\s*finding'
+            (
+                $CheckContent -Match 'If\s+(?:|the\s+)"\w*".*status.*,\s*this\s*is\s*a\s*finding' -or
+                $CheckContent -Match 'If\s*the.*command.*returns.*,\s*this\s*is\s*a\s*finding.' -or
+                $CheckContent -Match 'If\s*".*"\s*is\s*not\s*active\s*or\s*loaded,\s*this\s*is\s*a\s*finding.' -or
+                $CheckContent -Match 'If\s*something\s*other\s*than\s*".*"\s*is\s*returned,\s*this\s*is\s*a\s*finding.' -or
+                $CheckContent -Match 'If\s*the\s*service\s*is\s*active\s*and\s*is\s*not\s*documented,\s*this\s*is\s*a\s*finding.'
+            )
         )
         {
             return $true

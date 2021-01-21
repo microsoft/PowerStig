@@ -266,24 +266,6 @@ server ntp2.usno.navy.mil iburst maxpoll 17
 
 If the parameter "server" is not set, is not set to an authoritative DoD time source, or is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219335" severity="medium" conversionstatus="pass" title="SRG-OS-000184-GPOS-00078" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Kernel core dumps may contain the full contents of system memory at the time of the crash. Kernel core dumps may consume a considerable amount of disk space and may result in denial of service by exhausting the available space on the target file system partition.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100893</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that kernel core dumps are disabled unless needed.
-
-Check if "kdump" service is active with the following command:
-
-# systemctl is-active kdump.service
-inactive
-
-If the "kdump" service is active, ask the System Administrator if the use of the service is required and documented with the Information System Security Officer (ISSO).
-
-If the service is active and is not documented, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-219341" severity="medium" conversionstatus="pass" title="SRG-OS-000433-GPOS-00192" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Some adversaries launch attacks with the intent of executing code in non-executable regions of memory or in memory locations that are prohibited. Security safeguards employed to protect memory include, for example, data execution prevention and address space layout randomization. Data execution prevention safeguards can either be hardware-enforced or software-enforced with hardware providing the greater strength of mechanism.
 
@@ -464,23 +446,6 @@ Check that PAM prohibits the use of cached authentications after one day with th
 offline_credentials_expiration = 1
 
 If "offline_credentials_expiration" is not set to a value of "1", in /etc/sssd/sssd.conf or in a file with a name ending in .conf in the /etc/sssd/conf.d/ directory, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-219164" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00226" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Limiting the number of logon attempts over a certain time interval reduces the chances that an unauthorized user may gain access to an account.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100555</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system enforces a delay of at least 4 seconds between logon prompts following a failed logon attempt.
-
-Check that the Ubuntu operating system enforces a delay of at least 4 seconds between logon prompts with the following command:
-
-# grep pam_faildelay /etc/pam.d/common-auth
-
-auth required pam_faildelay.so delay=4000000
-
-If the line is not present, or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219168" severity="medium" conversionstatus="pass" title="SRG-OS-000109-GPOS-00056" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;To assure individual accountability and prevent unauthorized access, organizational users must be individually identified and authenticated.
@@ -1564,35 +1529,6 @@ Check the selection lines that aide is configured to add/check with the followin
 
 If any of the seven audit tools does not have an appropriate selection line, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219337" severity="medium" conversionstatus="pass" title="SRG-OS-000297-GPOS-00115" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Remote access services, such as those providing remote access to network devices and information systems, which lack automated control capabilities, increase risk and make remote user access management difficult at best.
-
-Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
-
-Ubuntu operating system functionality (e.g., RDP) must be capable of taking enforcement action if the audit reveals unauthorized activity. Automated control of remote access sessions allows organizations to ensure ongoing compliance with remote access policies by enforcing connection rules of remote access applications on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets).
-
-Satisfies: SRG-OS-000480-GPOS-00232&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100897</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Uncomplicated Firewall is enabled on the system by running the following command:
-
-# systemctl is-enabled ufw
-
-If the above command returns the status as "disabled", this is a finding.
-
-Verify the Uncomplicated Firewall is active on the system by running the following command:
-
-# sudo systemctl is-active ufw
-
-If the above command returns 'inactive' or any kind of error, this is a finding.
-
-If the Uncomplicated Firewall is not installed ask the System Administrator if another application firewall is installed.
-
-If no application firewall is installed this is a finding.</RawString>
-    </Rule>
     <Rule id="V-219338" severity="medium" conversionstatus="pass" title="SRG-OS-000363-GPOS-00150" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Unauthorized changes to the baseline configuration could make the system vulnerable to various attacks or allow unauthorized access to the Ubuntu operating system. Changes to Ubuntu operating system configurations can have unintended side effects, some of which may be relevant to security.
 
@@ -1886,6 +1822,28 @@ Check that APT is configured to remove all software components after updating wi
 Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";
 If the "::Remove-Unused-Dependencies" and "::Remove-Unused-Kernel-Packages" parameters are not set to "true", or are missing, or are commented out, this is a finding.
 </RawString>
+    </Rule>
+    <Rule id="V-219164" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00226" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Limiting the number of logon attempts over a certain time interval reduces the chances that an unauthorized user may gain access to an account.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/common-auth</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100555</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: Set the parameter "pam_faildelay" to a value of 4000000 or greater: i.e.: auth required pam_faildelay.so delay=4000000 </OrganizationValueTestString>
+      <RawString>Verify the Ubuntu operating system enforces a delay of at least 4 seconds between logon prompts following a failed logon attempt.
+
+Check that the Ubuntu operating system enforces a delay of at least 4 seconds between logon prompts with the following command:
+
+# grep pam_faildelay /etc/pam.d/common-auth
+
+auth required pam_faildelay.so delay=4000000
+
+If the line is not present, or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219165" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>session required pam_lastlog.so showfailed</ContainsLine>
@@ -2260,19 +2218,28 @@ If "minlen" parameter value is not 15 or higher, or is commented out, this is a 
       <Description>&lt;VulnDiscussion&gt;The Ubuntu operating system must use a FIPS-compliant hashing algorithm to securely store the password. The FIPS-compliant hashing algorithm parameters must be selected in order to harden the system against offline attacks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*password\s*[success\s*=\s*1\s*default\s*=\s*ignore]\s*pam_unix.so\s*obscure\s*sha512</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/login.defs</FilePath>
+      <FilePath>/etc/pam.d/common-password</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100591.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify that encrypted passwords stored in /etc/shadow use a strong cryptographic hash.
+
 Check that pam_unix.so auth is configured to use sha512 with the following command:
+
 # grep password /etc/pam.d/common-password | grep pam_unix
+
 password [success=1 default=ignore] pam_unix.so obscure sha512
+
 If "sha512" is not an option of the output, or is commented out, this is a finding.
+
 Check that ENCRYPT_METHOD is set to sha512 in /etc/login.defs:
-If the output does not contain "sha512", or it is commented out, this is a finding.
-</RawString>
+
+# grep -i ENCRYPT_METHOD /etc/login.defs
+
+ENCRYPT_METHOD SHA512
+
+If the output does not contain "sha512", or it is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219182.b" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="nxFileLine">
       <ContainsLine>ENCRYPT_METHOD SHA512</ContainsLine>
@@ -2285,11 +2252,22 @@ If the output does not contain "sha512", or it is commented out, this is a findi
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify that encrypted passwords stored in /etc/shadow use a strong cryptographic hash.
+
 Check that pam_unix.so auth is configured to use sha512 with the following command:
+
+# grep password /etc/pam.d/common-password | grep pam_unix
+
+password [success=1 default=ignore] pam_unix.so obscure sha512
+
+If "sha512" is not an option of the output, or is commented out, this is a finding.
+
+Check that ENCRYPT_METHOD is set to sha512 in /etc/login.defs:
+
 # grep -i ENCRYPT_METHOD /etc/login.defs
+
 ENCRYPT_METHOD SHA512
-If the output does not contain "sha512", or it is commented out, this is a finding.
-</RawString>
+
+If the output does not contain "sha512", or it is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219184" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00225" dscresource="nxFileLine">
       <ContainsLine>dictcheck=1</ContainsLine>
@@ -6127,14 +6105,14 @@ root 7614 1 2 08:20 ? 00:00:02 /opt/isec/ens/threatprevention/bin/isectpd
 
 If the daemon is not running, then this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219160" severity="medium" conversionstatus="pass" title="SRG-OS-000269-GPOS-00103" dscresource="nxPackage">
+    <Rule id="V-219160.a" severity="medium" conversionstatus="pass" title="SRG-OS-000269-GPOS-00103" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;Failure to a known state can address safety or security in accordance with the mission/business needs of the organization. Failure to a known secure state helps prevent a loss of confidentiality, integrity, or availability in the event of a failure of the information system or a component of the system.
 
 Preserving operating system state information helps to facilitate operating system restart and return to the operational mode of the organization with least disruption to mission/business processes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100547</LegacyId>
+      <LegacyId>V-100547.a</LegacyId>
       <Name>rsyslog</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6241,7 +6219,7 @@ If no output is returned or the line is commented out, this is a finding.
 If the value of "retry" is set to "0" or greater than "3", this is a finding.
 If "enforce_for_root" is missing from the configuration line, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219225" severity="medium" conversionstatus="pass" title="SRG-OS-000038-GPOS-00016" dscresource="nxPackage">
+    <Rule id="V-219225.a" severity="medium" conversionstatus="pass" title="SRG-OS-000038-GPOS-00016" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;Without establishing the when, where, type, source, and outcome of events that occurred, it would be difficult to establish, correlate, and investigate the events leading up to an outage or attack.
 
 Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
@@ -6258,7 +6236,7 @@ Satisfies: SRG-OS-000038-GPOS-00016, SRG-OS-000039-GPOS-00017, SRG-OS-000040-GPO
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100677</LegacyId>
+      <LegacyId>V-100677.a</LegacyId>
       <Name>auditd</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6302,7 +6280,7 @@ Satisfies: SRG-OS-000030-GPOS-00011, SRG-OS-000031-GPOS-00012&lt;/VulnDiscussion
 
 If "vlock" is not installed, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219313" severity="high" conversionstatus="pass" title="SRG-OS-000423-GPOS-00187" dscresource="nxPackage">
+    <Rule id="V-219313.a" severity="high" conversionstatus="pass" title="SRG-OS-000423-GPOS-00187" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered.
 
 This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification.
@@ -6315,7 +6293,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188, SRG-OS-000425-GPO
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100849</LegacyId>
+      <LegacyId>V-100849.a</LegacyId>
       <Name>ssh</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6386,14 +6364,14 @@ ii opensc-pkcs11:amd64 0.15.0-1Ubuntu1 amd64 Smart card utilities with support f
 
 If the "opensc-pcks11" package is not installed, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219322" severity="low" conversionstatus="pass" title="SRG-OS-000312-GPOS-00122" dscresource="nxPackage">
+    <Rule id="V-219322.a" severity="low" conversionstatus="pass" title="SRG-OS-000312-GPOS-00122" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;When discretionary access control policies are implemented, subjects are not constrained with regard to what actions they can take with information for which they have already been granted access. Thus, subjects that have been granted access to information are not prevented from passing (i.e., the subjects have the discretion to pass) the information to other subjects or objects. A subject that is constrained in its operation by Mandatory Access Control policies is still able to operate under the less rigorous constraints of this requirement. Thus, while Mandatory Access Control imposes constraints preventing a subject from passing information to another subject operating at a different sensitivity level, this requirement permits the subject to pass the information to any subject at the same sensitivity level. The policy is bounded by the information system boundary. Once the information is passed outside the control of the information system, additional means may be required to ensure the constraints remain in effect. While the older, more traditional definitions of discretionary access control require identity-based access control, that limitation is not required for this use of discretionary access control.
 
 Satisfies: SRG-OS-000312-GPOS-00122, SRG-OS-000312-GPOS-00123, SRG-OS-000312-GPOS-00124, SRG-OS-000324-GPOS-0012&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100867</LegacyId>
+      <LegacyId>V-100867.a</LegacyId>
       <Name>libpam-apparmor</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6472,4 +6450,205 @@ If AIDE is not installed, ask the System Administrator how file integrity checks
 If there is no application installed to perform integrity checks, this is a finding.</RawString>
     </Rule>
   </nxPackageRule>
+  <nxServiceRule dscresourcemodule="nx">
+    <Rule id="V-219160.b" severity="medium" conversionstatus="pass" title="SRG-OS-000269-GPOS-00103" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Failure to a known state can address safety or security in accordance with the mission/business needs of the organization. Failure to a known secure state helps prevent a loss of confidentiality, integrity, or availability in the event of a failure of the information system or a component of the system.
+
+Preserving operating system state information helps to facilitate operating system restart and return to the operational mode of the organization with least disruption to mission/business processes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100547.b</LegacyId>
+      <Name>rsyslog</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the log service is configured to collect system failure events.
+
+Check that the log service is installed properly with the following command:
+
+# dpkg -l | grep rsyslog
+
+ii rsyslog 8.32.0-1ubuntu4 amd64 reliable system and kernel logging daemon
+
+If the "rsyslog" package is not installed, this is a finding.
+
+Check that the log service is enabled with the following command:
+
+# sudo systemctl is-enabled rsyslog
+
+enabled
+
+If the command above returns "disabled", this is a finding.
+
+Check that the log service is properly running and active on the system with the following command:
+
+# systemctl is-active rsyslog
+
+active
+
+If the command above returns "inactive", this is a finding.</RawString>
+      <State>Running</State>
+    </Rule>
+    <Rule id="V-219225.b" severity="medium" conversionstatus="pass" title="SRG-OS-000038-GPOS-00016" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Without establishing the when, where, type, source, and outcome of events that occurred, it would be difficult to establish, correlate, and investigate the events leading up to an outage or attack.
+
+Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
+
+Audit record content that may be necessary to satisfy this requirement includes, for example, time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, filenames involved, and access control or flow control rules invoked.
+
+Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+Successful incident response and auditing relies on timely, accurate system information and analysis in order to allow the organization to identify and respond to potential incidents in a proficient manner. If the operating system does not provide the ability to centrally review the operating system logs, forensic analysis is negatively impacted.
+
+Associating event types with detected events in the Ubuntu operating system audit logs provides a means of investigating an attack; recognizing resource utilization or capacity thresholds; or identifying an improperly configured operating system.
+
+Satisfies: SRG-OS-000038-GPOS-00016, SRG-OS-000039-GPOS-00017, SRG-OS-000040-GPOS-00018, SRG-OS-000041-GPOS-00019, SRG-OS-000042-GPOS-00020, SRG-OS-000042-GPOS-00021, SRG-OS-000051-GPOS-00024, SRG-OS-000054-GPOS-00025, SRG-OS-000062-GPOS-00031, SRG-OS-000122-GPOS-00063, SRG-OS-000337-GPOS-00129, SRG-OS-000348-GPOS-00136, SRG-OS-000349-GPOS-00137, SRG-OS-000350-GPOS-00138, SRG-OS-000351-GPOS-00139, SRG-OS-000352-GPOS-00140, SRG-OS-000365-GPOS-00152, SRG-OS-000392-GPOS-00172, SRG-OS-000475-GPOS-00220&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100677.b</LegacyId>
+      <Name>auditd</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the audit service is configured to produce audit records.
+
+Check that the audit service is installed properly with the following command:
+
+# dpkg -l | grep auditd
+
+If the "auditd" package is not installed, this is a finding.
+
+Check that the audit service is enabled with the following command:
+
+# systemctl is-enabled auditd.service
+
+If the command above returns "disabled", this is a finding.
+
+Check that the audit service is properly running and active on the system with the following command:
+
+# systemctl is-active auditd.service
+active
+
+If the command above returns "inactive", this is a finding.</RawString>
+      <State>Running</State>
+    </Rule>
+    <Rule id="V-219313.b" severity="high" conversionstatus="pass" title="SRG-OS-000423-GPOS-00187" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered.
+
+This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification.
+
+Protecting the confidentiality and integrity of organizational information can be accomplished by physical means (e.g., employing physical distribution systems) or by logical means (e.g., employing cryptographic techniques). If physical means of protection are employed, then logical means (cryptography) do not have to be employed, and vice versa.
+
+Alternative physical protection measures include PDS. PDSs are used to transmit unencrypted classified National Security Information (NSI) through an area of lesser classification or control. Since the classified NSI is unencrypted, the PDS must provide adequate electrical, electromagnetic, and physical safeguards to deter exploitation.
+
+Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188, SRG-OS-000425-GPOS-00189, SRG-OS-000426-GPOS-00190&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100849.b</LegacyId>
+      <Name>sshd</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check that the ssh package is installed with the following command:
+
+# sudo dpkg -l | grep openssh
+ii openssh-client 1:7.6p1-4ubuntu0.1 amd64 secure shell (SSH) client, for secure access to remote machines
+ii openssh-server 1:7.6p1-4ubuntu0.1 amd64 secure shell (SSH) server, for secure access from remote machines
+ii openssh-sftp-server 1:7.6p1-4ubuntu0.1 amd64 secure shell (SSH) sftp server module, for SFTP access from remote machines
+
+If the "openssh" server package is not installed, this is a finding.
+
+Check that the "sshd.service" is loaded and active with the following command:
+
+# sudo systemctl status sshd.service | egrep -i "(active|loaded)"
+ Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+ Active: active (running) since Thu 2019-01-24 22:52:58 UTC; 1 weeks 3 days ago
+
+If "sshd.service" is not active or loaded, this is a finding.</RawString>
+      <State>Running</State>
+    </Rule>
+    <Rule id="V-219322.b" severity="low" conversionstatus="pass" title="SRG-OS-000312-GPOS-00122" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;When discretionary access control policies are implemented, subjects are not constrained with regard to what actions they can take with information for which they have already been granted access. Thus, subjects that have been granted access to information are not prevented from passing (i.e., the subjects have the discretion to pass) the information to other subjects or objects. A subject that is constrained in its operation by Mandatory Access Control policies is still able to operate under the less rigorous constraints of this requirement. Thus, while Mandatory Access Control imposes constraints preventing a subject from passing information to another subject operating at a different sensitivity level, this requirement permits the subject to pass the information to any subject at the same sensitivity level. The policy is bounded by the information system boundary. Once the information is passed outside the control of the information system, additional means may be required to ensure the constraints remain in effect. While the older, more traditional definitions of discretionary access control require identity-based access control, that limitation is not required for this use of discretionary access control.
+
+Satisfies: SRG-OS-000312-GPOS-00122, SRG-OS-000312-GPOS-00123, SRG-OS-000312-GPOS-00124, SRG-OS-000324-GPOS-0012&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100867.b</LegacyId>
+      <Name>apparmor</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the Ubuntu operating system is configured to allow system administrators to pass information to any other Ubuntu operating system administrator or user.
+
+Check that "Pam_Apparmor" is installed on the system with the following command:
+
+# dpkg -l | grep -i apparmor
+
+ii libpam-apparmor 2.10.95-0Ubuntu2.6
+
+If the "Pam_Apparmor" package is not installed, this is a finding.
+
+Check that the "AppArmor" daemon is running with the following command:
+
+# systemctl status apparmor.service | grep -i active
+
+If something other than "Active: active" is returned, this is a finding.
+
+Note: Pam_Apparmor must have properly configured profiles. All configurations will be based on the actual system setup and organization. See the "Pam_Apparmor" documentation for more information on configuring profiles.</RawString>
+      <State>Running</State>
+    </Rule>
+    <Rule id="V-219335" severity="medium" conversionstatus="pass" title="SRG-OS-000184-GPOS-00078" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Kernel core dumps may contain the full contents of system memory at the time of the crash. Kernel core dumps may consume a considerable amount of disk space and may result in denial of service by exhausting the available space on the target file system partition.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>False</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100893</LegacyId>
+      <Name>kdump</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that kernel core dumps are disabled unless needed.
+
+Check if "kdump" service is active with the following command:
+
+# systemctl is-active kdump.service
+inactive
+
+If the "kdump" service is active, ask the System Administrator if the use of the service is required and documented with the Information System Security Officer (ISSO).
+
+If the service is active and is not documented, this is a finding.</RawString>
+      <State />
+    </Rule>
+    <Rule id="V-219337" severity="medium" conversionstatus="pass" title="SRG-OS-000297-GPOS-00115" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Remote access services, such as those providing remote access to network devices and information systems, which lack automated control capabilities, increase risk and make remote user access management difficult at best.
+
+Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
+
+Ubuntu operating system functionality (e.g., RDP) must be capable of taking enforcement action if the audit reveals unauthorized activity. Automated control of remote access sessions allows organizations to ensure ongoing compliance with remote access policies by enforcing connection rules of remote access applications on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets).
+
+Satisfies: SRG-OS-000480-GPOS-00232&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100897</LegacyId>
+      <Name>ufw</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the Uncomplicated Firewall is enabled on the system by running the following command:
+
+# systemctl is-enabled ufw
+
+If the above command returns the status as "disabled", this is a finding.
+
+Verify the Uncomplicated Firewall is active on the system by running the following command:
+
+# sudo systemctl is-active ufw
+
+If the above command returns 'inactive' or any kind of error, this is a finding.
+
+If the Uncomplicated Firewall is not installed ask the System Administrator if another application firewall is installed.
+
+If no application firewall is installed this is a finding.</RawString>
+      <State>Running</State>
+    </Rule>
+  </nxServiceRule>
 </DISASTIG>

@@ -12,6 +12,8 @@
   <OrganizationalSetting id="V-219152.b" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: If the remote_server parameter is not set or is set with a local address, or is set with invalid address, this is a finding i.e.: remote_server = <your remote audit log server ip>-->
   <OrganizationalSetting id="V-219153.c" ContainsLine="" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: Set the parameter "pam_faildelay" to a value of 4000000 or greater: i.e.: auth required pam_faildelay.so delay=4000000 -->
+  <OrganizationalSetting id="V-219164" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "ucredit" parameter is greater than "-1", or is commented out, this is a finding." -->
   <OrganizationalSetting id="V-219172" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "lcredit" parameter is greater than "-1", or is commented out, this is a finding." -->
