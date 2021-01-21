@@ -1970,11 +1970,17 @@ If the banner text does not match the Standard Mandatory DoD Notice and Consent 
     </Rule>
     <Rule id="V-219170.b" severity="medium" conversionstatus="pass" title="SRG-OS-000228-GPOS-00088" dscresource="nxFileLine">
       <ContainsLine>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
-By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions.
+
 -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
 -At any time, the USG may inspect and seize data stored on this IS.
+
 -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
 -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+
 -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Display of a standardized and approved use notification before granting access to the Ubuntu operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.
 
@@ -1997,25 +2003,26 @@ By using this IS (which includes any device attached to this IS), you consent to
 -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
 
 Satisfies: SRG-OS-000228-GPOS-00088, SRG-OS-000023-GPOS-00006&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*You\s*are\s*accessing\s*a\s*U.S.\s*Government\s*(USG)\s*Information\s*System\s*(IS)\s*that\s*is\s*provided\s*for\s*USG-authorized\s*use\s*only.\s*By\s*using\s*this\s*IS\s*(which\s*includes\s*any\s*device\s*attached\s*to\s*this\s*IS),\s*you\s*consent\s*to\s*the\s*following\s*conditions:\s*-The\s*USG\s*routinely\s*intercepts\s*and\s*monitors\s*communications\s*on\s*this\s*IS\s*for\s*purposes\s*including,\s*but\s*not\s*limited\s*to,\s*penetration\s*testing,\s*COMSEC\s*monitoring,\s*network\s*operations\s*and\s*defense,\s*personnel\s*misconduct\s*(PM),\s*law\s*enforcement\s*(LE),\s*and\s*counterintelligence\s*(CI)\s*investigations.\s*-At\s*any\s*time,\s*the\s*USG\s*may\s*inspect\s*and\s*seize\s*data\s*stored\s*on\s*this\s*IS.\s*-Communications\s*using,\s*or\s*data\s*stored\s*on,\s*this\s*IS\s*are\s*not\s*private,\s*are\s*subject\s*to\s*routine\s*monitoring,\s*interception,\s*and\s*search,\s*and\s*may\s*be\s*disclosed\s*or\s*used\s*for\s*any\s*USG-authorized\s*purpose.\s*-This\s*IS\s*includes\s*security\s*measures\s*(e.g.,\s*authentication\s*and\s*access\s*controls)\s*to\s*protect\s*USG\s*interests--not\s*for\s*your\s*personal\s*benefit\s*or\s*privacy.\s*-Notwithstanding\s*the\s*above,\s*using\s*this\s*IS\s*does\s*not\s*constitute\s*consent\s*to\s*PM,\s*LE\s*or\s*CI\s*investigative\s*searching\s*or\s*monitoring\s*of\s*the\s*content\s*of\s*privileged\s*communications,\s*or\s*work\s*product,\s*related\s*to\s*personal\s*representation\s*or\s*services\s*by\s*attorneys,\s*psychotherapists,\s*or\s*clergy,\s*and\s*their\s*assistants.\s*Such\s*communications\s*and\s*work\s*product\s*are\s*private\s*and\s*confidential.\s*See\s*User\s*Agreement\s*for\s*details.</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*You\s*are\s*accessing\s*a\s*U.S.\s*Government\s*(USG)\s*Information\s*System\s*(IS)\s*that\s*is\s*provided\s*for\s*USG-authorized\s*use\s*only.\s*By\s*using\s*this\s*IS\s*(which\s*includes\s*any\s*device\s*attached\s*to\s*this\s*IS),\s*you\s*consent\s*to\s*the\s*following\s*conditions.\s*-The\s*USG\s*routinely\s*intercepts\s*and\s*monitors\s*communications\s*on\s*this\s*IS\s*for\s*purposes\s*including,\s*but\s*not\s*limited\s*to,\s*penetration\s*testing,\s*COMSEC\s*monitoring,\s*network\s*operations\s*and\s*defense,\s*personnel\s*misconduct\s*(PM),\s*law\s*enforcement\s*(LE),\s*and\s*counterintelligence\s*(CI)\s*investigations.\s*-At\s*any\s*time,\s*the\s*USG\s*may\s*inspect\s*and\s*seize\s*data\s*stored\s*on\s*this\s*IS.\s*-Communications\s*using,\s*or\s*data\s*stored\s*on,\s*this\s*IS\s*are\s*not\s*private,\s*are\s*subject\s*to\s*routine\s*monitoring,\s*interception,\s*and\s*search,\s*and\s*may\s*be\s*disclosed\s*or\s*used\s*for\s*any\s*USG-authorized\s*purpose.\s*-This\s*IS\s*includes\s*security\s*measures\s*(e.g.,\s*authentication\s*and\s*access\s*controls)\s*to\s*protect\s*USG\s*interests--not\s*for\s*your\s*personal\s*benefit\s*or\s*privacy.\s*-Notwithstanding\s*the\s*above,\s*using\s*this\s*IS\s*does\s*not\s*constitute\s*consent\s*to\s*PM,\s*LE\s*or\s*CI\s*investigative\s*searching\s*or\s*monitoring\s*of\s*the\s*content\s*of\s*privileged\s*communications,\s*or\s*work\s*product,\s*related\s*to\s*personal\s*representation\s*or\s*services\s*by\s*attorneys,\s*psychotherapists,\s*or\s*clergy,\s*and\s*their\s*assistants.\s*Such\s*communications\s*and\s*work\s*product\s*are\s*private\s*and\s*confidential.\s*See\s*User\s*Agreement\s*for\s*details.</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/issue</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100567.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the Ubuntu operating system via a ssh logon.
-Check that the Ubuntu operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the Ubuntu operating system via a ssh logon with the following command:
-# cat /etc/issue
-“You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
-By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+      <RawString>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions.
+
 -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
 -At any time, the USG may inspect and seize data stored on this IS.
+
 -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
 -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
--Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.”
-If the banner text does not match the Standard Mandatory DoD Notice and Consent Banner exactly, this is a finding.
-</RawString>
+
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.</RawString>
     </Rule>
     <Rule id="V-219172" severity="low" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="nxFileLine">
       <ContainsLine>

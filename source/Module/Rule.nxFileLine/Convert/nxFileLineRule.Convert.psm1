@@ -40,7 +40,14 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     nxFileLineRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        $rawString = $this.SplitCheckContent
+        If ($this.RawString -match 'You are accessing a U.S. Government \(USG\) [^"]+(?<=details.)')
+        {
+            $rawString = $this.RawString
+        }
+        else
+        {
+            $rawString = $this.SplitCheckContent
+        }
         $this.SetFilePath($rawString)
         $this.SetContainsLine($rawString)
         $this.SetDoesNotContainPattern()

@@ -78,9 +78,10 @@ function Get-nxFileLineFilePath
 
     try
     {
-        $nxFileLineFilePathAggregate = '{0}|{1}|{2}|{3}|{4}|{5}' -f
+        $nxFileLineFilePathAggregate = '{0}|{1}|{2}|{3}|{4}|{5}|{6}' -f
             $regularExpression.nxFileLineFilePathAudit,
             $regularExpression.nxFileLineFilePathAuditUbuntu,
+            $regularExpression.nxFileLineFilePathUbuntuBanner,
             $regularExpression.nxFileLineFilePathBannerUbuntu,
             $regularExpression.nxFileLineFilePathTftp,
             $regularExpression.nxFileLineFilePathRescue,
@@ -93,6 +94,10 @@ function Get-nxFileLineFilePath
             }
             {
                 return '/etc/audit/rules.d/audit.rules'
+            }
+            'ubuntuBanner'
+            {
+                return '/etc/issue'
             }
             'bannerPathUbuntu'
             {
@@ -297,10 +302,17 @@ function Split-nxFileLineMultipleEntries
         $fileContainsLine = Get-nxFileLineContainsLine -CheckContent $content
         if ($null -ne $fileContainsLine)
         {
-            $checkContentData = $content.Replace(($fileContainsLine -join "`n"), '{0}')
-            foreach ($setting in $fileContainsLine)
+            if ($fileContainsLine -match 'You are accessing a U.S. Government \(USG\) [^"]+(?<=details.)')
             {
-                $splitEntries += $checkContentData -f $setting
+                $splitEntries += $fileContainsLine
+            }
+            else
+            {
+                $checkContentData = $content.Replace(($fileContainsLine -join "`n"), '{0}')
+                foreach ($setting in $fileContainsLine)
+                {
+                    $splitEntries += $checkContentData -f $setting
+                }
             }
         }
     }
