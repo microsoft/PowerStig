@@ -94,7 +94,8 @@ class nxFileRuleConvert : nxFileRule
         if
         (
             $CheckContent -Match '#\s+(?:cat|grep|more).*/.*/.*(?:grep|).*' -and
-            $CheckContent -Match 'Verify\s+the\s+operating\s+system\s+displays\s+the\s+Standard\s+Mandatory\s+DoD\s+Notice\s+and\s+Consent\s+Banner' -and
+            $CheckContent -Match 'Verify\s+the\s+(Ubuntu\s+)*operating\s+system\s+displays\s+the\s+Standard\s+Mandatory\s+DoD\s+Notice\s+and\s+Consent\s+Banner' -and
+            $CheckContent -NotMatch 'banner-message-text=' -and
             $CheckContent -NotMatch 'ESXi'
         )
         {

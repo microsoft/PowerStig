@@ -74,9 +74,10 @@ function Get-nxFileLineFilePath
 
     try
     {
-        $nxFileLineFilePathAggregate = '{0}|{1}|{2}|{3}|{4}' -f
+        $nxFileLineFilePathAggregate = '{0}|{1}|{2}|{3}|{4}|{5}' -f
             $regularExpression.nxFileLineFilePathAudit,
             $regularExpression.nxFileLineFilePathAuditUbuntu,
+            $regularExpression.nxFileLineFilePathBannerUbuntu,
             $regularExpression.nxFileLineFilePathTftp,
             $regularExpression.nxFileLineFilePathRescue,
             $regularExpression.nxFileLineFilePath
@@ -88,6 +89,10 @@ function Get-nxFileLineFilePath
             }
             {
                 return '/etc/audit/rules.d/audit.rules'
+            }
+            'bannerPathUbuntu'
+            {
+                return $Matches['bannerPathUbuntu']
             }
             'tftpPath'
             {

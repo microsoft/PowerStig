@@ -22,11 +22,16 @@ function Get-nxFileDestinationPath
     try
     {
         # Setting up structure to allow for multiple path detections
-        $nxFileDestinationPathAggregate = '{0}' -f
-            $regularExpression.nxFileDestinationPath
+        $nxFileDestinationPathAggregate = '{0}|{1}' -f
+            $regularExpression.nxFileDestinationPath,
+            $regularExpression.nxFileDestinationPathUbuntuBanner
         $null = $CheckContent -match $nxFileDestinationPathAggregate
         switch ($Matches.Keys)
         {
+            'ubuntuBanner'
+            {
+                return $Matches['ubuntuBanner']
+            }
             'filePath'
             {
                 return $Matches['filePath']

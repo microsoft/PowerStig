@@ -8,12 +8,13 @@
 data regularExpression
 {
     ConvertFrom-StringData -StringData @'
-        nxFileLineContainsLine            = #\\s+(?:(?:sudo\\s)*(?:e)*grep|more|cat).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)\\/[\\w.\\/-]*\\/[\\w.\\/-]*).*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
+        nxFileLineContainsLine            = #\\s+(?:(?:sudo\\s)*(?:e)*grep|more|cat).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)(?!\\/etc\\/issue)\\/[\\w.\\/-]*\\/[\\w.\\/-]*).*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
         nxFileLineContainsLineYumConf     = #\\s+(?:grep|more|cat).*\\s+\\/etc\\/yum.conf\\s+(?<setting>.*)
         nxFileLineContainsLineAuditUbuntu = \\s*sudo\\s*aud(i)*tctl\\s*-l\\s*\\|.*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
-        nxFileLineContainsLineExclude     = The result must contain the following line:|If\\s+.*commented\\s+(?:out|line).*|#\\s+cat\\s+/etc/redhat-release
+        nxFileLineContainsLineExclude     = The result must contain the following line:|If\\s+.*commented\\s+(?:out|line).*|#\\s+cat\\s+\\/etc\\/redhat-release|^The\\s+command\\s+will\\s+return\\s+the\\s+banner.*|^Check\\s+the\\s+specified\\s+banner\\s+file.*
         nxFileLineFilePathAudit           = #\\s+grep.*(?<auditPath>\\/etc\\/audit\\/audit\\.rules).*
         nxFileLineFilePathAuditUbuntu     = \\s*sudo\\s*(?<auditPathUbuntu>aud(i)*tctl\\s*-l\\s*\\|)
+        nxFileLineFilePathBannerUbuntu    = Ubuntu.*#\\sgrep\\s-i\\sbanner\\s(?<bannerPathUbuntu>\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
         nxFileLineFilePathTftp            = #\\s+grep.*(?<tftpPath>\\/etc\\/xinetd\\.d\\/tftp).*
         nxFileLineFilePathRescue          = #\\s+grep.*(?<rescuePath>\\/usr\\/lib\\/systemd\\/system\\/rescue\\.service).*
         nxFileLineFilePath                = #\\s+(?:(?:sudo\\s)*(?:e)*grep|more|cat).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
