@@ -171,7 +171,7 @@ function New-StigCheckList
 
     if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))
     {
-        $manualCheckData = ConvertTo-ManualCheckListHashTable -Path $ManualChecklistEntriesFile
+        $manualCheckData = ConvertTo-ManualCheckListHashTable -Path $ManualChecklistEntriesFile -XccdfPath $XccdfPath
     }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file
