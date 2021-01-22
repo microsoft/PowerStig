@@ -2,20 +2,7 @@
 
 ## [Unreleased]
 
-* Update PowerSTIG to remove old rule Ids in Hard Coded Framework: [#790](https://github.com/microsoft/PowerStig/issues/790)
-* Update PowerSTIG to Parse/Apply MS Office 365 ProPlus Ver 2, Rel 1: [#811](https://github.com/microsoft/PowerStig/issues/811)
-* Update PowerSTIG to parse and apply RHEL 7.x V3R1: [#608](https://github.com/microsoft/PowerStig/issues/608)
-* Update PowerSTIG to parse and apply Ubuntu 18.04 LTS STIG - Ver 2, Rel 2: [#821](https://github.com/microsoft/PowerStig/issues/821)
-* Update PowerSTIG to Add Checklist Accountability: [#808](https://github.com/microsoft/PowerStig/issues/808)
-* Update PowerSTIG to move O365 Pro Plus log entries into Exclusion Rule list: [#815](https://github.com/microsoft/PowerStig/issues/815)
-* Update PowerSTIG to parse and apply Mozilla Firefox V5R1 STIG: [#834](https://github.com/microsoft/PowerStig/issues/834)
-* Update PowerSTIG to parse and apply Microsoft DotNet V2R1 STIG: [#831](https://github.com/microsoft/PowerStig/issues/831)
-* Update PowerSTIG to Parse/Apply Oracle JRE 8 Ver 2, Rel 1: [#833](https://github.com/microsoft/PowerStig/issues/833)
-* Update PowerSTIG to use WindowsDefenderDSC 2.1.0: [#822](https://github.com/microsoft/PowerStig/issues/822)
-* Update PowerSTIG to Parse/Apply Google Chrome Ver 2, Rel 2: [#841](https://github.com/microsoft/PowerStig/issues/841)
-* Update PowerSTIG SkipRule to Accept Parent Rule for Split Rules: [#846](https://github.com/microsoft/PowerStig/issues/846)
-* Fixed: ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
-* Fixed: RHEL RuleId V-204406 should be removed: [#847](https://github.com/microsoft/PowerStig/issues/847)
+* ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
 
 ## [4.7.0] - 2020-12-17
 
