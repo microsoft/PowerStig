@@ -52,6 +52,7 @@ data doesNotContainPattern
         'ClientAliveInterval 600'                                   = '^\s*ClientAliveInterval\s*[0-5]?[0-9]?[0-9]?\s*$|^#\s*ClientAliveInterval.*|^\s*ClientAliveInterval\s*$'
         'Protocol 2'                                                = '^#\s*Protocol.*$|^Protocol\s*(?!2\b)\w*$'
         'ClientAliveCountMax 0'                                     = '^#\s*ClientAliveCountMax.*$|^ClientAliveCountMax\s*(?!0\b)\w*$'
+        'ClientAliveCountMax 1'                                     = '^#\s*ClientAliveCountMax.*$|^ClientAliveCountMax\s*(?!1\b)\w*$'
         'PermitEmptyPasswords no'                                   = '^#\s*PermitEmptyPasswords.*$|^PermitEmptyPasswords\s*(?!no\b)\w*$'
         'PermitUserEnvironment no'                                  = '^#\s*PermitUserEnvironment.*$|^PermitUserEnvironment\s*(?!no\b)\w*$'
         'UMASK 077'                                                 = '^\s*UMASK(?!\s077\b)\s*\d*\s*$|^#\s*UMASK.*'
