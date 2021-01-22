@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [4.7.1] - 2021-01-22
+
 * ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
 
 ## [4.7.0] - 2020-12-17
