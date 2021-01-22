@@ -40,7 +40,7 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     nxFileLineRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        If ($this.RawString -match 'You are accessing a U.S. Government \(USG\) [^"]+(?<=details.)')
+        if ($this.RawString -match 'You are accessing a U.S. Government \(USG\) [^"]+(?<=details.)')
         {
             $rawString = $this.RawString
         }
