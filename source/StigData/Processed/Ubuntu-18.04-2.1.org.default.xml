@@ -27,7 +27,7 @@
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is less than 1, or commented out, this is a finding." -->
   <OrganizationalSetting id="V-219178" ContainsLine="PASS_MIN_DAYS 1" DoesNotContainPattern="^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is less than 60, or commented out, this is a finding." -->
-  <OrganizationalSetting id="V-219179" ContainsLine="PASS_MAX_DAYS 60" DoesNotContainPattern="^\s*PASS_MAX_DAYS\s*([0-9]|[1-5][0-9])$|#\s*PASS_MAX_DAYS.*" />
+  <OrganizationalSetting id="V-219179" ContainsLine="PASS_MAX_DAYS 60" DoesNotContainPattern="^\s*PASS_MAX_DAYS\s*([6][1-9]|[7-9][0-9]|\d{3,})$|#\s*PASS_MAX_DAYS.*" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "remember" parameter value is not greater than or equal to 5, commented out, or not set at all this is a finding." -->
   <OrganizationalSetting id="V-219180" ContainsLine="password [success=1 default=ignore] pam_unix.so sha512 shadow remember=5 rounds=5000" DoesNotContainPattern="^#password\s*[success=1\s*default=ignore]\s*pam_unix.so\s*sha512\s*shadow\s*remember=.*" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "minlen" parameter value is not 15 or higher, or is commented out, this is a finding." -->
