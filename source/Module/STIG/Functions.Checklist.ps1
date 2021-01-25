@@ -243,6 +243,38 @@ function New-StigCheckList
 
     #region ASSET
 
+    # Get Local Target Node Data
+    try
+    {
+        $targetMacAddress = Invoke-Command $hostname -ErrorAction Stop -scriptblock {
+            $macs = (Get-NetAdapter | Where-Object {$_.status -eq "Up"} | select macaddress).macaddress
+            if ( $macs.count -gt 1 )
+            {
+                $serverMacAddress = $macs[0]
+            }
+            else
+            {
+                $serverMacAddress = $macs
+            }
+            return $serverMacAddress
+        }
+
+        $targetIpAddress = Invoke-Command $hostname -ErrorAction Stop -scriptblock {
+            $serverIPs = ( Get-NetIPAddress -addressFamily ipv4 | Where-Object { $_.IpAddress -notlike "127.*" } ).IPAddress
+            if ( $serverIPs.count -gt 1 )
+            {
+                $serverIP = $ServerIps[0]
+            }
+            else
+            {
+                $serverIP = $serverIPs
+            }
+            return $serverIP
+        }
+
+        $targetFQDN = ( Get-ADComputer $hostName -ErrorAction Stop).DnsHostName
+    }
+
     $writer.WriteStartElement("ASSET")
 
     $assetElements = [ordered] @{
