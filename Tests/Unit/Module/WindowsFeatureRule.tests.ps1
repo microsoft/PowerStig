@@ -1,5 +1,4 @@
 #region Header
-using module .\..\..\..\Module\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 
@@ -9,8 +8,8 @@ try
         #region Test Setup
         $testRuleList = @(
             @{
-                FeatureName = 'Web-DAV-Publishing'
-                InstallState = 'Absent'
+                Name = 'Web-DAV-Publishing'
+                Ensure = 'Absent'
                 OrganizationValueRequired = $false
                 CheckContent = 'Open the IIS 8.5 Manager.
 
@@ -21,8 +20,8 @@ try
                 If the "WebDAV Authoring Rules" icon exists, this is a finding.'
             },
             @{
-                FeatureName = 'TelnetClient'
-                InstallState = 'Absent'
+                Name = 'TelnetClient'
+                Ensure = 'Absent'
                 OrganizationValueRequired = $false
                 CheckContent = 'The "Telnet Client" is not installed by default.  Verify it has not been installed.
 
@@ -31,8 +30,8 @@ try
                 If the "telnet" application exists, this is a finding.'
             },
             @{
-                FeatureName = 'SimpleTCP'
-                InstallState = 'Absent'
+                Name = 'SimpleTCP'
+                Ensure = 'Absent'
                 OrganizationValueRequired = $false
                 CheckContent = '"Simple TCP/IP Services" is not installed by default.  Verify it has not been installed.
 
@@ -41,8 +40,8 @@ try
                 If "Simple TCP/IP Services" is listed, this is a finding.'
             },
             @{
-                FeatureName = 'SMB1Protocol'
-                InstallState = 'Absent'
+                Name = 'SMB1Protocol'
+                Ensure = 'Absent'
                 OrganizationValueRequired = $false
                 CheckContent = 'This requirement applies to Windows 2012 R2, it is NA for Windows 2012 (see V-73519 and V-73523 for 2012 requirements).
 
@@ -61,8 +60,8 @@ try
                 If "SMB 1.0/CIFS File Sharing Support" is selected, this is a finding.'
             },
             @{
-                FeatureName = 'PowerShell-v2'
-                InstallState = 'Absent'
+                Name = 'PowerShell-v2'
+                Ensure = 'Absent'
                 OrganizationValueRequired = $false
                 CheckContent = 'Windows PowerShell 2.0 is not installed by default.
 
@@ -75,8 +74,8 @@ try
                 An Installed State of "Available" or "Removed" is not a finding.'
             },
             @{
-                FeatureName = 'Fax'
-                InstallState = 'Absent'
+                Name = 'Fax'
+                Ensure = 'Absent'
                 OrganizationValueRequired = $false
                 CheckContent = 'Open "PowerShell".
 

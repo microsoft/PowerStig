@@ -1,5 +1,4 @@
 #region Header
-using module .\..\..\..\Module\Rule.FileContent\Convert\FileContentRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 
@@ -12,6 +11,7 @@ try
                 Key = 'security.default_personal_cert'
                 Value = 'Ask Every Time'
                 ArchiveFile = 'MozillaFirefox'
+                DscResource = 'ReplaceText'
                 OrganizationValueRequired = $false
                 CheckContent = 'Type "about:config" in the browser address bar. Verify  Preference Name "security.default_personal_cert" is set to "Ask Every Time" and is locked to prevent the user from altering.
 

@@ -1,4 +1,4 @@
-Configuration WindowsServer_config
+configuration WindowsServer_config
 {
     param
     (
@@ -26,10 +26,18 @@ Configuration WindowsServer_config
 
         [Parameter()]
         [string[]]
+        $SkipRuleSeverity,
+
+        [Parameter()]
+        [hashtable]
         $Exception,
 
         [Parameter()]
         [string[]]
+        $ResourceParameters,
+
+        [Parameter()]
+        [object]
         $OrgSettings,
 
         [Parameter()]
@@ -47,36 +55,15 @@ Configuration WindowsServer_config
 
     Node localhost
     {
-        & ([scriptblock]::Create("
-            WindowsServer BaseLineSettings
-            {
-                OsVersion   = '$TechnologyVersion'
-                OsRole      = '$TechnologyRole'
-                StigVersion = '$StigVersion'
-                ForestName  = '$ForestName'
-                DomainName  = '$DomainName'
-                $(if ($null -ne $OrgSettings)
-                {
-                    "Orgsettings = '$OrgSettings'"
-                })
-                $(if ($null -ne $Exception)
-                {
-                    "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
-                })
-                $(if ($null -ne $SkipRule)
-                {
-                    "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-                }
-                if ($null -ne $SkipRuleType)
-                {
-                    "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-                })
-            }")
-        )
+        $psboundParams = $PSBoundParameters
+        $psboundParams.OsVersion = $psboundParams['TechnologyVersion']
+        $psboundParams.OsRole = $psboundParams['TechnologyRole']
+        $psboundParams.Remove('TechnologyRole')
+        $psboundParams.Remove('ConfigurationData')
+        $psboundParams.Remove('TechnologyVersion')
 
-        <#
-            This is a little hacky because the scriptblock "flattens" the array of rules to skip.
-            This just rebuilds the array text in the scriptblock.
-        #>
+        $resourceParamString = New-ResourceParameterString -ResourceParameters $ResourceParameters -PSBoundParams $psboundParams
+        $resourceScriptBlockString = New-ResourceString -ResourceParameterString $resourceParamString -ResourceName WindowsServer
+        & ([scriptblock]::Create($resourceScriptBlockString))
     }
 }

@@ -13,10 +13,11 @@ Describe ($title + " $($stig.StigVersion) mof output") {
     $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
     $testParameterList = @{
-        TechnologyVersion = $stig.TechnologyVersion
-        TechnologyRole    = $stig.TechnologyRole
-        StigVersion       = $stig.StigVersion
-        OutputPath        = $TestDrive
+        TechnologyVersion  = $stig.TechnologyVersion
+        TechnologyRole     = $stig.TechnologyRole
+        StigVersion        = $stig.StigVersion
+        OutputPath         = $TestDrive
+        ResourceParameters = $resourceParameters
     }
 
     # Add additional test parameters to current test configuration
@@ -52,22 +53,10 @@ Describe ($title + " $($stig.StigVersion) mof output") {
                     in place of a -notmatch, since the -notmatch removes the
                     match from the collection.
                 #>
-                if (-not ($dscMof.ResourceID -match $rule.id))
+                if (-not ($dscMof.ResourceID -match '\[Skip\]' -or $dscMof.ResourceID -match $rule.id))
                 {
                     Write-Warning -Message "Missing $ruleName $($rule.id)"
                     $hasAllRules = $false
-                }
-            }
-
-            foreach ($mofEntry in $dscMof)
-            {
-                if ($mofEntry.ResourceID -match "cAdministrativeTemplateSetting")
-                {
-                    It "Should not contain the Hive in Key Path for $($mofEntry.ResourceID)" {
-                        $regexPattern = 'HKEY_CURRENT_USER|HKEY_CLASSES_ROOT|HKEY_LOCAL_MACHINE|HKEY_USERS|HKEY_CURRENT_CONFIG'
-                        $regKeyResult = $mofEntry.KeyValueName | Select-String -Pattern $regexPattern -AllMatches
-                        $regKeyResult.Matches.Count | Should -Be 0
-                    }
                 }
             }
 
@@ -88,18 +77,30 @@ Describe ($title + " $($stig.StigVersion) mof output") {
     if (@($stigList).IndexOf($stig) -le '0')
     {
         Context 'Single Exception' {
-            It "Should compile the MOF with STIG exception $exception without throwing" {
+            It "Should compile the MOF with STIG exception $($exception.Keys) without throwing" {
                 {& $technologyConfig @testParameterList -Exception $exception} | Should -Not -Throw
             }
         }
 
         Context 'Multiple Exceptions' {
-            It "Should compile the MOF with STIG exceptions $exceptionMultiple without throwing" {
+            It "Should compile the MOF with STIG exceptions $($exceptionMultiple.Keys) without throwing" {
                 {& $technologyConfig @testParameterList -Exception $exceptionMultiple} | Should -Not -Throw
             }
         }
 
-        Context 'Single Rule' {
+        Context 'Single Backward Compatibility Exception' {
+            It "Should compile the MOF with STIG exception $($backCompatException.Keys) without throwing" {
+                {& $technologyConfig @testParameterList -Exception $backCompatException} | Should -Not -Throw
+            }
+        }
+
+        Context 'Multiple Backward Compatibility Exceptions' {
+            It "Should compile the MOF with STIG exceptions $($backCompatExceptionMultiple.Keys) without throwing" {
+                {& $technologyConfig @testParameterList -Exception $backCompatExceptionMultiple} | Should -Not -Throw
+            }
+        }
+
+        Context 'Single Skip Rule' {
             It 'Should compile the MOF without throwing' {
                 {& $technologyConfig @testParameterList -SkipRule $skipRule } | Should -Not -Throw
             }
@@ -108,14 +109,14 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $configurationDocumentPath = "$TestDrive\localhost.mof"
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
-            $dscMof = @($instances | Where-Object -FilterScript { $PSItem.ResourceID -match "\[Skip\]" })
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
-            It "Should have $($skipRule.count) Skipped settings" {
-                $dscMof.count | Should -Be $skipRule.count
+            It "Should have $($skipRule.count + $blankSkipRuleId.Count) Skipped settings" {
+                $dscMof.count | Should -Be ($skipRule.count + $blankSkipRuleId.Count)
             }
         }
 
-        Context 'Multiple Rules' {
+        Context 'Multiple Skip Rules' {
             It 'Should compile the MOF without throwing' {
                 {& $technologyConfig @testParameterList -SkipRule $skipRuleMultiple} | Should -Not -Throw
             }
@@ -125,15 +126,15 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             # Counts how many Skips there are and how many there should be.
-            $expectedSkipRuleCount = $skipRuleMultiple.count
-            $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+            $expectedSkipRuleCount = $skipRuleMultiple.count + $blankSkipRuleId.Count
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
             It "Should have $expectedSkipRuleCount Skipped settings" {
                 $dscMof.count | Should -Be $expectedSkipRuleCount
             }
         }
 
-        Context "$($stig.TechnologyRole) $($stig.StigVersion) Single Type" {
+        Context "$($stig.TechnologyRole) $($stig.StigVersion) Single Skip Rule Type" {
             It "Should compile the MOF without throwing" {
                 {& $technologyConfig @testParameterList -SkipRuleType $skipRuleType} | Should -Not -Throw
             }
@@ -142,34 +143,94 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             # Counts how many Skips there are and how many there should be.
-            $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
             It "Should have $expectedSkipRuleTypeCount Skipped settings" {
                 $dscMof.count | Should -Be $expectedSkipRuleTypeCount
             }
         }
 
-        Context 'Multiple Types' {
+        Context "$($stig.TechnologyRole) $($stig.StigVersion) Multiple Skip Rule Types" {
             It "Should compile the MOF without throwing" {
-                {& $technologyConfig @testParameterList -SkipruleType $skipRuleTypeMultiple} | Should -Not -Throw
+                {& $technologyConfig @testParameterList -SkipRuleType $skipRuleTypeMultiple} | Should -Not -Throw
             }
             # Gets the mof content
             $configurationDocumentPath = "$TestDrive\localhost.mof"
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             # Counts how many Skips there are and how many there should be.
-            $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
             It "Should have $expectedSkipRuleTypeMultipleCount Skipped settings" {
-                $dscMof.count | Should -Be $expectedSkipRuleTypeMultipleCount
+                $dscMof.Count | Should -Be $expectedSkipRuleTypeMultipleCount
             }
         }
 
-        $stigPath = $stig.path.TrimEnd(".xml")
-        $orgSettings = $stigPath + ".org.default.xml"
+        Context "When $($stig.TechnologyRole) $($stig.StigVersion) Single Skip Rule Severity Category is leveraged" {
+            It "Should compile the MOF with $singleSkipRuleSeverity SkipRuleSeverity without throwing" {
+                {& $technologyConfig @testParameterList -SkipRuleSeverity $singleSkipRuleSeverity} | Should -Not -Throw
+            }
+            # Gets the mof content
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
-        It "Should compile the MOF with OrgSettings without throwing" {
-            {& $technologyConfig @testParameterList -Orgsettings $orgSettings} | Should -Not -Throw
+            # Counts how many Skips there are and how many there should be.
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
+
+            It "Should have $expectedSingleSkipRuleSeverityCount Skipped settings" {
+                $dscMof.Count | Should -Be $expectedSingleSkipRuleSeverityCount
+            }
+        }
+
+        Context "When $($stig.TechnologyRole) $($stig.StigVersion) Multiple Skip Rule Severity Categories are leveraged" {
+            It "Should compile the MOF with $($multipleSkipRuleSeverity -join ',') without throwing" {
+                {& $technologyConfig @testParameterList -SkipRuleSeverity $multipleSkipRuleSeverity} | Should -Not -Throw
+            }
+            # Gets the mof content
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+
+            # Counts how many Skips there are and how many there should be.
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
+
+            It "Should have $expectedMultipleSkipRuleSeverityCount Skipped settings" {
+                $dscMof.Count | Should -Be $expectedMultipleSkipRuleSeverityCount
+            }
+        }
+
+        Context 'OrgSettings' {
+            $stigPath = $stig.path.TrimEnd(".xml")
+            $orgSettings = $stigPath + ".org.default.xml"
+
+            It 'Should compile the MOF with Xml File OrgSettings without throwing' {
+                {& $technologyConfig @testParameterList -Orgsettings $orgSettings} | Should -Not -Throw
+            }
+
+            [xml]$xmlOrgSetting = Get-Content -Path $orgSettings
+            :orgSettingForeach foreach ($ruleIdOrgSetting in $xmlOrgSetting.OrganizationalSettings.OrganizationalSetting)
+            {
+                $properties = $ruleIdOrgSetting.Attributes.Name | Where-Object -FilterScript {$PSItem -ne 'id'}
+                foreach ($property in $properties)
+                {
+                    $ruleIdPropertyValue = $ruleIdOrgSetting.$Property
+                    if ([string]::IsNullOrEmpty($ruleIdPropertyValue) -eq $false)
+                    {
+                        $orgSettingHashtable = @{
+                            $ruleIdOrgSetting.id = @{
+                                $property = $ruleIdPropertyValue
+                            }
+                        }
+                        break orgSettingForeach
+                    }
+                }
+            }
+
+            if ($orgSettingHashtable -is [hashtable])
+            {
+                It 'Should compile the MOF with hashtable OrgSettings without throwing' {
+                    {& $technologyConfig @testParameterList -OrgSettings $orgSettingHashtable} | Should -Not -Throw
+                }
+            }
         }
     }
 }

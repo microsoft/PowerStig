@@ -1,4 +1,4 @@
-Configuration InternetExplorer_config
+configuration InternetExplorer_config
 {
     param
     (
@@ -26,10 +26,18 @@ Configuration InternetExplorer_config
 
         [Parameter()]
         [string[]]
+        $SkipRuleSeverity,
+
+        [Parameter()]
+        [hashtable]
         $Exception,
 
         [Parameter()]
         [string[]]
+        $ResourceParameters,
+
+        [Parameter()]
+        [object]
         $OrgSettings
     )
 
@@ -37,24 +45,14 @@ Configuration InternetExplorer_config
 
     Node localhost
     {
-        & ([scriptblock]::Create("
-        InternetExplorer STIG
-        {
-            BrowserVersion = '$TechnologyVersion'
-            StigVersion    = '$StigVersion'
-            $(if ($null -ne $OrgSettings)
-            {
-                "Orgsettings = '$OrgSettings'"
-            })
-            $(if ($null -ne $Exception)
-            {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
-            })
-            $(if ($null -ne $SkipRule)
-            {
-                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-            })
-        }")
-        )
+        $psboundParams = $PSBoundParameters
+        $psboundParams.BrowserVersion = $psboundParams['TechnologyVersion']
+        $psboundParams.Remove('TechnologyRole')
+        $psboundParams.Remove('ConfigurationData')
+        $psboundParams.Remove('TechnologyVersion')
+
+        $resourceParamString = New-ResourceParameterString -ResourceParameters $ResourceParameters -PSBoundParams $psboundParams
+        $resourceScriptBlockString = New-ResourceString -ResourceParameterString $resourceParamString -ResourceName InternetExplorer
+        & ([scriptblock]::Create($resourceScriptBlockString))
     }
 }

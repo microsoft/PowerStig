@@ -1,0 +1,91 @@
+---
+####################################################
+#          ModuleBuilder Configuration             #
+####################################################
+
+CopyDirectories:
+  - DSCResources
+  - Module
+  - StigData
+Encoding: UTF8 # With BOM in WinPS, noBOM in PSCore.
+VersionedOutputDirectory: true
+
+####################################################
+#       Sampler Pipeline Configuration             #
+####################################################
+
+# Defining 'Workflows' (suite of InvokeBuild tasks) to be run using their alias
+BuildWorkflow:
+  '.': # "." is the default Invoke-Build workflow. It is called when no -Tasks is specified to the build.ps1
+    - build
+    - test
+
+  build:
+    - Clean
+    - Build_Module_ModuleBuilder
+    - Build_NestedModules_ModuleBuilder
+    - Create_changelog_release_output
+
+  pack:
+    - build
+    - package_module_nupkg
+
+  hqrmtest:
+    - DscResource_Tests_Stop_On_Fail
+
+  test:
+    - Pester_Tests_Stop_On_Fail
+    - Pester_if_Code_Coverage_Under_Threshold
+
+  publish:
+    - Publish_release_to_GitHub
+    - publish_module_to_gallery # runs if nuget is not available
+
+####################################################
+#       PESTER  Configuration                      #
+####################################################
+
+Pester:
+  OutputFormat: NUnitXML
+
+  # Will look at every *.ps1 & *.psm1 under ModulePath, excepts when $_.FullName -match (Join-Path $ProjectPath $ExcludeFromCodeCoverageItem)
+  ExcludeFromCodeCoverage:
+   - DSCResources
+  Script:
+   - tests/Unit
+  ExcludeTag:
+  Tag:
+  CodeCoverageThreshold: 80 # Set to 0 to bypass
+  CodeCoverageOutputFile: JaCoCo_coverage.xml
+  CodeCoverageOutputFileEncoding: ascii
+
+DscTest:
+  ExcludeTag:
+    - "Common Tests - New Error-Level Script Analyzer Rules"
+    - "Common Tests - Validate Localization"
+    - "Changelog"
+  Tag:
+  ExcludeSourceFile:
+    - output
+  ExcludeModuleFile:
+
+Resolve-Dependency:
+  Gallery: 'PSGallery'
+  AllowPrerelease: false
+  Verbose: false
+
+ModuleBuildTasks:
+  Sampler:
+    - '*.build.Sampler.ib.tasks'
+
+# Invoke-Build Header to be used to 'decorate' the terminal output of the tasks.
+TaskHeader: |
+  param($Path)
+  ""
+  "=" * 79
+  Write-Build Cyan "`t`t`t$($Task.Name.replace("_"," ").ToUpper())"
+  Write-Build DarkGray  "$(Get-BuildSynopsis $Task)"
+  "-" * 79
+  Write-Build DarkGray "  $Path"
+  Write-Build DarkGray "  $($Task.InvocationInfo.ScriptName):$($Task.InvocationInfo.ScriptLineNumber)"
+  ""

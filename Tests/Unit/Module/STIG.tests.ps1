@@ -1,11 +1,9 @@
 #region Header
-using module .\..\..\..\Module\STIG\Convert\Convert.Main.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Functions
-
     Describe 'Split-StigXccdf' {
 
         $sampleXccdfFileName = 'U_Windows_Server_2016{0}_STIG_V1R1_Manual-xccdf.xml'
@@ -37,6 +35,7 @@ try
             }
         }
     }
+
     Describe 'Get-StigVersionNumber' {
         $majorVersionNumber = '1'
         $minorVersionNumber = '5'
@@ -48,6 +47,7 @@ try
                 Should Be "$majorVersionNumber.$minorVersionNumber"
         }
     }
+
     Describe 'Get-PowerStigFileList' {
         $majorVersionNumber = '1'
         $minorVersionNumber = '5'
@@ -81,8 +81,8 @@ try
         }
         #>
     }
-    Describe 'Split-BenchmarkId' {
 
+    Describe 'Split-BenchmarkId' {
         $sampleStrings = [ordered]@{
             'SQLServer' = @(
                 @{
@@ -90,24 +90,28 @@ try
                     'Technology' = 'SQLServer'
                     'TechnologyVersion' = '2012'
                     'TechnologyRole' = 'Database'
+                    'Path' = 'Database_STIG'
                 },
                 @{
                     'id' = 'Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide'
                     'Technology' = 'SQLServer'
                     'TechnologyVersion' = '2012'
                     'TechnologyRole' = 'Instance'
+                    'Path' = 'Instance_STIG'
                 },
                 @{
                     'id' = 'Microsoft_SQL_Server_2016_Database__Security_Technical_Implementation_Guide_NewBenchmark'
                     'Technology' = 'SQLServer'
                     'TechnologyVersion' = '2016'
                     'TechnologyRole' = 'Database'
+                    'Path' = 'Database_STIG'
                 },
                 @{
                     'id' = 'Microsoft_SQL_Server_2016_Database_Instance_Security_Technical_Implementation_Guide'
                     'Technology' = 'SQLServer'
                     'TechnologyVersion' = '2016'
                     'TechnologyRole' = 'Instance'
+                    'Path' = 'Instance_STIG'
                 }
             )
             'Firewall' = @(
@@ -121,9 +125,9 @@ try
             'DNS' = @(
                 @{
                     'id' = 'Microsoft_Windows_2012_Server_Domain_Name_System_STIG'
-                    'Technology' = 'WindowsServer'
+                    'Technology' = 'WindowsDnsServer'
                     'TechnologyVersion' = '2012R2'
-                    'TechnologyRole' = 'DNS'
+                    'TechnologyRole' = $null
                 }
             )
             'Windows' = @(
@@ -228,14 +232,17 @@ try
                 foreach ($sample in $sampleString.value)
                 {
                     Context "$($sample.Id)" {
-                        $benchmarkId = Split-BenchmarkId -Id $sample.Id
+                        # The metadata in the SQL STIG doesn't specifiy database or instance so we get that from the file name of the xccdf.
+                        $benchmarkId = Split-BenchmarkId -Id $sample.Id -FilePath $sample.Path
                         It "Should return $($sample.Technology) as the Technology property" {
                             $benchmarkId.Technology | Should Be $sample.Technology
                         }
                         It "Should return $($sample.TechnologyVersion) as the TechnologyVersion property" {
                             $benchmarkId.TechnologyVersion | Should Be $sample.TechnologyVersion
                         }
+
                         It "Should return $($sample.TechnologyRole) as the TechnologyRole property" {
+
                             $benchmarkId.TechnologyRole | Should Be $sample.TechnologyRole
                         }
                     }
@@ -243,8 +250,16 @@ try
             }
         }
     }
-    #endregion
+
+    Describe 'Conversion Status' {
+        It 'Should not contain conversionstatus="fail" in any processed STIG' {
+            $processedStigDataPath = Join-Path -Path $script:moduleRoot -ChildPath 'StigData\Processed\*.xml'
+            $selectStringResults = Select-String -Pattern 'conversionstatus="fail"' -Path $processedStigDataPath
+            $selectStringResults | Should Be $null
+        }
+    }
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

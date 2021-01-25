@@ -137,6 +137,10 @@ function Get-TestStigRule
         $FixText = 'This is a string of text that tells an admin how to fix an item if it is not currently configured properly and ignored by the parser',
 
         [Parameter(Parametersetname = 'UseExisting')]
+        [string]
+        $LegacyId = 'V-1111',
+
+        [Parameter(Parametersetname = 'UseExisting')]
         [Parameter(Parametersetname = 'FileProvided')]
         [switch]
         $ReturnGroupOnly,
@@ -162,7 +166,7 @@ function Get-TestStigRule
     {
         # Get the samplegroup element text and merge in the parameter strings
         $groupElement = Get-Content -Path "$PSScriptRoot\data\sampleGroup.xml.txt" -Encoding UTF8 -Raw
-        $groupElement = $groupElement -f $GroupId, $GroupTitle, $RuleTitle, $RuleDescription, $FixText, $CheckContent
+        $groupElement = $groupElement -f $GroupId, $GroupTitle, $RuleTitle, $RuleDescription, $FixText, $CheckContent, $LegacyId
     }
 
     # Get and merge the group element data into the xccdf xml document and create an xml object to return
@@ -213,9 +217,7 @@ Function Get-StigBaseMethods
         $objectClassMethodNames = @('Equals', 'GetHashCode', 'GetType', 'ToString')
         $stigClassMethodNames = @('Clone', 'SetDuplicateRule', 'SetStatus',
             'SetIsNullOrEmpty', 'SetOrganizationValueRequired', 'GetOrganizationValueTestString',
-            'ConvertToHashTable', 'IsHardCoded', 'GetHardCodedString',
-            'IsHardCodedOrganizationValueTestString', 'GetHardCodedOrganizationValueTestString',
-            'IsExistingRule')
+            'ConvertToHashTable', 'IsExistingRule')
 
         $stigClassMethodNames += $ObjectClassMethodNames
     }
@@ -262,7 +264,10 @@ function Get-StigDataRootPath
     param ( )
 
     $projectRoot = Split-Path -Path (Split-Path -Path $PsScriptRoot)
-    return Join-Path -Path $projectRoot -Child 'StigData'
+    $buildOutput = Join-Path -Path $projectRoot -ChildPath 'output'
+    $manifestPath = (Get-ChildItem -Path $buildOutput -Filter 'PowerStig.psd1' -Recurse).FullName
+    $moduleRoot = Split-Path -Path $manifestPath -Parent
+    return Join-Path -Path $moduleRoot -Child 'StigData'
 }
 
 <#
@@ -475,17 +480,104 @@ function Test-AutomatableRuleType
     }
 }
 
+<#
+    .SYNOPSIS
+        Retrieves the DscResource module name and version.
+
+    .Path
+        Specifies the path to the DscResource composite file.
+#>
+function Get-DscResourceModuleInfo
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]
+        $Path
+    )
+
+    $moduleInfo = @()
+    $modulePattern   = "(?<ModuleName>(?<=ModuleName\s)\w+.\w+(?=\s))"
+    $versionPatthern = "(?<ModuleVersion>(?<=ModuleVersion\s)[\d\.]+(?=$))"
+
+    $importModuleCommands = Select-String -Path $Path -Pattern 'Import-DscResource' -AllMatches
+
+    foreach ($importModuleCommand in $importModuleCommands)
+    {
+        $moduleInfo += @{
+            ModuleName    = ($importModuleCommand.Line | Select-String -Pattern $modulePattern).Matches[0].Value
+            ModuleVersion = ($importModuleCommand.Line | Select-String -Pattern $versionPatthern).Matches[0].Value
+        }
+    }
+
+    return $moduleInfo
+}
+
+<#
+    .SYNOPSIS
+        Set/Creates ps1 file with 'using module' statement in order to dynamically load
+        Rule specific classes.
+
+    .DESCRIPTION
+        Sets/Creates a ps1 file with a 'using module' statement with a specified class.
+        This function is needed for tests due to the 'using' statement accepting either
+        relative paths and/or fully qualified paths. The build process creates an output
+        folder with the current version
+
+    .PARAMETER RuleType
+        The Rule Type to set in the ps1 file.
+
+    .PARAMETER PowerSTIGBuildPath
+        The path where PowerSTIG module was created.
+
+    .PARAMETER DestinationPath
+        The path where the ps1 file containing the using statement should reside.
+#>
+function Set-DynamicClassFile
+{
+    [CmdletBinding()]
+    [OutputType()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string[]]
+        $ClassModuleFileName,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateScript({Test-Path -Path $_})]
+        [string]
+        $PowerStigBuildPath,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $DestinationPath
+    )
+
+    $stringBuilder = [System.Text.StringBuilder]::new()
+    foreach ($class in $ClassModuleFileName)
+    {
+        $classModulePath = (Get-ChildItem -Path $PowerStigBuildPath -Filter $class -Recurse).FullName
+        $usingStatement = 'using module {0}' -f $classModulePath
+        [void] $stringBuilder.AppendLine($usingStatement)
+    }
+
+    Set-Content -Value $stringBuilder.ToString() -Path $DestinationPath
+}
+
 Export-ModuleMember -Function @(
-    'Split-TestStrings',
-    'Get-StigDataRootPath',
-    'Test-Xml',
-    'Get-TestStigRule',
-    'Get-StigBaseMethods',
-    'Format-RuleText',
-    'Get-PowerStigVersionFromManifest',
-    'Get-StigVersionTable',
-    'Get-ConfigurationName',
-    'Get-StigVersionParameterValidateSet',
-    'Get-ValidStigVersionNumbers',
+    'Split-TestStrings'
+    'Get-StigDataRootPath'
+    'Test-Xml'
+    'Get-TestStigRule'
+    'Get-StigBaseMethods'
+    'Format-RuleText'
+    'Get-PowerStigVersionFromManifest'
+    'Get-StigVersionTable'
+    'Get-ConfigurationName'
+    'Get-StigVersionParameterValidateSet'
+    'Get-ValidStigVersionNumbers'
     'Test-AutomatableRuleType'
+    'Get-DscResourceModuleInfo'
+    'Set-DynamicClassFile'
 )

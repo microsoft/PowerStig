@@ -1,5 +1,4 @@
 #region Header
-using module .\..\..\..\Module\Rule.Group\Convert\GroupRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 
@@ -61,9 +60,7 @@ try
 
         foreach ($testRule in $testRuleList)
         {
-            <# TODO uncomment when ready to parse group rules
             . $PSScriptRoot\Convert.CommonTests.ps1
-            #>
         }
 
         #region Add Custom Tests Here

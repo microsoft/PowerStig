@@ -1,4 +1,7 @@
-using module .\..\..\..\Module\Rule\Rule.psm1
+#region Header
+. $PSScriptRoot\.tests.header.ps1
+#endregion
+
 <#
     The convert common tests loop through the test data that is provided in the
     form of a hashtable.
@@ -12,13 +15,20 @@ using module .\..\..\..\Module\Rule\Rule.psm1
 #>
 
 # Get the rule element with the checkContent injected into it
-$stigRule = Get-TestStigRule -CheckContent $testRule.checkContent -ReturnGroupOnly
+$stigRule = Get-TestStigRule -CheckContent $testRule.CheckContent -ReturnGroupOnly -FixText $testRule.FixText
+
 # Create an instance of the convert class that is currently being tested
 $convertedRule = New-Object -TypeName ($global:moduleName + 'Convert') -ArgumentList $stigRule
 
+Describe 'Exception Help' {
+    It 'Should not Return $null' {
+        $convertedrule.GetExceptionHelp() | Should -Not -BeNullOrEmpty
+    }
+}
+
 Describe "$($convertedRule.GetType().Name) Class Instance" {
     # Only run the base class test once
-    If ($count -le 0)
+    if ($count -le 0)
     {
         It "Should have a BaseType of $moduleName" {
             $convertedRule.GetType().BaseType.ToString() | Should Be $moduleName
@@ -62,18 +72,21 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         # Test that each property was properly extracted from the test checkContent
         foreach ($property in $propertyList)
         {
-            It "Should return the $Property" {
-                # Can't test a null property type, only that the property is null
-                if ($null -ne $testRule.$property)
-                {
-                    # Some properties are complex types that need to be serialized for comparison
-                    if ($testRule.$property.GetType().BaseType.Name -eq 'Array')
+            if ($property -ne "FixText")
+            {
+                It "Should return the $Property" {
+                    # Can't test a null property type, only that the property is null
+                    if ($null -ne $testRule.$property)
                     {
-                        $convertedRule.$property = $convertedRule.$property | ConvertTo-Json
-                        $testRule.$property = $testRule.$property | ConvertTo-Json
+                        # Some properties are complex types that need to be serialized for comparison
+                        if ($testRule.$property.GetType().BaseType.Name -eq 'Array')
+                        {
+                            $convertedRule.$property = $convertedRule.$property | ConvertTo-Json
+                            $testRule.$property = $testRule.$property | ConvertTo-Json
+                        }
                     }
+                    $convertedRule.$property | Should Be $testRule.$property
                 }
-                $convertedRule.$property | Should Be $testRule.$property
             }
             # Remove the property from the list of tested properties
             $ruleClassPropertyTestList.Remove($property)
@@ -93,10 +106,11 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         decoded strings. To keep the test data consistent with the xccdf xml it
         needs to be decoded before testing.
     #>
+    Add-Type -AssemblyName System.Web
     $checkContent = [System.Web.HttpUtility]::HtmlDecode( $testRule.checkContent )
 
     # The manual rule is the default and does not contain a match method.
-    if ($convertedRule.GetType().Name -notmatch 'ManualRuleConvert')
+    if ($convertedRule.GetType().Name -notmatch 'ManualRuleConvert|GroupRuleConvert')
     {
         <#
             To dynamically call a static method, we have to get the static method
@@ -111,3 +125,4 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         }
     }
 }
+

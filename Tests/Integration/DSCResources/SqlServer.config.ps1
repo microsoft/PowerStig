@@ -1,4 +1,4 @@
-Configuration SqlServer_config
+configuration SqlServer_config
 {
     param
     (
@@ -26,10 +26,18 @@ Configuration SqlServer_config
 
         [Parameter()]
         [string[]]
+        $SkipRuleSeverity,
+
+        [Parameter()]
+        [hashtable]
         $Exception,
 
         [Parameter()]
         [string[]]
+        $ResourceParameters,
+
+        [Parameter()]
+        [object]
         $OrgSettings
 
     )
@@ -38,35 +46,21 @@ Configuration SqlServer_config
 
     Node localhost
     {
-        & ([scriptblock]::Create("
-        SqlServer Instance
-        {
-            SqlVersion = $TechnologyVersion
-            SqlRole = '$TechnologyRole'
-            StigVersion = $StigVersion
-            ServerInstance = 'TestServer'
-            $(if ($null -ne $OrgSettings)
-            {
-                "Orgsettings = '$OrgSettings'"
-            })
-            $(if ($null -ne $Exception)
-            {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
-            })
-            $(if ($null -ne $SkipRule)
-            {
-                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-            }
-            if ($null -ne $SkipRuleType)
-            {
-                " SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-            })
-        }")
-        )
+        $psboundParams = $PSBoundParameters
+        $psboundParams.SqlVersion = $psboundParams['TechnologyVersion']
+        $psboundParams.SqlRole = $psboundParams['TechnologyRole']
+        $psboundParams.ServerInstance = 'TestServer'
+        $psboundParams.Remove('TechnologyRole')
+        $psboundParams.Remove('ConfigurationData')
+        $psboundParams.Remove('TechnologyVersion')
+
+        $resourceParamString = New-ResourceParameterString -ResourceParameters $ResourceParameters -PSBoundParams $psboundParams
+        $resourceScriptBlockString = New-ResourceString -ResourceParameterString $resourceParamString -ResourceName SqlServer
+        & ([scriptblock]::Create($resourceScriptBlockString))
     }
 }
 
-Configuration SqlServerDatabase_config
+configuration SqlServerDatabase_config
 {
     param
     (
@@ -93,7 +87,7 @@ Configuration SqlServerDatabase_config
         $SkipRuleType,
 
         [Parameter()]
-        [psobject]
+        [hashtable]
         $Exception,
 
         [Parameter()]
@@ -105,31 +99,17 @@ Configuration SqlServerDatabase_config
 
     Node localhost
     {
-        & ([scriptblock]::Create("
-        SqlServer Database
-        {
-            SqlVersion     = '$TechnologyVersion'
-            SqlRole        = '$TechnologyRole'
-            StigVersion    = '$StigVersion'
-            ServerInstance = 'TestServer'
-            Database       = 'TestDataBase'
-            $(if ($null -ne $OrgSettings)
-            {
-                "Orgsettings = '$OrgSettings'"
-            })
-            $(if ($null -ne $Exception)
-            {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
-            })
-            $(if ($null -ne $SkipRule)
-            {
-                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-            }
-            if ($null -ne $SkipRuleType)
-            {
-                "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-            })
-        }")
-        )
+        $psboundParams = $PSBoundParameters
+        $psboundParams.SqlVersion = $psboundParams['TechnologyVersion']
+        $psboundParams.SqlRole = $psboundParams['TechnologyRole']
+        $psboundParams.ServerInstance = 'TestServer'
+        $psboundParams.Database = @('TestDataBase','TestDataBase2')
+        $psboundParams.Remove('TechnologyRole')
+        $psboundParams.Remove('ConfigurationData')
+        $psboundParams.Remove('TechnologyVersion')
+
+        $resourceParamString = New-ResourceParameterString -ResourceParameters $ResourceParameters -PSBoundParams $psboundParams
+        $resourceScriptBlockString = New-ResourceString -ResourceParameterString $resourceParamString -ResourceName SqlServer
+        & ([scriptblock]::Create($resourceScriptBlockString))
     }
 }

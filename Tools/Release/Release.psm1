@@ -820,11 +820,12 @@ function New-GitHubRelease
 #>
 function Update-FileHashMarkdown
 {
+    [CmdletBinding()]
     param
     (
         [Parameter()]
         [string[]]
-        $FileHashPath = (Join-Path -Path $PWD -ChildPath '\StigData\Processed\*.xml'),
+        $FileHashPath = (Join-Path -Path $PWD -ChildPath 'source\StigData\Processed\*.xml'),
 
         [Parameter()]
         [string]
@@ -859,17 +860,241 @@ Hashes for **PowerSTIG** files are listed in the following table:
     foreach ($file in $fileHash)
     {
         $fileHashWithSize = '| {0} | {1} | {2} |' -f
-        $(Split-Path -Path $file.Path -Leaf),
-        $($file.Hash),
-        $((Get-Item -Path $file.Path).Length)
+            $(Split-Path -Path $file.Path -Leaf),
+            $($file.Hash),
+            $((Get-Item -Path $file.Path).Length)
         $null = $fileHashMarkdownFileContent.AppendLine($fileHashWithSize)
     }
 
     Set-Content -Path $MarkdownPath -Value $fileHashMarkdownFileContent.ToString().Trim() -Force
 }
 
-#endregion
+<#
+    .SYNOPSIS
+        Updates the PowerSTIG Wiki STIG Coverage markdown files located in .\PowerStig.wiki\StigDetails.
 
+    .DESCRIPTION
+        Updates the PowerSTIG Wiki STIG Coverage markdown files located in .\PowerStig.wiki\StigDetails.
+        Updates/Creates a markdown per Processed STIG Xml with statistical data on STIG Coverage.
+
+    .PARAMETER ProcessedStigPath
+        Specifies the path to the ProcessedStig directory within the PowerSTIG project.
+
+    .PARAMETER PowerStigWikiPath
+        Specifies the path to the PowerSTIG Wiki on the local machine. The default parameter value is
+        the root directory the PowerSTIG project resides in.
+
+    .PARAMETER Exclude
+        Specifies an array of strings representing files and/or directories to exclude from the ProcessedStig
+        Get-ChildItem output.
+
+    .EXAMPLE
+        PS C:\> Update-PowerSTIGCoverageMarkdown
+
+        Updates/Creates a markdown per Processed STIG Xml with statistical data on STIG Coverage in the
+        PowerStig.wiki path.
+#>
+function Update-PowerSTIGCoverageMarkdown
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter()]
+        [string[]]
+        $ProcessedStigPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\source\StigData\Processed\*.xml'),
+
+        [Parameter()]
+        [string]
+        $PowerStigWikiPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\..\PowerSTIG.wiki\'),
+
+        [Parameter()]
+        [string[]]
+        $Exclude = @('*.org.default.xml','ActiveDirectory-All-*.xml')
+    )
+
+    if (-not (Test-Path -Path $PowerStigWikiPath))
+    {
+        throw "$(Split-Path -Path $PowerStigWikiPath) was not detected, check the path and try again."
+    }
+
+    $stigDetails = Join-Path -Path $PowerStigWikiPath -ChildPath 'StigDetails'
+    Get-ChildItem -Path $stigDetails -Recurse | Remove-Item -Recurse -Confirm:$false -Force
+
+    $moduleManifest = Join-Path -Path $PSScriptRoot -ChildPath '..\..\source\PowerStig.psd1'
+    $moduleVersion = (Import-PowerShellDataFile -Path $moduleManifest).ModuleVersion
+    $processedStig = Get-ChildItem -Path $ProcessedStigPath -Exclude $Exclude | Select-Object -ExpandProperty FullName
+    $markdownStrings = Import-PowerShellDataFile -Path (Join-Path -Path $PSScriptRoot -ChildPath 'Data.Markdown.psd1')
+    $summaryHeader = $markdownStrings.markdownSummaryHeader -f $moduleVersion
+
+    # String builder to set the StigCoverageSummary markdown file
+    $summaryMarkdownContent = New-Object -TypeName System.Text.StringBuilder -ArgumentList $summaryHeader
+    $null = $summaryMarkdownContent.AppendLine()
+
+    # Loop through each xml and create coverage information
+    foreach ($stigXml in $processedStig)
+    {
+        [xml]$stig = Get-Content -Path $stigXml -Encoding UTF8
+        $allStigRuleType = ($stig.DISASTIG | Get-Member -Name *Rule).Name
+        $automatedRuleType = $allStigRuleType | Where-Object -FilterScript {$_ -notmatch 'DocumentRule|ManualRule'}
+        $docManualRuleType = $allStigRuleType | Where-Object -FilterScript {$_ -match 'DocumentRule|ManualRule'}
+        $allStigRuleCount = ($allStigRuleType | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
+        $automatedRuleCount = ($automatedRuleType | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
+        $allStigRuleSevCount = $allStigRuleType | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
+        $automatedSevCount = $automatedRuleType | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
+        $stigDetailFileName = (Split-Path -Path $stigXml -Leaf) -replace '.xml', '.md'
+        $stigDetailFilePath = Join-Path -Path $stigDetails -ChildPath $stigDetailFileName
+        $stigDetailFileLink = $markdownStrings.markdownRuleLink -f ($stigDetailFileName -replace '.md')
+        [string]$stigAutomatedRulePercentage = ([math]::Round($automatedRuleCount/$allStigRuleCount, 2) * 100)
+        $stigMarkdown = $markdownStrings.markdownSummaryBody -f
+            $stig.DISASTIG.stigid.Replace('_', ' ').Trim(),
+            $stig.DISASTIG.fullversion.Trim(),
+            $stigDetailFileLink,
+            $stig.DISASTIG.title.Trim(),
+            $stig.DISASTIG.version.Trim(),
+            $stig.DISASTIG.releaseinfo.Trim(),
+            $stig.DISASTIG.filename.Trim(),
+            $stig.DISASTIG.created.Trim(),
+            $stig.DISASTIG.description.Trim(),
+            $automatedRuleCount,
+            $allStigRuleCount,
+            $stigAutomatedRulePercentage,
+            ($automatedSevCount | Where-Object {$_.Name -eq 'high'}).Count,
+            ($allStigRuleSevCount | Where-Object {$_.Name -eq 'high'}).Count,
+            ($automatedSevCount | Where-Object {$_.Name -eq 'medium'}).Count,
+            ($allStigRuleSevCount | Where-Object {$_.Name -eq 'medium'}).Count,
+            ($automatedSevCount | Where-Object {$_.Name -eq 'low'}).Count,
+            ($allStigRuleSevCount | Where-Object {$_.Name -eq 'low'}).Count,
+            [char]32
+        $null = $summaryMarkdownContent.AppendLine()
+        $null = $summaryMarkdownContent.AppendLine($stigMarkdown)
+
+        # String builder to set the StigRuleDetails markdown files
+        $stigMarkdown = $stigMarkdown -replace '## ', '# '
+        $stigDetailContent = New-Object -TypeName System.Text.StringBuilder
+        $null = $stigDetailContent.AppendLine($stigMarkdown)
+        $null = $stigDetailContent.AppendLine()
+        $null = $stigDetailContent.AppendLine($markdownStrings.markdownRuleTableHeader)
+
+        # Loop through each rule to create StigRuleDetails table (Automated Rules)
+        foreach ($ruleType in $automatedRuleType)
+        {
+            foreach ($rule in $stig.DISASTIG.$ruleType.Rule)
+            {
+                $ruleMarkdown = $markdownStrings.markdownRuleDetail -f
+                    $rule.id,
+                    [System.Globalization.CultureInfo]::new('en-US').TextInfo.ToTitleCase($rule.severity),
+                    $ruleType,
+                    $rule.dscresource,
+                    $rule.DuplicateOf
+                $null = $stigDetailContent.AppendLine($ruleMarkdown)
+            }
+        }
+
+        if ($null -ne $docManualRuleType)
+        {
+            # Add Document / Manual Rule Table Header
+            $null = $stigDetailContent.AppendLine()
+            $null = $stigDetailContent.AppendLine($markdownStrings.markdownDocumentRuleTableHeader)
+
+            # Loop through each rule to create StigRuleDetails table (Document / Manual Rules)
+            foreach ($ruleType in $docManualRuleType)
+            {
+                foreach ($rule in $stig.DISASTIG.$ruleType.Rule)
+                {
+                    $ruleMarkdown = $markdownStrings.markdownDocumentRuleDetail -f
+                        $rule.id,
+                        [System.Globalization.CultureInfo]::new('en-US').TextInfo.ToTitleCase($rule.severity),
+                        $ruleType
+                    $null = $stigDetailContent.AppendLine($ruleMarkdown)
+                }
+            }
+        }
+
+        Set-Content -Path $stigDetailFilePath -Value $stigDetailContent.ToString().Trim() -Force
+    }
+
+    $coverageSummary = Join-Path -Path $stigDetails -ChildPath StigCoverageSummary.md
+    Set-Content -Path $coverageSummary -Value $summaryMarkdownContent.ToString().Trim() -Force
+
+    Update-PowerSTIGCoverageSidebar -MarkdownStrings $markdownStrings -PowerStigWikiPath $PowerStigWikiPath
+}
+
+<#
+    .SYNOPSIS
+        Update-PowerSTIGCoverageSidebar creates _sidebar.md for Github wiki sidebar.
+
+    .DESCRIPTION
+        Update-PowerSTIGCoverageSidebar creates _sidebar.md for Github wiki sidebar. The _sidebar.md
+        creates a sidebar table of contents for the wiki page.
+
+    .PARAMETER PowerStigWikiPath
+        Specifies the path to the PowerSTIG Wiki on the local machine. The default parameter value is
+        the root directory the PowerSTIG project resides in.
+
+    .PARAMETER MarkdownStrings
+        Specifies a hashtable representing the Markdown Strings from Data.Markdown.psd1.
+
+    .EXAMPLE
+        PS C:\> Update-PowerSTIGCoverageSidebar -MarkdownStrings $markdownStrings
+
+        Creates _sidebar.md in .\PowerSTIG.wiki\StigDetails which represents all the Stig markdown files
+        in the StigDetails directory.
+#>
+
+function Update-PowerSTIGCoverageSidebar
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter()]
+        [string]
+        $PowerStigWikiPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\..\PowerSTIG.wiki'),
+
+        [Parameter(Mandatory = $true)]
+        [hashtable]
+        $MarkdownStrings
+    )
+
+    # Get the contents of the current root _sidebar.md and add the STIG details to create a new StigDetails\_sidebar.md
+    $rootSidebar = Get-Content -Path (Join-Path -Path $PowerStigWikiPath -ChildPath '_sidebar.md') -Raw -Encoding UTF8
+    $sidebarInsertionIndex = [regex]::Match($rootSidebar, '^\[', [System.Text.RegularExpressions.RegexOptions]::Multiline).Index - 2
+
+    # Query files in the StigDetails directory to create string data for new StigDetails\_sidebar.md
+    $stigDetailsDirectoryExclude = @('StigCoverageSummary.md', '_sidebar.md')
+    $stigDetailsFileNames = Get-ChildItem -Path (Join-Path -Path $PowerStigWikiPath -ChildPath 'StigDetails') -Exclude $stigDetailsDirectoryExclude
+
+    # String builder to create StigDetails\_sidebar.md
+    $stigCoverageSidebarContent = New-Object -TypeName System.Text.StringBuilder
+    $null = $stigCoverageSidebarContent.AppendLine($rootSidebar.TrimEnd())
+
+    # String builder to build stig details sidebar table of contents insertion string
+    $sidebarTocInsertionContent = New-Object -TypeName System.Text.StringBuilder
+
+    # String builder to build stig details sidebar github hyperlink insertion string
+    $sidebarHyperLinkInsertionContent = New-Object -TypeName System.Text.StringBuilder
+
+    foreach ($stigDetail in $stigDetailsFileNames.Name)
+    {
+        $sidebarStigTitle = $stigDetail -replace '.md'
+        $sidebarStigLabel = $stigDetail -replace '.md|-|\.'
+        $sidebarTocString = $MarkdownStrings.markdownSidebarToc -f $sidebarStigTitle, $sidebarStigLabel
+        $null = $sidebarTocInsertionContent.AppendLine($sidebarTocString)
+
+        $hyperLinkString = $MarkdownStrings.markdownRuleLink -f $sidebarStigTitle
+        $sidebarHyperLinkString = $MarkdownStrings.markdownSidebarHyperLink -f $sidebarStigLabel, $hyperLinkString
+        $null = $sidebarHyperLinkInsertionContent.AppendLine($sidebarHyperLinkString)
+    }
+
+    # Insert sidebar table of contents / Append HyperLink
+    $null = $stigCoverageSidebarContent.Insert($sidebarInsertionIndex, $sidebarTocInsertionContent.ToString())
+    $null = $stigCoverageSidebarContent.AppendLine($sidebarHyperLinkInsertionContent.ToString().TrimEnd())
+
+    # Create/Overwrite StigDetails\_sidebar.md
+    $stigCoverageSidebarFilePath = Join-Path -Path $PowerStigWikiPath -ChildPath 'StigDetails\_sidebar.md'
+    Set-Content -Path $stigCoverageSidebarFilePath -Value $stigCoverageSidebarContent.ToString().TrimEnd() -Force
+}
+
+#endregion
 #region DevMerge
 
 function Start-PowerStigDevMerge
@@ -1117,7 +1342,6 @@ function Start-PowerStigRelease
     }
 }
 
-
 function Start-PowerStigDevMerge
 {
     [OutputType([int])]
@@ -1320,4 +1544,9 @@ function Complete-PowerStigRelease
     }
 }
 
-Export-ModuleMember -Function '*-PowerStigRelease', '*-PowerStigDevMerge'
+Export-ModuleMember -Function @(
+    '*-PowerStigRelease',
+    '*-PowerStigDevMerge',
+    'Update-PowerSTIGCoverageMarkdown',
+    'Update-FileHashMarkdown'
+)

@@ -1,4 +1,4 @@
-Configuration WindowsClient_config
+configuration WindowsClient_config
 {
     param
     (
@@ -17,8 +17,12 @@ Configuration WindowsClient_config
         $StigVersion,
 
         [Parameter()]
-        [string[]]
+        [hashtable]
         $Exception,
+
+        [Parameter()]
+        [string[]]
+        $ResourceParameters,
 
         [Parameter()]
         [string[]]
@@ -30,6 +34,10 @@ Configuration WindowsClient_config
 
         [Parameter()]
         [string[]]
+        $SkipRuleSeverity,
+
+        [Parameter()]
+        [object]
         $OrgSettings,
 
         [Parameter()]
@@ -47,35 +55,14 @@ Configuration WindowsClient_config
 
     Node localhost
     {
-        & ([scriptblock]::Create("
-            WindowsClient BaseLineSettings
-            {
-                OsVersion   = '$TechnologyVersion'
-                StigVersion = '$StigVersion'
-                ForestName  = '$ForestName'
-                DomainName  = '$DomainName'
-                $(if ($null -ne $OrgSettings)
-                {
-                    "Orgsettings = '$OrgSettings'"
-                })
-                $(if ($null -ne $Exception)
-                {
-                    "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
-                })
-                $(if ($null -ne $SkipRule)
-                {
-                    "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-                }
-                if ($null -ne $SkipRuleType)
-                {
-                    "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-                })
-            }")
-        )
+        $psboundParams = $PSBoundParameters
+        $psboundParams.OsVersion = $psboundParams['TechnologyVersion']
+        $psboundParams.Remove('TechnologyRole')
+        $psboundParams.Remove('ConfigurationData')
+        $psboundParams.Remove('TechnologyVersion')
 
-        <#
-            This is a little hacky because the scriptblock "flattens" the array of rules to skip.
-            This just rebuilds the array text in the scriptblock.
-        #>
+        $resourceParamString = New-ResourceParameterString -ResourceParameters $ResourceParameters -PSBoundParams $psboundParams
+        $resourceScriptBlockString = New-ResourceString -ResourceParameterString $resourceParamString -ResourceName WindowsClient
+        & ([scriptblock]::Create($resourceScriptBlockString))
     }
 }

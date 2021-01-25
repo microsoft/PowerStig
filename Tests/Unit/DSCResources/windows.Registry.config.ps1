@@ -1,13 +1,17 @@
-Configuration Registry_config
+# DscResource Unit Test Header
+. $PSScriptRoot\.tests.header.ps1
+
+configuration Registry_config
 {
     param
     ( )
 
-    Import-Module $PSScriptRoot\..\..\..\DscResources\helper.psm1 -Force
-    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    Import-Module $moduleRoot\DscResources\helper.psm1 -Force
+    Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.2.0
+    Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
 
     Node localhost
     {
-        . $PSScriptRoot\..\..\..\DscResources\Resources\windows.Registry.ps1
+        . $moduleRoot\DscResources\Resources\windows.Registry.ps1
     }
 }
