@@ -8,13 +8,13 @@
 data regularExpression
 {
     ConvertFrom-StringData -StringData @'
-        nxFileLineContainsLine        = #\\s+(?:grep|more|cat).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)\\/[\\w.\\/-]*\\/[\\w.\\/-]*).*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
+        nxFileLineContainsLine        = #\\s+(?:(?:sudo\\s)*(?:e)*grep|more|cat).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)(?!\\/etc\\/issue)\\/[\\w.\\/-]*\\/[\\w.\\/-]*).*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
         nxFileLineContainsLineYumConf = #\\s+(?:grep|more|cat).*\\s+\\/etc\\/yum.conf\\s+(?<setting>.*)
         nxFileLineContainsLineExclude = The result must contain the following line:|If\\s+.*commented\\s+(?:out|line).*|#\\s+cat\\s+/etc/redhat-release
         nxFileLineFilePathAudit       = #\\s+grep.*(?<auditPath>\\/etc\\/audit\\/audit\\.rules).*
         nxFileLineFilePathTftp        = #\\s+grep.*(?<tftpPath>\\/etc\\/xinetd\\.d\\/tftp).*
         nxFileLineFilePathRescue      = #\\s+grep.*(?<rescuePath>\\/usr\\/lib\\/systemd\\/system\\/rescue\\.service).*
-        nxFileLineFilePath            = #\\s+(?:grep|more|cat).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
+        nxFileLineFilePath            = #\\s+(?:(?:sudo\\s)*(?:e)*grep|more|cat).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
         nxFileLineFooterDetection     = ^If\\s+.*$
 '@
 }
@@ -32,8 +32,8 @@ data doesNotContainPattern
         'ucredit=-1'                                                = '^#\s*ucredit.*$|^ucredit\s*=\s*(?!-1\b)\w*$'
         'lcredit=-1'                                                = '^#\s*lcredit.*$|^lcredit\s*=\s*(?!-1\b)\w*$'
         'dcredit=-1'                                                = '^#\s*dcredit.*$|^dcredit\s*=\s*(?!-1\b)\w*$'
-        'difok = 8'                                                 = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*' # Org
-        'difok=8'                                                   = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*' # Org
+        'difok = 8'                                                 = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*' # Org
+        'difok=8'                                                   = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*' # Org
         'PASS_MIN_DAYS 1'                                           = '^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*' # Org
         'PASS_MAX_DAYS 60'                                          = '^\s*PASS_MAX_DAYS\s*([0-9]|[1-5][0-9])$|#\s*PASS_MAX_DAYS.*' # Org
         'minlen=15'                                                 = '^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*' # Org
@@ -53,6 +53,7 @@ data doesNotContainPattern
         'UMASK 077'                                                 = '^\s*UMASK(?!\s077\b)\s*\d*\s*$|^#\s*UMASK.*'
         'minclass = 4'                                              = 'DynamicallyGeneratedDoesNotContainPattern'
         'FAIL_DELAY 4'                                              = 'DynamicallyGeneratedDoesNotContainPattern'
+        'MACs hmac-sha2-512,hmac-sha2-256'                          = '#\s*MACs.*|\s*MACs\s*hmac-(?!sha2-512).*'
         '-a always,exit -F arch=b32 -S chmod -F auid>=1000 -F auid!=4294967295 -k perm_mod' = 'DynamicallyGeneratedDoesNotContainPattern'
         '-a always,exit -F arch=b32 -S chown -F auid>=1000 -F auid!=4294967295 -k perm_mod' = 'DynamicallyGeneratedDoesNotContainPattern'
         '-a always,exit -F arch=b32 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access' = 'DynamicallyGeneratedDoesNotContainPattern'
@@ -152,7 +153,7 @@ data doesNotContainPattern
         'banner /etc/issue' = 'DynamicallyGeneratedDoesNotContainPattern'
         'banner-message-enable=true' = 'DynamicallyGeneratedDoesNotContainPattern'
         'cert_policy = ca, ocsp_on, signature;' = 'DynamicallyGeneratedDoesNotContainPattern'
-        'Ciphers aes128-ctr,aes192-ctr,aes256-ctr' = 'DynamicallyGeneratedDoesNotContainPattern'
+        'Ciphers aes256-ctr,aes192-ctr,aes128-ctr' = '^#\s*Ciphers.*|^\s*Ciphers\s*aes128-ctr.*|^\s*Ciphers\s*aes192-ctr.*'
         'clean_requirements_on_remove=1' = 'DynamicallyGeneratedDoesNotContainPattern'
         'Compression delayed' = '^#\s*Compression.*$|^Compression\s*(?!delayed\b)\w*$'
         'CREATE_HOME yes' = '^#\s*CREATE_HOME.*$|^CREATE_HOME\s*(?!yes\b)\w*$'
@@ -175,7 +176,6 @@ data doesNotContainPattern
         'lcredit = -1' = 'DynamicallyGeneratedDoesNotContainPattern'
         'localpkg_gpgcheck=1' = 'DynamicallyGeneratedDoesNotContainPattern'
         'lock-enabled=true' = 'DynamicallyGeneratedDoesNotContainPattern'
-        'MACs hmac-sha2-256,hmac-sha2-512' = 'DynamicallyGeneratedDoesNotContainPattern'
         'maxclassrepeat = 4' = 'DynamicallyGeneratedDoesNotContainPattern'
         'maxrepeat = 3' = 'DynamicallyGeneratedDoesNotContainPattern'
         'name_format = hostname' = '^#\s*name_format.*$|^name_format\s*=\s*(?!hostname$)\w*$'

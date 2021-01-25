@@ -70,6 +70,7 @@ data exclusionRuleList
         V-204439 = 'RHEL: At present, unable to automate rule'
         V-204488 = 'RHEL: At present, unable to automate rule'
         V-204489 = 'RHEL: At present, unable to automate rule'
+        V-204496 = 'RHEL: At present, unable to automate rule'
         V-204497 = 'RHEL: At present, unable to automate rule'
         V-204576 = 'RHEL: At present, unable to automate rule'
         V-204579 = 'RHEL: At present, unable to automate rule'
