@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="1/22/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="1/25/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-219150" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information at rest refers to the state of information when it is located on a secondary storage device (e.g., disk drive and tape drive, when used for backups) within an operating system.
@@ -4566,13 +4566,13 @@ The '-k' allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219281.a" severity="medium" conversionstatus="pass" title="SRG-OS-000326-GPOS-00126" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b64 -S execve -C uid!=euid -F key=execpriv</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -F key=execpriv</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;In certain situations, software applications/programs need to execute with elevated privileges to perform required functions. However, if the privileges required for execution are at a higher level than the privileges assigned to organizational users invoking such applications/programs, those users are indirectly provided with greater privileges than assigned by the organizations.
 
 Some programs and processes are required to operate at a higher privilege level and therefore should be excluded from the organization-defined software list after review.
 
 Satisfies: SRG-OS-000326-GPOS-00126, SRG-OS-000327-GPOS-00127&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*execve\s*-C\s*uid!\s*=\s*euid\s*-F\s*key\s*=\s*execpriv</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*execve\s*-C\s*uid!\s*=\s*euid\s*-F\s*euid\s*=\s*0\s*-F\s*key\s*=\s*execpriv</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4582,7 +4582,7 @@ Satisfies: SRG-OS-000326-GPOS-00126, SRG-OS-000327-GPOS-00127&lt;/VulnDiscussion
       <RawString>Verify the Ubuntu operating system audits the execution of privilege functions by auditing the "execve" system call.
 Check the currently configured audit rules with the following command:
 # sudo auditctl -l | grep execve
--a always,exit -F arch=b64 -S execve -C uid!=euid -F key=execpriv
+-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -F key=execpriv
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 Notes:
 For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
@@ -4590,13 +4590,13 @@ The '-k' allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219281.b" severity="medium" conversionstatus="pass" title="SRG-OS-000326-GPOS-00126" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b64 -S execve -C gid!=egid -F key=execpriv</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -F key=execpriv</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;In certain situations, software applications/programs need to execute with elevated privileges to perform required functions. However, if the privileges required for execution are at a higher level than the privileges assigned to organizational users invoking such applications/programs, those users are indirectly provided with greater privileges than assigned by the organizations.
 
 Some programs and processes are required to operate at a higher privilege level and therefore should be excluded from the organization-defined software list after review.
 
 Satisfies: SRG-OS-000326-GPOS-00126, SRG-OS-000327-GPOS-00127&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*execve\s*-C\s*gid!\s*=\s*egid\s*-F\s*key\s*=\s*execpriv</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*execve\s*-C\s*gid!\s*=\s*egid\s*-F\s*egid\s*=\s*0\s*-F\s*key\s*=\s*execpriv</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4606,7 +4606,7 @@ Satisfies: SRG-OS-000326-GPOS-00126, SRG-OS-000327-GPOS-00127&lt;/VulnDiscussion
       <RawString>Verify the Ubuntu operating system audits the execution of privilege functions by auditing the "execve" system call.
 Check the currently configured audit rules with the following command:
 # sudo auditctl -l | grep execve
--a always,exit -F arch=b64 -S execve -C gid!=egid -F key=execpriv
+-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -F key=execpriv
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 Notes:
 For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
@@ -4614,13 +4614,13 @@ The '-k' allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219281.c" severity="medium" conversionstatus="pass" title="SRG-OS-000326-GPOS-00126" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b32 -S execve -C uid!=euid -F key=execpriv</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -F key=execpriv</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;In certain situations, software applications/programs need to execute with elevated privileges to perform required functions. However, if the privileges required for execution are at a higher level than the privileges assigned to organizational users invoking such applications/programs, those users are indirectly provided with greater privileges than assigned by the organizations.
 
 Some programs and processes are required to operate at a higher privilege level and therefore should be excluded from the organization-defined software list after review.
 
 Satisfies: SRG-OS-000326-GPOS-00126, SRG-OS-000327-GPOS-00127&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*execve\s*-C\s*uid!\s*=\s*euid\s*-F\s*key\s*=\s*execpriv</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*execve\s*-C\s*uid!\s*=\s*euid\s*-F\s*euid\s*=\s*0\s*-F\s*key\s*=\s*execpriv</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4630,7 +4630,7 @@ Satisfies: SRG-OS-000326-GPOS-00126, SRG-OS-000327-GPOS-00127&lt;/VulnDiscussion
       <RawString>Verify the Ubuntu operating system audits the execution of privilege functions by auditing the "execve" system call.
 Check the currently configured audit rules with the following command:
 # sudo auditctl -l | grep execve
--a always,exit -F arch=b32 -S execve -C uid!=euid -F key=execpriv
+-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -F key=execpriv
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 Notes:
 For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
@@ -4638,13 +4638,13 @@ The '-k' allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219281.d" severity="medium" conversionstatus="pass" title="SRG-OS-000326-GPOS-00126" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b32 -S execve -C gid!=egid -F key=execpriv</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -F key=execpriv</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;In certain situations, software applications/programs need to execute with elevated privileges to perform required functions. However, if the privileges required for execution are at a higher level than the privileges assigned to organizational users invoking such applications/programs, those users are indirectly provided with greater privileges than assigned by the organizations.
 
 Some programs and processes are required to operate at a higher privilege level and therefore should be excluded from the organization-defined software list after review.
 
 Satisfies: SRG-OS-000326-GPOS-00126, SRG-OS-000327-GPOS-00127&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*execve\s*-C\s*gid!\s*=\s*egid\s*-F\s*key\s*=\s*execpriv</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*execve\s*-C\s*gid!\s*=\s*egid\s*-F\s*egid\s*=\s*0\s*-F\s*key\s*=\s*execpriv</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4654,7 +4654,7 @@ Satisfies: SRG-OS-000326-GPOS-00126, SRG-OS-000327-GPOS-00127&lt;/VulnDiscussion
       <RawString>Verify the Ubuntu operating system audits the execution of privilege functions by auditing the "execve" system call.
 Check the currently configured audit rules with the following command:
 # sudo auditctl -l | grep execve
--a always,exit -F arch=b32 -S execve -C gid!=egid -F key=execpriv
+-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -F key=execpriv
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 Notes:
 For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
@@ -5739,13 +5739,15 @@ Check that remote access methods are being logged by running the following comma
 If "auth.*", "authpriv.*" or "daemon.*" are not configured to be logged in at least one of the config files, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219307" severity="medium" conversionstatus="pass" title="SRG-OS-000033-GPOS-00014" dscresource="nxFileLine">
-      <ContainsLine>Ciphers aes128-ctr,aes192-ctr,aes256-ctr</ContainsLine>
+      <ContainsLine>Ciphers aes256-ctr,aes192-ctr, aes128-ctr</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without confidentiality protection mechanisms, unauthorized individuals may gain access to sensitive information via a remote access session.
 
 Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
 
-Encryption provides a means to secure the remote connection to prevent unauthorized access to the data traversing the remote access connection (e.g., RDP), thereby providing a degree of confidentiality. The encryption strength of a mechanism is selected based on the security categorization of the information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*Ciphers\s*aes128-ctr,aes192-ctr,aes256-ctr</DoesNotContainPattern>
+Encryption provides a means to secure the remote connection to prevent unauthorized access to the data traversing the remote access connection (e.g., RDP), thereby providing a degree of confidentiality. The encryption strength of a mechanism is selected based on the security categorization of the information.
+
+By specifying a cipher list with the order of ciphers being in a “strongest to weakest” orientation, the system will automatically attempt to use the strongest cipher for securing SSH connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*Ciphers\s*aes256-ctr,aes192-ctr,\s*aes128-ctr</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5758,9 +5760,10 @@ Check the SSH daemon's current configured ciphers by running the following comma
 
 # grep -E '^Ciphers ' /etc/ssh/sshd_config
 
-Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+Ciphers aes256-ctr,aes192-ctr, aes128-ctr
 
-If no lines are returned, or the returned ciphers list contains any cipher not starting with "aes", this is a finding.</RawString>
+If any ciphers other than "aes256-ctr", "aes192-ctr", or "aes128-ctr" are listed, the order differs from the example above, the "Ciphers" keyword is missing, or the returned line is commented out, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-219308" severity="high" conversionstatus="pass" title="SRG-OS-000112-GPOS-00057" dscresource="nxFileLine">
       <ContainsLine>Protocol 2</ContainsLine>
@@ -5868,8 +5871,8 @@ ClientAliveInterval 600
 
 If "ClientAliveInterval" does not exist, is not set to a value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219312" severity="high" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="nxFileLine">
-      <ContainsLine>MACs hmac-sha2-256,hmac-sha2-512</ContainsLine>
+    <Rule id="V-219312" severity="medium" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="nxFileLine">
+      <ContainsLine>MACs hmac-sha2-512,hmac-sha2-256</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without cryptographic integrity protections, information can be altered by unauthorized users without detection.
 
 Nonlocal maintenance and diagnostic activities are those activities conducted by individuals communicating through a network, either an external network (e.g., the Internet) or an internal network. Local maintenance and diagnostic activities are those activities carried out by individuals physically present at the information system or information system component and not communicating across a network connection.
@@ -5879,7 +5882,7 @@ Remote access (e.g., RDP) is access to DoD nonpublic information systems by an a
 Cryptographic mechanisms used for protecting the integrity of information include, for example, signed hash functions using asymmetric cryptography enabling distribution of the public key to verify the hash information while maintaining the confidentiality of the secret key used to generate the hash.
 
 Satisfies: SRG-OS-000250-GPOS-00093, SRG-OS-000393-GPOS-00173, SRG-OS-000394-GPOS-00174&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*MACs\s*hmac-sha2-256,hmac-sha2-512</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*MACs\s*hmac-sha2-512,hmac-sha2-256</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5891,9 +5894,10 @@ Satisfies: SRG-OS-000250-GPOS-00093, SRG-OS-000393-GPOS-00173, SRG-OS-000394-GPO
 Check that the SSH daemon is configured to only use MACs that employ FIPS 140-2 approved ciphers with the following command:
 
 # sudo grep -i macs /etc/ssh/sshd_config
-MACs hmac-sha2-256,hmac-sha2-512
 
-If any ciphers other than "hmac-sha2-256" or "hmac-sha2-512" are listed or the returned line is commented out, this is a finding.</RawString>
+MACs hmac-sha2-512,hmac-sha2-256
+
+If any ciphers other than "hmac-sha2-512" or "hmac-sha2-256" are listed, the order differs from the example above, or the returned line is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219314.a" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="nxFileLine">
       <ContainsLine>PermitEmptyPasswords no</ContainsLine>
@@ -6006,6 +6010,47 @@ Verify the operating system disables the ability to use USB mass storage device.
 blacklist usb-storage
 
 If the command does not return any output, or the line is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-233779" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
+      <ContainsLine>X11Forwarding no</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;The security risk of using X11 forwarding is that the client's X11 display server may be exposed to attack when the SSH client requests forwarding. A system administrator may have a stance in which they want to protect clients that may expose themselves to attack by unwittingly requesting X11 forwarding, which can warrant a ''no'' setting.
+X11 forwarding should be enabled with caution. Users with the ability to bypass file permissions on the remote host (for the user's X11 authorization database) can access the local X11 display through the forwarded connection. An attacker may then be able to perform activities such as keystroke monitoring if the ForwardX11Trusted option is also enabled.
+If X11 services are not required for the system's intended function, they should be disabled or restricted as appropriate to the system’s needs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*X11Forwarding\s*no</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/ssh/sshd_config</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that X11Forwarding is disabled with the following command:
+
+# grep -i x11forwarding /etc/ssh/sshd_config | grep -v "^#"
+
+X11Forwarding no
+
+If the "X11Forwarding" keyword is set to "yes" and is not documented with the Information System Security Officer (ISSO) as an operational requirement or is missing, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-233780" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
+      <ContainsLine>X11UseLocalhost yes</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;When X11 forwarding is enabled, there may be additional exposure to the server and client displays if the SSHD proxy display is configured to listen on the wildcard address. By default, SSHD binds the forwarding server to the loopback address and sets the hostname part of the DIPSLAY environment variable to localhost. This prevents remote hosts from connecting to the proxy display.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*X11UseLocalhost\s*yes</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/ssh/sshd_config</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH daemon prevents remote hosts from connecting to the proxy display.
+
+Check the SSH X11UseLocalhost setting with the following command:
+
+# sudo grep -i x11uselocalhost /etc/ssh/sshd_config
+X11UseLocalhost yes
+
+If the "X11UseLocalhost" keyword is set to "no", is missing, or is commented out, this is a finding.</RawString>
     </Rule>
   </nxFileLineRule>
   <nxFileRule dscresourcemodule="nx">
@@ -6141,24 +6186,20 @@ To support this requirement, the Ubuntu operating system may have an integrated 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100545</LegacyId>
-      <Name>isectp</Name>
+      <Name>mfetp</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system deploys ENSLTP.
+      <RawString>Check that the "mfetp" package has been installed:
 
-Check that the following package has been installed:
+# dpkg -l | grep mfetp
 
-# dpkg -l | grep isectp
-
-If the "isectp" package is not installed, this is a finding.
+If the "mfetp" package is not installed, this is a finding.
 
 Check that the daemon is running:
 
-# ps -ef | grep isectpd
+# /opt/McAfee/ens/tp/init/mfetpd-control.sh status
 
-root 7614 1 2 08:20 ? 00:00:02 /opt/isec/ens/threatprevention/bin/isectpd
-
-If the daemon is not running, then this is a finding.</RawString>
+If the daemon is not running, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219160.a" severity="medium" conversionstatus="pass" title="SRG-OS-000269-GPOS-00103" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;Failure to a known state can address safety or security in accordance with the mission/business needs of the organization. Failure to a known secure state helps prevent a loss of confidentiality, integrity, or availability in the event of a failure of the information system or a component of the system.
