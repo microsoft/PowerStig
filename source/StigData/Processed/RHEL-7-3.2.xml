@@ -2865,7 +2865,7 @@ If no results are returned, the line is commented out, this is a finding.</RawSt
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73159</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding." </OrganizationValueTestString>
       <RawString>Verify the operating system uses "pwquality" to enforce the password complexity rules.
 
 Check for the use of "pwquality" with the following command:
@@ -2977,7 +2977,7 @@ Password complexity is one factor of several that determines how long it takes t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71911</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8", this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8", this is a finding." </OrganizationValueTestString>
       <RawString>The "difok" option sets the number of characters in a password that must not be present in the old password.
 
 Check for the value of the "difok" option in "/etc/security/pwquality.conf" with the following command:
@@ -3000,7 +3000,7 @@ Password complexity is one factor of several that determines how long it takes t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71913</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "minclass" is set to less than "4", this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "minclass" is set to less than "4", this is a finding." </OrganizationValueTestString>
       <RawString>The "minclass" option sets the minimum number of required classes of characters for the new password (digits, upper-case, lower-case, others).
 
 Check for the value of the "minclass" option in "/etc/security/pwquality.conf" with the following command:
@@ -3023,7 +3023,7 @@ Password complexity is one factor of several that determines how long it takes t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71915</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxrepeat" is set to more than "3", this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxrepeat" is set to more than "3", this is a finding." </OrganizationValueTestString>
       <RawString>The "maxrepeat" option sets the maximum number of allowed same consecutive characters in a new password.
 
 Check for the value of the "maxrepeat" option in "/etc/security/pwquality.conf" with the following command:
@@ -3046,7 +3046,7 @@ Password complexity is one factor of several that determines how long it takes t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71917</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxclassrepeat" is set to more than "4", this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxclassrepeat" is set to more than "4", this is a finding." </OrganizationValueTestString>
       <RawString>The "maxclassrepeat" option sets the maximum number of allowed same consecutive characters in the same class in the new password.
 
 Check for the value of the "maxclassrepeat" option in "/etc/security/pwquality.conf" with the following command:
@@ -3130,7 +3130,7 @@ If the "/etc/login.defs" configuration file does not exist or allows for passwor
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71925</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the operating system enforces 24 hours/1 day as the minimum password lifetime for new user accounts.
 
 Check for the value of "PASS_MIN_DAYS" in "/etc/login.defs" with the following command:
@@ -3151,7 +3151,7 @@ If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented ou
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71929</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is not 60 or less, or is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is not 60 or less, or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>If passwords are not being used for authentication, this is Not Applicable.
 
 Verify the operating system enforces a 60-day maximum password lifetime restriction for new user accounts.
@@ -3176,7 +3176,7 @@ Password complexity, or strength, is a measure of the effectiveness of a passwor
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71935</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the command does not return a "minlen" value of 15 or greater, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the command does not return a "minlen" value of 15 or greater, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the operating system enforces a minimum 15-character password length. The "minlen" option sets the minimum number of characters in a new password.
 
 Check for the value of the "minlen" option in "/etc/security/pwquality.conf" with the following command:
@@ -3239,7 +3239,7 @@ Configuration settings are the set of parameters that can be changed in hardware
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71951</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the operating system enforces a delay of at least four seconds between console logon prompts following a failed logon attempt.
 
 Check the value of the "fail_delay" parameter in the "/etc/login.defs" file with the following command:
@@ -6455,7 +6455,7 @@ Satisfies: SRG-OS-000163-GPOS-00072, SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72237</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the operating system automatically terminates a user session after inactivity time-outs have expired.
 
 Check for the value of the "ClientAliveInterval" keyword with the following command:
