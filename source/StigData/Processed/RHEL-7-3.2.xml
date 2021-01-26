@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="1/21/2021">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.2" created="1/25/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -592,6 +592,27 @@ Look for the following entry:
 *.* /var/log/messages
 
 If "rsyslog" is not logging messages for the cron facility or all facilities, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204496" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The use of separate file systems for different paths can protect the system from failures resulting from a file system becoming full or failing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72065</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that a separate file system/partition has been created for "/tmp".
+
+Check that a file system/partition has been created for "/tmp" with the following command:
+
+# systemctl is-enabled tmp.mount
+enabled
+
+If the "tmp.mount" service is not enabled, check to see if "/tmp" is defined in the fstab with a device and mount point:
+
+# grep -i /tmp /etc/fstab
+UUID=a411dc99-f2a1-4c87-9e05-184977be8539 /tmp   ext4   rw,relatime,discard,data=ordered,nosuid,noexec, 0 0
+
+If "tmp.mount" service is not enabled or the "/tmp" directory is not defined in the fstab with a device and mount point, this is a finding. </RawString>
     </Rule>
     <Rule id="V-204497" severity="high" conversionstatus="pass" title="SRG-OS-000033-GPOS-00014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of using encryption to protect data. The operating system must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated.
@@ -1745,9 +1766,9 @@ In addition, if a local interactive user has a home directory defined that does 
 
 Check the home directory assignment for all local interactive non-privileged users on the system with the following command:
 
-# cut -d: -f 1,3,6 /etc/passwd | egrep ":[1-9][0-9]{3}"
+# awk -F: '($3&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $1, $3, $6}' /etc/passwd
 
-smithj:1001:/home/smithj
+smithj 1001 /home/smithj
 
 Note: This may miss interactive users that have been assigned a privileged UID. Evidence of interactive use may be obtained from a number of log files containing system logon information.
 
@@ -1771,7 +1792,7 @@ Check the home directory assignment for all non-privileged users on the system w
 
 Note: This may miss interactive users that have been assigned a privileged User Identifier (UID). Evidence of interactive use may be obtained from a number of log files containing system logon information.
 
-# ls -ld $(egrep ':[0-9]{4}' /etc/passwd | cut -d: -f6)
+# ls -ld $(awk -F: '($3&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $6}' /etc/passwd)
 -rwxr-x--- 1 smithj users  18 Mar  5 17:06 /home/smithj
 
 If home directories referenced in "/etc/passwd" do not have a mode of "0750" or less permissive, this is a finding.</RawString>
@@ -1787,7 +1808,7 @@ If home directories referenced in "/etc/passwd" do not have a mode of "0750" or 
 
 Check the home directory assignment for all local interactive users on the system with the following command:
 
-# ls -ld $(egrep ':[0-9]{4}' /etc/passwd | cut -d: -f6)
+# ls -ld $(awk -F: '($3&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $6}' /etc/passwd)
 
 -rwxr-x--- 1 smithj users 18 Mar 5 17:06 /home/smithj
 
@@ -1804,7 +1825,7 @@ If any home directories referenced in "/etc/passwd" are not owned by the interac
 
 Check the home directory assignment for all local interactive users on the system with the following command:
 
-# ls -ld $(egrep ':[0-9]{4}' /etc/passwd | cut -d: -f6)
+# ls -ld $(awk -F: '($3&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $6}' /etc/passwd)
 
 -rwxr-x--- 1 smithj users 18 Mar 5 17:06 /home/smithj
 
@@ -1897,8 +1918,8 @@ Check the home directory assignment for all non-privileged users on the system w
 
 Note: The example will be for the smithj user, who has a home directory of "/home/smithj".
 
-# cut -d: -f 1,3,6 /etc/passwd | egrep ":[1-4][0-9]{3}"
-smithj:1000:/home/smithj
+# awk -F: '($3&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $1, $3, $6}' /etc/passwd
+smithj 1000 /home/smithj
 
 Note: This may miss interactive users that have been assigned a privileged User Identifier (UID). Evidence of interactive use may be obtained from a number of log files containing system logon information.
 
@@ -1925,8 +1946,8 @@ Check the home directory assignment for all non-privileged users on the system w
 
 Note: The example will be for the smithj user, who has a home directory of "/home/smithj" and a primary group of "users".
 
-# cut -d: -f 1,4,6 /etc/passwd | egrep ":[1-4][0-9]{3}"
-smithj:1000:/home/smithj
+# awk -F: '($4&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $1, $4, $6}' /etc/passwd
+smithj 1000 /home/smithj
 
 # grep 1000 /etc/group
 users:x:1000:smithj,jonesj,jacksons
@@ -2038,9 +2059,9 @@ Find the file system(s) that contain the user home directories with the followin
 
 Note: If a separate file system has not been created for the user home directories (user home directories are mounted under "/"), this is not a finding as the "nosuid" option cannot be used on the "/" system.
 
-# cut -d: -f 1,3,6 /etc/passwd | egrep ":[1-4][0-9]{3}"
-smithj:1001:/home/smithj
-thomasr:1002:/home/thomasr
+# awk -F: '($3&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $1, $3, $6}' /etc/passwd
+smithj 1001 /home/smithj
+thomasr 1002 /home/thomasr
 
 Check the file systems that are mounted at boot time with the following command:
 
@@ -2172,13 +2193,13 @@ If the "cron.allow" file exists and has a group owner other than root, this is a
       <OrganizationValueTestString />
       <RawString>Verify that a separate file system/partition has been created for non-privileged local interactive user home directories.
 
-Check the home directory assignment for all non-privileged users (those with a UID greater than 1000) on the system with the following command:
+Check the home directory assignment for all non-privileged users (those with a UID of 1000 or greater) on the system with the following command:
 
-#cut -d: -f 1,3,6,7 /etc/passwd | egrep ":[1-4][0-9]{3}" | tr ":" "\t"
+# awk -F: '($3&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $1, $3, $6, $7}' /etc/passwd
 
-adamsj /home/adamsj /bin/bash
-jacksonm /home/jacksonm /bin/bash
-smithj /home/smithj /bin/bash
+adamsj 1000 /home/adamsj /bin/bash
+jacksonm 1001 /home/jacksonm /bin/bash
+smithj 1002 /home/smithj /bin/bash
 
 The output of the command will give the directory/partition that contains the home directories for the non-privileged users on the system (in this example, /home) and users' shell. All accounts with a valid shell (such as /bin/bash) are considered interactive users.
 
@@ -2844,7 +2865,7 @@ If no results are returned, the line is commented out, this is a finding.</RawSt
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73159</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding." </OrganizationValueTestString>
       <RawString>Verify the operating system uses "pwquality" to enforce the password complexity rules.
 
 Check for the use of "pwquality" with the following command:
@@ -2956,7 +2977,7 @@ Password complexity is one factor of several that determines how long it takes t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71911</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8", this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8", this is a finding." </OrganizationValueTestString>
       <RawString>The "difok" option sets the number of characters in a password that must not be present in the old password.
 
 Check for the value of the "difok" option in "/etc/security/pwquality.conf" with the following command:
@@ -2979,7 +3000,7 @@ Password complexity is one factor of several that determines how long it takes t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71913</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "minclass" is set to less than "4", this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "minclass" is set to less than "4", this is a finding." </OrganizationValueTestString>
       <RawString>The "minclass" option sets the minimum number of required classes of characters for the new password (digits, upper-case, lower-case, others).
 
 Check for the value of the "minclass" option in "/etc/security/pwquality.conf" with the following command:
@@ -3002,7 +3023,7 @@ Password complexity is one factor of several that determines how long it takes t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71915</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxrepeat" is set to more than "3", this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxrepeat" is set to more than "3", this is a finding." </OrganizationValueTestString>
       <RawString>The "maxrepeat" option sets the maximum number of allowed same consecutive characters in a new password.
 
 Check for the value of the "maxrepeat" option in "/etc/security/pwquality.conf" with the following command:
@@ -3025,7 +3046,7 @@ Password complexity is one factor of several that determines how long it takes t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71917</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxclassrepeat" is set to more than "4", this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxclassrepeat" is set to more than "4", this is a finding." </OrganizationValueTestString>
       <RawString>The "maxclassrepeat" option sets the maximum number of allowed same consecutive characters in the same class in the new password.
 
 Check for the value of the "maxclassrepeat" option in "/etc/security/pwquality.conf" with the following command:
@@ -3109,7 +3130,7 @@ If the "/etc/login.defs" configuration file does not exist or allows for passwor
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71925</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the operating system enforces 24 hours/1 day as the minimum password lifetime for new user accounts.
 
 Check for the value of "PASS_MIN_DAYS" in "/etc/login.defs" with the following command:
@@ -3130,7 +3151,7 @@ If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented ou
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71929</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is not 60 or less, or is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is not 60 or less, or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>If passwords are not being used for authentication, this is Not Applicable.
 
 Verify the operating system enforces a 60-day maximum password lifetime restriction for new user accounts.
@@ -3155,7 +3176,7 @@ Password complexity, or strength, is a measure of the effectiveness of a passwor
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71935</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the command does not return a "minlen" value of 15 or greater, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the command does not return a "minlen" value of 15 or greater, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the operating system enforces a minimum 15-character password length. The "minlen" option sets the minimum number of characters in a new password.
 
 Check for the value of the "minlen" option in "/etc/security/pwquality.conf" with the following command:
@@ -3218,7 +3239,7 @@ Configuration settings are the set of parameters that can be changed in hardware
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71951</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the operating system enforces a delay of at least four seconds between console logon prompts following a failed logon attempt.
 
 Check the value of the "fail_delay" parameter in the "/etc/login.defs" file with the following command:
@@ -3531,32 +3552,6 @@ Check to see if the system is configured to create home directories for local in
 CREATE_HOME yes
 
 If the value for "CREATE_HOME" parameter is not set to "yes", the line is missing, or the line is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204496" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;The use of separate file systems for different paths can protect the system from failures resulting from a file system becoming full or failing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/fstab</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72065</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the "/tmp" directory is defined in the fstab with a device and mount point. </OrganizationValueTestString>
-      <RawString>Verify that a separate file system/partition has been created for "/tmp".
-
-Check that a file system/partition has been created for "/tmp" with the following command:
-
-# systemctl is-enabled tmp.mount
-enabled
-
-If the "tmp.mount" service is not enabled, check to see if "/tmp" is defined in the fstab with a device and mount point:
-
-# grep -i /tmp /etc/fstab
-UUID=a411dc99-f2a1-4c87-9e05-184977be8539 /tmp   ext4   rw,relatime,discard,data=ordered,nosuid,noexec, 0 0
-
-If "tmp.mount" service is not enabled or the "/tmp" directory is not defined in the fstab with a device and mount point, this is a finding. </RawString>
     </Rule>
     <Rule id="V-204506.a" severity="medium" conversionstatus="pass" title="SRG-OS-000342-GPOS-00133" dscresource="nxFileLine">
       <ContainsLine>active = yes</ContainsLine>
@@ -6355,15 +6350,17 @@ If both the "b32" and "b64" audit rules are not defined for the "unlinkat" sysca
 </RawString>
     </Rule>
     <Rule id="V-204578" severity="medium" conversionstatus="pass" title="SRG-OS-000033-GPOS-00014" dscresource="nxFileLine">
-      <ContainsLine>Ciphers aes128-ctr,aes192-ctr,aes256-ctr</ContainsLine>
+      <ContainsLine>Ciphers aes256-ctr,aes192-ctr,aes128-ctr</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore cannot be relied upon to provide confidentiality or integrity, and DoD data may be compromised.
 
 Operating systems utilizing encryption are required to use FIPS-compliant mechanisms for authenticating to cryptographic modules.
 
 FIPS 140-2 is the current standard for validating that mechanisms used to access cryptographic modules utilize authentication that meets DoD requirements. This allows for Security Levels 1, 2, 3, or 4 for use on a general purpose computing system.
 
+By specifying a cipher list with the order of ciphers being in a “strongest to weakest” orientation, the system will automatically attempt to use the strongest cipher for securing SSH connections.
+
 Satisfies: SRG-OS-000033-GPOS-00014, SRG-OS-000120-GPOS-00061, SRG-OS-000125-GPOS-00065, SRG-OS-000250-GPOS-00093, SRG-OS-000393-GPOS-00173&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*Ciphers\s*aes128-ctr,aes192-ctr,aes256-ctr</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*Ciphers.*|^\s*Ciphers\s*aes128-ctr.*|^\s*Ciphers\s*aes192-ctr.*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6372,16 +6369,14 @@ Satisfies: SRG-OS-000033-GPOS-00014, SRG-OS-000120-GPOS-00061, SRG-OS-000125-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system uses mechanisms meeting the requirements of applicable federal laws, Executive orders, directives, policies, regulations, standards, and guidance for authentication to a cryptographic module.
 
-Note: If RHEL-07-021350 is a finding, this is automatically a finding as the system cannot implement FIPS 140-2-approved cryptographic algorithms and hashes.
-
 The location of the "sshd_config" file may vary if a different daemon is in use.
 
 Inspect the "Ciphers" configuration with the following command:
 
 # grep -i ciphers /etc/ssh/sshd_config
-Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+Ciphers aes256-ctr,aes192-ctr,aes128-ctr
 
-If any ciphers other than "aes128-ctr", "aes192-ctr", or "aes256-ctr" are listed, the "Ciphers" keyword is missing, or the returned line is commented out, this is a finding.</RawString>
+If any ciphers other than "aes256-ctr", "aes192-ctr", or "aes128-ctr" are listed, the order differs from the example above, the "Ciphers" keyword is missing, or the returned line is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204580" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="nxFileLine">
       <ContainsLine>banner /etc/issue</ContainsLine>
@@ -6460,7 +6455,7 @@ Satisfies: SRG-OS-000163-GPOS-00072, SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72237</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding." </OrganizationValueTestString>
       <RawString>Verify the operating system automatically terminates a user session after inactivity time-outs have expired.
 
 Check for the value of the "ClientAliveInterval" keyword with the following command:
@@ -6628,25 +6623,27 @@ Protocol 2
 If any protocol line other than "Protocol 2" is uncommented, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204595" severity="medium" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="nxFileLine">
-      <ContainsLine>MACs hmac-sha2-256,hmac-sha2-512</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;DoD information systems are required to use FIPS 140-2 approved cryptographic hash functions. The only SSHv2 hash algorithm meeting this requirement is SHA.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*MACs\s*hmac-sha2-256,hmac-sha2-512</DoesNotContainPattern>
+      <ContainsLine>MACs hmac-sha2-512,hmac-sha2-256</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;DoD information systems are required to use FIPS 140-2 approved cryptographic hash functions. The only SSHv2 hash algorithm meeting this requirement is SHA.
+
+By specifying a hash algorithm list with the order of hashes being in a “strongest to weakest” orientation, the system will automatically attempt to use the strongest hash for securing SSH connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*MACs.*|\s*MACs\s*hmac-(?!sha2-512).*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72253</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the SSH daemon is configured to only use MACs employing FIPS 140-2-approved ciphers.
+      <RawString>Verify the SSH daemon is configured to only use MACs employing FIPS 140-2-approved hashes.
 
 Note: If RHEL-07-021350 is a finding, this is automatically a finding as the system cannot implement FIPS 140-2-approved cryptographic algorithms and hashes.
 
-Check that the SSH daemon is configured to only use MACs employing FIPS 140-2-approved ciphers with the following command:
+Check that the SSH daemon is configured to only use MACs employing FIPS 140-2-approved hashes with the following command:
 
 # grep -i macs /etc/ssh/sshd_config
-MACs hmac-sha2-256,hmac-sha2-512
+MACs hmac-sha2-512,hmac-sha2-256
 
-If any ciphers other than "hmac-sha2-256" or "hmac-sha2-512" are listed or the returned line is commented out, this is a finding.</RawString>
+If any hashes other than "hmac-sha2-512" or "hmac-sha2-256" are listed, the order differs from the example above, they are missing, or the returned line is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204598" severity="medium" conversionstatus="pass" title="SRG-OS-000364-GPOS-00151" dscresource="nxFileLine">
       <ContainsLine>GSSAPIAuthentication no</ContainsLine>
@@ -6766,25 +6763,25 @@ session required pam_lastlog.so showfailed
 
 If "pam_lastlog" is missing from "/etc/pam.d/postlogin" file, or the silent option is present, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204622" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
-      <ContainsLine>X11Forwarding yes</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Open X displays allow an attacker to capture keystrokes and execute commands remotely.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^#\s*X11Forwarding.*$|^X11Forwarding\s*(?!yes\b)\w*$</DoesNotContainPattern>
+    <Rule id="V-204622" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
+      <ContainsLine>X11Forwarding no</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;The security risk of using X11 forwarding is that the client's X11 display server may be exposed to attack when the SSH client requests forwarding. A system administrator may have a stance in which they want to protect clients that may expose themselves to attack by unwittingly requesting X11 forwarding, which can warrant a ''no'' setting.
+X11 forwarding should be enabled with caution. Users with the ability to bypass file permissions on the remote host (for the user's X11 authorization database) can access the local X11 display through the forwarded connection. An attacker may then be able to perform activities such as keystroke monitoring if the ForwardX11Trusted option is also enabled.
+If X11 services are not required for the system's intended function, they should be disabled or restricted as appropriate to the system’s needs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*X11Forwarding\s*no</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72303</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify remote X connections for interactive users are encrypted.
-
-Check that remote X connections are encrypted with the following command:
+      <RawString>Determine if X11Forwarding is disabled with the following command:
 
 # grep -i x11forwarding /etc/ssh/sshd_config | grep -v "^#"
 
-X11Forwarding yes
+X11Forwarding no
 
-If the "X11Forwarding" keyword is set to "no" or is missing, this is a finding.</RawString>
+If the "X11Forwarding" keyword is set to "yes" and is not documented with the Information System Security Officer (ISSO) as an operational requirement or is missing, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204623" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>server_args = -s /var/lib/tftpboot</ContainsLine>
@@ -6811,6 +6808,26 @@ If a TFTP server is installed, check for the server arguments with the following
 server_args = -s /var/lib/tftpboot
 
 If the "server_args" line does not have a "-s" option and a subdirectory is not assigned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-233307" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
+      <ContainsLine>X11UseLocalhost yes</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;When X11 forwarding is enabled, there may be additional exposure to the server and client displays if the sshd proxy display is configured to listen on the wildcard address. By default, sshd binds the forwarding server to the loopback address and sets the hostname part of the DIPSLAY environment variable to localhost. This prevents remote hosts from connecting to the proxy display.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*X11UseLocalhost\s*yes</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/ssh/sshd_config</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH daemon prevents remote hosts from connecting to the proxy display.
+
+Check the SSH X11UseLocalhost setting with the following command:
+
+# sudo grep -i x11uselocalhost /etc/ssh/sshd_config
+X11UseLocalhost yes
+
+If the "X11UseLocalhost" keyword is set to "no", is missing, or is commented out, this is a finding.</RawString>
     </Rule>
   </nxFileLineRule>
   <nxFileRule dscresourcemodule="nx">
