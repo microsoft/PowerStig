@@ -5,6 +5,11 @@ $rules = Select-Rule -Type nxFileRule -RuleList $stig.RuleList
 
 foreach ($rule in $rules)
 {
+    if ($rule.Contents -eq '# Generated via PowerSTIG')
+    {
+        $rule.Contents = "# Generated via PowerSTIG`n"
+    }
+
     nxFile (Get-ResourceTitle -Rule $rule)
     {
         DestinationPath = $rule.FilePath
