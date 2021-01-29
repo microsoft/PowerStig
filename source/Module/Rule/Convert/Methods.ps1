@@ -87,7 +87,7 @@ function Test-DuplicateRule
     $differenceProperties = ($DifferenceObject | Get-Member -MemberType Property).Name
 
     $propertyList = (Compare-Object -ReferenceObject $referenceProperties -DifferenceObject $differenceProperties).InputObject
-    $referenceRules = $ReferenceObject | Where-Object {$PsItem.GetType().Name  -eq $ruletype}
+    $referenceRules = $ReferenceObject | Where-Object -FilterScript {$PsItem.GetType().Name -eq $ruletype}
 
     foreach ($rule in $referenceRules)
     {
@@ -103,6 +103,7 @@ function Test-DuplicateRule
             return $rule.id
         }
     }
+
     # If the code made it this far a duplicate does not exist and we return $null
     return $null
 }

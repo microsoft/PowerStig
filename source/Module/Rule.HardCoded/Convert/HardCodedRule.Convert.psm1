@@ -25,6 +25,18 @@ using module .\..\..\Rule.WinEventLog\WinEventLogRule.psm1
 using module .\..\..\Rule.AuditSetting\AuditSettingRule.psm1
 using module .\..\..\Rule.SslSettings\SslSettingsRule.psm1
 using module .\..\..\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
+using module .\..\..\Rule.VsphereAcceptanceLevel\VsphereAcceptanceLevelRule.psm1
+using module .\..\..\Rule.VsphereAdvancedSettings\VsphereAdvancedSettingsRule.psm1
+using module .\..\..\Rule.VsphereKernelActiveDumpPartition\VsphereKernelActiveDumpPartitionRule.psm1
+using module .\..\..\Rule.VsphereNtpSettings\VsphereNtpSettingsRule.psm1
+using module .\..\..\Rule.VspherePortGroupSecurity\VspherePortGroupSecurityRule.psm1
+using module .\..\..\Rule.VsphereService\VsphereServiceRule.psm1
+using module .\..\..\Rule.VsphereSnmpAgent\VsphereSnmpAgentRule.psm1
+using module .\..\..\Rule.VsphereVssSecurity\VsphereVssSecurityRule.psm1
+using module .\..\..\Rule.nxPackage\nxPackageRule.psm1
+using module .\..\..\Rule.nxService\nxServiceRule.psm1
+using module .\..\..\Rule.nxFileLine\nxFileLineRule.psm1
+using module .\..\..\Rule.nxFile\nxFileRule.psm1
 
 <#
     .SYNOPSIS
