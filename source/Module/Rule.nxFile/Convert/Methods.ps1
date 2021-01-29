@@ -53,10 +53,7 @@ function Get-nxFileDestinationPath
         Specifies the FixText element in the xccdf
 
     .NOTES
-        As of 10/26/2020 this function is not used. The only rule that currently
-        leverages nxFile is the "legal banner" rule, which is a Hard Coded Value.
-        This function was created to ensure consistency with other nx rules in
-        PowerSTIG, for future use.
+        As of 10/26/2020 this function is only used for the "legal banner" rule.
 #>
 function Get-nxFileContents
 {
@@ -73,23 +70,7 @@ function Get-nxFileContents
     try
     {
         $rawString = $CheckContent -join "`n"
-        if ($rawString -match $regularExpression.nxFileContents)
-        {
-            $matchResults = $Matches['setting'] -split "`n"
-            $results = @()
-            foreach ($line in $matchResults)
-            {
-                if
-                (
-                    [string]::IsNullOrEmpty($line) -eq $false -and
-                    $line -notmatch $regularExpression.nxFileContentsExclude
-                )
-                {
-                    $results += $line -replace '\s{2,}', ' '
-                }
-            }
-        }
-        elseif ($rawString -match 'You are accessing[^"]+(?<=details.)')
+        if ($rawString -match 'You are accessing[^"]+(?<=details.)')
         {
             $results = $matches.Values
         }

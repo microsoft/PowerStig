@@ -8,6 +8,7 @@
 * Update PowerSTIG to parse and apply Ubuntu 18.04 LTS STIG - Ver 2, Rel 2: [#821](https://github.com/microsoft/PowerStig/issues/821)
 * Update PowerSTIG to Add Checklist Accountability: [#808](https://github.com/microsoft/PowerStig/issues/808)
 * Update PowerSTIG to move O365 Pro Plus log entries into Exclusion Rule list: [#815](https://github.com/microsoft/PowerStig/issues/815)
+* Fixed: ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
 
 ## [4.7.0] - 2020-12-17
 
