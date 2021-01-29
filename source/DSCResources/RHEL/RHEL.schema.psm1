@@ -79,7 +79,5 @@ configuration RHEL
     . "$resourcePath\linux.nxFile.ps1"
     . "$resourcePath\linux.nxFileLine.ps1"
     . "$resourcePath\linux.nxService.ps1"
-
-    Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
-    . "$resourcePath\windows.Script.skip.ps1"
+    . "$resourcePath\linux.nxScript.skip.ps1"
 }
