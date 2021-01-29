@@ -50,6 +50,24 @@ try
                 # grep /etc/pam.d/passwd
                 password     substack     system-auth
                 If no results are returned, the line is commented out, this is a finding.'
+            },
+            @{
+                FilePath                    = '/etc/pam.d/system-auth'
+                ContainsLine                = ''
+                DoesNotContainPattern       = ''
+                OrganizationValueRequired   = $true
+                OrganizationValueTestString = 'that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding" '
+                CheckContent                = 'Verify the operating system uses "pwquality" to enforce the password complexity rules.
+
+                Check for the use of "pwquality" with the following command:
+
+                # cat /etc/pam.d/system-auth | grep pam_pwquality
+
+                password required pam_pwquality.so retry=3
+
+                If the command does not return an uncommented line containing the value "pam_pwquality.so", this is a finding.
+
+                If the value of "retry" is set to "0" or greater than "3", this is a finding'
             }
         )
         #endregion
