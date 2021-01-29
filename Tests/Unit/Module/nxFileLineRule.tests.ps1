@@ -27,6 +27,29 @@ try
                 server_args = -s /var/lib/tftpboot
 
                 If the "server_args" line does not have a "-s" option and a subdirectory is not assigned, this is a finding.'
+            },
+            @{
+                FilePath                  = '/etc/audit/rules.d/audit.rules'
+                ContainsLine              = '-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid'
+                DoesNotContainPattern     = '#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*execve\s*-C\s*uid!\s*=\s*euid\s*-F\s*euid\s*=\s*0\s*-k\s*setuid\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*execve\s*-C\s*uid!\s*=\s*euid\s*-F\s*euid\s*=\s*0\s*-k\s*setuid'
+                OrganizationValueRequired = $false
+                CheckContent              = 'Verify the operating system audits the execution of privileged functions using the following command:
+
+                # grep -iw execve /etc/audit/audit.rules
+
+                -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
+                -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
+
+                If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.'
+            },
+            @{
+                FilePath              = '/etc/pam.d/passwd'
+                ContainsLine          = 'password substack system-auth'
+                DoesNotContainPattern = '^\s*password\s\s+substack\s\s+system-auth\s*$|^#\s*password\s*substack\s*system-auth.*'
+                CheckContent          = 'Verify that /etc/pam.d/passwd is configured to use /etc/pam.d/system-auth when changing passwords:
+                # grep /etc/pam.d/passwd
+                password     substack     system-auth
+                If no results are returned, the line is commented out, this is a finding.'
             }
         )
         #endregion
