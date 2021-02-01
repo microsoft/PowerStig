@@ -214,5 +214,6 @@ data doesNotContainPattern
         '-w /var/log/lastlog -p wa -k logins' = 'DynamicallyGeneratedDoesNotContainPattern'
         '-w /var/run/faillock -p wa -k logins' = 'DynamicallyGeneratedDoesNotContainPattern'
         'X11Forwarding yes' = '^#\s*X11Forwarding.*$|^X11Forwarding\s*(?!yes\b)\w*$'
+        'X11Forwarding no' = '^#\s*X11Forwarding.*$|^X11Forwarding\s*(?!no\b)\w*$'
     }
 }

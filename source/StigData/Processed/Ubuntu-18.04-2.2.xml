@@ -6016,7 +6016,7 @@ If the command does not return any output, or the line is commented out, this is
       <Description>&lt;VulnDiscussion&gt;The security risk of using X11 forwarding is that the client's X11 display server may be exposed to attack when the SSH client requests forwarding. A system administrator may have a stance in which they want to protect clients that may expose themselves to attack by unwittingly requesting X11 forwarding, which can warrant a ''no'' setting.
 X11 forwarding should be enabled with caution. Users with the ability to bypass file permissions on the remote host (for the user's X11 authorization database) can access the local X11 display through the forwarded connection. An attacker may then be able to perform activities such as keystroke monitoring if the ForwardX11Trusted option is also enabled.
 If X11 services are not required for the system's intended function, they should be disabled or restricted as appropriate to the system’s needs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*X11Forwarding\s*no</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*X11Forwarding.*$|^X11Forwarding\s*(?!no\b)\w*$</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>

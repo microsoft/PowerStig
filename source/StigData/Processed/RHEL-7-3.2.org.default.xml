@@ -35,5 +35,5 @@
   <!-- Ensure the value of the "action_mail_acct" keyword is set to "root" and/or other accounts for security personnel; i.e.: "action_mail_acct = root" -->
   <OrganizationalSetting id="V-204515" ContainsLine="action_mail_acct = root" DoesNotContainPattern="^#\s*action_mail_acct.*|^action_mail_acct\s*=\s*(?!root\b)\w+" />
   <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding." -->
-  <OrganizationalSetting id="V-204587" ContainsLine="ClientAliveInterval 600" DoesNotContainPattern="^#\s*ClientAliveInterval.*|^\s*ClientAliveInterval\s*$|^\s*ClientAliveInterval\s*(?![1-5][0-9][0-9]\b|600\b)(\d{3,}|0)" />
+  <OrganizationalSetting id="V-204587" ContainsLine="ClientAliveInterval 600" DoesNotContainPattern="^\s*ClientAliveInterval\s*[0-5]?[0-9]?[0-9]?\s*$|^#\s*ClientAliveInterval.*|^\s*ClientAliveInterval\s*$" />
 </OrganizationalSettings>
