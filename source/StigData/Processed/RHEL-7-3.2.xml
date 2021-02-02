@@ -200,70 +200,6 @@ crypt_style = sha512
 
 If the "crypt_style" variable is not set to "sha512", is not in the defaults section, is commented out, or does not exist, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204422" severity="medium" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. If the information system or application allows the user to consecutively reuse their password when that password has exceeded its defined lifetime, the end result is a password that is not changed per policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71933</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system prohibits password reuse for a minimum of five generations.
-
-Check for the value of the "remember" argument in "/etc/pam.d/system-auth" and "/etc/pam.d/password-auth" with the following command:
-
-# grep -i remember /etc/pam.d/system-auth /etc/pam.d/password-auth
-
-password    requisite     pam_pwhistory.so use_authtok remember=5 retry=3
-
-If the line containing the "pam_pwhistory.so" line does not have the "remember" module argument set, is commented out, or the value of the "remember" module argument is set to less than "5", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204427" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced. Limits are imposed by locking the account.
-
-Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71943</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Check that the system locks an account for a minimum of 15 minutes after three unsuccessful logon attempts within a period of 15 minutes with the following command:
-
-# grep pam_faillock.so /etc/pam.d/password-auth
-
-auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
-auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
-account required pam_faillock.so
-
-If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
-
-If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
-
-If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
-
-If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
-
-Note: The maximum configurable value for "unlock_time" is "604800".
-
-If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
-
-# grep pam_faillock.so /etc/pam.d/system-auth
-
-auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
-auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
-account required pam_faillock.so
-
-If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
-
-If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
-
-If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
-
-If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding.
-
-Note: The maximum configurable value for "unlock_time" is "604800".
-
-If any line referencing the "pam_faillock.so" module is commented out, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-204428" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute forcing, is reduced. Limits are imposed by locking the account.
 
@@ -613,43 +549,6 @@ If the "tmp.mount" service is not enabled, check to see if "/tmp" is defined in 
 UUID=a411dc99-f2a1-4c87-9e05-184977be8539 /tmp   ext4   rw,relatime,discard,data=ordered,nosuid,noexec, 0 0
 
 If "tmp.mount" service is not enabled or the "/tmp" directory is not defined in the fstab with a device and mount point, this is a finding. </RawString>
-    </Rule>
-    <Rule id="V-204497" severity="high" conversionstatus="pass" title="SRG-OS-000033-GPOS-00014" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of using encryption to protect data. The operating system must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated.
-
-Satisfies: SRG-OS-000033-GPOS-00014, SRG-OS-000185-GPOS-00079, SRG-OS-000396-GPOS-00176, SRG-OS-000405-GPOS-00184, SRG-OS-000478-GPOS-00223&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72067</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system implements DoD-approved encryption to protect the confidentiality of remote access sessions.
-
-Check to see if the "dracut-fips" package is installed with the following command:
-
-# yum list installed dracut-fips
-
-dracut-fips-033-360.el7_2.x86_64.rpm
-
-If a "dracut-fips" package is installed, check to see if the kernel command line is configured to use FIPS mode with the following command:
-
-Note: GRUB 2 reads its configuration from the "/boot/grub2/grub.cfg" file on traditional BIOS-based machines and from the "/boot/efi/EFI/redhat/grub.cfg" file on UEFI machines.
-
-# grep fips /boot/grub2/grub.cfg
-/vmlinuz-3.8.0-0.40.el7.x86_64 root=/dev/mapper/rhel-root ro rd.md=0 rd.dm=0 rd.lvm.lv=rhel/swap crashkernel=auto rd.luks=0 vconsole.keymap=us rd.lvm.lv=rhel/root rhgb fips=1 quiet
-
-If the kernel command line is configured to use FIPS mode, check to see if the system is in FIPS mode with the following command:
-
-# cat /proc/sys/crypto/fips_enabled
-1
-
-If a "dracut-fips" package is not installed, the kernel command line does not have a fips entry, or the system has a value of "0" for "fips_enabled" in "/proc/sys/crypto", this is a finding.
-
-Verify the file /etc/system-fips exists.
-
-# ls -l /etc/system-fips
-
-If this file does not exist, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204501" severity="medium" conversionstatus="pass" title="SRG-OS-000364-GPOS-00151" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Malicious users with removable boot media can gain access to a system configured to use removable media as the boot loader. If removable media is designed to be used as the boot loader, the requirement must be documented with the Information System Security Officer (ISSO).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2247,39 +2146,6 @@ Verify that "/var/log/audit" is mounted on a separate file system:
 
 If no result is returned, or "/var/log/audit" is not on a separate file system, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204498" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;ACLs can provide permissions beyond those permitted through the file mode and must be verified by file integrity tools.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72069</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the file integrity tool is configured to verify ACLs.
-
-Check to see if Advanced Intrusion Detection Environment (AIDE) is installed on the system with the following command:
-
-# yum list installed aide
-
-If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system.
-
-If there is no application installed to perform file integrity checks, this is a finding.
-
-Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory.
-
-Use the following command to determine if the file is in another location:
-
-# find / -name aide.conf
-
-Check the "aide.conf" file to determine if the "acl" rule has been added to the rule list being applied to the files and directories selection lists.
-
-An example rule that includes the "acl" rule is below:
-
-All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All # apply the custom rule to the files in bin
-/sbin All # apply the same custom rule to the files in sbin
-
-If the "acl" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or ACLs are not being checked by another file integrity tool, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-204499" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Extended attributes in file systems are used to contain arbitrary data and file metadata with security implications.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2840,7 +2706,7 @@ If the command does not return a result, this is a finding.</RawString>
     <Rule id="V-204405" severity="medium" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="nxFileLine">
       <ContainsLine>password substack system-auth</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Pluggable authentication modules (PAM) allow for a modular approach to integrating authentication methods. PAM operates in a top-down processing model and if the modules are not listed in the correct order, an important security function could be bypassed if stack entries are not centralized.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^\s*password\s\s+substack\s\s+system-auth\s*$|^#\s*password\s*substack\s*system-auth.*</DoesNotContainPattern>
+      <DoesNotContainPattern>^\s*password(?:\t*|\s*)substack\tsystem-auth\s*$|^#\s*password\s*substack\s*system-auth.*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/pam.d/passwd</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3059,7 +2925,7 @@ If the value of "maxclassrepeat" is set to more than "4", this is a finding.</Ra
     <Rule id="V-204415.a" severity="medium" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="nxFileLine">
       <ContainsLine>password sufficient pam_unix.so sha512 shadow try_first_pass use_authtok</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Passwords need to be protected at all times, and encryption is the standard method for protecting passwords. If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised. Passwords encrypted with a weak algorithm are no more protected than if they are kept in plain text.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*password\s*sufficient\s*pam_unix.so\s*sha512\s*shadow\s*try_first_pass\s*use_authtok</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*password\s*sufficient.*|^password(?:\s{2,}|\t*)sufficient(?:\s{2,}|\t*).*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/pam.d/system-auth</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3081,7 +2947,7 @@ If the "/etc/pam.d/system-auth" and "/etc/pam.d/password-auth" configuration fil
     <Rule id="V-204415.b" severity="medium" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="nxFileLine">
       <ContainsLine>password sufficient pam_unix.so sha512 shadow try_first_pass use_authtok</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Passwords need to be protected at all times, and encryption is the standard method for protecting passwords. If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised. Passwords encrypted with a weak algorithm are no more protected than if they are kept in plain text.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*password\s*sufficient\s*pam_unix.so\s*sha512\s*shadow\s*try_first_pass\s*use_authtok</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*password\s*sufficient.*|^password(?:\s{2,}|\t*)sufficient(?:\s{2,}|\t*).*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/pam.d/password-auth</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3163,6 +3029,50 @@ PASS_MAX_DAYS 60
 
 If the "PASS_MAX_DAYS" parameter value is not 60 or less, or is commented out, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-204422.a" severity="medium" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. If the information system or application allows the user to consecutively reuse their password when that password has exceeded its defined lifetime, the end result is a password that is not changed per policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/password-auth</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71933.a</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>rule V-204422 is reviewed for guidence on configurating ContainsLine/DoesNotContainPattern</OrganizationValueTestString>
+      <RawString>Verify the operating system prohibits password reuse for a minimum of five generations.
+
+Check for the value of the "remember" argument in "/etc/pam.d/system-auth" and "/etc/pam.d/password-auth" with the following command:
+
+# grep -i remember /etc/pam.d/system-auth /etc/pam.d/password-auth
+
+password    requisite     pam_pwhistory.so use_authtok remember=5 retry=3
+
+If the line containing the "pam_pwhistory.so" line does not have the "remember" module argument set, is commented out, or the value of the "remember" module argument is set to less than "5", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204422.b" severity="medium" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. If the information system or application allows the user to consecutively reuse their password when that password has exceeded its defined lifetime, the end result is a password that is not changed per policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/system-auth</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71933.b</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>rule V-204422 is reviewed for guidence on configurating ContainsLine/DoesNotContainPattern</OrganizationValueTestString>
+      <RawString>Verify the operating system prohibits password reuse for a minimum of five generations.
+
+Check for the value of the "remember" argument in "/etc/pam.d/system-auth" and "/etc/pam.d/password-auth" with the following command:
+
+# grep -i remember /etc/pam.d/system-auth /etc/pam.d/password-auth
+
+password    requisite     pam_pwhistory.so use_authtok remember=5 retry=3
+
+If the line containing the "pam_pwhistory.so" line does not have the "remember" module argument set, is commented out, or the value of the "remember" module argument is set to less than "5", this is a finding.</RawString>
+    </Rule>
     <Rule id="V-204423" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
@@ -3225,6 +3135,422 @@ Verify the operating system disables account identifiers (individuals, groups, r
 INACTIVE=0
 
 If the value is not set to "0", is commented out, or is not defined, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204427.a" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced. Limits are imposed by locking the account.
+
+Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/password-auth</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71943.a</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>rule V-204427 is reviewed for guidence on configurating ContainsLine/DoesNotContainPattern</OrganizationValueTestString>
+      <RawString>Check that the system locks an account for a minimum of 15 minutes after three unsuccessful logon attempts within a period of 15 minutes with the following command:
+
+# grep pam_faillock.so /etc/pam.d/password-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
+
+# grep pam_faillock.so /etc/pam.d/system-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204427.b" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced. Limits are imposed by locking the account.
+
+Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/password-auth</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71943.b</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>rule V-204427 is reviewed for guidence on configurating ContainsLine/DoesNotContainPattern</OrganizationValueTestString>
+      <RawString>Check that the system locks an account for a minimum of 15 minutes after three unsuccessful logon attempts within a period of 15 minutes with the following command:
+
+# grep pam_faillock.so /etc/pam.d/password-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
+
+# grep pam_faillock.so /etc/pam.d/system-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204427.c" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced. Limits are imposed by locking the account.
+
+Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/password-auth</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71943.c</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>rule V-204427 is reviewed for guidence on configurating ContainsLine/DoesNotContainPattern</OrganizationValueTestString>
+      <RawString>Check that the system locks an account for a minimum of 15 minutes after three unsuccessful logon attempts within a period of 15 minutes with the following command:
+
+# grep pam_faillock.so /etc/pam.d/password-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
+
+# grep pam_faillock.so /etc/pam.d/system-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204427.d" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced. Limits are imposed by locking the account.
+
+Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/password-auth</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71943.d</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>rule V-204427 is reviewed for guidence on configurating ContainsLine/DoesNotContainPattern</OrganizationValueTestString>
+      <RawString>Check that the system locks an account for a minimum of 15 minutes after three unsuccessful logon attempts within a period of 15 minutes with the following command:
+
+# grep pam_faillock.so /etc/pam.d/password-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
+
+# grep pam_faillock.so /etc/pam.d/system-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204427.e" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced. Limits are imposed by locking the account.
+
+Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/system-auth</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71943.e</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>rule V-204427 is reviewed for guidence on configurating ContainsLine/DoesNotContainPattern</OrganizationValueTestString>
+      <RawString>Check that the system locks an account for a minimum of 15 minutes after three unsuccessful logon attempts within a period of 15 minutes with the following command:
+
+# grep pam_faillock.so /etc/pam.d/password-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
+
+# grep pam_faillock.so /etc/pam.d/system-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204427.f" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced. Limits are imposed by locking the account.
+
+Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/system-auth</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71943.f</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>rule V-204427 is reviewed for guidence on configurating ContainsLine/DoesNotContainPattern</OrganizationValueTestString>
+      <RawString>Check that the system locks an account for a minimum of 15 minutes after three unsuccessful logon attempts within a period of 15 minutes with the following command:
+
+# grep pam_faillock.so /etc/pam.d/password-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
+
+# grep pam_faillock.so /etc/pam.d/system-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204427.g" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced. Limits are imposed by locking the account.
+
+Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/system-auth</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71943.g</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>rule V-204427 is reviewed for guidence on configurating ContainsLine/DoesNotContainPattern</OrganizationValueTestString>
+      <RawString>Check that the system locks an account for a minimum of 15 minutes after three unsuccessful logon attempts within a period of 15 minutes with the following command:
+
+# grep pam_faillock.so /etc/pam.d/password-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
+
+# grep pam_faillock.so /etc/pam.d/system-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204427.h" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced. Limits are imposed by locking the account.
+
+Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/system-auth</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71943.h</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>rule V-204427 is reviewed for guidence on configurating ContainsLine/DoesNotContainPattern</OrganizationValueTestString>
+      <RawString>Check that the system locks an account for a minimum of 15 minutes after three unsuccessful logon attempts within a period of 15 minutes with the following command:
+
+# grep pam_faillock.so /etc/pam.d/password-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
+
+# grep pam_faillock.so /etc/pam.d/system-auth
+
+auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account required pam_faillock.so
+
+If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "even_deny_root" parameter is not set on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "fail_interval" parameter is set to "0" or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
+
+If the "unlock_time" parameter is not set to "0", "never", or is set to a value less than "900" on both "auth" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding.
+
+Note: The maximum configurable value for "unlock_time" is "604800".
+
+If any line referencing the "pam_faillock.so" module is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204431" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00226" dscresource="nxFileLine">
       <ContainsLine>
@@ -3395,14 +3721,42 @@ blacklist usb-storage
 
 If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204450" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
+    <Rule id="V-204450.b" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
       <ContainsLine>install dccp /bin/true</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Disabling DCCP protects the system against exploitation of any flaws in the protocol implementation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*install\s*dccp\s*/bin/true</DoesNotContainPattern>
       <DuplicateOf />
+      <FilePath>/etc/modprobe.d/dccp.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-77821.b</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
+
+# grep -r dccp /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
+
+install dccp /bin/true
+
+If the command does not return any output, or the line is commented out, and use of DCCP is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
+
+Verify the operating system disables the ability to use the DCCP kernel module.
+
+Check to see if the DCCP kernel module is disabled with the following command:
+
+# grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+
+blacklist dccp
+
+If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204450.c" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
+      <ContainsLine>blacklist dccp</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Disabling DCCP protects the system against exploitation of any flaws in the protocol implementation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*blacklist\s*dccp</DoesNotContainPattern>
+      <DuplicateOf />
       <FilePath>/etc/modprobe.d/blacklist.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-77821</LegacyId>
+      <LegacyId>V-77821.c</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
@@ -3537,7 +3891,7 @@ If the value for the "UMASK" parameter is not "077", or the "UMASK" parameter is
     <Rule id="V-204466" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>CREATE_HOME yes</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;If local interactive users are not assigned a valid home directory, there is no place for the storage and control of files they should own.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^#\s*CREATE_HOME.*$|^CREATE_HOME\s*(?!yes\b)\w*$</DoesNotContainPattern>
+      <DoesNotContainPattern>^#\s*CREATE_HOME.*$|^CREATE_HOME\s*(?!yes\b)\w*$|^CREATE_HOME\t.*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/login.defs</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6747,7 +7101,7 @@ If the "Compression" keyword is set to "yes", is missing, or the returned line i
     <Rule id="V-204605" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>session required pam_lastlog.so showfailed</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Providing users with feedback on when account accesses last occurred facilitates user recognition and reporting of unauthorized account use.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>\s*session\s*(?!required)\w*\s*pam_lastlog\.so.*|#\s*session\s*\w*\s*pam_lastlog\.so.*</DoesNotContainPattern>
+      <DoesNotContainPattern>^\s*session\s*(?!required)\w*\s*pam_lastlog\.so.*|#\s*session\s*\w*\s*pam_lastlog\.so.*|^\s*session(?:\t+|\s{2,})required(?:\t+|\s{2,})pam_lastlog\.so.*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/pam.d/postlogin</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6928,7 +7282,7 @@ Note: The example below is using the database "local" for the system, so the pat
 If the command does not return a result, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204449.a" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFile">
-      <Contents>install usb-storage /bin/true</Contents>
+      <Contents># Generated via PowerSTIG</Contents>
       <Description>&lt;VulnDiscussion&gt;USB mass storage permits easy introduction of unknown devices, thereby facilitating malicious activity.
 
 Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPOS-00227&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -6956,7 +7310,7 @@ blacklist usb-storage
 If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204449.b" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFile">
-      <Contents>blacklist usb-storage</Contents>
+      <Contents># Generated via PowerSTIG</Contents>
       <Description>&lt;VulnDiscussion&gt;USB mass storage permits easy introduction of unknown devices, thereby facilitating malicious activity.
 
 Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPOS-00227&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -6982,6 +7336,33 @@ Check to see if USB mass storage is disabled with the following command:
 blacklist usb-storage
 
 If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204450.a" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFile">
+      <Contents># Generated via PowerSTIG</Contents>
+      <Description>&lt;VulnDiscussion&gt;Disabling DCCP protects the system against exploitation of any flaws in the protocol implementation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/modprobe.d/dccp.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-77821.a</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
+
+# grep -r dccp /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
+
+install dccp /bin/true
+
+If the command does not return any output, or the line is commented out, and use of DCCP is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
+
+Verify the operating system disables the ability to use the DCCP kernel module.
+
+Check to see if the DCCP kernel module is disabled with the following command:
+
+# grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+
+blacklist dccp
+
+If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
     </Rule>
   </nxFileRule>
   <nxPackageRule dscresourcemodule="nx">
@@ -7022,6 +7403,80 @@ Check to see if the "ypserve" package is installed with the following command:
 # yum list installed ypserv
 
 If the "ypserv" package is installed, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204497" severity="high" conversionstatus="pass" title="SRG-OS-000033-GPOS-00014" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of using encryption to protect data. The operating system must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated.
+
+Satisfies: SRG-OS-000033-GPOS-00014, SRG-OS-000185-GPOS-00079, SRG-OS-000396-GPOS-00176, SRG-OS-000405-GPOS-00184, SRG-OS-000478-GPOS-00223&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72067</LegacyId>
+      <Name>dracut-fips</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system implements DoD-approved encryption to protect the confidentiality of remote access sessions.
+
+Check to see if the "dracut-fips" package is installed with the following command:
+
+# yum list installed dracut-fips
+
+dracut-fips-033-360.el7_2.x86_64.rpm
+
+If a "dracut-fips" package is installed, check to see if the kernel command line is configured to use FIPS mode with the following command:
+
+Note: GRUB 2 reads its configuration from the "/boot/grub2/grub.cfg" file on traditional BIOS-based machines and from the "/boot/efi/EFI/redhat/grub.cfg" file on UEFI machines.
+
+# grep fips /boot/grub2/grub.cfg
+/vmlinuz-3.8.0-0.40.el7.x86_64 root=/dev/mapper/rhel-root ro rd.md=0 rd.dm=0 rd.lvm.lv=rhel/swap crashkernel=auto rd.luks=0 vconsole.keymap=us rd.lvm.lv=rhel/root rhgb fips=1 quiet
+
+If the kernel command line is configured to use FIPS mode, check to see if the system is in FIPS mode with the following command:
+
+# cat /proc/sys/crypto/fips_enabled
+1
+
+If a "dracut-fips" package is not installed, the kernel command line does not have a fips entry, or the system has a value of "0" for "fips_enabled" in "/proc/sys/crypto", this is a finding.
+
+Verify the file /etc/system-fips exists.
+
+# ls -l /etc/system-fips
+
+If this file does not exist, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204498" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;ACLs can provide permissions beyond those permitted through the file mode and must be verified by file integrity tools.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72069</LegacyId>
+      <Name>aide</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the file integrity tool is configured to verify ACLs.
+
+Check to see if Advanced Intrusion Detection Environment (AIDE) is installed on the system with the following command:
+
+# yum list installed aide
+
+If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system.
+
+If there is no application installed to perform file integrity checks, this is a finding.
+
+Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory.
+
+Use the following command to determine if the file is in another location:
+
+# find / -name aide.conf
+
+Check the "aide.conf" file to determine if the "acl" rule has been added to the rule list being applied to the files and directories selection lists.
+
+An example rule that includes the "acl" rule is below:
+
+All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
+/bin All # apply the custom rule to the files in bin
+/sbin All # apply the same custom rule to the files in sbin
+
+If the "acl" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or ACLs are not being checked by another file integrity tool, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204502" severity="high" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;It is detrimental for operating systems to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
