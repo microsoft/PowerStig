@@ -34,8 +34,11 @@ data doesNotContainPattern
         'Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";' = '\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages\s*("false"|false|true).*|#\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages.*'
         'session required pam_lastlog.so showfailed'                = '\s*session\s*(?!required)\w*\s*pam_lastlog\.so.*|#\s*session\s*\w*\s*pam_lastlog\.so.*'
         'ucredit=-1'                                                = '^#\s*ucredit.*$|^ucredit\s*=\s*(?!-1\b)\w*$'
+        'ucredit = -1'                                                = '^#\s*ucredit.*$|^ucredit\s*=\s*(?!-1\b)\w*$'
         'lcredit=-1'                                                = '^#\s*lcredit.*$|^lcredit\s*=\s*(?!-1\b)\w*$'
+        'lcredit = -1'                                                = '^#\s*lcredit.*$|^lcredit\s*=\s*(?!-1\b)\w*$'
         'dcredit=-1'                                                = '^#\s*dcredit.*$|^dcredit\s*=\s*(?!-1\b)\w*$'
+        'dcredit = -1'                                                = '^#\s*dcredit.*$|^dcredit\s*=\s*(?!-1\b)\w*$'
         'difok = 8'                                                 = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*' # Org
         'difok=8'                                                   = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*' # Org
         'PASS_MIN_DAYS 1'                                           = '^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*' # Org
@@ -45,6 +48,7 @@ data doesNotContainPattern
         'dictcheck=1'                                               = '^\s*dictcheck\s*=\s*((?!1)|[1]\d+)\d*$|#\s*dictcheck.*'
         'enforcing = 1'                                             = '^\s*enforcing\s*=\s*((?!1)|[1]\d+)\d*$|#\s*enforcing.*'
         'ocredit=-1'                                                = '^#\s*ocredit.*$|^ocredit\s*=\s*(?!-1)\w*$'
+        'ocredit = -1'                                                = '^#\s*ocredit.*$|^ocredit\s*=\s*(?!-1)\w*$'
         '* hard maxlogins 10'                                       = '^\s*\*\s*hard\s*maxlogins\s*([1][1-9]|[2-9]\d+|[1-9][0-9]\d+)$|^#\s*\*\s*hard\s*maxlogins.*'
         'TMOUT=900'                                                 = '^\s*TMOUT\s*=\s*[0-8]?[0-9]?[0-9]?$|^#\s*TMOUT.*' # Org
         'readonly TMOUT'                                            = '^\s*readonly\s+(?!TMOUT\b).*$|^\s*#\s*readonly.*$' # Org
@@ -163,7 +167,6 @@ data doesNotContainPattern
         'Compression delayed' = '^#\s*Compression.*$|^Compression\s*(?!delayed\b)\w*$'
         'CREATE_HOME yes' = '^#\s*CREATE_HOME.*$|^CREATE_HOME\s*(?!yes\b)\w*$'
         'crypt_style = sha512' = 'DynamicallyGeneratedDoesNotContainPattern'
-        'dcredit = -1' = 'DynamicallyGeneratedDoesNotContainPattern'
         'direction = out' = 'DynamicallyGeneratedDoesNotContainPattern'
         'disk_full_action = single' = 'DynamicallyGeneratedDoesNotContainPattern'
         'enable_krb5 = yes' = 'DynamicallyGeneratedDoesNotContainPattern'
@@ -176,9 +179,8 @@ data doesNotContainPattern
         'idle-activation-enabled=true' = 'DynamicallyGeneratedDoesNotContainPattern'
         'IgnoreRhosts yes' = '^#\s*IgnoreRhosts.*$|^IgnoreRhosts\s*(?!yes\b)\w*$'
         'IgnoreUserKnownHosts yes' = '^#\s*IgnoreUserKnownHosts.*$|^IgnoreUserKnownHosts\s*(?!yes\b)\w*$'
-        'INACTIVE=0' = '^#\s*INACTIVE.*$|^INACTIVE\s*=\s*(?!0\b)\w*$'
+        'INACTIVE=0' = '^#\s*INACTIVE.*$|^INACTIVE\s*=\s*(?!0\b)[-]*\w*$'
         'KerberosAuthentication no' = '^#\s*KerberosAuthentication.*$|^KerberosAuthentication\s*(?!no\b)\w*$'
-        'lcredit = -1' = 'DynamicallyGeneratedDoesNotContainPattern'
         'localpkg_gpgcheck=1' = 'DynamicallyGeneratedDoesNotContainPattern'
         'lock-enabled=true' = 'DynamicallyGeneratedDoesNotContainPattern'
         'maxclassrepeat = 4' = 'DynamicallyGeneratedDoesNotContainPattern'
@@ -201,7 +203,6 @@ data doesNotContainPattern
         'This command will return the banner keyword and the name of the file that contains the ssh banner (in this case "/etc/issue").' = 'DynamicallyGeneratedDoesNotContainPattern'
         'TimedLoginEnable=false' = 'DynamicallyGeneratedDoesNotContainPattern'
         'type = always' = 'DynamicallyGeneratedDoesNotContainPattern'
-        'ucredit = -1' = 'DynamicallyGeneratedDoesNotContainPattern'
         'UsePrivilegeSeparation sandbox' = '^#\s*UsePrivilegeSeparation.*$|^UsePrivilegeSeparation\s*(?!sandbox\b)\w*$'
         '-w /etc/group -p wa -k identity' = 'DynamicallyGeneratedDoesNotContainPattern'
         '-w /etc/gshadow -p wa -k identity' = 'DynamicallyGeneratedDoesNotContainPattern'
