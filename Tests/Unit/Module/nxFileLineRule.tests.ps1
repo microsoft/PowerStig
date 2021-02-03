@@ -44,7 +44,7 @@ try
             @{
                 FilePath                  = '/etc/pam.d/passwd'
                 ContainsLine              = 'password substack system-auth'
-                DoesNotContainPattern     = '^\s*password\s\s+substack\s\s+system-auth\s*$|^#\s*password\s*substack\s*system-auth.*'
+                DoesNotContainPattern     = '^\s*password(?:\t*|\s*)substack\tsystem-auth\s*$|^#\s*password\s*substack\s*system-auth.*'
                 OrganizationValueRequired = $false
                 CheckContent              = 'Verify that /etc/pam.d/passwd is configured to use /etc/pam.d/system-auth when changing passwords:
                 # grep /etc/pam.d/passwd
