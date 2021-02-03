@@ -900,30 +900,6 @@ If there are indications that a "conn" parameter is configured for a tunnel, ask
 
 If "libreswan" is installed, "IPsec" is active, and an undocumented tunnel is active, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204630" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Source-routed packets allow the source of the packet to suggest that routers forward the packet along a different path than configured on the router, which can be used to bypass network security measures. This requirement applies only to the forwarding of source-routed traffic, such as when IPv6 forwarding is enabled and the system is functioning as a router.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72319</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If IPv6 is not enabled, the key will not exist, and this is Not Applicable.
-
-Verify the system does not accept IPv6 source-routed packets.
-
-# grep net.ipv6.conf.all.accept_source_route /etc/sysctl.conf /etc/sysctl.d/*
-
-net.ipv6.conf.all.accept_source_route = 0
-
-If "net.ipv6.conf.all.accept_source_route" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out or does not have a value of "0", this is a finding.
-
-Check that the operating system implements the accept source route variable with the following command:
-
-# /sbin/sysctl -a | grep net.ipv6.conf.all.accept_source_route
-net.ipv6.conf.all.accept_source_route = 0
-
-If the returned lines do not have a value of "0", this is a finding.</RawString>
-    </Rule>
     <Rule id="V-204632" severity="medium" conversionstatus="pass" title="SRG-OS-000375-GPOS-00160" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Using an authentication device, such as a CAC or token that is separate from the information system, ensures that even if the information system is compromised, that compromise will not affect credentials stored on the authentication device.
 
@@ -7412,6 +7388,32 @@ Check that the operating system does not implement IP forwarding using the follo
 net.ipv4.ip_forward = 0
 
 If IP forwarding value is "1" and the system is hosting any application, database, or web servers, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204630" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv6.conf.all.accept_source_route = 0</Contents>
+      <Description>&lt;VulnDiscussion&gt;Source-routed packets allow the source of the packet to suggest that routers forward the packet along a different path than configured on the router, which can be used to bypass network security measures. This requirement applies only to the forwarding of source-routed traffic, such as when IPv6 forwarding is enabled and the system is functioning as a router.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204630-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72319</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If IPv6 is not enabled, the key will not exist, and this is Not Applicable.
+
+Verify the system does not accept IPv6 source-routed packets.
+
+# grep net.ipv6.conf.all.accept_source_route /etc/sysctl.conf /etc/sysctl.d/*
+
+net.ipv6.conf.all.accept_source_route = 0
+
+If "net.ipv6.conf.all.accept_source_route" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out or does not have a value of "0", this is a finding.
+
+Check that the operating system implements the accept source route variable with the following command:
+
+# /sbin/sysctl -a | grep net.ipv6.conf.all.accept_source_route
+net.ipv6.conf.all.accept_source_route = 0
+
+If the returned lines do not have a value of "0", this is a finding.</RawString>
     </Rule>
   </nxFileRule>
   <nxPackageRule dscresourcemodule="nx">

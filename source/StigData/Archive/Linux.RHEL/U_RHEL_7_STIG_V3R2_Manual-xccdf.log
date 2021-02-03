@@ -33,3 +33,4 @@ V-204615::*::HardCodedRule(nxFileRule)@{DscResource = 'nxFile'; Contents = 'net.
 V-204616::*::HardCodedRule(nxFileRule)@{DscResource = 'nxFile'; Contents = 'net.ipv4.conf.default.send_redirects = 0'; FilePath = '/etc/sysctl.d/204616-powerstig.conf'}
 V-204617::*::HardCodedRule(nxFileRule)@{DscResource = 'nxFile'; Contents = 'net.ipv4.conf.all.send_redirects = 0'; FilePath = '/etc/sysctl.d/204617-powerstig.conf'}
 V-204625::*::HardCodedRule(nxFileRule)@{DscResource = 'nxFile'; Contents = 'net.ipv4.ip_forward = 0'; FilePath = '/etc/sysctl.d/204625-powerstig.conf'}
+V-204630::*::HardCodedRule(nxFileRule)@{DscResource = 'nxFile'; Contents = 'net.ipv6.conf.all.accept_source_route = 0'; FilePath = '/etc/sysctl.d/204630-powerstig.conf'}

@@ -74,7 +74,6 @@ data exclusionRuleList
         V-204582 = 'RHEL: At present, unable to automate rule'
         V-204603 = 'RHEL: At present, unable to automate rule'
         V-204629 = 'RHEL: At present, unable to automate rule'
-        V-204630 = 'RHEL: At present, unable to automate rule'
         V-204632 = 'RHEL: At present, unable to automate rule'
         V-204633 = 'RHEL: Cannot automate with nxFileLineRule due to text position in conf file'
         V-204397 = 'RHEL: At present, unable to automate rule'
