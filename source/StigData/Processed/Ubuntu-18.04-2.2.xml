@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="2/2/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="2/4/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-219150" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information at rest refers to the state of information when it is located on a secondary storage device (e.g., disk drive and tape drive, when used for backups) within an operating system.
@@ -75,6 +75,100 @@ Check that the "AllowUnauthenticated" variable is not set at all or set to "fals
 /etc/apt/apt.conf.d/01-vendor-Ubuntu:APT::Get::AllowUnauthenticated "false";
 
 If any of the files returned from the command with "AllowUnauthenticated" set to "true", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-219164" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00226" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Limiting the number of logon attempts over a certain time interval reduces the chances that an unauthorized user may gain access to an account.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100555</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the Ubuntu operating system enforces a delay of at least 4 seconds between logon prompts following a failed logon attempt.
+
+Check that the Ubuntu operating system enforces a delay of at least 4 seconds between logon prompts with the following command:
+
+# grep pam_faildelay /etc/pam.d/common-auth
+
+auth required pam_faildelay.so delay=4000000
+
+If the line is not present, or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-219165" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Configuring the Ubuntu operating system to implement organization-wide security implementation guides and security checklists ensures compliance with federal standards and establishes a common security baseline across DoD that reflects the most restrictive security posture consistent with operational requirements.
+
+Configuration settings are the set of parameters that can be changed in hardware, software, or firmware components of the system that affect the security posture and/or functionality of the system. Security-related parameters are those parameters impacting the security state of the system, including the parameters required to satisfy other security control requirements. Security-related parameters include, for example: registry settings; account, file, directory permission settings; and settings for functions, ports, protocols, services, and remote connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100557</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify users are provided with feedback on when account accesses last occurred.
+
+Check that "pam_lastlog" is used and not silent with the following command:
+
+# grep pam_lastlog /etc/pam.d/login
+
+session required pam_lastlog.so showfailed
+
+If "pam_lastlog" is missing from "/etc/pam.d/login" file, is not "required", or the "silent" option is present, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-219166" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account.
+Satisfies: SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100559</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check that Ubuntu operating system locks an account after three unsuccessful login attempts with following command:
+
+# grep pam_tally2 /etc/pam.d/common-auth
+
+auth required pam_tally2.so onerr=fail deny=3
+
+If no line is returned or the line is commented out, this is a finding.
+If the line is missing "onerr=fail", this is a finding.
+If the line has "deny" set to a value more than 3, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-219180" severity="low" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. If the information system or application allows the user to consecutively reuse their password when that password has exceeded its defined lifetime, the end result is a password that is not changed as per policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100587</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the Ubuntu operating system prevents passwords from being reused for a minimum of five generations by running the following command:
+
+# grep -i remember /etc/pam.d/common-password
+
+password [success=1 default=ignore] pam_unix.so sha512 shadow remember=5 rounds=5000
+
+If the "remember" parameter value is not greater than or equal to 5, commented out, or not set at all this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-219182" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The Ubuntu operating system must use a FIPS-compliant hashing algorithm to securely store the password. The FIPS-compliant hashing algorithm parameters must be selected in order to harden the system against offline attacks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100591</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that encrypted passwords stored in /etc/shadow use a strong cryptographic hash.
+
+Check that pam_unix.so auth is configured to use sha512 with the following command:
+
+# grep password /etc/pam.d/common-password | grep pam_unix
+
+password [success=1 default=ignore] pam_unix.so obscure sha512
+
+If "sha512" is not an option of the output, or is commented out, this is a finding.
+
+Check that ENCRYPT_METHOD is set to sha512 in /etc/login.defs:
+
+# grep -i ENCRYPT_METHOD /etc/login.defs
+
+ENCRYPT_METHOD SHA512
+
+If the output does not contain "sha512", or it is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219188" severity="medium" conversionstatus="pass" title="SRG-OS-000205-GPOS-00083" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Any operating system providing too much information in error messages risks compromising the data and security of the structure, and content of error messages needs to be carefully considered by the organization.
@@ -1823,71 +1917,6 @@ Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";
 If the "::Remove-Unused-Dependencies" and "::Remove-Unused-Kernel-Packages" parameters are not set to "true", or are missing, or are commented out, this is a finding.
 </RawString>
     </Rule>
-    <Rule id="V-219164" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00226" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Limiting the number of logon attempts over a certain time interval reduces the chances that an unauthorized user may gain access to an account.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/common-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100555</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: Set the parameter "pam_faildelay" to a value of 4000000 or greater: i.e.: auth required pam_faildelay.so delay=4000000 </OrganizationValueTestString>
-      <RawString>Verify the Ubuntu operating system enforces a delay of at least 4 seconds between logon prompts following a failed logon attempt.
-
-Check that the Ubuntu operating system enforces a delay of at least 4 seconds between logon prompts with the following command:
-
-# grep pam_faildelay /etc/pam.d/common-auth
-
-auth required pam_faildelay.so delay=4000000
-
-If the line is not present, or is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-219165" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
-      <ContainsLine>session required pam_lastlog.so showfailed</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Configuring the Ubuntu operating system to implement organization-wide security implementation guides and security checklists ensures compliance with federal standards and establishes a common security baseline across DoD that reflects the most restrictive security posture consistent with operational requirements.
-
-Configuration settings are the set of parameters that can be changed in hardware, software, or firmware components of the system that affect the security posture and/or functionality of the system. Security-related parameters are those parameters impacting the security state of the system, including the parameters required to satisfy other security control requirements. Security-related parameters include, for example: registry settings; account, file, directory permission settings; and settings for functions, ports, protocols, services, and remote connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^\s*session\s*(?!required)\w*\s*pam_lastlog\.so.*|#\s*session\s*\w*\s*pam_lastlog\.so.*|^\s*session(?:\t+|\s{2,})required(?:\t+|\s{2,})pam_lastlog\.so.*</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/login</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100557</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify users are provided with feedback on when account accesses last occurred.
-
-Check that "pam_lastlog" is used and not silent with the following command:
-
-# grep pam_lastlog /etc/pam.d/login
-
-session required pam_lastlog.so showfailed
-
-If "pam_lastlog" is missing from "/etc/pam.d/login" file, is not "required", or the "silent" option is present, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-219166" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>auth required pam_tally2.so onerr=fail deny=3</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account.
-Satisfies: SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*auth\s*required\s*pam_tally2.so\s*onerr\s*=\s*fail\s*deny\s*=\s*3</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/common-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100559</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Check that Ubuntu operating system locks an account after three unsuccessful login attempts with following command:
-
-# grep pam_tally2 /etc/pam.d/common-auth
-
-auth required pam_tally2.so onerr=fail deny=3
-
-If no line is returned or the line is commented out, this is a finding.
-If the line is missing "onerr=fail", this is a finding.
-If the line has "deny" set to a value more than 3, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-219167.a" severity="medium" conversionstatus="pass" title="SRG-OS-000024-GPOS-00007" dscresource="nxFileLine">
       <ContainsLine>[org/gnome/login-screen]</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;The banner must be acknowledged by the user prior to allowing the user access to the operating system. This provides assurance that the user has seen the message and accepted the conditions for access. If the consent banner is not acknowledged by the user, DoD will not be in compliance with system use notifications required by law.
@@ -2225,26 +2254,6 @@ PASS_MAX_DAYS 60
 
 If the "PASS_MAX_DAYS" parameter value is less than 60, or commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219180" severity="low" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. If the information system or application allows the user to consecutively reuse their password when that password has exceeded its defined lifetime, the end result is a password that is not changed as per policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/common-password</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100587</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "remember" parameter value is not greater than or equal to 5, commented out, or not set at all this is a finding." </OrganizationValueTestString>
-      <RawString>Verify that the Ubuntu operating system prevents passwords from being reused for a minimum of five generations by running the following command:
-
-# grep -i remember /etc/pam.d/common-password
-
-password [success=1 default=ignore] pam_unix.so sha512 shadow remember=5 rounds=5000
-
-If the "remember" parameter value is not greater than or equal to 5, commented out, or not set at all this is a finding.</RawString>
-    </Rule>
     <Rule id="V-219181" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
@@ -2266,34 +2275,6 @@ Password complexity, or strength, is a measure of the effectiveness of a passwor
 
 If "minlen" parameter value is not 15 or higher, or is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219182" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="nxFileLine">
-      <ContainsLine>password [success=1 default=ignore] pam_unix.so obscure sha512</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;The Ubuntu operating system must use a FIPS-compliant hashing algorithm to securely store the password. The FIPS-compliant hashing algorithm parameters must be selected in order to harden the system against offline attacks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*password\s*[success\s*=\s*1\s*default\s*=\s*ignore]\s*pam_unix.so\s*obscure\s*sha512</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/common-password</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100591</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that encrypted passwords stored in /etc/shadow use a strong cryptographic hash.
-
-Check that pam_unix.so auth is configured to use sha512 with the following command:
-
-# grep password /etc/pam.d/common-password | grep pam_unix
-
-password [success=1 default=ignore] pam_unix.so obscure sha512
-
-If "sha512" is not an option of the output, or is commented out, this is a finding.
-
-Check that ENCRYPT_METHOD is set to sha512 in /etc/login.defs:
-
-# grep -i ENCRYPT_METHOD /etc/login.defs
-
-ENCRYPT_METHOD SHA512
-
-If the output does not contain "sha512", or it is commented out, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-219184" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00225" dscresource="nxFileLine">
       <ContainsLine>dictcheck=1</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;If the Ubuntu operating system allows the user to select passwords based on dictionary words, then this increases the chances of password compromise by increasing the opportunity for successful guesses and brute-force attacks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2313,53 +2294,13 @@ dictcheck=1
 If the "dictcheck" parameter is not set to "1", or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219186.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00225" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. "pwquality" enforces complex password construction configuration and has the ability to limit brute-force attacks on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/common-password</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100599.b</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding. </OrganizationValueTestString>
-      <RawString>Verify the Ubuntu operating system has the libpam-pwquality package installed, by running the following command:
-
-# dpkg -l libpam-pwquality
-
-ii libpam-pwquality:amd64 1.4.0-2 amd64 PAM module to check password strength
-
-If "libpam-pwquality" is not installed, this is a finding.
-
-Verify the operating system uses "pwquality" to enforce the password complexity rules.
-
-Verify the pwquality module is being enforced by the Ubuntu Operating System, by running the following command:
-
-# grep -i enforcing /etc/security/pwquality.conf
-
-enforcing = 1
-
-If the value of "enforcing" is not 1 or the line is commented out, this is a finding.
-
-Check for the use of "pwquality" with the following command:
-
-# sudo cat /etc/pam.d/common-password | grep requisite | grep pam_pwquality
-
-password requisite pam_pwquality.so retry=3 enforce_for_root
-
-If no output is returned or the line is commented out, this is a finding.
-If the value of "retry" is set to "0" or greater than "3", this is a finding.
-If "enforce_for_root" is missing from the configuration line, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-219186.c" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00225" dscresource="nxFileLine">
       <ContainsLine>enforcing = 1</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. "pwquality" enforces complex password construction configuration and has the ability to limit brute-force attacks on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>^\s*enforcing\s*=\s*((?!1)|[1]\d+)\d*$|#\s*enforcing.*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/security/pwquality.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100599.c</LegacyId>
+      <LegacyId>V-100599.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the Ubuntu operating system has the libpam-pwquality package installed, by running the following command:

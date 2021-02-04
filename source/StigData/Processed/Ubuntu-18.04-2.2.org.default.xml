@@ -12,8 +12,6 @@
   <OrganizationalSetting id="V-219152.b" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: If the remote_server parameter is not set or is set with a local address, or is set with invalid address, this is a finding i.e.: remote_server = <your remote audit log server ip>-->
   <OrganizationalSetting id="V-219153.c" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: Set the parameter "pam_faildelay" to a value of 4000000 or greater: i.e.: auth required pam_faildelay.so delay=4000000 -->
-  <OrganizationalSetting id="V-219164" ContainsLine="auth required pam_faildelay.so delay=4000000" DoesNotContainPattern="^#\s*auth\s*required\s*pam_faildelay.so.*" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "ucredit" parameter is greater than "-1", or is commented out, this is a finding." -->
   <OrganizationalSetting id="V-219172" ContainsLine="ucredit=-1" DoesNotContainPattern="^#\s*ucredit.*$|^ucredit\s*=\s*(?!-1\b)\w*$" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "lcredit" parameter is greater than "-1", or is commented out, this is a finding." -->
@@ -28,12 +26,8 @@
   <OrganizationalSetting id="V-219178" ContainsLine="PASS_MIN_DAYS 1" DoesNotContainPattern="^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is less than 60, or commented out, this is a finding." -->
   <OrganizationalSetting id="V-219179" ContainsLine="PASS_MAX_DAYS 60" DoesNotContainPattern="^\s*PASS_MAX_DAYS\s*([6][1-9]|[7-9][0-9]|\d{3,})$|#\s*PASS_MAX_DAYS.*" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "remember" parameter value is not greater than or equal to 5, commented out, or not set at all this is a finding." -->
-  <OrganizationalSetting id="V-219180" ContainsLine="password [success=1 default=ignore] pam_unix.so sha512 shadow remember=5 rounds=5000" DoesNotContainPattern="^#password\s*[success=1\s*default=ignore]\s*pam_unix.so\s*sha512\s*shadow\s*remember=.*" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "minlen" parameter value is not 15 or higher, or is commented out, this is a finding." -->
   <OrganizationalSetting id="V-219181" ContainsLine="minlen=15" DoesNotContainPattern="^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding. -->
-  <OrganizationalSetting id="V-219186.b" ContainsLine="password requisite pam_pwquality.so retry=3 enforce_for_root" DoesNotContainPattern="^#\s*password\s*requisite\s*pam_pwquality.so.*retry=.*" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "ocredit" parameter is greater than "-1", or is commented out, this is a finding." -->
   <OrganizationalSetting id="V-219210" ContainsLine="ocredit=-1" DoesNotContainPattern="^#\s*ocredit.*$|^ocredit\s*=\s*(?!-1)\w*$" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of the "action_mail_acct" keyword is not set to "root" and/or other accounts for security personnel, the "action_mail_acct" keyword is missing, or the returned line is commented out, this is a finding." -->
