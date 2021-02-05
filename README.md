@@ -132,3 +132,4 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@winthrop28](https://github.com/winthrop28) (Drew Taylor)
 * [@mikedzikowski](https://github.com/mikedzikowski) (Mike Dzikowski)
 * [@togriffith](https://github.com/mikedzikowski) (Tony Griffith)
+* [@hinderjd](https://github.com/hinderjd) (James Hinders)
