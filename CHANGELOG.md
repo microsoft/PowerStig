@@ -4,10 +4,13 @@
 
 * Update PowerSTIG to remove old rule Ids in Hard Coded Framework: [#790](https://github.com/microsoft/PowerStig/issues/790)
 * Update PowerSTIG to Parse/Apply MS Office 365 ProPlus Ver 2, Rel 1: [#811](https://github.com/microsoft/PowerStig/issues/811)
+* Update PowerSTIG to parse and apply RHEL 7.x V3R1: [#608](https://github.com/microsoft/PowerStig/issues/608)
 * Update PowerSTIG to Add Checklist Accountability: [#808](https://github.com/microsoft/PowerStig/issues/808)
 * Update PowerSTIG to move O365 Pro Plus log entries into Exclusion Rule list: [#815](https://github.com/microsoft/PowerStig/issues/815)
+* Update PowerSTIG to parse and apply Mozilla Firefox V5R1 STIG: [#834](https://github.com/microsoft/PowerStig/issues/834)
+* Update PowerSTIG to parse and apply Microsoft DotNet V2R1 STIG: [#831](https://github.com/microsoft/PowerStig/issues/831)
+* Update PowerSTIG to Parse/Apply Oracle JRE 8 Ver 2, Rel 1: [#833](https://github.com/microsoft/PowerStig/issues/833)
 * Fixed: ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
-* Update: Update PowerSTIG to parse and apply Mozilla Firefox V5R1 STIG: [#834](https://github.com/microsoft/PowerStig/issues/834)
 
 ## [4.7.0] - 2020-12-17
 
@@ -101,12 +104,12 @@
 * Update PowerSTIG to parse and apply Windows Server 2019 V1R3 STIG: [#584](https://github.com/microsoft/PowerStig/issues/584)
 * Update PowerSTIG to parse/convert the Windows Server 2016 V2R10: [#582](https://github.com/microsoft/PowerStig/issues/582)
 * Update PowerSTIG to parse/convert the Windows Server 2012 DNS STIG V1R13: [#580](https://github.com/microsoft/PowerStig/issues/580)
-* Update PowerSTIG to to parse/convert the Windows Server 2012 R2 DC V2R19: [#578](https://github.com/microsoft/PowerStig/issues/578)
+* Update PowerSTIG to parse/convert the Windows Server 2012 R2 DC V2R19: [#578](https://github.com/microsoft/PowerStig/issues/578)
 * Update PowerSTIG to parse/convert the Windows Defender STIG V1R7: [#576](https://github.com/microsoft/PowerStig/issues/576)
 * Update PowerSTIG to successfully parse Mozilla Firefox STIG - Ver 4, Rel 28: [#573](https://github.com/microsoft/PowerStig/issues/573)
 * Update PowerSTIG to parse and apply Adobe Acrobat Reader Version 1, Release 6: [#562](https://github.com/microsoft/PowerStig/issues/562)
 * Update PowerSTIG release process to include STIG Coverage markdown wiki automation: [#560](https://github.com/microsoft/PowerStig/issues/560)
-* Update to PowerSTIG to show duplicate rule status matching in a checklist: [#257](https://github.com/microsoft/PowerStig/issues/257)
+* Update PowerSTIG to show duplicate rule status matching in a checklist: [#257](https://github.com/microsoft/PowerStig/issues/257)
 * Fixed [#589](https://github.com/microsoft/PowerStig/issues/589): Update module manifest to leverage GPRegistryPolicyDsc v1.2.0
 * Fixed [#569](https://github.com/microsoft/PowerStig/issues/569): Update SqlServerDsc module version references
 * Fixed [#259](https://github.com/microsoft/PowerStig/issues/259): Checklist .ckl file fails XML validation in Stig Viewer 2.8.
@@ -147,7 +150,7 @@
 
 ## [4.0.0] - 2019-09-23
 
-* Update PowerSTIG parsing for Windows Sever 2016 STIG - Ver 1, Rel 9 [#498] - (https://github.com/microsoft/PowerStig/issues/498)
+* Update PowerSTIG parsing for Windows Sever 2016 STIG - Ver 1, Rel 9 [#498](https://github.com/microsoft/PowerStig/issues/498)
 * Fixed [#507](https://github.com/microsoft/PowerStig/issues/507): Get-HardCodedRuleLogFileEntry Errors on RegistryRule
 * Update PowerSTIG to leverage the GPRegistryPolicyDsc resource for Local Group Policy automation: [#497](https://github.com/microsoft/PowerStig/issues/497)
 * Update PowerSTIG to enable the logfile framework to consume a hashtable for HardCodedRule: [#494](https://github.com/microsoft/PowerStig/issues/494)

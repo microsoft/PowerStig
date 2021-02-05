@@ -1,0 +1,39 @@
+<!--
+    The organizational settings file is used to define the local organizations
+    preferred setting within an allowed range of the STIG.
+
+    Each setting in this file is linked by STIG ID and the valid range is in an
+    associated comment.
+-->
+<OrganizationalSettings fullversion="3.2">
+  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding." -->
+  <OrganizationalSetting id="V-204406" ContainsLine="password required pam_pwquality.so retry=3" DoesNotContainPattern="^#\s*password\s*required\s*pam_pwquality.so\s*retry=\d*|^password\s*required\s*pam_pwquality.so\s*retry=\s*(?![1-3])\d*" />
+  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8", this is a finding." -->
+  <OrganizationalSetting id="V-204411" ContainsLine="difok = 8" DoesNotContainPattern="#\s*difok\s*=.*|^\s*difok\s*=\s*(-|)[0-7]$" />
+  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "minclass" is set to less than "4", this is a finding." -->
+  <OrganizationalSetting id="V-204412" ContainsLine="minclass = 4" DoesNotContainPattern="^#\s*minclass\s*=.*|^\s*minclass\s*=\s*(?!\d{2,})[1-3]" />
+  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxrepeat" is set to more than "3", this is a finding." -->
+  <OrganizationalSetting id="V-204413" ContainsLine="maxrepeat = 3" DoesNotContainPattern="^#\s*maxrepeat\s*=.*|^\s*maxrepeat\s*=\s*(?:\d{2,}|[4-9])" />
+  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxclassrepeat" is set to more than "4", this is a finding." -->
+  <OrganizationalSetting id="V-204414" ContainsLine="maxclassrepeat = 4" DoesNotContainPattern="^#\s*maxclassrepeat\s*=.*|^\s*maxclassrepeat\s*=\s*(?:\d{2,}|[3-9])" />
+  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-204418" ContainsLine="PASS_MIN_DAYS 1" DoesNotContainPattern="^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*" />
+  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is not 60 or less, or is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-204420" ContainsLine="PASS_MAX_DAYS 60" DoesNotContainPattern="^\s*PASS_MAX_DAYS\s*([6][1-9]|[7-9][0-9]|\d{3,})$|#\s*PASS_MAX_DAYS.*" />
+  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the command does not return a "minlen" value of 15 or greater, this is a finding." -->
+  <OrganizationalSetting id="V-204423" ContainsLine="minlen = 15" DoesNotContainPattern="^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*" />
+  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-204431" ContainsLine="FAIL_DELAY 4" DoesNotContainPattern="^#\s*FAIL_DELAY.*|^FAIL_DELAY\s*(?!\d{2,})[1-3]" />
+  <!-- Ensure the IP address of the log aggregation server is defined; i.e.: remote_server = <IPAddress> -->
+  <OrganizationalSetting id="V-204509" ContainsLine="" DoesNotContainPattern="" />
+  <!-- Ensure the value of the "disk_full_action" option is set to "SYSLOG", "SINGLE", or "HALT"; i.e.: "disk_full_action = single" -->
+  <OrganizationalSetting id="V-204511" ContainsLine="disk_full_action = single" DoesNotContainPattern="^#\s*disk_full_action\s*=.*|^disk_full_action\s*=\s*(?!halt\b|single\b|syslog\b)\w+" />
+  <!-- Ensure the "network_failure_action" option is set to "SYSLOG", "SINGLE", or "HALT"; i.e.: "network_failure_action = syslog" -->
+  <OrganizationalSetting id="V-204512" ContainsLine="network_failure_action = syslog" DoesNotContainPattern="^#\s*network_failure_action\s*=.*|^network_failure_action\s*=\s*(?!halt\b|single\b|syslog\b)\w+" />
+  <!-- Ensure the value of the "space_left" keyword is not set to 25 percent of the total partition size-->
+  <OrganizationalSetting id="V-204513" ContainsLine="" DoesNotContainPattern="" />
+  <!-- Ensure the value of the "action_mail_acct" keyword is set to "root" and/or other accounts for security personnel; i.e.: "action_mail_acct = root" -->
+  <OrganizationalSetting id="V-204515" ContainsLine="action_mail_acct = root" DoesNotContainPattern="^#\s*action_mail_acct.*|^action_mail_acct\s*=\s*(?!root\b)\w+" />
+  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding." -->
+  <OrganizationalSetting id="V-204587" ContainsLine="ClientAliveInterval 600" DoesNotContainPattern="^#\s*ClientAliveInterval.*|^\s*ClientAliveInterval\s*$|^\s*ClientAliveInterval\s*(?![1-5][0-9][0-9]\b|600\b)(\d{3,}|0)" />
+</OrganizationalSettings>

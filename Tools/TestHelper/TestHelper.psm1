@@ -498,7 +498,7 @@ function Get-DscResourceModuleInfo
     )
 
     $moduleInfo = @()
-    $modulePattern   = "(?<ModuleName>(?<=ModuleName\s)\w+.\w+(?=\s))"
+    $modulePattern   = "(?<ModuleName>(?<=ModuleName\s)\w*.\w+(?=\s))"
     $versionPatthern = "(?<ModuleVersion>(?<=ModuleVersion\s)[\d\.]+(?=$))"
 
     $importModuleCommands = Select-String -Path $Path -Pattern 'Import-DscResource' -AllMatches
