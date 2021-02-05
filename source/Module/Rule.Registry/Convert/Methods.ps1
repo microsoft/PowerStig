@@ -396,7 +396,7 @@ function Get-RegistryValueDataFromWindowsStig
         $valueString = ($checkContent | Select-String -Pattern $regularExpression.registryValueData)
 
         <#
-        Get the second index of the list, which should be the data and remove spaces
+            Get the second index of the list, which should be the data and remove spaces
         #>
         [string] $initialData = ( $valueString -replace $regularExpression.registryValueData )
 

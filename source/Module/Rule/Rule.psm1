@@ -102,6 +102,7 @@ class Rule : ICloneable
     Rule ([xml.xmlelement] $Rule, [switch] $Convert)
     {
         $this.Id = $Rule.Id
+        $this.LegacyId = ($rule.Rule.ident | Where-Object -FilterScript {$PSItem.'#text' -match "^V-.*"}).'#text'
         $this.Title = $Rule.Title
         $this.Severity = $Rule.rule.severity
         $this.Description = $Rule.rule.description

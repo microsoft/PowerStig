@@ -29,6 +29,10 @@ using module .\..\Rule.VsphereSnmpAgent\VsphereSnmpAgentRule.psm1
 using module .\..\Rule.VsphereKernelActiveDumpPartition\VsphereKernelActiveDumpPartitionRule.psm1
 using module .\..\Rule.VsphereNtpSettings\VsphereNtpSettingsRule.psm1
 using module .\..\Rule.VsphereVssSecurity\VsphereVssSecurityRule.psm1
+using module .\..\Rule.nxPackage\nxPackageRule.psm1
+using module .\..\Rule.nxService\nxServiceRule.psm1
+using module .\..\Rule.nxFileLine\nxFileLineRule.psm1
+using module .\..\Rule.nxFile\nxFileRule.psm1
 using module .\..\Rule.RootCertificate\RootCertificateRule.psm1
 #header
 
@@ -70,6 +74,10 @@ class LoadFactory
             'VsphereKernelActiveDumpPartitionRule' {$return = [VsphereKernelActiveDumpPartitionRule]::new($Rule)}
             'VsphereNtpSettingsRule'               {$return = [VsphereNtpSettingsRule]::new($Rule)}
             'VsphereVssSecurityRule'               {$return = [VsphereVssSecurityRule]::new($Rule)}
+            'nxPackageRule'                        {$return = [nxPackageRule]::new($Rule)}
+            'nxServiceRule'                        {$return = [nxServiceRule]::new($Rule)}
+            'nxFileLineRule'                       {$return = [nxFileLineRule]::new($Rule)}
+            'nxFileRule'                           {$return = [nxFileRule]::new($Rule)}
             'RootCertificateRule'                  {$return = [RootCertificateRule]::new($Rule)}
         }
 
