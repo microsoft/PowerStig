@@ -8,6 +8,7 @@
 * Update PowerSTIG to Add Checklist Accountability: [#808](https://github.com/microsoft/PowerStig/issues/808)
 * Update PowerSTIG to move O365 Pro Plus log entries into Exclusion Rule list: [#815](https://github.com/microsoft/PowerStig/issues/815)
 * Fixed: ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
+* Update PowerSTIG to Parse/Apply Oracle JRE 8 Ver 2, Rel 1: [#833](https://github.com/microsoft/PowerStig/issues/833)
 
 ## [4.7.0] - 2020-12-17
 
@@ -147,7 +148,7 @@
 
 ## [4.0.0] - 2019-09-23
 
-* Update PowerSTIG parsing for Windows Sever 2016 STIG - Ver 1, Rel 9 [#498] - (https://github.com/microsoft/PowerStig/issues/498)
+* Update PowerSTIG parsing for Windows Sever 2016 STIG - Ver 1, Rel 9 [#498](https://github.com/microsoft/PowerStig/issues/498)
 * Fixed [#507](https://github.com/microsoft/PowerStig/issues/507): Get-HardCodedRuleLogFileEntry Errors on RegistryRule
 * Update PowerSTIG to leverage the GPRegistryPolicyDsc resource for Local Group Policy automation: [#497](https://github.com/microsoft/PowerStig/issues/497)
 * Update PowerSTIG to enable the logfile framework to consume a hashtable for HardCodedRule: [#494](https://github.com/microsoft/PowerStig/issues/494)
