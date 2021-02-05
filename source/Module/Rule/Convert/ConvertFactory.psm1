@@ -34,6 +34,10 @@ using module .\..\..\Rule.VsphereSnmpAgent\Convert\VsphereSnmpAgentRule.Convert.
 using module .\..\..\Rule.VsphereKernelActiveDumpPartition\Convert\VsphereKernelActiveDumpPartitionRule.Convert.psm1
 using module .\..\..\Rule.VsphereNtpSettings\Convert\VsphereNtpSettingsRule.Convert.psm1
 using module .\..\..\Rule.VsphereVssSecurity\Convert\VsphereVssSecurityRule.Convert.psm1
+using module .\..\..\Rule.nxPackage\Convert\nxPackageRule.Convert.psm1
+using module .\..\..\Rule.nxService\Convert\nxServiceRule.Convert.psm1
+using module .\..\..\Rule.nxFileLine\Convert\nxFileLineRule.Convert.psm1
+using module .\..\..\Rule.nxFile\Convert\nxFileRule.Convert.psm1
 using module .\..\..\Rule.RootCertificate\Convert\RootCertificateRule.Convert.psm1
 
 # Header
@@ -315,6 +319,31 @@ class ConvertFactory
                     [SplitFactory]::XccdfRule($Rule, 'RootCertificateRuleConvert')
                 )
             }
+            {[nxPackageRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [nxPackageRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[nxServiceRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [nxServiceRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[nxFileLineRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.AddRange(
+                    [SplitFactory]::XccdfRule($Rule, 'nxFileLineRuleConvert')
+                )
+            }
+            {[nxFileRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [nxFileRuleConvert]::new($Rule).AsRule()
+                )
+            }
+
             <#
                 Some rules have a documentation requirement only for exceptions,
                 so the DocumentRule needs to be at the end of the switch as a
@@ -335,19 +364,19 @@ class ConvertFactory
             }
         }
 
-         <#
+        <#
             Rules can be split into multiple rules of multiple types, so the list
-            of Id's needs to be validated to be unique.
-         #>
+            of Id's needs to be validated to be unique. Split factory initially
+            split the "id" as well as the ConvertFactory, removed this code from
+            SplitFactory as it was redundant.
+        #>
+        $ruleCount = $ruleTypeList | Measure-Object
+        $uniqueRuleCount = $ruleTypeList | Select-Object -Property Id -Unique | Measure-Object
 
-        $ruleCount = ($ruleTypeList | Measure-Object).count
-        $uniqueRuleCount = ($ruleTypeList |
-            Select-Object -Property Id -Unique |
-                Measure-Object).count
-
-        if ($uniqueRuleCount -ne $ruleCount)
+        if ($uniqueRuleCount.Count -ne $ruleCount.Count)
         {
-            [int] $byte = 97 # Lowercase A
+            # 97 = lowercase a (alpha)
+            [int] $byte = 97
             foreach ($convertedrule in $ruleTypeList)
             {
                 $convertedrule.id = "$($Rule.id).$([CHAR][BYTE]$byte)"

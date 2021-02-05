@@ -429,6 +429,11 @@ function Split-BenchmarkId
             $returnId = 'OracleJRE_8'
             continue
         }
+        {$PSItem -match 'Google_Chrome_Current_Windows'}
+        {
+            $returnId = 'Google_Chrome'
+            continue
+        }
         {$PSItem -match "Windows"}
         {
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
@@ -452,11 +457,11 @@ function Split-BenchmarkId
             $returnId = "FireFox_All"
             continue
         }
-        {$PSItem -match 'Excel|Outlook|PowerPoint|Word|System|Visio'}
+        {$PSItem -match 'Excel|Outlook|PowerPoint|Word|System|Visio|ProPlus'}
         {
             $officeStig = ($id -split '_')
 
-            if ($PSItem -match 'System')
+            if ($PSItem -match 'System|365')
             {
                 $officeStig = $officeStig[2], $officeStig[3] -join ""
                 $returnId = '{0}_{1}' -f 'Office', $officeStig
@@ -487,6 +492,13 @@ function Split-BenchmarkId
         {$PSItem -match 'Vmware_Vsphere'}
         {
             $returnId = 'Vsphere_6.5'
+            continue
+        }
+        {$PSItem -match 'Ubuntu'}
+        {
+            $ubuntuId = $id -split '_'
+            $ubuntuVersion = $ubuntuId[3] -replace '-', '.'
+            $returnId = '{0}_{1}' -f $ubuntuId[2], $ubuntuVersion
             continue
         }
         default
