@@ -610,4 +610,3 @@ Windows method:
  3. If the "SSLVersionMin" value name does not exist or its value data is not set to "tls1.2", this is a finding.
  </check-content></check></Rule></Group></Benchmark>
  
- 
