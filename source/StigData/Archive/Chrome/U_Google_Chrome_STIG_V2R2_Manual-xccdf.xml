@@ -607,5 +607,7 @@ When set, Google Chrome will not use SSL/TLS versions less than the specified ve
 Windows method:
  1. Start regedit
  2. Navigate to HKLM\Software\Policies\Google\Chrome\
- 3. If the "SSLVersionMin" value name does not exist or its value data is not set to "tls1.2", this is a finding.</check-content></check></Rule></Group></Benchmark>
+ 3. If the "SSLVersionMin" value name does not exist or its value data is not set to "tls1.2", this is a finding.
+ </check-content></check></Rule></Group></Benchmark>
+ 
  
