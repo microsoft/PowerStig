@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.2" created="2/4/2021">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.2" created="2/10/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -693,31 +693,6 @@ If any of the above modules are being loaded in the "/etc/rsyslog.conf" file, as
 
 If the documentation does not exist, or does not specify the server as a log aggregation system, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204579" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
-
-Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
-
-Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72223</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
-
-Check the value of the system inactivity timeout with the following command:
-
-# grep -i tmout /etc/profile.d/*
-
-etc/profile.d/tmout.sh:TMOUT=900
-
-/etc/profile.d/tmout.sh:readonly TMOUT
-
-/etc/profile.d/tmout.sh:export TMOUT
-
-If "TMOUT" is not set to "900" or less in a script located in the /etc/profile.d/ directory to enforce session termination after inactivity, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-204581" severity="medium" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without cryptographic integrity protections, information can be altered by unauthorized users without detection.
 
@@ -896,48 +871,6 @@ Verify that the "/etc/resolv.conf" file is immutable with the following command:
 ----i----------- /etc/resolv.conf
 
 If the file is mutable and has not been documented with the Information System Security Officer (ISSO), this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204610" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Enabling reverse path filtering drops packets with source addresses that should not have been able to be received on the interface they were received on. It should not be used on systems which are routers for complicated networks, but is helpful for end hosts and routers serving small networks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-92251</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the system uses a reverse-path filter for IPv4:
-
-# grep net.ipv4.conf.all.rp_filter /etc/sysctl.conf /etc/sysctl.d/*
-net.ipv4.conf.all.rp_filter = 1
-
-If "net.ipv4.conf.all.rp_filter" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "1", this is a finding.
-
-Check that the operating system implements the accept source route variable with the following command:
-
-# /sbin/sysctl -a | grep net.ipv4.conf.all.rp_filter
-net.ipv4.conf.all.rp_filter = 1
-
-If the returned line does not have a value of "1", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204611" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Enabling reverse path filtering drops packets with source addresses that should not have been able to be received on the interface they were received on. It should not be used on systems which are routers for complicated networks, but is helpful for end hosts and routers serving small networks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-92253</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the system uses a reverse-path filter for IPv4:
-
-# grep net.ipv4.conf.default.rp_filter /etc/sysctl.conf /etc/sysctl.d/*
-net.ipv4.conf.default.rp_filter = 1
-
-If "net.ipv4.conf.default.rp_filter" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "1", this is a finding.
-
-Check that the operating system implements the accept source route variable with the following command:
-
-# /sbin/sysctl -a | grep net.ipv4.conf.default.rp_filter
-net.ipv4.conf.default.rp_filter = 1
-
-If the returned line does not have a value of "1", this is a finding.</RawString>
     </Rule>
     <Rule id="V-204618" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Network interfaces in promiscuous mode allow for the capture of all network traffic visible to the system. If unauthorized individuals can access these applications, it may allow then to collect information such as logon IDs, passwords, and key exchanges between systems.
@@ -6090,6 +6023,92 @@ Ciphers aes256-ctr,aes192-ctr,aes128-ctr
 
 If any ciphers other than "aes256-ctr", "aes192-ctr", or "aes128-ctr" are listed, the order differs from the example above, the "Ciphers" keyword is missing, or the returned line is commented out, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-204579.b" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
+
+Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
+
+Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/profile.d/tmout.sh</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72223.b</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/tmout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</OrganizationValueTestString>
+      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
+
+Check the value of the system inactivity timeout with the following command:
+
+# grep -i tmout /etc/profile.d/*
+
+etc/profile.d/tmout.sh:TMOUT=900
+
+/etc/profile.d/tmout.sh:readonly TMOUT
+
+/etc/profile.d/tmout.sh:export TMOUT
+
+If "TMOUT" is not set to "900" or less in a script located in the /etc/profile.d/ directory to enforce session termination after inactivity, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204579.c" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
+      <ContainsLine>readonly TMOUT</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
+
+Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
+
+Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*readonly\s+(?!TMOUT\b).*$|^\s*#\s*readonly.*$</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/profile.d/tmout.sh</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72223.c</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
+
+Check the value of the system inactivity timeout with the following command:
+
+# grep -i tmout /etc/profile.d/*
+
+etc/profile.d/tmout.sh:TMOUT=900
+
+/etc/profile.d/tmout.sh:readonly TMOUT
+
+/etc/profile.d/tmout.sh:export TMOUT
+
+If "TMOUT" is not set to "900" or less in a script located in the /etc/profile.d/ directory to enforce session termination after inactivity, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204579.d" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
+      <ContainsLine>export TMOUT</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
+
+Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
+
+Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*export\s+(?!TMOUT\b).*$|^\s*#\s*export.*$</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/profile.d/tmout.sh</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72223.d</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
+
+Check the value of the system inactivity timeout with the following command:
+
+# grep -i tmout /etc/profile.d/*
+
+etc/profile.d/tmout.sh:TMOUT=900
+
+/etc/profile.d/tmout.sh:readonly TMOUT
+
+/etc/profile.d/tmout.sh:export TMOUT
+
+If "TMOUT" is not set to "900" or less in a script located in the /etc/profile.d/ directory to enforce session termination after inactivity, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-204580" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="nxFileLine">
       <ContainsLine>banner /etc/issue</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Display of a standardized and approved use notification before granting access to the publicly accessible operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.
@@ -6725,6 +6744,33 @@ This can be set as a global domain (with the * wildcard) but may be set differen
 
 If the "maxlogins" item is missing, commented out, or the value is not set to "10" or less for all domains that have the "maxlogins" item assigned, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-204579.a" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFile">
+      <Contents># Generated via PowerSTIG</Contents>
+      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
+
+Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
+
+Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/profile.d/tmout.sh</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72223.a</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
+
+Check the value of the system inactivity timeout with the following command:
+
+# grep -i tmout /etc/profile.d/*
+
+etc/profile.d/tmout.sh:TMOUT=900
+
+/etc/profile.d/tmout.sh:readonly TMOUT
+
+/etc/profile.d/tmout.sh:export TMOUT
+
+If "TMOUT" is not set to "900" or less in a script located in the /etc/profile.d/ directory to enforce session termination after inactivity, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-204584" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>kernel.randomize_va_space = 2</Contents>
       <Description>&lt;VulnDiscussion&gt;Address space layout randomization (ASLR) makes it more difficult for an attacker to predict the location of attack code he or she has introduced into a process's address space during an attempt at exploitation. Additionally, ASLR also makes it more difficult for an attacker to know the location of existing code in order to repurpose it using return-oriented programming (ROP) techniques.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -6773,6 +6819,52 @@ Check that the operating system implements the accept source route variable with
 net.ipv4.conf.all.accept_source_route = 0
 
 If the returned line does not have a value of "0", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204610" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.conf.all.rp_filter = 1</Contents>
+      <Description>&lt;VulnDiscussion&gt;Enabling reverse path filtering drops packets with source addresses that should not have been able to be received on the interface they were received on. It should not be used on systems which are routers for complicated networks, but is helpful for end hosts and routers serving small networks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204610-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-92251</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system uses a reverse-path filter for IPv4:
+
+# grep net.ipv4.conf.all.rp_filter /etc/sysctl.conf /etc/sysctl.d/*
+net.ipv4.conf.all.rp_filter = 1
+
+If "net.ipv4.conf.all.rp_filter" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "1", this is a finding.
+
+Check that the operating system implements the accept source route variable with the following command:
+
+# /sbin/sysctl -a | grep net.ipv4.conf.all.rp_filter
+net.ipv4.conf.all.rp_filter = 1
+
+If the returned line does not have a value of "1", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204611" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.conf.default.rp_filter = 1</Contents>
+      <Description>&lt;VulnDiscussion&gt;Enabling reverse path filtering drops packets with source addresses that should not have been able to be received on the interface they were received on. It should not be used on systems which are routers for complicated networks, but is helpful for end hosts and routers serving small networks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204611-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-92253</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system uses a reverse-path filter for IPv4:
+
+# grep net.ipv4.conf.default.rp_filter /etc/sysctl.conf /etc/sysctl.d/*
+net.ipv4.conf.default.rp_filter = 1
+
+If "net.ipv4.conf.default.rp_filter" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "1", this is a finding.
+
+Check that the operating system implements the accept source route variable with the following command:
+
+# /sbin/sysctl -a | grep net.ipv4.conf.default.rp_filter
+net.ipv4.conf.default.rp_filter = 1
+
+If the returned line does not have a value of "1", this is a finding.</RawString>
     </Rule>
     <Rule id="V-204612" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv4.conf.default.accept_source_route = 0</Contents>

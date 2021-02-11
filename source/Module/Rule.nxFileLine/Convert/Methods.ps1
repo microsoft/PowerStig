@@ -3,7 +3,7 @@
 
 <#
     .SYNOPSIS
-        Retreives the nxFileLineContainsLine from the check-content element in the xccdf
+        Retrieves the nxFileLineContainsLine from the check-content element in the xccdf
 
     .PARAMETER FixText
         Specifies the FixText element in the xccdf
