@@ -13,6 +13,7 @@
 * Update PowerSTIG to Parse/Apply Oracle JRE 8 Ver 2, Rel 1: [#833](https://github.com/microsoft/PowerStig/issues/833)
 * Fixed: ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
 * Update PowerSTIG to use WindowsDefenderDSC 2.1.0: [#822](https://github.com/microsoft/PowerStig/issues/822)
+* Update PowerSTIG to Parse/Apply Google Chrome Ver 2, Rel 2: [#841](https://github.com/microsoft/PowerStig/issues/841)
 
 ## [4.7.0] - 2020-12-17
 
