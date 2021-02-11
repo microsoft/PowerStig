@@ -11,9 +11,10 @@
 * Update PowerSTIG to parse and apply Mozilla Firefox V5R1 STIG: [#834](https://github.com/microsoft/PowerStig/issues/834)
 * Update PowerSTIG to parse and apply Microsoft DotNet V2R1 STIG: [#831](https://github.com/microsoft/PowerStig/issues/831)
 * Update PowerSTIG to Parse/Apply Oracle JRE 8 Ver 2, Rel 1: [#833](https://github.com/microsoft/PowerStig/issues/833)
-* Fixed: ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
 * Update PowerSTIG to use WindowsDefenderDSC 2.1.0: [#822](https://github.com/microsoft/PowerStig/issues/822)
 * Update PowerSTIG to Parse/Apply Google Chrome Ver 2, Rel 2: [#841](https://github.com/microsoft/PowerStig/issues/841)
+* Fixed: ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
+* Fixed: RHEL RuleId V-204406 should be removed: [#847](https://github.com/microsoft/PowerStig/issues/847)
 
 ## [4.7.0] - 2020-12-17
 
