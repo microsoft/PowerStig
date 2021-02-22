@@ -88,16 +88,16 @@ function New-StigCheckList
         [Alias('MofFile')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript(
-        {
-            if (Test-Path -Path $_ -PathType Leaf)
             {
-                return $true
+                if (Test-Path -Path $_ -PathType Leaf)
+                {
+                    return $true
+                }
+                else
+                {
+                    throw "$($_) is not a valid path to a reference configuration (.mof) file. Provide a full valid path and filename."
+                }
             }
-            else
-            {
-                throw "$($_) is not a valid path to a reference configuration (.mof) file. Provide a full valid path and filename."
-            }
-        }
         )]
         [String]
         $ReferenceConfiguration,
@@ -109,19 +109,19 @@ function New-StigCheckList
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [ValidateScript(
-        {
-            foreach ($filename in $_)
             {
-                if (Test-Path -Path $filename -PathType Leaf)
+                foreach ($filename in $_)
                 {
-                    return $true
-                }
-                else
-                {
-                    throw "$($filename) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path and filename."
+                    if (Test-Path -Path $filename -PathType Leaf)
+                    {
+                        return $true
+                    }
+                    else
+                    {
+                        throw "$($filename) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path and filename."
+                    }
                 }
             }
-        }
         )]
         [String[]]
         $XccdfPath,
@@ -129,16 +129,16 @@ function New-StigCheckList
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [ValidateScript(
-        {
-            if (Test-Path -Path $_ -PathType Leaf)
             {
-                return $true
+                if (Test-Path -Path $_ -PathType Leaf)
+                {
+                    return $true
+                }
+                else
+                {
+                    throw "$($_) is not a valid path to a Manual Checklist Entries File file. Provide a full valid path and filename."
+                }
             }
-            else
-            {
-                throw "$($_) is not a valid path to a Manual Checklist Entries File file. Provide a full valid path and filename."
-            }
-        }
         )]
         [String]
         $ManualChecklistEntriesFile,
@@ -146,24 +146,24 @@ function New-StigCheckList
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [ValidateScript(
-        {
-            if (Test-Path -Path $_.DirectoryName -PathType Container)
             {
-                return $true
+                if (Test-Path -Path $_.DirectoryName -PathType Container)
+                {
+                    return $true
+                }
+                else
+                {
+                    throw "$($_) is not a valid directory. Please provide a valid directory."
+                }
+                if ($_.Extension -ne '.ckl')
+                {
+                    throw "$($_.FullName) is not a valid checklist extension. Please provide a full valid path ending in .ckl"
+                }
+                else
+                {
+                    return $true
+                }
             }
-            else
-            {
-                throw "$($_) is not a valid directory. Please provide a valid directory."
-            }
-            if ($_.Extension -ne '.ckl')
-            {
-                throw "$($_.FullName) is not a valid checklist extension. Please provide a full valid path ending in .ckl"
-            }
-            else
-            {
-                return $true
-            }
-        }
         )]
         [System.IO.FileInfo]
         $OutputPath,
@@ -246,21 +246,21 @@ function New-StigCheckList
     {
         if ($hostName -eq $env:COMPUTERNAME)
         {
-            [string]$localMac   = (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object MacAddress | Select-Object -First 1).MacAddress
-            [string]$localIP    = (Get-NetIPAddress -AddressFamily IPV4 | Where-Object { $_.IpAddress -notlike "127.*" } | Select-Object -First 1).IPAddress
-            [string]$localFQDN  = [System.Net.DNS]::GetHostByName($env:ComputerName).HostName
+            [string]$localMac = (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object MacAddress | Select-Object -First 1).MacAddress
+            [string]$localIP = (Get-NetIPAddress -AddressFamily IPV4 | Where-Object { $_.IpAddress -notlike "127.*" } | Select-Object -First 1).IPAddress
+            [string]$localFQDN = [System.Net.DNS]::GetHostByName($env:ComputerName).HostName
         }
         else
         {
-            [string]$localMac   = Invoke-Command $hostName -Scriptblock {return (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object MacAddress | Select-Object -First 1).MacAddress}
-            [string]$localIP    = Invoke-Command $hostName -Scriptblock {return (Get-NetIPAddress -AddressFamily IPV4 | Where-Object { $_.IpAddress -notlike "127.*" } | Select-Object -First 1).IPAddress}
-            [string]$localFQDN  = [System.Net.DNS]::GetHostByName($hostName).HostName
+            [string]$localMac = Invoke-Command $hostName -Scriptblock {return (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object MacAddress | Select-Object -First 1).MacAddress}
+            [string]$localIP = Invoke-Command $hostName -Scriptblock {return (Get-NetIPAddress -AddressFamily IPV4 | Where-Object { $_.IpAddress -notlike "127.*" } | Select-Object -First 1).IPAddress}
+            [string]$localFQDN = [System.Net.DNS]::GetHostByName($hostName).HostName
         }
     }
     catch
     {
         Write-Warning "Unable to Obtain local IP/MAC Addresses."
-        $localFQDN       = $HostName
+        $localFQDN = $HostName
     }
 
     $assetElements = [ordered] @{
@@ -283,7 +283,10 @@ function New-StigCheckList
         $writer.WriteString($assetElement.value)
         $writer.WriteEndElement()
     }
+
     $writer.WriteEndElement(<#ASSET#>)
+
+    #endregion ASSET
 
     #region STIGS
     $writer.WriteStartElement("STIGS")
@@ -334,7 +337,7 @@ function New-StigCheckList
 
         # Parse out the STIG file name for lookups
         $stigPathFileName = $XccdfPathItem.Split('\\')
-        $stigFileName = $stigPathFileName[$stigPathFileName.Length-1]
+        $stigFileName = $stigPathFileName[$stigPathFileName.Length - 1]
 
         # Pull in the processed XML file to check for duplicate rules for each vulnerability
         [XML] $xccdfBenchmark = Get-Content -Path $xccdfPathItem -Encoding UTF8
@@ -631,7 +634,7 @@ function Get-SettingsFromMof
 
     $mofContent = Get-MofContent -ReferenceConfiguration $ReferenceConfiguration
 
-    $mofContentFound = $mofContent.Where({$PSItem.ResourceID -match $Id})
+    $mofContentFound = $mofContent.Where( {$PSItem.ResourceID -match $Id})
 
     return $mofContentFound
 }
@@ -660,7 +663,7 @@ function Get-SettingsFromResult
         $script:allResources = $DscResults.ResourcesNotInDesiredState + $DscResults.ResourcesInDesiredState
     }
 
-    return $script:allResources.Where({$PSItem.ResourceID -match $id})
+    return $script:allResources.Where( {$PSItem.ResourceID -match $id})
 }
 
 <#
