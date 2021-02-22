@@ -54,6 +54,29 @@ If Lockdown Mode is disabled, this is a finding.
 
 For environments that do not use vCenter server to manage ESXi, this is not applicable.</RawString>
     </Rule>
+    <Rule id="V-207604" severity="low" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;In vSphere you can add users to the Exception Users list from the vSphere Web Client. These users do not lose their permissions when the host enters lockdown mode. Usually you may want to add service accounts such as a backup agent to the Exception Users list. Verify that the list of users who are exempted from losing permissions is legitimate and as needed per your environment. Users who do not require special permissions should not be exempted from lockdown mode.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-93953</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>From the vSphere Web Client select the ESXi Host and go to Configure &gt;&gt; System &gt;&gt; Security Profile.  Under lockdown mode review the exception users list.
+
+or
+
+From a PowerCLI command prompt while connected to the ESXi host run the following script:
+
+$vmhost = Get-VMHost | Get-View
+$lockdown = Get-View $vmhost.ConfigManager.HostAccessManager
+$lockdown.QueryLockdownExceptions()
+
+If the Exception users list contains accounts that do not require special permissions, this is a finding.
+
+Note - This list is not intended for system administrator accounts but for special circumstances such as a service account.
+
+For environments that do not use vCenter server to manage ESXi, this is not applicable.</RawString>
+    </Rule>
     <Rule id="V-207610" severity="medium" conversionstatus="pass" title="SRG-OS-000023-VMM-000060" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The warning message reinforces policy awareness during the logon process and facilitates possible legal action against attackers. Alternatively, systems whose ownership should not be obvious should ensure usage of a banner that does not provide easy attribution.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -506,6 +529,21 @@ Get-VMHostFirewallDefaultPolicy
 
 If the Incoming or Outgoing policies are True, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-207668" severity="medium" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The CIM system provides an interface that enables hardware-level management from remote applications via a set of standard APIs. Create a limited-privilege, read-only service account for CIM. Grant this role to the user on the ESXi server.  Place this user in the Exception Users list.  When/where write access is required, create/enable a limited-privilege, service account and grant only the minimum required privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-94349</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>The CIM system provides an interface that enables hardware-level management from remote applications via a set of standard APIs. Create a limited-privilege, read-only service account for CIM. Grant this role to the user on the ESXi server. Place this user in the Exception Users list. When/where write access is required, create/enable a limited-privilege, service account and grant only the minimum required privileges.
+
+From the Host Client, select the ESXi host, right click and go to "Permissions". Verify the CIM account user role is limited to read only and CIM permissions.
+
+If there is no dedicated CIM account and the root is used for CIM monitoring, this is a finding.
+
+If write access is not required and the access level is not "read-only", this is a finding.</RawString>
+    </Rule>
     <Rule id="V-207669" severity="high" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Always check the SHA1 or MD5 hash after downloading an ISO, offline bundle, or patch to ensure integrity and authenticity of the downloaded files.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -589,63 +627,6 @@ If the "Directory Services Type" is not set to "Active Directory", this is a fin
 If you are not using Host Profiles to join active directory, this is not a finding.</RawString>
     </Rule>
   </ManualRule>
-  <PermissionRule dscresourcemodule="AccessControlDsc">
-    <Rule id="V-207604" severity="low" conversionstatus="fail" title="SRG-OS-000480-VMM-002000" dscresource="">
-      <AccessControlEntry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Note</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;In vSphere you can add users to the Exception Users list from the vSphere Web Client. These users do not lose their permissions when the host enters lockdown mode. Usually you may want to add service accounts such as a backup agent to the Exception Users list. Verify that the list of users who are exempted from losing permissions is legitimate and as needed per your environment. Users who do not require special permissions should not be exempted from lockdown mode.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-93953</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>From the vSphere Web Client select the ESXi Host and go to Configure &gt;&gt; System &gt;&gt; Security Profile.  Under lockdown mode review the exception users list.
-
-or
-
-From a PowerCLI command prompt while connected to the ESXi host run the following script:
-
-$vmhost = Get-VMHost | Get-View
-$lockdown = Get-View $vmhost.ConfigManager.HostAccessManager
-$lockdown.QueryLockdownExceptions()
-
-If the Exception users list contains accounts that do not require special permissions, this is a finding.
-
-Note - This list is not intended for system administrator accounts but for special circumstances such as a service account.
-
-For environments that do not use vCenter server to manage ESXi, this is not applicable.</RawString>
-    </Rule>
-    <Rule id="V-207668" severity="medium" conversionstatus="fail" title="SRG-OS-000480-VMM-002000" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;The CIM system provides an interface that enables hardware-level management from remote applications via a set of standard APIs. Create a limited-privilege, read-only service account for CIM. Grant this role to the user on the ESXi server.  Place this user in the Exception Users list.  When/where write access is required, create/enable a limited-privilege, service account and grant only the minimum required privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-207604</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-94349</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>The CIM system provides an interface that enables hardware-level management from remote applications via a set of standard APIs. Create a limited-privilege, read-only service account for CIM. Grant this role to the user on the ESXi server. Place this user in the Exception Users list. When/where write access is required, create/enable a limited-privilege, service account and grant only the minimum required privileges.
-
-From the Host Client, select the ESXi host, right click and go to "Permissions". Verify the CIM account user role is limited to read only and CIM permissions.
-
-If there is no dedicated CIM account and the root is used for CIM monitoring, this is a finding.
-
-If write access is not required and the access level is not "read-only", this is a finding.</RawString>
-    </Rule>
-  </PermissionRule>
   <VsphereAcceptanceLevelRule dscresourcemodule="Vmware.vSphereDSC">
     <Rule id="V-207648" severity="high" conversionstatus="pass" title="SRG-OS-000366-VMM-001430" dscresource="VMHostAcceptanceLevel">
       <Description>&lt;VulnDiscussion&gt;Verify the ESXi Image Profile to only allow signed VIBs.  An unsigned VIB represents untested code installed on an ESXi host.  The ESXi Image profile supports four acceptance levels: 
