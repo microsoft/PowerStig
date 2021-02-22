@@ -283,10 +283,7 @@ function New-StigCheckList
         $writer.WriteString($assetElement.value)
         $writer.WriteEndElement()
     }
-
     $writer.WriteEndElement(<#ASSET#>)
-
-    #endregion ASSET
 
     #region STIGS
     $writer.WriteStartElement("STIGS")
