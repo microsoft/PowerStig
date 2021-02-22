@@ -245,13 +245,33 @@ function New-StigCheckList
 
     $writer.WriteStartElement("ASSET")
 
+    try
+    {
+        if ($hostName -eq $env:COMPUTERNAME)
+        {
+            [string]$localMac   = (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object MacAddress | Select-Object -First 1).MacAddress
+            [string]$localIP    = (Get-NetIPAddress -AddressFamily IPV4 | Where-Object { $_.IpAddress -notlike "127.*" } | Select-Object -First 1).IPAddress
+            [string]$FQDN       = [System.Net.DNS]::GetHostByName($env:ComputerName).HostName
+        }
+        else
+        {
+            [string]$localMac   = Invoke-Command $hostName -Scriptblock {return (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object MacAddress | Select-Object -First 1).MacAddress}
+            [string]$localIP    = Invoke-Command $hostName -Scriptblock {return (Get-NetIPAddress -AddressFamily IPV4 | Where-Object { $_.IpAddress -notlike "127.*" } | Select-Object -First 1).IPAddress}
+            [string]$FQDN       = [System.Net.DNS]::GetHostByName($hostName).HostName
+        }
+    }
+    catch
+    {
+        Write-Warning "Unable to Obtain local IP/MAC Addresses."
+    }
+
     $assetElements = [ordered] @{
         'ROLE'            = 'None'
         'ASSET_TYPE'      = 'Computing'
         'HOST_NAME'       = "$Hostname"
-        'HOST_IP'         = "$HostnameIPAddress"
-        'HOST_MAC'        = "$HostnameMACAddress"
-        'HOST_FQDN'       = "$HostnameFQDN"
+        'HOST_IP'         = ""
+        'HOST_MAC'        = ""
+        'HOST_FQDN'       = "$Hostname"
         'TECH_AREA'       = ''
         'TARGET_KEY'      = '2350'
         'WEB_OR_DATABASE' = 'false'
