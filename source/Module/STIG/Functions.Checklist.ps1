@@ -240,9 +240,6 @@ function New-StigCheckList
     $writer = [System.Xml.XmlWriter]::Create($OutputPath.FullName, $xmlWriterSettings)
 
     $writer.WriteStartElement('CHECKLIST')
-
-    #region ASSET
-
     $writer.WriteStartElement("ASSET")
 
     try
@@ -251,13 +248,13 @@ function New-StigCheckList
         {
             [string]$localMac   = (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object MacAddress | Select-Object -First 1).MacAddress
             [string]$localIP    = (Get-NetIPAddress -AddressFamily IPV4 | Where-Object { $_.IpAddress -notlike "127.*" } | Select-Object -First 1).IPAddress
-            [string]$localFQDN       = [System.Net.DNS]::GetHostByName($env:ComputerName).HostName
+            [string]$localFQDN  = [System.Net.DNS]::GetHostByName($env:ComputerName).HostName
         }
         else
         {
             [string]$localMac   = Invoke-Command $hostName -Scriptblock {return (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object MacAddress | Select-Object -First 1).MacAddress}
             [string]$localIP    = Invoke-Command $hostName -Scriptblock {return (Get-NetIPAddress -AddressFamily IPV4 | Where-Object { $_.IpAddress -notlike "127.*" } | Select-Object -First 1).IPAddress}
-            [string]$localFQDN       = [System.Net.DNS]::GetHostByName($hostName).HostName
+            [string]$localFQDN  = [System.Net.DNS]::GetHostByName($hostName).HostName
         }
     }
     catch
@@ -286,10 +283,7 @@ function New-StigCheckList
         $writer.WriteString($assetElement.value)
         $writer.WriteEndElement()
     }
-
     $writer.WriteEndElement(<#ASSET#>)
-
-    #endregion ASSET
 
     #region STIGS
     $writer.WriteStartElement("STIGS")
