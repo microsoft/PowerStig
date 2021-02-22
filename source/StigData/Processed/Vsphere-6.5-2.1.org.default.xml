@@ -8,7 +8,7 @@
 <OrganizationalSettings fullversion="2.1">
   <!-- Ensure 'V-207605' is set to "Syslog.global.logHost" = "site specific log host"-->
   <OrganizationalSetting id="V-207605" AdvancedSettings="" />
-  <!-- Ensure "'V-207646" is set to "Syslog.global.logDir" = "site specific log storage location"-->
+  <!-- Ensure "'V-207646'" is set to "Syslog.global.logDir" = "site specific log storage location"-->
   <OrganizationalSetting id="V-207646" AdvancedSettings="" />
   <!-- Ensure 'V-207647.b' is set to a string array of authoritative DoD time sources-->
   <OrganizationalSetting id="V-207647.b" NtpServer="" />

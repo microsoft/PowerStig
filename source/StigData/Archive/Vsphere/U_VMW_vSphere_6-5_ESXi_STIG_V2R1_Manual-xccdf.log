@@ -1,2 +1,2 @@
-V-207668::From the Host Client, select the ESXi host, right click and go to "Permissions". Verify the CIM account user role is limited to read only and CIM permissions.::""
-V-207604::If the Exception users list contains accounts that do not require special permissions, this is a finding.::""
+V-207646::From the Host Client, select the ESXi host, right click and go to "Permissions". Verify the CIM account user role is limited to read only and CIM permissions.::""
+V-94349::If the Exception users list contains accounts that do not require special permissions, this is a finding.::""
