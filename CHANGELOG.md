@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Functions.Checklist.ps1 updated to incorporate localhost data into STIG Checklists [#828](https://github.com/microsoft/PowerStig/issues/828)
+
 ## [4.7.1] - 2021-01-22
 
 * ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
