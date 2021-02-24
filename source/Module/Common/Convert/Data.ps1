@@ -37,6 +37,7 @@ data exclusionRuleList
         V-94509  = 'Vsphere: To Be added in a future release'
         V-94025  = 'Vsphere: To Be added in a future release'
         V-94533  = 'Vsphere: To Be added in a future release'
+        V-207640 = 'Vsphere: To Be added in a future release'
         V-102627 = 'Windows 10: No automation available based on STIG Guidance, Fix text recommends setting up Windows Hello for non-domain systems'
         V-220946 = 'Windows 10: No automation available based on STIG Guidance, Fix text recommends setting up Windows Hello for non-domain systems'
         V-225261 = 'Windows Server 2012R2 MS: Rule was previously excluded'

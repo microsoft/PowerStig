@@ -1,5 +1,26 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="VMware_vSphere_6-5_ESXi_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_VMW_vSphere_6-5_ESXi_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="VMware vSphere 6.5 ESXi Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="2/23/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="VMware_vSphere_6-5_ESXi_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_VMW_vSphere_6-5_ESXi_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="VMware vSphere 6.5 ESXi Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="2/24/2021">
   <DocumentRule dscresourcemodule="None">
+    <Rule id="V-207640" severity="low" conversionstatus="pass" title="SRG-OS-000104-VMM-000500" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When adding ESXi hosts to Active Directory, if the group "ESX Admins" exists, all user/group accounts assigned to the group will have full administrative access to the host. Discretion should be used when managing membership to the "ESX Admins" group.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-94025</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>From the vSphere Web Client select the ESXi Host and go to Configuration &gt;&gt; System &gt;&gt; Advanced System Settings. Click Edit and select the Config.HostAgent.plugins.hostsvc.esxAdminsGroup value and verify it is not set to "ESX Admins".
+
+or
+
+From a PowerCLI command prompt while connected to the ESXi host run the following command:
+
+Get-VMHost | Get-AdvancedSetting -Name Config.HostAgent.plugins.hostsvc.esxAdminsGroup
+
+For systems that do not use Active Directory and have no local user accounts, other than root and/or vpxuser, this is not applicable.
+
+For systems that do not use Active Directory and do have local user accounts, other than root and/or vpxuser, this is a finding.
+
+If the "Config.HostAgent.plugins.hostsvc.esxAdminsGroup" keyword is set to "ESX Admins", this is a finding.</RawString>
+    </Rule>
     <Rule id="V-207665" severity="medium" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;In order to communicate with virtual switches in VST mode, external switch ports must be configured as trunk ports. VST mode does not support Dynamic Trunking Protocol (DTP), so the trunk must be static and unconditional. The auto or desirable physical switch settings do not work with the ESXi Server because the physical switch communicates with the ESXi Server using DTP. The non-negotiate and on options unconditionally enable VLAN trunking on the physical switch and create a VLAN trunk link between the ESXi Server and the physical switch. The difference between non-negotiate and on options is that on mode still sends out DTP frames, whereas the non-negotiate option does not.  The non-negotiate option should be used for all VLAN trunks, to minimize unnecessary network traffic for virtual switches in VST mode.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -858,29 +879,6 @@ From a PowerCLI command prompt while connected to the ESXi host run the followin
 Get-VMHost | Get-AdvancedSetting -Name Config.HostAgent.plugins.solo.enableMob
 
 If the Config.HostAgent.plugins.solo.enableMob setting is not set to false, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-207640" severity="low" conversionstatus="fail" title="SRG-OS-000104-VMM-000500" dscresource="VMHostAdvancedSettings">
-      <AdvancedSettings>
-      </AdvancedSettings>
-      <Description>&lt;VulnDiscussion&gt;When adding ESXi hosts to Active Directory, if the group "ESX Admins" exists, all user/group accounts assigned to the group will have full administrative access to the host. Discretion should be used when managing membership to the "ESX Admins" group.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-94025</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>From the vSphere Web Client select the ESXi Host and go to Configuration &gt;&gt; System &gt;&gt; Advanced System Settings. Click Edit and select the Config.HostAgent.plugins.hostsvc.esxAdminsGroup value and verify it is not set to "ESX Admins".
-
-or
-
-From a PowerCLI command prompt while connected to the ESXi host run the following command:
-
-Get-VMHost | Get-AdvancedSetting -Name Config.HostAgent.plugins.hostsvc.esxAdminsGroup
-
-For systems that do not use Active Directory and have no local user accounts, other than root and/or vpxuser, this is not applicable.
-
-For systems that do not use Active Directory and do have local user accounts, other than root and/or vpxuser, this is a finding.
-
-If the "Config.HostAgent.plugins.hostsvc.esxAdminsGroup" keyword is set to "ESX Admins", this is a finding.</RawString>
     </Rule>
     <Rule id="V-207642" severity="medium" conversionstatus="pass" title="SRG-OS-000163-VMM-000700" dscresource="VMHostAdvancedSettings">
       <AdvancedSettings>'UserVars.ESXiShellInteractiveTimeOut' = '600'</AdvancedSettings>
