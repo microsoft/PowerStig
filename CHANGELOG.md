@@ -16,6 +16,7 @@
 * Update PowerSTIG SkipRule to Accept Parent Rule for Split Rules: [#846](https://github.com/microsoft/PowerStig/issues/846)
 * Fixed: ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
 * Fixed: RHEL RuleId V-204406 should be removed: [#847](https://github.com/microsoft/PowerStig/issues/847)
+* Update PowerSTIG to successfully parse/apply VMware 6.5 ESXI V2R1 STIG: [#851](https://github.com/microsoft/PowerStig/issues/851)
 
 ## [4.7.0] - 2020-12-17
 
