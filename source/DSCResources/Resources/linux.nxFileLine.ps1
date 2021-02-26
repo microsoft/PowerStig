@@ -19,7 +19,7 @@ foreach ($rule in $rules)
         nxFile (Get-ResourceTitle -Rule $rule)
         {
             DestinationPath = '/etc/audisp/audisp-remote.conf'
-            Contents        = '# Generated via PowerSTIG'
+            Contents        = "# Generated via PowerSTIG`n"
         }
 
         $audispRemoteConfCreated = $true
@@ -30,7 +30,7 @@ foreach ($rule in $rules)
         nxFile (Get-ResourceTitle -Rule $rule)
         {
             DestinationPath = '/etc/audisp/plugins.d/au-remote.conf'
-            Contents        = '# Generated via PowerSTIG'
+            Contents        = "# Generated via PowerSTIG`n"
         }
 
         $auRemoteConfCreated = $true

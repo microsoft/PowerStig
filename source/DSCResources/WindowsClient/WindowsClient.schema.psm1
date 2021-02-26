@@ -99,7 +99,7 @@ configuration WindowsClient
     . "$resourcePath\windows.UserRightsAssignment.ps1"
     . "$resourcePath\windows.SecurityOption.ps1"
 
-    Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 2.0.0
+    Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 2.1.0
     . "$resourcePath\windows.ProcessMitigation.ps1"
 
     Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.2.0

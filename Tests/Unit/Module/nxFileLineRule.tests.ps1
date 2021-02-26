@@ -44,7 +44,7 @@ try
             @{
                 FilePath                  = '/etc/pam.d/passwd'
                 ContainsLine              = 'password substack system-auth'
-                DoesNotContainPattern     = '^\s*password\s\s+substack\s\s+system-auth\s*$|^#\s*password\s*substack\s*system-auth.*'
+                DoesNotContainPattern     = '^\s*password(?:\t*|\s*)substack\tsystem-auth\s*$|^#\s*password\s*substack\s*system-auth.*'
                 OrganizationValueRequired = $false
                 CheckContent              = 'Verify that /etc/pam.d/passwd is configured to use /etc/pam.d/system-auth when changing passwords:
                 # grep /etc/pam.d/passwd
@@ -56,7 +56,7 @@ try
                 ContainsLine                = ''
                 DoesNotContainPattern       = ''
                 OrganizationValueRequired   = $true
-                OrganizationValueTestString = 'that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding" '
+                OrganizationValueTestString = 'the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding" '
                 CheckContent                = 'Verify the operating system uses "pwquality" to enforce the password complexity rules.
 
                 Check for the use of "pwquality" with the following command:

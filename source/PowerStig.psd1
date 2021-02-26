@@ -45,7 +45,7 @@
         @{ModuleName = 'PSDscResources'; ModuleVersion = '2.12.0.0'},
         @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.10.0.0'},
         @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
-        @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '2.0.0'},
+        @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '2.1.0'},
         @{ModuleName = 'xDnsServer'; ModuleVersion = '1.16.0.0'},
         @{ModuleName = 'xWebAdministration'; ModuleVersion = '3.2.0'},
         @{ModuleName = 'CertificateDsc'; ModuleVersion = '5.0.0'},
@@ -71,7 +71,8 @@
         'WindowsFirewall',
         'WindowsServer',
         'Vsphere',
-        'RHEL'
+        'RHEL',
+        'Ubuntu'
     )
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.

@@ -40,7 +40,14 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     nxFileLineRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        $rawString = $this.SplitCheckContent
+        if ($this.RawString -match 'You are accessing a U.S. Government \(USG\) [^"]+(?<=details.)')
+        {
+            $rawString = $this.RawString
+        }
+        else
+        {
+            $rawString = $this.SplitCheckContent
+        }
         $this.SetFilePath($rawString)
         $this.SetContainsLine($rawString)
         $this.SetDoesNotContainPattern()
@@ -126,7 +133,7 @@ class nxFileLineRuleConvert : nxFileLineRule
     [void] SetOrganizationValueTestString ([string[]] $CheckContent)
     {
         $result = $CheckContent -match '\s*If.*(?:greater|less|and\/or\s*other|higher|more\s+than\s+"\w*").*this is a finding'
-        $formattedResult = 'that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "{0}" ' -f $result
+        $formattedResult = 'the following statement is true when leveraging the correct nxFileLine ContainsLine format: "{0}" ' -f $result
         if ($null -ne $result)
         {
             $this.set_OrganizationValueTestString($formattedResult)
@@ -169,9 +176,12 @@ class nxFileLineRuleConvert : nxFileLineRule
         if
         (
             # CheckContent match for Ubuntu STIG
-            $CheckContent -Match 'If\s+.*".*".*commented out.*this is a finding|If\s+.*"\w*".*is missing from.*file.*this is a finding' -or
             (
-                # CheckContent match for RHEL STIG
+                $CheckContent -Match 'If\s+.*".*".*commented out.*this is a finding|If\s+.*"\w*".*is missing from.*file.*this is a finding' -or
+                $CheckContent -Match '\s*sudo\s*aud(i)*tctl\s*-l\s*\|'
+            ) -or
+            # CheckContent match for RHEL STIG
+            (
                 $CheckContent -Match '#\s+(?:cat|grep|more).*/.*/.*(?:grep|).*' -and
                 (
                     $CheckContent -Match 'If\s+.*(?:"\w*"|"\w*\s*\w"|the\s+line\s+is\s+commented\s+out).*,\s+this\s+is\s+a\s+finding' -or

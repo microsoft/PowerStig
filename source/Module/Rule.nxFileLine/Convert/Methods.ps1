@@ -3,7 +3,7 @@
 
 <#
     .SYNOPSIS
-        Retreives the nxFileLineContainsLine from the check-content element in the xccdf
+        Retrieves the nxFileLineContainsLine from the check-content element in the xccdf
 
     .PARAMETER FixText
         Specifies the FixText element in the xccdf
@@ -26,7 +26,8 @@ function Get-nxFileLineContainsLine
         if
         (
             $rawString -match $regularExpression.nxFileLineContainsLine -or
-            $rawString -match $regularExpression.nxFileLineContainsLineYumConf
+            $rawString -match $regularExpression.nxFileLineContainsLineYumConf -or
+            $rawString -match $regularExpression.nxFileLineContainsLineAuditUbuntu
         )
         {
             $matchResults = $Matches['setting'] -split "`n"
@@ -42,6 +43,10 @@ function Get-nxFileLineContainsLine
                     $results += $line -replace '\s{2,}', ' '
                 }
             }
+        }
+        elseif ($rawString -match 'You are accessing a U.S. Government \(USG\) [^"]+(?<=details.)')
+        {
+            $results = $matches.Values -replace '\.\r|:\r', ".`n"
         }
 
         return $results
@@ -73,17 +78,30 @@ function Get-nxFileLineFilePath
 
     try
     {
-        $nxFileLineFilePathAggregate = '{0}|{1}|{2}|{3}' -f
+        $nxFileLineFilePathAggregate = '{0}|{1}|{2}|{3}|{4}|{5}|{6}' -f
             $regularExpression.nxFileLineFilePathAudit,
+            $regularExpression.nxFileLineFilePathAuditUbuntu,
+            $regularExpression.nxFileLineFilePathUbuntuBanner,
+            $regularExpression.nxFileLineFilePathBannerUbuntu,
             $regularExpression.nxFileLineFilePathTftp,
             $regularExpression.nxFileLineFilePathRescue,
             $regularExpression.nxFileLineFilePath
         $null = $CheckContent -match $nxFileLineFilePathAggregate
         switch ($Matches.Keys)
         {
-            'auditPath'
+            {
+                $PSItem -eq 'auditPath' -or $PSItem -eq 'auditPathUbuntu'
+            }
             {
                 return '/etc/audit/rules.d/audit.rules'
+            }
+            'ubuntuBanner'
+            {
+                return '/etc/issue'
+            }
+            'bannerPathUbuntu'
+            {
+                return $Matches['bannerPathUbuntu']
             }
             'tftpPath'
             {
@@ -188,7 +206,10 @@ function Test-nxFileLineMultipleEntries
     $filePathCount = @()
     foreach ($path in $filePath.Matches)
     {
-        $filePathCount += $path.Groups['filePath'].Value
+        if ($path.Groups['filePath'].Value -ne '/etc/issue')
+        {
+            $filePathCount += $path.Groups['filePath'].Value
+        }
     }
 
     $filePathUniqueCount = $filePathCount | Select-Object -Unique | Measure-Object
@@ -227,8 +248,9 @@ function Split-nxFileLineMultipleEntries
 
     $splitCheckContent = @()
 
-    # Split CheckContent based on File Path:
-    [array] $splitFilePathLineNumber = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFilePath).LineNumber
+    # Split CheckContent based on File Path or 'sudo auditctl...':
+    $splitFilePathPatternAggregate = '{0}|{1}' -f $regularExpression.nxFileLineFilePath, $regularExpression.nxFileLineFilePathAuditUbuntu
+    [array] $splitFilePathLineNumber = ($CheckContent | Select-String -Pattern $splitFilePathPatternAggregate).LineNumber
 
     # Header for the rule should start at 0 through the first detected file path subtract 2 since Select-String LineNumber is not 0 based
     $headerLineRange = 0..($splitFilePathLineNumber[0] - 2)
@@ -280,10 +302,17 @@ function Split-nxFileLineMultipleEntries
         $fileContainsLine = Get-nxFileLineContainsLine -CheckContent $content
         if ($null -ne $fileContainsLine)
         {
-            $checkContentData = $content.Replace(($fileContainsLine -join "`n"), '{0}')
-            foreach ($setting in $fileContainsLine)
+            if ($fileContainsLine -match 'You are accessing a U.S. Government \(USG\) [^"]+(?<=details.)')
             {
-                $splitEntries += $checkContentData -f $setting
+                $splitEntries += $fileContainsLine
+            }
+            else
+            {
+                $checkContentData = $content.Replace(($fileContainsLine -join "`n"), '{0}')
+                foreach ($setting in $fileContainsLine)
+                {
+                    $splitEntries += $checkContentData -f $setting
+                }
             }
         }
     }
