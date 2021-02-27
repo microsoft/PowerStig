@@ -1089,9 +1089,9 @@ Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge
 
 If the value for "AuthSchemes" is not set to "REG_DWORD = 0", this is a finding.</RawString>
-      <ValueData>0</ValueData>
+      <ValueData>ntlm,negotiate</ValueData>
       <ValueName>AuthSchemes</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-235762" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;If the policy is set to "enabled" or is unset, Microsoft Edge can use native messaging hosts installed at the user level.
@@ -1211,15 +1211,15 @@ Policy options mapping:
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} is 2 or 3 </OrganizationValueTestString>
       <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Block tracking of users' web-browsing activity" must be set to "enabled" with the option value set to "2" or "3".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge
 
 If the value for "TrackingPrevention" is not set to "REG_DWORD = 1", this is a finding.</RawString>
-      <ValueData>1</ValueData>
+      <ValueData />
       <ValueName>TrackingPrevention</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>

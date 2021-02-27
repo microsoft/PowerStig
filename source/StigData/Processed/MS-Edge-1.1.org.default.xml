@@ -12,4 +12,6 @@
   <OrganizationalSetting id="V-235726" ValueData='[{"allow_search_engine_discovery": false},{"is_default": true,"name": "Microsoft Bing","keyword": "bing","search_url": "https://www.bing.com/search?q={searchTerms}"},{"name": "Google","keyword": "google","search_url": "https://www.google.com/search?q={searchTerms}"}]' />
   <!-- Ensure 'V-235752' is 1 or 2 -->
   <OrganizationalSetting id="V-235752" ValueData="2" />
+  <!-- Ensure 'V-235766' is 2 or 3 -->
+  <OrganizationalSetting id="V-235766" ValueData="3" />
 </OrganizationalSettings>
