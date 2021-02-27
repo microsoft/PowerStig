@@ -89,7 +89,7 @@ If the installed version of Edge is not supported by Microsoft, this is a findin
     </Rule>
   </ManualRule>
   <RegistryRule dscresourcemodule="PSDscResources">
-    <Rule id="V-235719" severity="medium" conversionstatus="pass" title="SRG-APP-000039" dscresource="Registry">
+    <Rule id="V-235719" severity="medium" conversionstatus="pass" title="SRG-APP-000039" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This action configures the proxy settings for Microsoft Edge.
 
 If this policy is enabled, Microsoft Edge ignores all proxy-related options specified from the command line.
@@ -134,7 +134,7 @@ If the value for "ProxySettings" is not set to one of the above selections, this
       <ValueName>ProxySettings</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-235720" severity="medium" conversionstatus="pass" title="SRG-APP-000073" dscresource="Registry">
+    <Rule id="V-235720" severity="medium" conversionstatus="pass" title="SRG-APP-000073" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting allows a decision to be made on whether users can override the Microsoft Defender SmartScreen warnings about potentially malicious websites.
 
 If this setting is enabled, users cannot ignore Microsoft Defender SmartScreen warnings, and are blocked from continuing to the site.
@@ -160,7 +160,7 @@ If this machine is on SIPRNet, this is Not Applicable.</RawString>
       <ValueName>PreventSmartScreenPromptOverride</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-235721" severity="medium" conversionstatus="pass" title="SRG-APP-000073" dscresource="Registry">
+    <Rule id="V-235721" severity="medium" conversionstatus="pass" title="SRG-APP-000073" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting allows a decision to be made on whether users can override Microsoft Defender SmartScreen warnings about unverified downloads.
 
 If this setting is enabled, users cannot ignore Microsoft Defender SmartScreen warnings, and are prevented from completing the unverified downloads.
@@ -269,7 +269,7 @@ If the value for DefaultPopupsSetting is not set to "REG_DWORD = 2", this is a f
       <ValueName>DefaultPopupsSetting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-235726" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="Registry">
+    <Rule id="V-235726" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allows a list of list of up to 10 search engines to be configured, one of which must be marked as the default search engine. The encoding does not need to be specified. Starting in Microsoft Edge 80, the suggest_url and image_search_url parameters are optional. The optional parameter, image_search_post_params (consists of comma-separated name/value pairs), is available starting in Microsoft Edge 80.
 
 Starting in Microsoft Edge 83, search engine discovery can be enabled with the allow_search_engine_discovery optional parameter. This parameter must be the first item in the list. If allow_search_engine_discovery is not specified, search engine discovery will be disabled by default. Starting in Microsoft Edge 84, this policy can be set as a recommended policy to allow search provider discovery. The allow_search_engine_discovery optional parameter does not need to be added.
@@ -908,7 +908,7 @@ If the value for "DeveloperToolsAvailability" is not set to "REG_DWORD = 2", thi
       <ValueName>DeveloperToolsAvailability</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-235752" severity="low" conversionstatus="pass" title="SRG-APP-000141" dscresource="Registry">
+    <Rule id="V-235752" severity="low" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Configures the type of downloads that Microsoft Edge completely blocks, without letting users override the security decision.
 
 Set "BlockDangerousDownloads" to allow all downloads except for those that carry Microsoft Defender SmartScreen warnings.
@@ -1016,7 +1016,7 @@ If the value for "SSLErrorOverrideAllowed" is not set to "REG_DWORD = 0", this i
       <ValueName>SSLErrorOverrideAllowed</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-235759" severity="high" conversionstatus="pass" title="SRG-APP-000560" dscresource="Registry">
+    <Rule id="V-235759" severity="high" conversionstatus="pass" title="SRG-APP-000560" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Sets the minimum supported version of SSL. If this policy is not configured, Microsoft Edge uses a default minimum version, TLS 1.0.
 
 If this policy is enabled, the minimum version can be set to one of the following values: "TLSv1", "TLSv1.1" or "TLSv1.2". When set, Microsoft Edge will not use any version of SSL/TLS lower than the specified version. Any unrecognized value is ignored.
@@ -1115,7 +1115,7 @@ If the value for "NativeMessagingUserLevelHosts" is not set to "REG_DWORD = 0", 
       <ValueName>NativeMessagingUserLevelHosts</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-235763" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="Registry">
+    <Rule id="V-235763" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting configures Microsoft Defender SmartScreen, which provides warning messages to help protect  users from potential phishing scams and malicious software. By default, Microsoft Defender SmartScreen is turned on.
 
 If this setting is enabled, Microsoft Defender SmartScreen is turned on.
@@ -1145,7 +1145,7 @@ If this machine is on SIPRNet, this is Not Applicable.</RawString>
       <ValueName>SmartScreenEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-235764" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="Registry">
+    <Rule id="V-235764" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting configures blocking for potentially unwanted apps with Microsoft Defender SmartScreen. Potentially unwanted app blocking with Microsoft Defender SmartScreen provides warning messages to help protect users from adware, coin miners, bundleware, and other low-reputation apps that are hosted by websites. Potentially unwanted app blocking with Microsoft Defender SmartScreen is turned off by default.
 
 If this setting is enabled, potentially unwanted app blocking with Microsoft Defender SmartScreen is turned on.
@@ -1247,7 +1247,7 @@ If the value for PaymentMethodQueryEnabled is not set to "REG_DWORD = 0", this i
       <ValueName>PaymentMethodQueryEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-235768" severity="medium" conversionstatus="pass" title="SRG-APP-000151" dscresource="Registry">
+    <Rule id="V-235768" severity="medium" conversionstatus="pass" title="SRG-APP-000151" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This setting allows Microsoft Edge to issue a connection to a web service to generate URL and search suggestions for connectivity issues such as DNS errors.
 
 If this policy is enabled, a web service is used to generate URL and search suggestions for network errors.
