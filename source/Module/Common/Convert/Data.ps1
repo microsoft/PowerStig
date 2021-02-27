@@ -104,5 +104,8 @@ data exclusionRuleList
         V-219326 = 'Ubuntu: At present, unable to automate rule'
         V-219331 = 'Ubuntu: At present, unable to automate rule'
         V-219341 = 'Ubuntu: At present, unable to automate rule'
+        V-235722 = 'Edge: Rule requires an unknown list and count of whitelisted domains, unable to automate rule'
+        V-235753 = 'Edge: Rule requires an unknown list and count of whitelisted domains, unable to automate rule'
+        V-235755 = 'Edge: Rule requires an unknown list and count of whitelisted extensions, unable to automate rule'
 '@
 }
