@@ -955,7 +955,7 @@ If this policy is not configured, users can install any extension in Microsoft E
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge</Key>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge\ExtensionInstallBlocklist</Key>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -967,7 +967,7 @@ HKLM\SOFTWARE\Policies\Microsoft\Edge
 
 If the value for "ExtensionInstallBlocklist" is not set to "REG_SZ = *", this is a finding.</RawString>
       <ValueData>*</ValueData>
-      <ValueName>ExtensionInstallBlocklist</ValueName>
+      <ValueName>1</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-235756" severity="medium" conversionstatus="pass" title="SRG-APP-000400" dscresource="RegistryPolicyFile">
