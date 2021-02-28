@@ -80,11 +80,11 @@ function Get-OrganizationValueTestString
 
     switch ($Id)
     {
-        {$PsItem -match 'V-93955'}
+        {$PsItem -match 'V-93955|V-207605'}
         {
             return '{0} is set to "Syslog.global.logHost" = "site specific log host"'
         }
-        {$PsItem -match 'V-94037'}
+        {$PsItem -match 'V-94037|V-207646'}
         {
             return '"{0}" is set to "Syslog.global.logDir" = "site specific log storage location"'
         }

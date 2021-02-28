@@ -16,6 +16,7 @@
 * Update PowerSTIG SkipRule to Accept Parent Rule for Split Rules: [#846](https://github.com/microsoft/PowerStig/issues/846)
 * Update PowerSTIG to successfully parse/apply MS Edge V1R1: [#860](https://github.com/microsoft/PowerStig/issues/860)
 * Fixed: RHEL RuleId V-204406 should be removed: [#847](https://github.com/microsoft/PowerStig/issues/847)
+* Update PowerSTIG to successfully parse/apply VMware 6.5 ESXI V2R1 STIG: [#851](https://github.com/microsoft/PowerStig/issues/851)
 
 ## [4.7.1] - 2021-01-22
 
