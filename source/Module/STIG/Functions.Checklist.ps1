@@ -249,11 +249,11 @@ function New-StigCheckList
     {
         try
         {
-            $localHostData = Invoke-Command -Computername $hostName -ErrorAction 'Stop' -Scriptblock {
+            $localHostData      = Invoke-Command -Computername $hostName -ErrorAction 'Stop' -Scriptblock {
                 return @{
-                    MacAddress   = (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object -Property MacAddress | Select-Object -First 1).MacAddress
-                    IpAddress    = (Get-NetIPAddress -AddressFamily IPV4 | Where-Object -Property IpAddress -notlike "127.*" | Select-Object -First 1).IPAddress
-                    FQDN  = [System.Net.DNS]::GetHostByName($env:ComputerName).HostName
+                    MacAddress  = ((Get-NetAdapter -Physical | Where-Object -Property 'Status' -eq 'Up')[0]).MacAddress
+                    IpAddress   = ((Get-NetIPAddress -AddressFamily IPV4 | Where-Object -Property IpAddress -notlike "127.*")[0]).IPAddress
+                    Fqdn        = [System.Net.DNS]::GetHostByName($env:ComputerName).HostName
                 }
             }
         }
@@ -269,7 +269,7 @@ function New-StigCheckList
         'HOST_NAME'       = "$Hostname"
         'HOST_IP'         = "$($localHostData.IpAddress)"
         'HOST_MAC'        = "$($localHostData.MacAddress)"
-        'HOST_FQDN'       = "$($localHostData.FQDN)"
+        'HOST_FQDN'       = "$($localHostData.Fqdn)"
         'TECH_AREA'       = ''
         'TARGET_KEY'      = '2350'
         'WEB_OR_DATABASE' = 'false'
@@ -283,6 +283,7 @@ function New-StigCheckList
         $writer.WriteString($assetElement.value)
         $writer.WriteEndElement()
     }
+
     $writer.WriteEndElement(<#ASSET#>)
 
     #region STIGS
