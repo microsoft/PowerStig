@@ -57,71 +57,57 @@ class RegistryRuleConvert : RegistryRule
         $this.SetDuplicateRule()
         $this.SetDscResource($fixText)
 
-        if ($this.IsHardCodedOrganizationValueTestString())
-        {
-            $OrganizationValueTestString = $this.GetHardCodedOrganizationValueTestString()
-            $this.set_OrganizationValueTestString($OrganizationValueTestString)
+        # Get the trimmed version of the value data line.
+        [string] $registryValueData = $this.GetValueData($rawString)
 
+        # If a range is found on the value line, it needs further processing.
+        if ($this.TestValueDataStringForRange($registryValueData))
+        {
+            # Set the OrganizationValueRequired flag to true so that a org level setting will be required.
             $this.SetOrganizationValueRequired()
+
+            # Try to extract a test string from the range text.
+            $OrganizationValueTestString = $this.GetOrganizationValueTestString($registryValueData)
+
+            # If a test string was returned, add it.
+            if ($null -ne $OrganizationValueTestString)
+            {
+                $this.set_OrganizationValueTestString($OrganizationValueTestString)
+            }
         }
         else
         {
-            # Get the trimmed version of the value data line.
-            [string] $registryValueData = $this.GetValueData($rawString)
-
-            # If a range is found on the value line, it needs further processing.
-            if ($this.TestValueDataStringForRange($registryValueData))
+            if ($this.IsDataBlank($registryValueData))
             {
-                # Set the OrganizationValueRequired flag to true so that a org level setting will be required.
-                $this.SetOrganizationValueRequired()
-
-                # Try to extract a test string from the range text.
-                $OrganizationValueTestString = $this.GetOrganizationValueTestString($registryValueData)
-
-                # If a test string was returned, add it.
-                if ($null -ne $OrganizationValueTestString)
+                $this.SetIsNullOrEmpty()
+                $registryValueData = ''
+            }
+            elseif ($this.IsDataEnabledOrDisabled($registryValueData))
+            {
+                $registryValueData = $this.GetValidEnabledOrDisabled(
+                    $this.ValueType, $registryValueData
+                )
+            }
+            elseif ($this.IsDataHexCode($registryValueData))
+            {
+                $registryValueData = $this.GetIntegerFromHex($registryValueData)
+            }
+            elseif ($this.IsDataInteger($registryValueData))
+            {
+                $registryValueData = $this.GetNumberFromString($registryValueData)
+            }
+            elseif ($this.ValueType -eq 'MultiString')
+            {
+                if ($registryValueData -match "see below")
                 {
-                    $this.set_OrganizationValueTestString($OrganizationValueTestString)
+                    $registryValueData = $this.GetMultiValueRegistryStringData($this.RawString)
+                }
+                else
+                {
+                    $registryValueData = $this.FormatMultiStringRegistryData($registryValueData)
                 }
             }
-            else
-            {
-                if ($this.IsHardCoded())
-                {
-                    $registryValueData = $this.GetHardCodedString()
-                }
-                elseif ($this.IsDataBlank($registryValueData))
-                {
-                    $this.SetIsNullOrEmpty()
-                    $registryValueData = ''
-                }
-                elseif ($this.IsDataEnabledOrDisabled($registryValueData))
-                {
-                    $registryValueData = $this.GetValidEnabledOrDisabled(
-                        $this.ValueType, $registryValueData
-                    )
-                }
-                elseif ($this.IsDataHexCode($registryValueData))
-                {
-                    $registryValueData = $this.GetIntegerFromHex($registryValueData)
-                }
-                elseif ($this.IsDataInteger($registryValueData))
-                {
-                    $registryValueData = $this.GetNumberFromString($registryValueData)
-                }
-                elseif ($this.ValueType -eq 'MultiString')
-                {
-                    if ($registryValueData -match "see below")
-                    {
-                        $registryValueData = $this.GetMultiValueRegistryStringData($this.RawString)
-                    }
-                    else
-                    {
-                        $registryValueData = $this.FormatMultiStringRegistryData($registryValueData)
-                    }
-                }
-                $this.Set_ValueData($registryValueData)
-            }
+            $this.Set_ValueData($registryValueData)
         }
     }
 

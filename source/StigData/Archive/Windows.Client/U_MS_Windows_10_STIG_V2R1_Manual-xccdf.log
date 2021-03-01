@@ -14,3 +14,5 @@ V-220961::NT SERVICE\autotimesvc is added in v1909 cumulative update.::NT SERVIC
 V-220891::OverrideExportAddressFilter: False::OverrideEnableExportAddressFilter: False
 V-220891::OverrideExportAddressFilterPlus: False::OverrideEnableExportAddressFilterPlus: False
 V-220891::OverrideImportAddressFilter: False::OverrideEnableImportAddressFilter: False
+V-220922::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'; ValueName = 'LegalNoticeCaption'; ValueType = 'String'; ValueData = $null; OrganizationValueTestString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"}
+V-220921::assistants.  Such communications and work product are private and confidential.  See::assistants. Such communications and work product are private and confidential. See

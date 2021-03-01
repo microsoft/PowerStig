@@ -73,7 +73,7 @@ class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
     #>
     [bool] IsOrganizationalSetting ()
     {
-        if ($this.id -match 'V-93955|V-94025|V-94509|V-94533|V-94037')
+        if ($this.id -match 'V-93955|V-94025|V-94037|V-207605|V-207640|V-207646')
         {
             return $true
         }
