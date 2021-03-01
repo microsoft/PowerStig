@@ -175,7 +175,6 @@ function New-StigCheckList
         [Parameter()]
         [Switch]
         $IncludeLocalHostData
-
     )
 
     if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))

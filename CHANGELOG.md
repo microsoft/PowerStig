@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+* Functions.Checklist.ps1 updated to incorporate localhost data into STIG CKLS [#828](https://github.com/microsoft/PowerStig/issues/828)
+
+## [4.8.0] - 2021-03-01
+
 * Update PowerSTIG to remove old rule Ids in Hard Coded Framework: [#790](https://github.com/microsoft/PowerStig/issues/790)
 * Update PowerSTIG to Parse/Apply MS Office 365 ProPlus Ver 2, Rel 1: [#811](https://github.com/microsoft/PowerStig/issues/811)
 * Update PowerSTIG to parse and apply RHEL 7.x V3R1: [#608](https://github.com/microsoft/PowerStig/issues/608)
@@ -16,11 +20,14 @@
 * Update PowerSTIG SkipRule to Accept Parent Rule for Split Rules: [#846](https://github.com/microsoft/PowerStig/issues/846)
 * Fixed: ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
 * Fixed: RHEL RuleId V-204406 should be removed: [#847](https://github.com/microsoft/PowerStig/issues/847)
-* Functions.Checklist.ps1 updated to incorporate localhost data into STIG Checklists [#828](https://github.com/microsoft/PowerStig/issues/828)
+* Update PowerSTIG to successfully parse/apply Microsoft SQL Server 2016 Instance Version 2; Release 2: [#838](https://github.com/microsoft/PowerStig/issues/838)
+* Update PowerSTIG to successfully parse/apply MS Edge V1R1: [#860](https://github.com/microsoft/PowerStig/issues/860)
+* Update PowerSTIG to successfully parse/apply VMware 6.5 ESXI V2R1 STIG: [#851](https://github.com/microsoft/PowerStig/issues/851)
+* Fixed: RHEL RuleId V-204406 should be removed: [#847](https://github.com/microsoft/PowerStig/issues/847)
 
 ## [4.7.1] - 2021-01-22
 
-* ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
+* Fixed: ConvertTo-ManualCheckListHashTable function call is missing mandatory argument: [#823](https://github.com/microsoft/PowerStig/issues/823)
 
 ## [4.7.0] - 2020-12-17
 
