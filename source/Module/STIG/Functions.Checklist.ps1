@@ -335,7 +335,7 @@ function New-StigCheckList
 
         # Parse out the STIG file name for lookups
         $stigPathFileName = $XccdfPathItem.Split('\\')
-        $stigFileName = $stigPathFileName[$stigPathFileName.Length - 1]
+        $stigFileName = $stigPathFileName[$stigPathFileName.Length-1]
 
         # Pull in the processed XML file to check for duplicate rules for each vulnerability
         [XML] $xccdfBenchmark = Get-Content -Path $xccdfPathItem -Encoding UTF8
