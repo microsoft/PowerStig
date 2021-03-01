@@ -246,21 +246,22 @@ function New-StigCheckList
     {
         if ($hostName -eq $env:COMPUTERNAME)
         {
-            [string]$localMac = (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object MacAddress | Select-Object -First 1).MacAddress
-            [string]$localIP = (Get-NetIPAddress -AddressFamily IPV4 | Where-Object { $_.IpAddress -notlike "127.*" } | Select-Object -First 1).IPAddress
-            [string]$localFQDN = [System.Net.DNS]::GetHostByName($env:ComputerName).HostName
+            [string]$localMac   = (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object MacAddress | Select-Object -First 1).MacAddress
+            [string]$localIP    = (Get-NetIPAddress -AddressFamily IPV4 | Where-Object { $_.IpAddress -notlike "127.*" } | Select-Object -First 1).IPAddress
+            [string]$localFQDN  = [System.Net.DNS]::GetHostByName($env:ComputerName).HostName
+            if ($null -eq $localFQDN) {$localFQDN = $hostName}
         }
         else
         {
             [string]$localMac = Invoke-Command $hostName -Scriptblock {return (Get-NetAdapter | Where-Object {$_.Status -eq "Up"} | Select-Object MacAddress | Select-Object -First 1).MacAddress}
             [string]$localIP = Invoke-Command $hostName -Scriptblock {return (Get-NetIPAddress -AddressFamily IPV4 | Where-Object { $_.IpAddress -notlike "127.*" } | Select-Object -First 1).IPAddress}
             [string]$localFQDN = [System.Net.DNS]::GetHostByName($hostName).HostName
+            if ($null -eq $localFQDN) {$localFQDN = $hostName}
         }
     }
     catch
     {
         Write-Warning "Unable to Obtain local IP/MAC Addresses."
-        $localFQDN = $HostName
     }
 
     $assetElements = [ordered] @{
