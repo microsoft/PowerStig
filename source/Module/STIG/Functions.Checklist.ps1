@@ -661,7 +661,7 @@ function Get-SettingsFromResult
         $script:allResources = $DscResults.ResourcesNotInDesiredState + $DscResults.ResourcesInDesiredState
     }
 
-    return $script:allResources.Where( {$PSItem.ResourceID -match $id})
+    return $script:allResources.Where({$PSItem.ResourceID -match $id})
 }
 
 <#
