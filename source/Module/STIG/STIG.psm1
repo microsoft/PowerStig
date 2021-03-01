@@ -235,11 +235,14 @@ class STIG
         {
             foreach ($rule in $type.Rule)
             {
+                $ruleSplit = $($rule.id).Split(".")
+
                 # Using the category and severity enums to convert low/medium/high to CAT_III/CAT_II/CAT_I
                 if
                 (
                     (
                         @($SkipRules) -contains $rule.Id -or
+                        @($SkipRules) -contains $ruleSplit[0] -or
                         @($SkipRuleType) -contains $type.Name -or
                         @($SkipRuleSeverity) -contains [category]([int][severity]$rule.severity)
                     ) -and
