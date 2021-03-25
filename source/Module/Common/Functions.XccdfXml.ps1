@@ -176,6 +176,9 @@ function Get-StigRuleList
     {
         foreach ($stigRule in $StigGroupList)
         {
+            #Replace TAB's from in Rules to 3 spaces  
+            $stigRule.rule.Check.('check-content') = $stigRule.rule.Check.('check-content') -replace("`t","   ")
+           
             # This is to address STIG Rule V-18395 that has multiple rules that are exactly the same under that rule ID.
             if ($stigRule.Rule.Count -gt 1)
             {
