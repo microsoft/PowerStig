@@ -69,7 +69,7 @@ DscTest:
     - output
     - StigData/Archive #added to ignore orginal DISA STIG files duiring HQRM test due to TAB's causing test failure
   ExcludeModuleFile:
-    - StigData/Archive
+    - StigData/Archive #added to ignore orginal DISA STIG files duiring HQRM test due to TAB's causing test failure
 Resolve-Dependency:
   Gallery: 'PSGallery'
   AllowPrerelease: false
