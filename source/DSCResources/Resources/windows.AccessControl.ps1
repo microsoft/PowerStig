@@ -16,8 +16,7 @@ foreach ($rule in $rules)
             {
                 Path = $rule.Path
                 Force = $ruleForce
-                AccessControlList = $(
-
+                AccessControlList = @(
                     foreach ($acentry in $rule.AccessControlEntry.Entry)
                     {
                         $aceEntryForcePrincipal = $null
@@ -67,7 +66,7 @@ foreach ($rule in $rules)
             {
                 Path = $rule.Path
                 Force = $ruleForce
-                AccessControlList = $(
+                AccessControlList = @(
                     foreach ($acentry in $rule.AccessControlEntry.Entry)
                     {
                         $aceEntryForcePrincipal = $null
