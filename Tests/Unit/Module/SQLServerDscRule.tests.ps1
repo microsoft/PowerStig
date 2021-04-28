@@ -48,6 +48,163 @@ try
                 AND is_user_defined = 1;
                 
                 If any records are returned, review the system documentation to determine if the use of UNSAFE assemblies is approved. If it is not approved, this is a finding.'
+            },
+            @{
+                OptionName = 'common criteria compliance enabled'
+                OptionValue = '0'
+                OrganizationValueRequired = $false
+                CheckContent = 'Review system documentation to determine if Common Criteria Compliance is not required due to potential impact on system performance. 
+
+                SQL Server Residual Information Protection (RIP) requires a memory allocation to be overwritten with a known pattern of bits before memory is reallocated to a new resource. Meeting the RIP standard can contribute to improved security; however, overwriting the memory allocation can slow performance. After the common criteria compliance enabled option is enabled, the overwriting occurs. 
+                
+                Review the Instance configuration: 
+                
+                
+                SELECT value_in_use
+                FROM sys.configurations
+                WHERE name = ''common criteria compliance enabled''
+                
+                If "value_in_use" is set to "1" this is not a finding.
+                If "value_in_use" is set to "0" this is a finding. 
+                
+                NOTE: Enabling this feature may impact performance on highly active SQL Server instances. If an exception justifying setting SQL Server Residual Information Protection (RIP) to disabled (value_in_use set to "0") has been documented and approved, then this may be downgraded to a CAT III finding.'
+            },
+            @{
+                OptionName = 'filestream access level' 
+                OptionValue = '0'
+                OrganizationValueRequired = $false
+                CheckContent = 'Review the system documentation to see if FileStream is in use. If in use authorized, this is not a finding. 
+
+                If FileStream is not documented as being authorized, execute the following query.
+                EXEC sp_configure ''filestream access level''
+                
+                If "run_value" is greater than "0", this is a finding.
+                
+                
+                
+                This rule checks that Filestream SQL specific option is disabled.
+                
+                SELECT CASE 
+                 WHEN EXISTS (SELECT * 
+                 FROM sys.configurations 
+                 WHERE Name = ''filestream access level'' 
+                 AND Cast(value AS INT) = 0) THEN ''No'' 
+                 ELSE ''Yes''
+                 END AS TSQLFileStreamAccess;
+                
+                If the above query returns "Yes" in the "FileStreamEnabled" field, this is a finding.'
+            },
+            @{
+                OptionName = 'Ole Automation Procedures'
+                OptionValue = '0'
+                OrganizationValueRequired = $false
+                CheckContent = 'To determine if "Ole Automation Procedures" option is enabled, execute the following query: 
+
+                EXEC SP_CONFIGURE ''show advanced options'', ''1''; 
+                RECONFIGURE WITH OVERRIDE; 
+                EXEC SP_CONFIGURE ''Ole Automation Procedures''; 
+                
+                If the value of "config_value" is "0", this is not a finding. 
+                
+                If the value of "config_value" is "1", review the system documentation to determine whether the use of "Ole Automation Procedures" is required and authorized. If it is not authorized, this is a finding.'
+            },
+            @{
+                OptionName = 'user options'
+                OptionValue = '0'
+                OrganizationValueRequired = $false
+                CheckContent = 'To determine if "User Options" option is enabled, execute the following query:
+
+                EXEC SP_CONFIGURE ''show advanced options'', ''1''; 
+                RECONFIGURE WITH OVERRIDE; 
+                EXEC SP_CONFIGURE ''user options''; 
+                
+                If the value of "config_value" is "0", this is not a finding. 
+                
+                If the value of "config_value" is "1", review the system documentation to determine whether the use of "user options" is required and authorized. If it is not authorized, this is a finding.'
+            },
+            @{
+                OptionName = 'remote access'
+                OptionValue = '0'
+                OrganizationValueRequired = $false
+                CheckContent = 'To determine if "Remote Access" option is enabled, execute the following query: 
+
+                EXEC SP_CONFIGURE ''show advanced options'', ''1''; 
+                RECONFIGURE WITH OVERRIDE; 
+                EXEC SP_CONFIGURE ''remote access''; 
+                
+                If the value of "config_value" is "0", this is not a finding. 
+                
+                If the value of "config_value" is "1", review the system documentation to determine whether the use of "Remote Access" is required (linked servers) and authorized. If it is not authorized, this is a finding.'
+            },
+            @{
+                OptionName = 'hadoop connectivity'
+                OptionValue = '0'
+                OrganizationValueRequired = $false
+                CheckContent = 'To determine if "Hadoop Connectivity" option is enabled, execute the following query: 
+
+                EXEC SP_CONFIGURE ''show advanced options'', ''1''; 
+                RECONFIGURE WITH OVERRIDE; 
+                EXEC SP_CONFIGURE ''hadoop connectivity''; 
+                
+                If the value of "config_value" is "0", this is not a finding.
+                
+                If the value of "config_value" is "1", review the system documentation to determine whether the use of "Hadoop Connectivity" option is required and authorized. If it is not authorized, this is a finding.'
+            },
+            @{
+                OptionName = 'allow polybase export'
+                OptionValue = '0'
+                OrganizationValueRequired = $false
+                CheckContent = 'To determine if "Allow Polybase Export" option is enabled, execute the following query: 
+
+                EXEC SP_CONFIGURE ''show advanced options'', ''1''; 
+                RECONFIGURE WITH OVERRIDE; 
+                EXEC SP_CONFIGURE ''allow polybase export''; 
+                
+                If the value of "config_value" is "0", this is not a finding.
+                
+                If the value of "config_value" is "1", review the system documentation to determine whether the use of "Allow Polybase Export" is required and authorized. If it is not authorized, this is a finding.'
+            },
+            @{
+                OptionName = 'remote data archive'
+                OptionValue = '0'
+                OrganizationValueRequired = $false
+                CheckContent = 'To determine if "Remote Data Archive" option is enabled, execute the following query: 
+
+                EXEC SP_CONFIGURE ''show advanced options'', ''1''; 
+                RECONFIGURE WITH OVERRIDE; 
+                EXEC SP_CONFIGURE ''remote data archive''; 
+                
+                If the value of "config_value" is "0", this is not a finding. 
+                
+                If the value of "config_value" is "1", review the system documentation to determine whether the use of "Remote Data Archive" is required and authorized. If it is not authorized, this is a finding.'
+            },
+            @{
+                OptionName = 'external scripts enabled'
+                OptionValue = '0'
+                OrganizationValueRequired = $false
+                CheckContent = 'To determine if "External Scripts Enabled" option is enabled, execute the following query: 
+
+                EXEC SP_CONFIGURE ''show advanced options'', ''1''; 
+                RECONFIGURE WITH OVERRIDE; 
+                EXEC SP_CONFIGURE ''external scripts enabled''; 
+                
+                If the value of "config_value" is "0", this is not a finding. 
+                
+                If the value of "config_value" is "1", review the system documentation to determine whether the use of "External Scripts Enabled" is required and authorized. If it is not authorized, this is a finding.'
+            },
+            @{
+                OptionName = 'replication xps'
+                OptionValue = '0'
+                OrganizationValueRequired = $false
+                CheckContent = 'To determine if the "Replication Xps" option is enabled, execute the following query: 
+
+                EXEC SP_CONFIGURE ''show advanced options'', ''1''; 
+                RECONFIGURE WITH OVERRIDE; 
+                EXEC SP_CONFIGURE ''replication xps''; 
+                
+                If the value of "config_value" is "0", this is not a finding. 
+                
+                If the value of "config_value" is "1", review the system documentation to determine whether the use of "Replication Xps" is required and authorized. If it is not authorized, this is a finding.'
             }
         )
         #endregion
