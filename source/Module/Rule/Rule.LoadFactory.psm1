@@ -80,7 +80,7 @@ class LoadFactory
             'nxFileLineRule'                       {$return = [nxFileLineRule]::new($Rule)}
             'nxFileRule'                           {$return = [nxFileRule]::new($Rule)}
             'RootCertificateRule'                  {$return = [RootCertificateRule]::new($Rule)}
-            'SqlServerDscRule'     	               {$return = [SqlServerDscRule]::new($Rule)}
+            'SqlServerDscRule'                     {$return = [SqlServerDscRule]::new($Rule)}
         }
 
         return $return
