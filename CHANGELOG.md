@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Added SQL Server 2016 vulnerability ID's: [#872](https://github.com/microsoft/PowerStig/issues/872)
+
 ## [4.8.0] - 2021-03-01
 
 * Update PowerSTIG to remove old rule Ids in Hard Coded Framework: [#790](https://github.com/microsoft/PowerStig/issues/790)
