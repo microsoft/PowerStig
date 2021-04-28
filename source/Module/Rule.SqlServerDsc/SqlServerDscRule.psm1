@@ -60,7 +60,7 @@ Class SqlServerDscRule : Rule
     {
         return @{
             Value = "15"
-            Notes = $null
+            Notes = "Allowed values are per specific SQL Server Configuration setting. Refer to SQL Server documentation for allowed values."
         }
     }
 }
