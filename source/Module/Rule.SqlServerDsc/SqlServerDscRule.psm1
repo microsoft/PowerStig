@@ -16,7 +16,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER SetScript
         The set script content
 #>
-Class SqlServerDscRule : Rule
+Class sqlserverdscrule : rule
 {
     [string] $OptionName
     [string] $OptionValue <#(ExceptionValue)#>
@@ -36,7 +36,7 @@ Class SqlServerDscRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    SqlServerDscRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    sqlserverdscrule ([xml.xmlelement] $rule) : Base ($rule)
     {
     }
 
@@ -48,7 +48,7 @@ Class SqlServerDscRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    SqlServerDscRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    sqlserverdscrule ([xml.xmlelement] $rule, [switch] $convert) : Base ($rule, $convert)
     {
     }
 
