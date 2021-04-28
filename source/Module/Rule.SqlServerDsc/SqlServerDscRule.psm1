@@ -16,7 +16,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER SetScript
         The set script content
 #>
-class SqlServerSscRule : Rule
+class SqlServerDscRule : Rule
 {
     [string] $OptionName
     [string] $OptionValue <#(ExceptionValue)#>
