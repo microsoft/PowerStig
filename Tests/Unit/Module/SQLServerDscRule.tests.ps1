@@ -220,22 +220,10 @@ try
             $content = New-Object -TypeName PSObject @{
                 'OptionValue'  = $testRule.OptionValue
                 'CheckContent' = $testRule.CheckContent
-            
-            <#BeforeDiscovery {
-                $content = New-Object -TypeName PSObject @{
-                    'OptionValue'  = $testRule.OptionValue
-                    'CheckContent' = $testRule.CheckContent
-
-                }#>
             }
         
-            #Describe 'SQLServerConfigurationDSC' -ForEach $content {
             Describe 'SQLServerConfigurationDSC' {
             # TODO move this to the CommonTests
-                #BeforeAll {
-                #    $content = $_
-                #}
-
                 It "Should return checkcontent and optionvalue" {
                     $content.CheckContent | Should -Not -BeNullOrEmpty
                     $content.OptionValue | Should -Be '0'
