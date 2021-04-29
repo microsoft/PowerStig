@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to remove old rule Ids in Hard Coded Framework: [#864](https://github.com/microsoft/PowerStig/issues/864)
+* Fixed: PowerShell v7 Fix: AccessControlDsc/RegistryAccessEntry & NTFSAccessEntry "AccessControlList" should be an Array
 
 ## [4.8.0] - 2021-03-01
 
