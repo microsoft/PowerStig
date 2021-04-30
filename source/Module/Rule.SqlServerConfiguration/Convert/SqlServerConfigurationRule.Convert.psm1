@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
 using module .\..\..\Rule\Rule.psm1
-using module .\..\SqlServerDscRule.psm1
+using module .\..\SqlServerConfigurationRule.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
@@ -16,21 +16,21 @@ foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a SqlServerDscRule
+        Convert the contents of an xccdf check-content element into a SqlServerConfigurationRule
     .DESCRIPTION
-        The SqlSreverDscRule class is used to extract the vulnerability ID's that can
+        The SqlServerConfigurationRule class is used to extract the vulnerability ID's that can
         be set with the SqlServerDsc module from the check-content of the xccdf. 
-        Once a STIG rule is identified a SqlServerDsc rule, it is passed to the SqlServerDscRule 
+        Once a STIG rule is identified a SqlServerDsc rule, it is passed to the SqlServerConfigurationRule 
         class for parsing and validation.
 #>
 
-class SQLServerDscRuleConvert : SQLServerDscRule
+class SQLServerConfigurationRuleConvert : SQLServerConfigurationRule
 {
     <#
         .SYNOPSIS
             Empty constructor for SplitFactory
     #>
-    SqlServerDscRuleConvert ()
+    SqlServerConfigurationRuleConvert ()
     {
     }
 
@@ -41,7 +41,7 @@ class SQLServerDscRuleConvert : SQLServerDscRule
             The STIG rule to convert
     #>
 
-    SqlServerDscRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
+    SqlServerConfigurationRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetOptionName()
         $this.SetOptionValue()

@@ -6,17 +6,17 @@ using module .\..\Rule\Rule.psm1
 
 <#
     .SYNOPSIS
-        An Account Policy Rule object
+        SQL Server configuration option rule
     .DESCRIPTION
-        The SqlServerDscRule class is used to maange the Account Policy Settings.
-    .PARAMETER GetScript
-        The Get script content
-    .PARAMETER TestScript
-        The test script content
-    .PARAMETER SetScript
-        The set script content
+        The SqlServerConfigurationRule class is used to maange the Account Policy Settings.
+    .PARAMETER OptionName
+        The SQL Server configuration option name
+    .PARAMETER OptionValue
+        The SQL Server configuration option value
+    .PARAMETER Ensure
+        The ensure property
 #>
-class SqlServerDscRule : Rule
+class SqlServerConfigurationRule : Rule
 {
     [string] $OptionName
     [string] $OptionValue <#(ExceptionValue)#>
@@ -26,7 +26,7 @@ class SqlServerDscRule : Rule
         .SYNOPSIS
             Default constructor to support the AsRule cast method
     #>
-    SqlServerDscRule ()
+    SqlServerConfigurationRule ()
     {
     }
 
@@ -36,7 +36,7 @@ class SqlServerDscRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    SqlServerDscRule ([xml.xmlelement] $Rule) : base ($Rule)
+    SqlServerConfigurationRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -48,7 +48,7 @@ class SqlServerDscRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    SqlServerDscRule ([xml.xmlelement] $rule, [switch] $convert) : base ($rule, $convert)
+    SqlServerConfigurationRule ([xml.xmlelement] $rule, [switch] $convert) : base ($rule, $convert)
     {
     }
 

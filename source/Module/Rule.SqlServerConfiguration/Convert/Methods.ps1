@@ -3,12 +3,13 @@
 #region Method Functions
 <#
     .SYNOPSIS
-        Retrieves the SqlServerDsc OptionName from the check-content element in the xccdf
+        Retrieves the SqlServerConfiguration OptionName from the check-content element in the xccdf
 
     .PARAMETER CheckContent
         Specifies the check-content element in the xccdf
 #>
-function Get-OptionName{
+function Get-OptionName
+{
     [CmdletBinding()]
     [OutputType([string])]
     param
@@ -22,64 +23,65 @@ function Get-OptionName{
     {
         {$PSItem -Match "EXEC SP_CONFIGURE 'xp_cmdshell';"}
         {
-            $OptionName = "xp_cmdshell"
+            $optionName = "xp_cmdshell"
         }
         {$PSItem -Match "EXEC SP_CONFIGURE 'clr enabled';"}
         {
-            $OptionName = "clr enabled"
+            $optionName = "clr enabled"
         }
         {$PSItem -Match "WHERE name = 'common criteria compliance enabled'"}
         {
-            $OptionName = "common criteria compliance enabled"
+            $optionName = "common criteria compliance enabled"
         }
         {$PSItem -Match "EXEC sp_configure 'filestream access level'"}
         {
-            $OptionName = "filestream access level"
+            $optionName = "filestream access level"
         }
         {$PSItem -Match "EXEC SP_CONFIGURE 'Ole Automation Procedures';"}
         {
-            $OptionName = "Ole Automation Procedures"
+            $optionName = "Ole Automation Procedures"
         }
         {$PSItem -Match "EXEC SP_CONFIGURE 'user options';"}
         {
-            $OptionName = "user options"
+            $optionName = "user options"
         }
         {$PSItem -Match "EXEC SP_CONFIGURE 'remote access';"}
         {
-            $OptionName = "remote access"
+            $optionName = "remote access"
         }
         {$PSItem -Match "EXEC SP_CONFIGURE 'hadoop connectivity';"}
         {
-            $OptionName = "hadoop connectivity"
+            $optionName = "hadoop connectivity"
         }
         {$PSItem -Match "EXEC SP_CONFIGURE 'allow polybase export';"}
         {
-            $OptionName = "allow polybase export"
+            $optionName = "allow polybase export"
         }
         {$PSItem -Match "EXEC SP_CONFIGURE 'remote data archive';"}
         {
-            $OptionName = "remote data archive"
+            $optionName = "remote data archive"
         }
         {$PSItem -Match "EXEC SP_CONFIGURE 'external scripts enabled';"}
         {
-            $OptionName = "external scripts enabled"
+            $optionName = "external scripts enabled"
         }
         {$PSItem -Match "EXEC SP_CONFIGURE 'replication xps';"}
         {
-            $OptionName = "Replication XPs"
+            $optionName = "Replication XPs"
         }       
     }
-    return $OptionName
+    return $optionName
 }
 
 <#
     .SYNOPSIS
-        Sets the SqlServerDsc OptionValue from the check-content element in the xccdf
+        Sets the SqlServerConfiguration OptionValue from the check-content element in the xccdf
 
     .PARAMETER CheckContent
         Specifies the check-content element in the xccdf
 #>
-function Set-OptionValue {
+function Set-OptionValue
+{
     [CmdletBinding()]
     [OutputType([string])]
     param
@@ -95,12 +97,12 @@ function Set-OptionValue {
     {
         {$PSItem -eq $false}
         {
-            $OptionValue = "1"
+            $optionValue = "1"
         }
         Default
         {
-            $OptionValue = "0"
+            $optionValue = "0"
         }
     }   
-    return $OptionValue
+    return $optionValue
 }

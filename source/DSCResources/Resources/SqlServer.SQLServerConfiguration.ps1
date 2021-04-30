@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$Rules = $Stig.RuleList | Select-Rule -Type SqlServerDSCRule
+$Rules = $Stig.RuleList | Select-Rule -Type SqlServerConfigurationRule
 
 # Sets variables for Default and Named Instances.
 foreach ($instance in $serverInstance)
@@ -22,9 +22,9 @@ foreach ($instance in $serverInstance)
         SqlServerConfiguration (Get-ResourceTitle -Rule $rule)
         {
             InstanceName = $instanceName
-            ServerName = $serverName
-            OptionName = $rule.OptionName
-            OptionValue = $rule.OptionValue
+            ServerName   = $serverName
+            OptionName   = $rule.OptionName
+            OptionValue  = $rule.OptionValue
         }
     }
 }
