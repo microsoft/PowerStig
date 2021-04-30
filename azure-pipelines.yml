@@ -180,18 +180,6 @@ stages:
               artifactName: 'testResults'
               downloadPath: '$(Build.SourcesDirectory)/output'
 
-          - task: PublishCodeCoverageResults@1
-            displayName: 'Publish Code Coverage'
-            condition: succeededOrFailed()
-            inputs:
-              codeCoverageTool: 'JaCoCo'
-              summaryFileLocation: 'output/testResults/JaCoCo_coverage.xml'
-              pathToSources: '$(Build.SourcesDirectory)/output/$(dscBuildVariable.RepositoryName)'
-          - script: |
-              bash <(curl -s https://codecov.io/bash) -f "./output/testResults/JaCoCo_coverage.xml"
-            displayName: 'Upload to Codecov.io'
-            condition: succeededOrFailed()
-
   - stage: Deploy
     dependsOn: Test
     condition: |
