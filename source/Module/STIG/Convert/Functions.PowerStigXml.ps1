@@ -339,6 +339,9 @@ function ConvertTo-PowerStigXml
             # Add the STIG details to the xml document.
             foreach ( $rule in $rules )
             {
+                # Replace TAB(s) from rule description adding to xml document.
+                $rule.Description = $rule.Description -replace("`t","   ")
+
                 [System.XML.XMLElement] $xmlRuleTypeProperty = $xmlDocument.CreateElement( 'Rule' )
                 # Append as child to an existing node. DO NOT remove the [void]
                 [void] $xmlRuleType.appendChild( $xmlRuleTypeProperty )
