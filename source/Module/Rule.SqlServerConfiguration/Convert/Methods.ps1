@@ -91,11 +91,11 @@ function Set-OptionValue
         $CheckContent
     )
 
-    #STIG guidance states all configuration options should be disabled unless required. Default state is set to disable.
+    #STIG guidance states most configuration options should be disabled unless required. Default state is set to disable.
 
     switch ($checkContent)
     {
-        {$PSItem -eq $false}
+        {$PSItem -Match "WHERE name = 'common criteria compliance enabled'"}
         {
             $optionValue = "1"
         }
