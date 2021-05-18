@@ -48,7 +48,7 @@ try
         },
         @{
             OptionName                = 'common criteria compliance enabled'
-            OptionValue               = '0'
+            OptionValue               = '1'
             OrganizationValueRequired = $false
             CheckContent              = 'Review system documentation to determine if Common Criteria Compliance is not required due to potential impact on system performance. 
 

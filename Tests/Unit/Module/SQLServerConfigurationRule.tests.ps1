@@ -51,7 +51,7 @@ try
             },
             @{
                 OptionName                = 'common criteria compliance enabled'
-                OptionValue               = '0'
+                OptionValue               = '1'
                 OrganizationValueRequired = $false
                 CheckContent              = 'Review system documentation to determine if Common Criteria Compliance is not required due to potential impact on system performance. 
 
@@ -226,7 +226,7 @@ try
             # TODO move this to the CommonTests
                 It "Should return checkcontent and optionvalue" {
                     $content.CheckContent | Should -Not -BeNullOrEmpty
-                    $content.OptionValue | Should -Be '0'
+                    $content.OptionValue | Should -BeLessOrEqual 2
                 }
             }
         }   
