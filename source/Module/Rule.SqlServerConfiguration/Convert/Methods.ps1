@@ -21,13 +21,9 @@ function Get-OptionName
 
     switch ($checkcontent) 
     {
-        {$PSItem -Match "EXEC SP_CONFIGURE 'xp_cmdshell';"}
+        {$PSItem -Match "(?<=EXEC SP_CONFIGURE\s').+?(?=')"}
         {
-            $optionName = "xp_cmdshell"
-        }
-        {$PSItem -Match "EXEC SP_CONFIGURE 'clr enabled';"}
-        {
-            $optionName = "clr enabled"
+            $optionName = ($PSItem | Select-String -Pattern "(?<=EXEC SP_CONFIGURE\s').+?(?=')" -AllMatches).Matches[1]
         }
         {$PSItem -Match "WHERE name = 'common criteria compliance enabled'"}
         {
@@ -36,38 +32,6 @@ function Get-OptionName
         {$PSItem -Match "EXEC sp_configure 'filestream access level'"}
         {
             $optionName = "filestream access level"
-        }
-        {$PSItem -Match "EXEC SP_CONFIGURE 'Ole Automation Procedures';"}
-        {
-            $optionName = "Ole Automation Procedures"
-        }
-        {$PSItem -Match "EXEC SP_CONFIGURE 'user options';"}
-        {
-            $optionName = "user options"
-        }
-        {$PSItem -Match "EXEC SP_CONFIGURE 'remote access';"}
-        {
-            $optionName = "remote access"
-        }
-        {$PSItem -Match "EXEC SP_CONFIGURE 'hadoop connectivity';"}
-        {
-            $optionName = "hadoop connectivity"
-        }
-        {$PSItem -Match "EXEC SP_CONFIGURE 'allow polybase export';"}
-        {
-            $optionName = "allow polybase export"
-        }
-        {$PSItem -Match "EXEC SP_CONFIGURE 'remote data archive';"}
-        {
-            $optionName = "remote data archive"
-        }
-        {$PSItem -Match "EXEC SP_CONFIGURE 'external scripts enabled';"}
-        {
-            $optionName = "external scripts enabled"
-        }
-        {$PSItem -Match "EXEC SP_CONFIGURE 'replication xps';"}
-        {
-            $optionName = "Replication XPs"
         }       
     }
     return $optionName
