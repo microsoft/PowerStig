@@ -1,6 +1,7 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
     $testStrings = @(
@@ -232,6 +233,7 @@ try
         }
     }
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

@@ -34,6 +34,7 @@ function Get-OptionName
             $optionName = "filestream access level"
         }       
     }
+
     return $optionName
 }
 
@@ -55,7 +56,7 @@ function Set-OptionValue
         $CheckContent
     )
 
-    #STIG guidance states most configuration options should be disabled unless required. Default state is set to disable.
+    # STIG guidance states most configuration options should be disabled unless required. Default state is set to disable.
 
     switch ($checkContent)
     {
@@ -67,6 +68,7 @@ function Set-OptionValue
         {
             $optionValue = "0"
         }
-    }   
+    }
+
     return $optionValue
 }

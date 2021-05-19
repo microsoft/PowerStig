@@ -15,7 +15,7 @@ foreach ($instance in $serverInstance)
     {
         $instanceName = $instance.Split('{\}')[1]
         $serverName = $instance.Split('{\}')[0]
-   }
+    }
 
     foreach ($rule in $rules)
     {

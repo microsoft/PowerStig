@@ -24,7 +24,7 @@ foreach ($supportFile in $supportFileList)
         class for parsing and validation.
 #>
 
-class SQLServerConfigurationRuleConvert : SQLServerConfigurationRule
+class SqLServerConfigurationRuleConvert : SqLServerConfigurationRule
 {
     <#
         .SYNOPSIS
@@ -36,7 +36,7 @@ class SQLServerConfigurationRuleConvert : SQLServerConfigurationRule
 
     <#
         .SYNOPSIS
-            Converts a xccdf stig rule element into a SQLNetworkDSC Rule
+            Converts a xccdf stig rule element into a SqlServerConfiguration Rule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
@@ -100,6 +100,7 @@ class SQLServerConfigurationRuleConvert : SQLServerConfigurationRule
         {
             return $true
         }
+        
         return $false
     }
 

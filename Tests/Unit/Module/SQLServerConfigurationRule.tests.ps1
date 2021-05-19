@@ -218,20 +218,21 @@ try
         foreach ($testRule in $testRuleList)
         {
             $content = New-Object -TypeName PSObject @{
-                'OptionValue'  = $testRule.OptionValue
-                'CheckContent' = $testRule.CheckContent
+                'OptionName'   = Get-OptionName -CheckContent $testRule.CheckContent
+                'OptionValue'  = Set-OptionValue -CheckContent $testRule.CheckContent
             }
-        
+
             Describe 'SQLServerConfigurationDSC' {
             # TODO move this to the CommonTests
                 It "Should return checkcontent and optionvalue" {
-                    $content.CheckContent | Should -Not -BeNullOrEmpty
-                    $content.OptionValue | Should -BeLessOrEqual 2
+                    $content.OptionName | Should -Be $testRule.OptionName
+                    $content.OptionValue | Should -Be $testrule.OptionValue
                 }
             }
         }   
     }
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

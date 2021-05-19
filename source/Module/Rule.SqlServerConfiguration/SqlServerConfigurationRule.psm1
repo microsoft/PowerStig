@@ -48,7 +48,7 @@ class SqlServerConfigurationRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    SqlServerConfigurationRule ([xml.xmlelement] $rule, [switch] $convert) : base ($rule, $convert)
+    SqlServerConfigurationRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 
