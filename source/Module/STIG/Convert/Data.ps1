@@ -54,6 +54,6 @@ data dscResourceModule
         nxFileRule                           = nx
         nxPackageRule                        = nx
         nxServiceRule                        = nx
-        SqlServerConfigurationRule                     = SqlServerDsc
+        SqlServerConfigurationRule           = SqlServerDsc
 '@
 }
