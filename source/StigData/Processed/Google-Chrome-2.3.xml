@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/16/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Apr 2021 3.2.2.36079 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="5/20/2021">
   <ManualRule dscresourcemodule="None">
     <Rule id="V-221584" severity="medium" conversionstatus="pass" title="SRG-APP-000456" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Google Chrome is being continually updated by the vendor in order to address identified security vulnerabilities. Running an older version of the browser can introduce security vulnerabilities to the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -87,47 +87,46 @@ Note:  If AO Approved exceptions to this rule have been enabled, this is not a f
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221562" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Extensions are developed by third party sources and are designed to extend Google Chrome's functionality. An extension can be made by anyone, to do and access almost anything on a system; this means they pose a high risk to any system that would allow all extensions to be installed by default.  Allows you to specify which extensions the users can NOT install. Extensions already installed will be removed if blacklisted. A blacklist value of '*' means all extensions are blacklisted unless they are explicitly listed in the whitelist. If this policy is left not set the user can install any extension in Google Chrome.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Extensions are developed by third party sources and are designed to extend Google Chrome's functionality. An extension can be made by anyone, to do and access almost anything on a system; this means they pose a high risk to any system that would allow all extensions to be installed by default. Allows you to specify which extensions the users can NOT install. Extensions already installed will be removed if blocklisted. A blocklist value of '*' means all extensions are blocklisted unless they are explicitly listed in the allowlist. If this policy is left not set the user can install any extension in Google Chrome.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\ExtensionInstallBlacklist</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\ExtensionInstallBlocklist</Key>
       <LegacyId>V-44727</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
-   2. If ExtensionInstallBlacklist is not displayed under the Policy Name column or it is not set to * under the Policy Value column, then this is a finding.
+      <RawString>Universal method: 
+ 1. In the omnibox (address bar) type chrome://policy 
+ 2. If ExtensionInstallBlocklist is not displayed under the Policy Name column or it is not set to * under the Policy Value column, then this is a finding.
 
 Windows method:
-   1. Start regedit
-   2. Navigate to HKLM\Software\Policies\Google\Chrome\ExtensionInstallBlacklist
-   3. If the a registry value name of 1 does not exist under that key or its value is not set to *, then this is a finding.
-</RawString>
+ 1. Start regedit
+ 2. Navigate to HKLM\Software\Policies\Google\Chrome\ExtensionInstallBlocklist
+ 3. If the a registry value name of 1 does not exist under that key or its value is not set to *, then this is a finding. </RawString>
       <ValueData>*</ValueData>
       <ValueName>1</ValueName>
       <ValueType>MultiString</ValueType>
     </Rule>
     <Rule id="V-221563" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;The whitelist should only contain organizationally approved extensions. This is to prevent a user from accidently whitelisitng a malicious extension. This policy allows you to specify which extensions are not subject to the blacklist. A blacklist value of ‘*’ means all extensions are blacklisted and users can only install extensions listed in the whitelist. By default, no extensions are whitelisted. If all extensions have been blacklisted by policy, then the whitelist policy can be used to allow specific extensions to be installed. Administrators should determine which extensions should be allowed to be installed by their users. If no extensions are whitelisted, then no extensions can be installed when combined with blacklisting all extensions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;The allowlist should only contain organizationally approved extensions. This is to prevent a user from accidently allowlisitng a malicious extension. This policy allows you to specify which extensions are not subject to the blacklist. A blacklist value of ‘*’ means all extensions are blacklisted and users can only install extensions listed in the allowlist. By default, no extensions are allowlisted. If all extensions have been blacklisted by policy, then the allowlist policy can be used to allow specific extensions to be installed. Administrators should determine which extensions should be allowed to be installed by their users. If no extensions are allowlisted, then no extensions can be installed when combined with blacklisting all extensions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\ExtensionInstallWhitelist</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\ExtensionInstallAllowlist</Key>
       <LegacyId>V-44729</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -eq '1 | oiigbmnaadbkfbmpbfijlflahbdbdgdf | a list of administrator-approved extension IDs'</OrganizationValueTestString>
+      <OrganizationValueTestString>{0} -eq 'oiigbmnaadbkfbmpbfijlflahbdbdgdf | a list of administrator-approved extension IDs'</OrganizationValueTestString>
       <RawString>Universal method: 
- 1. In the omnibox (address bar) type chrome://policy 
- 2. If ExtensionInstallWhitelist is not displayed under the Policy Name column or it is not set to oiigbmnaadbkfbmpbfijlflahbdbdgdf or a list of administrator approved extension IDs, then this is a finding.
+1. In the omnibox (address bar) type chrome://policy 
+2. If ExtensionInstallAllowlist is not displayed under the Policy Name column or it is not set to oiigbmnaadbkfbmpbfijlflahbdbdgdf or a list of administrator approved extension IDs, then this is a finding.
 
 Windows method:
- 1. Start regedit
- 2. Navigate to the key HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist
- 3. If the ExtensionInstallWhitelist key is not set to 1 or oiigbmnaadbkfbmpbfijlflahbdbdgdf or a list of administrator-approved extension IDs, then this is a finding.</RawString>
+1. Start regedit
+2. Navigate to the key HKLM\Software\Policies\Google\Chrome\ExtensionInstallAllowlist
+3. If the ExtensionInstallAllowlist key is not set to 1 and oiigbmnaadbkfbmpbfijlflahbdbdgdf or a list of administrator-approved extension IDs, then this is a finding.</RawString>
       <ValueData />
-      <ValueName>ExtensionInstallWhitelist</ValueName>
-      <ValueType>MultiString</ValueType>
+      <ValueName>1</ValueName>
+      <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-221564" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Specifies the name of the default search provider that is to be used, if left empty or not set, the host name specified by the search URL will be used. This policy is only considered if the 'DefaultSearchProviderEnabled' policy is enabled. When doing internet searches it is important to use an encrypted connection via https.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -164,7 +163,7 @@ Windows method:
 
 Universal method: 
  1. In the omnibox (address bar) type chrome://policy 
- 2. If DefaultSearchProviderSearchURL is not displayed under the Policy Name column or it is not set to an organization-approved encrypted search string (ex. https://www.google.com/#q={searchTerms} or https://www.bing.com/search?q={searchTerms} ) under the Policy Value column, this is a finding.
+ 2. If DefaultSearchProviderSearchURL is not displayed under the Policy Name column or it is not set to an organization-approved encrypted search string (ex. https://www.google.com/?q={searchTerms} or https://www.bing.com/search?q={searchTerms} ) under the Policy Value column, this is a finding.
 
 Windows method:
  1. Start regedit
@@ -217,28 +216,6 @@ Windows method:
 </RawString>
       <ValueData>0</ValueData>
       <ValueName>PasswordManagerEnabled</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-221568" severity="high" conversionstatus="pass" title="SRG-APP-000276" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Running outdated plugins could lead to system compromise through the use of known exploits. Having plugins that updated to the most current version ensures the smallest attack surfuce possible. If you enable this setting, outdated plugins are used as normal plugins. If you disable this setting, outdated plugins will not be used and users will not be asked for permission to run them. If this setting is not set, users will be asked for permission to run outdated plugins.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
-      <LegacyId>V-44745</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
-   2. If AllowOutdatedPlugins is not displayed under the Policy Name column or it is not set to false under the Policy Name column, then this is a finding.
-
-Windows method:
-   1. Start regedit
-   2. Navigate to HKLM\Software\Policies\Google\Chrome
-   3. If the AllowOutdatedPlugins value name does not exist or its value data is not set to 0, then this is a finding.
-</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>AllowOutdatedPlugins</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221570" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="RegistryPolicyFile">
@@ -464,7 +441,13 @@ Windows method:
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221580" severity="medium" conversionstatus="pass" title="SRG-APP-000206" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Enables Google Chrome's Safe Browsing feature and prevents users from changing this setting. If you enable this setting, Safe Browsing is always active. If you disable this setting, Safe Browsing is never active. If you enable or disable this setting, users cannot change or override this setting in Google Chrome. If this policy is left not set, this will be enabled but the user will be able to change it. Safe browsing uses a signature database to test sites when they are be loaded to ensure they don't contain any known malware.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Allows you to control whether Google Chrome's Safe Browsing feature is enabled and the mode it operates in.
+
+If this policy is set to 'NoProtection' (value 0), Safe Browsing is never active.
+
+If this policy is set to 'StandardProtection' (value 1, which is the default), Safe Browsing is always active in the standard mode.
+
+If this policy is set to 'EnhancedProtection' (value 2), Safe Browsing is always active in the enhanced mode, which provides better security, but requires sharing more browsing information with Google.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -472,17 +455,16 @@ Windows method:
       <LegacyId>V-44791</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
-   2. If SafeBrowsingEnabled is not displayed under the Policy Name column or it is not set to true under the Policy Value column, then this is a finding.
+      <RawString>Universal method: 
+ 1. In the omnibox (address bar) type chrome://policy 
+ 2. If SafeBrowsingProtectionLevel is not displayed under the Policy Name column or it is not set to 1 or 2 under the Policy Value column, then this is a finding.
 
 Windows method:
-   1. Start regedit
-   2. Navigate to HKLM\Software\Policies\Google\Chrome\
-   3. If the SafeBrowsingEnabled value name does not exist or its value data is not set to 1, then this is a finding.
-</RawString>
+ 1. Start regedit
+ 2. Navigate to HKLM\Software\Policies\Google\Chrome\
+ 3. If the SafeBrowsingProtectionLevel value name does not exist or its value data is not set to 1 or 2, then this is a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>SafeBrowsingEnabled</ValueName>
+      <ValueName>SafeBrowsingProtectionLevel</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221581" severity="medium" conversionstatus="pass" title="SRG-APP-000231" dscresource="RegistryPolicyFile">
@@ -530,49 +512,6 @@ Windows method:
       <ValueData>3</ValueData>
       <ValueName>DefaultPluginsSetting</ValueName>
       <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-221583" severity="medium" conversionstatus="pass" title="SRG-APP-000080" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Policy allows you to set a list of URL patterns that specify sites which are allowed to set session only cookies. If this policy is left not set the global default value will be used for all sites either from the 'DefaultCookiesSetting' policy if it is set, or the user's personal configuration otherwise. If the 'RestoreOnStartup' policy is set to restore URLs from previous sessions this policy will not be respected and cookies will be stored permanently for those sites.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Absent</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\CookiesSessionOnlyForUrls</Key>
-      <LegacyId>V-44799</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Universal method: 
-1. In the omnibox (address bar) type chrome://policy
-2. If the policy ”CookiesSessionOnlyForUrls” exists, and has any defined values, this is a finding.
-Windows method:
- 1. Start regedit
- 2. Navigate to HKLM\Software\Policies\Google\Chrome\CookiesSessionOnlyForUrls
- 3. If this key exists and has any defined values, this is a finding.</RawString>
-      <ValueData />
-      <ValueName />
-      <ValueType />
-    </Rule>
-    <Rule id="V-221585" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy allows you to set a list of URL patterns that specify sites which are allowed to run the Flash plugin. If this policy is left not set, the global default value will be used for all sites either from the "DefaultPluginsSetting" policy if it is set, or the user’s personal configuration otherwise. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
-      <LegacyId>V-52795</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -eq 'a list of administrator approved URLs'</OrganizationValueTestString>
-      <RawString>Universal method:
- 1. In the omnibox (address bar) type chrome://policy
- 2. If PluginsAllowedForUrls is not displayed under the Policy Name column or it is not set to a list of administrator approved URLs under the Policy Value column, then this is a finding.
-
-Windows method:
- 1. Start regedit
- 2. Navigate to HKLM\Software\Policies\Google\Chrome\
- 3. If the PluginsAllowedForUrls key does not exist and it does not contain a list of administrator approved URLs then this is a finding.
-
-Suggested: the set or subset of [*.]mil and [*.]gov</RawString>
-      <ValueData />
-      <ValueName>PluginsAllowedForUrls</ValueName>
-      <ValueType>MultiString</ValueType>
     </Rule>
     <Rule id="V-221586" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Disabling this function will prevent users from deleting their browsing history, which could be used to identify malicious websites and files that could later be used for anti-virus and Intrusion Detection System (IDS) signatures. Furthermore, preventing users from deleting browsing history could be used to identify abusive web surfing on government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -642,30 +581,6 @@ Windows method:
       <ValueData />
       <ValueName>DownloadRestrictions</ValueName>
       <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-221589" severity="medium" conversionstatus="pass" title="SRG-APP-000416" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;If this policy is not configured then Google Chrome uses a default minimum version, which is TLS 1.0. Otherwise, it may be set to one of the following values: "tls1", "tls1.1" or "tls1.2".
-When set, Google Chrome will not use SSL/TLS versions less than the specified version. An unrecognized value will be ignored.
-"tls1" = TLS 1.0
-"tls1.1" = TLS 1.1
-"tls1.2" = TLS 1.2&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
-      <LegacyId>V-81583</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Universal method: 
- 1. In the omnibox (address bar) type chrome://policy
- 2. If "SSLVersionMin" is not displayed under the "Policy Name" column or it is not set to "tls1.1", this is a finding.
-Windows method:
- 1. Start regedit
- 2. Navigate to HKLM\Software\Policies\Google\Chrome\
- 3. If the "SSLVersionMin" value name does not exist or its value data is not set to "tls1.1", this is a finding.</RawString>
-      <ValueData>tls1.1</ValueData>
-      <ValueName>SSLVersionMin</ValueName>
-      <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-221590" severity="medium" conversionstatus="pass" title="SRG-APP-000206" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Enables Google Chrome's Safe Browsing Extended Reporting and prevents users from changing this setting. Extended Reporting sends some system information and page content to Google servers to help detect dangerous apps and sites.
@@ -986,6 +901,56 @@ Windows method:
 </RawString>
       <ValueData>0</ValueData>
       <ValueName>ImportAutofillFormData</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-234701" severity="high" conversionstatus="pass" title="SRG-APP-000416" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;If this policy is not configured then Google Chrome uses a default minimum version, which is TLS 1.0. Otherwise, it may be set to one of the following values: "tls1", "tls1.1" or "tls1.2".
+When set, Google Chrome will not use SSL/TLS versions less than the specified version. An unrecognized value will be ignored.
+"tls1" = TLS 1.0
+"tls1.1" = TLS 1.1
+"tls1.2" = TLS 1.2&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
+      <LegacyId>V-81583</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Universal method: 
+ 1. In the omnibox (address bar) type chrome://policy
+ 2. If "SSLVersionMin" is not displayed under the "Policy Name" column or it is not set to "tls1.2", this is a finding.
+Windows method:
+ 1. Start regedit
+ 2. Navigate to HKLM\Software\Policies\Google\Chrome\
+ 3. If the "SSLVersionMin" value name does not exist or its value data is not set to "tls1.2", this is a finding.</RawString>
+      <ValueData>tls1.2</ValueData>
+      <ValueName>SSLVersionMin</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-241787" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Setting the policy to 3 lets websites ask for access to nearby Bluetooth devices. Setting the policy to 2 denies access to nearby Bluetooth devices.
+
+Leaving the policy unset lets sites ask for access, but users can change this setting.
+
+2 = Do not allow any site to request access to Bluetooth devices via the Web Bluetooth API
+3 = Allow sites to ask the user to grant access to a nearby Bluetooth device&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
+      <LegacyId>V-26961</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Universal method: 
+1. In the omnibox (address bar) type chrome://policy 
+2. If DefaultWebBluetoothGuardSetting is not displayed under the Policy Name column or it is not set to 2 under the Policy Value column, then this is a finding.
+
+Windows method:
+ 1. Start regedit
+ 2. Navigate to HKLM\Software\Policies\Google\Chrome\
+ 3. If the DefaultWebBluetoothGuardSetting value name does not exist or its value data is not set to 2, then this is a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>DefaultWebBluetoothGuardSetting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
