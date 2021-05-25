@@ -215,21 +215,30 @@ try
         }
 
         #region Add Custom Tests Here
-        foreach ($testRule in $testRuleList)
-        {
-            $content = New-Object -TypeName PSObject @{
-                'OptionName'   = Get-OptionName -CheckContent $testRule.CheckContent
-                'OptionValue'  = Set-OptionValue -CheckContent $testRule.CheckContent
-            }
+        Describe 'Method Function Tests' {
+            foreach ($testRule in $testRuleList)
+            {
 
-            Describe 'SQLServerConfigurationDSC' {
-            # TODO move this to the CommonTests
-                It "Should return checkcontent and optionvalue" {
-                    $content.OptionName | Should -Be $testRule.OptionName
-                    $content.OptionValue | Should -Be $testrule.OptionValue
+                $optionName = Get-OptionName -CheckContent $testRule.CheckContent
+
+                Context "SqlServerConfiguration Get-OptionName"{
+                    It "Should return $($optionName)" {
+                        $optionName | Should Be $testrule.OptionName
+                    }
                 }
+
+                $optionValue = Set-OptionValue -CheckContent $testRule.CheckContent
+
+                Context "SqlServerConfiguration Set-OptionValue" {
+                    It "Should return $($optionValue)" {
+                        $optionValue | Should Be $testrule.OptionValue
+                    }
+                }
+
+                . $PSScriptRoot\Convert.CommonTests.ps1
+
             }
-        }   
+        } 
     }
 }
 
