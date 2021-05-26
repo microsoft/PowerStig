@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 2  [#896](https://github.com/microsoft/PowerStig/issues/896)
 * Update PowerSTIG to remove old rule Ids in Hard Coded Framework: [#864](https://github.com/microsoft/PowerStig/issues/864)
 * Fixed: PowerShell v7 Fix: AccessControlDsc/RegistryAccessEntry & NTFSAccessEntry "AccessControlList" should be an Array
 * Update PowerSTIG to Parse/Apply Google Chrome Ver 2, Rel 2: [#876](https://github.com/microsoft/PowerStig/issues/876)
