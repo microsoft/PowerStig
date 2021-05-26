@@ -1080,8 +1080,8 @@ Verify a REG_DWORD value of "0" for "Enabled" for each protocol.
 
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>DisabledByDefault</ValueName>
+      <ValueData>1</ValueData>
+      <ValueName>Enabled</ValueName>
       <ValueType>DWORD</ValueType>
     </Rule>
     <Rule id="V-214436.c" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
