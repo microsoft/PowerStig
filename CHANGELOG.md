@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 DC/MS Ver 2, Rel 2: [#897](https://github.com/microsoft/PowerStig/issues/897)
 * Update PowerSTIG to remove old rule Ids in Hard Coded Framework: [#864](https://github.com/microsoft/PowerStig/issues/864)
 * Fixed: PowerShell v7 Fix: AccessControlDsc/RegistryAccessEntry & NTFSAccessEntry "AccessControlList" should be an Array
 * Update PowerSTIG to Parse/Apply Google Chrome Ver 2, Rel 2: [#876](https://github.com/microsoft/PowerStig/issues/876)
