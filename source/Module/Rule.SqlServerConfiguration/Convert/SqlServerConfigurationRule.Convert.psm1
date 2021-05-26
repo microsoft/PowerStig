@@ -24,7 +24,7 @@ foreach ($supportFile in $supportFileList)
         class for parsing and validation.
 #>
 
-class SqLServerConfigurationRuleConvert : SqLServerConfigurationRule
+class SqlServerConfigurationRuleConvert : SqlServerConfigurationRule
 {
     <#
         .SYNOPSIS

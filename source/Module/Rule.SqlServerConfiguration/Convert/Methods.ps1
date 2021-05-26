@@ -64,7 +64,7 @@ function Set-OptionValue
         {
             $optionValue = "1"
         }
-        Default
+        default
         {
             $optionValue = "0"
         }
