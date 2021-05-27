@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="3/26/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="5/18/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful Denial of Service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions per user is helpful in reducing these risks. 
@@ -697,70 +697,6 @@ If any components that are installed but are not required are not disabled, this
 
 If any required components are not installed, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-213957" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).  
- 
-It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives.  
- 
-Applications must adhere to the principles of least functionality by providing only essential capabilities. 
- 
-SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system. 
- 
-The xp_cmdshell extended stored procedure allows execution of host executables outside the controls of database access permissions. This access may be exploited by malicious users who have compromised the integrity of the SQL Server database process to control the host operating system to perpetrate additional malicious activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79177</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>The xp_cmdshell extended stored procedure allows execution of host executables outside the controls of database access permissions. This access may be exploited by malicious users who have compromised the integrity of the SQL Server database process to control the host operating system to perpetrate additional malicious activity. 
- 
-To determine if xp_cmdshell is enabled, execute the following commands:  
- 
-EXEC SP_CONFIGURE 'show advanced options', '1';  
-RECONFIGURE WITH OVERRIDE;  
-EXEC SP_CONFIGURE 'xp_cmdshell';  
- 
-If the value of "config_value" is "0", this is not a finding.  
- 
-Review the system documentation to determine whether the use of "xp_cmdshell" is required and approved. If it is not approved, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-213958" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).  
- 
-It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives.  
- 
-Applications must adhere to the principles of least functionality by providing only essential capabilities. 
- 
-SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system. 
- 
-The common language runtime (CLR) component of the .NET Framework for Microsoft Windows in SQL Server allows you to write stored procedures, triggers, user-defined types, user-defined functions, user-defined aggregates, and streaming table-valued functions, using any .NET Framework language, including Microsoft Visual Basic .NET and Microsoft Visual C#.  CLR packing assemblies can access resources protected by .NET Code Access Security when it runs managed code.  Specifying UNSAFE enables the code in the assembly complete freedom to perform operations in the SQL Server process space that can potentially compromise the robustness of SQL Server. UNSAFE assemblies can also potentially subvert the security system of either SQL Server or the common language runtime.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79179</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>The common language runtime (CLR) component of the .NET Framework for Microsoft Windows in SQL Server allows you to write stored procedures, triggers, user-defined types, user-defined functions, user-defined aggregates, and streaming table-valued functions, using any .NET Framework language, including Microsoft Visual Basic .NET and Microsoft Visual C#. CLR packing assemblies can access resources protected by .NET Code Access Security when it runs managed code. Specifying UNSAFE enables the code in the assembly complete freedom to perform operations in the SQL Server process space that can potentially compromise the robustness of SQL Server. UNSAFE assemblies can also potentially subvert the security system of either SQL Server or the common language runtime.  
-
-To determine if CLR is enabled, execute the following commands:  
-
-EXEC SP_CONFIGURE 'show advanced options', '1';  
-RECONFIGURE WITH OVERRIDE;  
-EXEC SP_CONFIGURE 'clr enabled';  
-
-If the value of "config_value" is "0", this is not a finding.  
-
-If the value of "config_value" is "1", review the system documentation to determine whether the use of CLR code is approved. If it is not approved, this is a finding. 
-
-If CLR code is approved, check the database for UNSAFE assembly permission using the following script: 
-
-USE [master]
-SELECT *  
-FROM sys.assemblies 
-WHERE permission_set_desc != 'SAFE' 
-AND is_user_defined = 1;
-
-If any records are returned, review the system documentation to determine if the use of UNSAFE assemblies is approved. If it is not approved, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-213959" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).  
  
@@ -928,30 +864,6 @@ ORDER BY [Database Name] ;
 For each user database where encryption is required, verify that encryption is in effect. If not, this is a finding. 
  
 Verify that there are physical security measures, operating system access control lists and organizational controls appropriate to the sensitivity level of the data in the database(s). If not, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-213975" severity="medium" conversionstatus="pass" title="SRG-APP-000243-DB-000373" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The purpose of this control is to prevent information, including encrypted representations of information, produced by the actions of a prior user/role (or the actions of a process acting on behalf of a prior user/role) from being available to any current user/role (or current process) that obtains access to a shared system resource (e.g., registers, main memory, secondary storage) after the resource has been released back to the information system. Control of information in shared resources is also referred to as object reuse.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79211</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review system documentation to determine if Common Criteria Compliance is not required due to potential impact on system performance. 
-
-SQL Server Residual Information Protection (RIP) requires a memory allocation to be overwritten with a known pattern of bits before memory is reallocated to a new resource. Meeting the RIP standard can contribute to improved security; however, overwriting the memory allocation can slow performance. After the common criteria compliance enabled option is enabled, the overwriting occurs. 
-
-Review the Instance configuration: 
-
-
-SELECT value_in_use
-FROM sys.configurations
-WHERE name = 'common criteria compliance enabled'
-
-If "value_in_use" is set to "1" this is not a finding.
-If "value_in_use" is set to "0" this is a finding. 
-
-NOTE: Enabling this feature may impact performance on highly active SQL Server instances. If an exception justifying setting SQL Server Residual Information Protection (RIP) to disabled (value_in_use set to "0") has been documented and approved, then this may be downgraded to a CAT III finding.
-</RawString>
     </Rule>
     <Rule id="V-213976" severity="medium" conversionstatus="pass" title="SRG-APP-000243-DB-000373" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The purpose of this control is to prevent information, including encrypted representations of information, produced by the actions of a prior user/role (or the actions of a process acting on behalf of a prior user/role) from being available to any current user/role (or current process) that obtains access to a shared system resource (e.g., registers, main memory, secondary storage) after the resource has been released back to the information system. Control of information in shared resources is also referred to as object reuse.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1902,215 +1814,6 @@ ORDER BY dpr.NAME;
 
 If any records are returned, review the system documentation to determine whether the accessing of the registry via  extended stored procedures are required and authorized. If it is not authorized, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-214034" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
-
-It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
-
-Applications must adhere to the principles of least functionality by providing only essential capabilities.
-
-The most significant potential for attacking an instance is through the use of features that expose an external interface or ad hoc execution capability. FILESTREAM integrates the SQL Server Database Engine with an NTFS file system by storing varbinary(max) binary large object (BLOB) data as files on the file system. Transact-SQL statements can insert, update, query, search, and back up FILESTREAM data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79329</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the system documentation to see if FileStream is in use.  If in use authorized, this is not a finding.   
-
-If FileStream is not documented as being authorized, execute the following query.
-EXEC sp_configure 'filestream access level'
-
-If "run_value" is greater than "0", this is a finding.
-
-
-
-This rule checks that Filestream SQL specific option is disabled.
-
-SELECT CASE 
-        WHEN EXISTS (SELECT * 
-                     FROM sys.configurations 
-                     WHERE Name = 'filestream access level' 
-                            AND Cast(value AS INT) = 0) THEN 'No' 
-        ELSE 'Yes'
-      END AS TSQLFileStreamAccess;
-
-If the above query returns "Yes" in the "FileStreamEnabled" field, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214035" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
-
-It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
-
-Applications must adhere to the principles of least functionality by providing only essential capabilities.
-
-SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system.
-
-SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
-
-The Ole Automation Procedures option controls whether OLE Automation objects can be instantiated within Transact-SQL batches. These are extended stored procedures that allow SQL Server users to execute functions external to SQL Server in the security context of SQL Server.
-
-The Ole Automation Procedures extended stored procedure allows execution of host executables outside the controls of database access permissions. This access may be exploited by malicious users who have compromised the integrity of the SQL Server database process to control the host operating system to perpetrate additional malicious activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79333</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>To determine if "Ole Automation Procedures" option is enabled, execute the following query: 
-
-EXEC SP_CONFIGURE 'show advanced options', '1'; 
-RECONFIGURE WITH OVERRIDE; 
-EXEC SP_CONFIGURE 'Ole Automation Procedures'; 
-
-If the value of "config_value" is "0", this is not a finding. 
-
-If the value of "config_value" is "1", review the system documentation to determine whether the use of "Ole Automation Procedures" is required and authorized. If it is not authorized, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214036" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000092" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
-
-The user options option specifies global defaults for all users. A list of default query processing options is established for the duration of a user's work session. The user options option allows you to change the default values of the SET options (if the server's default settings are not appropriate).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79335</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>To determine if "User Options" option is enabled, execute the following query:
-
-EXEC SP_CONFIGURE 'show advanced options', '1'; 
-RECONFIGURE WITH OVERRIDE; 
-EXEC SP_CONFIGURE 'user options'; 
-
-If the value of "config_value" is "0", this is not a finding. 
-
-If the value of "config_value" is "1", review the system documentation to determine whether the use of "user options" is required and authorized. If it is not authorized, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214037" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
-
-It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
-
-Applications must adhere to the principles of least functionality by providing only essential capabilities.
-
-SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system.
-
-SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
-
-The Remote Access option controls the execution of local stored procedures on remote servers or remote stored procedures on local server.  'Remote access' functionality can be abused to launch a Denial-of-Service (DoS) attack on remote servers by off-loading query processing to a target.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79337</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>To determine if "Remote Access" option is enabled, execute the following query: 
-
-EXEC SP_CONFIGURE 'show advanced options', '1'; 
-RECONFIGURE WITH OVERRIDE; 
-EXEC SP_CONFIGURE 'remote access'; 
-
-If the value of "config_value" is "0", this is not a finding. 
-
-If the value of "config_value" is "1", review the system documentation to determine whether the use of "Remote Access" is required (linked servers) and authorized. If it is not authorized, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214038" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
-
-It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
-
-Applications must adhere to the principles of least functionality by providing only essential capabilities.
-
-SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system.
-
-SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
-
-The Hadoop Connectivity feature allows multiple types of external data sources to be created and used across all sessions on the server.  An exploit to the SQL Server instance could result in a compromise of the host system and external SQL Server resources.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79341</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>To determine if "Hadoop Connectivity" option is enabled, execute the following query: 
-
-EXEC SP_CONFIGURE 'show advanced options', '1'; 
-RECONFIGURE WITH OVERRIDE; 
-EXEC SP_CONFIGURE 'hadoop connectivity'; 
-
-If the value of "config_value" is "0", this is not a finding.
-
-If the value of "config_value" is "1", review the system documentation to determine whether the use of "Hadoop Connectivity" option is required and authorized. If it is not authorized, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214039" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
-
-It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
-
-Applications must adhere to the principles of least functionality by providing only essential capabilities.
-
-SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system.
-
-SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
-
-The Allow Polybase Export feature allows an export of data to an external data source such as Hadoop File System or Azure Data Lake. An exploit to the SQL Server instance could result in a compromise of the host system and external SQL Server resources.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79343</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>To determine if "Allow Polybase Export" option is enabled, execute the following query: 
-
-EXEC SP_CONFIGURE 'show advanced options', '1'; 
-RECONFIGURE WITH OVERRIDE; 
-EXEC SP_CONFIGURE 'allow polybase export'; 
-
-If the value of "config_value" is "0", this is not a finding.
-
-If the value of "config_value" is "1", review the system documentation to determine whether the use of "Allow Polybase Export" is required and authorized. If it is not authorized, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214040" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
-
-It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
-
-Applications must adhere to the principles of least functionality by providing only essential capabilities.
-
-SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system.
-
-SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
-
-The Remote Data Archive feature allows an export of local SQL Server data to an Azure SQL Database. An exploit to the SQL Server instance could result in a compromise of the host system and external SQL Server resources.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79345</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>To determine if "Remote Data Archive" option is enabled, execute the following query: 
-
-EXEC SP_CONFIGURE 'show advanced options', '1'; 
-RECONFIGURE WITH OVERRIDE; 
-EXEC SP_CONFIGURE 'remote data archive'; 
-
-If the value of "config_value" is "0", this is not a finding. 
-
-If the value of "config_value" is "1", review the system documentation to determine whether the use of "Remote Data Archive" is required and authorized. If it is not authorized, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214041" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000092" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
-
-The External Scripts Enabled feature allows scripts external to SQL such as files located in an R library to be executed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79347</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>To determine if "External Scripts Enabled" option is enabled, execute the following query: 
-
-EXEC SP_CONFIGURE 'show advanced options', '1'; 
-RECONFIGURE WITH OVERRIDE; 
-EXEC SP_CONFIGURE 'external scripts enabled'; 
-
-If the value of "config_value" is "0", this is not a finding. 
-
-If the value of "config_value" is "1", review the system documentation to determine whether the use of "External Scripts Enabled" is required and authorized. If it is not authorized, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-214042" severity="low" conversionstatus="pass" title="SRG-APP-000516-DB-000363" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The SQL Server Browser simplifies the administration of SQL Server, particularly when multiple instances of SQL Server coexist on the same computer. It avoids the need to hard-assign port numbers to the instances and to set and maintain those port numbers in client systems. It enables administrators and authorized users to discover database management system instances, and the databases they support, over the network. SQL Server uses the SQL Server Browser service to enumerate instances of the Database Engine installed on the computer. This enables client applications to browse for a server, and helps clients distinguish between multiple instances of the Database Engine on the same computer.
 
@@ -2131,25 +1834,6 @@ Either navigate, via the Windows Start Menu and/or Control Panel, to "Administra
 Scroll to "SQL Server Browser". 
 
 If its Startup Type is not shown as "Disabled", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214043" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000092" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
-
-Enabling the replication XPs opens a significant attack surface area that can be used by an attacker to gather information about the system and potentially abuse the privileges of SQL Server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79351</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>To determine if the "Replication Xps" option is enabled, execute the following query: 
-
-EXEC SP_CONFIGURE 'show advanced options', '1'; 
-RECONFIGURE WITH OVERRIDE; 
-EXEC SP_CONFIGURE 'replication xps'; 
-
-If the value of "config_value" is "0", this is not a finding. 
-
-If the value of "config_value" is "1", review the system documentation to determine whether the use of "Replication Xps" is required and authorized. If it is not authorized, this is a finding.</RawString>
     </Rule>
     <Rule id="V-214044" severity="low" conversionstatus="pass" title="SRG-APP-000516-DB-000363" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The SQL Server Browser simplifies the administration of SQL Server, particularly when multiple instances of SQL Server coexist on the same computer. It avoids the need to hard-assign port numbers to the instances and to set and maintain those port numbers in client systems. It enables administrators and authorized users to discover database management system instances, and the databases they support, over the network. SQL Server uses the SQL Server Browser service to enumerate instances of the Database Engine installed on the computer. This enables client applications to browse for a server, and helps clients distinguish between multiple instances of the Database Engine on the same computer.
@@ -4611,4 +4295,358 @@ If the login account name "SA" or "sa" appears in the query output, this is a fi
       <VariableValue />
     </Rule>
   </SqlScriptQueryRule>
+  <SqlServerConfigurationRule dscresourcemodule="SqlServerDsc">
+    <Rule id="V-213957" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).  
+ 
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives.  
+ 
+Applications must adhere to the principles of least functionality by providing only essential capabilities. 
+ 
+SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system. 
+ 
+The xp_cmdshell extended stored procedure allows execution of host executables outside the controls of database access permissions. This access may be exploited by malicious users who have compromised the integrity of the SQL Server database process to control the host operating system to perpetrate additional malicious activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79177</LegacyId>
+      <OptionName>xp_cmdshell</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>The xp_cmdshell extended stored procedure allows execution of host executables outside the controls of database access permissions. This access may be exploited by malicious users who have compromised the integrity of the SQL Server database process to control the host operating system to perpetrate additional malicious activity. 
+ 
+To determine if xp_cmdshell is enabled, execute the following commands:  
+ 
+EXEC SP_CONFIGURE 'show advanced options', '1';  
+RECONFIGURE WITH OVERRIDE;  
+EXEC SP_CONFIGURE 'xp_cmdshell';  
+ 
+If the value of "config_value" is "0", this is not a finding.  
+ 
+Review the system documentation to determine whether the use of "xp_cmdshell" is required and approved. If it is not approved, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-213958" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).  
+ 
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives.  
+ 
+Applications must adhere to the principles of least functionality by providing only essential capabilities. 
+ 
+SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system. 
+ 
+The common language runtime (CLR) component of the .NET Framework for Microsoft Windows in SQL Server allows you to write stored procedures, triggers, user-defined types, user-defined functions, user-defined aggregates, and streaming table-valued functions, using any .NET Framework language, including Microsoft Visual Basic .NET and Microsoft Visual C#.  CLR packing assemblies can access resources protected by .NET Code Access Security when it runs managed code.  Specifying UNSAFE enables the code in the assembly complete freedom to perform operations in the SQL Server process space that can potentially compromise the robustness of SQL Server. UNSAFE assemblies can also potentially subvert the security system of either SQL Server or the common language runtime.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79179</LegacyId>
+      <OptionName>clr enabled</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>The common language runtime (CLR) component of the .NET Framework for Microsoft Windows in SQL Server allows you to write stored procedures, triggers, user-defined types, user-defined functions, user-defined aggregates, and streaming table-valued functions, using any .NET Framework language, including Microsoft Visual Basic .NET and Microsoft Visual C#. CLR packing assemblies can access resources protected by .NET Code Access Security when it runs managed code. Specifying UNSAFE enables the code in the assembly complete freedom to perform operations in the SQL Server process space that can potentially compromise the robustness of SQL Server. UNSAFE assemblies can also potentially subvert the security system of either SQL Server or the common language runtime.  
+
+To determine if CLR is enabled, execute the following commands:  
+
+EXEC SP_CONFIGURE 'show advanced options', '1';  
+RECONFIGURE WITH OVERRIDE;  
+EXEC SP_CONFIGURE 'clr enabled';  
+
+If the value of "config_value" is "0", this is not a finding.  
+
+If the value of "config_value" is "1", review the system documentation to determine whether the use of CLR code is approved. If it is not approved, this is a finding. 
+
+If CLR code is approved, check the database for UNSAFE assembly permission using the following script: 
+
+USE [master]
+SELECT *  
+FROM sys.assemblies 
+WHERE permission_set_desc != 'SAFE' 
+AND is_user_defined = 1;
+
+If any records are returned, review the system documentation to determine if the use of UNSAFE assemblies is approved. If it is not approved, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-213975" severity="medium" conversionstatus="pass" title="SRG-APP-000243-DB-000373" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;The purpose of this control is to prevent information, including encrypted representations of information, produced by the actions of a prior user/role (or the actions of a process acting on behalf of a prior user/role) from being available to any current user/role (or current process) that obtains access to a shared system resource (e.g., registers, main memory, secondary storage) after the resource has been released back to the information system. Control of information in shared resources is also referred to as object reuse.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79211</LegacyId>
+      <OptionName>common criteria compliance enabled</OptionName>
+      <OptionValue>1</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review system documentation to determine if Common Criteria Compliance is not required due to potential impact on system performance. 
+
+SQL Server Residual Information Protection (RIP) requires a memory allocation to be overwritten with a known pattern of bits before memory is reallocated to a new resource. Meeting the RIP standard can contribute to improved security; however, overwriting the memory allocation can slow performance. After the common criteria compliance enabled option is enabled, the overwriting occurs. 
+
+Review the Instance configuration: 
+
+
+SELECT value_in_use
+FROM sys.configurations
+WHERE name = 'common criteria compliance enabled'
+
+If "value_in_use" is set to "1" this is not a finding.
+If "value_in_use" is set to "0" this is a finding. 
+
+NOTE: Enabling this feature may impact performance on highly active SQL Server instances. If an exception justifying setting SQL Server Residual Information Protection (RIP) to disabled (value_in_use set to "0") has been documented and approved, then this may be downgraded to a CAT III finding.
+</RawString>
+    </Rule>
+    <Rule id="V-214034" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
+
+Applications must adhere to the principles of least functionality by providing only essential capabilities.
+
+The most significant potential for attacking an instance is through the use of features that expose an external interface or ad hoc execution capability. FILESTREAM integrates the SQL Server Database Engine with an NTFS file system by storing varbinary(max) binary large object (BLOB) data as files on the file system. Transact-SQL statements can insert, update, query, search, and back up FILESTREAM data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79329</LegacyId>
+      <OptionName>filestream access level</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the system documentation to see if FileStream is in use.  If in use authorized, this is not a finding.   
+
+If FileStream is not documented as being authorized, execute the following query.
+EXEC sp_configure 'filestream access level'
+
+If "run_value" is greater than "0", this is a finding.
+
+
+
+This rule checks that Filestream SQL specific option is disabled.
+
+SELECT CASE 
+        WHEN EXISTS (SELECT * 
+                     FROM sys.configurations 
+                     WHERE Name = 'filestream access level' 
+                            AND Cast(value AS INT) = 0) THEN 'No' 
+        ELSE 'Yes'
+      END AS TSQLFileStreamAccess;
+
+If the above query returns "Yes" in the "FileStreamEnabled" field, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-214035" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
+
+Applications must adhere to the principles of least functionality by providing only essential capabilities.
+
+SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system.
+
+SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
+
+The Ole Automation Procedures option controls whether OLE Automation objects can be instantiated within Transact-SQL batches. These are extended stored procedures that allow SQL Server users to execute functions external to SQL Server in the security context of SQL Server.
+
+The Ole Automation Procedures extended stored procedure allows execution of host executables outside the controls of database access permissions. This access may be exploited by malicious users who have compromised the integrity of the SQL Server database process to control the host operating system to perpetrate additional malicious activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79333</LegacyId>
+      <OptionName>Ole Automation Procedures</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>To determine if "Ole Automation Procedures" option is enabled, execute the following query: 
+
+EXEC SP_CONFIGURE 'show advanced options', '1'; 
+RECONFIGURE WITH OVERRIDE; 
+EXEC SP_CONFIGURE 'Ole Automation Procedures'; 
+
+If the value of "config_value" is "0", this is not a finding. 
+
+If the value of "config_value" is "1", review the system documentation to determine whether the use of "Ole Automation Procedures" is required and authorized. If it is not authorized, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-214036" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000092" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
+
+The user options option specifies global defaults for all users. A list of default query processing options is established for the duration of a user's work session. The user options option allows you to change the default values of the SET options (if the server's default settings are not appropriate).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79335</LegacyId>
+      <OptionName>user options</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>To determine if "User Options" option is enabled, execute the following query:
+
+EXEC SP_CONFIGURE 'show advanced options', '1'; 
+RECONFIGURE WITH OVERRIDE; 
+EXEC SP_CONFIGURE 'user options'; 
+
+If the value of "config_value" is "0", this is not a finding. 
+
+If the value of "config_value" is "1", review the system documentation to determine whether the use of "user options" is required and authorized. If it is not authorized, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-214037" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
+
+Applications must adhere to the principles of least functionality by providing only essential capabilities.
+
+SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system.
+
+SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
+
+The Remote Access option controls the execution of local stored procedures on remote servers or remote stored procedures on local server.  'Remote access' functionality can be abused to launch a Denial-of-Service (DoS) attack on remote servers by off-loading query processing to a target.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79337</LegacyId>
+      <OptionName>remote access</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>To determine if "Remote Access" option is enabled, execute the following query: 
+
+EXEC SP_CONFIGURE 'show advanced options', '1'; 
+RECONFIGURE WITH OVERRIDE; 
+EXEC SP_CONFIGURE 'remote access'; 
+
+If the value of "config_value" is "0", this is not a finding. 
+
+If the value of "config_value" is "1", review the system documentation to determine whether the use of "Remote Access" is required (linked servers) and authorized. If it is not authorized, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-214038" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
+
+Applications must adhere to the principles of least functionality by providing only essential capabilities.
+
+SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system.
+
+SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
+
+The Hadoop Connectivity feature allows multiple types of external data sources to be created and used across all sessions on the server.  An exploit to the SQL Server instance could result in a compromise of the host system and external SQL Server resources.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79341</LegacyId>
+      <OptionName>hadoop connectivity</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>To determine if "Hadoop Connectivity" option is enabled, execute the following query: 
+
+EXEC SP_CONFIGURE 'show advanced options', '1'; 
+RECONFIGURE WITH OVERRIDE; 
+EXEC SP_CONFIGURE 'hadoop connectivity'; 
+
+If the value of "config_value" is "0", this is not a finding.
+
+If the value of "config_value" is "1", review the system documentation to determine whether the use of "Hadoop Connectivity" option is required and authorized. If it is not authorized, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-214039" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
+
+Applications must adhere to the principles of least functionality by providing only essential capabilities.
+
+SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system.
+
+SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
+
+The Allow Polybase Export feature allows an export of data to an external data source such as Hadoop File System or Azure Data Lake. An exploit to the SQL Server instance could result in a compromise of the host system and external SQL Server resources.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79343</LegacyId>
+      <OptionName>allow polybase export</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>To determine if "Allow Polybase Export" option is enabled, execute the following query: 
+
+EXEC SP_CONFIGURE 'show advanced options', '1'; 
+RECONFIGURE WITH OVERRIDE; 
+EXEC SP_CONFIGURE 'allow polybase export'; 
+
+If the value of "config_value" is "0", this is not a finding.
+
+If the value of "config_value" is "1", review the system documentation to determine whether the use of "Allow Polybase Export" is required and authorized. If it is not authorized, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-214040" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. 
+
+Applications must adhere to the principles of least functionality by providing only essential capabilities.
+
+SQL Server may spawn additional external processes to execute procedures that are defined in the SQL Server but stored in external host files (external procedures). The spawned process used to execute the external procedure may operate within a different OS security context than SQL Server and provide unauthorized access to the host system.
+
+SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
+
+The Remote Data Archive feature allows an export of local SQL Server data to an Azure SQL Database. An exploit to the SQL Server instance could result in a compromise of the host system and external SQL Server resources.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79345</LegacyId>
+      <OptionName>remote data archive</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>To determine if "Remote Data Archive" option is enabled, execute the following query: 
+
+EXEC SP_CONFIGURE 'show advanced options', '1'; 
+RECONFIGURE WITH OVERRIDE; 
+EXEC SP_CONFIGURE 'remote data archive'; 
+
+If the value of "config_value" is "0", this is not a finding. 
+
+If the value of "config_value" is "1", review the system documentation to determine whether the use of "Remote Data Archive" is required and authorized. If it is not authorized, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-214041" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000092" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
+
+The External Scripts Enabled feature allows scripts external to SQL such as files located in an R library to be executed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79347</LegacyId>
+      <OptionName>external scripts enabled</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>To determine if "External Scripts Enabled" option is enabled, execute the following query: 
+
+EXEC SP_CONFIGURE 'show advanced options', '1'; 
+RECONFIGURE WITH OVERRIDE; 
+EXEC SP_CONFIGURE 'external scripts enabled'; 
+
+If the value of "config_value" is "0", this is not a finding. 
+
+If the value of "config_value" is "1", review the system documentation to determine whether the use of "External Scripts Enabled" is required and authorized. If it is not authorized, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-214043" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000092" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;SQL Server is capable of providing a wide range of features and services. Some of the features and services, provided by default, may not be necessary, and enabling them could adversely affect the security of the system.
+
+Enabling the replication XPs opens a significant attack surface area that can be used by an attacker to gather information about the system and potentially abuse the privileges of SQL Server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79351</LegacyId>
+      <OptionName>Replication XPs</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>To determine if the "Replication Xps" option is enabled, execute the following query: 
+
+EXEC SP_CONFIGURE 'show advanced options', '1'; 
+RECONFIGURE WITH OVERRIDE; 
+EXEC SP_CONFIGURE 'replication xps'; 
+
+If the value of "config_value" is "0", this is not a finding. 
+
+If the value of "config_value" is "1", review the system documentation to determine whether the use of "Replication Xps" is required and authorized. If it is not authorized, this is a finding.</RawString>
+    </Rule>
+  </SqlServerConfigurationRule>
 </DISASTIG>
