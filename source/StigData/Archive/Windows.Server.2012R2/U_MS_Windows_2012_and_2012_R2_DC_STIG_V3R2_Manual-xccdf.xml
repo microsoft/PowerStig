@@ -575,7 +575,7 @@ Right click the OU and select Properties.
 Select the Security tab.
 
 If the permissions on the Domain Controllers OU do not restrict changes to System, Domain Admins, Enterprise Admins and Administrators, this is a finding.
-	
+
 The default permissions listed below satisfy this requirement.
 
 Domains supporting Microsoft Exchange will have additional Exchange related permissions on the Domain Controllers OU.  These may include some change related permissions and are not a finding.

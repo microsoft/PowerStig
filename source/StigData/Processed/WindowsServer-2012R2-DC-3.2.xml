@@ -2857,9 +2857,55 @@ The SYSVOL directory contains public files (to the domain) such as policies and 
 
 Open a command prompt.
 Run "net share".
-Make note of the directory location of the SYSVOL share.  
+Make note of the directory location of the SYSVOL share.
 
 By default this will be \Windows\SYSVOL\sysvol.  For this requirement, permissions will be verified at the first SYSVOL directory level.
+
+Open File Explorer.
+Navigate to \Windows\SYSVOL (or the directory noted previously if different).
+Right click the directory and select properties.
+Select the Security tab.
+Click Advanced.
+
+If any standard user accounts or groups have greater than read &amp; execute permissions, this is a finding. The default permissions noted below meet this requirement.
+
+Type - Allow
+Principal - Authenticated Users
+Access - Read &amp; execute
+Inherited from - None
+Applies to - This folder, subfolder and files
+
+Type - Allow
+Principal - Server Operators
+Access - Read &amp; execute
+Inherited from - None
+Applies to - This folder, subfolder and files
+
+Type - Allow
+Principal - Administrators
+Access - Special
+Inherited from - None
+Applies to - This folder only
+(Access - Special - Basic Permissions: all selected except Full control)
+
+Type - Allow
+Principal - CREATOR OWNER
+Access - Full control
+Inherited from - None
+Applies to - Subfolders and files only
+
+Type - Allow
+Principal - Administrators
+Access - Full control
+Inherited from - None
+Applies to - Subfolders and files only
+
+Type - Allow
+Principal - SYSTEM
+Access - Full control
+Inherited from - None
+Applies to - This folder, subfolders and files
+
 
 Alternately, use Icacls.exe to view the permissions of the SYSVOL directory.
 Open a command prompt.
@@ -2877,7 +2923,7 @@ NT AUTHORITY\SYSTEM:(OI)(CI)(IO)(F)
 BUILTIN\Administrators:(M,WDAC,WO)
 CREATOR OWNER:(OI)(CI)(IO)(F)
 
-(RX) - Read &amp; execute 
+(RX) - Read &amp; execute
 Run "icacls /help" to view definitions of other permission codes.
 
 If the above results are not displayed, this is a finding.</RawString>
