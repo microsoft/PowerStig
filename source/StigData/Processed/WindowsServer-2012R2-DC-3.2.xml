@@ -2801,15 +2801,48 @@ If any User accounts do not have "Smart card is required for interactive logon" 
     <Rule id="V-226071" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
         <Entry>
-          <Type>
-          </Type>
-          <Principal>(RX)</Principal>
+          <Type>Allow</Type>
+          <Principal>Authenticated Users</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
-      </AccessControlEntry>
+        <Entry>
+          <Type>Allow</Type>
+          <Principal>Server Operators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This folder subfolders and files</Inheritance>
+          <Rights>ReadAndExecute</Rights>
+        </Entry>
+        <Entry>
+          <Type>Allow</Type>
+          <Principal>Administrators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This folder only</Inheritance>
+          <Rights>AppendData,ChangePermissions,CreateDirectories,CreateFiles,Delete,DeleteSubdirectoriesAndFiles,ExecuteFile,ListDirectory,Modify,Read,ReadAndExecute,ReadAttributes,ReadData,ReadExtendedAttributes,ReadPermissions,Synchronize,TakeOwnership,Traverse,Write,WriteAttributes,WriteData,WriteExtendedAttributes</Rights>
+        </Entry>
+        <Entry>
+          <Type>Allow</Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subfolders and files only</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>Allow</Type>
+          <Principal>Administrators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subfolders and files only</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>Allow</Type>
+          <Principal>SYSTEM</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This folder subfolders and files</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;Improper access permissions for directory data files could allow unauthorized users to read, modify, or delete directory data.
 
 The SYSVOL directory contains public files (to the domain) such as policies and logon scripts.  Data in shared subdirectories are replicated to all domain controllers in a domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
