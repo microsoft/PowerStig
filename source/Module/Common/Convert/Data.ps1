@@ -106,5 +106,7 @@ data exclusionRuleList
         V-235722 = 'Edge: Rule requires an unknown list and count of whitelisted domains, unable to automate rule'
         V-235753 = 'Edge: Rule requires an unknown list and count of whitelisted domains, unable to automate rule'
         V-235755 = 'Edge: Rule requires an unknown list and count of whitelisted extensions, unable to automate rule'
+        V-218827 = 'IIS 10 Rule , unable to automate rule'
+        V-241789 = 'IIS 10 Rule , unable to automate rule'
 '@
 }
