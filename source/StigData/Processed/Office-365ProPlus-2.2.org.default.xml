@@ -7,31 +7,31 @@
 -->
 <OrganizationalSettings fullversion="2.2">
   <!-- Ensure 'V-223282' is 2|3|4-->
-  <OrganizationalSetting id="V-223282" ValueData="" />
+ <OrganizationalSetting id="V-223282" ValueData="2" />
   <!-- Ensure 'V-223333' is 1|DoesNotExist-->
-  <OrganizationalSetting id="V-223333" ValueData="" />
+  <OrganizationalSetting id="V-223333" ValueData="1" />
   <!-- Ensure 'V-223335' is 1|DoesNotExist-->
-  <OrganizationalSetting id="V-223335" ValueData="" />
+  <OrganizationalSetting id="V-223335" ValueData="1" />
   <!-- Ensure 'V-223340' is 0|DoesNotExist-->
-  <OrganizationalSetting id="V-223340" ValueData="" />
+  <OrganizationalSetting id="V-223340" ValueData="0" />
   <!-- Ensure 'V-223341' is 0|DoesNotExist-->
-  <OrganizationalSetting id="V-223341" ValueData="" />
+  <OrganizationalSetting id="V-223341" ValueData="0" />
   <!-- Ensure 'V-223342.a' is 1|DoesNotExist-->
-  <OrganizationalSetting id="V-223342.a" ValueData="" />
+  <OrganizationalSetting id="V-223342.a" ValueData="1" />
   <!-- Ensure 'V-223346' is 16(decimal)|10(hex)-->
-  <OrganizationalSetting id="V-223346" ValueData="" />
+  <OrganizationalSetting id="V-223346" ValueData="16" />
   <!-- Ensure 'V-223356' is 168 or greator-->
-  <OrganizationalSetting id="V-223356" ValueData="" />
+  <OrganizationalSetting id="V-223356" ValueData="168" />
   <!-- Ensure 'V-223378' is 0|DoesNotExist-->
-  <OrganizationalSetting id="V-223378" ValueData="" />
+  <OrganizationalSetting id="V-223378" ValueData="0" />
   <!-- Ensure 'V-223381' is 0|DoesNotExist-->
-  <OrganizationalSetting id="V-223381" ValueData="" />
+  <OrganizationalSetting id="V-223381" ValueData="0" />
   <!-- Ensure 'V-223388.a' is 1|DoesNotExist-->
-  <OrganizationalSetting id="V-223388.a" ValueData="" />
+  <OrganizationalSetting id="V-223388.a" ValueData="1" />
   <!-- Ensure 'V-223401' is 0|DoesNotExist-->
-  <OrganizationalSetting id="V-223401" ValueData="" />
+  <OrganizationalSetting id="V-223401" ValueData="0" />
   <!-- Ensure 'V-223402' is 0|DoesNotExist-->
-  <OrganizationalSetting id="V-223402" ValueData="" />
+  <OrganizationalSetting id="V-223402" ValueData="0" />
   <!-- Ensure 'V-223403' is 0|DoesNotExist-->
-  <OrganizationalSetting id="V-223403" ValueData="" />
+  <OrganizationalSetting id="V-223403" ValueData="0" />
 </OrganizationalSettings>
