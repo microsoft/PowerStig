@@ -3434,7 +3434,7 @@ Viewing in File Explorer:
 For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 Default Permissions:
-\Program Files 
+\Program Files
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
