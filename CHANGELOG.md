@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 2  [#896](https://github.com/microsoft/PowerStig/issues/896)
 * Update PowerSTIG to successfully parse/apply SQL Server 2016 Instance STIG- Ver 2, Rel 3 [#905](https://github.com/microsoft/PowerStig/issues/905)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 R2 MS STIG - Ver 3, Rel 2 [#900](https://github.com/microsoft/PowerStig/issues/900)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 DC/MS Ver 2, Rel 2: [#897](https://github.com/microsoft/PowerStig/issues/897)
