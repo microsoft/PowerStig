@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 SITE/SERVER STIG V2R2: [#882](https://github.com/microsoft/PowerStig/issues/882)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 2  [#896](https://github.com/microsoft/PowerStig/issues/896)
 * Update PowerSTIG to successfully parse/apply SQL Server 2016 Instance STIG- Ver 2, Rel 3 [#905](https://github.com/microsoft/PowerStig/issues/905)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 R2 MS STIG - Ver 3, Rel 2 [#900](https://github.com/microsoft/PowerStig/issues/900)
@@ -14,7 +15,6 @@
 * Update PowerSTIG to remove old rule Ids in Hard Coded Framework: [#864](https://github.com/microsoft/PowerStig/issues/864)
 * Fixed: PowerShell v7 Fix: AccessControlDsc/RegistryAccessEntry & NTFSAccessEntry "AccessControlList" should be an Array
 * Fix Validation test fail because TAB's are found in Description Field [#878](https://github.com/microsoft/PowerStig/issues/878)
-
 
 ## [4.8.0] - 2021-03-01
 
