@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 2: [#887](https://github.com/microsoft/PowerStig/issues/887)
+* Update PowerSTIG to Parse/Apply Google Chrome Ver 2, Rel 2: [#876](https://github.com/microsoft/PowerStig/issues/876)
 * Update PowerSTIG to successfully parse/apply Windows 10 STIG V2 R2: [#891](https://github.com/microsoft/PowerStig/issues/891)
 * Update PowerSTIG to Parse/Apply Google Chrome Ver 2, Rel 2: [#876](https://github.com/microsoft/PowerStig/issues/876)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 R2 DC STIG- Ver 3, Rel 2 [#902](https://github.com/microsoft/PowerStig/issues/902)
