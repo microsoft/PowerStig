@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Red Hat Enterprise Linux 7 STIG - Ver 2, Rel 2: [#888](https://github.com/microsoft/PowerStig/issues/888)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 8.5 SITE/SERVER STIG - V2R2: [#884](https://github.com/microsoft/PowerStig/issues/884)
 * Update PowerSTIG to Parse/Apply Google Chrome Ver 2, Rel 2: [#876](https://github.com/microsoft/PowerStig/issues/876)
 * Added SQL Server 2016 vulnerability ID's: [#872](https://github.com/microsoft/PowerStig/issues/872)
