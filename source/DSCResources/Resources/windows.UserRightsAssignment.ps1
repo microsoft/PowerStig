@@ -23,12 +23,9 @@ $forestGroupTranslation = @{
     'Schema Admins'             = '{0}\Schema Admins'
 }
 
-if ($DomainName -and $ForestName)
-{
-    # This requires a local forest and/or domain name to be injected to ensure a valid account name.
-    $DomainName = PowerStig\Get-DomainName -DomainName $DomainName -Format NetbiosName
-    $ForestName = PowerStig\Get-DomainName -ForestName $ForestName -Format NetbiosName
-}
+# This requires a local forest and/or domain name to be injected to ensure a valid account name.
+$DomainName = PowerStig\Get-DomainName -DomainName $DomainName -Format NetbiosName
+$ForestName = PowerStig\Get-DomainName -ForestName $ForestName -Format NetbiosName
 
 foreach ($rule in $rules)
 {
