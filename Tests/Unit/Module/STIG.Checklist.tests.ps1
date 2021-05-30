@@ -10,7 +10,7 @@ Describe 'New-StigCheckList' {
         (
             [parameter()]
             [string]
-            $NodeName = "localhost"
+            $NodeName = 'localhost'
         )
 
         Import-DscResource -ModuleName PowerStig
@@ -19,15 +19,17 @@ Describe 'New-StigCheckList' {
         {
             WindowsServer BaseLine
             {
-                OsVersion   = "2019"
-                OsRole      = "MS"
-                SkipRuleType = "AccountPolicyRule","AuditPolicyRule","AuditSettingRule","DocumentRule","ManualRule","PermissionRule","SecurityOptionRule","UserRightRule","WindowsFeatureRule","ProcessMitigationRule","RegistryRule"
+                OsVersion    = '2019'
+                OsRole       = 'MS'
+                DomainName   = 'Local'
+                ForestName   = 'Local'
+                SkipRuleType = 'AccountPolicyRule','AuditPolicyRule','AuditSettingRule','DocumentRule','ManualRule','PermissionRule','SecurityOptionRule','UserRightRule','WindowsFeatureRule','ProcessMitigationRule','RegistryRule'
             }
         }
     }
     Example -OutputPath $TestDrive
 
-    $mofTest = '{0}{1}' -f $TestDrive.fullname,"\localhost.mof"
+    $mofTest = '{0}{1}' -f $TestDrive.fullname,'\localhost.mof'
 
     # Test parameter validity -OutputPath
     It 'Should throw if an invalid path is provided' {
@@ -60,8 +62,8 @@ Describe 'New-StigCheckList' {
 
         {
             $outputPath = Join-Path $Testdrive -ChildPath Checklist.ckl
-            $xccdfPath = ((Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object -Property Name -Match "Server_2019_MS")[1]).FullName
-            New-StigChecklist -ReferenceConfiguration $mofTest -XccdfPath $xccdfPath -OutputPath $outputPath -Verifier "PowerSTIG User 12/17/2020"
+            $xccdfPath = ((Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object -Property Name -Match 'Server_2019_MS')[1]).FullName
+            New-StigChecklist -ReferenceConfiguration $mofTest -XccdfPath $xccdfPath -OutputPath $outputPath -Verifier 'PowerSTIG User 12/17/2020'
         } | Should -Not -Throw
     }
 }
