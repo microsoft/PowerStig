@@ -32,7 +32,7 @@ The web server must only allow hosted application file types to be served to a u
       <OrganizationValueTestString />
       <RawString>For Request Filtering, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Request Filtering in IIS 8.5. Request Filtering at the site level take precedence over Request Filtering at the server level.
 
-Follow the procedures below for each site hosted on the IIS 8.5 web server:
+Follow the procedures below for each site hosted on the IIS 8.5 web server: 
 
 Open the IIS 8.5 Manager.
 Click the site name to review.
@@ -290,7 +290,7 @@ Select the "Fields" button.
 
 Under "Standard Fields", verify "User Agent", "User Name" and "Referrer" are selected.
 
-Under "Custom Fields", verify the following fields have been configured:
+Under "Custom Fields", verify the following fields have been configured: 
 
 Request Header &gt;&gt; Authorization
 
@@ -301,7 +301,7 @@ If any of the above fields are not selected, this is a finding.</RawString>
   </IisLoggingRule>
   <ManualRule dscresourcemodule="None">
     <Rule id="V-214450" severity="medium" conversionstatus="pass" title="SRG-APP-000098-WSR-000060" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Web server logging capability is critical for accurate forensic analysis. Without sufficient and accurate information, a correct replay of the events cannot be determined.
+      <Description>&lt;VulnDiscussion&gt;Web server logging capability is critical for accurate forensic analysis. Without sufficient and accurate information, a correct replay of the events cannot be determined. 
 
 Ascertaining the correct source, e.g. source IP, of the events is important during forensic analysis. Correctly determining the source of events will add information to the overall reconstruction of the logable event. By determining the source of the event correctly, analysis of the enterprise can be undertaken to determine if events tied to the source occurred in other areas within the enterprise.
 
@@ -494,7 +494,7 @@ If any Application Pools are being used for more than one website, this is a fin
       <LegacyId>V-76885</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Determine whether scripts are used on the web server for the target website. Common file extensions include, but are not limited to: .cgi, .pl, .vbs, .class, .c, .php, and .asp.
+      <RawString>Determine whether scripts are used on the web server for the target website. Common file extensions include, but are not limited to: .cgi, .pl, .vbs, .class, .c, .php, and .asp. 
 
 All interactive programs must be placed in unique designated folders based on CGI or ASP script type. For modular and/or third-party applications, it is permissible to have script files in multiple folders.
 
@@ -570,29 +570,29 @@ If files with these extensions are found, this is a finding.</RawString>
       <OrganizationValueTestString />
       <RawString>Note: This requirement is only applicable for private DoD websites.
 
-If a banner is required, the following banner page must be in place:
+If a banner is required, the following banner page must be in place: 
 
-“You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+“You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. 
 
-By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+By using this IS (which includes any device attached to this IS), you consent to the following conditions: 
 
--The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. 
 
-- At any time, the USG may inspect and seize data stored on this IS.
+- At any time, the USG may inspect and seize data stored on this IS. 
 
-- Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+- Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. 
 
-- This IS includes security measures (e.g., authentication and access controls) to protect USG interests—not for your personal benefit or privacy.
+- This IS includes security measures (e.g., authentication and access controls) to protect USG interests—not for your personal benefit or privacy. 
 
-- Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.”
+- Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.” 
 
-OR
+OR 
 
-If your system cannot meet the character limits to store this amount of text in the banner, the following is another option for the warning banner:
+If your system cannot meet the character limits to store this amount of text in the banner, the following is another option for the warning banner: 
 
-"I've read &amp; consent to terms in IS user agreem't."
+"I've read &amp; consent to terms in IS user agreem't." 
 
-NOTE: While DoDI 8500.01 does not contain a copy of the banner to be used, it does point to the RMF Knowledge Service for a copy of the required text. It is also noted that the banner is to be displayed only once when the individual enters the site and not for each page.
+NOTE: While DoDI 8500.01 does not contain a copy of the banner to be used, it does point to the RMF Knowledge Service for a copy of the required text. It is also noted that the banner is to be displayed only once when the individual enters the site and not for each page. 
 
 If the access-controlled website does not display this banner page before entry, this is a finding.</RawString>
     </Rule>
@@ -786,9 +786,9 @@ If the "Clients Certificate Required" check box is not selected, this is a findi
     <Rule id="V-214480" severity="medium" conversionstatus="pass" title="SRG-APP-000429-WSR-000113" dscresource="xSslSettings">
       <Description>&lt;VulnDiscussion&gt;When data is written to digital media, such as hard drives, mobile computers, external/removable hard drives, personal digital assistants, flash/thumb drives, etc., there is risk of data loss and data compromise. User identities and passwords stored on the hard drive of the hosting hardware must be encrypted to protect the data from easily being discovered and used by an unauthorized user to access the hosted applications. The cryptographic libraries and functionality used to store and retrieve the user identifiers and passwords must be part of the web server.
 
-Preventing the disclosure of transmitted information requires that the web server take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS).
+Preventing the disclosure of transmitted information requires that the web server take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS). 
 
-Transmission of data can take place between the web server and a large number of devices/applications external to the web server. Examples are a web client used by a user, a backend database, an audit server, or other web servers in a web cluster.
+Transmission of data can take place between the web server and a large number of devices/applications external to the web server. Examples are a web client used by a user, a backend database, an audit server, or other web servers in a web cluster. 
 
 If data is transmitted unencrypted, the data then becomes vulnerable to disclosure. The disclosure may reveal user identifier/password combinations, website code revealing business logic, or other user personal information.
 
@@ -819,13 +819,13 @@ If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
     <Rule id="V-214483" severity="medium" conversionstatus="pass" title="SRG-APP-000441-WSR-000181" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information can be either unintentionally or maliciously disclosed or modified during preparation for transmission, including, for example, during aggregation, at protocol transformation points, and during packing/unpacking. These unauthorized disclosures or modifications compromise the confidentiality or integrity of the information.
 
-An example of this would be an SMTP queue. This queue may be added to a web server through an SMTP module to enhance error reporting or to allow developers to add SMTP functionality to their applications.
+An example of this would be an SMTP queue. This queue may be added to a web server through an SMTP module to enhance error reporting or to allow developers to add SMTP functionality to their applications. 
 
 Any modules used by the web server that queue data before transmission must maintain the confidentiality and integrity of the information before the data is transmitted.
 
-Information can be either unintentionally or maliciously disclosed or modified during reception, including, for example, during aggregation, at protocol transformation points, and during packing/unpacking. These unauthorized disclosures or modifications compromise the confidentiality or integrity of the information.
+Information can be either unintentionally or maliciously disclosed or modified during reception, including, for example, during aggregation, at protocol transformation points, and during packing/unpacking. These unauthorized disclosures or modifications compromise the confidentiality or integrity of the information. 
 
-Protecting the confidentiality and integrity of received information requires that application servers take measures to employ approved cryptography in order to protect the information during transmission over the network. This is usually achieved through the use of Transport Layer Security (TLS), SSL VPN, or IPsec tunnel.
+Protecting the confidentiality and integrity of received information requires that application servers take measures to employ approved cryptography in order to protect the information during transmission over the network. This is usually achieved through the use of Transport Layer Security (TLS), SSL VPN, or IPsec tunnel. 
 
 The web server must utilize approved encryption when receiving transmitted data.
 
@@ -1407,9 +1407,9 @@ If the "keepSessionIdSecure" is not set to "True", this is a finding.</RawString
     </Rule>
     <Rule id="V-214482.a" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000154" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/httpCookies</ConfigSection>
-      <Description>&lt;VulnDiscussion&gt;A cookie is used when a web server needs to share data with the client's browser. The data is often used to remember the client when the client returns to the hosted application at a later date. A session cookie is a special type of cookie used to remember the client during the session. The cookie will contain the session identifier (ID) and may contain authentication data to the hosted application. To protect this data from easily being compromised, the cookie must be encrypted.
+      <Description>&lt;VulnDiscussion&gt;A cookie is used when a web server needs to share data with the client's browser. The data is often used to remember the client when the client returns to the hosted application at a later date. A session cookie is a special type of cookie used to remember the client during the session. The cookie will contain the session identifier (ID) and may contain authentication data to the hosted application. To protect this data from easily being compromised, the cookie must be encrypted. 
 
-When a cookie is sent encrypted via SSL/TLS, an attacker must spend a great deal of time and resources to decrypt the cookie. If, along with encryption, the cookie is compressed, the attacker can now use a combination of plaintext injection and inadvertent information leakage through data compression to reduce the time needed to decrypt the cookie. This attack is called Compression Ratio Info-leak Made Easy (CRIME).
+When a cookie is sent encrypted via SSL/TLS, an attacker must spend a great deal of time and resources to decrypt the cookie. If, along with encryption, the cookie is compressed, the attacker can now use a combination of plaintext injection and inadvertent information leakage through data compression to reduce the time needed to decrypt the cookie. This attack is called Compression Ratio Info-leak Made Easy (CRIME). 
 
 Cookies shared between the web server and the client when encrypted should not also be compressed.
 
@@ -1430,9 +1430,9 @@ Verify the "require SSL" is set to "True".</RawString>
     </Rule>
     <Rule id="V-214482.b" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000154" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/sessionState</ConfigSection>
-      <Description>&lt;VulnDiscussion&gt;A cookie is used when a web server needs to share data with the client's browser. The data is often used to remember the client when the client returns to the hosted application at a later date. A session cookie is a special type of cookie used to remember the client during the session. The cookie will contain the session identifier (ID) and may contain authentication data to the hosted application. To protect this data from easily being compromised, the cookie must be encrypted.
+      <Description>&lt;VulnDiscussion&gt;A cookie is used when a web server needs to share data with the client's browser. The data is often used to remember the client when the client returns to the hosted application at a later date. A session cookie is a special type of cookie used to remember the client during the session. The cookie will contain the session identifier (ID) and may contain authentication data to the hosted application. To protect this data from easily being compromised, the cookie must be encrypted. 
 
-When a cookie is sent encrypted via SSL/TLS, an attacker must spend a great deal of time and resources to decrypt the cookie. If, along with encryption, the cookie is compressed, the attacker can now use a combination of plaintext injection and inadvertent information leakage through data compression to reduce the time needed to decrypt the cookie. This attack is called Compression Ratio Info-leak Made Easy (CRIME).
+When a cookie is sent encrypted via SSL/TLS, an attacker must spend a great deal of time and resources to decrypt the cookie. If, along with encryption, the cookie is compressed, the attacker can now use a combination of plaintext injection and inadvertent information leakage through data compression to reduce the time needed to decrypt the cookie. This attack is called Compression Ratio Info-leak Made Easy (CRIME). 
 
 Cookies shared between the web server and the client when encrypted should not also be compressed.
 
