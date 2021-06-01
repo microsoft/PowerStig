@@ -2,10 +2,10 @@
 
 ## [Unreleased]
 
-* Update PowerSTIG to parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 2: [#887](https://github.com/microsoft/PowerStig/issues/887)
-* Update PowerSTIG to Parse/Apply Google Chrome Ver 2, Rel 2: [#876](https://github.com/microsoft/PowerStig/issues/876)
+## [4.9.0] - 2021-06-01
+
+* Update PowerSTIG to successfully parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 2: [#887](https://github.com/microsoft/PowerStig/issues/887)
 * Update PowerSTIG to successfully parse/apply Windows 10 STIG V2 R2: [#891](https://github.com/microsoft/PowerStig/issues/891)
-* Update PowerSTIG to Parse/Apply Google Chrome Ver 2, Rel 2: [#876](https://github.com/microsoft/PowerStig/issues/876)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 R2 DC STIG- Ver 3, Rel 2 [#902](https://github.com/microsoft/PowerStig/issues/902)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 SITE/SERVER STIG V2R2: [#882](https://github.com/microsoft/PowerStig/issues/882)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 2  [#896](https://github.com/microsoft/PowerStig/issues/896)
@@ -15,11 +15,11 @@
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2019 STIG - Ver 2, Rel 2: [#893](https://github.com/microsoft/PowerStig/issues/893)
 * Update PowerSTIG to successfully parse/apply Red Hat Enterprise Linux 7 STIG - Ver 2, Rel 2: [#888](https://github.com/microsoft/PowerStig/issues/888)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 8.5 SITE/SERVER STIG - V2R2: [#884](https://github.com/microsoft/PowerStig/issues/884)
-* Update PowerSTIG to Parse/Apply Google Chrome Ver 2, Rel 2: [#876](https://github.com/microsoft/PowerStig/issues/876)
-* Added SQL Server 2016 vulnerability ID's: [#872](https://github.com/microsoft/PowerStig/issues/872)
+* Update PowerSTIG to successfully parse/apply Google Chrome Ver 2, Rel 2: [#876](https://github.com/microsoft/PowerStig/issues/876)
 * Update PowerSTIG to remove old rule Ids in Hard Coded Framework: [#864](https://github.com/microsoft/PowerStig/issues/864)
+* Update PowerSTIG to successfully add SQL Server 2016 vulnerability IDs: [#872](https://github.com/microsoft/PowerStig/issues/872)
 * Fixed: PowerShell v7 Fix: AccessControlDsc/RegistryAccessEntry & NTFSAccessEntry "AccessControlList" should be an Array
-* Fix Validation test fail because TAB's are found in Description Field [#878](https://github.com/microsoft/PowerStig/issues/878)
+* Fixed: Validation test fail because TABs are found in Description Field [#878](https://github.com/microsoft/PowerStig/issues/878)
 
 ## [4.8.0] - 2021-03-01
 
