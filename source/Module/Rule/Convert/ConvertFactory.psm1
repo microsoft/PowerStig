@@ -38,6 +38,7 @@ using module .\..\..\Rule.nxService\Convert\nxServiceRule.Convert.psm1
 using module .\..\..\Rule.nxFileLine\Convert\nxFileLineRule.Convert.psm1
 using module .\..\..\Rule.nxFile\Convert\nxFileRule.Convert.psm1
 using module .\..\..\Rule.RootCertificate\Convert\RootCertificateRule.Convert.psm1
+using module .\..\..\Rule.SqlServerConfiguration\Convert\SqlServerConfigurationRule.Convert.psm1
 
 # Header
 
@@ -214,6 +215,12 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.Add(
                     [SqlScriptQueryRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[SQLServerConfigurationRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SQLServerConfigurationRuleConvert]::new($Rule).AsRule()
                 )
             }
             {[UserRightRuleConvert]::Match($PSItem)}
