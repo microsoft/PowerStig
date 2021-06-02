@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to parse and apply Ubuntu 18.04 LTS STIG - Ver 2, Rel 3: [#912](https://github.com/microsoft/PowerStig/issues/912)
+
 ## [4.9.0] - 2021-06-01
 
 * Update PowerSTIG to successfully parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 2: [#887](https://github.com/microsoft/PowerStig/issues/887)
