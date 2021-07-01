@@ -224,6 +224,12 @@ class ConvertFactory
                     [SQLServerConfigurationRuleConvert]::new($Rule).AsRule()
                 )
             }
+            {[PowerShellScriptQueryRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [PowerShellScriptQueryRuleConvert]::new($Rule).AsRule()
+                )
+            }
             {[UserRightRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
