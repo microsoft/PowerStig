@@ -6,7 +6,7 @@ using module .\..\Rule\Rule.psm1
 
 <#
     .SYNOPSIS
-        An Account Policy Rule object
+        Allows execution of PowerShell code.
     .DESCRIPTION
         The PowerShellScriptQueryRule class is used to execute PowerShell code.
     .PARAMETER GetScript
@@ -21,6 +21,7 @@ Class PowerShellScriptQueryRule : Rule
     [string] $GetScript
     [string] $TestScript
     [string] $SetScript <#(ExceptionValue)#>
+    [string] $DependsOn
 
     <#
         .SYNOPSIS
