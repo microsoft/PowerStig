@@ -43,7 +43,7 @@ class PowerShellScriptQueryRuleConvert : PowerShellScriptQueryRule
     {
         $this.SetGetScript()
         $this.SetTestScript()
-        $this.SetSetScript
+        $this.SetSetScript()
         $this.SetDscResource()
         $this.SetDependsOn()
     }
@@ -62,41 +62,41 @@ class PowerShellScriptQueryRuleConvert : PowerShellScriptQueryRule
 
     [void] SetGetScript ()
     {
-        $thisOptionName = Get-OptionName -CheckContent $this.RawString
+        $thisGetScript = Get-GetScript -CheckContent $this.RawString
 
-        if (-not $this.SetStatus($thisOptionName))
+        if (-not $this.SetStatus($thisGetScript))
         {
-            $this.set_OptionName($thisOptionName)
+            $this.set_GetScript($thisGetScript)
         }
     }
 
     [void] SetTestScript ()
     {
-        $thisOptionValue = Set-OptionValue -CheckContent $this.rawstring
+        $thisTestScript = Get-TestScript -CheckContent $this.rawstring
 
-        if (-not $this.SetStatus($thisOptionValue))
+        if (-not $this.SetStatus($thisTestScript))
         {
-            $this.set_OptionValue($thisOptionValue)
+            $this.set_TestScript($thisTestScript)
         }
     }
 
     [void] SetSetScript ()
     {
-        $thisOptionValue = Set-OptionValue -CheckContent $this.rawstring
+        $thisSetSetScript = Get-SetScript -CheckContent $this.rawstring
 
-        if (-not $this.SetStatus($thisOptionValue))
+        if (-not $this.SetStatus($thisSetSetScript))
         {
-            $this.set_OptionValue($thisOptionValue)
+            $this.set_SetScript($thisSetSetScript)
         }
     }
 
     [void] SetDependsOn ()
     {
-        $thisOptionValue = Set-OptionValue -CheckContent $this.rawstring
+        $thisDependsOn = Set-DependsOn -CheckContent $this.rawstring
 
-        if (-not $this.SetStatus($thisOptionValue))
+        if (-not $this.SetStatus($thisDependsOn))
         {
-            $this.set_OptionValue($thisOptionValue)
+            $this.set_DependsOn($thisDependsOn)
         }
     }
 
