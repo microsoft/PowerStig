@@ -58,6 +58,32 @@ function Get-GetScript
 
                           return @{Result = $sqlSpnList.Values}'
         }
+        {$PSItem -Match 'If IsClustered returns 1'}
+        {
+            $getScript = '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+                          $PermissionQuery = ''SELECT a.permission_name, b.name
+                                               FROM sys.server_permissions a
+                                               JOIN sys.server_principals b
+                                               ON a.grantee_principal_id = b.principal_id
+                                               WHERE b.name = N''''NT AUTHORITY\SYSTEM''''''
+
+                          $permissionAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($permissionQuery,$rootSqlConnection)
+                          $permissionTable = New-Object System.Data.DataTable ''Permission_Table''
+
+                          $rootSqlConnection.Open()
+                          $permissionAdapter.Fill($permissionTable) | Out-Null
+                          $rootSqlConnection.Close()
+
+                          $permissionsList = @{}
+
+                          foreach ($permission in $permissionTable)
+                          {
+                              $guid = New-Guid
+                              $permissionsList.Add($guid,$permission.Permission_Name)
+                          }
+
+                          return @{Result = $permissionsList.Values}'
+        }
     }
 
     return $getScript
@@ -231,6 +257,77 @@ function Get-TestScript
                             return $True
                             }'
         }
+        {$PSItem -Match 'If IsClustered returns 1'}
+        {
+            $testScript = '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+                           $permissionQuery = ''SELECT a.permission_name, b.name
+                                                FROM sys.server_permissions a
+                                                JOIN sys.server_principals b
+                                                ON a.grantee_principal_id = b.principal_id
+                                                WHERE b.name = N''''NT AUTHORITY\SYSTEM''''''
+            
+                           $permissionAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($permissionQuery,$rootSqlConnection)
+                           $permissionTable = New-Object System.Data.DataTable ''Permission_Table''
+
+                           $haQuery = ''SELECT SERVERPROPERTY(''''IsClustered'''') as IsClustered, SERVERPROPERTY(''''IsHadrEnabled'''') as IsHadrEnabled''
+                           $haAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($haQuery,$rootSqlConnection)
+                           $haTable = New-Object System.Data.DataTable ''HA_Table''
+
+                           $rootSqlConnection.Open()
+                           $permissionAdapter.Fill($permissionTable) | Out-Null
+                           $haAdapter.Fill($haTable) | Out-Null
+                           $rootSqlConnection.Close()
+
+                           # Checks Permissions Based on if there is HA.
+                           if ($haTable.IsHadrEnabled -eq ''1'')
+                           {
+                               $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE'',''ALTER ANY AVAILABILITY GROUP'',''CREATE AVAILABILITY GROUP'',''VIEW SERVER STATE''
+                               $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
+
+                               $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>'' } | Select-Object -Property InputObject
+
+                               if ($permissionsRemove)
+                               {
+                                   return $false
+                               }
+                               else
+                               {
+                                   return $true
+                               }
+                            }
+                            elseif ($haTable.IsClustered -eq ''1'')
+                            {
+                                $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE'',''VIEW SERVER STATE''
+                                $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
+
+                                $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>'' } | Select-Object -Property InputObject
+
+                                if ($permissionsRemove)
+                                {
+                                    return $false
+                                }
+                                else
+                                {
+                                    return $true
+                                }
+                            }
+                            else
+                            {
+                                $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE''
+                                $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
+
+                                $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>'' } | Select-Object -Property InputObject
+
+                                if ($permissionsRemove)
+                                {
+                                    return $false
+                                }
+                                else
+                                {
+                                    return $true
+                                }
+                            }'
+        }
     }
 
     return $testScript
@@ -355,6 +452,102 @@ function Get-SetScript
                 foreach ($spn in $sqlSpn)
                 {
                     setspn -s $spn $sqlServiceEngineAccount | Out-Null
+                }
+            }'
+        }
+        {$PSItem -Match 'If IsClustered returns 1'}
+        {
+            $setScript = '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+            $permissionQuery = ''EXECUTE AS LOGIN = ''''NT AUTHORITY\SYSTEM''''
+                                SELECT * FROM fn_my_permissions(NULL,NULL)''
+            
+            $permissionAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($permissionQuery,$rootSqlConnection)
+            $permissionTable = New-Object System.Data.DataTable ''Permission_Table''
+            
+            $haQuery = ''SELECT SERVERPROPERTY(''''IsClustered'''') as IsClustered, SERVERPROPERTY(''''IsHadrEnabled'''') as IsHadrEnabled''
+            $haAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($haQuery,$rootSqlConnection)
+            $haTable = New-Object System.Data.DataTable ''HA_Table''
+            
+            $rootSqlConnection.Open()
+            $permissionAdapter.Fill($permissionTable) | Out-Null
+            $haAdapter.Fill($haTable) | Out-Null
+            $rootSqlConnection.Close()
+            
+            $smoSqlConnection = New-Object Microsoft.SqlServer.Management.Smo.Server(''SQLConnectionName'')
+            $smoSqlConnection.ConnectionContext.SqlExecutionModes = [Microsoft.SqlServer.Management.Common.SqlExecutionModes]::ExecuteSql
+            
+            # Checks Permissions Based on if there is HA.
+            if ($haTable.IsHadrEnabled -eq ''1'')
+            {
+                $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE'',''ALTER ANY AVAILABILITY GROUP'',''CREATE AVAILABILITY GROUP'',''VIEW SERVER STATE''
+                $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
+            
+                $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>'' } | Select-Object -Property InputObject
+            
+                if ($permissionsRemove)
+                {
+                    foreach($rPermission in $permissionsRemove)
+                    {
+                        # Removes Permissions
+                        $revokePerm = $rPermission.InputObject
+                        $removePermissionsQuery = "REVOKE $revokePerm FROM [NT AUTHORITY\SYSTEM]"
+                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($removePermissionsQuery)
+                    }
+            
+                    foreach($sPermission in $stigPermissions)
+                    {
+                        # Add Permissions
+                        $addPermissionsQuery = "GRANT $sPermission TO [NT AUTHORITY\SYSTEM]"
+                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($addPermissionsQuery)
+                    }
+                }
+            }
+            elseif($haTable.IsClustered -eq ''1'')
+            {
+                $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE'',''VIEW SERVER STATE''
+                $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
+            
+                $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>'' } | Select-Object -Property InputObject
+            
+                if ($permissionsRemove)
+                {
+                    foreach ($rPermission in $permissionsRemove)
+                    {
+                        # Removes Permissions
+                        $revokePerm = $rPermission.InputObject
+                        $removePermissionsQuery = "REVOKE $revokePerm FROM [NT AUTHORITY\SYSTEM]"
+                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($removePermissionsQuery)
+                    }
+            
+                    foreach ($sPermission in $stigPermissions)
+                    {
+                        # Add Permissions
+                        $addPermissionsQuery = "GRANT $sPermission TO [NT AUTHORITY\SYSTEM]"
+                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($addPermissionsQuery)
+                    }
+                }
+            }
+            else{
+                $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE''
+                $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
+                $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>''} | Select-Object -Property InputObject
+            
+                if ($permissionsRemove)
+                {
+                    foreach ($rPermission in $permissionsRemove)
+                    {
+                        # Removes Permissions
+                        $revokePerm = $rPermission.InputObject
+                        $removePermissionsQuery = "REVOKE $RevokePerm FROM [NT AUTHORITY\SYSTEM]"
+                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($removePermissionsQuery)
+                    }
+            
+                    foreach ($sPermission in $stigPermissions)
+                    {
+                        # Add Permissions
+                        $addPermissionsQuery = "GRANT $SPermission TO [NT AUTHORITY\SYSTEM]"
+                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($addPermissionsQuery)
+                    }
                 }
             }'
         }
