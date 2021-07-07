@@ -45,7 +45,6 @@ class PowerShellScriptQueryRuleConvert : PowerShellScriptQueryRule
         $this.SetTestScript()
         $this.SetSetScript()
         $this.SetDscResource()
-        $this.SetDependsOn()
     }
 
     #region Methods
@@ -87,16 +86,6 @@ class PowerShellScriptQueryRuleConvert : PowerShellScriptQueryRule
         if (-not $this.SetStatus($thisSetSetScript))
         {
             $this.set_SetScript($thisSetSetScript)
-        }
-    }
-
-    [void] SetDependsOn ()
-    {
-        $thisDependsOn = Set-DependsOn -CheckContent $this.rawstring
-
-        if (-not $this.SetStatus($thisDependsOn))
-        {
-            $this.set_DependsOn($thisDependsOn)
         }
     }
 
