@@ -107,7 +107,8 @@ class PowerShellScriptQueryRuleConvert : PowerShellScriptQueryRule
             $CheckContent -Match "setspn -L" -or
             $CheckContent -Match "If IsClustered returns 1" -or
             $CheckContent -Match "Named Pipes" -or
-            $CheckContent -Match "WHERE encryption_algorithm != 2" -or
+            $CheckContent -Match "sys.database_mirroring_endpoints" -or
+            $CheckContent -Match "sys.service_broker_endpoints" -or
             $CheckContent -Match "Windows Start Menu and/or Control Panel,"
         )
         {
