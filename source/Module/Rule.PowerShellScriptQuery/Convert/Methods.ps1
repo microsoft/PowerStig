@@ -122,6 +122,14 @@ function Get-GetScript
                               return @{Result = ""}
                           }'
         }
+        {$PSItem -Match 'Windows Start Menu and/or Control Panel,'}
+        {
+            $getScript = '$sqlBrowser = Get-Service -Name SQLBrowser | Select-Object -Property Status, StartType
+                          $sqlBrowserList = @{}
+                          $sqlBrowserList.Add(''Status'',$SQLBrowser.Status)
+                          $sqlBrowserList.Add(''StartType'', $SQLBrowser.StartType)
+                          return @{Result = $sqlBrowserList.Values}'
+        }
     }
 
     return $getScript
@@ -411,6 +419,26 @@ function Get-TestScript
                                return $false
                            }'
         }
+        {$PSItem -Match 'Windows Start Menu and/or Control Panel,'}
+        {
+            $testScript = 'if (''SQLInstanceName'' -eq ''MSSQLSERVER'')
+                           {
+                               $sqlBrowser = Get-Service -Name SQLBrowser | Select-Object -Property Status, StartType
+
+                               if ($sqlBrowser.StartType -eq ''Disabled'')
+                               {
+                                   return $true
+                               }
+                               else
+                               {
+                                   return $false
+                               }
+                            }
+                            else
+                            {
+                                return $true
+                            }'
+        }
     }
 
     return $testScript
@@ -676,6 +704,16 @@ function Get-SetScript
                           $endPointEncQuery = "ALTER ENDPOINT [$endPointName] FOR service_broker (ENCRYPTION = REQUIRED ALGORITHM AES)"
 
                           $smoSqlConnection.ConnectionContext.ExecuteNonQuery($endPointEncQuery)'
+        }
+        {$PSItem -Match 'Windows Start Menu and/or Control Panel,'}
+        {
+            $setScript = 'Set-Service -Name SQLBrowser -StartupType Disabled
+                          $sqlBrowser = Get-Service -Name SQLBrowser | Select-Object -Property Status, StartType
+
+                          if ($sqlBrowser.Status -eq ''Running'')
+                          {
+                              Stop-Service -Name SQLBrowser
+                          }'
         }
     }
 
