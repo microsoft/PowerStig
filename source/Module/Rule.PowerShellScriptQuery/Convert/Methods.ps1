@@ -99,6 +99,29 @@ function Get-GetScript
 
                           return @{Result = $endPointTable.Encryption_Algorithm}'
         }
+        {$PSItem -Match 'sys.service_broker_endpoints'}
+        {
+            $getScript = '# Queries Encryption Type for Service Broker EndPoint
+                          $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+                          $endPointQuery = ''SELECT name, encryption_algorithm
+                                             FROM sys.service_broker_endpoints''
+
+                          $endPointAdapater = New-Object System.Data.SqlClient.SqlDataAdapter($endPointQuery,$rootSqlConnection)
+                          $endPointTable = New-Object System.Data.DataTable ''EndPoint_Table''
+
+                          $rootSqlConnection.Open()
+                          $endPointAdapater.Fill($endPointTable) | Out-Null
+                          $rootSQLConnection.Close()
+
+                          if ($endPointTable.Rows.Count -ge 1)
+                          {
+                              return @{Result = $endPointTable.Encryption_Algorithm}
+                          }
+                          else
+                          {
+                              return @{Result = ""}
+                          }'
+        }
     }
 
     return $getScript
@@ -365,6 +388,29 @@ function Get-TestScript
                                return $false
                            }'
         }
+        {$PSItem -Match 'sys.service_broker_endpoints'}
+        {
+            $testScript = '# Queries Encryption Type for Service Broker EndPoint
+                           $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+                           $endPointQuery = ''SELECT name, encryption_algorithm
+                                              FROM sys.service_broker_endpoints''
+
+                           $endPointAdapater = New-Object System.Data.SqlClient.SqlDataAdapter($endPointQuery,$rootSqlConnection)
+                           $endPointTable = New-Object System.Data.DataTable ''EndPoint_Table''
+
+                           $rootSqlConnection.Open()
+                           $endPointAdapater.Fill($endPointTable) | Out-Null
+                           $rootSqlConnection.Close()
+
+                           if ([string]::IsNullOrEmpty($endPointTable) -or $endPointTable.Encryption_Algorithm -eq 2)
+                           {
+                               return $true
+                           }
+                           else
+                           {
+                               return $false
+                           }'
+        }
     }
 
     return $testScript
@@ -608,6 +654,28 @@ function Get-SetScript
                            $endPointEncQuery = "ALTER ENDPOINT [$endPointName] FOR database_mirroring (ENCRYPTION = REQUIRED ALGORITHM AES)"
 
                            $smoSqlConnection.ConnectionContext.ExecuteNonQuery($endPointEncQuery)'
+        }
+        {$PSItem -Match 'sys.service_broker_endpoints'}
+        {
+            $setScript = '# Sets Service Broker EndPoint Encryption
+                          $rootSQLConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+                          $endPointQuery = ''SELECT name, encryption_algorithm
+                                             FROM sys.service_broker_endpoints''
+
+                          $endPointAdapater = New-Object System.Data.SqlClient.SqlDataAdapter($endPointQuery,$rootSqlConnection)
+                          $endPointTable = New-Object System.Data.DataTable ''EndPoint_Table''
+
+                          $rootSQLConnection.Open()
+                          $endPointAdapater.Fill($endPointTable) | Out-Null
+                          $rootSqlConnection.Close()
+
+                          $endPointName = $endPointTable.Name
+
+                          $smoSqlConnection = New-Object Microsoft.SqlServer.Management.Smo.Server(''SQLConnectionName'')
+                          $smoSqlConnection.ConnectionContext.SqlExecutionModes = [Microsoft.SqlServer.Management.Common.SqlExecutionModes]::ExecuteSql
+                          $endPointEncQuery = "ALTER ENDPOINT [$endPointName] FOR service_broker (ENCRYPTION = REQUIRED ALGORITHM AES)"
+
+                          $smoSqlConnection.ConnectionContext.ExecuteNonQuery($endPointEncQuery)'
         }
     }
 
