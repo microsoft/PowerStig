@@ -23,7 +23,8 @@ function Get-GetScript
     {
         {$PSItem -Match 'Named Pipes'}
         {
-            $getScript = '$smoSqlConfigServices = New-Object Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer(''HostName'')
+            $getScript = '# Fetches Named Pipes Protocol status
+                          $smoSqlConfigServices = New-Object Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer(''HostName'')
 
                           if (''SQLConnectionName'' -notmatch ''\\'')
                           {
@@ -40,7 +41,8 @@ function Get-GetScript
         }
         {$PSItem -Match 'setspn -L'}
         {
-            $getScript = '$smoSqlConnection = New-Object Microsoft.SqlServer.Management.Smo.Server(''SQLConnectionName'')
+            $getScript = '# Fetches the SPN for the SQL Server Engine service account.
+                          $smoSqlConnection = New-Object Microsoft.SqlServer.Management.Smo.Server(''SQLConnectionName'')
                           $sqlServiceEngineAccount = $smoSqlConnection.ServiceAccount
 
                           $accountSPN = setspn -l $sqlServiceEngineAccount
@@ -60,7 +62,8 @@ function Get-GetScript
         }
         {$PSItem -Match 'If IsClustered returns 1'}
         {
-            $getScript = '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+            $getScript = '# Fetches NT AUTHORITY/SYSTEM permissions.
+                          $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
                           $PermissionQuery = ''SELECT a.permission_name, b.name
                                                FROM sys.server_permissions a
                                                JOIN sys.server_principals b
@@ -86,7 +89,8 @@ function Get-GetScript
         }
         {$PSItem -Match 'sys.database_mirroring_endpoints'}
         {
-            $getScript = '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+            $getScript = '# Fetches database mirroring endpoint encryption type.
+                          $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
                           $endPointQuery = ''SELECT name, type_desc, encryption_algorithm_desc,encryption_algorithm
                                              FROM sys.database_mirroring_endpoints''
 
@@ -101,7 +105,7 @@ function Get-GetScript
         }
         {$PSItem -Match 'sys.service_broker_endpoints'}
         {
-            $getScript = '# Queries Encryption Type for Service Broker EndPoint
+            $getScript = '# # Fetches service broker endpoint encryption type.
                           $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
                           $endPointQuery = ''SELECT name, encryption_algorithm
                                              FROM sys.service_broker_endpoints''
@@ -124,7 +128,8 @@ function Get-GetScript
         }
         {$PSItem -Match 'Windows Start Menu and/or Control Panel,'}
         {
-            $getScript = '$sqlBrowser = Get-Service -Name SQLBrowser | Select-Object -Property Status, StartType
+            $getScript = '# Fetches SQL Server Browser status.
+                          $sqlBrowser = Get-Service -Name SQLBrowser | Select-Object -Property Status, StartType
                           $sqlBrowserList = @{}
                           $sqlBrowserList.Add(''Status'',$SQLBrowser.Status)
                           $sqlBrowserList.Add(''StartType'', $SQLBrowser.StartType)
@@ -157,7 +162,8 @@ function Get-TestScript
     {
         {$PSItem -Match 'Named Pipes'}
         {
-            $testScript = '$smoSqlConfigServices = New-Object Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer(''HostName'')
+            $testScript = '# Fetches Named Pipes Protocol status
+                           $smoSqlConfigServices = New-Object Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer(''HostName'')
 
                            if (''SQLConnectionName'' -notmatch ''\\'')
                            {
@@ -305,7 +311,8 @@ function Get-TestScript
         }
         {$PSItem -Match 'If IsClustered returns 1'}
         {
-            $testScript = '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+            $testScript = '# Fetches NT AUTHORITY/SYSTEM permissions.
+                           $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
                            $permissionQuery = ''SELECT a.permission_name, b.name
                                                 FROM sys.server_permissions a
                                                 JOIN sys.server_principals b
@@ -376,7 +383,8 @@ function Get-TestScript
         }
         {$PSItem -Match 'sys.database_mirroring_endpoints'}
         {
-            $testScript = '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+            $testScript = '# Fetches database mirroring endpoint encryption type.
+                           $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
                            $endPointQuery = ''SELECT name, type_desc, encryption_algorithm_desc,encryption_algorithm
                                               FROM sys.database_mirroring_endpoints''
 
@@ -398,7 +406,7 @@ function Get-TestScript
         }
         {$PSItem -Match 'sys.service_broker_endpoints'}
         {
-            $testScript = '# Queries Encryption Type for Service Broker EndPoint
+            $testScript = '# Fetches service broker endpoint encryption type.
                            $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
                            $endPointQuery = ''SELECT name, encryption_algorithm
                                               FROM sys.service_broker_endpoints''
@@ -421,7 +429,8 @@ function Get-TestScript
         }
         {$PSItem -Match 'Windows Start Menu and/or Control Panel,'}
         {
-            $testScript = 'if (''SQLInstanceName'' -eq ''MSSQLSERVER'')
+            $testScript = '# Fetches SQL Server Browser status.
+                           if (''SQLInstanceName'' -eq ''MSSQLSERVER'')
                            {
                                $sqlBrowser = Get-Service -Name SQLBrowser | Select-Object -Property Status, StartType
 
@@ -466,7 +475,8 @@ function Get-SetScript
     {
         {$PSItem -Match 'Named Pipes'}
         {
-            $setScript = '$smoSqlConfigServices = New-Object Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer(''HostName'')
+            $setScript = '# Sets the Named Pipes Protocol to disabled.
+                          $smoSqlConfigServices = New-Object Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer(''HostName'')
 
                           if (''SQLConnectionName'' -notmatch ''\\'')
                           {
@@ -488,183 +498,187 @@ function Get-SetScript
         {$PSItem -Match 'setspn -L'}
         {
             $setScript = '# Fetches SQL Server port in use.
-            $smoSqlConnection = New-Object Microsoft.SqlServer.Management.Smo.Server(''SQLConnectionName'')
-            $smoSqlConfigServices = New-Object Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer(''HostName'')
-            
-            if (''SQLConnectionName'' -notmatch ''\\'')
-            {
-                $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName'' }
-            }
-            else
-            {
-                $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName''.Split("{\}")[1] }
-            }
-            
-            $smoSqlTcpIp = $smoSqlAgent.ServerProtocols | Where-Object { $_.Name -eq ''tcp'' }
-            $smoSqlIPConfigs = $smoSqlTcpIp.IPAddresses | Where-Object { $_.Name -eq ''IPALL'' }
-            $smoSqlPort = $smoSqlIPConfigs.IPAddressProperties | Where-Object { $_.Name -eq ''TcpPort'' } | Select-Object -Property Value
-            
-            if (!$smoSqlPort.Value)
-            {
-                $smoSqlPort = $smoSqlIPConfigs.IPAddressProperties | Where-Object { $_.Name -eq ''TcpDynamicPorts'' } | Select-Object -Property Value
-            }
-            
-            [string]$smoSqlPort = $smoSqlPort
-            
-            # Fetches SQL Server service account in use.
-            $sqlServiceEngineAccount = $smoSqlConnection.ServiceAccount
-            
-            # Fetches FQDN.
-            $fetchDomain = (Get-WmiObject -Class Win32_ComputerSystem).Domain
-            
-            # Determine if Always-On High Availability is enabled
-            $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
-            $haQuery = ''SELECT SERVERPROPERTY(''''IsClustered'''') as IsClustered, SERVERPROPERTY(''''IsHadrEnabled'''') as IsHadrEnabled''
-            $haAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($haQuery, $rootSqlConnection)
-            $haTable = New-Object System.Data.DataTable ''HA_Table''
-            $listenerTable = New-Object System.Data.DataTable ''Listener_Table''
-            
-            $rootSqlConnection.Open()
-            $haAdapter.Fill($haTable) | Out-Null
-            $rootSqlConnection.Close()
-            
-            # Determine if a listener exists
-            if ($haTable.IsHadrEnabled -eq ''1'')
-            {
-                $listenerQuery = ''SELECT dns_name, port FROM sys.availability_group_listeners''
-                $listenerAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($listenerQuery, $rootSqlConnection)
-            
-                $rootSqlConnection.Open()
-                $listenerAdapter.Fill($listenerTable) | Out-Null
-                $rootSqlConnection.Close()
-            
-                if ($listenerTable.Rows.Count -gt 0)
-                {
-                    $listenerSpn = @(''MSSQLSvc/'' + $listenerTable.dns_name + ''.'' + $fetchDomain + '':'' + $listenerTable.port), (''MSSQLSvc/'' + $listenerTable.dns_name + '':'' + $listenerTable.port)
-                    foreach ($spn in $listenerSpn)
-                    {
-                        setspn -s $spn $sqlServiceEngineAccount | Out-Null
-                    }
-                }
-            }
-            
-            # Creates missing SQL Server Engine SPN''s.
-            if ($smoSqlConnection.ServiceName -eq ''MSSQLSERVER'')
-            {
-                $SqlSpn = @("MSSQLSvc/$env:ComputerName" + ''.'' + $fetchDomain + '':'' + $smoSqlPort.Split("{=}")[2]), ("MSSQLSvc/$env:ComputerName" + ''.'' + $fetchDomain)
-                foreach ($spn in $sqlSpn)
-                {
-                    setspn -s $spn $sqlServiceEngineAccount | Out-Null
-                }
-            }
-            else
-            {
-                $sqlSpn = @("MSSQLSvc/$env:ComputerName" + ''.'' + $fetchDomain + '':'' + $smoSqlPort.Split("{=}")[2]), ("MSSQLSvc/$env:ComputerName" + ''.'' + $fetchDomain + '':'' + $smoSqlConnection.ServiceName)
-                foreach ($spn in $sqlSpn)
-                {
-                    setspn -s $spn $sqlServiceEngineAccount | Out-Null
-                }
-            }'
+                          $smoSqlConnection = New-Object Microsoft.SqlServer.Management.Smo.Server(''SQLConnectionName'')
+                          $smoSqlConfigServices = New-Object Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer(''HostName'')
+
+                          if (''SQLConnectionName'' -notmatch ''\\'')
+                          {
+                              $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName'' }
+                          }
+                          else
+                          {
+                              $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName''.Split("{\}")[1] }
+                          }
+
+                          $smoSqlTcpIp = $smoSqlAgent.ServerProtocols | Where-Object { $_.Name -eq ''tcp'' }
+                          $smoSqlIPConfigs = $smoSqlTcpIp.IPAddresses | Where-Object { $_.Name -eq ''IPALL'' }
+                          $smoSqlPort = $smoSqlIPConfigs.IPAddressProperties | Where-Object { $_.Name -eq ''TcpPort'' } | Select-Object -Property Value
+
+                          if (!$smoSqlPort.Value)
+                          {
+                              $smoSqlPort = $smoSqlIPConfigs.IPAddressProperties | Where-Object { $_.Name -eq ''TcpDynamicPorts'' } | Select-Object -Property Value
+                          }
+
+                          [string]$smoSqlPort = $smoSqlPort
+
+                          # Fetches SQL Server service account in use.
+                          $sqlServiceEngineAccount = $smoSqlConnection.ServiceAccount
+
+                          # Fetches FQDN.
+                          $fetchDomain = (Get-WmiObject -Class Win32_ComputerSystem).Domain
+
+                          # Determine if Always-On High Availability is enabled
+                          $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+                          $haQuery = ''SELECT SERVERPROPERTY(''''IsClustered'''') as IsClustered, SERVERPROPERTY(''''IsHadrEnabled'''') as IsHadrEnabled''
+                          $haAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($haQuery, $rootSqlConnection)
+                          $haTable = New-Object System.Data.DataTable ''HA_Table''
+                          $listenerTable = New-Object System.Data.DataTable ''Listener_Table''
+
+                          $rootSqlConnection.Open()
+                          $haAdapter.Fill($haTable) | Out-Null
+                          $rootSqlConnection.Close()
+
+                          # Determine if a listener exists
+                          if ($haTable.IsHadrEnabled -eq ''1'')
+                          {
+                              $listenerQuery = ''SELECT dns_name, port FROM sys.availability_group_listeners''
+                              $listenerAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($listenerQuery, $rootSqlConnection)
+
+                              $rootSqlConnection.Open()
+                              $listenerAdapter.Fill($listenerTable) | Out-Null
+                              $rootSqlConnection.Close()
+
+                              if ($listenerTable.Rows.Count -gt 0)
+                              {
+                                  $listenerSpn = @(''MSSQLSvc/'' + $listenerTable.dns_name + ''.'' + $fetchDomain + '':'' + $listenerTable.port), (''MSSQLSvc/'' + $listenerTable.dns_name + '':'' + $listenerTable.port)
+                                  foreach ($spn in $listenerSpn)
+                                  {
+                                      setspn -s $spn $sqlServiceEngineAccount | Out-Null
+                                  }
+                              }
+                          }
+
+                          # Creates missing SQL Server Engine SPN''s.
+                          if ($smoSqlConnection.ServiceName -eq ''MSSQLSERVER'')
+                          {
+                              $SqlSpn = @("MSSQLSvc/$env:ComputerName" + ''.'' + $fetchDomain + '':'' + $smoSqlPort.Split("{=}")[2]), ("MSSQLSvc/$env:ComputerName" + ''.'' + $fetchDomain)
+                              foreach ($spn in $sqlSpn)
+                              {
+                                  setspn -s $spn $sqlServiceEngineAccount | Out-Null
+                              }
+                          }
+                          else
+                          {
+                              $sqlSpn = @("MSSQLSvc/$env:ComputerName" + ''.'' + $fetchDomain + '':'' + $smoSqlPort.Split("{=}")[2]), ("MSSQLSvc/$env:ComputerName" + ''.'' + $fetchDomain + '':'' + $smoSqlConnection.ServiceName)
+                              foreach ($spn in $sqlSpn)
+                              {
+                                  setspn -s $spn $sqlServiceEngineAccount | Out-Null
+                              }
+                          }'
         }
         {$PSItem -Match 'If IsClustered returns 1'}
         {
-            $setScript = '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
-            $permissionQuery = ''EXECUTE AS LOGIN = ''''NT AUTHORITY\SYSTEM''''
-                                SELECT * FROM fn_my_permissions(NULL,NULL)''
-            
-            $permissionAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($permissionQuery,$rootSqlConnection)
-            $permissionTable = New-Object System.Data.DataTable ''Permission_Table''
-            
-            $haQuery = ''SELECT SERVERPROPERTY(''''IsClustered'''') as IsClustered, SERVERPROPERTY(''''IsHadrEnabled'''') as IsHadrEnabled''
-            $haAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($haQuery,$rootSqlConnection)
-            $haTable = New-Object System.Data.DataTable ''HA_Table''
-            
-            $rootSqlConnection.Open()
-            $permissionAdapter.Fill($permissionTable) | Out-Null
-            $haAdapter.Fill($haTable) | Out-Null
-            $rootSqlConnection.Close()
-            
-            $smoSqlConnection = New-Object Microsoft.SqlServer.Management.Smo.Server(''SQLConnectionName'')
-            $smoSqlConnection.ConnectionContext.SqlExecutionModes = [Microsoft.SqlServer.Management.Common.SqlExecutionModes]::ExecuteSql
-            
-            # Checks Permissions Based on if there is HA.
-            if ($haTable.IsHadrEnabled -eq ''1'')
-            {
-                $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE'',''ALTER ANY AVAILABILITY GROUP'',''CREATE AVAILABILITY GROUP'',''VIEW SERVER STATE''
-                $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
-            
-                $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>'' } | Select-Object -Property InputObject
-            
-                if ($permissionsRemove)
-                {
-                    foreach($rPermission in $permissionsRemove)
-                    {
-                        # Removes Permissions
-                        $revokePerm = $rPermission.InputObject
-                        $removePermissionsQuery = "REVOKE $revokePerm FROM [NT AUTHORITY\SYSTEM]"
-                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($removePermissionsQuery)
-                    }
-            
-                    foreach($sPermission in $stigPermissions)
-                    {
-                        # Add Permissions
-                        $addPermissionsQuery = "GRANT $sPermission TO [NT AUTHORITY\SYSTEM]"
-                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($addPermissionsQuery)
-                    }
-                }
-            }
-            elseif($haTable.IsClustered -eq ''1'')
-            {
-                $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE'',''VIEW SERVER STATE''
-                $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
-            
-                $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>'' } | Select-Object -Property InputObject
-            
-                if ($permissionsRemove)
-                {
-                    foreach ($rPermission in $permissionsRemove)
-                    {
-                        # Removes Permissions
-                        $revokePerm = $rPermission.InputObject
-                        $removePermissionsQuery = "REVOKE $revokePerm FROM [NT AUTHORITY\SYSTEM]"
-                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($removePermissionsQuery)
-                    }
-            
-                    foreach ($sPermission in $stigPermissions)
-                    {
-                        # Add Permissions
-                        $addPermissionsQuery = "GRANT $sPermission TO [NT AUTHORITY\SYSTEM]"
-                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($addPermissionsQuery)
-                    }
-                }
-            }
-            else{
-                $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE''
-                $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
-                $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>''} | Select-Object -Property InputObject
-            
-                if ($permissionsRemove)
-                {
-                    foreach ($rPermission in $permissionsRemove)
-                    {
-                        # Removes Permissions
-                        $revokePerm = $rPermission.InputObject
-                        $removePermissionsQuery = "REVOKE $RevokePerm FROM [NT AUTHORITY\SYSTEM]"
-                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($removePermissionsQuery)
-                    }
-            
-                    foreach ($sPermission in $stigPermissions)
-                    {
-                        # Add Permissions
-                        $addPermissionsQuery = "GRANT $SPermission TO [NT AUTHORITY\SYSTEM]"
-                        $smoSqlConnection.ConnectionContext.ExecuteNonQuery($addPermissionsQuery)
-                    }
-                }
-            }'
+            $setScript = '# Fetches NT AUTHORITY/SYSTEM permissions.
+                          $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+                          $permissionQuery = ''EXECUTE AS LOGIN = ''''NT AUTHORITY\SYSTEM''''
+                                               SELECT * FROM fn_my_permissions(NULL,NULL)''
+
+                          $permissionAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($permissionQuery,$rootSqlConnection)
+                          $permissionTable = New-Object System.Data.DataTable ''Permission_Table''
+
+                          # Fetches high availability configuration information.
+                          $haQuery = ''SELECT SERVERPROPERTY(''''IsClustered'''') as IsClustered, SERVERPROPERTY(''''IsHadrEnabled'''') as IsHadrEnabled''
+                          $haAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($haQuery,$rootSqlConnection)
+                          $haTable = New-Object System.Data.DataTable ''HA_Table''
+
+                          $rootSqlConnection.Open()
+                          $permissionAdapter.Fill($permissionTable) | Out-Null
+                          $haAdapter.Fill($haTable) | Out-Null
+                          $rootSqlConnection.Close()
+
+                          $smoSqlConnection = New-Object Microsoft.SqlServer.Management.Smo.Server(''SQLConnectionName'')
+                          $smoSqlConnection.ConnectionContext.SqlExecutionModes = [Microsoft.SqlServer.Management.Common.SqlExecutionModes]::ExecuteSql
+
+                          # Checks permissions based on if there is HA.
+                          if ($haTable.IsHadrEnabled -eq ''1'')
+                          {
+                              $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE'',''ALTER ANY AVAILABILITY GROUP'',''CREATE AVAILABILITY GROUP'',''VIEW SERVER STATE''
+                              $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
+
+                              $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>'' } | Select-Object -Property InputObject
+
+                              if ($permissionsRemove)
+                              {
+                                  foreach($rPermission in $permissionsRemove)
+                                  {
+                                      # Removes Permissions
+                                      $revokePerm = $rPermission.InputObject
+                                      $removePermissionsQuery = "REVOKE $revokePerm FROM [NT AUTHORITY\SYSTEM]"
+                                      $smoSqlConnection.ConnectionContext.ExecuteNonQuery($removePermissionsQuery)
+                                  }
+
+                                  foreach($sPermission in $stigPermissions)
+                                  {
+                                      # Add Permissions
+                                      $addPermissionsQuery = "GRANT $sPermission TO [NT AUTHORITY\SYSTEM]"
+                                      $smoSqlConnection.ConnectionContext.ExecuteNonQuery($addPermissionsQuery)
+                                  }
+                              }
+                          }
+                          elseif ($haTable.IsClustered -eq ''1'')
+                          {
+                              $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE'',''VIEW SERVER STATE''
+                              $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
+
+                              $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>'' } | Select-Object -Property InputObject
+
+                              if ($permissionsRemove)
+                              {
+                                  foreach ($rPermission in $permissionsRemove)
+                                  {
+                                      # Removes Permissions
+                                      $revokePerm = $rPermission.InputObject
+                                      $removePermissionsQuery = "REVOKE $revokePerm FROM [NT AUTHORITY\SYSTEM]"
+                                      $smoSqlConnection.ConnectionContext.ExecuteNonQuery($removePermissionsQuery)
+                                  }
+
+                                  foreach ($sPermission in $stigPermissions)
+                                  {
+                                      # Add Permissions
+                                      $addPermissionsQuery = "GRANT $sPermission TO [NT AUTHORITY\SYSTEM]"
+                                      $smoSqlConnection.ConnectionContext.ExecuteNonQuery($addPermissionsQuery)
+                                  }
+                              }
+                          }
+                          else
+                          {
+                              $stigPermissions = ''CONNECT SQL'',''VIEW ANY DATABASE''
+                              $permissionsCompare = Compare-Object -ReferenceObject $stigPermissions -DifferenceObject $permissionTable.Permission_Name
+                              $permissionsRemove = $permissionsCompare | Where-Object { $_.SideIndicator -eq ''=>''} | Select-Object -Property InputObject
+
+                              if ($permissionsRemove)
+                              {
+                                  foreach ($rPermission in $permissionsRemove)
+                                  {
+                                      # Removes Permissions
+                                      $revokePerm = $rPermission.InputObject
+                                      $removePermissionsQuery = "REVOKE $RevokePerm FROM [NT AUTHORITY\SYSTEM]"
+                                      $smoSqlConnection.ConnectionContext.ExecuteNonQuery($removePermissionsQuery)
+                                  }
+
+                                  foreach ($sPermission in $stigPermissions)
+                                  {
+                                      # Add Permissions
+                                      $addPermissionsQuery = "GRANT $SPermission TO [NT AUTHORITY\SYSTEM]"
+                                      $smoSqlConnection.ConnectionContext.ExecuteNonQuery($addPermissionsQuery)
+                                  }
+                              }
+                          }'
         }
         {$PSItem -Match 'sys.database_mirroring_endpoints'}
         {
-            $setScript =  '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+            $setScript =  '# Fetches database mirroring endpoint encryption type.
+                           $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
                            $endPointQuery = ''SELECT name, type_desc, encryption_algorithm_desc,encryption_algorithm
                                               FROM sys.database_mirroring_endpoints''
 
@@ -677,6 +691,7 @@ function Get-SetScript
 
                            $endPointName = $endPointTable.Name
 
+                           # Sets database mirroring endpoint encryption type to STIG standard.
                            $smoSqlConnection = New-Object Microsoft.SqlServer.Management.Smo.Server(''SQLConnectionName'')
                            $smoSqlConnection.ConnectionContext.SqlExecutionModes = [Microsoft.SqlServer.Management.Common.SqlExecutionModes]::ExecuteSql
                            $endPointEncQuery = "ALTER ENDPOINT [$endPointName] FOR database_mirroring (ENCRYPTION = REQUIRED ALGORITHM AES)"
@@ -685,7 +700,7 @@ function Get-SetScript
         }
         {$PSItem -Match 'sys.service_broker_endpoints'}
         {
-            $setScript = '# Sets Service Broker EndPoint Encryption
+            $setScript = '# Fetches service broker endpoint encryption type.
                           $rootSQLConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
                           $endPointQuery = ''SELECT name, encryption_algorithm
                                              FROM sys.service_broker_endpoints''
@@ -699,6 +714,7 @@ function Get-SetScript
 
                           $endPointName = $endPointTable.Name
 
+                          # Sets service broker endpoint encryption type to STIG standard.
                           $smoSqlConnection = New-Object Microsoft.SqlServer.Management.Smo.Server(''SQLConnectionName'')
                           $smoSqlConnection.ConnectionContext.SqlExecutionModes = [Microsoft.SqlServer.Management.Common.SqlExecutionModes]::ExecuteSql
                           $endPointEncQuery = "ALTER ENDPOINT [$endPointName] FOR service_broker (ENCRYPTION = REQUIRED ALGORITHM AES)"
@@ -707,7 +723,8 @@ function Get-SetScript
         }
         {$PSItem -Match 'Windows Start Menu and/or Control Panel,'}
         {
-            $setScript = 'Set-Service -Name SQLBrowser -StartupType Disabled
+            $setScript = '# Disabled the SQL Server Browser service.
+                          Set-Service -Name SQLBrowser -StartupType Disabled
                           $sqlBrowser = Get-Service -Name SQLBrowser | Select-Object -Property Status, StartType
 
                           if ($sqlBrowser.Status -eq ''Running'')
@@ -718,37 +735,4 @@ function Get-SetScript
     }
 
     return $setScript
-}
-
-<#
-    .SYNOPSIS
-        Sets the PowerShellScriptQueryRule SetScript from the check-content element in the xccdf.
-
-    .PARAMETER CheckContent
-        Specifies the check-content element in the xccdf
-#>
-function Set-DependsOn
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $CheckContent
-    )
-
-    switch ($checkContent)
-    {
-        {$PSItem -Match 'Windows Start Menu and/or Control Panel,'}
-        {
-            $setDependsOn = '[SqlServerNetwork][V-213990][medium][SRG-APP-000383-DB-000364]::[SqlServer]BaseLine'
-        }
-        default
-        {
-            $setDependsOn = ''
-        }
-    }
-
-    return $setDependsOn
 }
