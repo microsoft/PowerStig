@@ -23,18 +23,21 @@ function Get-GetScript
     {
         {$PSItem -Match "Named Pipes"}
         {
-            $getScript = '$SMOSQLConfigServices = New-Object Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer(''HostName'')
-                          If(''SQLConnectionName'' -notmatch "\\"){
-                              $SMOSQLAgent = $SMOSQLConfigServices.ServerInstances | Where-Object{$_.Name -eq ''SQLInstanceName''}
-                              $SMOSQLNamedPipes = $SMOSQLAgent.ServerProtocols | Where-Object{$_.Name -eq "np"}
-                          }
-                              Else{
-                                  $SMOSQLAgent = $SMOSQLConfigServices.ServerInstances | Where-Object{$_.Name -eq ''SQLInstanceName''.Split("{\}")[1]}
-                                  $SMOSQLNamedPipes = $SMOSQLAgent.ServerProtocols | Where-Object{$_.Name -eq "np"}
-                              }
+            $getScript = '$smoSqlConfigServices = New-Object Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer(''HostName'')
 
-                              return @{Result = $SMOSQLNamedPipes.IsEnabled}'
-        }       
+                         if (''SQLConnectionName'' -notmatch ''\\'')
+                         {
+                            $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName'' }
+                            $smoSqlNamedPipes = $smoSqlAgent.ServerProtocols | Where-Object { $_.Name -eq ''np'' }
+                         }
+                         else
+                         {
+                            $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName''.Split("{\}")[1] }
+                            $smoSqlNamedPipes = $smoSqlAgent.ServerProtocols | Where-Object { $_.Name -eq ''np'' }
+                         }
+        
+                        return @{Result = $smoSqlNamedPipes.IsEnabled}'
+        }
     }
 
     return $getScript
