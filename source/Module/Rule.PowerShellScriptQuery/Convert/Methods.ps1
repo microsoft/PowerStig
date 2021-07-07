@@ -19,7 +19,7 @@ function Get-GetScript
         $CheckContent
     )
 
-    switch ($checkcontent) 
+    switch ($checkcontent)
     {
         {$PSItem -Match 'Named Pipes'}
         {
@@ -83,6 +83,21 @@ function Get-GetScript
                           }
 
                           return @{Result = $permissionsList.Values}'
+        }
+        {$PSItem -Match 'sys.database_mirroring_endpoints'}
+        {
+            $getScript = '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+                          $endPointQuery = ''SELECT name, type_desc, encryption_algorithm_desc,encryption_algorithm
+                                             FROM sys.database_mirroring_endpoints''
+
+                          $endPointAdapater = New-Object System.Data.SqlClient.SqlDataAdapter($endPointQuery,$rootSqlConnection)
+                          $endPointTable = New-Object System.Data.DataTable ''EndPoint_Table''
+
+                          $rootSqlConnection.Open()
+                          $endPointAdapater.Fill($endPointTable) | Out-Null
+                          $rootSQLConnection.Close()
+
+                          return @{Result = $endPointTable.Encryption_Algorithm}'
         }
     }
 
@@ -328,6 +343,28 @@ function Get-TestScript
                                 }
                             }'
         }
+        {$PSItem -Match 'sys.database_mirroring_endpoints'}
+        {
+            $testScript = '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+                           $endPointQuery = ''SELECT name, type_desc, encryption_algorithm_desc,encryption_algorithm
+                                              FROM sys.database_mirroring_endpoints''
+
+                           $endPointAdapater = New-Object System.Data.SqlClient.SqlDataAdapter($endPointQuery,$rootSqlConnection)
+                           $endPointTable = New-Object System.Data.DataTable ''EndPoint_Table''
+
+                           $rootSqlConnection.Open()
+                           $endPointAdapater.Fill($endPointTable) | Out-Null
+                           $rootSQLConnection.Close()
+
+                           if ([string]::IsNullOrEmpty($endPointTable) -or $endPointTable.Encryption_Algorithm -eq 2)
+                           {
+                               return $true
+                           }
+                           else
+                           {
+                               return $false
+                           }'
+        }
     }
 
     return $testScript
@@ -550,6 +587,27 @@ function Get-SetScript
                     }
                 }
             }'
+        }
+        {$PSItem -Match 'sys.database_mirroring_endpoints'}
+        {
+            $setScript =  '$rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+                           $endPointQuery = ''SELECT name, type_desc, encryption_algorithm_desc,encryption_algorithm
+                                              FROM sys.database_mirroring_endpoints''
+
+                           $endPointAdapater = New-Object System.Data.SqlClient.SqlDataAdapter($endPointQuery,$rootSqlConnection)
+                           $endPointTable = New-Object System.Data.DataTable ''EndPoint_Table''
+
+                           $rootSqlConnection.Open()
+                           $endPointAdapater.Fill($endPointTable) | Out-Null
+                           $rootSqlConnection.Close()
+
+                           $endPointName = $endPointTable.Name
+
+                           $smoSqlConnection = New-Object Microsoft.SqlServer.Management.Smo.Server(''SQLConnectionName'')
+                           $smoSqlConnection.ConnectionContext.SqlExecutionModes = [Microsoft.SqlServer.Management.Common.SqlExecutionModes]::ExecuteSql
+                           $endPointEncQuery = "ALTER ENDPOINT [$endPointName] FOR database_mirroring (ENCRYPTION = REQUIRED ALGORITHM AES)"
+
+                           $smoSqlConnection.ConnectionContext.ExecuteNonQuery($endPointEncQuery)'
         }
     }
 
