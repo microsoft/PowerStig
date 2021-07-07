@@ -25,18 +25,18 @@ function Get-GetScript
         {
             $getScript = '$smoSqlConfigServices = New-Object Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer(''HostName'')
 
-                         if (''SQLConnectionName'' -notmatch ''\\'')
-                         {
-                            $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName'' }
-                            $smoSqlNamedPipes = $smoSqlAgent.ServerProtocols | Where-Object { $_.Name -eq ''np'' }
-                         }
-                         else
-                         {
-                            $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName''.Split("{\}")[1] }
-                            $smoSqlNamedPipes = $smoSqlAgent.ServerProtocols | Where-Object { $_.Name -eq ''np'' }
-                         }
+                          if (''SQLConnectionName'' -notmatch ''\\'')
+                          {
+                             $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName'' }
+                             $smoSqlNamedPipes = $smoSqlAgent.ServerProtocols | Where-Object { $_.Name -eq ''np'' }
+                          }
+                          else
+                          {
+                             $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName''.Split("{\}")[1] }
+                             $smoSqlNamedPipes = $smoSqlAgent.ServerProtocols | Where-Object { $_.Name -eq ''np'' }
+                          }
 
-                         return @{Result = $smoSqlNamedPipes.IsEnabled}'
+                          return @{Result = $smoSqlNamedPipes.IsEnabled}'
         }
     }
 
