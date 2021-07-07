@@ -35,8 +35,8 @@ function Get-GetScript
                             $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName''.Split("{\}")[1] }
                             $smoSqlNamedPipes = $smoSqlAgent.ServerProtocols | Where-Object { $_.Name -eq ''np'' }
                          }
-        
-                        return @{Result = $smoSqlNamedPipes.IsEnabled}'
+
+                         return @{Result = $smoSqlNamedPipes.IsEnabled}'
         }
     }
 
