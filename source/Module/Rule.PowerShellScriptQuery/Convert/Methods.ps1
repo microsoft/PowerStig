@@ -579,7 +579,7 @@ function Get-SetScript
         {$PSItem -Match 'If IsClustered returns 1'}
         {
             $setScript = '# Fetches NT AUTHORITY/SYSTEM permissions.
-                          $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
+                          $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI; Pooling=False;'')
                           $permissionQuery = ''EXECUTE AS LOGIN = ''''NT AUTHORITY\SYSTEM''''
                                                SELECT * FROM fn_my_permissions(NULL,NULL)''
 
