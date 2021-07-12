@@ -101,7 +101,14 @@ function Get-GetScript
                           $endPointAdapater.Fill($endPointTable) | Out-Null
                           $rootSQLConnection.Close()
 
-                          return @{Result = $endPointTable.Encryption_Algorithm}'
+                          if ($endPointTable.Rows.Count -ge 1)
+                          {
+                              return @{Result = $endPointTable.Encryption_Algorithm}
+                          }
+                          else
+                          {
+                              return @{Result = ""}
+                          }'
         }
         {$PSItem -Match 'sys.service_broker_endpoints'}
         {
