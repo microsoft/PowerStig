@@ -197,7 +197,7 @@ function Get-TestScript
                            }
                            else
                            {
-                               $smoSqlAgent = $SsmoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName''.Split("{\}")[1]}
+                               $smoSqlAgent = $smoSqlConfigServices.ServerInstances | Where-Object { $_.Name -eq ''SQLInstanceName''.Split("{\}")[1]}
                            }
 
                            $smoSqlTcpIp = $smoSqlAgent.ServerProtocols | Where-Object { $_.Name -eq ''tcp'' }
