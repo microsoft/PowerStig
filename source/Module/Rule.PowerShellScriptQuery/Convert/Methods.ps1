@@ -112,7 +112,7 @@ function Get-GetScript
         }
         {$PSItem -Match 'sys.service_broker_endpoints'}
         {
-            $getScript = '# # Fetches service broker endpoint encryption type.
+            $getScript = '# Fetches service broker endpoint encryption type.
                           $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection(''Data Source = SQLConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;'')
                           $endPointQuery = ''SELECT name, encryption_algorithm
                                              FROM sys.service_broker_endpoints''
