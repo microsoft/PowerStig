@@ -16,7 +16,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER SetScript
         The set script content
 #>
-Class PowerShellScriptQueryRule : Rule
+class PowerShellScriptQueryRule : Rule
 {
     [string] $GetScript
     [string] $TestScript
@@ -37,7 +37,7 @@ Class PowerShellScriptQueryRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    PowerShellScriptQueryRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    PowerShellScriptQueryRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -49,7 +49,7 @@ Class PowerShellScriptQueryRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    PowerShellScriptQueryRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    PowerShellScriptQueryRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 
