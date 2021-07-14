@@ -33,7 +33,7 @@ foreach ($instance in $serverInstance)
     {
         Try
         {
-            # XML file has placeholder key words. This replaces the placeholder keywords with actual values for configuration.
+            # XML file has placeholder key words. This replaces the placeholder keywords with actual values for configuration for the SQL 2016 STIG.
             $setScript = $rule.SetScript
             $setScript = ($setScript) | ForEach-Object{$_.replace('SQLInstanceName',$sqlInstanceName).replace('HostName',$hostName).replace('SQLConnectionName',$sqlConnectionName)}
 
