@@ -22,5 +22,5 @@ Export-ModuleMember -Function @(
     'Get-StigRule',
     'Get-StigRuleExceptionString',
     'Backup-StigSettings',
-    'Revert-StigSettings'
+    'Restore-StigSettings'
 )

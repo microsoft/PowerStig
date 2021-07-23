@@ -16,7 +16,7 @@
         This script is meant for use in a development environment
 
     .EXAMPLE
-        Backup-StigSettings -BackupLocation "C:\Backup.csv" -StigName "WindowsClient-10-2.1"
+        Backup-StigSettings -BackupLocation "C:\Backup.csv" -StigName "WindowsClient-10-2.1.xml"
 #>
 
 function Backup-StigSettings
@@ -41,7 +41,14 @@ function Backup-StigSettings
         break
     }
 
-    $xmlPath = '{0}\StigData\Processed' -f (Get-InstalledModule -Name Powerstig).InstalledLocation
+    if ($null -eq (Get-InstalledModule -Name Powerstig -ErrorAction Ignore).InstalledLocation)
+    {
+        $xmlPath = (Get-ChildItem 'C:\Program Files\WindowsPowerShell\Modules\PowerSTIG\*\StigData\Processed').FullName
+    }
+    else
+    {
+        $xmlPath = '{0}\StigData\Processed' -f (Get-InstalledModule -Name Powerstig).InstalledLocation 
+    }
     $exclusion = @("*.org.default.xml","RHEL*","Ubuntu*","Vsphere*")
     $validStigs = Get-ChildItem $xmlPath -Exclude $exclusion
 
@@ -299,7 +306,7 @@ function Backup-StigSettings
                 }
                 RegistryAccessEntry {
                     $inputPath = [System.Environment]::ExpandEnvironmentVariables($rule.Path)
-                    $currentACL = Get-Acl -Path $Path
+                    $currentACL = Get-Acl -Path $inputPath
 
                     foreach($entry in $currentAcl.Access)
                     {
@@ -446,14 +453,14 @@ function Restore-StigSettings
                     Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method set -Property @{
                         Name       = "Name"
                         $rule.Name = $integer
-                    }2>%1
+                    } -ErrorAction Ignore
                 }
                 else
                 {
                     Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method set -Property @{
                         Name       = "Name"
                         $rule.Name = $rule.PolicyValue
-                    }2>%1
+                    } -ErrorAction Ignore
                 }
             }
             AuditPolicySubcategory {
@@ -565,7 +572,7 @@ function Restore-StigSettings
                 Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                     Name   = $rule.Name
                     Ensure = $rule.Ensure
-                }2>%1
+                } -ErrorAction Ignore
             }
         }
     }
