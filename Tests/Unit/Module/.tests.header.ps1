@@ -92,8 +92,8 @@ switch ($psStackCommand)
 
     'STIG.BackupRevert'
     {
-        $functionCheckListFile = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Functions.Checklist.ps1'
-        . $functionCheckListFile
+        $functionBackupRevert = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Functions.BackupRevert.ps1'
+        . $functionBackupRevert
     }
 
     'STIG'
