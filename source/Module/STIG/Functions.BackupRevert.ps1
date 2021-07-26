@@ -359,7 +359,7 @@ function Backup-StigSettings
     }
 
     #export results to csv in temp directory
-    $path = "{0}\PowerSTIG_backup_{1}.csv" -f $BackupLocation, (Get-Date -f MM_dd_yyyy_hh_mm_ss)
+    $path = "{0}\PowerSTIG_backup_{1}_{2}.csv" -f $BackupLocation, $StigName, (Get-Date -f MM_dd_yyyy_hh_mm_ss)
     $hashtable.GetEnumerator()| Select-Object -Property `
     @{N='DscResourceModule';E={$_.DscResourceModule}},`
     @{N='DscResource';E={$_.DscResource}},`
@@ -424,7 +424,11 @@ function Restore-StigSettings
     (
         [Parameter()]
         [string]
-        $BackupLocation = $ENV:TEMP
+        $BackupLocation = $ENV:TEMP,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $StigName
     )
 
     # Test backup location
@@ -434,11 +438,29 @@ function Restore-StigSettings
         break
     }
 
+    if ($null -eq (Get-InstalledModule -Name Powerstig -ErrorAction Ignore).InstalledLocation)
+    {
+        $xmlPath = (Get-ChildItem 'C:\Program Files\WindowsPowerShell\Modules\PowerSTIG\*\StigData\Processed').FullName
+    }
+    else
+    {
+        $xmlPath = '{0}\StigData\Processed' -f (Get-InstalledModule -Name Powerstig).InstalledLocation 
+    }
+    $exclusion = @("*.org.default.xml","RHEL*","Ubuntu*","Vsphere*")
+    $validStigs = Get-ChildItem $xmlPath -Exclude $exclusion
+
+    if ($validStigs.Name -notContains $StigName.Trim())
+    {
+        $errorArray = $validStigs.Name -join("`n")
+        Write-Host "StigName not valid, options are :`n$errorArray"
+        break
+    }
+
     # Remove DSC Document to revert system state
     Remove-DscConfigurationDocument -Stage Current -Force
 
     # Get latest PowerSTIG backup
-    $latest = Get-ChildItem -Path $BackupLocation | Where-Object Name -Match "PowerSTIG_backup" | Select-Object -Last 1
+    $latest = Get-ChildItem -Path $BackupLocation | Where-Object Name -Match $StigName | Select-Object -Last 1
     $importCsv = Import-Csv -Path $latest.FullName
 
     foreach ($rule in $importCsv)
