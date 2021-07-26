@@ -90,6 +90,12 @@ switch ($psStackCommand)
         [void] $setDynamicClassFileParams.Add('ClassModuleFileName', @('Rule.psm1', 'ConvertFactory.psm1','DocumentRule.Convert.psm1','Stig.psm1'))
     }
 
+    'STIG.BackupRevert'
+    {
+        $functionCheckListFile = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Functions.Checklist.ps1'
+        . $functionCheckListFile
+    }
+
     'STIG'
     {
         $destinationPath = Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Convert.Main.ps1'
