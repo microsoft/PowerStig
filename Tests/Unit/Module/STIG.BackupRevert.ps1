@@ -9,18 +9,42 @@ Describe 'Backup-StigSettings' {
     }
     Mock -CommandName Invoke-DscResource -MockWith {return $get}
 
-    It 'Should not throw' {
+    It 'Should not throw WindowsServer' {
             {Backup-StigSettings -StigName "WindowsServer-2019-MS-2.2.xml"}| Should -not -Throw
-        }
+    }
 
-        $test = Get-ChildItem $ENV:TEMP | Where-Object Name -like *.csv
-        It 'Should create a backup of current STIG Settings' {
-            $test | Should -Not -BeNullOrEmpty
-        }
+    It 'Should not throw WindowsServer' {
+        {Backup-StigSettings -StigName "WindowsClient-10-2.2.xml"}| Should -not -Throw
+    }
+
+    It 'Should not throw Sql Server 2016' {
+        {Backup-StigSettings -StigName "SqlServer-2016-Instance-2.3.xml"}| Should -not -Throw
+    }
+
+    It 'Should not throw IIS Server 10' {
+        {Backup-StigSettings -StigName "IISServer-10.0-2.2"}| Should -not -Throw
+    }
+
+    $test = Get-ChildItem $ENV:TEMP | Where-Object Name -like *.csv
+    It 'Should create a backup of current STIG Settings' {
+        $test | Should -Not -BeNullOrEmpty
+    }
 }
 
 Describe 'Restore-StigSettings' {
-    It 'Should not throw' {
+    It 'Should not throw for Server' {
         {Restore-StigSettings -StigName "WindowsServer-2019-MS-2.2.xml"} | Should -Not -Throw
+    }
+
+    It 'Should not throw for Client' {
+        {Restore-StigSettings -StigName "WindowsClient-10-2.2.xml"} | Should -Not -Throw
+    }
+    
+    It 'Should not throw for Sql Server 2016' {
+        {Restore-StigSettings -StigName "SqlServer-2016-Instance-2.3.xml"} | Should -Not -Throw
+    }
+    
+    It 'Should not throw for IIS Server 10' {
+        {Restore-StigSettings -StigName "IISServer-10.0-2.2"} | Should -Not -Throw
     }
 }
