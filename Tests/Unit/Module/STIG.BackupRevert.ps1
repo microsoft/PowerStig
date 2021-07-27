@@ -3,8 +3,14 @@
 #endregion
 
 Describe 'Backup-StigSettings' {
-        It 'Should not throw' {
-            Backup-StigSettings -StigName "WindowsServer-2019-MS-2.2.xml"| Should -not -Throw
+
+    $get = @{
+        MitigationValue = "False"
+    }
+    Mock -CommandName Invoke-DscResource -MockWith {return $get}
+
+    It 'Should not throw' {
+            {Backup-StigSettings -StigName "WindowsServer-2019-MS-2.2.xml"}| Should -not -Throw
         }
 
         $test = Get-ChildItem $ENV:TEMP | Where-Object Name -like *.csv
@@ -15,6 +21,6 @@ Describe 'Backup-StigSettings' {
 
 Describe 'Restore-StigSettings' {
     It 'Should not throw' {
-        Restore-StigSettings -StigName "WindowsServer-2019-MS-2.2.xml" | Should -Not -Throw
+        {Restore-StigSettings -StigName "WindowsServer-2019-MS-2.2.xml"} | Should -Not -Throw
     }
 }
