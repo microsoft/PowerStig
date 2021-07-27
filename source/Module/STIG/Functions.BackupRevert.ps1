@@ -43,7 +43,12 @@ function Backup-StigSettings
 
     if ($null -eq (Get-InstalledModule -Name Powerstig -ErrorAction Ignore).InstalledLocation)
     {
-        $xmlPath = (Get-ChildItem 'C:\Program Files\WindowsPowerShell\Modules\PowerSTIG\*\StigData\Processed').FullName
+        $xmlPath = (Get-Item -Path 'C:\Program Files\WindowsPowerShell\Modules\PowerSTIG\*\StigData\Processed' -ErrorAction Ignore).FullName
+        
+        if($null -eq $xmlPath)
+        {
+            $xmlPath = (Get-Item -path "$script:moduleRoot\StigData\Processed").FullName
+        }
     }
     else
     {
@@ -440,7 +445,12 @@ function Restore-StigSettings
 
     if ($null -eq (Get-InstalledModule -Name Powerstig -ErrorAction Ignore).InstalledLocation)
     {
-        $xmlPath = (Get-ChildItem 'C:\Program Files\WindowsPowerShell\Modules\PowerSTIG\*\StigData\Processed').FullName
+        $xmlPath = (Get-Item -Path 'C:\Program Files\WindowsPowerShell\Modules\PowerSTIG\*\StigData\Processed' -ErrorAction Ignore).FullName
+        
+        if($null -eq $xmlPath)
+        {
+            $xmlPath = (Get-Item -path "$script:moduleRoot\StigData\Processed").FullName
+        }
     }
     else
     {
