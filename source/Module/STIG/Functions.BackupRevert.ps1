@@ -1,9 +1,9 @@
 <#
     .SYNOPSIS
-        This script is backup a systems security configuration settings prior to applying PowerSTIG.
+        This function is used to backup a systems security configuration settings prior to applying PowerSTIG.
 
     .DESCRIPTION
-        This script utilizes the get method of invoke-dscresource to find existing system settings. It collects the found settings
+        This runction utilizes the get method of Invoke-Dscresource to find existing system settings. It collects the found settings
         and outputs into a CSV file for later use.
 
     .PARAMETER BackupLocation
@@ -25,6 +25,7 @@ function Backup-StigSettings
     param
     (
         [Parameter()]
+        [ValidateScript({Test-Path -Path $_})]
         [string]
         $BackupLocation = $ENV:TEMP,
 
@@ -34,26 +35,8 @@ function Backup-StigSettings
 
     )
 
-    # Test backup location
-    if (-not (Test-Path -path $BackupLocation))
-    {
-        Write-Host "Backup location not valid"
-        break
-    }
+    $xmlPath = Join-Path -Path $PSScriptRoot -ChildPath '..\..\StigData\Processed'
 
-    if ($null -eq (Get-InstalledModule -Name Powerstig -ErrorAction Ignore).InstalledLocation)
-    {
-        $xmlPath = (Get-Item -Path 'C:\Program Files\WindowsPowerShell\Modules\PowerSTIG\*\StigData\Processed' -ErrorAction Ignore).FullName
-        
-        if($null -eq $xmlPath)
-        {
-            $xmlPath = (Get-Item -path "$script:moduleRoot\StigData\Processed").FullName
-        }
-    }
-    else
-    {
-        $xmlPath = '{0}\StigData\Processed' -f (Get-InstalledModule -Name Powerstig).InstalledLocation 
-    }
     $exclusion = @("*.org.default.xml","RHEL*","Ubuntu*","Vsphere*")
     $validStigs = Get-ChildItem $xmlPath -Exclude $exclusion
 
@@ -65,15 +48,15 @@ function Backup-StigSettings
     }
 
     # Load target powerstig process xml
-    $powerSTIGLocation = '{0}\{1}' -f $xmlPath, $stigName
-    [xml] $stig =  Get-Content $powerSTIGLocation
+    $powerSTIGLocation = Join-Path -Path $xmlPath -ChildPath $stigName
+    [xml] $stig =  Get-Content -Path $powerSTIGLocation
 
     $ruleList = ""
-    foreach($validStig in $validStigs.FullName)
+    foreach ($validStig in $validStigs.FullName)
     {
-        [xml] $stigProcess = Get-Content $validStig
-        [string[]] $ruleList += ($stigProcess.DISASTIG.ChildNodes.GetEnumerator() | Where-Object dscresourcemodule -ne None).Name
-        $rulesUnique = $rulelist | Sort-Object | Get-Unique
+        [xml] $stigProcess = Get-Content -Path $validStig
+        [string[]] $ruleList += ($stigProcess.DISASTIG.ChildNodes.GetEnumerator() | Where-Object -Property dscresourcemodule -ne None).Name
+        $rulesUnique = $rulelist | Sort-Object -Unique
     }
 
     $hashtable = @()
@@ -139,7 +122,7 @@ function Backup-StigSettings
                         MitigationValue  = $rule.MitigationValue
                     }
 
-                    if($null -eq $get.MitigationValue)
+                    if ($null -eq $get.MitigationValue)
                     {
                         $get.MitigationValue = "False"
                     }
@@ -154,7 +137,7 @@ function Backup-StigSettings
                     }
                 }
                 Registry {
-                    if($rule.key -match "HKEY_LOCAL_MACHINE")
+                    if ($rule.key -match "HKEY_LOCAL_MACHINE")
                     {
                         $replace = ($rule.key).replace("HKEY_LOCAL_MACHINE","HKLM:")
                     }
@@ -224,7 +207,7 @@ function Backup-StigSettings
                     }
                 }
                 Service {
-                    if($rule.ServiceName -ne "")
+                    if ($rule.ServiceName -ne "")
                     {
                         $get = Invoke-DscResource -ModuleName $dscResourceModule -Name $rule.dscResource -Method get -Property @{
                             Name = $rule.ServiceName
@@ -247,7 +230,7 @@ function Backup-StigSettings
                     }
 
                     $identityString = ($get.Identity) -join ","
-                    if($identityString -eq "Null")
+                    if ($identityString -eq "Null")
                     {
                         $identityString = " "
                     }
@@ -262,7 +245,7 @@ function Backup-StigSettings
                 WindowsOptionalFeature {
                     $get = Get-WindowsOptionalFeature -FeatureName $rule.Name -Online
 
-                    if($get.State -eq "Disabled")
+                    if ($get.State -eq "Disabled")
                     {
                         $ensure = "Absent"
                     }
@@ -295,7 +278,7 @@ function Backup-StigSettings
                         $fileSystemItem = Get-Item -Path $inputPath -ErrorAction Stop
                         $currentAcl = $fileSystemItem.GetAccessControl('Access')
 
-                    foreach($entry in $currentAcl.Access)
+                    foreach ($entry in $currentAcl.Access)
                     {
                         $trimIdentity = $entry.IdentityReference -replace ".*\\"
                         $hashtable += @{
@@ -313,7 +296,7 @@ function Backup-StigSettings
                     $inputPath = [System.Environment]::ExpandEnvironmentVariables($rule.Path)
                     $currentACL = Get-Acl -Path $inputPath
 
-                    foreach($entry in $currentAcl.Access)
+                    foreach ($entry in $currentAcl.Access)
                     {
                         $trimIdentity = $entry.IdentityReference -replace ".*\\"
                         $hashtable += @{
@@ -330,7 +313,7 @@ function Backup-StigSettings
                     }
                 }
                 CertificateDSC {
-                    $certificate = dir cert: -Recurse | Where-Object { $_.Thumbprint -like $rule.Thumbprint }
+                    $certificate = dir cert: -Recurse | Where-Object -FilterScript { $_.Thumbprint -like $rule.Thumbprint }
 
                     if ($rule.CertificateName -match "Interoperability")
                     {
@@ -365,7 +348,7 @@ function Backup-StigSettings
 
     #export results to csv in temp directory
     $path = "{0}\PowerSTIG_backup_{1}_{2}.csv" -f $BackupLocation, $StigName, (Get-Date -f MM_dd_yyyy_hh_mm_ss)
-    $hashtable.GetEnumerator()| Select-Object -Property `
+    $hashtable.GetEnumerator() | Select-Object -Property `
     @{N='DscResourceModule';E={$_.DscResourceModule}},`
     @{N='DscResource';E={$_.DscResource}},`
     @{N='Name';E={$_.Name}},`
@@ -407,10 +390,10 @@ function Backup-StigSettings
 
 <#
     .SYNOPSIS
-        This script is backup a systems security configuration settings prior to applying PowerSTIG.
+        This function is used to revert to the system state at backup time.
 
     .DESCRIPTION
-        This script utilizes the get method of invoke-dscresource to find existing system settings. It collects the found settings
+        This function utilizes the get method of Invoke-Dscresource to find existing system settings. It collects the found settings
         and outputs into a CSV file for later use.
 
     .PARAMETER BackupLocation
@@ -424,10 +407,11 @@ function Backup-StigSettings
 #>
 function Restore-StigSettings
 {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     param
     (
         [Parameter()]
+        [ValidateScript({Test-Path -Path $_})]
         [string]
         $BackupLocation = $ENV:TEMP,
 
@@ -436,26 +420,7 @@ function Restore-StigSettings
         $StigName
     )
 
-    # Test backup location
-    if (-not (Test-Path -path $BackupLocation))
-    {
-        Write-Host "Backup location not valid"
-        break
-    }
-
-    if ($null -eq (Get-InstalledModule -Name Powerstig -ErrorAction Ignore).InstalledLocation)
-    {
-        $xmlPath = (Get-Item -Path 'C:\Program Files\WindowsPowerShell\Modules\PowerSTIG\*\StigData\Processed' -ErrorAction Ignore).FullName
-        
-        if($null -eq $xmlPath)
-        {
-            $xmlPath = (Get-Item -path "$script:moduleRoot\StigData\Processed").FullName
-        }
-    }
-    else
-    {
-        $xmlPath = '{0}\StigData\Processed' -f (Get-InstalledModule -Name Powerstig).InstalledLocation 
-    }
+    $xmlPath = Join-Path -Path $PSScriptRoot -ChildPath '..\..\StigData\Processed'
     $exclusion = @("*.org.default.xml","RHEL*","Ubuntu*","Vsphere*")
     $validStigs = Get-ChildItem $xmlPath -Exclude $exclusion
 
@@ -482,29 +447,29 @@ function Restore-StigSettings
                 {
                     [int] $integer = $rule.PolicyValue
 
-                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method set -Property @{
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                         Name       = "Name"
                         $rule.Name = $integer
                     } -ErrorAction Ignore
                 }
                 else
                 {
-                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method set -Property @{
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                         Name       = "Name"
                         $rule.Name = $rule.PolicyValue
                     } -ErrorAction Ignore
                 }
             }
             AuditPolicySubcategory {
-                if($rule.AuditFlag -eq "No Auditing")
+                if ($rule.AuditFlag -eq "No Auditing")
                 {
-                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method set -Property @{
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                         Name      = $rule.Name
                         AuditFlag = "Failure"
                         Ensure    = $rule.Ensure
                     }
 
-                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method set -Property @{
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                         Name      = $rule.Name
                         AuditFlag = "Success"
                         Ensure    = $rule.Ensure
@@ -512,7 +477,7 @@ function Restore-StigSettings
                 }
                 else
                 {
-                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method set -Property @{
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                         Name      = $rule.Name
                         AuditFlag = $rule.AuditFlag
                         Ensure    = $rule.Ensure
@@ -520,7 +485,7 @@ function Restore-StigSettings
                 }
             }
             AuditSetting {
-                Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method set -Property @{
+                Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                     Query        = $rule.Query
                     Property     = $rule.Property
                     DesiredValue = $rule.DesiredValue
@@ -528,7 +493,7 @@ function Restore-StigSettings
                 }
             }
             ProcessMitigation {
-                Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method set -Property @{
+                Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                     MitigationTarget = $rule.MitigationTarget
                     MitigationType   = $rule.MitigationType
                     MitigationName   = $rule.MitigationName

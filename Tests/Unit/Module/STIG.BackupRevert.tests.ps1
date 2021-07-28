@@ -8,21 +8,22 @@ Describe 'Backup-StigSettings' {
         MitigationValue = "False"
     }
 
-    Mock -CommandName Invoke-DscResource -MockWith {return $get}
+    Mock Invoke-DscResource -MockWith { return $get }
+
     It 'Should not throw WindowsServer' {
-            {Backup-StigSettings -StigName "WindowsServer-2019-MS-2.2.xml"}| Should -not -Throw
+        {Backup-StigSettings -StigName "WindowsServer-2019-MS-2.2.xml"} | Should -not -Throw
     }
 
     It 'Should not throw WindowsClient' {
-        {Backup-StigSettings -StigName "WindowsClient-10-2.2.xml"}| Should -not -Throw
+        {Backup-StigSettings -StigName "WindowsClient-10-2.2.xml"} | Should -not -Throw
     }
 
     It 'Should not throw Sql Server 2016' {
-        {Backup-StigSettings -StigName "SqlServer-2016-Instance-2.3.xml"}| Should -not -Throw
+        {Backup-StigSettings -StigName "SqlServer-2016-Instance-2.3.xml"} | Should -not -Throw
     }
 
     It 'Should return string with valid STIGs' {
-        Backup-StigSettings -StigName "wrong.xml"| Should -BeOfType System.String
+        Backup-StigSettings -StigName "wrong.xml" | Should -BeOfType System.String
     }
 
     $test = Get-ChildItem $ENV:TEMP | Where-Object Name -like *.csv
@@ -51,7 +52,4 @@ Describe 'Restore-StigSettings' {
         {Restore-StigSettings -StigName "SqlServer-2016-Instance-2.3.xml"} | Should -Not -Throw
     }
 
-    It 'Should return string with valid STIGs' {
-        Restore-StigSettings -BackupLocation "C:\doesNotExist" -StigName "SqlServer-2016-Instance-2.3.xml" | Should -BeOfType System.String
-    }
 }
