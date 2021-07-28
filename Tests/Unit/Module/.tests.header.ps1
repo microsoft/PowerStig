@@ -90,7 +90,7 @@ switch ($psStackCommand)
         [void] $setDynamicClassFileParams.Add('ClassModuleFileName', @('Rule.psm1', 'ConvertFactory.psm1','DocumentRule.Convert.psm1','Stig.psm1'))
     }
 
-    'STIG.BackupRevert.ps1'
+    'STIG.BackupRevert'
     {
         $functionBackupRevert = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Functions.BackupRevert.ps1'
         . $functionBackupRevert
