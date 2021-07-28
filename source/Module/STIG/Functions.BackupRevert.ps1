@@ -1,4 +1,4 @@
- <#
+<#
     .SYNOPSIS
         This script is backup a systems security configuration settings prior to applying PowerSTIG.
 
