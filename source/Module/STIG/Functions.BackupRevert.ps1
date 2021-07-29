@@ -3,7 +3,7 @@
         This function is used to backup a systems security configuration settings prior to applying PowerSTIG.
 
     .DESCRIPTION
-        This runction utilizes the get method of Invoke-Dscresource to find existing system settings. It collects the found settings
+        This function utilizes the get method of Invoke-Dscresource to find existing system settings. It collects the found settings
         and outputs into a CSV file for later use.
 
     .PARAMETER BackupLocation
@@ -13,10 +13,10 @@
         Specifies the name of STIG to target for backup operation. The name of the STIG can be found under PowerSTIG/StigData/Processed.
 
     .NOTES
-        This script is meant for use in a development environment
+        This function is meant for use in a development environment
 
     .EXAMPLE
-        Backup-StigSettings -BackupLocation "C:\Backup.csv" -StigName "WindowsClient-10-2.1.xml"
+        Backup-StigSettings -StigName "WindowsServer-2019-MS-2.2.xml"
 #>
 
 function Backup-StigSettings
@@ -393,21 +393,22 @@ function Backup-StigSettings
         This function is used to revert to the system state at backup time.
 
     .DESCRIPTION
-        This function utilizes the get method of Invoke-Dscresource to find existing system settings. It collects the found settings
-        and outputs into a CSV file for later use.
+        This function utilizes the set method of Invoke-Dscresource to set the system settings using the backup.
 
     .PARAMETER BackupLocation
         Specifies the location to store the backup file.
 
+    .PARAMETER StigName
+        Specifies the STIG name used for backup. The name of the STIG can be found under PowerSTIG/StigData/Processed.
+
     .NOTES
-        This script is meant for use in a development environment
+        This function is meant for use in a development environment
 
     .EXAMPLE
-        Revert-StigSettings -BackupLocation "C:\backup.csv"
+        Restore-StigSettings -StigName "WindowsServer-2019-MS-2.2.xml"
 #>
 function Restore-StigSettings
 {
-    [CmdletBinding(SupportsShouldProcess)]
     param
     (
         [Parameter()]
