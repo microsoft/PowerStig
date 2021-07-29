@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
+* Parse\Apply Microsoft Office System 2016 STIG - Ver 2, Rel 1: [#946](https://github.com/microsoft/PowerStig/issues/946)
 
 ## [4.9.1] - 2021-06-03
 
