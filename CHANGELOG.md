@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
+* Parse\Apply Adobe Acrobat Reader DC Continuous Track STIG - Ver 2, Rel 1: [#929](https://github.com/microsoft/PowerStig/issues/929)
 
 ## [4.9.1] - 2021-06-03
 
