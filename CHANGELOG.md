@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
+* Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 2: [#887](https://github.com/microsoft/PowerStig/issues/887)
 
 ## [4.9.1] - 2021-06-03
 
