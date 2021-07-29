@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
+* Parse\Apply Microsoft IIS 10.0 V2R3 Site STIG: [#937](https://github.com/microsoft/PowerStig/issues/937)
 
 ## [4.9.1] - 2021-06-03
 
