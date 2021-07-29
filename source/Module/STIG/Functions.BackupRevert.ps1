@@ -409,6 +409,7 @@ function Backup-StigSettings
 #>
 function Restore-StigSettings
 {
+    [CmdletBinding(SupportsShouldProcess,ConfirmImpact = 'high')]
     param
     (
         [Parameter()]
@@ -433,10 +434,13 @@ function Restore-StigSettings
     }
 
     # Remove DSC Document to revert system state
-    Remove-DscConfigurationDocument -Stage Current -Force
+    if($PSCmdlet.ShouldProcess('localhost','Remove-DscConfigurationDocument'))
+    {
+        Remove-DscConfigurationDocument -Stage Current -Force
+    }
 
     # Get latest PowerSTIG backup
-    $latest = Get-ChildItem -Path $BackupLocation | Where-Object Name -Match $StigName | Select-Object -Last 1
+    $latest = Get-ChildItem -Path $BackupLocation | Where-Object -Property Name -Match $StigName | Select-Object -Last 1
     $importCsv = Import-Csv -Path $latest.FullName
 
     foreach ($rule in $importCsv)
