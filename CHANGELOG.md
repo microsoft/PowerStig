@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
+* Parse\Apply VMware vSphere 6.5 STIG V2R2: [#942](https://github.com/microsoft/PowerStig/issues/942)
 
 ## [4.9.1] - 2021-06-03
 
