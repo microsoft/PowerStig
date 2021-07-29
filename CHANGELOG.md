@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
+* Parse\Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 3: [#944](https://github.com/microsoft/PowerStig/issues/944)
 
 ## [4.9.1] - 2021-06-03
 
