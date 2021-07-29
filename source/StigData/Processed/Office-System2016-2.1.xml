@@ -87,7 +87,7 @@ Criteria: If the value OpenXMLEncryptProperty is REG_DWORD = 1, this is not a fi
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\common\security</Key>
       <LegacyId>V-70865</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 -&gt; Security Settings "Encryption type for password protected Office Open XML files" is set to "Enabled (Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256)". 
 
@@ -96,7 +96,7 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\16.0\common\security
 
 Criteria: If the value OpenXMLEncryption is REG_SZ = "Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256", this is not a finding.</RawString>
-      <ValueData />
+      <ValueData>Microsoft Enhanced RSA and AES Cryptographic Provider AES 256 256</ValueData>
       <ValueName>OpenXMLEncryption</ValueName>
       <ValueType>String</ValueType>
     </Rule>
@@ -107,7 +107,7 @@ Criteria: If the value OpenXMLEncryption is REG_SZ = "Microsoft Enhanced RSA and
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\common\security</Key>
       <LegacyId>V-70867</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 -&gt; Security Settings "Encryption type for password protected Office 97-2003 files" is set to "Enabled (Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256)".
 
@@ -116,17 +116,17 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\16.0\common\security
 
 Criteria: If the value DefaultEncryption12 is REG_SZ = "Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256", this is not a finding.</RawString>
-      <ValueData />
+      <ValueData>Microsoft Enhanced RSA and AES Cryptographic Provider AES 256 256</ValueData>
       <ValueName>DefaultEncryption12</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-238030" severity="medium" conversionstatus="pass" title="SRG-APP-000488" dscresource="RegistryPolicyFile">
+    <Rule id="V-238030.a" severity="medium" conversionstatus="pass" title="SRG-APP-000488" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting specifies the Microsoft ActiveX« initialization security level for all Microsoft Office applications. ActiveX controls can adversely affect a computer directly. In addition, malicious code can be used to compromise an ActiveX control and attack a computer. To indicate the safety of an ActiveX control, developers can denote them as Safe For Initialization (SFI). SFI indicates that a control is safe to open and run, and that it is not capable of causing a problem for any computer, regardless of whether it has persisted data values or not. If a control is not marked SFI, it is possible that the control could adversely affect a computer--or it could mean that the developers did not test the control in all situations and are not sure whether it might be compromised in the future.   If you enable this policy setting, you can set the ActiveX security level to a number between 1 and 6. These security levels are as follows:   1 - Regardless of how the control is marked, load it and use the persisted values (if any). This setting does not prompt the user.   2 - If SFI, load the control in safe mode and use persisted values (if any). If not SFI, load in unsafe mode with persisted values (if any), or use the default (first-time initialization) settings. This level is similar to the default configuration, but does not prompt the user.   3 - If SFI, load the control in unsafe mode and use persisted values (if any). If not SFI, prompt the user and advise them that it is marked unsafe. If the user chooses No at the prompt, do not load the control. Otherwise, load it with default (first-time initialization) settings.   4 - If SFI, load the control in safe mode and use persisted values (if any). If not SFI, prompt the user and advise them that it is marked unsafe. If the user chooses No at the prompt, do not load the control. Otherwise, load it with default (first-time initialization) settings.   5 - If SFI, load the control in unsafe mode and use persisted values (if any). If not SFI, prompt the user and advise them that it is marked unsafe. If the user chooses No at the prompt, do not load the control. Otherwise, load it with persisted values.    6 - If SFI, load the control in safe mode and use persisted values (if any). If not SFI, prompt the user and advise them that it is marked unsafe. If the user chooses No at the prompt, do not load the control. Otherwise, load it with persisted values.   If you disable or do not configure this policy setting, if a control is marked SFI, the application loads the control in safe mode and uses persisted values (if any). If the control is not marked SFI, the application loads the control in unsafe mode with persisted values (if any), or uses the default (first-time initialization) settings. In both situations, the Message Bar informs users that the controls have been disabled and prompts them to respond.   Important - Some ActiveX controls do not respect the safe mode registry setting, and therefore might load persisted data even though you configure this setting to instruct the control to use safe mode. This setting only increases security for ActiveX controls that are accurately marked as SFI. In situations that involve malicious or poorly designed code, an ActiveX control might be inaccurately marked as SFI.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\Common\Security</Key>
-      <LegacyId>V-70869</LegacyId>
+      <LegacyId>V-70869.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 -&gt; Security Settings "ActiveX Control Initialization" is set to "Disabled".
@@ -137,18 +137,39 @@ HKCU\Software\Policies\Microsoft\Office\Common\Security
 
 Criteria: If the value UFIControls exists, this is a finding.
 </RawString>
-      <ValueData>0</ValueData>
-      <ValueName>UFIControls</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueData />
+      <ValueName>**del.uficontrols</ValueName>
+      <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-238031" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
+    <Rule id="V-238030.b" severity="medium" conversionstatus="pass" title="SRG-APP-000488" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting specifies the Microsoft ActiveX« initialization security level for all Microsoft Office applications. ActiveX controls can adversely affect a computer directly. In addition, malicious code can be used to compromise an ActiveX control and attack a computer. To indicate the safety of an ActiveX control, developers can denote them as Safe For Initialization (SFI). SFI indicates that a control is safe to open and run, and that it is not capable of causing a problem for any computer, regardless of whether it has persisted data values or not. If a control is not marked SFI, it is possible that the control could adversely affect a computer--or it could mean that the developers did not test the control in all situations and are not sure whether it might be compromised in the future.   If you enable this policy setting, you can set the ActiveX security level to a number between 1 and 6. These security levels are as follows:   1 - Regardless of how the control is marked, load it and use the persisted values (if any). This setting does not prompt the user.   2 - If SFI, load the control in safe mode and use persisted values (if any). If not SFI, load in unsafe mode with persisted values (if any), or use the default (first-time initialization) settings. This level is similar to the default configuration, but does not prompt the user.   3 - If SFI, load the control in unsafe mode and use persisted values (if any). If not SFI, prompt the user and advise them that it is marked unsafe. If the user chooses No at the prompt, do not load the control. Otherwise, load it with default (first-time initialization) settings.   4 - If SFI, load the control in safe mode and use persisted values (if any). If not SFI, prompt the user and advise them that it is marked unsafe. If the user chooses No at the prompt, do not load the control. Otherwise, load it with default (first-time initialization) settings.   5 - If SFI, load the control in unsafe mode and use persisted values (if any). If not SFI, prompt the user and advise them that it is marked unsafe. If the user chooses No at the prompt, do not load the control. Otherwise, load it with persisted values.    6 - If SFI, load the control in safe mode and use persisted values (if any). If not SFI, prompt the user and advise them that it is marked unsafe. If the user chooses No at the prompt, do not load the control. Otherwise, load it with persisted values.   If you disable or do not configure this policy setting, if a control is marked SFI, the application loads the control in safe mode and uses persisted values (if any). If the control is not marked SFI, the application loads the control in unsafe mode with persisted values (if any), or uses the default (first-time initialization) settings. In both situations, the Message Bar informs users that the controls have been disabled and prompts them to respond.   Important - Some ActiveX controls do not respect the safe mode registry setting, and therefore might load persisted data even though you configure this setting to instruct the control to use safe mode. This setting only increases security for ActiveX controls that are accurately marked as SFI. In situations that involve malicious or poorly designed code, an ActiveX control might be inaccurately marked as SFI.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\Common\Security</Key>
+      <LegacyId>V-70869.b</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 -&gt; Security Settings "ActiveX Control Initialization" is set to "Disabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\Common\Security
+
+Criteria: If the value UFIControls exists, this is a finding.
+</RawString>
+      <ValueData />
+      <ValueName>uficontrols</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-238031.a" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting allows you to control how ActiveX controls in UserForms should be initialized based upon whether they are Safe For Initialization (SFI) or Unsafefor Initialization (UFI).   ActiveX controls are Component Object Model (COM) objects and have unrestricted access to users' computers. ActiveX controls can access the local file system and change the registry settings of the operating system. If a malicious user repurposes an ActiveX control to take over a user's computer, the effect could be significant. To help improve security, ActiveX developers can mark controls as Safe For Initialization (SFI), which means that the developer states that the controls are safe to open and run and not capable of causing harm to any computers. If a control is not marked SFI, the control could adversely affect a computer--or it's possible the developers did not test the control in all situations and are not sure whether their control might be compromised at some future date.SFI controls run in safe mode, which limits their access to the computer. For example, a worksheet control can both read and write files when it is in unsafe mode, but perhaps only read from files when it is in safe mode. This functionality allows the control to be used in very powerful ways when safety wasn't important, but the control would still be safe for use in a Web page. If a control is not marked as SFI, it is marked Unsafe For Initialization (UFI), which means that it is capable of affecting a user's computer. If UFI ActiveX controls are loaded, they are always loaded in unsafe mode.   If you enable this policy setting, you can choose from four options for loading controls in UserForms:   1- For a UFI or SFI signed control that supports safe and unsafe mode, load the control in unsafe mode. For an SFI signed control that only supports a safe mode configuration, load the control in safe mode. This option enforces the default configuration.   2 - Users are prompted to determine how UserForm forms will load. The prompt only displays once per session within an application. When users respond to the prompt, loading continues based on whether the control is UFI or SFI:   - For a UFI signed control, if users respond Yes to the prompt, load the control in unsafe mode. If users respond No, load the control using the default properties.   - For an SFI signed control that supports both safe and unsafe modes, if users respond Yes to the prompt, load the control in unsafe mode. If users respond No, load the control using safe mode. If the SFI control can only support safe mode, load the control in safe mode. This option is the default configuration in the Microsoft Office 2016 release.   3 - Users are prompted to determine how UserForm forms will load. The prompt only displays once per session within an application. When users respond to the prompt, loading continues based on whether the control is UFI or SFI:   - For a UFI signed control, if users respond Yes to the prompt, load the control in unsafe mode. If users respond No, load the control with its default properties.   - For an SFI signed control, load in safe mode.   4 - For a UFI signed control, load with the default properties of the control. For an SFI signed control, load in safe mode (considered to be the safest mode).   If you disable or do not configure this policy setting, the behavior is as if you enable this policy setting and then select option 1.  
 &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\keycupoliciesmsvbasecurity</Key>
-      <LegacyId>V-70871</LegacyId>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\VBA\Security</Key>
+      <LegacyId>V-70871.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2016 &gt;&gt; Security Settings "Load Controls in Forms3" is set to Enabled and 1 from drop-down menu. 
@@ -156,9 +177,28 @@ Criteria: If the value UFIControls exists, this is a finding.
 Use the Windows Registry Editor to navigate to the following key:
 HKCU\keycupoliciesmsvbasecurity
 If the value LoadControlsInForms is REG_DWORD=1, this is not a finding.</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>LoadControlsInForms</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueData />
+      <ValueName>**del.loadcontrolsinforms</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-238031.b" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting allows you to control how ActiveX controls in UserForms should be initialized based upon whether they are Safe For Initialization (SFI) or Unsafefor Initialization (UFI).   ActiveX controls are Component Object Model (COM) objects and have unrestricted access to users' computers. ActiveX controls can access the local file system and change the registry settings of the operating system. If a malicious user repurposes an ActiveX control to take over a user's computer, the effect could be significant. To help improve security, ActiveX developers can mark controls as Safe For Initialization (SFI), which means that the developer states that the controls are safe to open and run and not capable of causing harm to any computers. If a control is not marked SFI, the control could adversely affect a computer--or it's possible the developers did not test the control in all situations and are not sure whether their control might be compromised at some future date.SFI controls run in safe mode, which limits their access to the computer. For example, a worksheet control can both read and write files when it is in unsafe mode, but perhaps only read from files when it is in safe mode. This functionality allows the control to be used in very powerful ways when safety wasn't important, but the control would still be safe for use in a Web page. If a control is not marked as SFI, it is marked Unsafe For Initialization (UFI), which means that it is capable of affecting a user's computer. If UFI ActiveX controls are loaded, they are always loaded in unsafe mode.   If you enable this policy setting, you can choose from four options for loading controls in UserForms:   1- For a UFI or SFI signed control that supports safe and unsafe mode, load the control in unsafe mode. For an SFI signed control that only supports a safe mode configuration, load the control in safe mode. This option enforces the default configuration.   2 - Users are prompted to determine how UserForm forms will load. The prompt only displays once per session within an application. When users respond to the prompt, loading continues based on whether the control is UFI or SFI:   - For a UFI signed control, if users respond Yes to the prompt, load the control in unsafe mode. If users respond No, load the control using the default properties.   - For an SFI signed control that supports both safe and unsafe modes, if users respond Yes to the prompt, load the control in unsafe mode. If users respond No, load the control using safe mode. If the SFI control can only support safe mode, load the control in safe mode. This option is the default configuration in the Microsoft Office 2016 release.   3 - Users are prompted to determine how UserForm forms will load. The prompt only displays once per session within an application. When users respond to the prompt, loading continues based on whether the control is UFI or SFI:   - For a UFI signed control, if users respond Yes to the prompt, load the control in unsafe mode. If users respond No, load the control with its default properties.   - For an SFI signed control, load in safe mode.   4 - For a UFI signed control, load with the default properties of the control. For an SFI signed control, load in safe mode (considered to be the safest mode).   If you disable or do not configure this policy setting, the behavior is as if you enable this policy setting and then select option 1.  
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\VBA\Security</Key>
+      <LegacyId>V-70871.b</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2016 &gt;&gt; Security Settings "Load Controls in Forms3" is set to Enabled and 1 from drop-down menu. 
+(For a UFI or SFI signed control that supports safe and unsafe mode, load the control in unsafe mode. For an SFI signed control that only supports a safe mode configuration, load the control in safe mode. This option enforces the default configuration.)
+Use the Windows Registry Editor to navigate to the following key:
+HKCU\keycupoliciesmsvbasecurity
+If the value LoadControlsInForms is REG_DWORD=1, this is not a finding.</RawString>
+      <ValueData />
+      <ValueName>loadcontrolsinforms</ValueName>
+      <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-238032" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls whether macros can run in an Office 2016 application that is opened programmatically by another application. If you enable this policy setting, you can choose from three options for controlling macro behavior in Excel, PowerPoint, and Word when the application is opened programmatically: - Disable macros by default - All macros are disabled in the programmatically opened application. - Macros enabled (default) - Macros can run in the programmatically opened application. This option enforces the default configuration in Excel, PowerPoint, and Word. - User application macro security level - Macro functionality is determined by the setting in the "Macro Settings" section of the Trust Center. If you disable or do not configure this policy setting, when a separate program is used to launch Microsoft Excel, PowerPoint, or Word programmatically, any macros can run in the programmatically opened application without being blocked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -198,7 +238,7 @@ HKCU\Software\Policies\Microsoft\Office\16.0\common\security\trusted locations
 
 Criteria: If the value Allow User Locations is REG_DWORD = 0, this is not a finding.</RawString>
       <ValueData>0</ValueData>
-      <ValueName>Allow</ValueName>
+      <ValueName>Allow User Locations</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-238034" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="RegistryPolicyFile">

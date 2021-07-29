@@ -5,9 +5,4 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.1">
-  <!-- Ensure -->
-  <OrganizationalSetting id="V-238028" ValueData="Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256" />
-  <!-- Ensure -->
-  <OrganizationalSetting id="V-238029" ValueData="Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256" />
-</OrganizationalSettings>
+<OrganizationalSettings fullversion="2.1" />
