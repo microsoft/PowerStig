@@ -954,7 +954,7 @@ Windows method:
       <ValueName>QuicAllowed</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-245539" severity="medium" conversionstatus="pass" title="SRG-APP-000080" dscresource="RegistryPolicyFile">
+    <Rule id="V-245539" severity="medium" conversionstatus="pass" title="SRG-APP-000080" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Cookies set by pages matching these URL patterns will be limited to the current session, i.e. they will be deleted when the browser exits.
 
 For URLs not covered by the patterns specified here, or for all URLs if this policy is not set, the global default value will be used either from the 'DefaultCookiesSetting' policy, if it is set, or the user's personal configuration otherwise.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
