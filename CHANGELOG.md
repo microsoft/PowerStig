@@ -1,7 +1,8 @@
 # Versions
 
 ## [Unreleased]
-
+* Update PowerSTIG to add PowerShellScriptQuery Rule [#921] #921)
+* Implement new rule to execute PowerShell scripts
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
 
 ## [4.9.1] - 2021-06-03
