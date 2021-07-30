@@ -434,147 +434,147 @@ function Restore-StigSettings
     }
 
     # Remove DSC Document to revert system state
-    if($PSCmdlet.ShouldProcess('localhost','Remove-DscConfigurationDocument'))
+    if ($PSCmdlet.ShouldProcess('localhost','Restore-StigSettings'))
     {
         Remove-DscConfigurationDocument -Stage Current -Force
-    }
 
-    # Get latest PowerSTIG backup
-    $latest = Get-ChildItem -Path $BackupLocation | Where-Object -Property Name -Match $StigName | Select-Object -Last 1
-    $importCsv = Import-Csv -Path $latest.FullName
+        # Get latest PowerSTIG backup
+        $latest = Get-ChildItem -Path $BackupLocation | Where-Object -Property Name -Match $StigName | Select-Object -Last 1
+        $importCsv = Import-Csv -Path $latest.FullName
 
-    foreach ($rule in $importCsv)
-    {
-        Switch ($rule.dscResource)
+        foreach ($rule in $importCsv)
         {
-            AccountPolicy {
-                if ($rule.PolicyValue -match "^\d+$")
-                {
-                    [int] $integer = $rule.PolicyValue
-
-                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                        Name       = "Name"
-                        $rule.Name = $integer
-                    } -ErrorAction Ignore
-                }
-                else
-                {
-                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                        Name       = "Name"
-                        $rule.Name = $rule.PolicyValue
-                    } -ErrorAction Ignore
-                }
-            }
-            AuditPolicySubcategory {
-                if ($rule.AuditFlag -eq "No Auditing")
-                {
-                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                        Name      = $rule.Name
-                        AuditFlag = "Failure"
-                        Ensure    = $rule.Ensure
-                    }
-
-                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                        Name      = $rule.Name
-                        AuditFlag = "Success"
-                        Ensure    = $rule.Ensure
-                    }
-                }
-                else
-                {
-                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                        Name      = $rule.Name
-                        AuditFlag = $rule.AuditFlag
-                        Ensure    = $rule.Ensure
-                    }
-                }
-            }
-            AuditSetting {
-                Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                    Query        = $rule.Query
-                    Property     = $rule.Property
-                    DesiredValue = $rule.DesiredValue
-                    Operator     = $rule.Operator
-                }
-            }
-            ProcessMitigation {
-                Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                    MitigationTarget = $rule.MitigationTarget
-                    MitigationType   = $rule.MitigationType
-                    MitigationName   = $rule.MitigationName
-                    MitigationValue  = $rule.MitigationValue
-                }
-            }
-            Registry {
-                [string[]] $ValueDataArray = $rule.ValueData
-
-                Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                    Key         = $rule.Key
-                    ValueType   = $rule.ValueType
-                    ValueName   = $rule.ValueName
-                    ValueData   = $ValueDataArray
-                    Ensure      = $rule.Ensure
-                    Force       = $true
-                }
-            }
-            RegistryPolicyFile {
-                [string[]] $ValueDataArray = $rule.ValueData
-
-                Invoke-DscResource -ModuleName "GPRegistryPolicyDsc" -Name $rule.dscResource -Method Set -Property @{
-                    Key        = $rule.Key
-                    ValueType  = $rule.ValueType
-                    ValueName  = $rule.ValueName
-                    TargetType = $rule.TargetType
-                    ValueData  = $ValueDataArray
-                    Ensure     = $rule.Ensure
-                }
-
-                if ($rule.Ensure -eq "Absent")
-                {
-                    if ($rule.TargetType -match 'UserConfiguration')
+            Switch ($rule.dscResource)
+            {
+                AccountPolicy {
+                    if ($rule.PolicyValue -match "^\d+$")
                     {
-                        $replace = '{0}{1}' -f "HKCU:\", $rule.key
+                        [int] $integer = $rule.PolicyValue
+
+                        Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                            Name       = "Name"
+                            $rule.Name = $integer
+                        } -ErrorAction Ignore
                     }
                     else
                     {
-                        $replace = '{0}{1}' -f "HKLM:\", $rule.key
+                        Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                            Name       = "Name"
+                            $rule.Name = $rule.PolicyValue
+                        } -ErrorAction Ignore
                     }
-                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name "Registry" -Method Set -Property @{
-                        Key         = $replace
+                }
+                AuditPolicySubcategory {
+                    if ($rule.AuditFlag -eq "No Auditing")
+                    {
+                        Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                            Name      = $rule.Name
+                            AuditFlag = "Failure"
+                            Ensure    = $rule.Ensure
+                        }
+
+                        Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                            Name      = $rule.Name
+                            AuditFlag = "Success"
+                            Ensure    = $rule.Ensure
+                        }
+                    }
+                    else
+                    {
+                        Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                            Name      = $rule.Name
+                            AuditFlag = $rule.AuditFlag
+                            Ensure    = $rule.Ensure
+                        }
+                    }
+                }
+                AuditSetting {
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                        Query        = $rule.Query
+                        Property     = $rule.Property
+                        DesiredValue = $rule.DesiredValue
+                        Operator     = $rule.Operator
+                    }
+                }
+                ProcessMitigation {
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                        MitigationTarget = $rule.MitigationTarget
+                        MitigationType   = $rule.MitigationType
+                        MitigationName   = $rule.MitigationName
+                        MitigationValue  = $rule.MitigationValue
+                    }
+                }
+                Registry {
+                    [string[]] $ValueDataArray = $rule.ValueData
+
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                        Key         = $rule.Key
                         ValueType   = $rule.ValueType
                         ValueName   = $rule.ValueName
+                        ValueData   = $ValueDataArray
                         Ensure      = $rule.Ensure
                         Force       = $true
                     }
                 }
-            }
-            SecurityOption {
-                Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                    Name       = "Name"
-                    $rule.Name = $rule.OptionValue
-                }
-            }
-            Service {
-                Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                    Name = $rule.Name
-                    StartupType = $rule.StartupType
-                    State = $rule.State
-                }
-            }
-            UserRightsAssignment {
-                $IdentityArray = ($rule.Identity).Split(",")
+                RegistryPolicyFile {
+                    [string[]] $ValueDataArray = $rule.ValueData
 
-                Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                    Policy   = $rule.Policy
-                    Identity = $IdentityArray
-                    Force    = $true
+                    Invoke-DscResource -ModuleName "GPRegistryPolicyDsc" -Name $rule.dscResource -Method Set -Property @{
+                        Key        = $rule.Key
+                        ValueType  = $rule.ValueType
+                        ValueName  = $rule.ValueName
+                        TargetType = $rule.TargetType
+                        ValueData  = $ValueDataArray
+                        Ensure     = $rule.Ensure
+                    }
+
+                    if ($rule.Ensure -eq "Absent")
+                    {
+                        if ($rule.TargetType -match 'UserConfiguration')
+                        {
+                            $replace = '{0}{1}' -f "HKCU:\", $rule.key
+                        }
+                        else
+                        {
+                            $replace = '{0}{1}' -f "HKLM:\", $rule.key
+                        }
+                        Invoke-DscResource -ModuleName $rule.dscResourceModule -Name "Registry" -Method Set -Property @{
+                            Key         = $replace
+                            ValueType   = $rule.ValueType
+                            ValueName   = $rule.ValueName
+                            Ensure      = $rule.Ensure
+                            Force       = $true
+                        }
+                    }
                 }
-            }
-            WindowsOptionalFeature {
-                Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                    Name   = $rule.Name
-                    Ensure = $rule.Ensure
-                } -ErrorAction Ignore
+                SecurityOption {
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                        Name       = "Name"
+                        $rule.Name = $rule.OptionValue
+                    }
+                }
+                Service {
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                        Name = $rule.Name
+                        StartupType = $rule.StartupType
+                        State = $rule.State
+                    }
+                }
+                UserRightsAssignment {
+                    $IdentityArray = ($rule.Identity).Split(",")
+
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                        Policy   = $rule.Policy
+                        Identity = $IdentityArray
+                        Force    = $true
+                    }
+                }
+                WindowsOptionalFeature {
+                    Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
+                        Name   = $rule.Name
+                        Ensure = $rule.Ensure
+                    } -ErrorAction Ignore
+                }
             }
         }
     }
