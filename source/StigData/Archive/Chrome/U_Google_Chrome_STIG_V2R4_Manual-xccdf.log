@@ -12,3 +12,4 @@ V-221588::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ke
 V-221596::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome'; ValueName = 'AutoplayWhitelist'; ValueType = 'MultiString';  ValueData = $null; OrganizationValueTestString = "{0} -eq 'a list of administrator-approved URLs"}
 V-221583::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Absent'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\CookiesSessionOnlyForUrls'}
 V-234701::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome'; ValueName = 'SSLVersionMin'; ValueType = 'String';  ValueData = 'tls1.2'}
+V-245539::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Absent'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome'; ValueName = 'CookiesSessionOnlyForUrls'}
