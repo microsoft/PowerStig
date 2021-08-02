@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update: Create a method to Reverse PowerSTIG configuration [#835](https://github.com/microsoft/PowerStig/issues/835)
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
 
 ## [4.9.1] - 2021-06-03
