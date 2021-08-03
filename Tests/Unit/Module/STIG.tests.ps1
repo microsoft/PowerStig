@@ -258,6 +258,45 @@ try
             $selectStringResults | Should Be $null
         }
     }
+
+    Describe 'Stale Log File Entries' {
+        It 'Rule IDs that are not present in archived STIG should not exist in associated log file' {
+
+            $archiveStigDataPath = Join-Path -Path $script:moduleRoot -ChildPath 'StigData\Archive'
+            $idFound = $false
+
+            #Input log file
+            $logItems = (Get-ChildItem -Path $archiveStigDataPath -Recurse -Include "*.log").FullName
+
+            #Match log file with xml
+            foreach($logItem in $logItems)
+            {
+                $archiveIds =  @()
+                $logIds = @()
+
+                #Get xml name
+                $xmlName = $logItem.replace(".log",".xml")
+
+                #Get Log rule ids
+                $logIds = (Get-Content $logItem | Select-String -Pattern "(V-).\d+").Matches.Value
+
+                #Get Archive rule ids
+                [xml] $archiveStig = Get-Content $xmlName
+                [string[]] $archiveIds = $archiveStig.Benchmark.Group.id
+
+                foreach($id in $logIds)
+                {
+                    if($archiveIds -notcontains $id)
+                    {
+                        $idFound = $true
+                        Write-host "Rule $id does not exist in archived STIG folder"
+                    }
+                }
+            }
+
+            $idFound | Should Be $false
+        }
+    }
 }
 
 finally
