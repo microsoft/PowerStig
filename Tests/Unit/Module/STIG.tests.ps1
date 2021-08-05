@@ -265,36 +265,36 @@ try
             $archiveStigDataPath = Join-Path -Path $script:moduleRoot -ChildPath 'StigData\Archive'
             $idFound = $false
 
-            #Input log file
+            # Input log file
             $logItems = (Get-ChildItem -Path $archiveStigDataPath -Recurse -Include "*.log").FullName
 
-            #Match log file with xml
-            foreach($logItem in $logItems)
+            # Match log file with xml
+            foreach ($logItem in $logItems)
             {
                 $archiveIds =  @()
                 $logIds = @()
 
-                #Get xml name
+                # Get xml name
                 $xmlName = $logItem.replace(".log",".xml")
 
-                #Get Log rule ids
-                $logIds = (Get-Content $logItem | Select-String -Pattern "(V-).\d+").Matches.Value
+                # Get Log rule ids
+                $logIds = (Get-Content -Path $logItem | Select-String -Pattern "(V-).\d+").Matches.Value
 
-                #Get Archive rule ids
-                [xml] $archiveStig = Get-Content $xmlName
+                # Get Archive rule ids
+                [xml] $archiveStig = Get-Content -Path $xmlName
                 [string[]] $archiveIds = $archiveStig.Benchmark.Group.id
 
-                foreach($id in $logIds)
+                foreach ($id in $logIds)
                 {
-                    if($archiveIds -notcontains $id)
+                    if ($archiveIds -notcontains $id)
                     {
                         $idFound = $true
-                        Write-host "Rule $id does not exist in archived STIG folder"
+                        Write-Host "Rule $id does not exist in archived STIG folder"
                     }
                 }
             }
 
-            $idFound | Should Be $false
+            $idFound | Should -Be $false
         }
     }
 
@@ -306,10 +306,10 @@ try
             $extraVersion = $false
 
             # Get archive STIGs
-            $archiveStigs = (Get-ChildItem -Path  $archiveStigDataPath -Recurse -Include "*.xml").FullName
+            $archiveStigs = (Get-ChildItem -Path $archiveStigDataPath -Recurse -Include "*.xml").FullName
 
             # Get archive STIGs
-            $processedStigs = (Get-ChildItem -Path  $processedStigDataPath -Recurse -Include "*.xml"-Exclude "*default.xml").FullName
+            $processedStigs = (Get-ChildItem -Path $processedStigDataPath -Recurse -Include "*.xml" -Exclude "*default.xml").FullName
 
             # Find technology groups in archive folder
             $groupsArchived = ($archiveStigs | Select-String -Pattern "(?<=U_).+(?=_.*_Manual)").Matches.Value | Group-Object
@@ -319,7 +319,7 @@ try
 
             foreach ($archived in $groupsArchived)
             {
-                if($archived.count -gt 2)
+                if ($archived.count -gt 2)
                 {
                     $extraVersion = $true
                     $groupMessage = 'There are too many archive versions {0}, please remove all but N-1 versions' -f $archived.Name
@@ -329,7 +329,7 @@ try
 
             foreach ($processed in $groupsProcessed)
             {
-                if($processed.count -gt 2)
+                if ($processed.count -gt 2)
                 {
                     $extraVersion = $true
                     $groupMessage = 'There are too many processed versions {0}, please remove all but N-1 versions' -f $processed.Name
@@ -337,7 +337,7 @@ try
                 }
             }
 
-            $extraVersion | Should Be $false
+            $extraVersion | Should -Be $false
         }
     }
 }
