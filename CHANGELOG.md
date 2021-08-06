@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update: PowerSTIG Should Test for N-2 STIGs and Stale Log File Entries [#951](https://github.com/microsoft/PowerStig/issues/951)
 * Update: Create a method to Reverse PowerSTIG configuration [#835](https://github.com/microsoft/PowerStig/issues/835)
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
 
