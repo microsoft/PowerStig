@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Adobe_Acrobat_Reader_DC_Continuous_Track_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Adobe_Acrobat_Reader_DC_Continuous_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Adobe Acrobat Reader DC Continuous Track Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="7/28/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Adobe_Acrobat_Reader_DC_Continuous_Track_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Adobe_Acrobat_Reader_DC_Continuous_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Adobe Acrobat Reader DC Continuous Track Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="8/6/2021">
   <ManualRule dscresourcemodule="None">
     <Rule id="V-213192" severity="high" conversionstatus="pass" title="SRG-APP-000456" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Security flaws with software applications are discovered daily. Vendors are constantly updating and patching their products to address newly discovered security vulnerabilities. Organizations (including any contractor to the organization) are required to promptly install security-relevant software updates (e.g., patches, service packs, and hot fixes). Flaws discovered during security assessments, continuous monitoring, incident response activities, or information system error handling must also be addressed expeditiously.
@@ -348,13 +348,41 @@ If the value for bTogglePrefsSync is not set to “1” and Type configured to R
       <ValueName>bTogglePrefsSync</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-213180" severity="low" conversionstatus="pass" title="SRG-APP-000141" dscresource="Registry">
+    <Rule id="V-213180.a" severity="low" conversionstatus="pass" title="SRG-APP-000141" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;When Repair Installation is disabled the user does not have the option (Help Menu) or functional to repair an Adobe Reader DC install.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Adobe\Acrobat Reader\DC\Installer HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Adobe\Acrobat Reader\DC\Installer</Key>
-      <LegacyId>V-64943</LegacyId>
+      <Key>HKEY_LOCAL_MACHINE\Software\Adobe\Acrobat Reader\DC\Installer</Key>
+      <LegacyId>V-64943.a</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the following registry configuration:
+
+Utilizing the Registry Editor, navigate to the following: 
+
+For 32 bit:
+HKEY_LOCAL_MACHINE\Software\Adobe\Acrobat Reader\DC\Installer
+
+For 64 bit:
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Adobe\Acrobat Reader\DC\Installer
+
+Value Name: DisableMaintenance
+Type: REG_DWORD
+Value: 1
+
+If the value for DisableMaintenance is not set to “1” and Type configured to REG_DWORD or does not exist, then this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>DisableMaintenance</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-213180.b" severity="low" conversionstatus="pass" title="SRG-APP-000141" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;When Repair Installation is disabled the user does not have the option (Help Menu) or functional to repair an Adobe Reader DC install.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Adobe\Acrobat Reader\DC\Installer</Key>
+      <LegacyId>V-64943.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the following registry configuration:
