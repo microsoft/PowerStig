@@ -41,7 +41,9 @@ Describe "$moduleName module" {
             'Get-PowerStigFileList',
             'Split-BenchmarkId',
             'Get-StigRule',
-            'Get-StigRuleExceptionString'
+            'Get-StigRuleExceptionString',
+            'Backup-StigSettings',
+            'Restore-StigSettings'
         )
 
         foreach ($export in $exportedCommands)
