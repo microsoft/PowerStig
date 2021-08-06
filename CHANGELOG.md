@@ -5,6 +5,7 @@
 * Update: PowerSTIG Should Test for N-2 STIGs and Stale Log File Entries [#951](https://github.com/microsoft/PowerStig/issues/951)
 * Update: Create a method to Reverse PowerSTIG configuration [#835](https://github.com/microsoft/PowerStig/issues/835)
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
+* Parse\Apply Microsoft IIS 8.5 SITE STIG V2R3: [#935](https://github.com/microsoft/PowerStig/issues/935)
 * Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 2: [#887](https://github.com/microsoft/PowerStig/issues/887)
 * Parse\Apply Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 3: [#948](https://github.com/microsoft/PowerStig/issues/948)
 
