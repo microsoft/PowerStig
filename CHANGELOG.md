@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
+* Parse\Apply Mozilla Firefox STIG - Ver 5, Rel 2 : [#933](https://github.com/microsoft/PowerStig/issues/933)
 
 ## [4.9.1] - 2021-06-03
 
