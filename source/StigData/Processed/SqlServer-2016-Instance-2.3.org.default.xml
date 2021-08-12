@@ -6,6 +6,6 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="2.3">
-  <!-- Ensure -->
+  <!-- Ensure 'V-214029' is populated with a non-default SA account name-->
   <OrganizationalSetting id="V-214029" VariableValue="" />
 </OrganizationalSettings>

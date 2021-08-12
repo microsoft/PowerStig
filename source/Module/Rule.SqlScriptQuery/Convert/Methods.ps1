@@ -1779,4 +1779,53 @@ function Test-VariableRequired
 
     return ($Rule -in $requiresVariableList)
 }
+
+<#
+    .SYNOPSIS
+        Takes the key property from a WebConfigurationPropertyRule to determine the Organizational value.
+        Tests the string to return.
+
+    .PARAMETER Key
+        Key property from the WebConfigurationPropertyRule.
+#>
+function Get-SqlScriptQueryOrganizationValueTestString
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $RuleType
+    )
+    # TO DO - This should not be a static list
+    switch ($RuleType)
+    {
+        {$PsItem -match 'SaAccountRename'}
+        {
+            return '{0} is populated with a non-default SA account name'
+        }
+        {$PsItem -match 'ChangeDatabaseOwner'}
+        {
+            return '{0} is a database owner'
+        }
+        {$PsItem -match 'ShutdownOnError'}
+        {
+            return '{0} is the path to the trace file'
+        }
+        {$PsItem -match 'ViewAnyDatabase'}
+        {
+            return '{0} is a user that can view any database'
+        }
+        {$PsItem -match 'TraceFileLimit'}
+        {
+            return '{0} is the trace file limit'
+        }
+        default
+        {
+            return $null
+        }
+    }
+}
+
 #endregion Helper Functions
