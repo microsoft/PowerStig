@@ -12,3 +12,4 @@ V-221596::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ke
 V-221583::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Absent'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\CookiesSessionOnlyForUrls'}
 V-234701::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome'; ValueName = 'SSLVersionMin'; ValueType = 'String';  ValueData = 'tls1.2'}
 V-245539::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Absent'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome'; ValueName = 'CookiesSessionOnlyForUrls'}
+V-221572::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\URLBlocklis'; ValueName = 'CookiesSessionOnlyForUrls'; ValueType = 'String'; ValueData = 'javascript://*'}
