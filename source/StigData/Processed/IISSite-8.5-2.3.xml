@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/7/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="7/29/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-214455" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 8.5 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 8.5, “Request Filtering” and "Handler Mappings".
@@ -9,13 +9,13 @@ For "Request Filtering", the ISSO must document and approve all allowable file e
       <LegacyId>V-76799</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>For Handler Mappings, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Handler Mappings in IIS 8.5. Handler Mappings at the site level take precedence over Handler Mappings at the server level.
+      <RawString>For Request Filtering, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Request Filtering in IIS 8.5. 
 
 Open the IIS 8.5 Manager.
 
 Click the site name under review.
 
-Double-click "Handler Mappings".
+Double-click "Request Filtering".
 
 If any script file extensions from the black list are enabled, this is a finding.</RawString>
     </Rule>
@@ -784,35 +784,42 @@ If the "Clients Certificate Required" check box is not selected, this is a findi
       <Value>SslRequireCert</Value>
     </Rule>
     <Rule id="V-214480" severity="medium" conversionstatus="pass" title="SRG-APP-000429-WSR-000113" dscresource="xSslSettings">
-      <Description>&lt;VulnDiscussion&gt;When data is written to digital media, such as hard drives, mobile computers, external/removable hard drives, personal digital assistants, flash/thumb drives, etc., there is risk of data loss and data compromise. User identities and passwords stored on the hard drive of the hosting hardware must be encrypted to protect the data from easily being discovered and used by an unauthorized user to access the hosted applications. The cryptographic libraries and functionality used to store and retrieve the user identifiers and passwords must be part of the web server.
+      <Description>&lt;VulnDiscussion&gt;TLS encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
-Preventing the disclosure of transmitted information requires that the web server take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS). 
-
-Transmission of data can take place between the web server and a large number of devices/applications external to the web server. Examples are a web client used by a user, a backend database, an audit server, or other web servers in a web cluster. 
-
-If data is transmitted unencrypted, the data then becomes vulnerable to disclosure. The disclosure may reveal user identifier/password combinations, website code revealing business logic, or other user personal information.
-
-Also satisfies: SRG-APP-000439-WSR-000151&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-76851</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 8.5 server, and the IIS 8.5 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server.
+      <RawString>Note: If this is a public facing web server, this requirement is Not Applicable.
+
+Note: If this server is hosting WSUS, this requirement is Not Applicable.
+
+Note: If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 8.5 server, and the IIS 8.5 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
+
 Double-click the "SSL Settings" icon under the "IIS" section.
+
 Verify "Require SSL" is checked.
+
 Verify "Client Certificates Required" is selected.
+
 Click the site under review.
+
 Select "Configuration Editor" under the "Management" section.
-From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
+
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.webServer/security/access".
+
 The value for "sslFlags" set must include "ssl128".
 
 If the "Require SSL" is not selected, this is a finding.
+
 If the "Client Certificates Required" is not selected, this is a finding.
+
 If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
       <Value>Ssl,SslNegotiateCert,SslRequireCert,Ssl128</Value>
     </Rule>
@@ -869,14 +876,20 @@ By default, the World Wide Web (WWW) service establishes an overlapped recycle, 
       <LegacyId>V-76839</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:20:00' -and [TimeSpan]{0} -gt [TimeSpan]'00:00:00'</OrganizationValueTestString>
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>If this IIS 8.5 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
+
 Click the Application Pools.
+
 Highlight an Application Pool to review and click "Advanced Settings" in the "Actions" pane.
+
 Scroll down to the "Process Model" section and verify the value for "Idle Time-out" is set to "20".
 
 If the "Idle Time-out" is not set to "20" or less, this is a finding.
+
 If the "Idle Time-out" is set to "0", this is a finding.</RawString>
       <Value>
       </Value>
@@ -992,11 +1005,13 @@ If both the "Regular time interval" and "Specific time" options are not set to "
       <LegacyId>V-76875</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -le 1000</OrganizationValueTestString>
-      <RawString>Open the IIS 8.5 Manager.
+      <RawString>If this IIS 8.5 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Open the IIS 8.5 Manager.
 
 Perform for each Application Pool.
 
-Click the “Application Pools”.
+Click the "Application Pools".
 
 Highlight an Application Pool to review and click "Advanced Settings" in the "Actions" pane.
 
@@ -1014,9 +1029,11 @@ If the "Queue Length" is set to "1000" or less, this is not a finding.</RawStrin
       <LegacyId>V-76877</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the Internet Information Services (IIS) Manager.
+      <RawString>If this IIS 8.5 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
 
-Click the “Application Pools”.
+Open the Internet Information Services (IIS) Manager.
+
+Click the "Application Pools".
 
 Perform for each Application Pool.
 
@@ -1035,9 +1052,11 @@ If the value for "Ping Enabled" is not set to "True", this is a finding.</RawStr
       <LegacyId>V-76879</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
+      <RawString>If this IIS 8.5 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
 
-Click the “Application Pools”.
+Open the IIS 8.5 Manager.
+
+Click the "Application Pools".
 
 Perform for each Application Pool.
 
@@ -1276,7 +1295,11 @@ Double-click the "Request Filtering" icon.
 
 Click “Edit Feature Settings” in the "Actions" pane.
 
-If "Allow unlisted file name extensions" check box is checked, this is a finding.</RawString>
+If "Allow unlisted file name extensions" check box is checked, this is a finding.
+
+Note: If this IIS 8.5 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Note: If this IIS 8.5 installation is supporting Splunk, this requirement is Not Applicable.</RawString>
       <Value>false</Value>
     </Rule>
     <Rule id="V-214470" severity="medium" conversionstatus="pass" title="SRG-APP-000251-WSR-000157" dscresource="xWebConfigKeyValue">

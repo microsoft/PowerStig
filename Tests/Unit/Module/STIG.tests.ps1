@@ -258,6 +258,88 @@ try
             $selectStringResults | Should Be $null
         }
     }
+
+    Describe 'Stale Log File Entries' {
+        It 'Rule IDs that are not present in archived STIG should not exist in associated log file' {
+
+            $archiveStigDataPath = Join-Path -Path $script:moduleRoot -ChildPath 'StigData\Archive'
+            $idFound = $false
+
+            # Input log file
+            $logItems = (Get-ChildItem -Path $archiveStigDataPath -Recurse -Include "*.log").FullName
+
+            # Match log file with xml
+            foreach ($logItem in $logItems)
+            {
+                $archiveIds =  @()
+                $logIds = @()
+
+                # Get xml name
+                $xmlName = $logItem.replace(".log",".xml")
+
+                # Get Log rule ids
+                $logIds = (Get-Content -Path $logItem | Select-String -Pattern "(V-).\d+").Matches.Value
+
+                # Get Archive rule ids
+                [xml] $archiveStig = Get-Content -Path $xmlName
+                [string[]] $archiveIds = $archiveStig.Benchmark.Group.id
+
+                foreach ($id in $logIds)
+                {
+                    if ($archiveIds -notcontains $id)
+                    {
+                        $idFound = $true
+                        Write-Host "Rule $id does not exist in archived STIG folder"
+                    }
+                }
+            }
+
+            $idFound | Should -Be $false
+        }
+    }
+
+    Describe 'N-2 STIGs exist in repo' {
+        It 'PowerSTIG should only host N-1 versions of STIGs' {
+
+            $archiveStigDataPath = Join-Path -Path $script:moduleRoot -ChildPath 'StigData\Archive'
+            $processedStigDataPath = Join-Path -Path $script:moduleRoot -ChildPath 'StigData\Processed'
+            $extraVersion = $false
+
+            # Get archive STIGs
+            $archiveStigs = (Get-ChildItem -Path $archiveStigDataPath -Recurse -Include "*.xml").FullName
+
+            # Get archive STIGs
+            $processedStigs = (Get-ChildItem -Path $processedStigDataPath -Recurse -Include "*.xml" -Exclude "*default.xml").FullName
+
+            # Find technology groups in archive folder
+            $groupsArchived = ($archiveStigs | Select-String -Pattern "(?<=U_).+(?=_.*_Manual)").Matches.Value | Group-Object
+
+            # Find technology groups in archive folder
+            $groupsProcessed = ($processedStigs | Select-String -Pattern "(?<=processed\\).+(?=-.*)").Matches.Value | Group-Object
+
+            foreach ($archived in $groupsArchived)
+            {
+                if ($archived.count -gt 2)
+                {
+                    $extraVersion = $true
+                    $groupMessage = 'There are too many archive versions {0}, please remove all but N-1 versions' -f $archived.Name
+                    Write-Host $groupMessage
+                }
+            }
+
+            foreach ($processed in $groupsProcessed)
+            {
+                if ($processed.count -gt 2)
+                {
+                    $extraVersion = $true
+                    $groupMessage = 'There are too many processed versions {0}, please remove all but N-1 versions' -f $processed.Name
+                    Write-Host $groupMessage
+                }
+            }
+
+            $extraVersion | Should -Be $false
+        }
+    }
 }
 
 finally
