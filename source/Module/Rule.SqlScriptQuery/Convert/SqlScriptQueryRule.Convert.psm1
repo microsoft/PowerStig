@@ -164,7 +164,6 @@ class SqlScriptQueryRuleConvert : SqlScriptQueryRule
     #>
     [void] SetOrganizationValueTestString ([string] $RuleType)
     {
-
         $thisOrganizationValueTestString = Get-SqlScriptQueryOrganizationValueTestString -RuleType $RuleType
 
         if (-not $this.SetStatus($thisOrganizationValueTestString))
