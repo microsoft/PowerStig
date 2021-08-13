@@ -11,8 +11,9 @@
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 8.5 SITE STIG V2R3: [#935](https://github.com/microsoft/PowerStig/issues/935)
 * Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 2: [#887](https://github.com/microsoft/PowerStig/issues/887)
 * Update PowerSTIG to successfully parse/apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 4: [#954](https://github.com/microsoft/PowerStig/issues/954)
+* Update PowerSTIG to successfully parse/apply Google Chrome STIG - Ver 2, Rel 4: [#931](https://github.com/microsoft/PowerStig/issues/931)
+* Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 V2R3 Site STIG: [#937](https://github.com/microsoft/PowerStig/issues/937)
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
-* Parse\Apply Microsoft IIS 10.0 V2R3 Site STIG: [#937](https://github.com/microsoft/PowerStig/issues/937)
 
 ## [4.9.1] - 2021-06-03
 
