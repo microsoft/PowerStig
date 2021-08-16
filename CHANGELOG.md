@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
+* Fixed: Increase SQL Server 2016 Instance Coverage [#922](https://github.com/microsoft/PowerStig/issues/922)
 
 ## [4.9.1] - 2021-06-03
 
