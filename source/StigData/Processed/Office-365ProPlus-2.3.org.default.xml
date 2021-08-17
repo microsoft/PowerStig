@@ -5,9 +5,11 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.1">
+<OrganizationalSettings fullversion="2.3">
   <!-- Ensure 'V-223282' is 2|3|4-->
   <OrganizationalSetting id="V-223282" ValueData="2" />
+  <!-- Ensure 'V-223288' is 6-->
+  <OrganizationalSetting id="V-223288" ValueData="6" />
   <!-- Ensure 'V-223333' is 1|DoesNotExist-->
   <OrganizationalSetting id="V-223333" ValueData="1" />
   <!-- Ensure 'V-223335' is 1|DoesNotExist-->
