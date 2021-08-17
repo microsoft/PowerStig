@@ -13,8 +13,9 @@
 * Update PowerSTIG to successfully parse/apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 4: [#954](https://github.com/microsoft/PowerStig/issues/954)
 * Update PowerSTIG to successfully parse/apply Google Chrome STIG - Ver 2, Rel 4: [#931](https://github.com/microsoft/PowerStig/issues/931)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 V2R3 Site STIG: [#937](https://github.com/microsoft/PowerStig/issues/937)
+* Update PowerSTIG to successfully parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 3: [#944](https://github.com/microsoft/PowerStig/issues/944)
+* Update PowerSTIG to successfully parse/apply Adobe Acrobat Pro DC Continuous Track STIG - Ver 2, Rel 1: [#950](https://github.com/microsoft/PowerStig/issues/950)
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
-* Parse\Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 3: [#944](https://github.com/microsoft/PowerStig/issues/944)
 
 ## [4.9.1] - 2021-06-03
 
