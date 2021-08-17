@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/7/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="7/29/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218784" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -329,6 +329,35 @@ NIST SP 800-52 defines the approved TLS versions for government applications.&lt
 
 If the TLS version is not TLS 1.2 or higher, according to NIST SP 800-52, or if non-FIPS-approved algorithms are enabled, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-218827" severity="low" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;HTTP Strict Transport Security (HSTS) ensures browsers always connect to a website over TLS. HSTS exists to remove the need for redirection configurations. HSTS relies on the browser, web server, and a public "Allowlist". If the browser does not support HSTS, it will be ignored.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100189</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the IIS 10.0 Web Server.
+
+Open IIS Manager.
+
+Click the IIS 10.0 web server name.
+
+Click on HSTS.
+
+Verify “Enable” is checked, and Max-Age is set to something other than “0”.
+
+Verify “IncludeSubDomains” and “Redirect HTTP to HTTPS” are checked.
+
+Click "OK".
+
+If HSTS has not been enabled, this is a finding.
+
+If the website is behind a load balancer or proxy server, and HSTS enablement is handled there, this is Not Applicable.
+
+The recommended max age is 8 minutes (480 seconds) or greater. Any value greater than 0 is not a finding.
+
+If the version of Windows Server does not natively support HSTS, this is not a finding.</RawString>
+    </Rule>
     <Rule id="V-228572" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000075" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Anonymous SMTP relays are strictly prohibited. An anonymous SMTP relay can be a vector for many types of malicious activity not limited to server exploitation for the sending of SPAM mail, access to emails, phishing, DoS attacks, etc. Enabling TLS, authentication, and strictly assigning IP addresses that can communicate with the relay greatly reduce the risk of the implementation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -345,6 +374,23 @@ If the IIS web server is not running SMTP relay services, this is Not Applicable
 If the IIS web server running SMTP relay services without TLS enabled, this is a finding.
 
 If the IIS web server running SMTP relay services is not configured to only allow a specific IP address, from the same network as the relay, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-241789" severity="low" conversionstatus="pass" title="SRG-APP-000266-WSR-000159" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;HTTP Response Headers contain information that could enable an attacker to gain access to an information system. Failure to prevent the sending of certain HTTP Response Header information to remote requesters exposes internal configuration information to potential attackers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-41854</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open the IIS 10.0 Manager.
+
+Under the "Connections" pane on the left side of the management console, select the IIS 10.0 web server.
+
+Click the HTTP Response Headers button.
+
+Click to select the “X-Powered-By” HTTP Header.
+
+If “X-Powered-By” has not been removed, this is a finding.</RawString>
     </Rule>
   </DocumentRule>
   <IisLoggingRule dscresourcemodule="xWebAdministration">
@@ -768,9 +814,13 @@ Click the IIS 10.0 web server name.
 
 Double-click the ".NET Authorization Rules" icon.
 
-If any user other than "Administrator" is listed, this is a finding.
+If any groups other than "Administrators" are listed, this is a finding.
 
-If .NET is not installed, this is Not Applicable.</RawString>
+If ASP.NET is not installed, this is Not Applicable.
+
+If the Server is hosting Microsoft SharePoint, this is Not Applicable.
+
+If the server is hosting WSUS, this is Not Applicable.</RawString>
     </Rule>
     <Rule id="V-218826" severity="medium" conversionstatus="pass" title="SRG-APP-000001-WSR-000001" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Resource exhaustion can occur when an unlimited number of concurrent requests are allowed on a website, facilitating a Denial of Service (DoS) attack. Mitigating this kind of attack will include limiting the number of concurrent HTTP/HTTPS requests per IP address and may include, where feasible, limiting parameter values associated with keepalive (i.e., a parameter used to limit the amount of time a connection may be inactive).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -793,31 +843,6 @@ Expand "limits".
 Review the results and verify the value is greater than zero for the "maxconnections" parameter.
 
 If the maxconnections parameter is set to zero, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-218827" severity="low" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;HTTP Strict Transport Security (HSTS) ensures browsers always connect to a website over TLS. HSTS exists to remove the need for redirection configurations. HSTS relies on the browser, web server, and a public "Whitelist". If the browser does not support HSTS, it will be ignored.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100189</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Access the IIS 10.0 Web Server.
-
-Open IIS Manager.
-
-In the "Connections" pane, select the server name.
-
-In the "Features View" pane, open "HTTP Response Headers".
-
-Verify an entry exists named "Strict-Transport-Security".
-
-Open "Strict-Transport-Security" and verify the value box contains a value greater than 0.
-
-Click "OK".
-
-If HSTS has not been enabled, this is a finding.
-The recommended max age is 8 minutes (480 seconds) or greater. Any value greater than 0 is not a finding.
-If the version of Windows Server does not natively support HSTS, this is not a finding.</RawString>
     </Rule>
   </ManualRule>
   <MimeTypeRule dscresourcemodule="xWebAdministration">
@@ -1355,6 +1380,28 @@ Verify a REG_DWORD value of "0" for "Enabled"
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>Enabled</ValueName>
+      <ValueType>DWORD</ValueType>
+    </Rule>
+    <Rule id="V-241788" severity="low" conversionstatus="pass" title="SRG-APP-000266-WSR-000159" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;HTTP Response Headers contain information that could enable an attacker to gain access to an information system. Failure to prevent the sending of certain HTTP Response Header information to remote requesters exposes internal configuration information to potential attackers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HTTP\Parameters</Key>
+      <LegacyId>V-41854</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open Registry Editor.
+
+Navigate to “HKLM\System\CurrentControlSet\Services\HTTP\Parameters”
+
+Verify “DisableServerHeader” is set to “1”.
+
+If REG_DWORD DisableServerHeader is not set to 1, this is a finding.
+
+If the System Administrator can show that Server Version information has been removed via other means, such as using a rewrite outbound rule, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>DisableServerHeader</ValueName>
       <ValueType>DWORD</ValueType>
     </Rule>
   </RegistryRule>
