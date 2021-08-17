@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/7/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="7/29/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218744" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.
@@ -723,9 +723,9 @@ If the "Clients Certificate Required" check box is not selected, this is a findi
       <Value>SslRequireCert</Value>
     </Rule>
     <Rule id="V-218768" severity="medium" conversionstatus="pass" title="SRG-APP-000429-WSR-000113" dscresource="xSslSettings">
-      <Description>&lt;VulnDiscussion&gt;When data is written to digital media, such as hard drives, mobile computers, external/removable hard drives, personal digital assistants, flash/thumb drives, etc., there is risk of data loss and data compromise. User identities and passwords stored on the hard drive of the hosting hardware must be encrypted to protect the data from easily being discovered and used by an unauthorized user to access the hosted applications. The cryptographic libraries and functionality used to store and retrieve the user identifiers and passwords must be part of the web server.
+      <Description>&lt;VulnDiscussion&gt;TLS encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
-Satisfies: SRG-APP-000429-WSR-000113, SRG-APP-000439-WSR-000151, SRG-APP-000441-WSR-000181, SRG-APP-000442-WSR-000182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100257</LegacyId>
@@ -767,7 +767,9 @@ By default, the World Wide Web (WWW) service establishes an overlapped recycle, 
       <LegacyId>V-100245</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:20:00' -and [TimeSpan]{0} -gt [TimeSpan]'00:00:00'</OrganizationValueTestString>
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
 Click the Application Pools.
@@ -891,7 +893,9 @@ If both the "Regular time interval" and "Specific time" options are not set to "
       <LegacyId>V-100273</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the Internet Information Services (IIS) Manager.
+      <RawString>If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Open the Internet Information Services (IIS) Manager.
 
 Click "Application Pools".
 
@@ -1204,7 +1208,9 @@ Click "Edit Feature Settings" in the "Actions" pane.
 
 If the "Allow unlisted file name extensions" check box is checked, this is a finding.
 
-Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.</RawString>
+Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Note: If this IIS 10.0 installation is supporting Splunk, this requirement is Not Applicable.</RawString>
       <Value>false</Value>
     </Rule>
     <Rule id="V-218759" severity="medium" conversionstatus="pass" title="SRG-APP-000251-WSR-000157" dscresource="xWebConfigKeyValue">
