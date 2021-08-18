@@ -6,6 +6,6 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="1.19">
-  <!-- Ensure -->
+  <!-- Ensure 'V-41407' is a database owner-->
   <OrganizationalSetting id="V-41407" VariableValue="" />
 </OrganizationalSettings>
