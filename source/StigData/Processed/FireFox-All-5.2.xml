@@ -1,4 +1,4 @@
-<DISASTIG version="5" classification="UNCLASSIFIED" customname="" stigid="Mozilla_Firefox_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Mozilla_Firefox_STIG_V5R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Mozilla Firefox Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="5.2" created="7/28/2021">
+<DISASTIG version="5" classification="UNCLASSIFIED" customname="" stigid="Mozilla_Firefox_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Mozilla_Firefox_STIG_V5R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Mozilla Firefox Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="5.2" created="8/18/2021">
   <FileContentRule dscresourcemodule="FileContentDsc">
     <Rule id="V-223152.a" severity="medium" conversionstatus="pass" title="SRG-APP-000560" dscresource="ReplaceText">
       <Description>&lt;VulnDiscussion&gt;Use of versions prior to TLS 1.1 are not permitted. SSL 2.0 and SSL 3.0 contain a number of security flaws. These versions must be disabled in compliance with the Network Infrastructure and Secure Remote Computing STIGs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -191,38 +191,23 @@ Criteria: If the parameter is set incorrectly, then this is a finding.
 If the setting is not locked, this is a finding.</RawString>
       <Value>false</Value>
     </Rule>
-    <Rule id="V-223167.a" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+    <Rule id="V-223167" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
       <Description>&lt;VulnDiscussion&gt;A browser extension is a program that has been installed into the browser which adds functionality to it. Where a plug-in interacts only with a web page and usually a third party external application (Flash, Adobe Reader) an extension interacts with the browser program itself. Extensions are not embedded in web pages and must be downloaded and installed in order to work. Extensions allow browsers to avoid restrictions which apply to web pages. For example, an extension can be written to combine data from multiple domains and present it when a certain page is accessed which can be considered Cross Site Scripting. If a browser is configured to allow unrestricted use of extension then plug-ins can be loaded and installed from malicious sources and used on the browser.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>xpinstall.enabled</Key>
-      <LegacyId>V-64891.a</LegacyId>
+      <LegacyId>V-64891</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open a browser window, type "about:config" in the address bar, then navigate to the setting for Preference Name "xpinstall.enabled" and set the value to “false” and locked.</RawString>
+      <RawString>Open a browser window, type "about:config" in the address bar, then navigate to the setting for Preference Name "xpinstall.enabled" and set the value to “false” and locked.
+
+Criteria: If the value of “xpinstall.enabled” is “false”, this is not a finding.
+
+If the value is locked, this is not a finding.
+
+If the SA can show that “DisableSystemAddonUpdate” policy is used instead, and set to “1”, this is not a finding.
+</RawString>
       <Value>false</Value>
-    </Rule>
-    <Rule id="V-223167.b" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
-      <Description>&lt;VulnDiscussion&gt;A browser extension is a program that has been installed into the browser which adds functionality to it. Where a plug-in interacts only with a web page and usually a third party external application (Flash, Adobe Reader) an extension interacts with the browser program itself. Extensions are not embedded in web pages and must be downloaded and installed in order to work. Extensions allow browsers to avoid restrictions which apply to web pages. For example, an extension can be written to combine data from multiple domains and present it when a certain page is accessed which can be considered Cross Site Scripting. If a browser is configured to allow unrestricted use of extension then plug-ins can be loaded and installed from malicious sources and used on the browser.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>xpinstall.enabled</Key>
-      <LegacyId>V-64891.b</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Criteria: If the value of “xpinstall.enabled” is “false”, this is not a finding.</RawString>
-      <Value>false</Value>
-    </Rule>
-    <Rule id="V-223167.c" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
-      <Description>&lt;VulnDiscussion&gt;A browser extension is a program that has been installed into the browser which adds functionality to it. Where a plug-in interacts only with a web page and usually a third party external application (Flash, Adobe Reader) an extension interacts with the browser program itself. Extensions are not embedded in web pages and must be downloaded and installed in order to work. Extensions allow browsers to avoid restrictions which apply to web pages. For example, an extension can be written to combine data from multiple domains and present it when a certain page is accessed which can be considered Cross Site Scripting. If a browser is configured to allow unrestricted use of extension then plug-ins can be loaded and installed from malicious sources and used on the browser.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>DisableSystemAddonUpdate</Key>
-      <LegacyId>V-64891.c</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the SA can show that “DisableSystemAddonUpdate” policy is used instead, and set to “1”, this is not a finding.</RawString>
-      <Value>1</Value>
     </Rule>
     <Rule id="V-223168" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
       <Description>&lt;VulnDiscussion&gt;There should be no background submission of technical and other information from DoD computers to Mozilla with portions posted publically.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
