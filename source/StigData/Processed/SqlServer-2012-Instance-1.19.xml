@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2012_STIG" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Instance_STIG_V1R19_Manual-xccdf.xml" releaseinfo="Release: 19 Benchmark Date: 26 Jul 2019" title="Microsoft SQL Server 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.19" created="5/18/2021">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2012_STIG" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Instance_STIG_V1R19_Manual-xccdf.xml" releaseinfo="Release: 19 Benchmark Date: 26 Jul 2019" title="Microsoft SQL Server 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.19" created="8/12/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-40907" severity="high" conversionstatus="pass" title="SRG-APP-000264-DB-000136" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), VPN, or IPSEC tunnel. 
@@ -5055,7 +5055,7 @@ Note that trace file rollover does not count as an audit failure, provided that 
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueTestString>{0} is the path to the trace file</OrganizationValueTestString>
       <RawString>From the query prompt:
 
 SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5102,7 +5102,7 @@ After the initial setup of SQL Server audit log configuration, it is best to che
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueTestString>{0} is the trace file limit</OrganizationValueTestString>
       <RawString>Check the SQL Server audit setting on the maximum number of files of the trace used for the auditing requirement. 
 
 Select * from sys.traces. Determine the audit being used to fulfill the overall auditing requirement. Examine the max_files and max_size parameters. SQL will overwrite the oldest files when the max_files parameter has been exceeded. Care must be taken to ensure that this does not happen, or data will be lost. 
@@ -5495,7 +5495,7 @@ Since the SQL Server 'sa' is administrative in nature, the compromise of a defau
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueTestString>{0} is populated with a non-default SA account name</OrganizationValueTestString>
       <RawString>Verify the SQL Server default 'sa' account name has been changed.
 
 Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins.
@@ -6150,7 +6150,7 @@ The fix for this vulnerability specifies the use of REVOKE.  Be aware that revok
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueTestString>{0} is a user that can view any database</OrganizationValueTestString>
       <RawString>Obtain the list of roles that are authorized for the SQL Server 'View any database' permission and what 'Grant', 'Grant With', and/or 'Deny' privilege is authorized. Obtain the list of roles with that permission by running the following query:
 
 SELECT 
