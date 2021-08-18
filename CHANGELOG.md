@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 3: [#944](https://github.com/microsoft/PowerStig/issues/944)
 * Update PowerSTIG to test for N-2 STIGs and Stale Log File Entries [#951](https://github.com/microsoft/PowerStig/issues/951)
 * Update PowerSTIG to include a method to Reverse PowerSTIG configuration [#835](https://github.com/microsoft/PowerStig/issues/835)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 3: [#948](https://github.com/microsoft/PowerStig/issues/948)
@@ -16,6 +17,7 @@
 * Update PowerSTIG to successfully parse/apply Microsoft Office System 2016 STIG - Ver 2, Rel 1: [#946](https://github.com/microsoft/PowerStig/issues/946)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 3: [#948](https://github.com/microsoft/PowerStig/issues/948)
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
+* Fixed: Increase SQL Server 2016 Instance Coverage [#922](https://github.com/microsoft/PowerStig/issues/922)
 
 ## [4.9.1] - 2021-06-03
 

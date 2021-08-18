@@ -47,6 +47,10 @@ class SqlScriptQueryRuleConvert : SqlScriptQueryRule
         $this.SetTestScript($ruleType)
         $this.SetSetScript($ruleType, $fixText)
         $this.SetVariable($ruleType)
+        if ($null -ne $this.Variable)
+        {
+            $this.SetOrganizationValueTestString($ruleType)
+        }
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }
@@ -150,6 +154,23 @@ class SqlScriptQueryRuleConvert : SqlScriptQueryRule
         $ruleType = Get-SqlRuleType -CheckContent $CheckContent
 
         return $ruleType
+    }
+
+    <#
+        .SYNOPSIS
+            Set the organizational value test string
+        .DESCRIPTION
+            Extracts the organizational value from the key and then sets the value
+    #>
+    [void] SetOrganizationValueTestString ([string] $RuleType)
+    {
+        $thisOrganizationValueTestString = Get-SqlScriptQueryOrganizationValueTestString -RuleType $RuleType
+
+        if (-not $this.SetStatus($thisOrganizationValueTestString))
+        {
+            $this.set_OrganizationValueTestString($thisOrganizationValueTestString)
+        }
+
     }
 
     hidden [void] SetDscResource ()
