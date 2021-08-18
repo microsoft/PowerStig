@@ -6,6 +6,6 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="2.3">
-  <!-- Ensure 'V-214029' is populated with a non-default SA account name-->
-  <OrganizationalSetting id="V-214029" VariableValue="" />
+  <!-- Ensure ValueData is set to 255 which disables IPv6 -->
+  <OrganizationalSetting id="V-215597" ValueData="" />
 </OrganizationalSettings>

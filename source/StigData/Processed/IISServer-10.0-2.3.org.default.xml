@@ -6,6 +6,6 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="2.3">
-  <!-- Ensure 'V-214029' is populated with a non-default SA account name-->
-  <OrganizationalSetting id="V-214029" VariableValue="" />
+  <!-- Ensure ''V-218805.a'' -le '00:20:00'-->
+  <OrganizationalSetting id="V-218805.a" Value="00:20:00" />
 </OrganizationalSettings>
