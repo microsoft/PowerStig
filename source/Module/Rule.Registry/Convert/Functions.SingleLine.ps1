@@ -673,7 +673,7 @@ function Test-SingleLineStigFormat
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    if ($checkContent -match "HKLM|HKCU|HKEY_LOCAL_MACHINE\\")
+    if ($checkContent -match "HKLM|HKCU|HKEY_LOCAL_MACHINE\\" -and -not ($global:stigTitle -match 'Adobe Acrobat Professional'))
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] $true"
         $true

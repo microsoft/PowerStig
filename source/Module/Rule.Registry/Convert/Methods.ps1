@@ -164,7 +164,7 @@ function Get-RegistryValueType
     )
 
     # The Office format is different to check which way to send the strings.
-    if ((Test-SingleLineStigFormat -CheckContent $checkContent) -and -not ($global:stigTitle -match 'Adobe Acrobat Professional'))
+    if ( Test-SingleLineStigFormat -CheckContent $checkContent )
     {
         [string] $type = Get-RegistryValueTypeFromSingleLineStig -CheckContent $checkContent
     }
@@ -284,7 +284,7 @@ function Get-RegistryValueName
     )
 
     # The Office format is different to check which way to send the strings.
-    if ( (Test-SingleLineStigFormat -CheckContent $checkContent) -and -not ($global:stigTitle -match 'Adobe Acrobat Professional'))
+    if ( Test-SingleLineStigFormat -CheckContent $checkContent )
     {
         Get-RegistryValueNameFromSingleLineStig -CheckContent $checkContent
     }
@@ -356,7 +356,7 @@ function Get-RegistryValueData
     # The Office format is different to check which way to send the strings.
     switch ( $true )
     {
-        {(Test-SingleLineStigFormat -CheckContent $checkContent) -and -not ($global:stigTitle -match 'Adobe Acrobat Professional')}
+        { Test-SingleLineStigFormat -CheckContent $checkContent }
         {
             return Get-RegistryValueDataFromSingleStig -CheckContent $checkContent
         }
