@@ -2,7 +2,6 @@
 
 ## [Unreleased]
 
- Parse\Apply Adobe Acrobat Reader DC Continuous Track STIG - Ver 2, Rel 1: [#929](https://github.com/microsoft/PowerStig/issues/929)
 * Update PowerSTIG to successfully parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 3: [#944](https://github.com/microsoft/PowerStig/issues/944)
 * Update PowerSTIG to test for N-2 STIGs and Stale Log File Entries [#951](https://github.com/microsoft/PowerStig/issues/951)
 * Update PowerSTIG to include a method to Reverse PowerSTIG configuration [#835](https://github.com/microsoft/PowerStig/issues/835)
@@ -15,6 +14,8 @@
 * Update PowerSTIG to successfully parse/apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 4: [#954](https://github.com/microsoft/PowerStig/issues/954)
 * Update PowerSTIG to successfully parse/apply Google Chrome STIG - Ver 2, Rel 4: [#931](https://github.com/microsoft/PowerStig/issues/931)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 V2R3 Site STIG: [#937](https://github.com/microsoft/PowerStig/issues/937)
+* Update PowerSTIG to successfully parse/apply Microsoft Office System 2016 STIG - Ver 2, Rel 1: [#946](https://github.com/microsoft/PowerStig/issues/946)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 3: [#948](https://github.com/microsoft/PowerStig/issues/948)
 * Update PowerSTIG to successfully parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 3: [#944](https://github.com/microsoft/PowerStig/issues/944)
 * Update PowerSTIG to successfully parse/apply Adobe Acrobat Reader DC Continuous Track STIG - Ver 2, Rel 1: [#929](https://github.com/microsoft/PowerStig/issues/929)
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
