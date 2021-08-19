@@ -16,9 +16,9 @@
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 V2R3 Site STIG: [#937](https://github.com/microsoft/PowerStig/issues/937)
 * Update PowerSTIG to successfully parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 3: [#944](https://github.com/microsoft/PowerStig/issues/944)
 * Update PowerSTIG to successfully parse/apply Adobe Acrobat Pro DC Continuous Track STIG - Ver 2, Rel 1: [#950](https://github.com/microsoft/PowerStig/issues/950)
+* Update PowerSTIG to successfully parse/apply Adobe Acrobat Reader DC Continuous Track STIG - Ver 2, Rel 1: [#929](https://github.com/microsoft/PowerStig/issues/929)
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
 * Fixed: Increase SQL Server 2016 Instance Coverage [#922](https://github.com/microsoft/PowerStig/issues/922)
-
 
 ## [4.9.1] - 2021-06-03
 
