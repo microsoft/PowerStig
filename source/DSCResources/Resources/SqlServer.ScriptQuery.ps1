@@ -5,6 +5,17 @@ $rules = $stig.RuleList | Select-Rule -Type SqlScriptQueryRule
 
 foreach ($instance in $ServerInstance)
 {
+    if ($instance -notmatch '\\')
+    {
+        $instanceName = 'MSSQLSERVER'
+        $serverName = $instance
+    } 
+    else
+    {
+        $instanceName = $instance.Split('{\}')[1]
+        $serverName = $instance.Split('{\}')[0]
+    }
+
     if ($null -ne $Database)
     {
         foreach ($db in $Database)
@@ -13,10 +24,11 @@ foreach ($instance in $ServerInstance)
 
             foreach ($rule in $rules)
             {
-                $resourceTitle = '{0}{1}_{2}' -f (Get-ResourceTitle -Rule $rule), $instance, $db
+                $resourceTitle = '{0}{1}_{2}' -f (Get-ResourceTitle -Rule $rule), $instanceName, $db
                 SqlScriptQuery "$resourceTitle"
                 {
-                    ServerInstance = $Instance
+                    ServerName     = $serverName
+                    InstanceName   = $instanceName
                     GetQuery       = $getScript
                     TestQuery      = $rule.TestScript
                     SetQuery       = $rule.SetScript
@@ -31,9 +43,10 @@ foreach ($instance in $ServerInstance)
         {
             if ($null -ne $rule.Variable -and $null -ne $rule.VariableValue)
             {
-                SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
+                SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instanceName"
                 {
-                    ServerInstance = $instance
+                    ServerName     = $serverName
+                    InstanceName   = $instanceName
                     GetQuery       = $rule.GetScript
                     TestQuery      = $rule.TestScript
                     SetQuery       = $rule.SetScript
@@ -42,9 +55,10 @@ foreach ($instance in $ServerInstance)
                 continue
             }
 
-            SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
+            SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instanceName"
             {
-                ServerInstance = $instance
+                ServerName     = $serverName
+                InstanceName   = $instanceName
                 GetQuery       = $rule.GetScript
                 TestQuery      = $rule.TestScript
                 SetQuery       = $rule.SetScript
