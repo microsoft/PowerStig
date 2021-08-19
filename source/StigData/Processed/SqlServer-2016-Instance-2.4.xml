@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="8/12/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="8/18/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful Denial of Service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions per user is helpful in reducing these risks. 
@@ -1249,52 +1249,6 @@ Click Start &gt;&gt; Type "SQL Server 2016 Installation Center" &gt;&gt; Launch 
  
 Compare the feature listing against the required components listing. If any features are installed, but are not required, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-213996" severity="medium" conversionstatus="pass" title="SRG-APP-000492-DB-000333" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Changes to the security configuration must be tracked. 
- 
-This requirement applies to situations where security data is retrieved or modified via data manipulation operations, as opposed to via specialized security functionality. 
- 
-In an SQL environment, types of access include, but are not necessarily limited to: 
-SELECT 
-INSERT 
-UPDATE 
-DELETE 
-EXECUTE 
- 
-To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79253</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the system documentation to determine if SQL Server is required to audit the retrieval of privilege/permission/role membership information. 
- 
-If this is not required, this is not a finding. 
- 
-If the documentation does not exist, this is a finding. 
- 
-Determine if an audit is configured and started by executing the following query. 
- 
-SELECT name AS 'Audit Name', 
-  status_desc AS 'Audit Status', 
-  audit_file_path AS 'Current Audit File' 
-FROM sys.dm_server_audit_statu 
- 
-If no records are returned, this is a finding. 
- 
-If the auditing the retrieval of privilege/permission/role membership information is required, execute the following query to verify the "SCHEMA_OBJECT_ACCESS_GROUP" is included in the server audit specification. 
- 
-SELECT a.name AS 'AuditName', 
-  s.name AS 'SpecName', 
-  d.audit_action_name AS 'ActionName', 
-  d.audited_result AS 'Result' 
-FROM sys.server_audit_specifications s 
-JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
-JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
-WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP' 
- 
-If the SCHEMA_OBJECT_ACCESS_GROUP is not returned in an active audit, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-213997" severity="medium" conversionstatus="pass" title="SRG-APP-000494-DB-000344" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Changes in categorized information must be tracked.  Without an audit trail, unauthorized access to protected data could go undetected. 
  
@@ -2140,13 +2094,13 @@ SQL Server passwords sent in clear text format across the network are vulnerable
       <OrganizationValueTestString />
       <RawString>From a command prompt, open SQL Server Configuration Manager by typing "sqlservermanager13.msc", and pressing "ENTER".
 
-Navigate to SQL Server Configuration Manager &gt;&gt; SQL Server Network Configuration. Right-click on Protocols for, where is a placeholder for the SQL Server instance name, and click on “Properties”.
+Navigate to SQL Server Configuration Manager &gt;&gt; SQL Server Network Configuration. Right-click on Protocols, where there is a placeholder for the SQL Server instance name, and click on “Properties”. 
 
 On the "Flags" tab, if "Force Encryption" is set to “NO", this is a finding.
 
 On the "Flags" tab, if "Force Encryption" is set to "YES", examine the certificate used on the "Certificate" tab.
 
-If it is not a DoD certificate, or if no certificate is listed, this is a finding.
+If it is not a DoD approved certificate, or if no certificate is listed, this is a finding.
 
 For clustered instances, the Certificate will NOT be shown in the SQL Server Configuration Manager.
 
@@ -2160,7 +2114,7 @@ For clustered instances, the Certificate will NOT be shown in the SQL Server Con
 
 5. This check needs to be run on each node of the cluster.
 
-If any nodes have a certificate in use by SQL that is not issued by DOD, this is a finding.
+If any nodes have a certificate in use by SQL that is not issued or approved by DoD, this is a finding.
 </RawString>
     </Rule>
     <Rule id="V-213969" severity="medium" conversionstatus="pass" title="SRG-APP-000179-DB-000114" dscresource="None">
@@ -2316,15 +2270,19 @@ If such evidence cannot be obtained, or the evidence that is obtained indicates 
     </Rule>
     <Rule id="V-213995" severity="medium" conversionstatus="pass" title="SRG-APP-000492-DB-000332" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Changes to the security configuration must be tracked. 
- 
+
 This requirement applies to situations where security data is retrieved or modified via data manipulation operations, as opposed to via specialized security functionality. 
- 
+
 In an SQL environment, types of access include, but are not necessarily limited to: 
 SELECT 
 INSERT 
 UPDATE 
 DELETE 
-EXECUTE&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+EXECUTE
+
+To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.
+
+Satisfies: SRG-APP-000492-DB-000332, SRG-APP-000492-DB-000333&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79251</LegacyId>
@@ -2339,7 +2297,7 @@ FROM sys.dm_server_audit_status
 
 If no records are returned, this is a finding. 
 
-If the auditing the retrieval of privilege/permission/role membership information is required, execute the following query to verify the SCHEMA_OBJECT_ACCESS_GROUP is included in the server audit specification. 
+Execute the following query to verify the SCHEMA_OBJECT_ACCESS_GROUP is included in the server audit specification. 
 
 SELECT a.name AS 'AuditName', 
 s.name AS 'SpecName', 
