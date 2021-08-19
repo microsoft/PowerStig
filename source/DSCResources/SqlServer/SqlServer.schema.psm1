@@ -99,7 +99,7 @@ configuration SqlServer
 
     Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 15.1.1
     . "$resourcePath\SqlServer.ScriptQuery.ps1"
-    . "$resourcePath\SqlServer.SQLServerConfiguration.ps1"
+    . "$resourcePath\SqlServer.SQLConfiguration.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.10.0.0
     . "$resourcePath\Windows.SecurityOption.ps1"
