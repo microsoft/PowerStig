@@ -15,6 +15,9 @@
 * Update PowerSTIG to successfully parse/apply Google Chrome STIG - Ver 2, Rel 4: [#931](https://github.com/microsoft/PowerStig/issues/931)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 V2R3 Site STIG: [#937](https://github.com/microsoft/PowerStig/issues/937)
 * Update PowerSTIG to successfully parse/apply Mozilla Firefox STIG - Ver 5, Rel 2 : [#933](https://github.com/microsoft/PowerStig/issues/933)
+* Update PowerSTIG to successfully parse/apply Microsoft Office System 2016 STIG - Ver 2, Rel 1: [#946](https://github.com/microsoft/PowerStig/issues/946)
+* Update PowerSTIG to successfully parse/apply Adobe Acrobat Pro DC Continuous Track STIG - Ver 2, Rel 1: [#950](https://github.com/microsoft/PowerStig/issues/950)
+* Update PowerSTIG to successfully parse/apply Adobe Acrobat Reader DC Continuous Track STIG - Ver 2, Rel 1: [#929](https://github.com/microsoft/PowerStig/issues/929)
 * Fixed: V-241788 fails to apply due to invalid registry key [#918](https://github.com/microsoft/PowerStig/issues/918)
 * Fixed: Increase SQL Server 2016 Instance Coverage [#922](https://github.com/microsoft/PowerStig/issues/922)
 
