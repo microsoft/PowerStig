@@ -489,8 +489,8 @@ function Get-AuditSetScript
     $sqlScript += 'IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); '
     $sqlScript += 'CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT '
     $sqlScript += 'ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), '
-    $sqlScript += 'ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), '
-    $sqlScript += 'ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), '
+    $sqlScript += 'ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), '
+    $sqlScript += 'ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), '
     $sqlScript += 'ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), '
     $sqlScript += 'ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)'
 
@@ -1699,14 +1699,15 @@ function Get-SqlRuleType
         }
         # sa account rename
         {
-            $PSItem -Match "'sa' account name has been changed"
+            $PSItem -Match "'sa' account name has been changed|\(system administrator\) account name has been changed"
         }
         {
             $ruleType = 'SaAccountRename'
         }
         # sa account rules
         {
-            $PSItem -Match '(\s|\[)principal_id(\s*|\]\s*)\=\s*1'
+            $PSItem -Match '(\s|\[)principal_id(\s*|\]\s*)\=\s*1' -and
+            $PSItem -NotMatch '\(system administrator\) account name has been changed'
         }
         {
             $ruleType = 'SysAdminAccount'
@@ -1773,8 +1774,58 @@ function Test-VariableRequired
         'V-41022'
         'V-41251'
         'V-41407'
+        'V-214029'
     )
 
     return ($Rule -in $requiresVariableList)
 }
+
+<#
+    .SYNOPSIS
+        Takes the key property from a WebConfigurationPropertyRule to determine the Organizational value.
+        Tests the string to return.
+
+    .PARAMETER Key
+        Key property from the WebConfigurationPropertyRule.
+#>
+function Get-SqlScriptQueryOrganizationValueTestString
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $RuleType
+    )
+    # TO DO - This should not be a static list
+    switch ($RuleType)
+    {
+        {$PsItem -match 'SaAccountRename'}
+        {
+            return '{0} is populated with a non-default SA account name'
+        }
+        {$PsItem -match 'ChangeDatabaseOwner'}
+        {
+            return '{0} is a database owner'
+        }
+        {$PsItem -match 'ShutdownOnError'}
+        {
+            return '{0} is the path to the trace file'
+        }
+        {$PsItem -match 'ViewAnyDatabase'}
+        {
+            return '{0} is a user that can view any database'
+        }
+        {$PsItem -match 'TraceFileLimit'}
+        {
+            return '{0} is the trace file limit'
+        }
+        default
+        {
+            return $null
+        }
+    }
+}
+
 #endregion Helper Functions

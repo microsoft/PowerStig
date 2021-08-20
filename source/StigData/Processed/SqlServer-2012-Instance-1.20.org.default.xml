@@ -8,13 +8,13 @@
 <OrganizationalSettings fullversion="1.20">
   <!-- Ensure the correct path is specified and does NOT conflict with RuleId V-69169-->
   <OrganizationalSetting id="V-40950" Path="" />
-  <!-- Ensure -->
+  <!-- Ensure 'V-41022' is the path to the trace file-->
   <OrganizationalSetting id="V-41022" VariableValue="" />
-  <!-- Ensure -->
+  <!-- Ensure 'V-41024' is the trace file limit-->
   <OrganizationalSetting id="V-41024" VariableValue="" />
-  <!-- Ensure -->
+  <!-- Ensure 'V-41037' is populated with a non-default SA account name-->
   <OrganizationalSetting id="V-41037" VariableValue="" />
-  <!-- Ensure -->
+  <!-- Ensure 'V-41251' is a user that can view any database-->
   <OrganizationalSetting id="V-41251" VariableValue="" />
   <!-- Ensure the correct path is specified and does NOT conflict with RuleId V-40950-->
   <OrganizationalSetting id="V-69169" Path="" />
