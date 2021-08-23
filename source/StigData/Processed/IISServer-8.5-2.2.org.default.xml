@@ -6,6 +6,8 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="2.2">
+  <!-- Ensure ''V-214400'' LogFlags must contain at a minimum Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer'-->
+  <OrganizationalSetting id="V-214400" LogCustomFieldEntry="" LogFlags="Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer" LogFormat="" LogPeriod="" LogTargetW3C="" />
   <!-- Ensure ''V-214420.b'' -le '00:20:00'-->
   <OrganizationalSetting id="V-214420.b" Value="00:20:00" />
 </OrganizationalSettings>
