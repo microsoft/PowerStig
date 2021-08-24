@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = $stig.RuleList | Select-Rule -Type SqlLogin
+$rules = $stig.RuleList | Select-Rule -Type SqlLoginRule
 
 # Creates variable with SQL Server Instance Name.
 foreach ($instance in $serverInstance)
@@ -43,14 +43,13 @@ foreach ($instance in $serverInstance)
             $name = $login.Name
 
             # New-Guid was added to be able to create multiple unique instances of this rule.
-            SqlServerLogin ((Get-ResourceTitle -Rule $rule) + (New-Guid)) 
+            SqlLogin ((Get-ResourceTitle -Rule $rule) + (New-Guid)) 
             {
                 #ServerInstance = $instance
                 InstanceName                   = $instanceName
                 ServerName                     = $serverName
                 LoginType                      = $rule.LoginType
                 Name                           = $name
-                Ensure                         = $rule.Ensure
                 LoginMustChangePassword        = $rule.LoginMustChangePassword
                 LoginPasswordPolicyEnforced    = $rule.LoginPasswordPolicyEnforced
                 LoginPasswordExpirationEnabled = $rule.LoginPasswordExpirationEnabled
