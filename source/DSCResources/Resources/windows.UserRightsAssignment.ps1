@@ -33,25 +33,33 @@ if ($DomainName -and $ForestName)
 foreach ($rule in $rules)
 {
     Write-Verbose -Message $rule
-    $identitySplit = $rule.Identity -split ","
-    [System.Collections.ArrayList] $identityList = @()
 
-    foreach ($identity in $identitySplit)
+    if ($rule.Identity -eq 'NULL')
     {
-        if (-not ([string]::IsNullorWhitespace($domainName)) -and $domainGroupTranslation.Contains($identity))
+        $identityList = $null
+    }
+    else
+    {
+        $identitySplit = $rule.Identity -split ","
+        [System.Collections.ArrayList] $identityList = @()
+
+        foreach ($identity in $identitySplit)
         {
-            [void] $identityList.Add($domainGroupTranslation.$identity -f $DomainName )
-        }
-        elseif (-not ([string]::IsNullorWhitespace($forestName)) -and $forestGroupTranslation.Contains($identity))
-        {
-            [void] $identityList.Add($forestGroupTranslation.$identity -f $ForestName )
-        }
-        # Default to adding the identify as provided for any non-default identities.
-        else
-        {
-            if ($identity -notmatch "Schema Admins|Enterprise Admins|security|Domain Admins|auditors")
+            if (-not ([string]::IsNullorWhitespace($domainName)) -and $domainGroupTranslation.Contains($identity))
             {
-                [void] $identityList.Add($identity)
+                [void] $identityList.Add($domainGroupTranslation.$identity -f $DomainName )
+            }
+            elseif (-not ([string]::IsNullorWhitespace($forestName)) -and $forestGroupTranslation.Contains($identity))
+            {
+                [void] $identityList.Add($forestGroupTranslation.$identity -f $ForestName )
+            }
+            # Default to adding the identify as provided for any non-default identities.
+            else
+            {
+                if ($identity -notmatch "Schema Admins|Enterprise Admins|security|Domain Admins|auditors")
+                {
+                    [void] $identityList.Add($identity)
+                }
             }
         }
     }

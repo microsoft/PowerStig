@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Fixed: Windows Server 2019 V2R1 V-205763 generating an exception [#827](https://github.com/microsoft/PowerStig/issues/827)
+
 ## [4.10.0] - 2021-08-20
 
 * Update PowerSTIG to Parse/Apply SQL Server 2016 Instance V2R4 STIG: [#959](https://github.com/microsoft/PowerStig/issues/959)
