@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2019_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2019_MS_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 04 May 2021 3.2.2.36079 1.10.0" title="Microsoft Windows Server 2019 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="5/26/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2019_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2019_MS_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 04 May 2021 3.2.2.36079 1.10.0" title="Microsoft Windows Server 2019 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="8/23/2021">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-205629" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. The higher this value is, the less effective the account lockout feature will be in protecting the local system. The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack while allowing for honest errors made during normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -8423,7 +8423,7 @@ The "Enable computer and user accounts to be trusted for delegation" user right 
       <DisplayName>Enable computer and user accounts to be trusted for delegation</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-93047</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -8448,7 +8448,7 @@ Accounts with the "Access Credential Manager as a trusted caller" user right may
       <DisplayName>Access Credential Manager as a trusted caller</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-93049</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -8471,7 +8471,7 @@ Accounts with the "Act as part of the operating system" user right can assume th
       <DisplayName>Act as part of the operating system</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-93051</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -8544,7 +8544,7 @@ The "Create a token object" user right allows a process to create an access toke
       <DisplayName>Create a token object</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-93057</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -8595,7 +8595,7 @@ Accounts with the "Create permanent shared objects" user right could expose sens
       <DisplayName>Create permanent shared objects</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-93061</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -8797,7 +8797,7 @@ The "Lock pages in memory" user right allows physical memory to be assigned to p
       <DisplayName>Lock pages in memory</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-93077</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>

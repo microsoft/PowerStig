@@ -152,7 +152,7 @@ function Get-UserRightIdentity
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Ensure : Absent"
 
-        [void] $return.Add("NULL")
+        [void] $return.Add(" ")
     }
 
     $return

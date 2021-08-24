@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 04 May 2021 3.2.2.36079 1.10.0" title="Microsoft Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="5/26/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 04 May 2021 3.2.2.36079 1.10.0" title="Microsoft Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="8/23/2021">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-224965" severity="medium" conversionstatus="pass" title="SRG-OS-000112-GPOS-00057" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This policy setting determines whether the Kerberos Key Distribution Center (KDC) validates every request for a session ticket against the user rights policy of the target computer. The policy is enabled by default, which is the most secure setting for validating that access to target resources is not circumvented.
@@ -6694,7 +6694,7 @@ Incorrect configurations could prevent services from starting and result in a de
       <DisplayName>Deny log on as a service</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73765</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6804,7 +6804,7 @@ Accounts with the "Access Credential Manager as a trusted caller" user right may
       <DisplayName>Access Credential Manager as a trusted caller</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73729</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6827,7 +6827,7 @@ Accounts with the "Act as part of the operating system" user right can assume th
       <DisplayName>Act as part of the operating system</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73735</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6953,7 +6953,7 @@ Accounts with the "Create permanent shared objects" user right could expose sens
       <DisplayName>Create permanent shared objects</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73751</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -7155,7 +7155,7 @@ The "Lock pages in memory" user right allows physical memory to be assigned to p
       <DisplayName>Lock pages in memory</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73791</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -7280,7 +7280,7 @@ The "Create a token object" user right allows a process to create an access toke
       <DisplayName>Create a token object</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73747</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>

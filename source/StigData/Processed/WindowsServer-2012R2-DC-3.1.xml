@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 13 Nov 2020 3.1.1.36225 1.10.0" title="Microsoft Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="1/4/2021">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 13 Nov 2020 3.1.1.36225 1.10.0" title="Microsoft Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="8/23/2021">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-226056" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3863,11 +3863,25 @@ In AD, the lack of synchronized time could prevent clients from logging on or ac
       <LegacyId>V-8322.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
+      <RawString>Determine if a time synchronization tool has been implemented on the Windows domain controller.
+
+If  the Windows Time Service is used, verify the following registry values.  If they are not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+
 Registry Path: \System\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient\
-Type: REG_DWORD
 Value Name: Enabled
-Value: 1</RawString>
+Type: REG_DWORD
+Value: 1
+
+Registry Path: \System\CurrentControlSet\Services\W32Time\Parameters\
+Value Name: Type
+Type: REG_SZ
+Value: NT5DS (preferred), NTP or Allsync
+
+If these Windows checks indicate a finding because the NtpClient is not enabled, determine if an alternate time synchronization tool is installed and enabled.
+
+If the Windows Time Service is not enabled and no alternate tool is enabled, this is a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>Enabled</ValueName>
       <ValueType>Dword</ValueType>
@@ -3885,11 +3899,25 @@ In AD, the lack of synchronized time could prevent clients from logging on or ac
       <LegacyId>V-8322.b</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match '^(NoSync|NTP|NT5DS|AllSync)$'</OrganizationValueTestString>
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
+      <RawString>Determine if a time synchronization tool has been implemented on the Windows domain controller.
+
+If  the Windows Time Service is used, verify the following registry values.  If they are not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+
 Registry Path: \System\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient\
-Type: REG_SZ
+Value Name: Enabled
+Type: REG_DWORD
+Value: 1
+
+Registry Path: \System\CurrentControlSet\Services\W32Time\Parameters\
 Value Name: Type
-Value: NT5DS (preferred), NTP or Allsync</RawString>
+Type: REG_SZ
+Value: NT5DS (preferred), NTP or Allsync
+
+If these Windows checks indicate a finding because the NtpClient is not enabled, determine if an alternate time synchronization tool is installed and enabled.
+
+If the Windows Time Service is not enabled and no alternate tool is enabled, this is a finding.</RawString>
       <ValueData />
       <ValueName>Type</ValueName>
       <ValueType>String</ValueType>
@@ -9052,7 +9080,7 @@ Accounts with the "Access Credential Manager as a trusted caller" user right may
       <DisplayName>Access Credential Manager as a trusted caller</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-26469</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -9097,7 +9125,7 @@ Accounts with the "Act as part of the operating system" user right can assume th
       <DisplayName>Act as part of the operating system</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-1102</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -9211,7 +9239,7 @@ The "Create a token object" user right allows a process to create an access toke
       <DisplayName>Create a token object</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-26479</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -9274,7 +9302,7 @@ Accounts with the "Create permanent shared objects" user right could expose sens
       <DisplayName>Create permanent shared objects</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-26481</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -9401,7 +9429,7 @@ Incorrect configurations could prevent services from starting and result in a Do
       <DisplayName>Deny log on as a service</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-26484</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -9634,7 +9662,7 @@ The "Lock pages in memory" user right allows physical memory to be assigned to p
       <DisplayName>Lock pages in memory</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
+      <Identity> </Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-26494</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
