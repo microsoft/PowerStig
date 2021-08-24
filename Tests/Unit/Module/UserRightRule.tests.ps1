@@ -53,45 +53,6 @@ try
                 Administrators'
             },
             @{
-                DisplayName = 'Create a token object'
-                Constant = 'SeCreateTokenPrivilege'
-                Identity = 'NULL'
-                Force = $true
-                OrganizationValueRequired = $false
-                CheckContent = 'Verify the effective setting in Local Group Policy Editor.
-                Run "gpedit.msc".
-
-                Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-                If any accounts or groups are granted the "Create a token object" user right, this is a finding.'
-            },
-            @{
-                DisplayName = 'Access Credential Manager as a trusted caller'
-                Constant = 'SeTrustedCredManAccessPrivilege'
-                Identity = 'NULL'
-                Force = $true
-                OrganizationValueRequired = $false
-                CheckContent = 'Verify the effective setting in Local Group Policy Editor.
-                Run "gpedit.msc".
-
-                Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-                If any accounts or groups are granted the "Access Credential Manager as a trusted caller" user right, this is a finding.'
-            },
-            @{
-                DisplayName = 'Deny log on as a service'
-                Constant = 'SeDenyServiceLogonRight'
-                Identity = 'NULL'
-                Force = $true
-                OrganizationValueRequired = $false
-                CheckContent = 'Verify the effective setting in Local Group Policy Editor.
-                Run "gpedit.msc".
-
-                Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-                If any accounts or groups are defined for the "Deny log on as a service" user right, this is a finding.'
-            },
-            @{
                 DisplayName = 'Manage auditing and security log'
                 Constant = 'SeSecurityPrivilege'
                 Identity = 'Administrators'
@@ -131,19 +92,6 @@ try
                 If any groups or accounts other than the following are granted the "Take ownership of files or other objects" user right, this is a finding:
 
                 Administrators'
-            },
-            @{
-                DisplayName = 'Lock pages in memory'
-                Constant = 'SeLockMemoryPrivilege'
-                Identity = 'NULL'
-                Force = $true
-                OrganizationValueRequired = $false
-                CheckContent = 'Verify the effective setting in Local Group Policy Editor.
-                Run "gpedit.msc".
-
-                Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-                If any groups or accounts are granted the "Lock pages in memory" user right, this is a finding.'
             },
             @{
                 DisplayName = 'Deny log on through Remote Desktop Services'
