@@ -21,13 +21,6 @@ foreach ($instance in $serverInstance)
 
     foreach ($rule in $rules)
     {
-        #XML file has placeholder key words. This replaces the placeholder keywords with actual values for configuration.
-        #$InstanceName = $Rule.InstanceName
-        #$InstanceName = ($InstanceName) | ForEach-Object{$_.replace('SQLInstanceName',$SQLInstanceName)}
-
-        #$ServerName = $Rule.ServerName
-        #$ServerName = ($ServerName) | ForEach-Object{$_.replace('HostName',$HostName)}
-
         # Creates SQL Connection to Target Instance.
         $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection("Data Source = $sqlConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;")
         $fetchSqlAuthLoginsQuery = 'SELECT name FROM sys.sql_logins WHERE principal_id != 1 AND name NOT LIKE ''#%'''

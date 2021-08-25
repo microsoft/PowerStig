@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
 using module .\..\..\Rule\Rule.psm1
-using module .\..\SqlLoginRule.psm1
+using module .\..\SqlProtocolRule.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
@@ -16,21 +16,21 @@ foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a SqlLoginRule
+        Convert the contents of an xccdf check-content element into a SqlProtocolRule
     .DESCRIPTION
         The SqlLoginRule class is used to extract the vulnerability ID's that can
         be set with the SqlServerDsc module from the check-content of the xccdf. 
-        Once a STIG rule is identified a SqlServerDsc rule, it is passed to the SqlLoginRule 
+        Once a STIG rule is identified a SqlServerDsc rule, it is passed to the SqlProtocolRule 
         class for parsing and validation.
 #>
 
-class SqlLoginRuleConvert : SqlLoginRule
+class SqlProtocolRuleConvert : SqlProtocolRule
 {
     <#
         .SYNOPSIS
             Empty constructor for SplitFactory
     #>
-    SqlLoginRuleConvert ()
+    SqlProtocolRuleConvert ()
     {
     }
 
@@ -41,11 +41,10 @@ class SqlLoginRuleConvert : SqlLoginRule
             The STIG rule to convert
     #>
 
-    SqlLoginRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
+    SqlProtocolRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        $this.SetLoginType()
-        $this.SetLoginPasswordPolicyEnforced()
-        $this.SetLoginPasswordExpirationEnabled()
+        $this.SetProtocolName()
+        $this.SetEnabled()
         $this.SetDscResource()
     }
 
@@ -61,33 +60,23 @@ class SqlLoginRuleConvert : SqlLoginRule
             the parser status is set to fail
     #>
 
-    [void] SetLoginType ()
+    [void] SetProtocolName ()
     {
-        $thisLoginType = Get-LoginType -CheckContent $this.RawString
+        $thisProtocolName = Get-ProtocolName -CheckContent $this.RawString
 
-        if (-not $this.SetStatus($thisLoginType))
+        if (-not $this.SetStatus($thisProtocolName))
         {
-            $this.set_LoginType($thisLoginType)
+            $this.set_ProtocolName($thisProtocolName)
         }
     }
 
-    [void] SetLoginPasswordPolicyEnforced ()
+    [void] SetEnabled ()
     {
-        $thisLoginPasswordPolicyEnforced = Set-PasswordPolicy -CheckContent $this.rawstring
+        $thisEnabled = Set-Enabled -CheckContent $this.rawstring
 
-        if (-not $this.SetStatus($thisLoginPasswordPolicyEnforced))
+        if (-not $this.SetStatus($thisEnabled))
         {
-            $this.set_LoginPasswordPolicyEnforced($thisLoginPasswordPolicyEnforced)
-        }
-    }
-
-    [void] SetLoginPasswordExpirationEnabled ()
-    {
-        $thisLoginPasswordExpirationEnabled = Set-PasswordExpiration -CheckContent $this.rawstring
-
-        if (-not $this.SetStatus($thisLoginPasswordExpirationEnabled))
-        {
-            $this.set_LoginPasswordExpirationEnabled($thisLoginPasswordExpirationEnabled)
+            $this.set_Enabled($thisEnabled)
         }
     }
 
@@ -95,7 +84,7 @@ class SqlLoginRuleConvert : SqlLoginRule
     {
         if
         (
-            $CheckContent -Match "Check for use of SQL Server Authentication:"
+            $CheckContent -Match "If Named Pipes is enabled"
         )
         {
             return $true
@@ -108,7 +97,7 @@ class SqlLoginRuleConvert : SqlLoginRule
     {
         if ($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = 'SqlLogin'
+            $this.DscResource = 'SqlProtocol'
         }
         else
         {

@@ -56,5 +56,6 @@ data dscResourceModule
         nxServiceRule                        = nx
         SqlServerConfigurationRule           = SqlServerDsc
         SqlLoginRule                         = SqlServerDsc
+        SqlProtocolRule                      = SqlServerDsc
 '@
 }

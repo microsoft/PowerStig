@@ -49,6 +49,7 @@ using module .\Module\Rule.nxFile\Convert\nxFileRule.Convert.psm1
 using module .\Module\Rule.RootCertificate\Convert\RootCertificateRule.Convert.psm1
 using module .\Module\Rule.SqlServerConfiguration\Convert\SqlServerConfigurationRule.Convert.psm1
 using module .\Module\Rule.SqlLogin\Convert\SqlLoginRule.Convert.psm1
+using module .\Module\Rule.SqlProtocol\Convert\SqlProtocolRule.Convert.psm1
 
 # load the public functions
 foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig\Convert" -Recurse -Filter '*.ps1' -Exclude 'Data.*.ps1' ) )
