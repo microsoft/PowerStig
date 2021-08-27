@@ -17,7 +17,7 @@ using module .\..\Rule\Rule.psm1
 class SqlProtocolRule : Rule
 {
     [string] $ProtocolName
-    [boolean] $Enabled <#(ExceptionValue)#>
+    [string] $Enabled <#(ExceptionValue)#>
 
     <#
         .SYNOPSIS

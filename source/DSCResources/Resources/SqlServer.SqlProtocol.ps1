@@ -19,12 +19,14 @@ foreach ($instance in $serverInstance)
 
     foreach ($rule in $rules)
     {
+        $ruleEnabled = $null
+        [void][bool]::TryParse($rule.Enabled, [ref]$ruleEnabled)
         SqlProtocol (Get-ResourceTitle -Rule $rule)
         {
             InstanceName = $instanceName
             ServerName   = $serverName
             ProtocolName = $rule.ProtocolName
-            Enabled      = $rule.Enabled
+            Enabled      = $ruleEnabled
         }
     }
 }
