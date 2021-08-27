@@ -8,12 +8,12 @@ foreach ($instance in $ServerInstance)
     if ($instance -notmatch '\\')
     {
         $instanceName = 'MSSQLSERVER'
-        $serverName = $instance
+        $serverName   = $instance
     } 
     else
     {
         $instanceName = $instance.Split('{\}')[1]
-        $serverName = $instance.Split('{\}')[0]
+        $serverName   = $instance.Split('{\}')[0]
     }
 
     if ($null -ne $Database)
