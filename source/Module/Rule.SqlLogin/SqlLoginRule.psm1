@@ -24,8 +24,9 @@ class SqlLoginRule : Rule
 {
     [string] $Name
     [string] $LoginType
-    [boolean] $LoginPasswordPolicyEnforced <#(ExceptionValue)#>
-    [boolean] $LoginPasswordExpirationEnabled
+    [string] $LoginPasswordPolicyEnforced <#(ExceptionValue)#>
+    [string] $LoginPasswordExpirationEnabled
+    [string] $LoginMustChangePassword
     [string] $Ensure
 
     <#

@@ -87,3 +87,32 @@ function Set-PasswordExpiration
 
     return $passwordExpiration
 }
+
+<#
+    .SYNOPSIS
+        Sets the SqlLogin change password setting from the check-content element in the xccdf. Must be false for existing sql logins
+
+    .PARAMETER CheckContent
+        Specifies the check-content element in the xccdf
+#>
+function Set-ChangePassword
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $CheckContent
+    )
+
+    switch ($checkContent)
+    {
+        {$PSItem -Match "Check for use of SQL Server Authentication:"}
+        {
+            $changePassword = $false
+        }
+    }
+
+    return $changePassword
+}

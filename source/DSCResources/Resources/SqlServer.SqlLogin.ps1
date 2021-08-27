@@ -34,6 +34,12 @@ foreach ($instance in $serverInstance)
         foreach ($login in $sqlAuthTable)
         {
             $name = $login.Name
+            $rulePasswordPolicy = $null
+            [void][bool]::TryParse($rule.LoginPasswordPolicyEnforced, [ref]$rulePasswordPolicy)
+            $rulePasswordExpiration = $null
+            [void][bool]::TryParse($rule.LoginPasswordExpirationEnabled, [ref]$rulePasswordExpiration)
+            $ruleChangePassword = $null
+            [void][bool]::TryParse($rule.LoginMustChangePassword, [ref]$ruleChangePassword)
 
             # New-Guid was added to be able to create multiple unique instances of this rule.
             SqlLogin ((Get-ResourceTitle -Rule $rule) + (New-Guid)) 
@@ -43,9 +49,9 @@ foreach ($instance in $serverInstance)
                 ServerName                     = $serverName
                 LoginType                      = $rule.LoginType
                 Name                           = $name
-                LoginMustChangePassword        = $rule.LoginMustChangePassword
-                LoginPasswordPolicyEnforced    = $rule.LoginPasswordPolicyEnforced
-                LoginPasswordExpirationEnabled = $rule.LoginPasswordExpirationEnabled
+                LoginPasswordPolicyEnforced    = $rulePasswordPolicy
+                LoginPasswordExpirationEnabled = $rulePasswordExpiration
+                LoginMustChangePassword        = $ruleChangePassword
             }
         }
     }

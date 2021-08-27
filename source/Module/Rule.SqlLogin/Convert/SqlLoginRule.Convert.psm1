@@ -46,6 +46,7 @@ class SqlLoginRuleConvert : SqlLoginRule
         $this.SetLoginType()
         $this.SetLoginPasswordPolicyEnforced()
         $this.SetLoginPasswordExpirationEnabled()
+        $this.SetLoginMustChangePassword()
         $this.SetDscResource()
     }
 
@@ -88,6 +89,16 @@ class SqlLoginRuleConvert : SqlLoginRule
         if (-not $this.SetStatus($thisLoginPasswordExpirationEnabled))
         {
             $this.set_LoginPasswordExpirationEnabled($thisLoginPasswordExpirationEnabled)
+        }
+    }
+
+    [void] SetLoginMustChangePassword ()
+    {
+        $thisLoginMustChangePassword = Set-ChangePassword -CheckContent $this.rawstring
+
+        if (-not $this.SetStatus($thisLoginMustChangePassword))
+        {
+            $this.set_LoginMustChangePassword($thisLoginMustChangePassword)
         }
     }
 
