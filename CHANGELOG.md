@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
+
 ## [4.10.0] - 2021-08-20
 
 * Update PowerSTIG to Parse/Apply SQL Server 2016 Instance V2R4 STIG: [#959](https://github.com/microsoft/PowerStig/issues/959)
