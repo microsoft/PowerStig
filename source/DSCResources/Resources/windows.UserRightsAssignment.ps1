@@ -64,10 +64,13 @@ foreach ($rule in $rules)
         }
     }
 
+    $ruleForce = $null
+    [void][bool]::TryParse($rule.Force, [ref] $ruleForce)
+
     UserRightsAssignment (Get-ResourceTitle -Rule $rule)
     {
         Policy   = ($rule.DisplayName -replace " ", "_")
         Identity = $identityList
-        Force    = [bool] $rule.Force
+        Force    = $ruleForce
     }
 }
