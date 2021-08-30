@@ -5,12 +5,15 @@ $rules = $stig.RuleList | Select-Rule -Type 'VsphereServiceRule'
 
 foreach ($rule in $rules)
 {
+    $ruleRunning = $null
+    [void][bool]::TryParse($rule.Running, [ref] $ruleRunning)
+
     VmHostService (Get-ResourceTitle -Rule $rule)
     {
         Name       = $HostIP
         Server     = $ServerIP
         Credential = $Credential
-        Running    = $rule.Running
+        Running    = $ruleRunning
         Key        = $rule.Key
         Policy     = $rule.Policy
     }

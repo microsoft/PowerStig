@@ -20,7 +20,7 @@ class PermissionRule : Rule
 {
     [string] $Path
     [object[]] $AccessControlEntry <#(ExceptionValue)#>
-    [bool] $Force
+    [string] $Force
 
     <#
         .SYNOPSIS

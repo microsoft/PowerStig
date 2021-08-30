@@ -17,7 +17,7 @@ using module .\..\Rule\Rule.psm1
 class WinEventLogRule : Rule
 {
     [string] $LogName
-    [bool] $IsEnabled <#(ExceptionValue)#>
+    [string] $IsEnabled <#(ExceptionValue)#>
 
     <#
         .SYNOPSIS
