@@ -1,4 +1,4 @@
-# PowerSTIG File Hashes : Module Version 4.10.0
+# PowerSTIG File Hashes : Module Version 4.10.1
 
 Hashes for **PowerSTIG** files are listed in the following table:
 

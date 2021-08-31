@@ -2,8 +2,10 @@
 
 ## [Unreleased]
 
-* Fixed: Windows Server 2019 V2R1 V-205763 generating an exception [#827](https://github.com/microsoft/PowerStig/issues/827)
-* Fixed: PowerSTIG should honor Boolean with all composite resources [#969](https://github.com/microsoft/PowerStig/issues/969)
+## [4.10.1] - 2021-08-31
+
+* Fixed: Windows Server 2019 V2R1 V-205763 generating an exception: [#827](https://github.com/microsoft/PowerStig/issues/827)
+* Fixed: PowerSTIG should honor Boolean with all composite resources: [#969](https://github.com/microsoft/PowerStig/issues/969)
 
 ## [4.10.0] - 2021-08-20
 
