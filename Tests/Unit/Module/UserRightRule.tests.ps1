@@ -11,7 +11,7 @@ try
                 DisplayName = 'Deny access to this computer from the network'
                 Constant = 'SeDenyNetworkLogonRight'
                 Identity = 'Guests'
-                Force = $false
+                Force = 'false'
                 OrganizationValueRequired = $false
                 CheckContent = 'Run "gpedit.msc".
 
@@ -25,7 +25,7 @@ try
                 DisplayName = 'Access this computer from the network'
                 Constant = 'SeNetworkLogonRight'
                 Identity = 'Administrators,Authenticated Users,Enterprise Domain Controllers'
-                Force = $true
+                Force = 'true'
                 OrganizationValueRequired = $false
                 CheckContent = 'Run "gpedit.msc".
 
@@ -41,7 +41,7 @@ try
                 DisplayName = 'Debug programs'
                 Constant = 'SeDebugPrivilege'
                 Identity = 'Administrators'
-                Force = $true
+                Force = 'true'
                 OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
@@ -56,7 +56,7 @@ try
                 DisplayName = 'Create a token object'
                 Constant = 'SeCreateTokenPrivilege'
                 Identity = 'NULL'
-                Force = $true
+                Force = 'true'
                 OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
@@ -69,7 +69,7 @@ try
                 DisplayName = 'Access Credential Manager as a trusted caller'
                 Constant = 'SeTrustedCredManAccessPrivilege'
                 Identity = 'NULL'
-                Force = $true
+                Force = 'true'
                 OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
@@ -82,7 +82,7 @@ try
                 DisplayName = 'Deny log on as a service'
                 Constant = 'SeDenyServiceLogonRight'
                 Identity = 'NULL'
-                Force = $true
+                Force = 'true'
                 OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
@@ -95,7 +95,7 @@ try
                 DisplayName = 'Manage auditing and security log'
                 Constant = 'SeSecurityPrivilege'
                 Identity = 'Administrators'
-                Force = $true
+                Force = 'true'
                 OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
@@ -121,7 +121,7 @@ try
                 DisplayName = 'Take ownership of files or other objects'
                 Constant = 'SeTakeOwnershipPrivilege'
                 Identity = 'Administrators'
-                Force = $true
+                Force = 'true'
                 OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
@@ -136,7 +136,7 @@ try
                 DisplayName = 'Lock pages in memory'
                 Constant = 'SeLockMemoryPrivilege'
                 Identity = 'NULL'
-                Force = $true
+                Force = 'true'
                 OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
@@ -149,7 +149,7 @@ try
                 DisplayName = 'Deny log on through Remote Desktop Services'
                 Constant = 'SeDenyRemoteInteractiveLogonRight'
                 Identity = 'Enterprise Admins,Domain Admins,Local account,Guests'
-                Force = $false
+                Force = 'false'
                 OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
@@ -176,7 +176,7 @@ try
                 DisplayName = 'Deny log on locally'
                 Constant = 'SeDenyInteractiveLogonRight'
                 Identity = 'Enterprise Admins,Domain Admins,Guests'
-                Force = $false
+                Force = 'false'
                 OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
@@ -198,7 +198,7 @@ try
                 DisplayName = 'Access this computer from the network'
                 Constant = 'SeNetworkLogonRight'
                 Identity = 'Administrators,Authenticated Users,Enterprise Domain Controllers'
-                Force = $true
+                Force = 'true'
                 OrganizationValueRequired = $false
                 CheckContent = 'This applies to domain controllers. It is NA for other systems.
 

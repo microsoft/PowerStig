@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="7/29/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="8/23/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218784" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -394,7 +394,7 @@ If “X-Powered-By” has not been removed, this is a finding.</RawString>
     </Rule>
   </DocumentRule>
   <IisLoggingRule dscresourcemodule="xWebAdministration">
-    <Rule id="V-218785" severity="medium" conversionstatus="pass" title="SRG-APP-000092-WSR-000055" dscresource="xIISLogging">
+    <Rule id="V-218785" severity="medium" conversionstatus="pass" title="SRG-APP-000092-WSR-000055" dscresource="xWebAdministration">
       <Description>&lt;VulnDiscussion&gt;Log files are a critical component to the successful management of an IS used within the DoD. By generating log files with useful information, web administrators can leverage them in the event of a disaster, malicious attack, or other site specific needs.
 
 Ascertaining the correct order of the events that occurred is important during forensic analysis. Events that appear harmless by themselves might be flagged as a potential threat when properly viewed in sequence. By also establishing the event date and time, an event can be properly viewed with an enterprise tool to fully see a possible threat in its entirety.
@@ -406,12 +406,13 @@ Satisfies: SRG-APP-000092-WSR-000055, SRG-APP-000093-WSR-000053, SRG-APP-000095-
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100105</LegacyId>
       <LogCustomFieldEntry />
-      <LogFlags>Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer</LogFlags>
+      <LogFlags>
+      </LogFlags>
       <LogFormat />
       <LogPeriod />
       <LogTargetW3C />
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' LogFlags must contain at a minimum Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer'</OrganizationValueTestString>
       <RawString>Open the IIS 10.0 Manager.
 
 Click the IIS 10.0 web server name.
