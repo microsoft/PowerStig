@@ -41,7 +41,6 @@ using module .\..\..\Rule.RootCertificate\Convert\RootCertificateRule.Convert.ps
 using module .\..\..\Rule.SqlServerConfiguration\Convert\SqlServerConfigurationRule.Convert.psm1
 using module .\..\..\Rule.SqlLogin\Convert\SqlLoginRule.Convert.psm1
 using module .\..\..\Rule.SqlProtocol\Convert\SqlProtocolRule.Convert.psm1
-using module .\..\..\Rule.SqlProtocolTcpIp\Convert\SqlProtocolTcpIpRule.Convert.psm1
 
 # Header
 
@@ -236,12 +235,6 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.Add(
                     [SqlProtocolRuleConvert]::new($Rule).AsRule()
-                )
-            }
-            {[SqlProtocolTcpIpRuleConvert]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add(
-                    [SqlProtocolTcpIpRuleConvert]::new($Rule).AsRule()
                 )
             }
             {[UserRightRuleConvert]::Match($PSItem)}

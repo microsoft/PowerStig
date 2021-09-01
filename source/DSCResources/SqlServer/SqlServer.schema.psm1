@@ -102,7 +102,6 @@ configuration SqlServer
     . "$resourcePath\SqlServer.SQLServerConfiguration.ps1"
     . "$resourcePath\SqlServer.SqlLogin.ps1"
     . "$resourcePath\SqlServer.SqlProtocol.ps1"
-    . "$resourcePath\SqlServer.SqlProtocolTcpIp.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.10.0.0
     . "$resourcePath\Windows.SecurityOption.ps1"

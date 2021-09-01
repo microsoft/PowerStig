@@ -37,7 +37,6 @@ using module .\..\Rule.RootCertificate\RootCertificateRule.psm1
 using module .\..\Rule.SqlServerConfiguration\SqlServerConfigurationRule.psm1
 using module .\..\Rule.SqlLogin\SqlLoginRule.psm1
 using module .\..\Rule.SqlProtocol\SqlProtocolRule.psm1
-using module .\..\Rule.SqlProtocolTcpIp\SqlProtocolTcpIpRule.psm1
 #header
 
 class LoadFactory
@@ -86,7 +85,6 @@ class LoadFactory
             'SqlServerConfigurationRule'           {$return = [SqlServerConfigurationRule]::new($Rule)}
             'SqlLoginRule'                         {$return = [SqlLoginRule]::new($Rule)}
             'SqlProtocolRule'                      {$return = [SqlProtocolRule]::new($Rule)}
-            'SqlProtocolTcpIpRule'                 {$return = [SqlProtocolTcpIpRule]::new($Rule)}
         }
 
         return $return
