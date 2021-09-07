@@ -3,3 +3,4 @@ V-218821::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Pr
 V-218814::CREATOR OWNER: Full Control, Subfolders and files only::CREATOR OWNER: Full Control - Subfolders and files only
 V-218805::Under Time-out (in minutes), verify “20 minutes or less” is selected.::Verify the "Time-out (in minutes)" is set to "20 minutes or less".
 V-241788::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HTTP\Parameters'; ValueData = 1; ValueName = 'DisableServerHeader'; ValueType = 'DWORD'}
+V-218785::*::HardCodedRule(IISLoggingRule)@{DscResource = 'xWebAdministration'; LogFlags = $null; OrganizationValueTestString = "'{0}' LogFlags must contain at a minimum Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer'"}
