@@ -19,7 +19,7 @@ foreach ($instance in $serverInstance)
 
     foreach ($rule in $rules)
     {
-        SqlServerConfiguration (Get-ResourceTitle -Rule $rule)
+        SqlDatabase (Get-ResourceTitle -Rule $rule)
         {
             InstanceName = $instanceName
             ServerName   = $serverName
