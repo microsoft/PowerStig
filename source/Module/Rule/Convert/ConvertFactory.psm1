@@ -41,6 +41,7 @@ using module .\..\..\Rule.RootCertificate\Convert\RootCertificateRule.Convert.ps
 using module .\..\..\Rule.SqlServerConfiguration\Convert\SqlServerConfigurationRule.Convert.psm1
 using module .\..\..\Rule.SqlLogin\Convert\SqlLoginRule.Convert.psm1
 using module .\..\..\Rule.SqlProtocol\Convert\SqlProtocolRule.Convert.psm1
+using module .\..\..\Rule.SqlDatabase\Convert\SqlDatabaseRule.Convert.psm1
 
 # Header
 
@@ -235,6 +236,12 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.Add(
                     [SqlProtocolRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[SqlDatabaseRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.AddRange(
+                    [SplitFactory]::XccdfRule($Rule, 'SqlDatabaseRuleConvert')
                 )
             }
             {[UserRightRuleConvert]::Match($PSItem)}
