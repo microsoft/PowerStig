@@ -44,7 +44,6 @@ foreach ($instance in $serverInstance)
             # New-Guid was added to be able to create multiple unique instances of this rule.
             SqlLogin ((Get-ResourceTitle -Rule $rule) + (New-Guid)) 
             {
-                #ServerInstance = $instance
                 InstanceName                   = $instanceName
                 ServerName                     = $serverName
                 LoginType                      = $rule.LoginType

@@ -21,6 +21,7 @@ foreach ($instance in $serverInstance)
     {
         $ruleEnabled = $null
         [void][bool]::TryParse($rule.Enabled, [ref]$ruleEnabled)
+
         SqlProtocol (Get-ResourceTitle -Rule $rule)
         {
             InstanceName = $instanceName

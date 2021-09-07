@@ -2,6 +2,7 @@
 # Licensed under the MIT License.
 #region Method Functions
 
+# This is required to keep track of the split rules progress during xml creation
 $script:databasearray = @()
 
 <#
@@ -110,7 +111,7 @@ function Test-MultipleSqlDatabase
         $CheckContent
     )
 
-    $matchDatabase = ($CheckContent | Select-String -Pattern "(Pubs|Northwind|AdventureWorks|WorldwideImporters)" -AllMatches).Matches.Value
+    $matchDatabase = ($checkContent | Select-String -Pattern "(Pubs|Northwind|AdventureWorks|WorldwideImporters)" -AllMatches).Matches.Value
 
     if ($matchDatabase -gt 1)
     {
@@ -132,7 +133,7 @@ function Split-MultipleSqlDatabase
     )
 
     $result = @()
-    $matchDatabase = ($CheckContent | Select-String -Pattern "(Pubs|Northwind|AdventureWorks|WorldwideImporters)" -AllMatches).Matches.Value
+    $matchDatabase = ($checkContent | Select-String -Pattern "(Pubs|Northwind|AdventureWorks|WorldwideImporters)" -AllMatches).Matches.Value
 
     foreach ($database in $matchDatabase)
     {

@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$Rules = $Stig.RuleList | Select-Rule -Type SqlDatabaseRule
+$rules = $stig.RuleList | Select-Rule -Type SqlDatabaseRule
 
 # Sets variables for Default and Named Instances.
 foreach ($instance in $serverInstance)
