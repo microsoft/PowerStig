@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Apr 2021 3.2.2.36079 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="8/12/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Apr 2021 3.2.2.36079 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="9/8/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful Denial of Service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions per user is helpful in reducing these risks. 
@@ -624,30 +624,6 @@ sl "C:\program files\microsoft sql server\130\setup bootstrap\Log"
 Get-ChildItem -Recurse | Select-String -Pattern "LogonUser = " 
  
 If any accounts are shown that are not authorized in the system documentation, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-213954" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000090" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
- 
-It is detrimental for software products to provide, or install by default, functionality exceeding requirements or mission objectives. Examples include, but are not limited to, installing advertising software, demonstrations, or browser plugins not related to requirements or providing a wide array of functionality, not required for every mission, that cannot be disabled. 
- 
-DBMSs must adhere to the principles of least functionality by providing only essential capabilities. 
- 
-Demonstration and sample database objects and applications present publicly known attack points for malicious users. These demonstration and sample objects are meant to provide simple examples of coding specific functions and are not developed to prevent vulnerabilities from being introduced to SQL Server and host system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79171</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the server documentation, if this system is identified as a development or test system, this check is Not Applicable. 
- 
-If this system is identified as production, gather a listing of databases from the server and look for any matching the following general demonstration database names: 
- 
-pubs 
-Northwind
-AdventureWorks 
-WorldwideImporters 
- 
-If any of these databases exist, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213955" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000091" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
@@ -2048,25 +2024,6 @@ Examples:
 
 3) The Operating System directory is "C:\Windows". The SQL RootDirectory is "D:\Program Files\Microsoft Office\MSSQLSERVER\MSSQL". The MSSQLSERVER directory is in the Microsoft Office directory, which indicates Microsoft Office is installed here. This is a finding.</RawString>
     </Rule>
-    <Rule id="V-213961" severity="medium" conversionstatus="pass" title="SRG-APP-000142-DB-000094" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;In order to prevent unauthorized connection of devices, unauthorized transfer of information, or unauthorized tunneling (i.e., embedding of data types within data types), organizations must disable or restrict unused or unnecessary protocols on information systems. 
- 
-Applications are capable of providing a wide variety of functions and services. Some of the functions and services provided by default may not be necessary to support essential organizational operations. Additionally, it is sometimes convenient to provide multiple services from a single component (e.g., email and web services); however, doing so increases risk over limiting the services provided by any one component.  
- 
-To support the requirements and principles of least functionality, the application must support the organizational requirements providing only essential capabilities and limiting the use of protocols to only those required, authorized, and approved to conduct official business or to address authorized quality of life issues. 
- 
-SQL Server using protocols deemed unsafe is open to attack through those protocols. This can allow unauthorized access to the database and through the database to other components of the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79185</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>To determine the protocol(s) enabled for SQL Server, open SQL Server Configuration Manager. In the left-hand pane, expand SQL Server Network Configuration. Click on the entry for the SQL Server instance under review: "Protocols for ". The right-hand pane displays the protocols enabled for the instance.  
- 
-If Named Pipes is enabled and not specifically required and authorized, this is a finding. 
- 
-If any listed protocol is enabled but not authorized, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-213963" severity="medium" conversionstatus="pass" title="SRG-APP-000148-DB-000103" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;To assure accountability and prevent unauthenticated access, organizational users must be identified and authenticated to prevent potential misuse and compromise of the system.  
  
@@ -2086,44 +2043,6 @@ If accounts are determined to be shared, determine if individuals are first indi
 If individuals are not individually authenticated before using the shared account (e.g., by the operating system or possibly by an application making calls to the database), this is a finding.  
  
 If accounts are determined to be shared, determine if they are directly accessible to end users. If so, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-213964" severity="medium" conversionstatus="pass" title="SRG-APP-000164-DB-000401" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;OS/enterprise authentication and identification must be used (SRG-APP-000023-DB-000001).  Native DBMS authentication may be used only when circumstances make it unavoidable; and must be documented and AO-approved. 
- 
-The DoD standard for authentication is DoD-approved PKI certificates.  Authentication based on User ID and Password may be used only when it is not possible to employ a PKI certificate, and requires AO approval. 
- 
-In such cases, the DoD standards for password complexity and lifetime must be implemented.  DBMS products that can inherit the rules for these from the operating system or access control program (e.g., Microsoft Active Directory) must be configured to do so.  For other DBMSs, the rules must be enforced using available configuration parameters or custom code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79191</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Check for use of SQL Server Authentication:
-
-SELECT CASE SERVERPROPERTY('IsIntegratedSecurityOnly') WHEN 1 THEN 'Windows Authentication' WHEN 0 THEN 'SQL Server Authentication' END as [Authentication Mode]
-
-If the returned value in the “[Authentication Mode]” column is “Windows Authentication”, this is not a finding.
-
-SQL Server should be configured to inherit password complexity and password lifetime rules from the operating system.
-
-Review SQL Server to ensure logons are created with respect to the complexity settings and password lifetime rules by running the statement:
-
-SELECT [name], is_expiration_checked, is_policy_checked
-FROM sys.sql_logins
-
-Review any accounts returned by the query other than the disabled SA account, ##MS_PolicyTsqlExecutionLogin##, and ##MS_PolicyEventProcessingLogin##.
-
-If any account doesn't have both "is_expiration_checked" and "is_policy_checked" equal to “1”, this is a finding.
-
-Review the Operating System settings relating to password complexity.
-
-Determine whether the following rules are enforced. If any are not, this is a finding.
-
-Check the server operating system for password complexity:
-
-Navigate to Start &gt;&gt; All Programs &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy and to review the local policies on the machine. Account Policy &gt;&gt; Password Policy:
-
-Ensure the DISA Windows Password Policy is set on the SQL Server member server.</RawString>
     </Rule>
     <Rule id="V-213966" severity="high" conversionstatus="pass" title="SRG-APP-000172-DB-000075" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The DoD standard for authentication is DoD-approved PKI certificates. 
@@ -3226,6 +3145,181 @@ If  "System cryptography: Use FIPS-compliant algorithms for encryption, hashing,
 For more information, see https://support.microsoft.com/en-us/kb/3141890.</RawString>
     </Rule>
   </SecurityOptionRule>
+  <SqlDatabaseRule dscresourcemodule="SqlServerDsc">
+    <Rule id="V-213954.a" severity="medium" conversionstatus="fail" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+ 
+It is detrimental for software products to provide, or install by default, functionality exceeding requirements or mission objectives. Examples include, but are not limited to, installing advertising software, demonstrations, or browser plugins not related to requirements or providing a wide array of functionality, not required for every mission, that cannot be disabled. 
+ 
+DBMSs must adhere to the principles of least functionality by providing only essential capabilities. 
+ 
+Demonstration and sample database objects and applications present publicly known attack points for malicious users. These demonstration and sample objects are meant to provide simple examples of coding specific functions and are not developed to prevent vulnerabilities from being introduced to SQL Server and host system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79171.a</LegacyId>
+      <Name />
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the server documentation, if this system is identified as a development or test system, this check is Not Applicable. 
+ 
+If this system is identified as production, gather a listing of databases from the server and look for any matching the following general demonstration database names: 
+ 
+pubs 
+Northwind
+AdventureWorks 
+WorldwideImporters 
+ 
+If any of these databases exist, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-213954.b" severity="medium" conversionstatus="fail" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+ 
+It is detrimental for software products to provide, or install by default, functionality exceeding requirements or mission objectives. Examples include, but are not limited to, installing advertising software, demonstrations, or browser plugins not related to requirements or providing a wide array of functionality, not required for every mission, that cannot be disabled. 
+ 
+DBMSs must adhere to the principles of least functionality by providing only essential capabilities. 
+ 
+Demonstration and sample database objects and applications present publicly known attack points for malicious users. These demonstration and sample objects are meant to provide simple examples of coding specific functions and are not developed to prevent vulnerabilities from being introduced to SQL Server and host system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79171.b</LegacyId>
+      <Name />
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the server documentation, if this system is identified as a development or test system, this check is Not Applicable. 
+ 
+If this system is identified as production, gather a listing of databases from the server and look for any matching the following general demonstration database names: 
+ 
+pubs 
+Northwind
+AdventureWorks 
+WorldwideImporters 
+ 
+If any of these databases exist, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-213954.c" severity="medium" conversionstatus="fail" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+ 
+It is detrimental for software products to provide, or install by default, functionality exceeding requirements or mission objectives. Examples include, but are not limited to, installing advertising software, demonstrations, or browser plugins not related to requirements or providing a wide array of functionality, not required for every mission, that cannot be disabled. 
+ 
+DBMSs must adhere to the principles of least functionality by providing only essential capabilities. 
+ 
+Demonstration and sample database objects and applications present publicly known attack points for malicious users. These demonstration and sample objects are meant to provide simple examples of coding specific functions and are not developed to prevent vulnerabilities from being introduced to SQL Server and host system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79171.c</LegacyId>
+      <Name />
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the server documentation, if this system is identified as a development or test system, this check is Not Applicable. 
+ 
+If this system is identified as production, gather a listing of databases from the server and look for any matching the following general demonstration database names: 
+ 
+pubs 
+Northwind
+AdventureWorks 
+WorldwideImporters 
+ 
+If any of these databases exist, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-213954.d" severity="medium" conversionstatus="fail" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
+      <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+ 
+It is detrimental for software products to provide, or install by default, functionality exceeding requirements or mission objectives. Examples include, but are not limited to, installing advertising software, demonstrations, or browser plugins not related to requirements or providing a wide array of functionality, not required for every mission, that cannot be disabled. 
+ 
+DBMSs must adhere to the principles of least functionality by providing only essential capabilities. 
+ 
+Demonstration and sample database objects and applications present publicly known attack points for malicious users. These demonstration and sample objects are meant to provide simple examples of coding specific functions and are not developed to prevent vulnerabilities from being introduced to SQL Server and host system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79171.d</LegacyId>
+      <Name />
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the server documentation, if this system is identified as a development or test system, this check is Not Applicable. 
+ 
+If this system is identified as production, gather a listing of databases from the server and look for any matching the following general demonstration database names: 
+ 
+pubs 
+Northwind
+AdventureWorks 
+WorldwideImporters 
+ 
+If any of these databases exist, this is a finding.</RawString>
+    </Rule>
+  </SqlDatabaseRule>
+  <SqlLoginRule dscresourcemodule="SqlServerDsc">
+    <Rule id="V-213964" severity="medium" conversionstatus="pass" title="SRG-APP-000164-DB-000401" dscresource="SqlLogin">
+      <Description>&lt;VulnDiscussion&gt;OS/enterprise authentication and identification must be used (SRG-APP-000023-DB-000001).  Native DBMS authentication may be used only when circumstances make it unavoidable; and must be documented and AO-approved. 
+ 
+The DoD standard for authentication is DoD-approved PKI certificates.  Authentication based on User ID and Password may be used only when it is not possible to employ a PKI certificate, and requires AO approval. 
+ 
+In such cases, the DoD standards for password complexity and lifetime must be implemented.  DBMS products that can inherit the rules for these from the operating system or access control program (e.g., Microsoft Active Directory) must be configured to do so.  For other DBMSs, the rules must be enforced using available configuration parameters or custom code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79191</LegacyId>
+      <LoginMustChangePassword>False</LoginMustChangePassword>
+      <LoginPasswordExpirationEnabled>True</LoginPasswordExpirationEnabled>
+      <LoginPasswordPolicyEnforced>True</LoginPasswordPolicyEnforced>
+      <LoginType>SqlLogin</LoginType>
+      <Name />
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check for use of SQL Server Authentication:
+
+SELECT CASE SERVERPROPERTY('IsIntegratedSecurityOnly') WHEN 1 THEN 'Windows Authentication' WHEN 0 THEN 'SQL Server Authentication' END as [Authentication Mode]
+
+If the returned value in the “[Authentication Mode]” column is “Windows Authentication”, this is not a finding.
+
+SQL Server should be configured to inherit password complexity and password lifetime rules from the operating system.
+
+Review SQL Server to ensure logons are created with respect to the complexity settings and password lifetime rules by running the statement:
+
+SELECT [name], is_expiration_checked, is_policy_checked
+FROM sys.sql_logins
+
+Review any accounts returned by the query other than the disabled SA account, ##MS_PolicyTsqlExecutionLogin##, and ##MS_PolicyEventProcessingLogin##.
+
+If any account doesn't have both "is_expiration_checked" and "is_policy_checked" equal to “1”, this is a finding.
+
+Review the Operating System settings relating to password complexity.
+
+Determine whether the following rules are enforced. If any are not, this is a finding.
+
+Check the server operating system for password complexity:
+
+Navigate to Start &gt;&gt; All Programs &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy and to review the local policies on the machine. Account Policy &gt;&gt; Password Policy:
+
+Ensure the DISA Windows Password Policy is set on the SQL Server member server.</RawString>
+    </Rule>
+  </SqlLoginRule>
+  <SqlProtocolRule dscresourcemodule="SqlServerDsc">
+    <Rule id="V-213961" severity="medium" conversionstatus="pass" title="SRG-APP-000142-DB-000094" dscresource="SqlProtocol">
+      <Description>&lt;VulnDiscussion&gt;In order to prevent unauthorized connection of devices, unauthorized transfer of information, or unauthorized tunneling (i.e., embedding of data types within data types), organizations must disable or restrict unused or unnecessary protocols on information systems. 
+ 
+Applications are capable of providing a wide variety of functions and services. Some of the functions and services provided by default may not be necessary to support essential organizational operations. Additionally, it is sometimes convenient to provide multiple services from a single component (e.g., email and web services); however, doing so increases risk over limiting the services provided by any one component.  
+ 
+To support the requirements and principles of least functionality, the application must support the organizational requirements providing only essential capabilities and limiting the use of protocols to only those required, authorized, and approved to conduct official business or to address authorized quality of life issues. 
+ 
+SQL Server using protocols deemed unsafe is open to attack through those protocols. This can allow unauthorized access to the database and through the database to other components of the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>False</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79185</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <ProtocolName>NamedPipes</ProtocolName>
+      <RawString>To determine the protocol(s) enabled for SQL Server, open SQL Server Configuration Manager. In the left-hand pane, expand SQL Server Network Configuration. Click on the entry for the SQL Server instance under review: "Protocols for ". The right-hand pane displays the protocols enabled for the instance.  
+ 
+If Named Pipes is enabled and not specifically required and authorized, this is a finding. 
+ 
+If any listed protocol is enabled but not authorized, this is a finding.</RawString>
+    </Rule>
+  </SqlProtocolRule>
   <SqlScriptQueryRule dscresourcemodule="SqlServerDsc">
     <Rule id="V-213940" severity="medium" conversionstatus="pass" title="SRG-APP-000092-DB-000208" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Session auditing is for use when a user's activities are under investigation. To be sure of capturing all activity during those periods when session auditing is in use, it needs to be in operation for the whole time SQL Server is running.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
