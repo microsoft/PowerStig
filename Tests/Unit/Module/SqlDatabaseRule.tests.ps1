@@ -85,7 +85,7 @@ try
 
                 Context "SqlDatabase Get-DatabaseName"{
                     It "Should return $($databaseName)" {
-                        $databaseName | Should Be $testrule.Name
+                        $databaseName | Should Be $testRule.Name
                     }
                 }
 
@@ -93,14 +93,14 @@ try
 
                 Context "SqlDatabase Set-Ensure" {
                     It "Should return $($ensureStatus)" {
-                        $ensureStatus | Should Be $testrule.Ensure
+                        $ensureStatus | Should Be $testRule.Ensure
                     }
                 }
             }
         }
 
         Describe 'Split Rule Tests' {
-            $ruleCount = $databasearray.Count
+            $ruleCount = $databaseArray.Count
             Context "Count of Rules"{
                 It "Should return $ruleCount" {
                     $ruleCount | Should Be "4"
