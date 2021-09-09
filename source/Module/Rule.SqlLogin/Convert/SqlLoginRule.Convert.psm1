@@ -47,6 +47,7 @@ class SqlLoginRuleConvert : SqlLoginRule
         $this.SetLoginPasswordPolicyEnforced()
         $this.SetLoginPasswordExpirationEnabled()
         $this.SetLoginMustChangePassword()
+        $this.SetOrganizationValueTestString()
         $this.SetDscResource()
     }
 
@@ -69,6 +70,7 @@ class SqlLoginRuleConvert : SqlLoginRule
         if (-not $this.SetStatus($thisLoginType))
         {
             $this.set_LoginType($thisLoginType)
+            $this.Set_OrganizationValueRequired($true)
         }
     }
 
@@ -99,6 +101,16 @@ class SqlLoginRuleConvert : SqlLoginRule
         if (-not $this.SetStatus($thisLoginMustChangePassword))
         {
             $this.set_LoginMustChangePassword($thisLoginMustChangePassword)
+        }
+    }
+
+    [void] SetOrganizationValueTestString ()
+    {
+        $thisOrganizationValueTestString = Get-SqlLoginOrganizationValueTestString -CheckContent $this.rawstring
+
+        if (-not $this.SetStatus($thisOrganizationValueTestString))
+        {
+            $this.set_OrganizationValueTestString($thisOrganizationValueTestString)
         }
     }
 

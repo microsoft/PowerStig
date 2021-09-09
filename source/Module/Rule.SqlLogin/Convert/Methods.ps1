@@ -116,3 +116,25 @@ function Set-ChangePassword
 
     return $changePassword
 }
+
+function Get-SqlLoginOrganizationValueTestString
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $CheckContent
+    )
+
+    switch ($checkContent)
+    {
+        {$PsItem -match 'Check for use of SQL Server Authentication:'}
+        {
+            $testString = 'SQL authentication logins are populated from organizational settings.'
+        }
+    }
+
+    return $testString
+}
