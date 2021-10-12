@@ -355,7 +355,7 @@ class RegistryRuleConvert : RegistryRule
     {
         if ($null -eq $this.DuplicateOf)
         {
-            if ($FixText -match 'Administrative Template' -or $this.key -match "(^hkcu|^HKEY_CURRENT_USER)" -or $this.ValueName -match "RemoteAccessHostFirewallTraversal")
+            if ($FixText -match 'Administrative Template' -or $this.key -match "(^hkcu|^HKEY_CURRENT_USER)" -or $this.ValueName -match "RemoteAccessHostFirewallTraversal" -or $this.Id -match "V-220920|V-220921|V-220936|V-220944|V-220945|V-220947|V-220948|V-220949|V-220950|V-220951")
             {
                 $this.DscResource = 'RegistryPolicyFile'
             }

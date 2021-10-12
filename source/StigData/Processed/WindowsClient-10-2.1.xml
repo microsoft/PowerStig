@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 13 Nov 2020 3.1.1.36225 1.10.0" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="12/9/2020">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 13 Nov 2020 3.1.1.36225 1.10.0" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="10/12/2021">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-220739" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3952,7 +3952,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>UseTPMPIN</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220704" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="Registry">
+    <Rule id="V-220704" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;If data at rest is unencrypted, it is vulnerable to disclosure. Even if the operating system enforces permissions on data access, an adversary can remove non-volatile memory and read it directly, thereby circumventing operating system controls. Encrypting the data ensures that confidentiality is protected even when the operating system is not running. Pre-boot authentication prevents unauthorized users from accessing encrypted drives. Increasing the pin length requires a greater number of guesses for an attacker.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6449,7 +6449,7 @@ Warning: This setting may prevent a system from being joined to a domain if not 
       <ValueName>RequireStrongKey</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220920" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="Registry">
+    <Rule id="V-220920" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Unattended systems are susceptible to unauthorized use and should be locked when unattended.  The screen saver should be set at a maximum of 15 minutes and be password protected.  This protects critical and sensitive data from exposure to unauthorized personnel with physical access to the computer.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6471,7 +6471,7 @@ Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)</
       <ValueName>InactivityTimeoutSecs</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220921" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="Registry">
+    <Rule id="V-220921" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Failure to display the logon banner prior to a logon attempt will negate legal proceedings resulting from unauthorized access to system resources.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6518,7 +6518,7 @@ By using this IS (which includes any device attached to this IS), you consent to
       <ValueName>LegalNoticeText</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-220922" severity="low" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="Registry">
+    <Rule id="V-220922" severity="low" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Failure to display the logon banner prior to a logon attempt will negate legal proceedings resulting from unauthorized access to system resources.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6819,7 +6819,7 @@ Value: 0</RawString>
       <ValueName>AllowOnlineID</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220936" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="Registry">
+    <Rule id="V-220936" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for Kerberos, preventing the use of the DES and RC4 encryption suites.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6997,7 +6997,7 @@ Value: 1</RawString>
       <ValueName>ProtectionMode</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220944" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="Registry">
+    <Rule id="V-220944" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized.  This setting configures the built-in Administrator account so that it runs in Admin Approval Mode.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7019,7 +7019,7 @@ Value: 1</RawString>
       <ValueName>FilterAdministratorToken</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220945" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="Registry">
+    <Rule id="V-220945" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized.  This setting configures the elevation requirements for logged on administrators to complete a task that requires raised privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7041,7 +7041,7 @@ Value: 2 (Prompt for consent on the secure desktop)</RawString>
       <ValueName>ConsentPromptBehaviorAdmin</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220947" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="Registry">
+    <Rule id="V-220947" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized.  Denying elevation requests from standard user accounts requires tasks that need elevation to be initiated by accounts with administrative privileges.  This ensures correct accounts are used on the system for privileged tasks to help mitigate credential theft.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7063,7 +7063,7 @@ Value: 0</RawString>
       <ValueName>ConsentPromptBehaviorUser</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220948" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="Registry">
+    <Rule id="V-220948" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized.  This setting requires Windows to respond to application installation requests by prompting for credentials.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7085,7 +7085,7 @@ Value: 1</RawString>
       <ValueName>EnableInstallerDetection</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220949" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="Registry">
+    <Rule id="V-220949" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized.  This setting configures Windows to only allow applications installed in a secure location on the file system, such as the Program Files or the Windows\System32 folders, to run with elevated privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7107,7 +7107,7 @@ Value: 1</RawString>
       <ValueName>EnableSecureUIAPaths</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220950" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="Registry">
+    <Rule id="V-220950" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized.  This setting enables UAC.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7129,7 +7129,7 @@ Value: 1</RawString>
       <ValueName>EnableLUA</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220951" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="Registry">
+    <Rule id="V-220951" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized.  This setting configures non-UAC compliant applications to run in virtualized file and registry entries in per-user locations, allowing them to run.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>

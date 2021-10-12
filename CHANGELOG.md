@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
+* Update RegistryRules to RegistryPolicyFileRules: [#977](https://github.com/microsoft/PowerStig/issues/977)
 
 ## [4.10.1] - 2021-08-31
 
