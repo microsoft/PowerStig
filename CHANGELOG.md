@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 3: [#979](https://github.com/microsoft/PowerStig/issues/979)
 * Update PowerSTIG to Parse/Apply SQL Server 2016 Instance V2R4 STIG: [#959](https://github.com/microsoft/PowerStig/issues/959)
 * Update PowerSTIG to successfully parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 3: [#944](https://github.com/microsoft/PowerStig/issues/944)
 * Update PowerSTIG to test for N-2 STIGs and Stale Log File Entries [#951](https://github.com/microsoft/PowerStig/issues/951)
