@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 3 [#979](https://github.com/microsoft/PowerStig/issues/979)
 * Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
 
 ## [4.10.1] - 2021-08-31
