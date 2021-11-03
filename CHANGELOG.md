@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to parse/apply Microsoft Internet Explorer 11 STIG V2R1: [#982](https://github.com/microsoft/PowerStig/issues/982)
 * Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
 
 ## [4.10.1] - 2021-08-31
