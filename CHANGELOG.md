@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft IIS 8.5 SITE STIG - Ver 2, Rel 4: [#981](https://github.com/microsoft/PowerStig/issues/981)
 * Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
 
 ## [4.10.1] - 2021-08-31
