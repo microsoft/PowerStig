@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="11/1/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="11/4/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218744" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.
@@ -1243,7 +1243,7 @@ Acceptable values are 5 minutes for high-value applications, 10 minutes for medi
       <Key>timeout</Key>
       <LegacyId>V-100247</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -le '00:20:00'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -le '00:15:00'</OrganizationValueTestString>
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
