@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Apr 2021 3.2.2.36079 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.3" created="5/26/2021">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.5" created="11/4/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -320,7 +320,7 @@ Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion
       <LegacyId>V-71945</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system automatically locks the root account until it is released by an administrator when three unsuccessful logon attempts in 15 minutes are made.
+      <RawString>Verify the operating system automatically locks the root account, for a minimum of 15 minutes, when three unsuccessful logon attempts in 15 minutes are made.
 
 # grep pam_faillock.so /etc/pam.d/password-auth
 auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900 
@@ -391,26 +391,6 @@ TimedLoginEnable=false
 
 If the value of "TimedLoginEnable" is not set to "false", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204436" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71961</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>For systems that use UEFI, this is Not Applicable.
-For systems that are running RHEL 7.2 or newer, this is Not Applicable.
-
-Check to see if an encrypted root password is set. On systems that use a BIOS, use the following command:
-
-# grep -i password_pbkdf2 /boot/grub2/grub.cfg
-
-password_pbkdf2 [superusers-account] [password-hash]
-
-If the root password entry does not begin with "password_pbkdf2", this is a finding.
-
-If the "superusers-account" is not set to "root", this is a finding.</RawString>
-    </Rule>
     <Rule id="V-204437" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -429,7 +409,7 @@ ExecStart=-/bin/sh -c "/usr/sbin/sulogin; /usr/bin/systemctl --fail --no-block d
 If "ExecStart" does not have "/usr/sbin/sulogin" as an option, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204438" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;If the system does not require valid authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-81005</LegacyId>
@@ -439,43 +419,15 @@ If "ExecStart" does not have "/usr/sbin/sulogin" as an option, this is a finding
 
 For systems that are running a version of RHEL prior to 7.2, this is Not Applicable.
 
-Check to see if an encrypted root password is set. On systems that use a BIOS, use the following command:
+Check to see if an encrypted grub superusers password is set. On systems that use a BIOS, use the following command:
 
-# grep -iw grub2_password /boot/grub2/user.cfg
+$ sudo grep -iw grub2_password /boot/grub2/user.cfg
 GRUB2_PASSWORD=grub.pbkdf2.sha512.[password_hash]
 
-If the root password does not begin with "grub.pbkdf2.sha512", this is a finding.
-
-Verify that the "root" account is set as the "superusers":
-
-# grep -iw "superusers" /boot/grub2/grub.cfg
-    set superusers="root"
-    export superusers
-
-If "superusers" is not set to "root", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204439" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71963</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>For systems that use BIOS, this is Not Applicable.
-For systems that are running RHEL 7.2 or newer, this is Not Applicable.
-
-Check to see if an encrypted root password is set. On systems that use UEFI, use the following command:
-
-# grep -i password /boot/efi/EFI/redhat/grub.cfg
-
-password_pbkdf2 [superusers-account] [password-hash]
-
-If the root password entry does not begin with "password_pbkdf2", this is a finding.
-
-If the "superusers-account" is not set to "root", this is a finding.</RawString>
+If the grub superusers password does not begin with "grub.pbkdf2.sha512", this is a finding.</RawString>
     </Rule>
     <Rule id="V-204440" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;If the system does not require valid authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-81007</LegacyId>
@@ -485,20 +437,45 @@ If the "superusers-account" is not set to "root", this is a finding.</RawString>
 
 For systems that are running a version of RHEL prior to 7.2, this is Not Applicable.
 
-Check to see if an encrypted root password is set. On systems that use UEFI, use the following command:
+Check to see if an encrypted grub superusers password is set. On systems that use UEFI, use the following command:
 
-# grep -iw grub2_password /boot/efi/EFI/redhat/user.cfg
+$ sudo grep -iw grub2_password /boot/efi/EFI/redhat/user.cfg
 GRUB2_PASSWORD=grub.pbkdf2.sha512.[password_hash]
 
-If the root password does not begin with "grub.pbkdf2.sha512", this is a finding.
+If the grub superusers password does not begin with "grub.pbkdf2.sha512", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204444" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
 
-Verify that the "root" account is set as the "superusers":
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71971</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
 
-# grep -iw "superusers" /boot/efi/EFI/redhat/grub.cfg
-    set superusers="root"
-    export superusers
+Verify the operating system prevents non-privileged users from executing privileged functions to include disabling, circumventing, or altering implemented security safeguards/countermeasures.
 
-If "superusers" is not set to "root", this is a finding.</RawString>
+Get a list of authorized users for the system.
+
+Check the list against the system by using the following command:
+
+$ sudo semanage login -l | more
+
+Login Name SELinux User MLS/MCS Range Service
+__default__ user_u s0-s0:c0.c1023 *
+root unconfined_u s0-s0:c0.c1023 *
+system_u system_u s0-s0:c0.c1023 *
+joe staff_u s0-s0:c0.c1023 *
+
+All administrators must be mapped to the , "staff_u", or an appropriately tailored confined SELinux user as defined by the organization.
+
+All authorized non-administrative users must be mapped to the "user_u" SELinux user.
+
+If they are not mapped in this way, this is a finding.
+If administrator accounts are mapped to the "sysadm_u" SELinux user and are not documented as an operational requirement with the ISSO, this is a finding.
+If administrator accounts are mapped to the "sysadm_u" SELinux user and are documented as an operational requirement with the ISSO, this can be downgraded to a CAT III.</RawString>
     </Rule>
     <Rule id="V-204456" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A locally logged-on user who presses Ctrl-Alt-Delete, when at the console, can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In the graphical environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -630,7 +607,7 @@ Check the configuration of "/etc/rsyslog.conf" or "/etc/rsyslog.d/*.conf" files 
 Note: If another logging package is used, substitute the utility configuration file for "/etc/rsyslog.conf" or "/etc/rsyslog.d/*.conf" files.
 
 # grep cron /etc/rsyslog.conf  /etc/rsyslog.d/*.conf
-cron.* /var/log/cron.log
+cron.* /var/log/cron
 
 If the command does not return a response, check for cron logging all facilities by inspecting the "/etc/rsyslog.conf" or "/etc/rsyslog.d/*.conf" files.
 
@@ -1039,38 +1016,6 @@ lo loopback unmanaged
 
 If a wireless interface is configured and its use on the system is not documented with the Information System Security Officer (ISSO), this is a finding.</RawString>
     </Rule>
-    <Rule id="V-214800" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Adding host-based intrusion detection tools can provide the capability to automatically take actions in response to malicious behavior, which can provide additional agility in reacting to network threats. These tools also often include a reporting capability to provide network awareness of the system, which may not otherwise exist in an organization's systems management regime.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-92255</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Per OPORD 16-0080, the preferred intrusion detection system is McAfee Host Intrusion Prevention System (HIPS) in conjunction with SELinux. McAfee Endpoint Security for Linux (ENSL) is an approved alternative to McAfee Virus Scan Enterprise (VSE) and HIPS. For RHEL 7 systems, SELinux is an approved alternative to McAfee HIPS.
-
-Procedure:
-Examine the system to determine if the Host Intrusion Prevention System (HIPS) is installed:
-
-# rpm -qa | grep MFEhiplsm
-
-Verify that the McAfee HIPS module is active on the system:
-
-# ps -ef | grep -i “hipclient”
-
-If the MFEhiplsm package is not installed, check for another intrusion detection system:
-
-# find / -name &lt;daemon name&gt;
-
-Where &lt;daemon name&gt; is the name of the primary application daemon to determine if the application is loaded on the system.
-
-Determine if the application is active on the system:
-
-# ps -ef | grep -i &lt;daemon name&gt;
-
-If the MFEhiplsm package is not installed and an alternate host-based intrusion detection application has not been documented for use, this is a finding.
-
-If no host-based intrusion detection system is installed and running on the system, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-228564" severity="medium" conversionstatus="pass" title="SRG-OS-000057-GPOS-00027" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If audit information were to become compromised, then forensic analysis and discovery of the true source of potentially malicious system activity is impossible to achieve.
 
@@ -1099,6 +1044,55 @@ Audit logs must be mode 0600 or less permissive.
 If any are more permissive, this is a finding.
 
 The owner and group owner of all audit log files must both be "root". If any other owner or group owner is listed, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-250312" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
+
+Verify the operating system confines SELinux users to roles that conform to least privilege.
+
+Check the SELinux User list to SELinux Roles mapping by using the following command:
+
+$ sudo semanage user -l
+SELinuxUser LabelingPrefix MLS/MCSLevel MLS/MCSRange SELinuxRoles
+guest_u            user  s0  s0  guest_r
+root                   user  s0  s0-s0:c0.c1023  staff_r sysadm_r system_r unconfined_r
+staff_u              user  s0  s0-s0:c0.c1023  staff_r sysadm_r
+sysadm_u         user  s0  s0-s0:c0.c1023  sysadm_r 
+system_u          user  s0  s0-s0:c0.c1023  system_r unconfined_r
+unconfined_u  user  s0  s0-s0:c0.c1023  system_r unconfined_r
+user_u               user  s0  s0  user_r
+xguest_u           user  s0  s0  xguest_r
+
+If the output differs from the above example, ask the SA to demonstrate how the SELinux User mappings are exercising least privilege. If deviations from the example are not documented with the ISSO and do not demonstrate least privilege, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-250313" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
+
+Verify the operating system prevents privileged accounts from utilizing SSH.
+Check the SELinux ssh_sysadm_login boolean with the following command:
+
+$ sudo getsebool ssh_sysadm_login
+ssh_sysadm_login --&gt; off
+
+If the "ssh_sysadm_login" boolean is not "off" and is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
@@ -1220,38 +1214,7 @@ If "smartcard removal action" is blank, this is a finding.
 
 # authconfig --test | grep "smartcard module"
 
-If "smartcard module" is blank, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204444" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
-
-Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71971</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: Per OPORD 16-0080, the preferred intrusion detection system is McAfee Host Intrusion Prevention System (HIPS) in conjunction with SELinux. McAfee Endpoint Security for Linux (ENSL) is an approved alternative to McAfee Virus Scan Enterprise (VSE) and HIPS. For RHEL 7 systems, SELinux is an approved alternative to McAfee HIPS. Regardless of whether or not McAfee HIPS or ENSL is installed, SELinux is interoperable with both McAfee products and SELinux is still required.
-
-Verify the operating system prevents non-privileged users from executing privileged functions to include disabling, circumventing, or altering implemented security safeguards/countermeasures.
-
-Get a list of authorized users (other than System Administrator and guest accounts) for the system.
-
-Check the list against the system by using the following command:
-
-# semanage login -l | more
-
-Login Name SELinux User MLS/MCS Range Service
-__default__ user_u s0-s0:c0.c1023 *
-root unconfined_u s0-s0:c0.c1023 *
-system_u system_u s0-s0:c0.c1023 *
-joe staff_u s0-s0:c0.c1023 *
-
-All administrators must be mapped to the "sysadm_u", "staff_u", or an appropriately tailored confined role as defined by the organization.
-
-All authorized non-administrative users must be mapped to the "user_u" role. 
-
-If they are not mapped in this way, this is a finding.</RawString>
+If "smartcard module" is blank, ask the administrator to indicate the AO-approved multifactor authentication in use and the configuration to support it. If there is no evidence of multifactor authentication, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204445" severity="medium" conversionstatus="pass" title="SRG-OS-000363-GPOS-00150" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Unauthorized changes to the baseline configuration could make the system vulnerable to various attacks or allow unauthorized access to the operating system. Changes to operating system configurations can have unintended side effects, some of which may be relevant to security.
@@ -1348,7 +1311,7 @@ If the ctrl-alt-del.target is active, this is a finding.</RawString>
     <Rule id="V-204458" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;An operating system release is considered "supported" if the vendor continues to provide security patches for the product. With an unsupported release, it will not be possible to resolve security issues discovered in the system software.
 
-Red Hat offers the Extended Update Support (EUS) Add-On to a Red Hat Enterprise Linux subscription, for a fee, for those customers who wish to standardize on a specific minor release for an extended period. RHEL 7.7 marks the final minor release that EUS will be available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Red Hat offers the Extended Update Support (EUS) Add-On to a Red Hat Enterprise Linux subscription, for a fee, for those customers who wish to standardize on a specific minor release for an extended period. RHEL 7.7 marks the final minor release that EUS will be available, while 7.9 is the final minor release overall.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71997</LegacyId>
@@ -1360,15 +1323,13 @@ Check the version of the operating system with the following command:
 
 # cat /etc/redhat-release
 
-Red Hat Enterprise Linux Server release 7.4 (Maipo)
+Red Hat Enterprise Linux Server release 7.9 (Maipo)
 
-Current End of Extended Update Support for RHEL 7.6 is 31 October 2020.
+Current End of Extended Update Support for RHEL 7.6 is 31 May 2021.
 
-Current End of Extended Update Support for RHEL 7.7 is 31 August 2021.
+Current End of Extended Update Support for RHEL 7.7 is 30 August 2021.
 
-Current End of Maintenance Support for RHEL 7.8 is 31 October 2020.
-
-Current End of Maintenance Support for RHEL 7.9 is 30 April 2021.
+Current End of Maintenance Support for RHEL 7.9 is 30 June 2024.
 
 If the release is not supported by the vendor, this is a finding.</RawString>
     </Rule>
@@ -1512,31 +1473,31 @@ Check the home directory assignment for all local interactive users on the syste
 
 Check the user's primary group with the following command:
 
-# grep users /etc/group
+# grep $(grep smithj /etc/passwd | awk -F: ‘{print $4}’) /etc/group
 
 users:x:250:smithj,jonesj,jacksons
 
 If the user home directory referenced in "/etc/passwd" is not group-owned by that user's primary GID, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204471" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If local interactive users do not own the files in their directories, unauthorized users may be able to access them. Additionally, if files are not owned by the user, this could be an indication of system compromise.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Unowned files and directories may be unintentionally inherited if a user is assigned the same User Identifier "UID" as the UID of the un-owned files.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72023</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify all files and directories in a local interactive user's home directory are owned by the user.
+      <RawString>Verify all files and directories in a local interactive user's home directory have a valid owner.
 
 Check the owner of all files and directories in a local interactive user's home directory with the following command:
 
 Note: The example will be for the user "smithj", who has a home directory of "/home/smithj".
 
-# ls -lLR /home/smithj
+$ sudo ls -lLR /home/smithj
 -rw-r--r-- 1 smithj smithj  18 Mar  5 17:06 file1
 -rw-r--r-- 1 smithj smithj 193 Mar  5 17:06 file2
 -rw-r--r-- 1 smithj smithj 231 Mar  5 17:06 file3
 
-If any files are found with an owner different than the home directory user, this is a finding.</RawString>
+If any files or directories are found without an owner, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204472" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If a local interactive user's files are group-owned by a group of which the user is not a member, unintended users may be able to access them.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1673,15 +1634,14 @@ If any local initialization files have a mode more permissive than "0740", this 
       <LegacyId>V-72035</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that all local interactive user initialization files' executable search path statements do not contain statements that will reference a working directory other than the users' home directory.
+      <RawString>Verify that all local interactive user initialization files' executable search path statements do not contain statements that will reference a working directory other than the user's home directory.
 
-Check the executable search path statement for all local interactive user initialization files in the users' home directory with the following commands:
+Check the executable search path statement for all local interactive user initialization files in the user's home directory with the following commands:
 
 Note: The example will be for the smithj user, which has a home directory of "/home/smithj".
 
-# grep -i path /home/smithj/.*
+# grep -i path= /home/smithj/.*
 /home/smithj/.bash_profile:PATH=$PATH:$HOME/.local/bin:$HOME/bin
-/home/smithj/.bash_profile:export PATH
 
 If any local interactive user initialization files have executable search path statements that include directories outside of their home directory, this is a finding.</RawString>
     </Rule>
@@ -1819,7 +1779,7 @@ tmpfs on /dev/shm type tmpfs (rw,nodev,nosuid,noexec,seclabel)
 If /dev/shm is mounted without secure options "nodev", "nosuid", and "noexec", this is a finding.</RawString>
     </Rule>
     <Rule id="V-204487" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If a world-writable directory has the sticky bit set and is not group-owned by root, sys, bin, or an application Group Identifier (GID), unauthorized users may be able to modify files created by others.
+      <Description>&lt;VulnDiscussion&gt;If a world-writable directory is not group-owned by root, sys, bin, or an application Group Identifier (GID), unauthorized users may be able to modify files created by others.
 
 The only authorized public directories are those temporary directories supplied with the system or those designed to be temporary file repositories. The setting is normally reserved for directories used by the system and by users for temporary file storage, (e.g., /tmp), and for directories requiring global read/write access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1970,7 +1930,7 @@ Red Hat Enterprise Linux operating system installation media ships with an optio
       <LegacyId>V-72073</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the file integrity tool is configured to use FIPS 140-2 approved cryptographic hashes for validating file contents and directories.
+      <RawString>Verify the file integrity tool is configured to use FIPS 140-2-approved cryptographic hashes for validating file contents and directories.
 
 Check to see if AIDE is installed on the system with the following command:
 
@@ -1986,7 +1946,7 @@ Use the following command to determine if the file is in another location:
 
 # find / -name aide.conf
 
-Check the "aide.conf" file to determine if the "sha512" rule has been added to the rule list being applied to the files and directories selection lists.
+Check the "aide.conf" file to determine if the "sha512" rule has been added to the rule list being applied to the files and directories selection lists. Exclude any log files, or files expected to change frequently, to reduce unnecessary notifications.
 
 An example rule that includes the "sha512" rule follows:
 
@@ -1994,7 +1954,7 @@ All=p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
 /bin All # apply the custom rule to the files in bin 
 /sbin All # apply the same custom rule to the files in sbin 
 
-If the "sha512" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or another file integrity tool is not using FIPS 140-2 approved cryptographic hashes for validating file contents and directories, this is a finding.</RawString>
+If the "sha512" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or another file integrity tool is not using FIPS 140-2-approved cryptographic hashes for validating file contents and directories, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204574" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Sending rsyslog output to another system ensures that the logs cannot be removed or modified in the event that the system is compromised or has a hardware failure.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2116,17 +2076,17 @@ If any file has a mode more permissive than "0644", this is a finding.</RawStrin
       <LegacyId>V-72257</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the SSH private host key files have mode "0640" or less permissive.
+      <RawString>Verify the SSH private host key files have mode "0600" or less permissive.
 
 The following command will find all SSH private key files on the system and list their modes:
 
 # find / -name '*ssh_host*key' | xargs ls -lL
 
--rw-r----- 1 root ssh_keys 668 Nov 28 06:43 ssh_host_dsa_key
--rw-r----- 1 root ssh_keys 582 Nov 28 06:43 ssh_host_key
--rw-r----- 1 root ssh_keys 887 Nov 28 06:43 ssh_host_rsa_key
+-rw------- 1 root ssh_keys 668 Nov 28 06:43 ssh_host_dsa_key
+-rw------- 1 root ssh_keys 582 Nov 28 06:43 ssh_host_key
+-rw------- 1 root ssh_keys 887 Nov 28 06:43 ssh_host_rsa_key
 
-If any file has a mode more permissive than "0640", this is a finding.</RawString>
+If any file has a mode more permissive than "0600", this is a finding.</RawString>
     </Rule>
     <Rule id="V-204606" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The .shosts files are used to configure host-based authentication for individual users or the system via SSH. Host-based authentication is not sufficient for preventing unauthorized access to the system, as it does not require interactive identification and authentication of a connection request, or for the use of two-factor authentication.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2287,6 +2247,28 @@ Note: System configuration files (indicated by a "c" in the second column) are e
 
 If there is any output from the command for system files or binaries, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-214800" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Adding endpoint security tools can provide the capability to automatically take actions in response to malicious behavior, which can provide additional agility in reacting to network threats. These tools also often include a reporting capability to provide network awareness of the system, which may not otherwise exist in an organization's systems management regime.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-92255</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Per OPORD 16-0080, the preferred endpoint security tool is McAfee Endpoint Security for Linux (ENSL) in conjunction with SELinux. 
+
+Procedure:
+Check that the following package has been installed:
+
+# rpm -qa | grep -i mcafeetp
+
+If the "mcafeetp" package is not installed, this is a finding.
+
+Verify that the daemon is running:
+
+# ps -ef | grep -i mfetpd
+
+If the daemon is not running, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-214801" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Virus scanning software can be used to protect a system from penetration from computer viruses and to limit their spread through intermediate systems.  
 
@@ -2373,7 +2355,7 @@ If the output does not match the example above, this is a finding.
 If the output does not match the example, this is a finding.</RawString>
     </Rule>
     <Rule id="V-228563" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If a world-writable directory has the sticky bit set and is not owned by root, sys, bin, or an application User Identifier (UID), unauthorized users may be able to modify files created by others.
+      <Description>&lt;VulnDiscussion&gt;If a world-writable directory is not owned by root, sys, bin, or an application User Identifier (UID), unauthorized users may be able to modify files created by others.
 
 The only authorized public directories are those temporary directories supplied with the system or those designed to be temporary file repositories. The setting is normally reserved for directories used by the system and by users for temporary file storage, (e.g., /tmp), and for directories requiring global read/write access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -3077,7 +3059,7 @@ This requirement applies to operating systems performing security function verif
       <LegacyId>V-71989</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Per OPORD 16-0080, the preferred intrusion detection system is McAfee Host Intrusion Prevention System (HIPS) in conjunction with SELinux.  McAfee Endpoint Security for Linux (ENSL) is an approved alternative to McAfee Virus Scan Enterprise (VSE) and HIPS. For RHEL 7 systems, SELinux is an approved alternative to McAfee HIPS. Regardless of whether or not McAfee HIPS or ENSL is installed, SELinux is interoperable with both McAfee products and SELinux is still required.
+      <RawString>Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
 
 Verify the operating system verifies correct operation of all security functions.
 
@@ -3100,7 +3082,7 @@ This requirement applies to operating systems performing security function verif
       <LegacyId>V-71991</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Per OPORD 16-0080, the preferred intrusion detection system is McAfee Host Intrusion Prevention System (HIPS) in conjunction with SELinux. McAfee Endpoint Security for Linux (ENSL) is an approved alternative to McAfee Virus Scan Enterprise (VSE) and HIPS. For RHEL 7 systems, SELinux is an approved alternative to McAfee HIPS. Regardless of whether or not McAfee HIPS or ENSL is installed, SELinux is interoperable with both McAfee products and SELinux is still required.
+      <RawString>Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
 
 Verify the operating system verifies correct operation of all security functions.
 
@@ -3496,23 +3478,13 @@ If there is no evidence that the system is configured to off-load audit logs to 
 
 Check the system configuration to determine the partition the audit records are being written to with the following command:
 
-# grep -iw log_file /etc/audit/auditd.conf
+$ sudo grep -iw log_file /etc/audit/auditd.conf
 log_file = /var/log/audit/audit.log
-
-Check the size of the partition that audit records are written to (with the example being "/var/log/audit/"):
-
-# df -h /var/log/audit/
-0.9G /var/log/audit
-
-If the audit records are not being written to a partition specifically created for audit records (in this example "/var/log/audit" is a separate partition), determine the amount of space other files in the partition are currently occupying with the following command:
-
-# du -sh &lt;partition&gt;
-1.8G /var
 
 Determine what the threshold is for the system to take action when 75 percent of the repository maximum audit record storage capacity is reached:
 
-# grep -iw space_left /etc/audit/auditd.conf
-space_left = 225 
+$ sudo grep -iw space_left /etc/audit/auditd.conf
+space_left = 25%
 
 If the value of the "space_left" keyword is not set to 25 percent of the total partition size, this is a finding.</RawString>
     </Rule>
@@ -5784,7 +5756,7 @@ Audit records can be generated from various components within the information sy
       <LegacyId>V-73173</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/opasswd.
+      <RawString>Verify the operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/security/opasswd.
 
 Check the auditing rules in "/etc/audit/audit.rules" with the following command:
 
@@ -6012,7 +5984,7 @@ Operating systems utilizing encryption are required to use FIPS-compliant mechan
 
 FIPS 140-2 is the current standard for validating that mechanisms used to access cryptographic modules utilize authentication that meets DoD requirements. This allows for Security Levels 1, 2, 3, or 4 for use on a general purpose computing system.
 
-By specifying a cipher list with the order of ciphers being in a “strongest to weakest” orientation, the system will automatically attempt to use the strongest cipher for securing SSH connections.
+The system will attempt to use the first cipher presented by the client that matches the server list. Listing the values "strongest to weakest" is a method to ensure the use of the strongest cipher available to secure the SSH connection.
 
 Satisfies: SRG-OS-000033-GPOS-00014, SRG-OS-000120-GPOS-00061, SRG-OS-000125-GPOS-00065, SRG-OS-000250-GPOS-00093, SRG-OS-000393-GPOS-00173&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>^#\s*Ciphers.*|^\s*Ciphers\s*aes128-ctr.*|^\s*Ciphers\s*aes192-ctr.*</DoesNotContainPattern>
@@ -6049,54 +6021,6 @@ Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion
       <LegacyId>V-72223.b</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/tmout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</OrganizationValueTestString>
-      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
-
-Check the value of the system inactivity timeout with the following command:
-
-# grep -i tmout /etc/profile.d/*
-
-etc/profile.d/tmout.sh:declare -xr TMOUT=900
-
-If "TMOUT" is not set to "900" or less in a script located in the /etc/profile.d/ directory to enforce session termination after inactivity, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204579.c" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
-      <ContainsLine>readonly TMOUT</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
-
-Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
-
-Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^\s*readonly\s+(?!TMOUT\b).*$|^\s*#\s*readonly.*$</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/profile.d/tmout.sh</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72223.c</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
-
-Check the value of the system inactivity timeout with the following command:
-
-# grep -i tmout /etc/profile.d/*
-
-etc/profile.d/tmout.sh:declare -xr TMOUT=900
-
-If "TMOUT" is not set to "900" or less in a script located in the /etc/profile.d/ directory to enforce session termination after inactivity, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204579.d" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
-      <ContainsLine>export TMOUT</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
-
-Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
-
-Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>^\s*export\s+(?!TMOUT\b).*$|^\s*#\s*export.*$</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/profile.d/tmout.sh</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72223.d</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
       <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
 
 Check the value of the system inactivity timeout with the following command:
@@ -6355,7 +6279,7 @@ If any protocol line other than "Protocol 2" is uncommented, this is a finding.<
       <ContainsLine>MACs hmac-sha2-512,hmac-sha2-256</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;DoD information systems are required to use FIPS 140-2 approved cryptographic hash functions. The only SSHv2 hash algorithm meeting this requirement is SHA.
 
-By specifying a hash algorithm list with the order of hashes being in a “strongest to weakest” orientation, the system will automatically attempt to use the strongest hash for securing SSH connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+The system will attempt to use the first hash presented by the client that matches the server list. Listing the values "strongest to weakest" is a method to ensure the use of the strongest hash available to secure the SSH connection.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*MACs.*|\s*MACs\s*hmac-(?!sha2-512).*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/ssh/sshd_config</FilePath>
@@ -6538,6 +6462,81 @@ Check the SSH X11UseLocalhost setting with the following command:
 X11UseLocalhost yes
 
 If the "X11UseLocalhost" keyword is set to "no", is missing, or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-244557" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;If the system does not require valid authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.
+The GRUB 2 superuser account is an account of last resort. Establishing a unique username for this account hardens the boot loader against brute force attacks. Due to the nature of the superuser account database being distinct from the OS account database, this allows the use of a username that is not among those within the OS account database. Examples of non-unique superusers names are root, superuser, unlock, etc.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/boot/grub2/grub.cfg</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>"set superusers =" is set to a unique name in /boot/grub2/grub.cfg</OrganizationValueTestString>
+      <RawString>For systems that use UEFI, this is Not Applicable.
+
+For systems that are running a version of RHEL prior to 7.2, this is Not Applicable.
+
+Verify that a unique name is set as the "superusers" account:
+
+# grep -iw "superusers" /boot/grub2/grub.cfg
+    set superusers="[someuniquestringhere]"
+    export superusers
+
+If "superusers" is identical to any OS account name or is missing a name, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-244558" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;If the system does not require valid authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.
+The GRUB 2 superuser account is an account of last resort. Establishing a unique username for this account hardens the boot loader against brute force attacks. Due to the nature of the superuser account database being distinct from the OS account database, this allows the use of a username that is not among those within the OS account database. Examples of non-unique superusers names are root, superuser, unlock, etc.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/boot/efi/EFI/redhat/grub.cfg</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>"set superusers =" is set to a unique name in /boot/efi/EFI/redhat/grub.cfg</OrganizationValueTestString>
+      <RawString>For systems that use BIOS, this is Not Applicable.
+
+For systems that are running a version of RHEL prior to 7.2, this is Not Applicable.
+
+Verify that a unique name is set as the "superusers" account:
+
+$ sudo grep -iw "superusers" /boot/efi/EFI/redhat/grub.cfg
+    set superusers="[someuniquestringhere]"
+    export superusers
+
+If "superusers" is identical to any OS account name or is missing a name, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-250314" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="nxFileLine">
+      <ContainsLine>%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*%wheel\s*ALL\s*=\s*(ALL)\s*TYPE\s*=\s*sysadm_t\s*ROLE\s*=\s*sysadm_r\s*ALL</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/sudoers.d/</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
+
+Verify the operating system elevates the SELinux context when an administrator calls the sudo command with the following command:
+
+This command must be ran as root:
+# grep sysadm_r /etc/sudoers.d/*
+%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL
+
+If a designated sudoers administrator group or account(s) is not configured to elevate the SELinux type and role to "sysadm_t" and "sysadm_r" with the use of the sudo command, this is a finding.</RawString>
     </Rule>
   </nxFileLineRule>
   <nxFileRule dscresourcemodule="nx">
@@ -7136,7 +7135,7 @@ If the value is set to an integer less than 0, the user's time stamp will not ex
       <RawString>Verify the operating system requires re-authentication when using the "sudo" command to elevate privileges.
 
 $ sudo grep -i 'timestamp_timeout' /etc/sudoers /etc/sudoers.d/*
-/etc/sudoers:Defaults timestamp_timout=0
+/etc/sudoers:Defaults timestamp_timeout=0
 
 If "timestamp_timeout" is set to a negative number, is commented out, or no results are returned, this is a finding.</RawString>
     </Rule>
