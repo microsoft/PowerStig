@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R5: [#994](https://github.com/microsoft/PowerStig/issues/994)
 * Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
 
 ## [4.10.1] - 2021-08-31
