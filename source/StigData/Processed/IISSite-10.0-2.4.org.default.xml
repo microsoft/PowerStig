@@ -14,7 +14,7 @@
   <OrganizationalSetting id="V-218755" Value="2048" />
   <!-- Ensure [TimeSpan]'V-218762' -le [TimeSpan]'00:20:00' -and [TimeSpan]'V-218762' -gt [TimeSpan]'00:00:00'-->
   <OrganizationalSetting id="V-218762" Value="'00:20:00'" />
-  <!-- Ensure ''V-218763'' -le '00:20:00'-->
+  <!-- Ensure ''V-218763'' -le '00:15:00'-->
   <OrganizationalSetting id="V-218763" Value="00:15:00" />
   <!-- Ensure 'V-218772' -ne 0-->
   <OrganizationalSetting id="V-218772" Value="35000" />
