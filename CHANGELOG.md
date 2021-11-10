@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 8.5 Server STIG - Ver 2, Rel 3: [#995](https://github.com/microsoft/PowerStig/issues/995)
+* Update azure-pipelines.yml update Ubuntu version: [#987](https://github.com/microsoft/PowerStig/issues/987)
 * Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
 
 ## [4.10.1] - 2021-08-31
