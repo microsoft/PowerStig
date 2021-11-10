@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
+* Update PowerSTIG to use WindowsDefenderDSC 2.2.0: [#1004](https://github.com/microsoft/PowerStig/issues/1004)
 
 ## [4.10.1] - 2021-08-31
 
