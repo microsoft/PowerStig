@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Edge_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Edge_V1R1_STIG_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 14 Jan 2021 3.2.1.41666 1.10.0" title="Microsoft Edge Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="2/27/2021">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Edge_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Edge_V1R3_STIG_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Microsoft Edge Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.3" created="11/1/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-235722" severity="low" conversionstatus="pass" title="SRG-APP-000073" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Configure the list of Microsoft Defender SmartScreen trusted domains. This means Microsoft Defender SmartScreen will not check for potentially malicious resources, such as phishing software and other malware, if the source URLs match these domains. The Microsoft Defender SmartScreen download protection service will not check downloads hosted on these domains.
@@ -42,9 +42,9 @@ HKLM\SOFTWARE\Policies\Microsoft\Edge
 HKLM\SOFTWARE\Policies\Microsoft\Edge\PopupsAllowedForUrls\1 = mydomain.com
 HKLM\SOFTWARE\Policies\Microsoft\Edge\PopupsAllowedForUrls\2 = myagency.mil
 
-If the value for "PopupsAllowedForUrls" is not set, this is a finding.
+This requirement for "Allow pop-up windows on specific sites" is not required; this is optional.
 
-If no URLs in the agency require whitelisting for plugin use, this is Not Applicable.</RawString>
+If configured, the list of domains for which Microsoft Edge allows pop-ups must be allowlisted; otherwise this is a finding.</RawString>
     </Rule>
     <Rule id="V-235755" severity="medium" conversionstatus="pass" title="SRG-APP-000386" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;By default, all extensions are allowed. However, if all extensions are blocked by setting the "ExtensionInstallBlockList" policy to "*," users can only install extensions defined in this policy.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -63,16 +63,16 @@ HKLM\SOFTWARE\Policies\Microsoft\Edge
 HKLM\SOFTWARE\Policies\Microsoft\Edge\ExtensionInstallAllowlist\1 = "extension_id1"
 HKLM\SOFTWARE\Policies\Microsoft\Edge\ExtensionInstallAllowlist\2 = "extension_id2"
 
-If the value for "ExtensionInstallAllowlist" is not set, this is a finding.
+This requirement for "Allow specific extensions to be installed" is not required; this is optional.
 
-If no extensions in the agency require whitelisting for use, this is Not Applicable.</RawString>
+If configured, the list of extensions for which Microsoft Edge allows to be installed must be allowlisted; otherwise this is a finding.</RawString>
     </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
     <Rule id="V-235758" severity="high" conversionstatus="pass" title="SRG-APP-000456" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Security flaws with software applications are discovered daily. Vendors are constantly updating and patching their products to address newly discovered security vulnerabilities. Organizations (including any contractor to the organization) are required to promptly install security-relevant software updates (e.g., patches, service packs, and hot fixes). Flaws discovered during security assessments, continuous monitoring, incident response activities, or information system error handling must also be addressed expeditiously.
+      <Description>&lt;VulnDiscussion&gt;Security flaws with software applications are discovered daily. Vendors are constantly updating and patching their products to address newly discovered security vulnerabilities. Organizations (including any contractor to the organization) are required to promptly install security-relevant software updates (e.g., patches, service packs, and hot fixes). Flaws discovered during security assessments, continuous monitoring, incident response activities, or information system error handling must also be addressed expeditiously. 
 
-Organization-defined time periods for updating security-relevant software may vary based on a variety of factors including, for example, the security category of the information system or the criticality of the update (i.e., severity of the vulnerability related to the discovered flaw).
+Organization-defined time periods for updating security-relevant software may vary based on a variety of factors including, for example, the security category of the information system or the criticality of the update (i.e., severity of the vulnerability related to the discovered flaw). 
 
 This requirement will apply to software patch management solutions that are used to install patches across the enclave and also to applications themselves that are not part of that patch management solution. For example, many browsers today provide the capability to install their own patch software. Patch criticality, as well as system criticality will vary. Therefore, the tactical situations regarding the patch management process will also vary. This means that the time period used must be a configurable parameter. Time frames for application of security-relevant software updates may be dependent upon the Information Assurance Vulnerability Management (IAVM) process.
 
@@ -83,7 +83,7 @@ The application will be configured to check for and install security-relevant so
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Cross-reference the build information displayed with the Microsoft Edge site to identify, at minimum, the oldest supported build available.
+      <RawString>Cross-reference the build information displayed with the Microsoft Edge site to identify, at minimum, the oldest supported build available. 
 
 If the installed version of Edge is not supported by Microsoft, this is a finding.</RawString>
     </Rule>
@@ -97,9 +97,9 @@ If this policy is enabled, Microsoft Edge ignores all proxy-related options spec
 If this policy is not configured, users can choose their own proxy settings.
 
 This policy overrides the following individual policies:
-- ProxyMode
-- ProxyPacUrl
-- ProxyServer
+- ProxyMode 
+- ProxyPacUrl 
+- ProxyServer 
 - ProxyBypassList
 
 Setting the ProxySettings policy accepts the following fields:
@@ -148,12 +148,12 @@ If this setting is disabled or not configured, users can ignore Microsoft Defend
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/SmartScreen settings/Prevent bypassing Microsoft Defender SmartScreen prompts for sites" must be set to "enabled".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/SmartScreen settings/Prevent bypassing Microsoft Defender SmartScreen prompts for sites" must be set to "Enabled".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge
 
-If the value for "PreventSmartScreenPromptOverride" is not set to "enabled", this is a finding.
+If the value for "PreventSmartScreenPromptOverride" is not set to "REG_DWORD = 1", this is a finding.
 
 If this machine is on SIPRNet, this is Not Applicable.</RawString>
       <ValueData>1</ValueData>
@@ -174,12 +174,12 @@ If this policy is disabled or not configured, users can ignore Microsoft Defende
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/SmartScreen settings/Prevent bypassing of Microsoft Defender SmartScreen warnings about downloads" must be set to "enabled".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/SmartScreen settings/Prevent bypassing of Microsoft Defender SmartScreen warnings about downloads" must be set to "Enabled".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge
 
-If the value for "PreventSmartScreenPromptOverrideForFiles" is not set to "enabled", this is a finding.
+If the value for "PreventSmartScreenPromptOverrideForFiles" is not set to "REG_DWORD = 1", this is a finding.
 
 If this machine is on SIPRNet, this is Not Applicable.</RawString>
       <ValueData>1</ValueData>
@@ -233,7 +233,7 @@ If this policy is not configured, background mode is initially turned off, and t
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Continue running background apps after Microsoft Edge closes" must be set to "disabled".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Continue running background apps after Microsoft Edge closes" must be set to "Disabled".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge\Recommended
@@ -288,9 +288,9 @@ If this policy is disabled or not configured, users can modify the search engine
       <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Manage Search Engines" must be configured.
 
 Use the Windows Registry Editor to navigate to the following key:
-HKLM\SOFTWARE\Policies\Microsoft\Edge\Recommended
+HKLM\SOFTWARE\Policies\Microsoft\Edge
 
-Example REG_SZ value text:
+Example REG_SZ value text for "ManagedSearchEngines":
 [{"allow_search_engine_discovery": false},{"is_default": true,"name": "Microsoft Bing","keyword": "bing","search_url": "https://www.bing.com/search?q={searchTerms}"},{"name": "Google","keyword": "google","search_url": "https://www.google.com/search?q={searchTerms}"}]
 
 If any of the search URLs in the list do not begin with "https", this is a finding.</RawString>
@@ -310,7 +310,7 @@ If this policy is not set or applied as recommended, users will be able to turn 
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Disable synchronization of data using Microsoft sync services" must be set to "enabled".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Disable synchronization of data using Microsoft sync services" must be set to "Enabled".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge\Recommended
@@ -365,7 +365,7 @@ If this policy is not set, search suggestions are enabled but the user can chang
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Enable search suggestions" must be set to "disabled".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Enable search suggestions" must be set to "Disabled".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge\Recommended
@@ -796,9 +796,9 @@ If the value for "AutofillAddressEnabled" is not set to "REG_DWORD = 0", this is
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-235747" severity="medium" conversionstatus="pass" title="SRG-APP-000175" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Control whether online revocation checks (OCSP/CRL checks) are required. If Microsoft Edge cannot get revocation status information, these certificates are treated as revoked ("hard-fail").
+      <Description>&lt;VulnDiscussion&gt;If you enable this policy, Microsoft Edge will perform soft-fail, online OCSP/CRL checks. "Soft fail" means that if the revocation server can't be reached, the certificate will be considered valid.
 
-If this policy is enabled, Microsoft Edge always performs revocation checking for server certificates that successfully validate and are signed by locally installed CA certificates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+If you disable the policy or don't configure it, Microsoft Edge won't perform online revocation checks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -807,14 +807,14 @@ If this policy is enabled, Microsoft Edge always performs revocation checking fo
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Specify if online OCSP/CRL checks are required for local trust anchors" must be set to "enabled".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Enable online OCSP/CRL checks" must be set to "Enabled".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge
 
-If the value for "RequireOnlineRevocationChecksForLocalAnchors" is not set to "REG_DWORD = 1", this is a finding.</RawString>
+If the value for "EnableOnlineRevocationChecks" is not set to "REG_DWORD = 1", this is a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>RequireOnlineRevocationChecksForLocalAnchors</ValueName>
+      <ValueName>EnableOnlineRevocationChecks</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-235748" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
@@ -936,7 +936,7 @@ Policy options mapping:
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is 1 or 2 </OrganizationValueTestString>
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Allow download restrictions" must be set to "enabled" with the option value set to "Block potentially dangerous or unwanted downloads".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Allow download restrictions" must be set to "Enabled" with the option value set to "BlockDangerousDownloads" or "Block potentially dangerous or unwanted downloads".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge
@@ -963,9 +963,9 @@ If this policy is not configured, users can install any extension in Microsoft E
       <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Extensions/Control which extensions cannot be installed" must be set to "Enabled".
 
 Use the Windows Registry Editor to navigate to the following key:
-HKLM\SOFTWARE\Policies\Microsoft\Edge
+HKLM\SOFTWARE\Policies\Microsoft\Edge\ExtensionInstallBlocklist\1
 
-If the value for "ExtensionInstallBlocklist" is not set to "REG_SZ = *", this is a finding.</RawString>
+If the value for "1" is not set to "REG_SZ = *", this is a finding.</RawString>
       <ValueData>*</ValueData>
       <ValueName>1</ValueName>
       <ValueType>String</ValueType>
@@ -990,30 +990,6 @@ HKLM\SOFTWARE\Policies\Microsoft\Edge
 If the value for "PasswordManagerEnabled" is not set to "REG_DWORD = 0", this is a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>PasswordManagerEnabled</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-235757" severity="medium" conversionstatus="pass" title="SRG-APP-000427" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Microsoft Edge shows a warning page when users visit sites that have SSL errors.
-
-If this policy is enabled or not configured (default), users can click through these warning pages.
-
-If this policy is disabled, users are blocked from clicking through any warning page.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge</Key>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Allow users to proceed from the HTTPS warning page" must be set to "disabled".
-
-Use the Windows Registry Editor to navigate to the following key:
-HKLM\SOFTWARE\Policies\Microsoft\Edge
-
-If the value for "SSLErrorOverrideAllowed" is not set to "REG_DWORD = 0", this is a finding.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>SSLErrorOverrideAllowed</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-235759" severity="high" conversionstatus="pass" title="SRG-APP-000560" dscresource="RegistryPolicyFile">
@@ -1083,37 +1059,15 @@ If this policy is not configured, all four schemes are used.&lt;/VulnDiscussion&
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/HTTP authentication/Supported authentication schemes" must be set to "enabled" with the option value set to "ntlm,negotiate".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/HTTP authentication/Supported authentication schemes" must be set to  "ntlm,negotiate".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge
 
-If the value for "AuthSchemes" is not set to "REG_DWORD = 0", this is a finding.</RawString>
+If the value for "AuthSchemes" is not set to "REG_SZ = ntlm,negotiate", this is a finding.</RawString>
       <ValueData>ntlm,negotiate</ValueData>
       <ValueName>AuthSchemes</ValueName>
       <ValueType>String</ValueType>
-    </Rule>
-    <Rule id="V-235762" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;If the policy is set to "enabled" or is unset, Microsoft Edge can use native messaging hosts installed at the user level.
-
-If the policy is set to "disabled", Microsoft Edge can only use these hosts if they are installed at the system level.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge</Key>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Native Messaging/Allow user-level native messaging hosts (installed without admin permissions)" must be set to "disabled".
-
-Use the Windows Registry Editor to navigate to the following key:
-HKLM\SOFTWARE\Policies\Microsoft\Edge
-
-If the value for "NativeMessagingUserLevelHosts" is not set to "REG_DWORD = 0", this is a finding.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>NativeMessagingUserLevelHosts</ValueName>
-      <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-235763" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting configures Microsoft Defender SmartScreen, which provides warning messages to help protect  users from potential phishing scams and malicious software. By default, Microsoft Defender SmartScreen is turned on.
@@ -1133,10 +1087,10 @@ This policy is available only on Windows instances that are joined to a Microsof
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/SmartScreen settings/Configure Microsoft Defender SmartScreen" must be set to "enabled".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/SmartScreen settings/Configure Microsoft Defender SmartScreen" must be set to "Enabled".
 
 Use the Windows Registry Editor to navigate to the following key:
-HKLM\SOFTWARE\Policies\Microsoft\Edge\Recommended
+HKLM\SOFTWARE\Policies\Microsoft\Edge
 
 If the value for "SmartScreenEnabled" is not set to "REG_DWORD = 1", this is a finding.
 
@@ -1163,10 +1117,10 @@ This policy is available only on Windows instances that are joined to a Microsof
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/SmartScreen settings/Configure Microsoft Defender SmartScreen to block potentially unwanted apps" must be set to "enabled".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/SmartScreen settings/Configure Microsoft Defender SmartScreen to block potentially unwanted apps" must be set to "Enabled".
 
 Use the Windows Registry Editor to navigate to the following key:
-HKLM\SOFTWARE\Policies\Microsoft\Edge\Recommended
+HKLM\SOFTWARE\Policies\Microsoft\Edge
 
 If the value for SmartScreenPuaEnabled is not set to "REG_DWORD = 1", this is a finding.
 
@@ -1202,8 +1156,8 @@ If this policy is disabled or is not configured, users can set their own level o
 
 Policy options mapping:
 - TrackingPreventionOff (0) = Off (no tracking prevention)
--  TrackingPreventionBasic (1) = Basic (blocks harmful trackers; content and ads will be personalized)
--  TrackingPreventionBalanced (2) = Balanced (blocks harmful trackers and trackers from sites user has not visited; content and ads will be less personalized)
+- TrackingPreventionBasic (1) = Basic (blocks harmful trackers; content and ads will be personalized)
+- TrackingPreventionBalanced (2) = Balanced (blocks harmful trackers and trackers from sites user has not visited; content and ads will be less personalized)
 - TrackingPreventionStrict (3) = Strict (blocks harmful trackers and majority of trackers from all sites; content and ads will have minimal personalization; some parts of sites might not work)&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -1213,12 +1167,12 @@ Policy options mapping:
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is 2 or 3 </OrganizationValueTestString>
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Block tracking of users' web-browsing activity" must be set to "enabled" with the option value set to "2" or "3".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Block tracking of users' web-browsing activity" must be set to "Enabled" with the option value set to "Balanced" or "Strict".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge
 
-If the value for "TrackingPrevention" is not set to "REG_DWORD = 1", this is a finding.</RawString>
+If the value for "TrackingPrevention" is not set to "REG_DWORD = 2" or "REG_DWORD = 3", this is a finding.</RawString>
       <ValueData />
       <ValueName>TrackingPrevention</ValueName>
       <ValueType>Dword</ValueType>
@@ -1254,9 +1208,9 @@ If this policy is enabled, a web service is used to generate URL and search sugg
 
 If this policy is disabled, no calls to the web service are made and a standard error page is shown.
 
-If this policy is not configured, Microsoft Edge respects the user preference that is set under Services at edge://settings/privacy. Specifically, there is a "Suggest similar pages when a webpage can't be found" toggle, which the user can switch on or off.
+If this policy is not configured, Microsoft Edge respects the user preference that is set under Services at edge://settings/privacy. Specifically, there is a "Suggest similar pages when a webpage can't be found" toggle, which the user can switch on or off. 
 
-Note that if this policy has been enabled (AlternateErrorPagesEnabled), the "Suggest similar pages when a webpage can't be found setting" is turned on, but the user cannot change the setting by using the toggle.
+Note that if this policy has been enabled (AlternateErrorPagesEnabled), the "Suggest similar pages when a webpage can't be found setting" is turned on, but the user cannot change the setting by using the toggle. 
 
 If this policy is disabled, the "Suggest similar pages when a webpage can't be found" setting is turned off, and the user cannot change the setting by using the toggle.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1267,10 +1221,10 @@ If this policy is disabled, the "Suggest similar pages when a webpage can't be f
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Suggest similar pages when a webpage can't be found" must be set to "disabled".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Suggest similar pages when a webpage can't be found" must be set to "Disabled".
 
 Use the Windows Registry Editor to navigate to the following key:
-HKLM\SOFTWARE\Policies\Microsoft\Edge\Recommended
+HKLM\SOFTWARE\Policies\Microsoft\Edge
 
 If the value for AlternateErrorPagesEnabled is not set to "REG_DWORD = 0", this is a finding.</RawString>
       <ValueData>0</ValueData>
@@ -1315,7 +1269,7 @@ If this policy is disabled, users cannot access and use Collections in Microsoft
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Enable the Collections feature" must be set to "disabled".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Enable the Collections feature" must be set to "Disabled".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge
@@ -1385,7 +1339,7 @@ If the value for "BrowserGuestModeEnabled" is not set to "REG_DWORD = 0", this i
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Notify a user that a browser restart is recommended or required for pending updates" must be set to "enabled" with the option value set to "Required".
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Notify a user that a browser restart is recommended or required for pending updates" must be set to "Enabled" with the option value set to "Required".
 
 Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Policies\Microsoft\Edge
@@ -1419,6 +1373,30 @@ HKLM\SOFTWARE\Policies\Microsoft\Edge
 If the value for "BuiltInDnsClientEnabled" is not set to "REG_DWORD = 0", this is a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>BuiltInDnsClientEnabled</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-246736" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;QUIC is used by more than half of all connections from the Edge web browser to Google's servers, and this activity is undesirable in the DoD.
+
+If you enable this policy or don't configure it, the QUIC protocol is allowed.
+
+If you disable this policy, the QUIC protocol is blocked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Allow QUIC protocol" must be set to "Disabled".
+
+Use the Windows Registry Editor to navigate to the following key:
+HKLM\SOFTWARE\Policies\Microsoft\Edge
+
+If the value for "QuicAllowed" is not set to "REG_DWORD = 0", this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>QuicAllowed</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
