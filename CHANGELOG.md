@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to successfully parse/apply VMware 6.5 ESXI V2R3 STIG: [#984](https://github.com/microsoft/PowerStig/issues/984)
+* Update azure-pipelines.yml update Ubuntu version: [#987](https://github.com/microsoft/PowerStig/issues/987)
 * Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
 
 ## [4.10.1] - 2021-08-31
