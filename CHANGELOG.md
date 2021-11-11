@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply SQL Server 2016 Instance STIG- Ver 2, Rel 5: [#983](https://github.com/microsoft/PowerStig/issues/983)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 8.5 Server STIG - Ver 2, Rel 3: [#995](https://github.com/microsoft/PowerStig/issues/995)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 8.5 SITE STIG - Ver 2, Rel 4: [#981](https://github.com/microsoft/PowerStig/issues/981)
 * Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 3 [#979](https://github.com/microsoft/PowerStig/issues/979)
