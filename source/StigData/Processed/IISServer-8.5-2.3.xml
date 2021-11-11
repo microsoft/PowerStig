@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 23 Oct 2020 3.1.1.36225 1.10.0" title="Microsoft IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="8/23/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="11/3/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-214399" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -767,17 +767,18 @@ If passwords have not been changed from the default, this is a finding.</RawStri
       <LegacyId>V-76771</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
+      <RawString>If ASP.NET is not installed, this is Not Applicable.
+If the server is hosting SharePoint, this is Not Applicable.
+If the server is hosting WSUS, this is Not Applicable.
+If the server is hosting Exchange, this is Not Applicable.
+
+Open the IIS 8.5 Manager.
+
 Click the IIS 8.5 web server name.
+
 Double-click the “.NET Authorization Rules” icon.
 
-If any user other than “Administrator” is listed, this is a finding.
-
-If .NET is not installed, this is Not Applicable.
-
-If the server is hosting SharePoint, this is Not Applicable.
-
-If the server is hosting WSUS, this is Not Applicable.</RawString>
+If any groups other than “Administrators” are listed, this is a finding.</RawString>
     </Rule>
     <Rule id="V-214442" severity="medium" conversionstatus="pass" title="SRG-APP-000001-WSR-000001" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Resource exhaustion can occur when an unlimited number of concurrent requests are allowed on a website, facilitating a Denial of Service attack. Mitigating this kind of attack will include limiting the number of concurrent HTTP/HTTPS requests per IP address and may include, where feasible, limiting parameter values associated with keepalive (i.e., a parameter used to limit the amount of time a connection may be inactive).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1023,7 +1024,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "1" for "Enabled"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
@@ -1034,8 +1035,9 @@ HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault" for each protocol.
+
+Verify a REG_DWORD value of "0" for "Enabled" for each protocol.
 
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
@@ -1061,7 +1063,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "1" for "Enabled"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
@@ -1072,13 +1074,14 @@ HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault" for each protocol.
+
+Verify a REG_DWORD value of "0" for "Enabled" for each protocol.
 
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>DisabledByDefault</ValueName>
+      <ValueData>1</ValueData>
+      <ValueName>Enabled</ValueName>
       <ValueType>DWORD</ValueType>
     </Rule>
     <Rule id="V-214436.c" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
@@ -1099,7 +1102,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "1" for "Enabled"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
@@ -1110,8 +1113,9 @@ HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault" for each protocol.
+
+Verify a REG_DWORD value of "0" for "Enabled" for each protocol.
 
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
@@ -1137,7 +1141,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "1" for "Enabled"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
@@ -1148,8 +1152,9 @@ HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault" for each protocol.
+
+Verify a REG_DWORD value of "0" for "Enabled" for each protocol.
 
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
@@ -1175,7 +1180,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "1" for "Enabled"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
@@ -1186,8 +1191,9 @@ HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault" for each protocol.
+
+Verify a REG_DWORD value of "0" for "Enabled" for each protocol.
 
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
@@ -1213,7 +1219,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "1" for "Enabled"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
@@ -1224,8 +1230,9 @@ HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault" for each protocol.
+
+Verify a REG_DWORD value of "0" for "Enabled" for each protocol.
 
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
@@ -1251,7 +1258,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "1" for "Enabled"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
@@ -1262,8 +1269,9 @@ HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault" for each protocol.
+
+Verify a REG_DWORD value of "0" for "Enabled" for each protocol.
 
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
@@ -1289,7 +1297,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "1" for "Enabled"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
@@ -1300,8 +1308,9 @@ HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault" for each protocol.
+
+Verify a REG_DWORD value of "0" for "Enabled" for each protocol.
 
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
@@ -1327,7 +1336,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "1" for "Enabled"
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
@@ -1338,8 +1347,9 @@ HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault" for each protocol.
+
+Verify a REG_DWORD value of "0" for "Enabled" for each protocol.
 
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
