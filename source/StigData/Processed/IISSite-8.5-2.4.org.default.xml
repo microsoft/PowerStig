@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.2">
+<OrganizationalSettings fullversion="2.4">
   <!-- Ensure ''V-214448'' LogFlags must contain at a minimum Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer'-->
   <OrganizationalSetting id="V-214448" LogCustomFieldEntry="" LogFlags="Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer" LogFormat="" LogPeriod="" LogTargetW3C="" />
   <!-- Ensure 'V-214464' -le 4096-->
@@ -20,8 +20,6 @@
   <OrganizationalSetting id="V-214475" Value="00:20:00" />
   <!-- Ensure 'V-214485' -ne 0-->
   <OrganizationalSetting id="V-214485" Value="35000" />
-  <!-- Ensure 'V-214486' -ne 0-->
-  <OrganizationalSetting id="V-214486" Value="1000000" />
   <!-- Ensure 'V-214487' -ne 0-->
   <OrganizationalSetting id="V-214487" Value="1000000" />
   <!-- Ensure 'V-214489' -le 1000-->
