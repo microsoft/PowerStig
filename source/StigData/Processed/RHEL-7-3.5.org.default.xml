@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="3.3">
+<OrganizationalSettings fullversion="3.5">
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8", this is a finding." -->
   <OrganizationalSetting id="V-204411" ContainsLine="difok = 8" DoesNotContainPattern="#\s*difok\s*=.*|^\s*difok\s*=\s*(-|)[0-7]$" />
   <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "minclass" is set to less than "4", this is a finding." -->
@@ -40,4 +40,8 @@
   <OrganizationalSetting id="V-204587" ContainsLine="ClientAliveInterval 600" DoesNotContainPattern="^\s*ClientAliveInterval\s*[0-5]?[0-9]?[0-9]?\s*$|^#\s*ClientAliveInterval.*|^\s*ClientAliveInterval\s*$" />
   <!-- Ensure the "Defaults timestamp_timeout=[value]" must be a number that is greater than or equal to "0" -->
   <OrganizationalSetting id="V-237635" Contents="Defaults timestamp_timeout=0" />
+  <!-- Ensure "set superusers =" is set to a unique name in /boot/grub2/grub.cfg-->
+  <OrganizationalSetting id="V-244557" ContainsLine="" DoesNotContainPattern="" />
+  <!-- Ensure "set superusers =" is set to a unique name in /boot/efi/EFI/redhat/grub.cfg-->
+  <OrganizationalSetting id="V-244558" ContainsLine="" DoesNotContainPattern="" />
 </OrganizationalSettings>

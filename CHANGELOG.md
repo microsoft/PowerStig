@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Remove Generated via PowerSTIG from Hardcoded rules [1003] (https://github.com/microsoft/PowerStig/issues/1003)
+* Update PowerSTIG to successfully parse/apply Red Hat Enterprise Linux 7 STIG - V3R5 [993] (https://github.com/microsoft/PowerStig/issues/993)
 * Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R5: [#994](https://github.com/microsoft/PowerStig/issues/994)
 * Update PowerSTIG to successfully parse/apply VMware 6.5 ESXI V2R3 STIG: [#984](https://github.com/microsoft/PowerStig/issues/984)
 * Update PowerSTIG to successfully parse/apply SQL Server 2016 Instance STIG- Ver 2, Rel 5: [#983](https://github.com/microsoft/PowerStig/issues/983)

@@ -19,7 +19,6 @@ foreach ($rule in $rules)
         nxFile (Get-ResourceTitle -Rule $rule)
         {
             DestinationPath = '/etc/audisp/audisp-remote.conf'
-            Contents        = "# Generated via PowerSTIG`n"
         }
 
         $audispRemoteConfCreated = $true
@@ -30,7 +29,6 @@ foreach ($rule in $rules)
         nxFile (Get-ResourceTitle -Rule $rule)
         {
             DestinationPath = '/etc/audisp/plugins.d/au-remote.conf'
-            Contents        = "# Generated via PowerSTIG`n"
         }
 
         $auRemoteConfCreated = $true
@@ -41,7 +39,6 @@ foreach ($rule in $rules)
         nxFileLine (Get-ResourceTitle -Rule $rule)
         {
             FilePath              = $rule.FilePath
-            ContainsLine          = $rule.ContainsLine
             DoesNotContainPattern = $rule.DoesNotContainPattern
         }
     }
@@ -50,7 +47,6 @@ foreach ($rule in $rules)
         nxFileLine (Get-ResourceTitle -Rule $rule)
         {
             FilePath     = $rule.FilePath
-            ContainsLine = $rule.ContainsLine
         }
     }
 }

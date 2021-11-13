@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="11/4/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="11/13/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-219150" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information at rest refers to the state of information when it is located on a secondary storage device (e.g., disk drive and tape drive, when used for backups) within an operating system.
@@ -5460,7 +5460,7 @@ The result must contain the following line:
 
 If the "maxlogins" item is missing, or the value is not set to 10 or less, or is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219303.b" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
+    <Rule id="V-219303.a" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
       <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, the Ubuntu operating system need to be able to identify when a user's session has idled and take action to initiate the session lock.
@@ -5471,7 +5471,7 @@ The session lock is implemented at the point where session activity can be deter
       <DuplicateOf />
       <FilePath>/etc/profile.d/autologout.sh</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100829.b</LegacyId>
+      <LegacyId>V-100829.a</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</OrganizationValueTestString>
       <RawString>Verify the Ubuntu operating system initiates a session logout after a 15-minute period of inactivity. 
@@ -5485,7 +5485,7 @@ export TMOUT
 
 If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219303.c" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
+    <Rule id="V-219303.b" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
       <ContainsLine>readonly TMOUT</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, the Ubuntu operating system need to be able to identify when a user's session has idled and take action to initiate the session lock.
 
@@ -5494,7 +5494,7 @@ The session lock is implemented at the point where session activity can be deter
       <DuplicateOf />
       <FilePath>/etc/profile.d/autologout.sh</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100829.c</LegacyId>
+      <LegacyId>V-100829.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the Ubuntu operating system initiates a session logout after a 15-minute period of inactivity. 
@@ -5508,7 +5508,7 @@ export TMOUT
 
 If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219303.d" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
+    <Rule id="V-219303.c" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
       <ContainsLine>export TMOUT</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, the Ubuntu operating system need to be able to identify when a user's session has idled and take action to initiate the session lock.
 
@@ -5517,7 +5517,7 @@ The session lock is implemented at the point where session activity can be deter
       <DuplicateOf />
       <FilePath>/etc/profile.d/autologout.sh</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100829.d</LegacyId>
+      <LegacyId>V-100829.c</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the Ubuntu operating system initiates a session logout after a 15-minute period of inactivity. 
@@ -5796,7 +5796,7 @@ If the "UMASK" variable is set to "000", this is a finding with the severity rai
 
 If the value of "UMASK" is not set to "077", "UMASK" is commented out or "UMASK" is missing completely, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219339.b" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
+    <Rule id="V-219339.a" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
       <ContainsLine>install usb-storage /bin/true</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity.
 
@@ -5805,7 +5805,7 @@ Peripherals include, but are not limited to, such devices as flash drives, exter
       <DuplicateOf />
       <FilePath>/etc/modprobe.d/DISASTIG.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100919.b</LegacyId>
+      <LegacyId>V-100919.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: The "install" and "blacklist" methods are utilized together to fully disable automatic mounting of the USB mass storage driver.
@@ -5824,7 +5824,7 @@ blacklist usb-storage
 
 If the command does not return any output, or the line is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-219339.c" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
+    <Rule id="V-219339.b" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
       <ContainsLine>blacklist usb-storage</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity.
 
@@ -5833,7 +5833,7 @@ Peripherals include, but are not limited to, such devices as flash drives, exter
       <DuplicateOf />
       <FilePath>/etc/modprobe.d/DISASTIG.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100919.c</LegacyId>
+      <LegacyId>V-100919.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: The "install" and "blacklist" methods are utilized together to fully disable automatic mounting of the USB mass storage driver.
@@ -5894,57 +5894,6 @@ X11UseLocalhost yes
 If the "X11UseLocalhost" keyword is set to "no", is missing, or is commented out, this is a finding.</RawString>
     </Rule>
   </nxFileLineRule>
-  <nxFileRule dscresourcemodule="nx">
-    <Rule id="V-219303.a" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFile">
-      <Contents># Generated via PowerSTIG</Contents>
-      <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, the Ubuntu operating system need to be able to identify when a user's session has idled and take action to initiate the session lock.
-
-The session lock is implemented at the point where session activity can be determined and/or controlled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <FilePath>/etc/profile.d/autologout.sh</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100829.a</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system initiates a session logout after a 15-minute period of inactivity. 
-
-Check that the proper auto logout script exists with the following command:
-
-# cat /etc/profile.d/autologout.sh
-TMOUT=900
-readonly TMOUT
-export TMOUT
-
-If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-219339.a" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFile">
-      <Contents># Generated via PowerSTIG</Contents>
-      <Description>&lt;VulnDiscussion&gt;Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity.
-
-Peripherals include, but are not limited to, such devices as flash drives, external storage, and printers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <FilePath>/etc/modprobe.d/DISASTIG.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100919.a</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: The "install" and "blacklist" methods are utilized together to fully disable automatic mounting of the USB mass storage driver.
-
-Verify that Ubuntu operating system disables ability to load the USB storage kernel module:
-$ grep usb-storage /etc/modprobe.d/* | grep "/bin/true" 
-
-install usb-storage /bin/true
-
-If the command does not return any output, or the line is commented out, this is a finding.
-
-Verify the operating system disables the ability to use USB mass storage device:
-$ grep usb-storage /etc/modprobe.d/* | grep -i "blacklist"
-
-blacklist usb-storage
-
-If the command does not return any output, or the line is commented out, this is a finding.</RawString>
-    </Rule>
-  </nxFileRule>
   <nxPackageRule dscresourcemodule="nx">
     <Rule id="V-219153.a" severity="low" conversionstatus="pass" title="SRG-OS-000479-GPOS-00224" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration.

@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.4" created="8/6/2021">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.4" created="11/13/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -391,26 +391,6 @@ TimedLoginEnable=false
 
 If the value of "TimedLoginEnable" is not set to "false", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204436" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71961</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>For systems that use UEFI, this is Not Applicable.
-For systems that are running RHEL 7.2 or newer, this is Not Applicable.
-
-Check to see if an encrypted root password is set. On systems that use a BIOS, use the following command:
-
-# grep -i password_pbkdf2 /boot/grub2/grub.cfg
-
-password_pbkdf2 [superusers-account] [password-hash]
-
-If the root password entry does not begin with "password_pbkdf2", this is a finding.
-
-If the "superusers-account" is not set to "root", this is a finding.</RawString>
-    </Rule>
     <Rule id="V-204437" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -445,26 +425,6 @@ $ sudo grep -iw grub2_password /boot/grub2/user.cfg
 GRUB2_PASSWORD=grub.pbkdf2.sha512.[password_hash]
 
 If the grub superusers password does not begin with "grub.pbkdf2.sha512", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204439" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71963</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>For systems that use BIOS, this is Not Applicable.
-For systems that are running RHEL 7.2 or newer, this is Not Applicable.
-
-Check to see if an encrypted root password is set. On systems that use UEFI, use the following command:
-
-# grep -i password /boot/efi/EFI/redhat/grub.cfg
-
-password_pbkdf2 [superusers-account] [password-hash]
-
-If the root password entry does not begin with "password_pbkdf2", this is a finding.
-
-If the "superusers-account" is not set to "root", this is a finding.</RawString>
     </Rule>
     <Rule id="V-204440" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If the system does not require valid authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2854,6 +2814,52 @@ HostbasedAuthentication no
 
 If the "HostbasedAuthentication" keyword is not set to "no", is missing, or is commented out, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-204436" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="nxFileLine">
+      <ContainsLine>password_pbkdf2 [superusers-account] [password-hash]</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*password_pbkdf2\s*[superusers-account]\s*[password-hash]</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/boot/grub2/grub.cfg</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71961</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>For systems that use UEFI, this is Not Applicable.
+For systems that are running RHEL 7.2 or newer, this is Not Applicable.
+
+Check to see if an encrypted root password is set. On systems that use a BIOS, use the following command:
+
+# grep -i password_pbkdf2 /boot/grub2/grub.cfg
+
+password_pbkdf2 [superusers-account] [password-hash]
+
+If the root password entry does not begin with "password_pbkdf2", this is a finding.
+
+If the "superusers-account" is not set to "root", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204439" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="nxFileLine">
+      <ContainsLine>password_pbkdf2 [superusers-account] [password-hash]</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*password_pbkdf2\s*[superusers-account]\s*[password-hash]</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/boot/efi/EFI/redhat/grub.cfg</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71963</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>For systems that use BIOS, this is Not Applicable.
+For systems that are running RHEL 7.2 or newer, this is Not Applicable.
+
+Check to see if an encrypted root password is set. On systems that use UEFI, use the following command:
+
+# grep -i password /boot/efi/EFI/redhat/grub.cfg
+
+password_pbkdf2 [superusers-account] [password-hash]
+
+If the root password entry does not begin with "password_pbkdf2", this is a finding.
+
+If the "superusers-account" is not set to "root", this is a finding.</RawString>
+    </Rule>
     <Rule id="V-204447" severity="high" conversionstatus="pass" title="SRG-OS-000366-GPOS-00153" dscresource="nxFileLine">
       <ContainsLine>gpgcheck=1</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Changes to any software components can have significant effects on the overall security of the operating system. This requirement ensures the software has not been tampered with and that it has been provided by a trusted vendor.
@@ -2904,7 +2910,7 @@ If "localpkg_gpgcheck" is not set to "1", or if options are missing or commented
 
 If there is no process to validate the signatures of local packages that is approved by the organization, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204449.c" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFileLine">
+    <Rule id="V-204449.a" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFileLine">
       <ContainsLine>install usb-storage /bin/true</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;USB mass storage permits easy introduction of unknown devices, thereby facilitating malicious activity.
 
@@ -2913,7 +2919,7 @@ Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPO
       <DuplicateOf />
       <FilePath>/etc/modprobe.d/usb-storage.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71983.c</LegacyId>
+      <LegacyId>V-71983.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
@@ -2933,7 +2939,7 @@ blacklist usb-storage
 
 If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204449.d" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFileLine">
+    <Rule id="V-204449.b" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFileLine">
       <ContainsLine>blacklist usb-storage</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;USB mass storage permits easy introduction of unknown devices, thereby facilitating malicious activity.
 
@@ -2942,7 +2948,7 @@ Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPO
       <DuplicateOf />
       <FilePath>/etc/modprobe.d/blacklist.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71983.d</LegacyId>
+      <LegacyId>V-71983.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
@@ -2962,14 +2968,14 @@ blacklist usb-storage
 
 If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204450.b" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
+    <Rule id="V-204450.a" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
       <ContainsLine>install dccp /bin/true</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Disabling DCCP protects the system against exploitation of any flaws in the protocol implementation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*install\s*dccp\s*/bin/true</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/modprobe.d/dccp.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-77821.b</LegacyId>
+      <LegacyId>V-77821.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
@@ -2990,14 +2996,14 @@ blacklist dccp
 
 If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204450.c" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
+    <Rule id="V-204450.b" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
       <ContainsLine>blacklist dccp</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Disabling DCCP protects the system against exploitation of any flaws in the protocol implementation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*blacklist\s*dccp</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/modprobe.d/blacklist.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-77821.c</LegacyId>
+      <LegacyId>V-77821.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
@@ -5995,7 +6001,7 @@ Ciphers aes256-ctr,aes192-ctr,aes128-ctr
 
 If any ciphers other than "aes256-ctr", "aes192-ctr", or "aes128-ctr" are listed, the order differs from the example above, the "Ciphers" keyword is missing, or the returned line is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204579.b" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
+    <Rule id="V-204579" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
@@ -6008,7 +6014,7 @@ Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion
       <DuplicateOf />
       <FilePath>/etc/profile.d/tmout.sh</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72223.b</LegacyId>
+      <LegacyId>V-72223</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/tmout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</OrganizationValueTestString>
       <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
@@ -6601,89 +6607,6 @@ Note: The example below is using the database "local" for the system, so the pat
 
 If the command does not return a result, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204449.a" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFile">
-      <Contents># Generated via PowerSTIG</Contents>
-      <Description>&lt;VulnDiscussion&gt;USB mass storage permits easy introduction of unknown devices, thereby facilitating malicious activity.
-
-Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPOS-00227&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <FilePath>/etc/modprobe.d/usb-storage.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71983.a</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
-
-# grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install usb-storage /bin/true
-
-If the command does not return any output, or the line is commented out, and use of USB Storage is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
-
-Verify the operating system disables the ability to use USB mass storage devices.
-
-Check to see if USB mass storage is disabled with the following command:
-
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
-blacklist usb-storage
-
-If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204449.b" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFile">
-      <Contents># Generated via PowerSTIG</Contents>
-      <Description>&lt;VulnDiscussion&gt;USB mass storage permits easy introduction of unknown devices, thereby facilitating malicious activity.
-
-Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPOS-00227&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <FilePath>/etc/modprobe.d/blacklist.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71983.b</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
-
-# grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install usb-storage /bin/true
-
-If the command does not return any output, or the line is commented out, and use of USB Storage is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
-
-Verify the operating system disables the ability to use USB mass storage devices.
-
-Check to see if USB mass storage is disabled with the following command:
-
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
-blacklist usb-storage
-
-If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204450.a" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFile">
-      <Contents># Generated via PowerSTIG</Contents>
-      <Description>&lt;VulnDiscussion&gt;Disabling DCCP protects the system against exploitation of any flaws in the protocol implementation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <FilePath>/etc/modprobe.d/dccp.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-77821.a</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
-
-# grep -r dccp /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install dccp /bin/true
-
-If the command does not return any output, or the line is commented out, and use of DCCP is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
-
-Verify the operating system disables the ability to use the DCCP kernel module.
-
-Check to see if the DCCP kernel module is disabled with the following command:
-
-# grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
-
-blacklist dccp
-
-If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-204576" severity="low" conversionstatus="pass" title="SRG-OS-000027-GPOS-00008" dscresource="nxFile">
       <Contents>
       </Contents>
@@ -6705,29 +6628,6 @@ This requirement addresses concurrent sessions for information system accounts a
 This can be set as a global domain (with the * wildcard) but may be set differently for multiple domains.
 
 If the "maxlogins" item is missing, commented out, or the value is not set to "10" or less for all domains that have the "maxlogins" item assigned, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204579.a" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFile">
-      <Contents># Generated via PowerSTIG</Contents>
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
-
-Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
-
-Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <FilePath>/etc/profile.d/tmout.sh</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72223.a</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
-
-Check the value of the system inactivity timeout with the following command:
-
-# grep -i tmout /etc/profile.d/*
-
-etc/profile.d/tmout.sh:declare -xr TMOUT=900
-
-If "TMOUT" is not set to "900" or less in a script located in the /etc/profile.d/ directory to enforce session termination after inactivity, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204584" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>kernel.randomize_va_space = 2</Contents>
