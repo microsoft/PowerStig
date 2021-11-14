@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Apr 2021 3.2.2.36079 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="6/2/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="11/4/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-219150" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information at rest refers to the state of information when it is located on a secondary storage device (e.g., disk drive and tape drive, when used for backups) within an operating system.
@@ -120,15 +120,28 @@ Satisfies: SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-100559</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Check that Ubuntu operating system locks an account after three unsuccessful login attempts with following command:
+      <RawString>Verify that the Ubuntu operating system utilizes the "pam_faillock" module with the following command:
+$ grep faillock /etc/pam.d/common-auth 
 
-# grep pam_tally2 /etc/pam.d/common-auth 
+auth     [default=die]  pam_faillock.so authfail
+auth     sufficient     pam_faillock.so authsucc
 
-auth required pam_tally2.so onerr=fail deny=3
+If the pam_faillock.so module is not present in the "/etc/pam.d/common-auth" file, this is a finding.
 
-If no line is returned or the line is commented out, this is a finding.
-If the line is missing "onerr=fail", this is a finding.
-If the line has "deny" set to a value more than 3, this is a finding.</RawString>
+Verify the pam_faillock module is configured to use the following options:
+$ sudo egrep 'silent|audit|deny|fail_interval| unlock_time' /etc/security/faillock.conf
+
+audit
+silent
+deny = 3
+fail_interval = 900
+unlock_time = 0
+
+If the "silent" keyword is missing or commented out, this is a finding.
+If the "audit" keyword is missing or commented out, this is a finding.
+If the "deny" keyword is missing, commented out, or set to a value greater than 3, this is a finding.
+If the "fail_interval" keyword is missing, commented out, or set to a value greater than 900, this is a finding.
+If the "unlock_time" keyword is missing, commented out, or is not set to 0, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219180" severity="low" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. If the information system or application allows the user to consecutively reuse their password when that password has exceeded its defined lifetime, the end result is a password that is not changed as per policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -431,8 +444,7 @@ Access control policies include: identity-based policies, role-based policies, a
       <RawString>Verify that an encrypted root password is set. This is only applicable on systems that use a basic Input/Output System BIOS.
 
 Run the following command to verify the encrypted password is set:
-
-# grep –i password /boot/grub/grub.cfg
+$ grep –i password /boot/grub/grub.cfg
 
 password_pbkdf2 root grub.pbkdf2.sha512.10000.MFU48934NJA87HF8NSD34493GDHF84NG
 
@@ -450,8 +462,7 @@ Access control policies include: identity-based policies, role-based policies, a
       <RawString>Verify that an encrypted root password is set. This is only applicable on Ubuntu operating systems that use UEFI.
 
 Run the following command to verify the encrypted password is set:
-
-# grep –i password /boot/efi/EFI/grub.cfg
+$ grep –i password /boot/efi/EFI/grub.cfg
 password_pbkdf2 root grub.pbkdf2.sha512.10000.VeryLongString
 
 If the root password entry does not begin with “password_pbkdf2”, this is a finding.</RawString>
@@ -789,11 +800,10 @@ This requirement applies to operating systems with software libraries that are a
       <RawString>Verify the system-wide shared library files contained in the directories "/lib", "/lib64" and "/usr/lib" have mode 0755 or less permissive.
 
 Check that the system-wide shared library files have mode 0755 or less permissive with the following command:
-
-# sudo find /lib /lib64 /usr/lib -perm /022 -type f -exec stat -c "%n %a" '{}' \;
+$ sudo find /lib /lib64 /usr/lib -perm /022 -type f -exec stat -c "%n %a" '{}' \;
 /usr/lib64/pkcs11-spy.so
 
-If any files are found to be group-writable or world-writable, this is a finding.</RawString>
+If any library files are found to be group-writable or world-writable, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219199" severity="medium" conversionstatus="pass" title="SRG-OS-000259-GPOS-00100" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If the Ubuntu operating system were to allow any user to make changes to software libraries, then those changes might be implemented without undergoing the appropriate testing and approvals that are part of a robust change management process.
@@ -858,8 +868,7 @@ This requirement applies to Ubuntu operating systems with software libraries tha
       <RawString>Verify the system-wide library files contained in the directories "/lib", "/lib64" and "/usr/lib" are group-owned by root.
 
 Check that the system-wide library files are group-owned by root with the following command:
-
-# sudo find /lib /usr/lib /lib64 ! -group root -type f -exec stat -c "%n %G" '{}' \;
+$ sudo find /lib /usr/lib /lib64 ! -group root -type f -exec stat -c "%n %G" '{}' \;
 
 If any system wide shared library file is returned, this is a finding.</RawString>
     </Rule>
@@ -1573,22 +1582,12 @@ To support the requirements and principles of least functionality, the Ubuntu op
       <OrganizationValueTestString />
       <RawString>Verify the Ubuntu operating system is configured to prohibit or restrict the use of functions, ports, protocols, and/or services as defined in the Ports, Protocols, and Services Management (PPSM) Category Assignments List (CAL) and vulnerability assessments.
 
-Check the firewall configuration for any unnecessary or prohibited functions, ports, protocols, and/or services by running the following command:
+Check the firewall configuration for any unnecessary or prohibited functions, ports, protocols, and/or services by running the following commands:
+$ sudo ufw show before-rules
+$ sudo ufw show user-rules
+$ sudo ufw show after-rules
 
-# sudo ufw show raw
-
-Chain OUTPUT (policy ACCEPT)
-target prot opt sources destination
-Chain INPUT (policy ACCEPT 1 packets, 40 bytes)
- pkts bytes target prot opt in out source destination
-
-Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target prot opt in out source destination
-
-Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target prot opt in out source destination
-
-Ask the system administrator for the site or program PPSM CLSA. Verify the services allowed by the firewall match the PPSM Component Local Services Assessment (CLSA). 
+Ask the system administrator for the site or program PPSM Component Local Services Assessment (CLSA). Verify the services allowed by the firewall match the PPSM CLSA. 
 
 If there are any additional ports, protocols, or services that are not included in the PPSM CLSA, this is a finding.
 
@@ -1657,15 +1656,47 @@ This requirement addresses the configuration of the Ubuntu operating system to m
 
 Check that the Uncomplicated Firewall is configured to rate limit any connection to the system with the following command:
 
-# sudo ufw show raw
+$ sudo ufw show user-rules
+
+IPV4 (user):
 
 Chain ufw-user-input (1 references)
-pkts bytes target prot opt in out source destination
-0 0 ufw-user-limit all -- eth0 * 0.0.0.0/0 0.0.0.0/0
-ctstate NEW recent: UPDATE seconds: 30 hit_count: 6 name: DEFAULT side:
-source mask: 255.255.255.255
 
-0 0 ufw-user-limit-accept all -- eth0 * 0.0.0.0/0 0.0.0.0/0
+    pkts      bytes target     prot opt in     out     source               destination
+
+       1       52 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22 /* 'dapp_OpenSSH' */
+
+       0        0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443
+
+ 
+
+Chain ufw-user-forward (1 references)
+
+    pkts      bytes target     prot opt in     out     source               destination
+
+ 
+
+Chain ufw-user-output (1 references)
+
+    pkts      bytes target     prot opt in     out     source               destination
+
+ 
+
+Chain ufw-user-limit-accept (0 references)
+
+    pkts      bytes target     prot opt in     out     source               destination
+
+       0        0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0
+
+ 
+
+Chain ufw-user-limit (0 references)
+
+    pkts      bytes target     prot opt in     out     source               destination
+
+       0        0 LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            limit: avg 3/min burst 5 LOG flags 0 level 4 prefix "[UFW LIMIT BLOCK] "
+
+       0        0 REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
 
 If any service is not rate limited by the Uncomplicated Firewall, this is a finding.</RawString>
     </Rule>
@@ -2551,24 +2582,23 @@ If the command does not return a line matching the example or the line is commen
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219218" severity="medium" conversionstatus="pass" title="SRG-OS-000472-GPOS-00217" dscresource="nxFileLine">
-      <ContainsLine>-w /var/run/wtmp -p wa -k logins</ContainsLine>
+      <ContainsLine>-w /var/run/utmp -p wa -k logins</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-w\s*/var/run/wtmp\s*-p\s*wa\s*-k\s*logins</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-w\s*/var/run/utmp\s*-p\s*wa\s*-k\s*logins</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100663</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system generates audit records showing start and stop times for user access to the system via /var/run/wtmp file.
+      <RawString>Verify the Ubuntu operating system generates audit records showing start and stop times for user access to the system via /var/run/utmp file.
 
 Check the currently configured audit rules with the following command:
+$ sudo auditctl -l | grep '/var/run/utmp'
 
-# sudo auditctl -l | grep '/var/run/wtmp'
-
--w /var/run/wtmp -p wa -k logins
+-w /var/run/utmp -p wa -k logins
 
 If the command does not return a line matching the example or the line is commented out, this is a finding.
 
@@ -5421,16 +5451,14 @@ This requirement addresses concurrent sessions for information system accounts a
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100825</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "maxlogins" item is missing or the value is not set to 10 or less, it is commented out, this is a finding." </OrganizationValueTestString>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "maxlogins" item is missing, or the value is not set to 10 or less, or is commented out, this is a finding." </OrganizationValueTestString>
       <RawString>Verify that the Ubuntu operating system limits the number of concurrent sessions to ten for all accounts and/or account types by running the following command:
-
-# grep maxlogins /etc/security/limits.conf | grep -v '^* hard maxlogins'
+# grep maxlogins /etc/security/limits.conf
 
 The result must contain the following line:
-
 * hard maxlogins 10
 
-If the "maxlogins" item is missing or the value is not set to 10 or less, it is commented out, this is a finding.</RawString>
+If the "maxlogins" item is missing, or the value is not set to 10 or less, or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219303.b" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
       <ContainsLine>
@@ -5780,17 +5808,17 @@ Peripherals include, but are not limited to, such devices as flash drives, exter
       <LegacyId>V-100919.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that Ubuntu operating system disables ability to load the USB storage kernel module.
+      <RawString>Note: The "install" and "blacklist" methods are utilized together to fully disable automatic mounting of the USB mass storage driver.
 
-# grep usb-storage /etc/modprobe.d/* | grep "/bin/true" 
+Verify that Ubuntu operating system disables ability to load the USB storage kernel module:
+$ grep usb-storage /etc/modprobe.d/* | grep "/bin/true" 
 
 install usb-storage /bin/true
 
 If the command does not return any output, or the line is commented out, this is a finding.
 
-Verify the operating system disables the ability to use USB mass storage device.
-
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist"
+Verify the operating system disables the ability to use USB mass storage device:
+$ grep usb-storage /etc/modprobe.d/* | grep -i "blacklist"
 
 blacklist usb-storage
 
@@ -5808,17 +5836,17 @@ Peripherals include, but are not limited to, such devices as flash drives, exter
       <LegacyId>V-100919.c</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that Ubuntu operating system disables ability to load the USB storage kernel module.
+      <RawString>Note: The "install" and "blacklist" methods are utilized together to fully disable automatic mounting of the USB mass storage driver.
 
-# grep usb-storage /etc/modprobe.d/* | grep "/bin/true" 
+Verify that Ubuntu operating system disables ability to load the USB storage kernel module:
+$ grep usb-storage /etc/modprobe.d/* | grep "/bin/true" 
 
 install usb-storage /bin/true
 
 If the command does not return any output, or the line is commented out, this is a finding.
 
-Verify the operating system disables the ability to use USB mass storage device.
-
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist"
+Verify the operating system disables the ability to use USB mass storage device:
+$ grep usb-storage /etc/modprobe.d/* | grep -i "blacklist"
 
 blacklist usb-storage
 
@@ -5900,17 +5928,17 @@ Peripherals include, but are not limited to, such devices as flash drives, exter
       <LegacyId>V-100919.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that Ubuntu operating system disables ability to load the USB storage kernel module.
+      <RawString>Note: The "install" and "blacklist" methods are utilized together to fully disable automatic mounting of the USB mass storage driver.
 
-# grep usb-storage /etc/modprobe.d/* | grep "/bin/true" 
+Verify that Ubuntu operating system disables ability to load the USB storage kernel module:
+$ grep usb-storage /etc/modprobe.d/* | grep "/bin/true" 
 
 install usb-storage /bin/true
 
 If the command does not return any output, or the line is commented out, this is a finding.
 
-Verify the operating system disables the ability to use USB mass storage device.
-
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist"
+Verify the operating system disables the ability to use USB mass storage device:
+$ grep usb-storage /etc/modprobe.d/* | grep -i "blacklist"
 
 blacklist usb-storage
 

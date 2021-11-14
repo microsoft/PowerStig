@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 SITE/SERVER STIG - Ver 2, Rel 4: [#980](https://github.com/microsoft/PowerStig/issues/980)
+* Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R5: [#994](https://github.com/microsoft/PowerStig/issues/994)
 * Update PowerSTIG to successfully parse/apply VMware 6.5 ESXI V2R3 STIG: [#984](https://github.com/microsoft/PowerStig/issues/984)
 * Update PowerSTIG to successfully parse/apply SQL Server 2016 Instance STIG- Ver 2, Rel 5: [#983](https://github.com/microsoft/PowerStig/issues/983)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 8.5 Server STIG - Ver 2, Rel 3: [#995](https://github.com/microsoft/PowerStig/issues/995)
