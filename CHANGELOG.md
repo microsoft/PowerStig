@@ -3,6 +3,13 @@
 ## [Unreleased]
 
 * Update PowerSTIG for increased SQL Server STIG coverage [#965](https://github.com/microsoft/PowerStig/issues/965)
+* Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R5: [#994](https://github.com/microsoft/PowerStig/issues/994)
+* Update PowerSTIG to successfully parse/apply VMware 6.5 ESXI V2R3 STIG: [#984](https://github.com/microsoft/PowerStig/issues/984)
+* Update PowerSTIG to successfully parse/apply SQL Server 2016 Instance STIG- Ver 2, Rel 5: [#983](https://github.com/microsoft/PowerStig/issues/983)
+* Update PowerSTIG to successfully parse/apply Microsoft IIS 8.5 Server STIG - Ver 2, Rel 3: [#995](https://github.com/microsoft/PowerStig/issues/995)
+* Update PowerSTIG to successfully parse/apply Microsoft IIS 8.5 SITE STIG - Ver 2, Rel 4: [#981](https://github.com/microsoft/PowerStig/issues/981)
+* Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 3 [#979](https://github.com/microsoft/PowerStig/issues/979)
+* Update azure-pipelines.yml update Ubuntu version: [#987](https://github.com/microsoft/PowerStig/issues/987)
 * Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
 
 ## [4.10.1] - 2021-08-31

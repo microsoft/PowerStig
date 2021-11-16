@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="VMware_vSphere_6-5_ESXi_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_VMW_vSphere_6-5_ESXi_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="VMware vSphere 6.5 ESXi Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="2/24/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="VMware_vSphere_6-5_ESXi_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_VMW_vSphere_6-5_ESXi_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="VMware vSphere 6.5 ESXi Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="11/3/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-207640" severity="low" conversionstatus="pass" title="SRG-OS-000104-VMM-000500" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;When adding ESXi hosts to Active Directory, if the group "ESX Admins" exists, all user/group accounts assigned to the group will have full administrative access to the host. Discretion should be used when managing membership to the "ESX Admins" group.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -124,7 +124,7 @@ Note: This does not imply FIPS 140-2 validation.&lt;/VulnDiscussion&gt;&lt;False
 
 # grep -i "^Ciphers" /etc/ssh/sshd_config
 
-If there is no output or the output is not exactly "Ciphers aes128-ctr,aes192-ctr,aes256-ctr", this is a finding.</RawString>
+If there is no output or the output is not exactly "Ciphers aes256-ctr,aes192-ctr,aes128-ctr", this is a finding.</RawString>
     </Rule>
     <Rule id="V-207612" severity="high" conversionstatus="pass" title="SRG-OS-000033-VMM-000140" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;SSH protocol version 1 suffers from design flaws that result in security vulnerabilities and should not be used. Only SSH protocol version 2 connections should be permitted.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -646,6 +646,22 @@ For systems that do not use Active Directory and do have local user accounts, ot
 
 If the "Directory Services Type" is not set to "Active Directory", this is a finding.
 If you are not using Host Profiles to join active directory, this is not a finding.</RawString>
+    </Rule>
+    <Rule id="V-251043" severity="medium" conversionstatus="pass" title="SRG-OS-000423-VMM-001700" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised as unprotected communications can be intercepted and either read or altered. 
+
+This requirement applies to both internal and external networks and all types of VMM components from which information can be transmitted (e.g., guest VMs, servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification. 
+
+Protecting the confidentiality and integrity of organizational information can be accomplished by physical means (e.g., employing physical distribution systems) or by logical means (e.g., employing cryptographic techniques). If physical means of protection are employed, then logical means (cryptography) do not have to be employed, and vice versa.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>From the vSphere Web Client, select the ESXi Host and go to Manage &gt;&gt; Networking &gt;&gt; VMkernel adapters. Review each VMkernel adapter that is defined and ensure it is enabled for only one type of management traffic.
+
+If any VMkernel is used for more than one type of management traffic, this is a finding.</RawString>
     </Rule>
   </ManualRule>
   <VsphereAcceptanceLevelRule dscresourcemodule="Vmware.vSphereDSC">
