@@ -11,7 +11,8 @@ try
                 LoginType                      = 'SqlLogin'
                 LoginPasswordPolicyEnforced    = $true
                 LoginPasswordExpirationEnabled = $true
-                OrganizationValueRequired      = $false
+                OrganizationValueRequired      = $true
+                OrganizationValueTestString    = 'SQL authentication logins are populated from organizational settings.'
                 CheckContent                   = 'Check for use of SQL Server Authentication:
 
                 SELECT CASE SERVERPROPERTY(''IsIntegratedSecurityOnly'') WHEN 1 THEN ''Windows Authentication'' WHEN 0 THEN ''SQL Server Authentication'' END as [Authentication Mode]
@@ -75,9 +76,6 @@ try
                         $passwordExpiration | Should Be $testrule.LoginPasswordExpirationEnabled
                     }
                 }
-
-                . $PSScriptRoot\Convert.CommonTests.ps1
-
             }
         } 
     }

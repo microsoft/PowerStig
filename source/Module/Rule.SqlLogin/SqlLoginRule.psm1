@@ -28,6 +28,7 @@ class SqlLoginRule : Rule
     [string] $LoginPasswordExpirationEnabled
     [string] $LoginMustChangePassword
     [string] $Ensure
+    [string] $OrganizationValueTestString
 
     <#
         .SYNOPSIS

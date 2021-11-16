@@ -21,19 +21,11 @@ foreach ($instance in $serverInstance)
 
     foreach ($rule in $rules)
     {
-        # Creates SQL Connection to Target Instance.
-        $rootSqlConnection = New-Object System.Data.SqlClient.SqlConnection("Data Source = $sqlConnectionName ;Initial Catalog=Master;Integrated Security=SSPI;")
-        $fetchSqlAuthLoginsQuery = 'SELECT name FROM sys.sql_logins WHERE principal_id != 1 AND name NOT LIKE ''#%'''
-        $sqlAuthAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($fetchSQLAuthLoginsQuery,$rootSQLConnection)
-        $sqlAuthTable = New-Object System.Data.DataTable 'AuditSpec_Table'
+        # Organizational setting for multiple Sql logins should be comma delimited.
+        $loginNameSplit = $rules.Name.Split("{,}")
 
-        $rootSQLConnection.Open()
-        $sqlAuthAdapter.Fill($sqlAuthTable)
-        $rootSQLConnection.Close()
-
-        foreach ($login in $sqlAuthTable)
+        foreach ($login in $loginNameSplit)
         {
-            $name = $login.Name
             $rulePasswordPolicy = $null
             [void][bool]::TryParse($rule.LoginPasswordPolicyEnforced, [ref]$rulePasswordPolicy)
             $rulePasswordExpiration = $null
@@ -47,7 +39,7 @@ foreach ($instance in $serverInstance)
                 InstanceName                   = $instanceName
                 ServerName                     = $serverName
                 LoginType                      = $rule.LoginType
-                Name                           = $name
+                Name                           = $login.Trim()
                 LoginPasswordPolicyEnforced    = $rulePasswordPolicy
                 LoginPasswordExpirationEnabled = $rulePasswordExpiration
                 LoginMustChangePassword        = $ruleChangePassword

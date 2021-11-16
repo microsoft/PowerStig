@@ -3227,8 +3227,8 @@ In such cases, the DoD standards for password complexity and lifetime must be im
       <LoginPasswordPolicyEnforced>True</LoginPasswordPolicyEnforced>
       <LoginType>SqlLogin</LoginType>
       <Name />
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>SQL authentication logins are populated from organizational settings.</OrganizationValueTestString>
       <RawString>Check for use of SQL Server Authentication:
 
 SELECT CASE SERVERPROPERTY('IsIntegratedSecurityOnly') WHEN 1 THEN 'Windows Authentication' WHEN 0 THEN 'SQL Server Authentication' END as [Authentication Mode]
