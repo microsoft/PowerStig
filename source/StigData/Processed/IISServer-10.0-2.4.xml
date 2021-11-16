@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 23 Apr 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="8/23/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="11/1/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218784" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -337,26 +337,15 @@ If the TLS version is not TLS 1.2 or higher, according to NIST SP 800-52, or if 
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the IIS 10.0 Web Server.
-
 Open IIS Manager.
-
 Click the IIS 10.0 web server name.
-
-Click on HSTS.
-
-Verify “Enable” is checked, and Max-Age is set to something other than “0”.
-
-Verify “IncludeSubDomains” and “Redirect HTTP to HTTPS” are checked.
-
-Click "OK".
-
-If HSTS has not been enabled, this is a finding.
-
-If the website is behind a load balancer or proxy server, and HSTS enablement is handled there, this is Not Applicable.
-
-The recommended max age is 8 minutes (480 seconds) or greater. Any value greater than 0 is not a finding.
-
-If the version of Windows Server does not natively support HSTS, this is not a finding.</RawString>
+Open on Configuration Editor under Management.
+For the Section, navigate to system.applicationHost/sites.
+Expand siteDefaults and HSTS.
+If enabled is not set to True, this is a finding.
+If includeSubDomains is not set to True, this is a finding.
+If max-age is not set to a value greater than 0, this is a finding.
+If redirectHttpToHttps is not True, this is a finding.</RawString>
     </Rule>
     <Rule id="V-228572" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000075" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Anonymous SMTP relays are strictly prohibited. An anonymous SMTP relay can be a vector for many types of malicious activity not limited to server exploitation for the sending of SPAM mail, access to emails, phishing, DoS attacks, etc. Enabling TLS, authentication, and strictly assigning IP addresses that can communicate with the relay greatly reduce the risk of the implementation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -815,9 +804,13 @@ Click the IIS 10.0 web server name.
 
 Double-click the ".NET Authorization Rules" icon.
 
-If any groups other than "Administrators" is listed, this is a finding.
+If any groups other than "Administrators" are listed, this is a finding.
 
-If ASP.NET is not installed, this is Not Applicable.</RawString>
+If ASP.NET is not installed, this is Not Applicable.
+
+If the Server is hosting Microsoft SharePoint, this is Not Applicable.
+
+If the server is hosting WSUS, this is Not Applicable.</RawString>
     </Rule>
     <Rule id="V-218826" severity="medium" conversionstatus="pass" title="SRG-APP-000001-WSR-000001" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Resource exhaustion can occur when an unlimited number of concurrent requests are allowed on a website, facilitating a Denial of Service (DoS) attack. Mitigating this kind of attack will include limiting the number of concurrent HTTP/HTTPS requests per IP address and may include, where feasible, limiting parameter values associated with keepalive (i.e., a parameter used to limit the amount of time a connection may be inactive).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1390,7 +1383,7 @@ If any of the respective registry paths do not exist or are configured with the 
       <OrganizationValueTestString />
       <RawString>Open Registry Editor.
 
-Navigate to “HKLM\CurrentControlSet\Services\HTTP\Parameters”
+Navigate to “HKLM\System\CurrentControlSet\Services\HTTP\Parameters”
 
 Verify “DisableServerHeader” is set to “1”.
 

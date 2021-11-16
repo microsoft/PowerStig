@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.2">
+<OrganizationalSettings fullversion="2.4">
   <!-- Ensure 'V-218753' -le 4096-->
   <OrganizationalSetting id="V-218753" Value="4096" />
   <!-- Ensure 'V-218754' -le 30000000-->
@@ -14,14 +14,10 @@
   <OrganizationalSetting id="V-218755" Value="2048" />
   <!-- Ensure [TimeSpan]'V-218762' -le [TimeSpan]'00:20:00' -and [TimeSpan]'V-218762' -gt [TimeSpan]'00:00:00'-->
   <OrganizationalSetting id="V-218762" Value="'00:20:00'" />
-  <!-- Ensure ''V-218763'' -le '00:20:00'-->
-  <OrganizationalSetting id="V-218763" Value="00:20:00" />
+  <!-- Ensure ''V-218763'' -le '00:15:00'-->
+  <OrganizationalSetting id="V-218763" Value="00:15:00" />
   <!-- Ensure 'V-218772' -ne 0-->
   <OrganizationalSetting id="V-218772" Value="35000" />
-  <!-- Ensure 'V-218773' -ne 0-->
-  <OrganizationalSetting id="V-218773" Value="1000000" />
-  <!-- Ensure 'V-218774' -ne 0-->
-  <OrganizationalSetting id="V-218774" Value="1000000" />
   <!-- Ensure [TimeSpan]'V-218778' -le [TimeSpan]'00:05:00'-->
   <OrganizationalSetting id="V-218778" Value="'00:05:00'" />
 </OrganizationalSettings>
