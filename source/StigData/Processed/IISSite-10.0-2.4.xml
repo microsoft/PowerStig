@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 23 Apr 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="5/27/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="11/4/2021">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218744" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.
@@ -49,7 +49,9 @@ Accessing the hosted application through an IP address normally used for non-app
       <LegacyId>V-100217</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
 Right-click on the site name under review.
@@ -709,7 +711,8 @@ Satisfies: SRG-APP-000172-WSR-000104, SRG-APP-000224-WSR-000135, SRG-APP-000427-
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a public IIS 10.0 web server, this is Not Applicable.
-Note: If certificate handling is performed at the Proxy/Load Balancer, this is not a finding.
+Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+Note: If certificate handling is performed at the Proxy/Load Balancer, this is Not Applicable.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
@@ -723,19 +726,18 @@ If the "Clients Certificate Required" check box is not selected, this is a findi
       <Value>SslRequireCert</Value>
     </Rule>
     <Rule id="V-218768" severity="medium" conversionstatus="pass" title="SRG-APP-000429-WSR-000113" dscresource="xSslSettings">
-      <Description>&lt;VulnDiscussion&gt;When data is written to digital media, such as hard drives, mobile computers, external/removable hard drives, personal digital assistants, flash/thumb drives, etc., there is risk of data loss and data compromise. User identities and passwords stored on the hard drive of the hosting hardware must be encrypted to protect the data from easily being discovered and used by an unauthorized user to access the hosted applications. The cryptographic libraries and functionality used to store and retrieve the user identifiers and passwords must be part of the web server.
+      <Description>&lt;VulnDiscussion&gt;TLS encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
-Satisfies: SRG-APP-000429-WSR-000113, SRG-APP-000439-WSR-000151, SRG-APP-000441-WSR-000181, SRG-APP-000442-WSR-000182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100257</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 10.0 server, and the IIS 10.0 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server.
-
 Note: If this is a public facing web server, this requirement is Not Applicable.
-
 Note: If this server is hosting WSUS, this requirement is Not Applicable.
+Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
@@ -767,7 +769,9 @@ By default, the World Wide Web (WWW) service establishes an overlapped recycle, 
       <LegacyId>V-100245</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:20:00' -and [TimeSpan]{0} -gt [TimeSpan]'00:00:00'</OrganizationValueTestString>
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
 Click the Application Pools.
@@ -800,59 +804,9 @@ Highlight an Application Pool and click "Advanced Settings" in the "Action" Pane
 
 Scroll down to the "Recycling section" and verify the value for "Request Limit" is set to a value other than "0".
 
-If the "Request Limit" is set to a value of "0", this is a finding.</RawString>
-      <Value>
-      </Value>
-    </Rule>
-    <Rule id="V-218773" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="xWebAppPool">
-      <Description>&lt;VulnDiscussion&gt;IIS application pools can be periodically recycled to avoid unstable states possibly leading to application crashes, hangs, or memory leaks. By default, application pool recycling is overlapped, which means the worker process to be shut down is kept running until after a new worker process is started. After a new worker process starts, new requests are passed to it. The old worker process shuts down after it finishes processing its existing requests, or after a configured time-out, whichever comes first. This way of recycling ensures uninterrupted service to clients.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>restartMemoryLimit</Key>
-      <LegacyId>V-100267</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -ne 0</OrganizationValueTestString>
-      <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
+If the "Request Limit" is set to a value of "0", this is a finding.
 
-If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
-
-Open the IIS 10.0 Manager.
-
-Perform the following for each Application Pool:
-
-Click "Application Pools".
-
-Highlight an Application Pool and click "Advanced Settings" in the Action Pane.
-
-In the "Advanced Settings" dialog box scroll down to the "Recycling" section and verify the value for "Virtual Memory Limit" is not set to "0".
-
-If the value for "Virtual Memory Limit" is set to "0", this is a finding.</RawString>
-      <Value>
-      </Value>
-    </Rule>
-    <Rule id="V-218774" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="xWebAppPool">
-      <Description>&lt;VulnDiscussion&gt;IIS application pools can be periodically recycled to avoid unstable states possibly leading to application crashes, hangs, or memory leaks. By default, application pool recycling is overlapped, which means the worker process to be shut down is kept running until after a new worker process is started. After a new worker process starts, new requests are passed to it. The old worker process shuts down after it finishes processing its existing requests, or after a configured time-out, whichever comes first. This way of recycling ensures uninterrupted service to clients.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>restartPrivateMemoryLimit</Key>
-      <LegacyId>V-100269</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -ne 0</OrganizationValueTestString>
-      <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
-
-If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
-
-Open the IIS 10.0 Manager.
-
-Perform the following for each Application Pool:
-
-Click "Application Pools".
-
-Highlight an Application Pool and click "Advanced Settings" in the "Action" Pane.
-
-Scroll down to the "Recycling" section and verify the value for "Private Memory Limit" is set to a value other than "0".
-
-If the "Private Memory Limit" is set to a value of "0", this is a finding.</RawString>
+If the system must require "Request Limit" to be set to "0", it is documented and approved by the ISSO, this is not a finding.</RawString>
       <Value>
       </Value>
     </Rule>
@@ -891,7 +845,9 @@ If both the "Regular time interval" and "Specific time" options are not set to "
       <LegacyId>V-100273</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the Internet Information Services (IIS) Manager.
+      <RawString>If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Open the Internet Information Services (IIS) Manager.
 
 Click "Application Pools".
 
@@ -1287,7 +1243,7 @@ Acceptable values are 5 minutes for high-value applications, 10 minutes for medi
       <Key>timeout</Key>
       <LegacyId>V-100247</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -le '00:20:00'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -le '00:15:00'</OrganizationValueTestString>
       <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
@@ -1298,10 +1254,9 @@ Select "Configuration Editor" under the "Management" section.
 
 From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
 
-Verify the "timeout" is set to "00:20:00 or less”, using the lowest value possible depending upon the application.
-Acceptable values are 5 minutes for high-value applications, 10 minutes for medium-value applications, and 20 minutes for low-value applications.
+Verify the "timeout" is set to "00:15:00 or less”.
 
-If "timeout" is not set to "00:20:00 or less”, this is a finding.</RawString>
+If "timeout" is not set to "00:15:00 or less”, this is a finding.</RawString>
       <Value>
       </Value>
     </Rule>
