@@ -110,7 +110,7 @@ configuration WindowsServer
     . "$resourcePath\windows.Service.ps1"
     . "$resourcePath\windows.WindowsFeature.ps1"
 
-    Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 2.1.0
+    Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 2.2.0
     . "$resourcePath\windows.ProcessMitigation.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.10.0.0

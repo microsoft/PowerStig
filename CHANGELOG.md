@@ -11,6 +11,7 @@
 * Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 3 [#979](https://github.com/microsoft/PowerStig/issues/979)
 * Update azure-pipelines.yml update Ubuntu version: [#987](https://github.com/microsoft/PowerStig/issues/987)
 * Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
+* Update PowerSTIG to use WindowsDefenderDSC 2.2.0: [#1004](https://github.com/microsoft/PowerStig/issues/1004)
 
 ## [4.10.1] - 2021-08-31
 
