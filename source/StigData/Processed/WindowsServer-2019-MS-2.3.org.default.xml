@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.1">
+<OrganizationalSettings fullversion="2.3">
   <!-- Ensure ''V-205632'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
   <OrganizationalSetting id="V-205632" ValueData="DoD Notice and Consent Banner" />
   <!-- Ensure ''V-205633'' -le '900' -and ''V-205633'' -gt '0'-->
@@ -26,14 +26,6 @@
   <OrganizationalSetting id="V-205650.a" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-205650.b" Location="" />
-  <!-- Ensure ''V-205703'' -le '600' -and ''V-205703'' -ne '0'-->
-  <OrganizationalSetting id="V-205703" PolicyValue="600" />
-  <!-- Ensure ''V-205704'' -le '10' -and ''V-205704'' -ne '0'-->
-  <OrganizationalSetting id="V-205704" PolicyValue="10" />
-  <!-- Ensure ''V-205705'' -le '7'-->
-  <OrganizationalSetting id="V-205705" PolicyValue="7" />
-  <!-- Ensure ''V-205706'' -le '5'-->
-  <OrganizationalSetting id="V-205706" PolicyValue="5" />
   <!-- Ensure ''V-205717'' -match '1|2'-->
   <OrganizationalSetting id="V-205717" ValueData="1" />
   <!-- Ensure ''V-205796'' -ge '32768'-->
@@ -52,6 +44,8 @@
   <OrganizationalSetting id="V-205869" ValueData="0" />
   <!-- Ensure ''V-205870'' -match '0|1|2|99|100'-->
   <OrganizationalSetting id="V-205870" ValueData="0" />
+  <!-- Ensure ''V-205906'' -le '4'-->
+  <OrganizationalSetting id="V-205906" ValueData="4" />
   <!-- Ensure ''V-205911'' -le '30' -and ''V-205911'' -gt '0'-->
   <OrganizationalSetting id="V-205911" ValueData="30" />
   <!-- Ensure ''V-205912'' -match '1|2'-->
@@ -70,6 +64,8 @@
   <OrganizationalSetting id="V-205660" PolicyValue="24" />
   <!-- Ensure ''V-205662'' -ge '14'-->
   <OrganizationalSetting id="V-205662" PolicyValue="14" />
+  <!-- Ensure ''V-205672'' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'-->
+  <OrganizationalSetting id="V-205672" Identity="Enterprise Admins,Domain Admins,Local account and member of Administrators group,Guests" />
   <!-- Ensure ''V-205756'' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'-->
   <OrganizationalSetting id="V-205756" Identity="Administrators" />
   <!-- Ensure ''V-205795'' -ge '15' -or ''V-205795'' -eq '0'-->
