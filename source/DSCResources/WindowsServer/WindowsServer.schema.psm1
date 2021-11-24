@@ -97,7 +97,7 @@ configuration WindowsServer
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.1
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.2
     . "$resourcePath\windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName AuditPolicyDsc -ModuleVersion 1.4.0.0
@@ -110,7 +110,7 @@ configuration WindowsServer
     . "$resourcePath\windows.Service.ps1"
     . "$resourcePath\windows.WindowsFeature.ps1"
 
-    Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 2.1.0
+    Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 2.2.0
     . "$resourcePath\windows.ProcessMitigation.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.10.0.0

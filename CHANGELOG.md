@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG for increased SQL Server STIG coverage [#965](https://github.com/microsoft/PowerStig/issues/965)
+* Update PowerSTIG to AccessControlDSC v1.4.2: [#976](https://github.com/microsoft/PowerStig/issues/976)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 SITE/SERVER STIG - Ver 2, Rel 4: [#980](https://github.com/microsoft/PowerStig/issues/980)
 * Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R5: [#994](https://github.com/microsoft/PowerStig/issues/994)
 * Update PowerSTIG to successfully parse/apply VMware 6.5 ESXI V2R3 STIG: [#984](https://github.com/microsoft/PowerStig/issues/984)
@@ -12,6 +13,7 @@
 * Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 3 [#979](https://github.com/microsoft/PowerStig/issues/979)
 * Update azure-pipelines.yml update Ubuntu version: [#987](https://github.com/microsoft/PowerStig/issues/987)
 * Update PowerSTIG to use SQLServerDSC Version 15.1.1: [#960](https://github.com/microsoft/PowerStig/issues/960)
+* Update PowerSTIG to use WindowsDefenderDSC 2.2.0: [#1004](https://github.com/microsoft/PowerStig/issues/1004)
 
 ## [4.10.1] - 2021-08-31
 
