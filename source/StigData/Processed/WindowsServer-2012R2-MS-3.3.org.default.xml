@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="3.1">
+<OrganizationalSettings fullversion="3.3">
   <!-- Ensure ''V-225266'' -ge '15' -or ''V-225266'' -eq '0'-->
   <OrganizationalSetting id="V-225266" PolicyValue="15" />
   <!-- Ensure ''V-225267'' -le '3' -and ''V-225267'' -ne '0'-->
