@@ -3507,7 +3507,6 @@ Inherited from - "None" for all
 Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
-Server Operators â€“ Read â€“ This Key and subkeys    (Domain controllers only)
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 If the defaults have not been changed, these are not a finding.
 </RawString>
@@ -3578,7 +3577,6 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Server Operators â€“ Read â€“ This Key and subkeys    (Domain controllers only)
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 If the defaults have not been changed, these are not a finding.
 </RawString>
@@ -3625,6 +3623,14 @@ If the defaults have not been changed, these are not a finding.
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>ReadKey</Rights>
         </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>Server Operators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;The registry is integral to the function, security, and stability of the Windows system. Changing the system's registry permissions allows the possibility of unauthorized and anonymous modification to the operating system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -3649,7 +3655,7 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Server Operators â€“ Read â€“ This Key and subkeys    (Domain controllers only)
+Server Operators - Read - This Key and subkeys
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 If the defaults have not been changed, these are not a finding.
 </RawString>
