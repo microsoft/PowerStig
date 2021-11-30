@@ -35,6 +35,9 @@ using module .\..\Rule.nxFileLine\nxFileLineRule.psm1
 using module .\..\Rule.nxFile\nxFileRule.psm1
 using module .\..\Rule.RootCertificate\RootCertificateRule.psm1
 using module .\..\Rule.SqlServerConfiguration\SqlServerConfigurationRule.psm1
+using module .\..\Rule.SqlLogin\SqlLoginRule.psm1
+using module .\..\Rule.SqlProtocol\SqlProtocolRule.psm1
+using module .\..\Rule.SqlDatabase\SqlDatabaseRule.psm1
 #header
 
 class LoadFactory
@@ -81,6 +84,9 @@ class LoadFactory
             'nxFileRule'                           {$return = [nxFileRule]::new($Rule)}
             'RootCertificateRule'                  {$return = [RootCertificateRule]::new($Rule)}
             'SqlServerConfigurationRule'           {$return = [SqlServerConfigurationRule]::new($Rule)}
+            'SqlLoginRule'                         {$return = [SqlLoginRule]::new($Rule)}
+            'SqlProtocolRule'                      {$return = [SqlProtocolRule]::new($Rule)}
+            'SqlDatabaseRule'                      {$return = [SqlDatabaseRule]::new($Rule)}
         }
 
         return $return
