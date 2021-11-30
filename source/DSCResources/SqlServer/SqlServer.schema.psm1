@@ -99,6 +99,9 @@ configuration SqlServer
 
     Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 15.1.1
     . "$resourcePath\SqlServer.ScriptQuery.ps1"
+    . "$resourcePath\SqlServer.SqlLogin.ps1"
+    . "$resourcePath\SqlServer.SqlProtocol.ps1"
+    . "$resourcePath\SqlServer.SqlDatabase.ps1"
     . "$resourcePath\SqlServer.SQLConfiguration.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.10.0.0
