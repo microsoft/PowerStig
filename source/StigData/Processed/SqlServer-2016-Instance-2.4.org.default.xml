@@ -8,4 +8,6 @@
 <OrganizationalSettings fullversion="2.4">
   <!-- Ensure 'V-214029' is populated with a non-default SA account name-->
   <OrganizationalSetting id="V-214029" VariableValue="" />
+  <!-- Ensure 'V-213964' sets password policies for SQL authentication logins. Use comma delimiters for multiple logins-->
+  <OrganizationalSetting id="V-213964" Name="" />
 </OrganizationalSettings>

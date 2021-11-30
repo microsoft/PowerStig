@@ -2,7 +2,9 @@
 
 ## [Unreleased]
 
+
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 MS STIG - Ver 3, Rel 3: [#1015](https://github.com/microsoft/PowerStig/issues/1015)
+* Update PowerSTIG for increased SQL Server STIG coverage [#965](https://github.com/microsoft/PowerStig/issues/965)
 * Update PowerSTIG to AccessControlDSC v1.4.2: [#976](https://github.com/microsoft/PowerStig/issues/976)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 SITE/SERVER STIG - Ver 2, Rel 4: [#980](https://github.com/microsoft/PowerStig/issues/980)
 * Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R5: [#994](https://github.com/microsoft/PowerStig/issues/994)
