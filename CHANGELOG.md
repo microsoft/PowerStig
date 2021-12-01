@@ -3,6 +3,10 @@
 ## [Unreleased]
 
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 3: [#1010](https://github.com/microsoft/PowerStig/issues/1010)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 4: [#1014](https://github.com/microsoft/PowerStig/issues/1014)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 3: [#1013](https://github.com/microsoft/PowerStig/issues/1013)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Firewall STIG and Advanced Security STIG - Ver 2, Rel 1: [#1012](https://github.com/microsoft/PowerStig/issues/1012)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 3: [#1017](https://github.com/microsoft/PowerStig/issues/1017)
 * Update PowerSTIG for increased SQL Server STIG coverage [#965](https://github.com/microsoft/PowerStig/issues/965)
 * Update PowerSTIG to AccessControlDSC v1.4.2: [#976](https://github.com/microsoft/PowerStig/issues/976)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 SITE/SERVER STIG - Ver 2, Rel 4: [#980](https://github.com/microsoft/PowerStig/issues/980)
