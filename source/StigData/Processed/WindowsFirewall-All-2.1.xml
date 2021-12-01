@@ -1,9 +1,10 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Firewall" description="The Windows Firewall with Advanced Security Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.&#xA;" filename="U_Windows_Firewall_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 28 Apr 2017" title="Windows Firewall with Advanced Security Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="7/19/2019">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_Firewall_with_Advanced_Security" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Firewall_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 01 Nov 2021 3.2.2.36079 1.10.0" title="Microsoft Windows Firewall with Advanced Security Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="11/23/2021">
   <ManualRule dscresourcemodule="None">
-    <Rule id="V-36440" severity="medium" conversionstatus="pass" title="Inbound Firewall Exception for Administration" dscresource="None">
+    <Rule id="V-242009" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Allowing inbound access to domain workstations from other systems may allow lateral movement across systems if credentials are compromised.  Limiting inbound connections only from authorized remote management systems will help limit this exposure.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-36440</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>This requirement is NA for servers and non domain workstations.
@@ -18,12 +19,13 @@ If allowed inbound exceptions are not limited to authorized management systems a
     </Rule>
   </ManualRule>
   <RegistryRule dscresourcemodule="PSDscResources">
-    <Rule id="V-17415.a" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Enable Firewall" dscresource="Registry">
+    <Rule id="V-241989.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to the domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</Key>
+      <LegacyId>V-17415.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -35,12 +37,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17415.b" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Enable Firewall" dscresource="Registry">
+    <Rule id="V-241989.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to the domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile</Key>
+      <LegacyId>V-17415.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -52,12 +55,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17416.a" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Enable Firewall" dscresource="Registry">
+    <Rule id="V-241990.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to a private network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile</Key>
+      <LegacyId>V-17416.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -69,12 +73,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17416.b" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Enable Firewall" dscresource="Registry">
+    <Rule id="V-241990.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to a private network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile</Key>
+      <LegacyId>V-17416.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -86,12 +91,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17417.a" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Enable Firewall" dscresource="Registry">
+    <Rule id="V-241991.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to a public network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</Key>
+      <LegacyId>V-17417.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -103,12 +109,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17417.b" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Enable Firewall" dscresource="Registry">
+    <Rule id="V-241991.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to a public network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile</Key>
+      <LegacyId>V-17417.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -120,12 +127,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17418.a" severity="high" conversionstatus="pass" title="Windows Firewall Domain - Inbound" dscresource="Registry">
+    <Rule id="V-241992.a" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked in the domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</Key>
+      <LegacyId>V-17418.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -137,12 +145,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17418.b" severity="high" conversionstatus="pass" title="Windows Firewall Domain - Inbound" dscresource="Registry">
+    <Rule id="V-241992.b" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked in the domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile</Key>
+      <LegacyId>V-17418.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -154,12 +163,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17419.a" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Outbound" dscresource="Registry">
+    <Rule id="V-241993.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed in the domain, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</Key>
+      <LegacyId>V-17419.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -171,12 +181,13 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17419.b" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Outbound" dscresource="Registry">
+    <Rule id="V-241993.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed in the domain, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile</Key>
+      <LegacyId>V-17419.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -188,12 +199,13 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17425.a" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Size" dscresource="Registry">
+    <Rule id="V-241994.a" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a domain connection will be set to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</Key>
+      <LegacyId>V-17425.a</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '16384'</OrganizationValueTestString>
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -205,12 +217,13 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17425.b" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Size" dscresource="Registry">
+    <Rule id="V-241994.b" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a domain connection will be set to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging</Key>
+      <LegacyId>V-17425.b</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '16384'</OrganizationValueTestString>
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -222,12 +235,13 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17426.a" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Dropped Packets" dscresource="Registry">
+    <Rule id="V-241995.a" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of dropped packets for a domain connection will be enabled to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</Key>
+      <LegacyId>V-17426.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -239,12 +253,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17426.b" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Dropped Packets" dscresource="Registry">
+    <Rule id="V-241995.b" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of dropped packets for a domain connection will be enabled to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging</Key>
+      <LegacyId>V-17426.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -256,12 +271,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17427.a" severity="low" conversionstatus="pass" title="Windows FW Domain - Log Successful Connections" dscresource="Registry">
+    <Rule id="V-241996.a" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a domain connection will be enabled to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</Key>
+      <LegacyId>V-17427.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -273,12 +289,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogSuccessfulConnections</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17427.b" severity="low" conversionstatus="pass" title="Windows FW Domain - Log Successful Connections" dscresource="Registry">
+    <Rule id="V-241996.b" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a domain connection will be enabled to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging</Key>
+      <LegacyId>V-17427.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -290,12 +307,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogSuccessfulConnections</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17428.a" severity="high" conversionstatus="pass" title="Windows Firewall Private – Inbound" dscresource="Registry">
+    <Rule id="V-241997.a" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a private network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile</Key>
+      <LegacyId>V-17428.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -307,12 +325,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17428.b" severity="high" conversionstatus="pass" title="Windows Firewall Private – Inbound" dscresource="Registry">
+    <Rule id="V-241997.b" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a private network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile</Key>
+      <LegacyId>V-17428.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -324,12 +343,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17429.a" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Outbound" dscresource="Registry">
+    <Rule id="V-241998.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed on a private network, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile</Key>
+      <LegacyId>V-17429.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -341,12 +361,13 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17429.b" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Outbound" dscresource="Registry">
+    <Rule id="V-241998.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed on a private network, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile</Key>
+      <LegacyId>V-17429.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -358,12 +379,13 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17435.a" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Size" dscresource="Registry">
+    <Rule id="V-241999.a" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a private connection will be set  to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging</Key>
+      <LegacyId>V-17435.a</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '16384'</OrganizationValueTestString>
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -375,12 +397,13 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17435.b" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Size" dscresource="Registry">
+    <Rule id="V-241999.b" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a private connection will be set  to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging</Key>
+      <LegacyId>V-17435.b</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '16384'</OrganizationValueTestString>
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -392,12 +415,13 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17436.a" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Dropped Packets" dscresource="Registry">
+    <Rule id="V-242000.a" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.   Logging of dropped packets for a private network connection will be enabled  to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging</Key>
+      <LegacyId>V-17436.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -409,12 +433,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17436.b" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Dropped Packets" dscresource="Registry">
+    <Rule id="V-242000.b" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.   Logging of dropped packets for a private network connection will be enabled  to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging</Key>
+      <LegacyId>V-17436.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -426,12 +451,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17437.a" severity="low" conversionstatus="pass" title="Windows FW Private - Log Successful Connections" dscresource="Registry">
+    <Rule id="V-242001.a" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a private network connection will be enabled  to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging</Key>
+      <LegacyId>V-17437.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -443,12 +469,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogSuccessfulConnections</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17437.b" severity="low" conversionstatus="pass" title="Windows FW Private - Log Successful Connections" dscresource="Registry">
+    <Rule id="V-242001.b" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a private network connection will be enabled  to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging</Key>
+      <LegacyId>V-17437.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -460,12 +487,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogSuccessfulConnections</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17438.a" severity="high" conversionstatus="pass" title="Windows Firewall Public – Inbound " dscresource="Registry">
+    <Rule id="V-242002.a" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a public network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</Key>
+      <LegacyId>V-17438.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -477,12 +505,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17438.b" severity="high" conversionstatus="pass" title="Windows Firewall Public – Inbound " dscresource="Registry">
+    <Rule id="V-242002.b" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a public network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile</Key>
+      <LegacyId>V-17438.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -494,12 +523,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17439.a" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Outbound " dscresource="Registry">
+    <Rule id="V-242003.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed on a public network, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</Key>
+      <LegacyId>V-17439.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -511,12 +541,13 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17439.b" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Outbound " dscresource="Registry">
+    <Rule id="V-242003.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed on a public network, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile</Key>
+      <LegacyId>V-17439.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -528,12 +559,13 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17442" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Local Firewall Rules" dscresource="Registry">
+    <Rule id="V-242004" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Local firewall rules will not be merged with Group Policy settings on a public network to prevent Group Policy settings from being changed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</Key>
+      <LegacyId>V-17442</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the system is not a member of a domain, this is NA.
@@ -555,12 +587,13 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>AllowLocalPolicyMerge</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17443" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Local Connection Rules" dscresource="Registry">
+    <Rule id="V-242005" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Local connection rules will not be merged with Group Policy settings on a public network to prevent Group Policy settings from being changed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</Key>
+      <LegacyId>V-17443</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the system is not a member of a domain, this is NA.
@@ -582,12 +615,13 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>AllowLocalIPsecPolicyMerge</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17445.a" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Size" dscresource="Registry">
+    <Rule id="V-242006.a" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a public network connection will be set  to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging</Key>
+      <LegacyId>V-17445.a</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '16384'</OrganizationValueTestString>
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -599,12 +633,13 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17445.b" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Size" dscresource="Registry">
+    <Rule id="V-242006.b" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a public network connection will be set  to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging</Key>
+      <LegacyId>V-17445.b</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '16384'</OrganizationValueTestString>
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -616,12 +651,13 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17446.a" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Dropped Packets" dscresource="Registry">
+    <Rule id="V-242007.a" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of dropped packets for a public network connection will be enabled  to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging</Key>
+      <LegacyId>V-17446.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -633,12 +669,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17446.b" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Dropped Packets" dscresource="Registry">
+    <Rule id="V-242007.b" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of dropped packets for a public network connection will be enabled  to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging</Key>
+      <LegacyId>V-17446.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -650,12 +687,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17447.a" severity="low" conversionstatus="pass" title="Windows FW Public - Log Successful Connections" dscresource="Registry">
+    <Rule id="V-242008.a" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a public network connection will be enabled to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging</Key>
+      <LegacyId>V-17447.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE
@@ -667,12 +705,13 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogSuccessfulConnections</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17447.b" severity="low" conversionstatus="pass" title="Windows FW Public - Log Successful Connections" dscresource="Registry">
+    <Rule id="V-242008.b" severity="low" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a public network connection will be enabled to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging</Key>
+      <LegacyId>V-17447.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive:  HKEY_LOCAL_MACHINE

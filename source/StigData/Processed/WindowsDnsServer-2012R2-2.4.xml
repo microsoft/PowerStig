@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Microsoft_Windows_2012_Server_DNS_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 23 Apr 2021 3.2.2.36079 1.10.0" title="Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="5/26/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_Server_DNS_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 01 Nov 2021 3.2.2.36079 1.10.0" title="Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="11/23/2021">
   <DnsServerRootHintRule dscresourcemodule="PSDscResources">
     <Rule id="V-215591" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000102" dscresource="Script">
       <Description>&lt;VulnDiscussion&gt;All caching name servers must be authoritative for the root zone because, without this starting point, they would have no knowledge of the DNS infrastructure and thus would be unable to respond to any queries. The security risk is that an adversary could change the root hints and direct the caching name server to a bogus root server. At that point, every query response from that name server is suspect, which would give the adversary substantial control over the network communication of the name servers' clients. When authoritative servers are sent queries for zones that they are not authoritative for, and they are configured as a non-caching server (as recommended), they can either be configured to return a referral to the root servers or they can be configured to refuse to answer the query. The recommendation is to configure authoritative servers to refuse to answer queries for any zones for which they are not authoritative. This is more efficient for the server and allows it to spend more of its resources doing what its intended purpose is, answering authoritatively for its zone.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -519,7 +519,7 @@ The serial number in the SOA RDATA is used to indicate to secondary name servers
       <OrganizationValueTestString />
       <RawString>Note: Due to the manner in which Active Directory replication increments SOA records for zones when transferring zone information via AD replication, this check is not applicable for AD-integrated zones.
 
-Log on to the DNS server hosting a non-AD-integrated zone using the Domain Admin or Enterprise Admin account.
+Log on to the DNS server using the Domain Admin or Enterprise Admin account or Local Administrator account.
 
 Press Windows Key + R, execute dnsmgmt.msc.
 
@@ -530,10 +530,11 @@ From the expanded list, click to select the zone.
 Review the SOA information for the zone and obtain the Serial Number.
 
 Access each secondary name server for the same zone and review the SOA information.
- 
+
 Verify the Serial Number is the same on all authoritative name servers.
 
-If the Serial Number is not the same on one or more authoritative name servers, this is a finding.</RawString>
+If the Serial Number is not the same on one or more authoritative name servers, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-215583" severity="high" conversionstatus="pass" title="SRG-APP-000516-DNS-000089" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The specification for a digital signature mechanism in the context of the DNS infrastructure is in IETF's DNSSEC standard.  In DNSSEC, trust in the public key (for signature verification) of the source is established not by going to a third party or a chain of third parties (as in public key infrastructure [PKI] chaining), but by starting from a trusted zone (such as the root zone) and establishing the chain of trust down to the current source of response through successive verifications of signature of the public key of a child by its parent. The public key of the trusted zone is called the trust anchor. After authenticating the source, the next process DNSSEC calls for is to authenticate the response. DNSSEC mechanisms involve two main processes: sign and serve, and verify signature.
@@ -627,7 +628,7 @@ If any RRs (Resource Records) on an external DNS server resolve to IP addresses 
     <Rule id="V-215586" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000092" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Instead of having the same set of authoritative name servers serve different types of clients, an enterprise could have two different sets of authoritative name servers. 
 
-One set, called external name servers, can be located within a DMZ; these would be the only name servers that are accessible to external clients and would serve RRs pertaining to hosts with public services (Web servers that serve external Web pages or provide B2C services, mail servers, etc.) 
+One set, called external name servers, can be located within a DMZ; these would be the only name servers that are accessible to external clients and would serve RRs pertaining to hosts with public services (web servers that serve external web pages or provide B2C services, mail servers, etc.).
 
 The other set, called internal name servers, is to be located within the firewall and should be configured so they are not reachable from outside and hence provide naming services exclusively to internal clients.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -635,15 +636,13 @@ The other set, called internal name servers, is to be located within the firewal
       <LegacyId>V-58605</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Consult with the System Administrator to review the external Windows DNS Server's HBSS firewall policy.
+      <RawString>Consult with the System Administrator to review the external Windows DNS Server's Endpoint Security Solution (ESS) firewall policy.
 
 The inbound TCP and UDP ports 53 rule should be configured to only restrict IP addresses from the internal network.
 
-If the HBSS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
+If the ESS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
 
-If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block internal hosts from querying the external DNS server, this is a finding.
-
-</RawString>
+If neither the DNS server's ESS firewall policy nor the network firewall is configured to block internal hosts from querying the external DNS server, this is a finding.</RawString>
     </Rule>
     <Rule id="V-215587" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000093" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Instead of having the same set of authoritative name servers serve different types of clients, an enterprise could have two different sets of authoritative name servers.
@@ -656,14 +655,13 @@ The other set, called internal name servers, is to be located within the firewal
       <LegacyId>V-58607</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Consult with the System Administrator to review the internal Windows DNS Server's HBSS firewall policy.
+      <RawString>Consult with the System Administrator to review the internal Windows DNS Server's Endpoint Security Solution (ESS) firewall policy.
 
 The inbound TCP and UDP ports 53 rule should be configured to only allow hosts from the internal network to query the internal DNS server.
 
-If the HBSS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
+If the ESS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
 
-If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block external hosts from querying the internal DNS server, this is a finding.
-</RawString>
+If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block external hosts from querying the internal DNS server, this is a finding.</RawString>
     </Rule>
     <Rule id="V-215588" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000095" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Authoritative name servers (especially primary name servers) should be configured with an allow-transfer access control sub statement designating the list of hosts from which zone transfer requests can be accepted. These restrictions address the denial-of-service threat and potential exploits from unrestricted dissemination of information about internal resources. Based on the need-to-know, the only name servers that need to refresh their zone files periodically are the secondary name servers. Zone transfer from primary name servers should be restricted to secondary name servers. The zone transfer should be completely disabled in the secondary name servers. The address match list argument for the allow-transfer sub statement should consist of IP addresses of secondary name servers and stealth secondary name servers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -888,7 +886,7 @@ To meet the requirement for authentication between Windows DNS servers, IPsec wi
 
 If the Windows DNS Servers only host AD-integrated zones, this requirement is not applicable.
 
-Log on to the DNS server which hosts non-AD-integrated zones using the Domain Admin or Enterprise Admin account.
+Log on to the DNS server using the Domain Admin or Enterprise Admin account or Local Administrator account.
 
 Press Windows Key + R, execute gpme.msc to open the Group Policy Management feature.
 
@@ -981,7 +979,7 @@ AD-integrated DNS servers replicate zone information via AD replication. Non-AD-
 
 For a non-AD-integrated DNS server:
 
-Log on to the DNS server using an Administrator account.
+Log on to the DNS server using the Domain Admin or Enterprise Admin account or Local Administrator account.
 
 Press Windows Key + R, execute dnsmgmt.msc.
 
@@ -999,7 +997,8 @@ If the "Allow zone transfers" check box is not selected, this is not a finding.
 
 If the "Allow zone transfers" check box is selected, verify that either the "Only to servers listed on the Name Servers tab" radio button is selected or the "Only to the following servers" radio button is selected.
 
-If the "To any server" radio button is selected, this is a finding.</RawString>
+If the "To any server" radio button is selected, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-215603" severity="medium" conversionstatus="pass" title="SRG-APP-000347-DNS-000041" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Weakly bound credentials can be modified without invalidating the credential; therefore, non-repudiation can be violated.
@@ -1572,16 +1571,16 @@ Each client of name resolution services either performs this validation on its o
       <OrganizationValueTestString />
       <RawString>Note: This check is Not applicable for Windows 2012 DNS Servers that only host Active Directory integrated zones or for Windows 2012 DNS servers on a Classified network.
 
-Validate this check from either a Windows 8 client or a Windows 2008 or higher server, authenticated as a Domain Administrator.
+Validate this check from either a Windows 8 client or a Windows 2008 or higher server, authenticated as a Domain Administrator or Local Administrator.
 
 Determine a valid host in the zone.
 
 Open the Windows PowerShell prompt on the Windows 8/Windows 2008 or higher client.
 
 Issue the following command:
-(Replace www.zonename.mil with a FQDN of a valid host in the zone being validated. Replace  ###.###.###.### with the FQDN or IP address of the Windows 2012 DNS Server hosting the signed zone.)
+(Replace www.zonename.mil with a FQDN of a valid host in the zone being validated. Replace ###.###.###.### with the FQDN or IP address of the Windows 2012 DNS Server hosting the signed zone.)
 
-resolve-dnsname www.zonename.mil -server  ###.###.###.### -dnssecok &lt;enter&gt;
+resolve-dnsname www.zonename.mil -server ###.###.###.### -dnssecok &lt;enter&gt;
 
 NOTE: It is important to use the -server switch followed by the DNS Server name/IP address.
 
@@ -1606,9 +1605,10 @@ Name: origin-www.zonename.mil
 QueryType: A
 TTL: 201
 Section: Answer
-IP4Address:  ###.###.###.###
+IP4Address: ###.###.###.###
 
-If the results do not show the RRSIG and signature information, this is a finding.</RawString>
+If the results do not show the RRSIG and signature information, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-215623" severity="medium" conversionstatus="pass" title="SRG-APP-000424-DNS-000057" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If data origin authentication and data integrity verification are not performed, the resultant response could be forged, it may have come from a poisoned cache, the packets could have been intercepted without the resolver's knowledge, or resource records could have been removed that would result in query failure or denial of service. Data integrity verification must be performed to thwart these types of attacks.
@@ -1769,12 +1769,12 @@ To meet the requirement for authentication between Windows DNS servers, IPsec wi
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>NOTE: This requirement applies to any Windows 2012 DNS Servers which host non-AD-integrated zones (file based) even if the DNS servers host AD-integrated zones, too.
- 
+
 If the Windows 2012 DNS Servers only host AD-integrated zones, this requirement is not applicable.
 
 To protect authenticity of zone transfers between Windows 2012 DNS Servers with file based zones, IPsec must be configured on each pair of name servers in a zone transfer transaction for those zones.
 
-Log on to the DNS server which hosts non-AD-integrated, file based zones, using the Administrator, Domain Admin or Enterprise Admin account.
+Log on to the DNS server using the Domain Admin or Enterprise Admin account or Local Administrator account.
 
 Press Windows Key + R, execute gpme.msc to open the Group Policy Management feature.
 
@@ -1793,7 +1793,7 @@ If Rules exist, double-click on each Rule to verify the following:
 For the "Authentication:" tab, click on the "Customize..." button.
 
 On the Authentication tab, verify "Authentication mode:" is set to "Request authentication for inbound and outbound connections".
- 
+
 Confirm the "Signing Algorithm" is set to "RSA (default)".
 
 Under "Method", ensure the "Advanced:" radio button is selected.
@@ -1808,7 +1808,8 @@ Review the certificate specified and verify the certificate used was generated b
 
 If rules do not exist for server-to-server authentication, this is a finding.
 
-If rules exist for this server to authenticate to other name servers hosting the same file based zones when transacting zone transfers, but the rules are not configured with the above settings, this is a finding.</RawString>
+If rules exist for this server to authenticate to other name servers hosting the same file based zones when transacting zone transfers, but the rules are not configured with the above settings, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-215627" severity="high" conversionstatus="pass" title="SRG-APP-000219-DNS-000029" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;DNS is a fundamental network service that is prone to various attacks, such as cache poisoning and man-in-the middle attacks. If communication sessions are not provided appropriate validity protections, such as the employment of DNSSEC, the authenticity of the data cannot be guaranteed.
@@ -1937,7 +1938,7 @@ Note: This requirement is not applicable to servers with only a caching role.
 
 If the Windows 2012 DNS Servers only host AD-integrated zones, this requirement is not applicable.
 
-Log on to the DNS server which hosts non-AD-integrated zones using the Domain Admin or Enterprise Admin account.
+Log on to the DNS server using the Domain Admin or Enterprise Admin account or Local Administrator account.
 
 Press Windows Key + R, execute gpme.msc to open the Group Policy Management feature.
 
@@ -1955,7 +1956,7 @@ Double-click on each Rule to verify the following:
 For the "Authentication:" tab, click on the "Customize..." button.
 
 On the Authentication tab, verify "Authentication mode:" is set to "Request authentication for inbound and outbound connections".
- 
+
 Confirm the "Signing Algorithm" is set to "RSA (default)".
 
 Under "Method", ensure the "Advanced:" radio button is selected. Click on the "Customize" button.
@@ -1966,7 +1967,8 @@ Verify the "Select the credential to use for first authentication:" has "Compute
 
 Review the certificate specified and verify the certificate used was generated by the internally-managed server performing the Active Directory Certificate Services (AD CS) role.
 
-If the certificate used does not meet the requirements, this is a finding.</RawString>
+If the certificate used does not meet the requirements, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-215630" severity="medium" conversionstatus="pass" title="SRG-APP-000231-DNS-000033" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information at rest refers to the state of information when it is located on a secondary storage device within an organizational information system. Mobile devices, laptops, desktops, and storage devices can be either lost or stolen, and the contents of their data storage (e.g., hard drives and non-volatile memory) can be read, copied, or altered. Applications and application users generate information throughout the course of their application use.
@@ -2182,7 +2184,7 @@ NIST's Secure Hash Standard (SHS) (FIPS 180-3) specifies SHA-1, SHA-224, SHA-256
       <RawString>Note: This requirement applies to any Windows DNS Server which host non-AD-integrated zones even if the DNS servers host AD-integrated zones, too. If the Windows DNS Server only hosts AD-integrated zones and does not host any file-based zones, this is not applicable.
 Validate this check from the Windows 2012 DNS server being configured/reviewed.
 
-Log on to the Windows 2012 DNS server using the account designated as Administrator or DNS Administrator.
+Log on to the DNS server using the Domain Admin or Enterprise Admin account or Local Administrator account.
 Determine a valid host in the zone.
 
 Open the Windows PowerShell prompt on the Windows 2012 DNS server being configured/reviewed.
@@ -2311,12 +2313,11 @@ The DNS server should perform self-tests, such as at server start-up, to confirm
       <LegacyId>V-58713</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This functionality should be performed by the Host Based Security System (HBSS), mandatory on all DoD systems.
+      <RawString>This functionality should be performed by an Endpoint Security Solution (ESS), mandatory on all DoD systems.
 
-Check to ensure McAfee HBSS is installed and fully operational on the Windows DNS Server.
+Verify ESS is installed and fully operational on the Windows DNS Server.
 
-If all required HBSS products are not installed and/or the installed products are not enabled, this is a finding.
-</RawString>
+If all required ESS products are not installed and/or the installed products are not enabled, this is a finding.</RawString>
     </Rule>
     <Rule id="V-215647" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DNS-000115" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Limiting the number of concurrent sessions reduces the risk of Denial of Service (DoS) on any system.
@@ -2648,35 +2649,6 @@ If the permissions for these files are not as restrictive as the ACLs listed, th
 </RawString>
     </Rule>
   </PermissionRule>
-  <RegistryRule dscresourcemodule="PSDscResources">
-    <Rule id="V-215597" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000500" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;To prevent the possibility of a denial of service in relation to an IPv4 DNS server trying to respond to IPv6 requests, the server should be configured not to listen on any of its IPv6 interfaces unless it does contain IPv6 AAAA resource records in one of the zones.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters</Key>
-      <LegacyId>V-58627</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>ValueData is set to 255 which disables IPv6 </OrganizationValueTestString>
-      <RawString>Note: If the Windows 2012 DNS server is hosting IPv6 records, this requirement is not applicable. If the Windows 2012 DNS server is only hosting IPv4 records, this requirement must be met.
-
-Log on to the DNS server using the Domain Admin or Enterprise Admin account or Local Administrator account.
-
-From a command prompt, run regedit. 
-In the User Account Control dialog box, click Continue. 
-In Registry Editor, locate and then click the following registry subkey: 
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters \
-Verify the value for “DisabledComponents” is “255 (0xff)”.
-
-If the “DisabledComponents” entry is nonexistent, this is a finding.
-
-If the “DisabledComponents” exists but is not set to “255 (0xff)”, and the DNS server is not hosting any AAAA records, this is a finding.
-</RawString>
-      <ValueData />
-      <ValueName>DisabledComponents</ValueName>
-      <ValueType>DWord</ValueType>
-    </Rule>
-  </RegistryRule>
   <UserRightRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-215632.a" severity="medium" conversionstatus="pass" title="SRG-APP-000246-DNS-000035" dscresource="UserRightsAssignment">
       <Constant>SeRemoteInteractiveLogonRight</Constant>
@@ -2731,7 +2703,7 @@ Since the configuration of the audit logs on the DNS server dictates which event
       <DisplayName>Manage auditing and security log</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Auditors,Verify the permissions on the DNS logs.,Standard user accounts or groups must not have greater than READ access.,DNS Server %SystemRoot%\System32\Winevt\Logs\DNS Server.evtx,Using the file explorer tool navigate to the DNS Server log file.,Right click on the log file, select the “Security” tab.,Eventlog - Full Control,SYSTEM - Full Control,Administrators - Full Control</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-58553.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
