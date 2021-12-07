@@ -3,6 +3,9 @@
 ## [Unreleased]
 
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 3: [#1010](https://github.com/microsoft/PowerStig/issues/1010)
+* Fixed nxFile entries contain a 'Contents' property that prevents reaching desired state: [#1003](https://github.com/microsoft/PowerStig/issues/1003)
+* Update PowerSTIG to successfully parse/apply RHEL V3R5 STIG: [#1003](https://github.com/microsoft/PowerStig/issues/1003)
+* Update PowerSTIG to parse/apply Microsoft Internet Explorer 11 STIG V2R1: [#982](https://github.com/microsoft/PowerStig/issues/982)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2019 STIG - Ver 2, Rel 3: [#1009](https://github.com/microsoft/PowerStig/issues/1009)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 MS STIG - Ver 3, Rel 3: [#1015](https://github.com/microsoft/PowerStig/issues/1015)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 DC STIG- Ver 3, Rel 3: [#1016](https://github.com/microsoft/PowerStig/issues/1016)
@@ -13,7 +16,7 @@
 * Update PowerSTIG for increased SQL Server STIG coverage [#965](https://github.com/microsoft/PowerStig/issues/965)
 * Update PowerSTIG to AccessControlDSC v1.4.2: [#976](https://github.com/microsoft/PowerStig/issues/976)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 10.0 SITE/SERVER STIG - Ver 2, Rel 4: [#980](https://github.com/microsoft/PowerStig/issues/980)
-* Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R5: [#994](https://github.com/microsoft/PowerStig/issues/994)
+* Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R5: [#1003](https://github.com/microsoft/PowerStig/issues/1003)
 * Update PowerSTIG to successfully parse/apply VMware 6.5 ESXI V2R3 STIG: [#984](https://github.com/microsoft/PowerStig/issues/984)
 * Update PowerSTIG to successfully parse/apply SQL Server 2016 Instance STIG- Ver 2, Rel 5: [#983](https://github.com/microsoft/PowerStig/issues/983)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS 8.5 Server STIG - Ver 2, Rel 3: [#995](https://github.com/microsoft/PowerStig/issues/995)
