@@ -5,8 +5,8 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="3.1">
-  <!-- Ensure ServiceName/StartupType is populated with correct AntiVirus service information-->
+<OrganizationalSettings fullversion="3.3">
+    <!-- Ensure ServiceName/StartupType is populated with correct AntiVirus service information-->
   <OrganizationalSetting id="V-226048" ServiceName="" StartupType="" />
   <!-- Ensure ''V-226056'' -ge '15' -or ''V-226056'' -eq '0'-->
   <OrganizationalSetting id="V-226056" PolicyValue="15" />
