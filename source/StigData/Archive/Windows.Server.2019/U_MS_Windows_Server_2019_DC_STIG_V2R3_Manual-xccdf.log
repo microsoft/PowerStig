@@ -1,8 +1,15 @@
 V-205664::*::''
 V-205739::*::''
-V-205740::Administrators - Special - This folder only (Special = Basic Permissions: all selected except Full control)::Administrators - all selected except Full control - This folder only
-V-205740::execute-::execute -
-V-205740::(RX) - Read & execute::''
+V-205740::NT AUTHORITY\Authenticated Users:(RX)::C:\Windows\SYSVOL
+V-205740::NT AUTHORITY\Authenticated Users:(OI)(CI)(IO)(GR,GE)::Type - "Allow" for all
+V-205740::BUILTIN\Server Operators:(RX)::Inherited from - "None" for all
+V-205740::BUILTIN\Server Operators:(OI)(CI)(IO)(GR,GE)::Principal - Access - Applies to
+V-205740::BUILTIN\Administrators:(M,WDAC,WO)::Authenticated Users - Read & execute - This folder, subfolder, and files
+V-205740::BUILTIN\Administrators:(OI)(CI)(IO)(F)::Server Operators - Read & execute - This folder, subfolder, and files
+V-205740::NT AUTHORITY\SYSTEM:(F)::Administrators - all selected except Full control - This folder only
+V-205740::NT AUTHORITY\SYSTEM:(OI)(CI)(IO)(F)::CREATOR OWNER - Full control - Subfolders and files only
+V-205740::CREATOR OWNER:(OI)(CI)(IO)(F)::Administrators - Full control - Subfolders and files only
+V-205740::(RX) - Read & execute::SYSTEM - Full control - This folder, subfolders, and files
 V-205756::- Administrators::- Administrators`r`nSystems that have the Hyper-V role will also have "Virtual Machines" given this user right (this may be displayed as "NT Virtual Machine\Virtual Machines", SID S-1-5-83-0). This is not a finding.
 V-205639::\SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\::\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
 V-205820::*::HardCodedRule(SecurityOptionRule)@{DscResource = 'SecurityOption'; OptionName = 'Domain_controller_LDAP_server_signing_requirements'; OptionValue = 'Require Signing'}

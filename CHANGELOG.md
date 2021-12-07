@@ -4,6 +4,9 @@
 
 * Fixed nxFile entries contain a 'Contents' property that prevents reaching desired state: [#1003](https://github.com/microsoft/PowerStig/issues/1003)
 * Update PowerSTIG to successfully parse/apply RHEL V3R5 STIG: [#1003](https://github.com/microsoft/PowerStig/issues/1003)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2019 STIG - Ver 2, Rel 3: [#1009](https://github.com/microsoft/PowerStig/issues/1009)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 MS STIG - Ver 3, Rel 3: [#1015](https://github.com/microsoft/PowerStig/issues/1015)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 DC STIG- Ver 3, Rel 3: [#1016](https://github.com/microsoft/PowerStig/issues/1016)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 4: [#1014](https://github.com/microsoft/PowerStig/issues/1014)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 3: [#1013](https://github.com/microsoft/PowerStig/issues/1013)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Firewall STIG and Advanced Security STIG - Ver 2, Rel 1: [#1012](https://github.com/microsoft/PowerStig/issues/1012)
