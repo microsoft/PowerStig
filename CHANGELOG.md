@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to parse/apply Microsoft Internet Explorer 11 STIG V2R1: [#982](https://github.com/microsoft/PowerStig/issues/982)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2019 STIG - Ver 2, Rel 3: [#1009](https://github.com/microsoft/PowerStig/issues/1009)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 MS STIG - Ver 3, Rel 3: [#1015](https://github.com/microsoft/PowerStig/issues/1015)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 and 2012 R2 DC STIG- Ver 3, Rel 3: [#1016](https://github.com/microsoft/PowerStig/issues/1016)
