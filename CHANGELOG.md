@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 3: [#1010](https://github.com/microsoft/PowerStig/issues/1010)
 * Fixed nxFile entries contain a 'Contents' property that prevents reaching desired state: [#1003](https://github.com/microsoft/PowerStig/issues/1003)
 * Update PowerSTIG to successfully parse/apply RHEL V3R5 STIG: [#1003](https://github.com/microsoft/PowerStig/issues/1003)
 * Update PowerSTIG to parse/apply Microsoft Internet Explorer 11 STIG V2R1: [#982](https://github.com/microsoft/PowerStig/issues/982)
