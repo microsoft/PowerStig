@@ -1,3 +1,3 @@
-V-215597::Auditors (if the site has an Auditors group that further limits this privilege.)::Administrators Auditors (if the site has an Auditors group that further limits this privilege.)
+V-215652::Auditors (if the site has an Auditors group that further limits this privilege.)::Administrators Auditors (if the site has an Auditors group that further limits this privilege.)
 V-215597::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters'; ValueData = $null; ValueName = 'DisabledComponents'; ValueType = 'DWord'; OrganizationValueTestString = 'ValueData is set to 255 which disables IPv6 '}
 V-215605::Verify the Owner on the folder, sub-folders, and files are the account under which the DNS Server Service is running.::Verify the permissions on the folder, sub-folders, and files are the account under which the DNS Server Service is running.

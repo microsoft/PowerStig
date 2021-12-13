@@ -39,6 +39,9 @@ using module .\..\..\Rule.nxFileLine\Convert\nxFileLineRule.Convert.psm1
 using module .\..\..\Rule.nxFile\Convert\nxFileRule.Convert.psm1
 using module .\..\..\Rule.RootCertificate\Convert\RootCertificateRule.Convert.psm1
 using module .\..\..\Rule.SqlServerConfiguration\Convert\SqlServerConfigurationRule.Convert.psm1
+using module .\..\..\Rule.SqlLogin\Convert\SqlLoginRule.Convert.psm1
+using module .\..\..\Rule.SqlProtocol\Convert\SqlProtocolRule.Convert.psm1
+using module .\..\..\Rule.SqlDatabase\Convert\SqlDatabaseRule.Convert.psm1
 
 # Header
 
@@ -221,6 +224,24 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.Add(
                     [SQLServerConfigurationRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[SqlLoginRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SqlLoginRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[SqlProtocolRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SqlProtocolRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[SqlDatabaseRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.AddRange(
+                    [SplitFactory]::XccdfRule($Rule, 'SqlDatabaseRuleConvert')
                 )
             }
             {[UserRightRuleConvert]::Match($PSItem)}
