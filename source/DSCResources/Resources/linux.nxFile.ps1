@@ -8,6 +8,6 @@ foreach ($rule in $rules)
     nxFile (Get-ResourceTitle -Rule $rule)
     {
         DestinationPath = $rule.FilePath
-        Contents        = "$($rule.Contents)`n"
+        Contents        = "$($rule.Contents)"
     }
 }

@@ -97,14 +97,17 @@ configuration SqlServer
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 13.3.0
+    Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 15.1.1
     . "$resourcePath\SqlServer.ScriptQuery.ps1"
-    . "$resourcePath\SqlServer.SQLServerConfiguration.ps1"
+    . "$resourcePath\SqlServer.SqlLogin.ps1"
+    . "$resourcePath\SqlServer.SqlProtocol.ps1"
+    . "$resourcePath\SqlServer.SqlDatabase.ps1"
+    . "$resourcePath\SqlServer.SQLConfiguration.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.10.0.0
     . "$resourcePath\Windows.SecurityOption.ps1"
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.1
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.2
     . "$resourcePath\Windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
