@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [4.11.0] - 2021-12-13
+
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 3: [#1010](https://github.com/microsoft/PowerStig/issues/1010)
 * Fixed nxFile entries contain a 'Contents' property that prevents reaching desired state: [#1003](https://github.com/microsoft/PowerStig/issues/1003)
 * Update PowerSTIG to successfully parse/apply RHEL V3R5 STIG: [#1003](https://github.com/microsoft/PowerStig/issues/1003)
