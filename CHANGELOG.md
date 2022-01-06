@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Update SQL Server 2016 for duplicate FIPS ID's [#1027](https://github.com/microsoft/PowerStig/issues/1027)
 
 ## [4.11.0] - 2021-12-13
 
