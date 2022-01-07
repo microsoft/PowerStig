@@ -523,7 +523,7 @@ function Get-AuditEvents
     )
 
     $collection = @()
-    $pattern = '([A-Z_]+)_GROUP(?!\x27|\x22)'
+    $pattern = '([A-Z_]+)_GROUP(?!\x27|\x22)|(d.audit_action_name = +)(\''.+?\'')'
     foreach ($line in $CheckContent)
     {
         $auditEvents = $line | Select-String -Pattern $pattern -AllMatches
