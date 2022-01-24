@@ -218,6 +218,7 @@ class SqlScriptQueryRuleConvert : SqlScriptQueryRule
                 $CheckContent -Match "SCHEMA_OBJECT_CHANGE_GROUP" -or #V-79267,79269,79279,79281
                 $CheckContent -Match "SUCCESSFUL_LOGIN_GROUP" -or #V-79287,79297
                 $CheckContent -Match "FAILED_LOGIN_GROUP" -or #V-79289
+                $CheckContent -Match "d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP'" -or
                 $CheckContent -Match "status_desc = 'STARTED'" #V-79141
             )
         )
