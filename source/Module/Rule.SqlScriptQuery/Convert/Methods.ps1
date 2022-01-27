@@ -523,7 +523,10 @@ function Get-AuditEvents
     )
 
     $collection = @()
-    $pattern = '([A-Z_]+)_GROUP(?!\x27|\x22)|([A-Z_]+)_GROUP(?!\x22)'
+    # Regex pattern matches audit events between '' within the checkcontent
+    # Example: 'DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP' is captured
+    $pattern = '(?<='')([A-Z_]+)_GROUP'
+    
     foreach ($line in $CheckContent)
     {
         $auditEvents = $line | Select-String -Pattern $pattern -AllMatches
