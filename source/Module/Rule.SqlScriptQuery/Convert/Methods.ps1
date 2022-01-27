@@ -1068,7 +1068,23 @@ function Get-ShutdownOnErrorGetScript
         $CheckContent
     )
 
-    $getScript = "SELECT * FROM ::fn_trace_getinfo(NULL)"
+    switch ($CheckContent)
+    {
+        {
+            $PSItem -match 'SHUTDOWN_ON_ERROR'
+        }
+        {
+            $getScript = "SELECT * FROM ::fn_trace_getinfo(NULL)"
+        }
+        {
+            $PSItem -match 'SHUTDOWN SERVER INSTANCE'
+        }
+        {
+            $getScript = "SELECT on_failure_desc FROM sys.server_audits"
+        }
+    }
+
+    #$getScript = "SELECT * FROM ::fn_trace_getinfo(NULL)"
 
     return $getScript
 }
@@ -1105,14 +1121,35 @@ function Get-ShutdownOnErrorTestScript
         $CheckContent
     )
 
-    $setScript =  "DECLARE @traceId int "
-    $setScript += "SET @traceId = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
-    $setScript += "IF (@traceId IS NULL) "
-    $setScript += "SELECT traceId FROM ::fn_trace_getinfo(NULL) "
-    $setScript += "ELSE "
-    $setScript += "Print NULL"
+    switch ($CheckContent)
+    {
+        {
+            $PSItem -match 'SHUTDOWN_ON_ERROR'
+        }
+        {
+            $testScript =  "DECLARE @traceId int "
+            $testScript += "SET @traceId = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
+            $testScript += "IF (@traceId IS NULL) "
+            $testScript += "SELECT traceId FROM ::fn_trace_getinfo(NULL) "
+            $testScript += "ELSE "
+            $testScript += "Print NULL"
+        }
+        {
+            $PSItem -match 'SHUTDOWN SERVER INSTANCE'
+        }
+        {
+            $testScript = "PlaceHolder"
+        }
+    }
+    #$setScript =  "DECLARE @traceId int "
+    #$setScript += "SET @traceId = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
+    #$setScript += "IF (@traceId IS NULL) "
+    #$setScript += "SELECT traceId FROM ::fn_trace_getinfo(NULL) "
+    #$setScript += "ELSE "
+    #$setScript += "Print NULL"
 
-    return $setScript
+    #return $setScript
+    return $testScript
 }
 
 <#
@@ -1147,13 +1184,47 @@ function Get-ShutdownOnErrorSetScript
         $CheckContent
     )
 
-    $setScript = "DECLARE @new_trace_id INT; "
-    $setScript += "DECLARE @traceid INT; "
-    $setScript += "SET @traceId  = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
-    $setScript += "EXECUTE master.dbo.sp_trace_create "
-    $setScript += "    @results = @new_trace_id OUTPUT, "
-    $setScript += "    @options = 6, "
-    $setScript += "    @traceFilePath = N'`$(TraceFilePath)'"
+    switch ($CheckContent)
+    {
+        {
+            $PSitem -match 'SHUTDOWN_ON_ERROR'
+        }
+        {
+            $setScript = "DECLARE @new_trace_id INT; "
+            $setScript += "DECLARE @traceid INT; "
+            $setScript += "SET @traceId  = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
+            $setScript += "EXECUTE master.dbo.sp_trace_create "
+            $setScript += "    @results = @new_trace_id OUTPUT, "
+            $setScript += "    @options = 6, "
+            $setScript += "    @traceFilePath = N'`$(TraceFilePath)'"
+        }
+        {
+            $PSItem -match 'SHUTDOWN SERVER INSTANCE'
+        }
+        {
+            $setScript = '/* See STIG supplemental files for the annotated version of this script */ '
+            $setScript += 'USE [master] '
+            $setScript += 'IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = ''STIG_AUDIT_SERVER_SPECIFICATION'') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); '
+            $setScript += 'IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = ''STIG_AUDIT_SERVER_SPECIFICATION'') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; '
+            $setScript += 'IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); '
+            $setScript += 'IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') DROP SERVER AUDIT STIG_AUDIT; '
+            $setScript += 'CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = ''C:\Audits'', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) '
+            $setScript += 'IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); '
+            $setScript += 'CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT '
+            $setScript += 'ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), '
+            $setScript += 'ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), '
+            $setScript += 'ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), '
+            $setScript += 'ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), '
+            $setScript += 'ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)'
+        }
+    }
+    #$setScript = "DECLARE @new_trace_id INT; "
+    #$setScript += "DECLARE @traceid INT; "
+    #$setScript += "SET @traceId  = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
+    #$setScript += "EXECUTE master.dbo.sp_trace_create "
+    #$setScript += "    @results = @new_trace_id OUTPUT, "
+    #$setScript += "    @options = 6, "
+    #$setScript += "    @traceFilePath = N'`$(TraceFilePath)'"
 
     return $setScript
 }
@@ -1725,7 +1796,8 @@ function Get-SqlRuleType
         }
         # shutdown on error
         {
-            $PSItem -match 'SHUTDOWN_ON_ERROR'
+            #$PSItem -match 'SHUTDOWN_ON_ERROR'
+            $PSItem -match 'SHUTDOWN SERVER INSTANCE'
         }
         {
             $ruleType = 'ShutdownOnError'
