@@ -1138,17 +1138,14 @@ function Get-ShutdownOnErrorTestScript
             $PSItem -match 'SHUTDOWN SERVER INSTANCE'
         }
         {
-            $testScript = "PlaceHolder"
+            $testScript = "DECLARE @AuditShutdown nvarchar(30) "
+            $testScript += "SET @AuditShutdown = (SELECT on_failure FROM sys.server_audits) "
+            $testScript += "IF @AuditShutdown = 0 OR @AuditShutdown IS NULL "
+            $testScript += "BEGIN RAISERROR ('Audit is not configured for shutdown on failure.',16,1) END "
+            $testScript += "ELSE BEGIN PRINT 'Audit is configured for shutdown on failure.' END"
         }
     }
-    #$setScript =  "DECLARE @traceId int "
-    #$setScript += "SET @traceId = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
-    #$setScript += "IF (@traceId IS NULL) "
-    #$setScript += "SELECT traceId FROM ::fn_trace_getinfo(NULL) "
-    #$setScript += "ELSE "
-    #$setScript += "Print NULL"
 
-    #return $setScript
     return $testScript
 }
 
