@@ -1215,13 +1215,6 @@ function Get-ShutdownOnErrorSetScript
             $setScript += 'ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)'
         }
     }
-    #$setScript = "DECLARE @new_trace_id INT; "
-    #$setScript += "DECLARE @traceid INT; "
-    #$setScript += "SET @traceId  = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
-    #$setScript += "EXECUTE master.dbo.sp_trace_create "
-    #$setScript += "    @results = @new_trace_id OUTPUT, "
-    #$setScript += "    @options = 6, "
-    #$setScript += "    @traceFilePath = N'`$(TraceFilePath)'"
 
     return $setScript
 }
@@ -1242,6 +1235,171 @@ function Get-ShutdownOnErrorVariable
     return $variable
 }
 #endregion shutdown on error
+
+# region audit file size
+
+<#
+    .SYNOPSIS
+        Returns audit file size settings
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-AuditFileSizeGetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    switch ($CheckContent)
+    {
+        {
+            $PSItem -Match '"max_rollover_files" is greater than zero'
+        }
+        {
+            $getScript = "CREATE TABLE #AuditFileSize (Name nvarchar (30),Type_Desc nvarchar (30),Max_RollOver_Files int) "
+            $getScript += "INSERT INTO #AuditFileSize (Name, Type_Desc) "
+            $getScript += "SELECT Name, type_desc FROM sys.server_audits "
+            $getScript += "IF (SELECT Type_Desc FROM #AuditFileSize) = ''FILE'' "
+            $getScript += "BEGIN UPDATE #AuditFileSize SET Max_RollOver_Files = (SELECT max_rollover_files FROM sys.server_file_audits) WHERE Name IS NOT NULL END "
+            $getScript += "SELECT * FROM #AuditFileSize "
+            $getScript += "DROP TABLE #AuditFileSize"
+        }
+    }
+
+    return $getScript
+}
+
+<#
+    .SYNOPSIS
+        Tests the current audit file size settings.
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-AuditFileSizeTestScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    switch ($CheckContent)
+    {
+        {
+            $PSItem -Match '"max_rollover_files" is greater than zero'
+        }
+        {
+            $testScript = "DECLARE @AuditType nvarchar (30) "
+            $testScript += "DECLARE @MaxRollOver int "
+            $testScript += "SET @AuditType = (SELECT type_desc FROM sys.server_audits) "
+            $testScript += "SET @MaxRollOver = (SELECT max_rollover_files FROM sys.server_file_audits) "
+            $testScript += "IF @AuditType IN (''APPLICATION LOG'',''SECURITY LOG'') BEGIN "
+            $testScript += "PRINT ''Audit is configured for application log or security log.'' RETURN END "
+            $testScript += "ELSE IF @AuditType = ''FILE'' AND @MaxRollOver <= 0 BEGIN "
+            $testScript += "RAISERROR (''Audit is max rollover files is less than 0.'',16,1) END "
+            $testScript += "ELSE BEGIN PRINT ''File audit is configured correctly.'' END"
+        }
+    }
+
+    return $testScript
+}
+
+<#
+    .SYNOPSIS
+        Creates audit.
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-AuditFileSizeSetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    switch ($CheckContent)
+    {
+        {
+            $PSItem -Match '"max_rollover_files" is greater than zero'
+        }
+        {
+            $setScript = '/* See STIG supplemental files for the annotated version of this script */ '
+            $setScript += 'USE [master] '
+            $setScript += 'IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = ''STIG_AUDIT_SERVER_SPECIFICATION'') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); '
+            $setScript += 'IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = ''STIG_AUDIT_SERVER_SPECIFICATION'') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; '
+            $setScript += 'IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); '
+            $setScript += 'IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') DROP SERVER AUDIT STIG_AUDIT; '
+            $setScript += 'CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = ''C:\Audits'', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) '
+            $setScript += 'IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); '
+            $setScript += 'CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT '
+            $setScript += 'ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), '
+            $setScript += 'ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), '
+            $setScript += 'ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), '
+            $setScript += 'ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), '
+            $setScript += 'ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)'
+        }
+    }
+
+    return $setScript
+}
+# endregion audit file size
 
 #region view any database
 <#
@@ -1812,6 +1970,13 @@ function Get-SqlRuleType
         }
         {
             $ruleType = 'ChangeDatabaseOwner'
+        }
+        # Audit File Size
+        {
+            $PSItem -match '"max_rollover_files" is greater than zero'
+        }
+        {
+            $ruleType = 'AuditFileSize'
         }
         <#
             Default parser if not caught before now - if we end up here we haven't trapped for the rule sub-type.
