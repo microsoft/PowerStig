@@ -1284,6 +1284,18 @@ function Get-AuditFileSizeGetScript
             $getScript += "SELECT * FROM #AuditFileSize "
             $getScript += "DROP TABLE #AuditFileSize"
         }
+        {
+            $PSItem -Match '"max_file_size" or "max_rollover_files"'
+        }
+        {
+            $getScript = "CREATE TABLE #AuditFileSize(Name nvarchar (30), Type_Desc nvarchar (30), Max_RollOver_Files int, Max_File_Size int) "
+            $getScript += "INSERT INTO #AuditFileSize (Name, Type_Desc) "
+            $getScript += "SELECT Name, type_desc FROM sys.server_audits "
+            $getScript += "IF (SELECT Type_Desc FROM #AuditFileSize) = 'FILE' "
+            $getScript += "BEGIN UPDATE #AuditFileSize SET Max_RollOver_Files = (SELECT max_rollover_files FROM sys.server_file_audits), Max_File_Size = (SELECT max_file_size FROM sys.server_file_audits) WHERE Name IS NOT NULL END "
+            $getScript += "SELECT * FROM #AuditFileSize "
+            $getScript += "DROP TABLE #AuditFileSize"
+        }
     }
 
     return $getScript
@@ -1337,6 +1349,23 @@ function Get-AuditFileSizeTestScript
             $testScript += "RAISERROR (''Audit is max rollover files is less than 0.'',16,1) END "
             $testScript += "ELSE BEGIN PRINT ''File audit is configured correctly.'' END"
         }
+        {
+            $PSItem -Match '"max_file_size" or "max_rollover_files"'
+        }
+        {
+            $testScript = "DECLARE @AuditType nvarchar (30) "
+            $testScript += "DECLARE @MaxRollOver int "
+            $testScript += "DECLARE @MaxFileSize int "
+            $testScript += "SET @AuditType = (SELECT type_desc FROM sys.server_audits) "
+            $testScript += "SET @MaxRollOver = (SELECT max_rollover_files FROM sys.server_file_audits) "
+            $testScript += "SET @MaxFileSize = (SELECT max_file_size FROM sys.server_file_audits) "
+            $testScript += "IF @AuditType IN ('APPLICATION LOG','SECURITY LOG') "
+            $testScript += "BEGIN PRINT 'Audit is configured for application log or security log.' RETURN END "
+            $testScript += "ELSE IF @AuditType = 'FILE' AND @MaxRollOver <= 0 OR @MaxFileSize <= 0 BEGIN "
+            $testScript += "RAISERROR ('Audit is max rollover files or max file size is configured incorrectly.',16,1) END "
+            $testScript += "ELSE BEGIN IF @AuditType = 'FILE' AND @MaxRollOver = 2147483647 "
+            $testScript += "RAISERROR ('Audit is max file size is configured for unlimited.',16,1) ELSE PRINT 'File audit is configured correctly.' END"
+        }
     }
 
     return $testScript
@@ -1377,7 +1406,8 @@ function Get-AuditFileSizeSetScript
     switch ($CheckContent)
     {
         {
-            $PSItem -Match '"max_rollover_files" is greater than zero'
+            $PSItem -Match '"max_rollover_files" is greater than zero' -or
+            $PSitem -Match '"max_file_size" or "max_rollover_files"'
         }
         {
             $setScript = '/* See STIG supplemental files for the annotated version of this script */ '
@@ -1973,7 +2003,8 @@ function Get-SqlRuleType
         }
         # Audit File Size
         {
-            $PSItem -match '"max_rollover_files" is greater than zero'
+            $PSItem -match '"max_rollover_files" is greater than zero' -or
+            $PSitem -Match '"max_file_size" or "max_rollover_files"'
         }
         {
             $ruleType = 'AuditFileSize'
