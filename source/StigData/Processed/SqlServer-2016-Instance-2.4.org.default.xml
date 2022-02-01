@@ -1,0 +1,13 @@
+<!--
+    The organizational settings file is used to define the local organizations
+    preferred setting within an allowed range of the STIG.
+
+    Each setting in this file is linked by STIG ID and the valid range is in an
+    associated comment.
+-->
+<OrganizationalSettings fullversion="2.4">
+  <!-- Ensure 'V-214029' is populated with a non-default SA account name-->
+  <OrganizationalSetting id="V-214029" VariableValue="" />
+  <!-- Ensure 'V-213964' sets password policies for SQL authentication logins. Use comma delimiters for multiple logins-->
+  <OrganizationalSetting id="V-213964" Name="" />
+</OrganizationalSettings>

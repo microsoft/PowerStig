@@ -1,0 +1,411 @@
+<DISASTIG version="5" classification="UNCLASSIFIED" customname="" stigid="Mozilla_Firefox_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Mozilla_Firefox_STIG_V5R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Mozilla Firefox Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="5.2" created="8/18/2021">
+  <FileContentRule dscresourcemodule="FileContentDsc">
+    <Rule id="V-223152.a" severity="medium" conversionstatus="pass" title="SRG-APP-000560" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;Use of versions prior to TLS 1.1 are not permitted. SSL 2.0 and SSL 3.0 contain a number of security flaws. These versions must be disabled in compliance with the Network Infrastructure and Secure Remote Computing STIGs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>security.tls.version.min</Key>
+      <LegacyId>V-15983.a</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify Preference Name "security.tls.version.min" is set to the value "2" and locked.</RawString>
+      <Value>2</Value>
+    </Rule>
+    <Rule id="V-223152.b" severity="medium" conversionstatus="pass" title="SRG-APP-000560" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;Use of versions prior to TLS 1.1 are not permitted. SSL 2.0 and SSL 3.0 contain a number of security flaws. These versions must be disabled in compliance with the Network Infrastructure and Secure Remote Computing STIGs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>security.tls.version.max</Key>
+      <LegacyId>V-15983.b</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify Preference Name "security.tls.version.max" is set to the value "4" and locked.</RawString>
+      <Value>4</Value>
+    </Rule>
+    <Rule id="V-223153" severity="medium" conversionstatus="pass" title="SRG-APP-000177" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;When a web site asks for a certificate for user authentication, Firefox must be configured to have the user choose which certificate to present. Websites within DOD require user authentication for access which increases security for DoD information. Access will be denied to the user if certificate management is not configured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>security.default_personal_cert</Key>
+      <LegacyId>V-15768</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the browser address bar. Verify  Preference Name "security.default_personal_cert" is set to "Ask Every Time" and is locked to prevent the user from altering.
+
+Criteria: If the value of "security.default_personal_cert" is set incorrectly or is not locked, then this is a finding.
+</RawString>
+      <Value>Ask Every Time</Value>
+    </Rule>
+    <Rule id="V-223154" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;Updates need to be controlled and installed from authorized and trusted servers.  This setting overrides a number of other settings which may direct the application to access external URLs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>browser.search.update</Key>
+      <LegacyId>V-19744</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the browser window. Verify the preference "browser.search.update”  is set to "false" and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding. 
+</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223155" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;Set this to false to disable checking for updated versions of the Extensions/Themes.  Automatic updates from untrusted sites puts the enclave at risk of attack and may override security settings.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>extensions.update.enabled</Key>
+      <LegacyId>V-19742</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the browser window. Verify the preference “extensions.update.enabled” is set to "false" and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If this setting is not locked, then this is a finding. 
+</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223157" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;Although current versions of Firefox have this set to disabled by default, use of this option can be harmful.  This would allow the browser to access the Windows shell. This could allow access to the
+underlying system.  This check verifies that the default setting has not been changed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>network.protocol-handler.external.shell</Key>
+      <LegacyId>V-15771</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Procedure: Open a browser window, type "about:config" in the address bar. 
+
+Criteria: If the value of "network.protocol-handler.external.shell" is not "false" or is not locked, then this is a finding. </RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223158" severity="medium" conversionstatus="pass" title="SRG-APP-000279" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;New file types cannot be added directly to the helper applications or plugins listing. Files with these extensions will not be allowed to use Firefox publicly available plugins and extensions to open.  The application will be configured to open these files using external applications only.  After a helper application or save to disk download action has been set, that action will be taken automatically for those types of files.  When the user receives a dialog box asking if you want to save the file or open it with a specified application, this indicates that a plugin does not exist. The user has not previously selected a download action or helper application to automatically use for that type of file. When prompted, if the user checks the option to Do this automatically for files like this from now on, then an entry will appear for that type of file in the plugins listing and this file type is automatically opened in the future. This can be a security issue.  New file types cannot be added directly to the Application plugin listing. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>plugin.disable_full_page_plugin_for_types</Key>
+      <LegacyId>V-15772</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open a browser window, type "about:config" in the address bar.
+Criteria: If the “plugin.disable_full_page_plugin_for_types” value is not set to include the following external extensions and not locked, this is a finding:
+PDF, FDF, XFDF, LSL, LSO, LSS, IQY, RQY, XLK, XLS, XLT, POT, PPS, PPT, DOS, DOT, WKS, BAT, PS, EPS, WCH, WCM, WB1, WB3, RTF, DOC, MDB, MDE, WBK, WB1, WCH, WCM, AD, ADP.</RawString>
+      <Value>PDF,FDF,XFDF,LSL,LSO,LSS,IQY,RQY,XLK,XLS,XLT,POT,PPS,PPT,DOS,DOT,WKS,BAT,PS,EPS,WCH,WCM,WB1,WB3,RTF,DOC,MDB,MDE,WBK,WB1,WCH,WCM,AD,ADP</Value>
+    </Rule>
+    <Rule id="V-223160" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;In order to protect privacy and sensitive data, Firefox provides the ability to configure Firefox such that data entered into forms is not saved.  This mitigates the risk of a website gleaning private information from prefilled information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>browser.formfill.enable</Key>
+      <LegacyId>V-15774</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “browser.formfill.enable" is set to “false” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
+</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223161" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;While on the internet, it may be possible for an attacker to view the saved password files and gain access to the user's accounts on various hosts. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>signon.autofillForms</Key>
+      <LegacyId>V-15775</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>In About:Config, verify that the preference name “signon.autofillForms“ is set to “false” and locked.
+Criteria: If the parameter is set incorrectly, this is a finding.
+If the setting is not locked, this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223162" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;Firefox can be set to store passwords for sites visited by the user.  These individual passwords are stored in a file and can be protected by a master password. Autofill of the password can then be enabled when the site is visited.  This feature could also be used to autofill the certificate pin which could lead to compromise of DoD information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>signon.rememberSignons</Key>
+      <LegacyId>V-15776</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the browser window. Verify that the preference name “signon.rememberSignons" is set and locked to “false”.
+
+Criteria: If the parameter is set incorrectly, then this is a finding.
+
+If the setting is not locked, then this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223163" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;Popup windows may be used to launch an attack within a new browser window with altered settings. This setting blocks popup windows created while the page is loading.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>dom.disable_window_open_feature.status</Key>
+      <LegacyId>V-15778</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>In About:Config, verify that the preference name “dom.disable_window_open_feature.status " is set to “true” and locked.
+
+Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
+</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-223164" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;JavaScript can make changes to the browser’s appearance. This activity can help disguise an attack taking place in a minimized background window.  Set browser setting to prevent scripts on visited websites from moving and resizing browser windows.  &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>dom.disable_window_move_resize</Key>
+      <LegacyId>V-15779</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>In About:Config, verify that the preference name “dom.disable_window_move_resize" is set and locked to “true”.
+
+Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
+</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-223165" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;JavaScript can make changes to the browser’s appearance. Allowing a website to use JavaScript to raise and lower browser windows may disguise an attack. Browser windows may not be set as active via JavaScript.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>dom.disable_window_flip</Key>
+      <LegacyId>V-15985</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>In About:Config, verify that the preference name “dom.disable_window_flip" is set and locked to “true”.
+
+Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-223166" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;A context menu (also known as a pop-up menu) is often used in a graphical user interface (GUI) and appears upon user interaction (e.g., a right mouse click). A context menu offers a limited set of choices that are available in the current state, or context, of the operating system or application.  A website may execute JavaScript that can make changes to these context menus.  This can help disguise an attack.  Set this preference to "false" so that webpages will not be able to affect the context menu event.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>dom.event.contextmenu.enabled</Key>
+      <LegacyId>V-15986</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar of the browser.
+
+Verify that the preferences "dom.event.contextmenu.enabled" is set and locked to "false".
+
+Criteria: If the parameter is set incorrectly, then this is a finding.
+
+If the setting is not locked, this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223167" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;A browser extension is a program that has been installed into the browser which adds functionality to it. Where a plug-in interacts only with a web page and usually a third party external application (Flash, Adobe Reader) an extension interacts with the browser program itself. Extensions are not embedded in web pages and must be downloaded and installed in order to work. Extensions allow browsers to avoid restrictions which apply to web pages. For example, an extension can be written to combine data from multiple domains and present it when a certain page is accessed which can be considered Cross Site Scripting. If a browser is configured to allow unrestricted use of extension then plug-ins can be loaded and installed from malicious sources and used on the browser.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>xpinstall.enabled</Key>
+      <LegacyId>V-64891</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open a browser window, type "about:config" in the address bar, then navigate to the setting for Preference Name "xpinstall.enabled" and set the value to “false” and locked.
+
+Criteria: If the value of “xpinstall.enabled” is “false”, this is not a finding.
+
+If the value is locked, this is not a finding.
+
+If the SA can show that “DisableSystemAddonUpdate” policy is used instead, and set to “1”, this is not a finding.
+</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223168" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;There should be no background submission of technical and other information from DoD computers to Mozilla with portions posted publically.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>datareporting.policy.dataSubmissionEnabled</Key>
+      <LegacyId>V-79053</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar of the browser.
+Verify that the preference "datareporting.policy.dataSubmissionEnabled" is set and locked to "false". Otherwise, this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223169" severity="low" conversionstatus="pass" title="SRG-APP-000266" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;While the risk associated with browser development tools is more related to the proper design of a web application, a risk vector remains within the browser. The developer tools allow end users and application developers to view and edit all types of web application related data via the browser. Page elements, source code, javascript, API calls, application data, etc. may all be viewed and potentially manipulated. Manipulation could be useful for troubleshooting legitimate issues, and this may be performed in a development environment. Manipulation could also be malicious and must be addressed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>devtools.policy.disabled</Key>
+      <LegacyId>V-97529</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Procedure: Open a browser window, type "about:config" in the address bar. 
+
+Criteria: If the value of "devtools.policy.disabled" is not "true", then this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-223170" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;The Telemetry feature provides this capability by sending performance and usage info to Mozilla. As you use Firefox, Telemetry measures and collects non-personal information, such as performance, hardware, usage and customizations. It then sends this information to Mozilla on a daily basis and we use it to improve Firefox.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>toolkit.telemetry.enabled</Key>
+      <LegacyId>V-102875</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “toolkit.telemetry.enabled" is set to “false” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223171" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;The Telemetry feature provides this capability by sending performance and usage info to Mozilla. As you use Firefox, Telemetry measures and collects non-personal information, such as performance, hardware, usage and customizations. It then sends this information to Mozilla on a daily basis and we use it to improve Firefox.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>toolkit.telemetry.archive.enabled</Key>
+      <LegacyId>V-102877</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “toolkit.telemetry.archive.enabled" is set to “false” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223172" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;The Content Blocking/Tracking Protection feature stops Firefox from loading content from malicious sites. The content might be a script or an image, for example. If a site is on one of the tracker lists you set Firefox to use, then the fingerprinting script (or other tracking script/image) will not be loaded from that site.
+
+Fingerprinting scripts collect information about your browser and device configuration, such as your operating system, screen resolution, and other settings. By compiling these pieces of data, fingerprinters create a unique profile of you that can be used to track you around the Web.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>privacy.trackingprotection.fingerprinting.enabled</Key>
+      <LegacyId>V-102879</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “privacy.trackingprotection.fingerprinting.enabled" is set to “true” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-223173" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;The Content Blocking/Tracking Protection feature stops Firefox from loading content from malicious sites. The content might be a script or an image, for example. If a site is on one of the tracker lists you set Firefox to use, then the fingerprinting script (or other tracking script/image) will not be loaded from that site.
+
+Cryptomining scripts use your computer’s central processing unit (CPU) to invisibly mine cryptocurrency.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>privacy.trackingprotection.cryptomining.enabled</Key>
+      <LegacyId>V-102881</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “privacy.trackingprotection.cryptomining.enabled" is set to “true” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-223174" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;Tracking generally refers to content, cookies, or scripts that can collect your browsing data across multiple sites.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>browser.contentblocking.category</Key>
+      <LegacyId>V-102883</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “browser.contentblocking.category" is set to “strict” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>strict</Value>
+    </Rule>
+    <Rule id="V-223175" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;The Recommended Extensions program will make it easier for users to discover extensions that have been reviewed for security, functionality, and user experience.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>extensions.htmlaboutaddons.recommendations.enabled</Key>
+      <LegacyId>V-102885</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “extensions.htmlaboutaddons.recommendations.enabled" is set to “false” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-223177" severity="medium" conversionstatus="pass" title="SRG-APP-000560" dscresource="ReplaceText">
+      <Description>&lt;VulnDiscussion&gt;A weak cipher is defined as an encryption/decryption algorithm that uses a key of insufficient length. Using an insufficient length for a key in an encryption/decryption algorithm opens up the possibility (or probability) that the encryption scheme could be broken.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>security.ssl3.rsa_des_ede3_sha</Key>
+      <LegacyId>V-102889</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “security.ssl3.rsa_des_ede3_sha" is set to “false” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+  </FileContentRule>
+  <ManualRule dscresourcemodule="None">
+    <Rule id="V-223151" severity="high" conversionstatus="pass" title="SRG-APP-000516" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Use of versions of an application which are not supported by the vendor are not permitted. Vendors respond to security flaws with updates and patches. These updates are not available for unsupported version which can leave the application vulnerable to attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-17988</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Method 1: View the following registry key: 
+HKLM\Software\Mozilla\Mozilla Firefox\CurrentVersion
+
+Method 2: Run Firefox. Click the ellipsis button &gt;&gt; Help &gt;&gt; About Firefox, and view the version number.
+
+Criteria: If the Firefox version is not a supported version, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-223156" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The default action for file types for which a plugin is installed is to automatically download and execute the file using the associated plugin. Firefox allows you to change the specified download action so that the file is opened with a selected external application or saved to disk instead. View the list of installed browser plugins and related MIME types by entering about:plugins in the address bar. 
+
+When you click a link to download a file, the MIME type determines what action Firefox will take. You may already have a plugin installed that will automatically handle the download, such as Windows Media Player or QuickTime. Other times, you may see a dialog asking whether you want to save the file or open it with a specific application. When you tell Firefox to open or save the file and also check the option to "Do this automatically for files like this from now on", an entry appears for that type of file in the Firefox Applications panel, shown below.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-15770</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Use Method 1 or 2 to check if the following extensions are listed in the browser configuration:  HTA, JSE, JS, MOCHA, SHS, VBE, VBS, SCT, WSC.   By default, most of these extensions will not show up on the Firefox listing. 
+
+Criteria: 
+
+Method 1: In about:plugins, Installed plug-in, inspect the entries in the Suffixes column. 
+
+If any of the prohibited extensions are found, then for each of them, verify that it is not associated with an application that executes code. However, applications such as Notepad.exe that do not execute code may be associated with the extension.  If the extension is associated with an unauthorized application, then this is a finding.
+
+If the extension exists but is not associated with an application, then this is a finding. 
+
+Method 2: 
+Use the Options User Interface Applications menu  to search for the prohibited extensions in the Content column of the table.
+
+If an extension that is not approved for automatic execution exists and the entry in the Action column is associated with an application that does not execute the code (e.g., Notepad), then do not mark this as a finding. 
+
+If the entry exists and the "Action" is 'Save File' or 'Always Ask',  then this is not a finding.
+ 
+If an extension exists and the entry in the Action column is associated with an application that does/can execute the code, then this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-223159" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When an ActiveX control is referenced in an HTML document, MS Windows checks to see if
+the control already resides on the client machine. If not, the control can be downloaded from a
+remote web site. This provides an automated delivery method for mobile code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-15773</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open a browser window, type "about:plugins" in the address bar.
+
+Criteria: If the Mozilla ActiveX control and plugin support is present and enabled, then this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-223179" severity="medium" conversionstatus="pass" title="SRG-APP-000175" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The DOD root certificate will ensure that the trust chain is established for server certificate issued from the DOD CA.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-6318</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Navigate to Tools &gt;&gt; Options &gt;&gt; Advanced &gt;&gt; Certificates tab &gt;&gt; View Certificates button. On the Certificate Manager window, select the "Authorities" tab. Scroll through the Certificate Name list to the U.S. Government heading. Look for the entries for DoD Root CA 2, DoD Root CA 3, and DoD Root CA 4.
+
+If there are entries for DoD Root CA 2, DoD Root CA 3, and DoD Root CA 4, select them individually.
+
+Click the "View" button.
+
+Verify the publishing organization is "US Government."
+
+If there are no entries for the DoD Root CA 2, DoD Root CA 3, and DoD Root CA 4, this is a finding.
+
+Note: In a Windows environment, use of policy setting "security.enterprise_roots.enabled=true" will point Firefox to the Windows Trusted Root Certification Authority Store, this is not a finding.</RawString>
+    </Rule>
+  </ManualRule>
+</DISASTIG>
