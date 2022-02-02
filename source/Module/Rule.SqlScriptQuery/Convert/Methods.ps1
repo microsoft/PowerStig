@@ -387,8 +387,8 @@ function Get-AuditGetScript
         $sqlScript += 'OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id '
         $sqlScript += 'WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 '
         $sqlScript += '/* Does this specification have the needed events in it? */ '
-        $sqlScript += 'BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name WHERE d.audit_action_name NOT IN (SELECT d2.audit_action_name FROM sys.server_audit_specification_details d2 WHERE d2.server_specification_id = @server_specification_id)) '
-        $sqlScript += 'IF @MissingAuditCount = 0 SET @FoundCompliant = 1; '
+        $sqlScript += 'BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) '
+        $sqlScript += 'IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; '
         $sqlScript += 'FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents '
         $sqlScript += '/* Produce output that works with DSC - records if we do not find the audit events we are looking for */ '
         $sqlScript += 'IF @FoundCompliant > 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1'
@@ -438,8 +438,8 @@ function Get-AuditTestScript
         $sqlScript += 'OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id '
         $sqlScript += 'WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 '
         $sqlScript += '/* Does this specification have the needed events in it? */ '
-        $sqlScript += 'BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name WHERE d.audit_action_name NOT IN (SELECT d2.audit_action_name FROM sys.server_audit_specification_details d2 WHERE d2.server_specification_id = @server_specification_id)) '
-        $sqlScript += 'IF @MissingAuditCount = 0 SET @FoundCompliant = 1; '
+        $sqlScript += 'BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) '
+        $sqlScript += 'IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; '
         $sqlScript += 'FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents '
         $sqlScript += '/* Produce output that works with DSC - records if we do not find the audit events we are looking for */ '
         $sqlScript += 'IF @FoundCompliant > 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1'
@@ -1279,7 +1279,7 @@ function Get-AuditFileSizeGetScript
             $getScript = "CREATE TABLE #AuditFileSize (Name nvarchar (30),Type_Desc nvarchar (30),Max_RollOver_Files int) "
             $getScript += "INSERT INTO #AuditFileSize (Name, Type_Desc) "
             $getScript += "SELECT Name, type_desc FROM sys.server_audits "
-            $getScript += "IF (SELECT Type_Desc FROM #AuditFileSize) = ''FILE'' "
+            $getScript += "IF (SELECT Type_Desc FROM #AuditFileSize) = 'FILE' "
             $getScript += "BEGIN UPDATE #AuditFileSize SET Max_RollOver_Files = (SELECT max_rollover_files FROM sys.server_file_audits) WHERE Name IS NOT NULL END "
             $getScript += "SELECT * FROM #AuditFileSize "
             $getScript += "DROP TABLE #AuditFileSize"
@@ -1343,11 +1343,11 @@ function Get-AuditFileSizeTestScript
             $testScript += "DECLARE @MaxRollOver int "
             $testScript += "SET @AuditType = (SELECT type_desc FROM sys.server_audits) "
             $testScript += "SET @MaxRollOver = (SELECT max_rollover_files FROM sys.server_file_audits) "
-            $testScript += "IF @AuditType IN (''APPLICATION LOG'',''SECURITY LOG'') BEGIN "
-            $testScript += "PRINT ''Audit is configured for application log or security log.'' RETURN END "
-            $testScript += "ELSE IF @AuditType = ''FILE'' AND @MaxRollOver <= 0 BEGIN "
-            $testScript += "RAISERROR (''Audit is max rollover files is less than 0.'',16,1) END "
-            $testScript += "ELSE BEGIN PRINT ''File audit is configured correctly.'' END"
+            $testScript += "IF @AuditType IN ('APPLICATION LOG','SECURITY LOG') BEGIN "
+            $testScript += "PRINT 'Audit is configured for application log or security log.' RETURN END "
+            $testScript += "ELSE IF @AuditType = 'FILE' AND @MaxRollOver <= 0 BEGIN "
+            $testScript += "RAISERROR ('Audit is max rollover files is less than 0.',16,1) END "
+            $testScript += "ELSE BEGIN PRINT 'File audit is configured correctly.' END"
         }
         {
             $PSItem -Match '"max_file_size" or "max_rollover_files"'
