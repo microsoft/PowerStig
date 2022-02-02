@@ -1363,8 +1363,10 @@ function Get-AuditFileSizeTestScript
             $testScript += "BEGIN PRINT 'Audit is configured for application log or security log.' RETURN END "
             $testScript += "ELSE IF @AuditType = 'FILE' AND @MaxRollOver <= 0 OR @MaxFileSize <= 0 BEGIN "
             $testScript += "RAISERROR ('Audit is max rollover files or max file size is configured incorrectly.',16,1) END "
-            $testScript += "ELSE BEGIN IF @AuditType = 'FILE' AND @MaxRollOver = 2147483647 "
-            $testScript += "RAISERROR ('Audit is max file size is configured for unlimited.',16,1) ELSE PRINT 'File audit is configured correctly.' END"
+            $testScript += "ELSE IF @AuditType = 'FILE' AND @MaxRollOver = 2147483647 "
+            $testScript += "BEGIN RAISERROR ('Audit max file size is configured for unlimited.',16,1) END "
+            $testScript += "ELSE IF @AuditType IS NULL BEGIN RAISERROR ('Audit is not configured',16,1) END "
+            $testScript += "ELSE PRINT 'File audit is configured correctly.' "
         }
     }
 
