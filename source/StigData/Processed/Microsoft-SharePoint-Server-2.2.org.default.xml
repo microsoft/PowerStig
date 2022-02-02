@@ -5,4 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.2" />
+<OrganizationalSettings fullversion="2.2">
+  <!-- Ensure ValueData does not contain DES or RC4 Types-->
+  <OrganizationalSetting id="V-223252" ValueData="" />
+</OrganizationalSettings>
