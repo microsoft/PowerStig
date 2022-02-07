@@ -394,6 +394,37 @@ try
                 ALTER SERVER AUDIT [AuditNameHere] WITH (STATE = ON); 
                 GO  '
             }
+            AuditFileSize = @{
+                GetScript    = 'CREATE TABLE #AuditFileSize (Name nvarchar (30),Type_Desc nvarchar (30),Max_RollOver_Files int) INSERT INTO #AuditFileSize (Name, Type_Desc) SELECT Name, type_desc FROM sys.server_audits WHERE is_state_enabled = 1 IF (SELECT Type_Desc FROM #AuditFileSize) = ''FILE'' BEGIN UPDATE #AuditFileSize SET Max_RollOver_Files = (SELECT max_rollover_files FROM sys.server_file_audits) WHERE Name IS NOT NULL END SELECT * FROM #AuditFileSize DROP TABLE #AuditFileSize'
+                SetScript    = '/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = ''STIG_AUDIT_SERVER_SPECIFICATION'') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = ''STIG_AUDIT_SERVER_SPECIFICATION'') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = ''C:\Audits'', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)'
+                TestScript   = 'DECLARE @AuditType nvarchar (30) DECLARE @MaxRollOver int SET @AuditType = (SELECT type_desc FROM sys.server_audits WHERE is_state_enabled = 1) SET @MaxRollOver = (SELECT max_rollover_files FROM sys.server_file_audits) IF @AuditType IN (''APPLICATION LOG'',''SECURITY LOG'') BEGIN PRINT ''Audit is configured for application log or security log.'' RETURN END ELSE IF @AuditType = ''FILE'' AND @MaxRollOver <= 0 BEGIN RAISERROR (''Audit is max rollover files is less than 0.'',16,1) END ELSE BEGIN PRINT ''File audit is configured correctly.'' END'
+                CheckContent = 'If the system documentation indicates that availability does not take precedence over audit trail completeness, this is not applicable (NA). 
+
+                Execute the following query:
+                
+                SELECT a.name ''audit_name'',
+                 a.type_desc ''storage_type'',
+                 f.max_rollover_files
+                FROM sys.server_audits a
+                LEFT JOIN sys.server_file_audits f ON a.audit_id = f.audit_id
+                WHERE a.is_state_enabled = 1
+                
+                If no records are returned, this is a finding.
+                
+                If the "storage_type" is "APPLICATION LOG" or "SECURITY LOG", this is not a finding.
+                
+                If the "storage_type" is "FILE" and "max_rollover_files" is greater than zero, this is not a finding. Otherwise, this is a finding.'
+                FixText      = 'If SQL Server Audit is in use, configure SQL Server Audit to continue to generate audit records, overwriting the oldest existing records, in the case of an auditing failure. 
+
+                Run this T-SQL script for each identified audit: 
+                
+                ALTER SERVER AUDIT [AuditName] WITH (STATE = OFF); 
+                GO 
+                ALTER SERVER AUDIT [AuditName] to file (max_rollover_files = IntegerValue); 
+                GO 
+                ALTER SERVER AUDIT [AuditName] WITH (STATE = ON); 
+                GO  '
+            }
         }
         #endregion
         #region Method Tests
