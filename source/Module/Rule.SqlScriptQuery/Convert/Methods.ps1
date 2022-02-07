@@ -1076,15 +1076,7 @@ function Get-ShutdownOnErrorGetScript
         {
             $getScript = "SELECT * FROM ::fn_trace_getinfo(NULL)"
         }
-        {
-            $PSItem -match 'SHUTDOWN SERVER INSTANCE'
-        }
-        {
-            $getScript = "SELECT on_failure_desc FROM sys.server_audits"
-        }
     }
-
-    #$getScript = "SELECT * FROM ::fn_trace_getinfo(NULL)"
 
     return $getScript
 }
@@ -1133,16 +1125,6 @@ function Get-ShutdownOnErrorTestScript
             $testScript += "SELECT traceId FROM ::fn_trace_getinfo(NULL) "
             $testScript += "ELSE "
             $testScript += "Print NULL"
-        }
-        {
-            $PSItem -match 'SHUTDOWN SERVER INSTANCE'
-        }
-        {
-            $testScript = "DECLARE @AuditShutdown nvarchar(30) "
-            $testScript += "SET @AuditShutdown = (SELECT on_failure FROM sys.server_audits) "
-            $testScript += "IF @AuditShutdown = 0 OR @AuditShutdown IS NULL "
-            $testScript += "BEGIN RAISERROR ('Audit is not configured for shutdown on failure.',16,1) END "
-            $testScript += "ELSE BEGIN PRINT 'Audit is configured for shutdown on failure.' END"
         }
     }
 
@@ -1195,6 +1177,158 @@ function Get-ShutdownOnErrorSetScript
             $setScript += "    @options = 6, "
             $setScript += "    @traceFilePath = N'`$(TraceFilePath)'"
         }
+    }
+
+    return $setScript
+}
+
+<#
+    .SYNOPSIS
+        Return the string used to translate varaibles into the SqlQueryScript
+#>
+function Get-ShutdownOnErrorVariable
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    ()
+
+    $variable = 'TraceFilePath={0}'
+
+    return $variable
+}
+#endregion shutdown on error
+
+# region AuditShutDownOnError
+
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-AuditShutdownOnErrorGetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    switch ($CheckContent)
+    {
+        {
+            $PSItem -match 'SHUTDOWN SERVER INSTANCE'
+        }
+        {
+            $getScript = "SELECT on_failure_desc FROM sys.server_audits"
+        }
+    }
+
+    return $getScript
+}
+
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-AuditShutdownOnErrorTestScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    switch ($CheckContent)
+    {
+        {
+            $PSItem -match 'SHUTDOWN SERVER INSTANCE'
+        }
+        {
+            $testScript = "DECLARE @AuditShutdown nvarchar(30) "
+            $testScript += "SET @AuditShutdown = (SELECT on_failure FROM sys.server_audits) "
+            $testScript += "IF @AuditShutdown = 0 OR @AuditShutdown IS NULL "
+            $testScript += "BEGIN RAISERROR ('Audit is not configured for shutdown on failure.',16,1) END "
+            $testScript += "ELSE BEGIN PRINT 'Audit is configured for shutdown on failure.' END"
+        }
+    }
+
+    return $testScript
+}
+
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-AuditShutdownOnErrorSetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    switch ($CheckContent)
+    {
         {
             $PSItem -match 'SHUTDOWN SERVER INSTANCE'
         }
@@ -1218,23 +1352,6 @@ function Get-ShutdownOnErrorSetScript
 
     return $setScript
 }
-
-<#
-    .SYNOPSIS
-        Return the string used to translate varaibles into the SqlQueryScript
-#>
-function Get-ShutdownOnErrorVariable
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    ()
-
-    $variable = 'TraceFilePath={0}'
-
-    return $variable
-}
-#endregion shutdown on error
 
 # region audit file size
 
@@ -1981,12 +2098,20 @@ function Get-SqlRuleType
         {
             $ruleType = 'TraceFileLimit'
         }
-        # shutdown on error
+        # shutdown on error (trace)
         {
-            $PSItem -match 'SHUTDOWN SERVER INSTANCE'
+            $PSItem -match 'SHUTDOWN_ON_ERROR'
         }
         {
-            $ruleType = 'ShutdownOnError'
+            $ruleType = 'ShutDownOnError'
+        }
+        # shutdown on error (audit)
+        {
+            $PSItem -match 'SHUTDOWN SERVER INSTANCE' -and
+            $PSItem -notmatch 'SHUTDOWN_ON_ERROR'
+        }
+        {
+            $ruleType = 'AuditShutdownOnError'
         }
         # view any database
         {
