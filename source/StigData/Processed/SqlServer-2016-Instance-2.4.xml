@@ -2602,7 +2602,7 @@ For more information, see https://support.microsoft.com/en-us/kb/3141890.</RawSt
     </Rule>
   </SecurityOptionRule>
   <SqlDatabaseRule dscresourcemodule="SqlServerDsc">
-    <Rule id="V-213954.a" severity="medium" conversionstatus="fail" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
+    <Rule id="V-213954.a" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
       <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
  
 It is detrimental for software products to provide, or install by default, functionality exceeding requirements or mission objectives. Examples include, but are not limited to, installing advertising software, demonstrations, or browser plugins not related to requirements or providing a wide array of functionality, not required for every mission, that cannot be disabled. 
@@ -2614,7 +2614,7 @@ Demonstration and sample database objects and applications present publicly know
       <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79171.a</LegacyId>
-      <Name />
+      <Name>Pubs</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the server documentation, if this system is identified as a development or test system, this check is Not Applicable. 
@@ -2628,7 +2628,7 @@ WorldwideImporters
  
 If any of these databases exist, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-213954.b" severity="medium" conversionstatus="fail" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
+    <Rule id="V-213954.b" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
       <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
  
 It is detrimental for software products to provide, or install by default, functionality exceeding requirements or mission objectives. Examples include, but are not limited to, installing advertising software, demonstrations, or browser plugins not related to requirements or providing a wide array of functionality, not required for every mission, that cannot be disabled. 
@@ -2640,7 +2640,7 @@ Demonstration and sample database objects and applications present publicly know
       <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79171.b</LegacyId>
-      <Name />
+      <Name>Northwind</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the server documentation, if this system is identified as a development or test system, this check is Not Applicable. 
@@ -2654,7 +2654,7 @@ WorldwideImporters
  
 If any of these databases exist, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-213954.c" severity="medium" conversionstatus="fail" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
+    <Rule id="V-213954.c" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
       <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
  
 It is detrimental for software products to provide, or install by default, functionality exceeding requirements or mission objectives. Examples include, but are not limited to, installing advertising software, demonstrations, or browser plugins not related to requirements or providing a wide array of functionality, not required for every mission, that cannot be disabled. 
@@ -2666,7 +2666,7 @@ Demonstration and sample database objects and applications present publicly know
       <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79171.c</LegacyId>
-      <Name />
+      <Name>AdventureWorks</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the server documentation, if this system is identified as a development or test system, this check is Not Applicable. 
@@ -2680,7 +2680,7 @@ WorldwideImporters
  
 If any of these databases exist, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-213954.d" severity="medium" conversionstatus="fail" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
+    <Rule id="V-213954.d" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000090" dscresource="SqlDatabase">
       <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
  
 It is detrimental for software products to provide, or install by default, functionality exceeding requirements or mission objectives. Examples include, but are not limited to, installing advertising software, demonstrations, or browser plugins not related to requirements or providing a wide array of functionality, not required for every mission, that cannot be disabled. 
@@ -2692,7 +2692,7 @@ Demonstration and sample database objects and applications present publicly know
       <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79171.d</LegacyId>
-      <Name />
+      <Name>WorldwideImporters</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the server documentation, if this system is identified as a development or test system, this check is Not Applicable. 
