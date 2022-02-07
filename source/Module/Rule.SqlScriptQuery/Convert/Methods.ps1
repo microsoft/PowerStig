@@ -1278,7 +1278,7 @@ function Get-AuditFileSizeGetScript
         {
             $getScript = "CREATE TABLE #AuditFileSize (Name nvarchar (30),Type_Desc nvarchar (30),Max_RollOver_Files int) "
             $getScript += "INSERT INTO #AuditFileSize (Name, Type_Desc) "
-            $getScript += "SELECT Name, type_desc FROM sys.server_audits "
+            $getScript += "SELECT Name, type_desc FROM sys.server_audits WHERE is_state_enabled = 1 "
             $getScript += "IF (SELECT Type_Desc FROM #AuditFileSize) = 'FILE' "
             $getScript += "BEGIN UPDATE #AuditFileSize SET Max_RollOver_Files = (SELECT max_rollover_files FROM sys.server_file_audits) WHERE Name IS NOT NULL END "
             $getScript += "SELECT * FROM #AuditFileSize "
@@ -1290,7 +1290,7 @@ function Get-AuditFileSizeGetScript
         {
             $getScript = "CREATE TABLE #AuditFileSize(Name nvarchar (30), Type_Desc nvarchar (30), Max_RollOver_Files int, Max_File_Size int) "
             $getScript += "INSERT INTO #AuditFileSize (Name, Type_Desc) "
-            $getScript += "SELECT Name, type_desc FROM sys.server_audits "
+            $getScript += "SELECT Name, type_desc FROM sys.server_audits WHERE is_state_enabled = 1"
             $getScript += "IF (SELECT Type_Desc FROM #AuditFileSize) = 'FILE' "
             $getScript += "BEGIN UPDATE #AuditFileSize SET Max_RollOver_Files = (SELECT max_rollover_files FROM sys.server_file_audits), Max_File_Size = (SELECT max_file_size FROM sys.server_file_audits) WHERE Name IS NOT NULL END "
             $getScript += "SELECT * FROM #AuditFileSize "
@@ -1341,7 +1341,7 @@ function Get-AuditFileSizeTestScript
         {
             $testScript = "DECLARE @AuditType nvarchar (30) "
             $testScript += "DECLARE @MaxRollOver int "
-            $testScript += "SET @AuditType = (SELECT type_desc FROM sys.server_audits) "
+            $testScript += "SET @AuditType = (SELECT type_desc FROM sys.server_audits WHERE is_state_enabled = 1) "
             $testScript += "SET @MaxRollOver = (SELECT max_rollover_files FROM sys.server_file_audits) "
             $testScript += "IF @AuditType IN ('APPLICATION LOG','SECURITY LOG') BEGIN "
             $testScript += "PRINT 'Audit is configured for application log or security log.' RETURN END "
@@ -1356,7 +1356,7 @@ function Get-AuditFileSizeTestScript
             $testScript = "DECLARE @AuditType nvarchar (30) "
             $testScript += "DECLARE @MaxRollOver int "
             $testScript += "DECLARE @MaxFileSize int "
-            $testScript += "SET @AuditType = (SELECT type_desc FROM sys.server_audits) "
+            $testScript += "SET @AuditType = (SELECT type_desc FROM sys.server_audits WHERE is_state_enabled = 1) "
             $testScript += "SET @MaxRollOver = (SELECT max_rollover_files FROM sys.server_file_audits) "
             $testScript += "SET @MaxFileSize = (SELECT max_file_size FROM sys.server_file_audits) "
             $testScript += "IF @AuditType IN ('APPLICATION LOG','SECURITY LOG') "
@@ -1983,7 +1983,6 @@ function Get-SqlRuleType
         }
         # shutdown on error
         {
-            #$PSItem -match 'SHUTDOWN_ON_ERROR'
             $PSItem -match 'SHUTDOWN SERVER INSTANCE'
         }
         {
