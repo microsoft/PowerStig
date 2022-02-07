@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Update SQL Server audit coverage [#1038](https://github.com/microsoft/PowerStig/issues/1038)
 
 ## [4.11.0] - 2021-12-13
 
