@@ -359,6 +359,41 @@ try
                 Select new database `"Owner`":
                 Navigate to click on […] &gt;&gt; Select new Database Owner &gt;&gt; Browse… &gt;&gt; click on box to indicate account &gt;&gt; &lt;'OK'&gt; &gt;&gt; &lt;'OK'&gt; &gt;&gt; &lt;'OK'&gt;"
             }
+            AuditShutDownOnError = @{
+                GetScript    = 'SELECT on_failure_desc FROM sys.server_audits'
+                SetScript    = '/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = ''STIG_AUDIT_SERVER_SPECIFICATION'') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = ''STIG_AUDIT_SERVER_SPECIFICATION'') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = ''C:\Audits'', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)'
+                TestScript   = 'DECLARE @AuditShutdown nvarchar(30) SET @AuditShutdown = (SELECT on_failure FROM sys.server_audits) IF @AuditShutdown = 0 OR @AuditShutdown IS NULL BEGIN RAISERROR (''Audit is not configured for shutdown on failure.'',16,1) END ELSE BEGIN PRINT ''Audit is configured for shutdown on failure.'' END'
+                CheckContent = 'If the system documentation indicates that availability takes precedence over audit trail completeness, this is not applicable (NA). 
+
+                If SQL Server Audit is in use, review the defined server audits by running the statement: 
+                
+                SELECT * FROM sys.server_audits; 
+                
+                By observing the [name] and [is_state_enabled] columns, identify the row or rows in use. 
+                
+                If the [on_failure_desc] is "SHUTDOWN SERVER INSTANCE" on this/these row(s), this is not a finding. Otherwise, this is a finding.
+                
+                Fix Text: If SQL Server Audit is in use, configure SQL Server Audit to shut SQL Server down upon audit failure, to include running out of space for audit logs. 
+                
+                Run this T-SQL script for each identified audit: 
+                
+                ALTER SERVER AUDIT [AuditNameHere] WITH (STATE = OFF); 
+                GO 
+                ALTER SERVER AUDIT [AuditNameHere] WITH (ON_FAILURE = SHUTDOWN); 
+                GO 
+                ALTER SERVER AUDIT [AuditNameHere] WITH (STATE = ON); 
+                GO'
+                FixText    = 'If SQL Server Audit is in use, configure SQL Server Audit to shut SQL Server down upon audit failure, to include running out of space for audit logs. 
+
+                Run this T-SQL script for each identified audit: 
+                
+                ALTER SERVER AUDIT [AuditNameHere] WITH (STATE = OFF); 
+                GO 
+                ALTER SERVER AUDIT [AuditNameHere] WITH (ON_FAILURE = SHUTDOWN); 
+                GO 
+                ALTER SERVER AUDIT [AuditNameHere] WITH (STATE = ON); 
+                GO  '
+            }
         }
         #endregion
         #region Method Tests

@@ -1353,6 +1353,8 @@ function Get-AuditShutdownOnErrorSetScript
     return $setScript
 }
 
+# end region AuditShutDownOnError
+
 # region audit file size
 
 <#
