@@ -10,12 +10,14 @@ using module ..\..\PowerStig.psm1
     .PARAMETER WebAppUrl
         The URL of the web app to set the general settings for
     .PARAMETER SharePointVersion
-        The version of SharePoint being used E.g. '2013'
+        The version of SharePoint being used. Example '2013'
+    .PARAMETER SetupAccount
+        The credentials to configure SharePoint settings.
     .PARAMETER StigVersion
-        The version of the SharePoint STIG to apply and/or monitor
+        The version of the STIG to apply and monitor
     .PARAMETER Exception
-        A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
-        the target node. The title of STIG settings are tagged with the text ‘Exception’ to identify
+        A hash table of key value pairs that are injected into the STIG data and applied to
+        the target node. The title of STIG setting is tagged with the text 'Exception' to identify
         the exceptions to policy across the data center when you centralize DSC log collection.
     .PARAMETER OrgSettings
         The path to the xml file that contains the local organizations preferred settings for STIG
@@ -23,7 +25,7 @@ using module ..\..\PowerStig.psm1
         values that need to be modified.  When a hashtable is used, the specified values take
         presidence over the values defined in the org.default.xml file.
     .PARAMETER SkipRule
-        The SkipRule Node is injected into the STIG data and applied to the taget node. The title
+        The SkipRule Node is injected into the STIG data and applied to the target node. The title
         of STIG settings are tagged with the text 'Skip' to identify the skips to policy across the
         data center when you centralize DSC log collection.
     .PARAMETER SkipRuleType
@@ -40,8 +42,8 @@ configuration SharePoint
     (
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [string]
-        $WebAppUrl[],
+        [string[]]
+        $WebAppUrl,
 
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
@@ -89,12 +91,13 @@ configuration SharePoint
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.4.0
+    Import-DscResource -ModuleName SharePointDSC -ModuleVersion 5.0.0
     . "$resourcePath\SharePoint.SPWebAppGeneralSettings.ps1"
 
     Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.2.0
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.12.0.0
-    . "$resourcePath\windows.Script.skip.ps1"
+   
     . "$resourcePath\windows.Registry.ps1"
+    . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.RefreshRegistryPolicy.ps1"
 }
