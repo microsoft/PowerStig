@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Default Org Settings missing from WindowsServer-2016-DC-2.3.org.default.xml: [#1054](https://github.com/microsoft/PowerStig/issues/1054)
+
 ## [4.11.0] - 2021-12-13
 
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 3: [#1010](https://github.com/microsoft/PowerStig/issues/1010)
