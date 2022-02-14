@@ -2,7 +2,8 @@
 
 ## [Unreleased]
 
-* Default Org Settings missing from WindowsServer-2016-DC-2.3.org.default.xml: [#1054](https://github.com/microsoft/PowerStig/issues/1054)
+* Fixed: Default Org Settings missing from WindowsServer-2016-DC-2.3.org.default.xml: [#1054](https://github.com/microsoft/PowerStig/issues/1054)
+* Fixed: RHEL V3R5 Rule V-250314 does not apply successfully: [#1041](https://github.com/microsoft/PowerStig/issues/1041)
 
 ## [4.11.0] - 2021-12-13
 
