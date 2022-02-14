@@ -87,7 +87,7 @@ configuration SharePoint
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('Sharepoint', $SharePointVersion, $StigVersion)
+    $stig = [STIG]::New('Microsoft', 'SharePoint', 'Server', $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
