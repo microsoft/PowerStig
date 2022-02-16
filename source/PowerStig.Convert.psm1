@@ -51,9 +51,6 @@ using module .\Module\Rule.SqlServerConfiguration\Convert\SqlServerConfiguration
 using module .\Module\Rule.SqlLogin\Convert\SqlLoginRule.Convert.psm1
 using module .\Module\Rule.SqlProtocol\Convert\SqlProtocolRule.Convert.psm1
 using module .\Module\Rule.SqlDatabase\Convert\SqlDatabaseRule.Convert.psm1
-using module .\Module\Rule.SharePointSPWebAppGeneralSettings\Convert\SharePointSPWebAppGeneralSettingsRule.Convert.psm1
-using module .\Module\Rule.SharePointSPLogLevel\Convert\SharePointSPLogLevelRule.Convert.psm1
-using module .\Module\Rule.SharePointSPAlternateUrl\Convert\SharePointSPAlternateUrlRule.Convert.psm1
 using module .\Module\Rule.SPWebAppGeneralSettings\Convert\SPWebAppGeneralSettingsRule.Convert.psm1
 
 # load the public functions
