@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 Site\Server STIG V2R5: [#1046](https://github.com/microsoft/PowerStig/issues/1046)
+
 ## [4.11.0] - 2021-12-13
 
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 3: [#1010](https://github.com/microsoft/PowerStig/issues/1010)
