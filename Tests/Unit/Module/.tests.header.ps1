@@ -95,7 +95,7 @@ switch ($psStackCommand)
         $functionBackupRevert = Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Functions.BackupRevert.ps1'
         . $functionBackupRevert
     }
-    
+
     'STIG'
     {
         $destinationPath = Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Convert.Main.ps1'

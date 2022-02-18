@@ -79,7 +79,7 @@ try
                 $getStigRuleResult.OrganizationValueRequired | Should -Be 'False'
                 $getStigRuleResult.OrganizationValueTestString | Should -Be $([string]::Empty)
                 $getStigRuleResult.VulnId | Should -Be 'V-1000'
-                $getStigRuleResult.LegacyId | Should -Be 'V-1111' 
+                $getStigRuleResult.LegacyId | Should -Be 'V-1111'
                 $getStigRuleResult.Ensure | Should -Be 'Present'
                 $getStigRuleResult.Key | Should -Be 'HKEY_LOCAL_MACHINE\Software\Microsoft\TestKeyData'
                 $getStigRuleResult.ValueData | Should -Be 'TestValueData'
