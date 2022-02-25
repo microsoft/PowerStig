@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Office_System_2016" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Microsoft_Office_System_2016_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 27 Jan 2022 3.2.2.36079 1.10.0" title="Microsoft Office System 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="2/24/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Office_System_2016" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Microsoft_Office_System_2016_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 27 Jan 2022 3.2.2.36079 1.10.0" title="Microsoft Office System 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="2/25/2022">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-238024" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls whether the Help Improve Proofing Tools feature sends usage data to Microsoft. The Help Improve Proofing Tools feature collects data about use of the Proofing Tools, such as additions to the custom dictionary, and sends it to Microsoft. After about six months, the feature stops sending data to Microsoft and deletes the data collection file from the user's computer. If you enable this policy setting, this feature is enabled if users choose to participate in the Customer Experience Improvement Program (CEIP). If your organization has policies that govern the use of external resources such as the CEIP, allowing the use of the Help Improve Proofing Tools feature might cause them to violate these policies. If you disable this policy setting, the Help Improve Proofing Tools feature does not collect proofing tool usage information and transmit it to Microsoft. If you do not configure this policy setting, the behavior is the equivalent of setting the policy to "Enabled".&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -178,7 +178,7 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\microsoft\vba\security
 
-If the value for "LoadControlsInForms3" does not exist or if the value for "LoadControlsInForms" is REG_DWORD=1, this is not a finding.</RawString>
+If the value for "LoadControlsInForms" does not exist or if the value for "LoadControlsInForms" is REG_DWORD=1, this is not a finding.</RawString>
       <ValueData />
       <ValueName>**del.loadcontrolsinforms</ValueName>
       <ValueType>String</ValueType>
@@ -199,7 +199,7 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\microsoft\vba\security
 
-If the value for "LoadControlsInForms3" does not exist or if the value for "LoadControlsInForms" is REG_DWORD=1, this is not a finding.</RawString>
+If the value for "LoadControlsInForms" does not exist or if the value for "LoadControlsInForms" is REG_DWORD=1, this is not a finding.</RawString>
       <ValueData />
       <ValueName>loadcontrolsinforms</ValueName>
       <ValueType>String</ValueType>
