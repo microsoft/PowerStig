@@ -14,7 +14,7 @@ trigger:
 stages:
   - stage: Build
     jobs:
-      - job: Package_Module
+            - job: Package_Module
         displayName: 'Package Module'
         pool:
           vmImage: 'ubuntu-latest'
@@ -28,7 +28,6 @@ stages:
               }
               Write-Host -Object "##vso[build.updatebuildnumber]$($gitVersionObject.FullSemVer)"
             displayName: Calculate ModuleVersion (GitVersion)
-
           - task: PowerShell@2
             name: package
             displayName: 'Build & Package Module'
