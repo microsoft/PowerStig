@@ -17,13 +17,13 @@ stages:
       - job: Package_Module
         displayName: 'Package Module'
         pool:
-          vmImage: 'windows-latest'
+          vmImage: 'windows-2019'
         steps:
           - task: GitVersion@5
             name: gitVersion
             displayName: 'Evaluate Next Version'
             inputs:
-              runtime: 'core'
+              runtime: 'full'
               configFilePath: 'GitVersion.yml'
 
           - task: PowerShell@2

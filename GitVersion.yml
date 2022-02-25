@@ -1,5 +1,5 @@
 mode: ContinuousDelivery
-next-version: 13.3.0
+next-version: 4.12.0
 major-version-bump-message: '\s?(breaking|major|breaking\schange)'
 minor-version-bump-message: '\s?(add|feature|minor)'
 patch-version-bump-message: '\s?(fix|patch)'
