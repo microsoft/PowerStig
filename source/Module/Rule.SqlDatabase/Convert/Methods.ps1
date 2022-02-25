@@ -23,6 +23,12 @@ function Get-DatabaseName
         $CheckContent
     )
 
+    # Clears the array to allow multiple xml creation in the same PowerShell session
+    if ($script:databasearray.Count -eq 4)
+    {
+        $script:databasearray = @()
+    }
+
     switch ($checkcontent)
     {
         {$PSItem -Match "((?i)Pubs)"}
