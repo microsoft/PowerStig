@@ -23,7 +23,7 @@ stages:
             name: gitVersion
             displayName: 'Evaluate Next Version'
             inputs:
-              runtime: 'core'
+              runtime: 'full'
               configFilePath: 'GitVersion.yml'
 
           - task: PowerShell@2
