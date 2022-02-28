@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft SQL Server 2016 Instance STIG, Version 2, Release 3: [#1050](https://github.com/microsoft/PowerStig/issues/1050)
+
 ## [4.11.0] - 2021-12-13
 
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 3: [#1010](https://github.com/microsoft/PowerStig/issues/1010)
