@@ -97,7 +97,7 @@ EDGE-00-000024 disables the AutoplayAllowed policy. &lt;/VulnDiscussion&gt;&lt;F
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>The policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Allow media autoplay on specific sites" may be set to "allow" for allowlisted domains.
 

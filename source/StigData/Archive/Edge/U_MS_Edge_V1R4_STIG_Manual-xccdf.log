@@ -18,4 +18,4 @@ V-235728::NetworkPredictionOptions::"NetworkPredictionOptions"
 V-235729::HKLM\SOFTWARE\Policies\Microsoft\Edge\Recommended::HKLM\SOFTWARE\Policies\Microsoft\Edge
 V-235767::PaymentMethodQueryEnabled::"PaymentMethodQueryEnabled"
 V-235769::UserFeedbackAllowed::"UserFeedbackAllowed"
-V-251694::*::HardCodedRule(ManualRule)@{DscResource = "None"}
+V-251694::*::.
