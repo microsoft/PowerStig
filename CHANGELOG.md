@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to successfully parse/apply Microsoft Outlook 2016 Version 2; Release 2: [#1039](https://github.com/microsoft/PowerStig/issues/1039)
+* Update PowerSTIG to Parse/Apply Microsoft SQL Server 2016 Instance STIG, Version 2, Release 3: [#1050](https://github.com/microsoft/PowerStig/issues/1050)
 
 ## [4.11.0] - 2021-12-13
 
