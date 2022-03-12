@@ -3,6 +3,11 @@
 ## [Unreleased]
 
 * Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 4: [#1044](https://github.com/microsoft/PowerStig/issues/1044)
+* Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R6: [#1057](https://github.com/microsoft/PowerStig/issues/1057)
+* Fixed: Default Org Settings missing from WindowsServer-2016-DC-2.3.org.default.xml: [#1054](https://github.com/microsoft/PowerStig/issues/1054)
+* Fixed: RHEL V3R5 Rule V-250314 does not apply successfully: [#1041](https://github.com/microsoft/PowerStig/issues/1041)
+* Update PowerSTIG to parse/apply RHEL 7.x STIG - Ver 3, Rel 6 [#1056](https://github.com/microsoft/PowerStig/issues/1056)
+* Update PowerSTIG to Parse/Apply Microsoft SQL Server 2016 Instance STIG, Version 2, Release 3: [#1050](https://github.com/microsoft/PowerStig/issues/1050)
 
 ## [4.11.0] - 2021-12-13
 
