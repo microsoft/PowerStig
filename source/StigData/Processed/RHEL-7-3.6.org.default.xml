@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="3.4">
+<OrganizationalSettings fullversion="3.6">
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8", this is a finding." -->
   <OrganizationalSetting id="V-204411" ContainsLine="difok = 8" DoesNotContainPattern="#\s*difok\s*=.*|^\s*difok\s*=\s*(-|)[0-7]$" />
   <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "minclass" is set to less than "4", this is a finding." -->
@@ -13,14 +13,16 @@
   <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxrepeat" is set to more than "3", this is a finding." -->
   <OrganizationalSetting id="V-204413" ContainsLine="maxrepeat = 3" DoesNotContainPattern="^#\s*maxrepeat\s*=.*|^\s*maxrepeat\s*=\s*(?:\d{2,}|[4-9])" />
   <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxclassrepeat" is set to more than "4", this is a finding." -->
-  <OrganizationalSetting id="V-204414" ContainsLine="maxclassrepeat = 4" DoesNotContainPattern="^#\s*maxclassrepeat\s*=.*|^\s*maxclassrepeat\s*=\s*(?:\d{2,}|[3-9])" />
+  <OrganizationalSetting id="V-204414" ContainsLine="maxclassrepeat = 4" DoesNotContainPattern="^#\s*maxclassrepeat\s*=.*|^\s*maxclassrepeat\s*=\s*(?:\d{2,}|[1-3|5-9])" />
   <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented out, this is a finding." -->
   <OrganizationalSetting id="V-204418" ContainsLine="PASS_MIN_DAYS 1" DoesNotContainPattern="^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*" />
   <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is not 60 or less, or is commented out, this is a finding." -->
   <OrganizationalSetting id="V-204420" ContainsLine="PASS_MAX_DAYS 60" DoesNotContainPattern="^\s*PASS_MAX_DAYS\s*([6][1-9]|[7-9][0-9]|\d{3,})$|#\s*PASS_MAX_DAYS.*" />
   <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the command does not return a "minlen" value of 15 or greater, this is a finding." -->
   <OrganizationalSetting id="V-204423" ContainsLine="minlen = 15" DoesNotContainPattern="^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*" />
-  <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding." -->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "INACTIVE" is set to "-1", a value greater than "35", is commented out, or is not defined, this is a finding." -->
+  <OrganizationalSetting id="V-204426" ContainsLine="INACTIVE=35" DoesNotContainPattern="^#\s*INACTIVE\s*=.*|^\s*INACTIVE\s*=\s*(3[5-9]|[4-9]\d+|\d{3,})" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented out, this is a finding." -->
   <OrganizationalSetting id="V-204431" ContainsLine="FAIL_DELAY 4" DoesNotContainPattern="^#\s*FAIL_DELAY.*|^FAIL_DELAY\s*(?!\d{2,})[1-3]" />
   <!-- Ensure the IP address of the log aggregation server is defined; i.e.: remote_server = <IPAddress> -->
   <OrganizationalSetting id="V-204509" ContainsLine="" DoesNotContainPattern="" />
