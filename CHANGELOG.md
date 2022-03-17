@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 5: [#1042](https://github.com/microsoft/PowerStig/issues/1042)
+* Update PowerSTIG to Parse/Apply Microsoft Office System 2016 STIG - Ver 2, Rel 2: [#1045](https://github.com/microsoft/PowerStig/issues/1045)
 * Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R6: [#1057](https://github.com/microsoft/PowerStig/issues/1057)
 * Fixed: Default Org Settings missing from WindowsServer-2016-DC-2.3.org.default.xml: [#1054](https://github.com/microsoft/PowerStig/issues/1054)
 * Fixed: RHEL V3R5 Rule V-250314 does not apply successfully: [#1041](https://github.com/microsoft/PowerStig/issues/1041)
