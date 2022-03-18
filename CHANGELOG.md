@@ -3,6 +3,11 @@
 ## [Unreleased]
 
 * Update PowerSTIG to successfully parse/apply Microsoft Outlook 2016 Version 2; Release 2: [#1039](https://github.com/microsoft/PowerStig/issues/1039)
+* Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 5: [#1042](https://github.com/microsoft/PowerStig/issues/1042)
+* Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 4: [#1044](https://github.com/microsoft/PowerStig/issues/1044)
+* Update PowerSTIG to Parse/Apply Microsoft IIS 8.0 Site STIG V2R5: [#1047](https://github.com/microsoft/PowerStig/issues/1047)
+* Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 Site\Server STIG V2R5: [#1046](https://github.com/microsoft/PowerStig/issues/1046)
+* Update PowerSTIG to Parse/Apply Microsoft Edge STIG - Ver 1, Rel 4: [#1043](https://github.com/microsoft/PowerStig/issues/1043)
 * Update PowerSTIG to Parse/Apply Microsoft Office System 2016 STIG - Ver 2, Rel 2: [#1045](https://github.com/microsoft/PowerStig/issues/1045)
 * Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R6: [#1057](https://github.com/microsoft/PowerStig/issues/1057)
 * Fixed: Default Org Settings missing from WindowsServer-2016-DC-2.3.org.default.xml: [#1054](https://github.com/microsoft/PowerStig/issues/1054)

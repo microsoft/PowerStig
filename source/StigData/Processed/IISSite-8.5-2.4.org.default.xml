@@ -22,6 +22,8 @@
   <OrganizationalSetting id="V-214485" Value="35000" />
   <!-- Ensure 'V-214487' -ne 0-->
   <OrganizationalSetting id="V-214487" Value="1000000" />
+  <!-- Ensure ''V-214488'' 'Value must contain Time and Schedule but can contain Requests, Memory, IsapiUnhealthy, OnDemand, ConfigChange, PrivateMemory'-->
+  <OrganizationalSetting id="V-214488" Value="'Time,Requests,Schedule,Memory,IsapiUnhealthy,OnDemand,ConfigChange,PrivateMemory'" />
   <!-- Ensure 'V-214489' -le 1000-->
   <OrganizationalSetting id="V-214489" Value="1000" />
   <!-- Ensure [TimeSpan]'V-214492' -le [TimeSpan]'00:05:00'-->
