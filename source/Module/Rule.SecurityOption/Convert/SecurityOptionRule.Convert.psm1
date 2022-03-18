@@ -1,8 +1,18 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
+using module .\..\..\Rule\Rule.psm1
 using module .\..\SecurityOptionRule.psm1
 using namespace System.Text
+
+$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
+foreach ($supportFile in $supportFileList)
+{
+    Write-Verbose "Loading $($supportFile.FullName)"
+    . $supportFile.FullName
+}
+
 # Header
 
 <#
@@ -57,7 +67,7 @@ class SecurityOptionRuleConvert : SecurityOptionRule
     {
         return [regex]::Match(
             $this.RawString,
-            '(?:If\s(?:the\svalue\sfor\s)?")(?<optionName>[^"]+)(?:")[^"]+(?:")(?<optionValue>[^"]+)(?:")'
+            '(?:If\s(?:the\svalue\sfor\s)?")(?<optionName>[^"]+)(?:")[^"]+(?:")(?<optionValue>[^"]+)(?:")|(?:System\scryptography:\sUse\sFIPS\scomplaint\salgorithms)'
         )
     }
 
@@ -71,7 +81,14 @@ class SecurityOptionRuleConvert : SecurityOptionRule
     #>
     [void] SetOptionName ([System.Text.RegularExpressions.Match] $Regex)
     {
-        $thisOptionName = $Regex.Groups.Where( {$_.Name -eq 'OptionName'}).Value
+        if ($this.Id -eq 'V-213969' -or $this.Id -eq 'V-213971' -or $this.Id -eq 'V-214022' -or $this.Id -eq 'V-214023' -or $this.Id -eq 'V-214024')
+        {
+            $thisOptionName = Get-OptionName -CheckContent $this.RawString
+        }
+        else
+        {
+            $thisOptionName = $Regex.Groups.Where( {$_.Name -eq 'OptionName'}).Value
+        }
 
         if (-not $this.SetStatus($thisOptionName))
         {
@@ -95,7 +112,15 @@ class SecurityOptionRuleConvert : SecurityOptionRule
         }
         else
         {
-            $thisOptionValue = $Regex.Groups.Where( {$_.Name -eq 'OptionValue'}).Value
+            if ($this.Id -eq 'V-213969' -or $this.Id -eq 'V-213971' -or $this.Id -eq 'V-214022' -or $this.Id -eq 'V-214023' -or $this.Id -eq 'V-214024')
+            {
+                $thisOptionValue = Get-OptionValue -CheckContent $this.RawString
+            }
+            else
+            {
+                $thisOptionValue = $Regex.Groups.Where( {$_.Name -eq 'OptionValue'}).Value
+            }
+
             if (-not $this.SetStatus($thisOptionValue))
             {
                 $this.set_OptionValue($thisOptionValue)
@@ -166,8 +191,11 @@ class SecurityOptionRuleConvert : SecurityOptionRule
             expand a variable before the match is evaluated.
         #>
         $delimiter = '(?:(?:-|>)>)'
-        return ($CheckContent -Match
-            "(?:Local Security Policy|Security Settings) $delimiter Local Policies $delimiter Security Options" )
+        return (
+            $checkContent -Match "(?:Local Security Policy|Security Settings) $delimiter Local Policies $delimiter Security Options" -or
+            $checkContent -Match "(?:Expand Local Policies) $delimiter Security Options" -or
+            $checkContent -Match "(?:Expand ""Local Policies"") $delimiter Select ""Security Options"""
+        )
     }
     #endregion
 }

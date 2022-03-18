@@ -1576,42 +1576,6 @@ For clustered instances, the Certificate will NOT be shown in the SQL Server Con
 If any nodes have a certificate in use by SQL that is not issued or approved by DoD, this is a finding.
 </RawString>
     </Rule>
-    <Rule id="V-213969" severity="medium" conversionstatus="pass" title="SRG-APP-000179-DB-000114" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of weak or not validated cryptographic algorithms undermines the purposes of utilizing encryption and digital signatures to protect data.  Weak algorithms can be easily broken and not validated cryptographic modules may not implement algorithms correctly. Unapproved cryptographic modules or algorithms should not be relied on for authentication, confidentiality, or integrity. Weak cryptography could allow an attacker to gain access to and modify data stored in the database as well as the administration settings of SQL Server. 
- 
-Applications, including DBMSs, utilizing cryptography are required to use approved NIST FIPS 140-2 validated cryptographic modules that meet the requirements of applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.   
- 
-The security functions validated as part of FIPS 140-2 for cryptographic modules are described in FIPS 140-2 Annex A. 
- 
-NSA Type- (where =1, 2, 3, 4) products are NSA-certified, hardware-based encryption modules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79199</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>In Windows, open Administrative Tools &gt;&gt; Local Security Policy. Expand Local Policies &gt;&gt; Security Options. In the right-side pane, find "System cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing."  
- 
-If, in the "Security Setting" column, the value is "Disabled," this is a finding. 
- 
-https://support.microsoft.com/en-us/kb/955720</RawString>
-    </Rule>
-    <Rule id="V-213971" severity="medium" conversionstatus="pass" title="SRG-APP-000224-DB-000384" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;One class of man-in-the-middle, or session hijacking, attack involves the adversary guessing at valid session identifiers based on patterns in identifiers already known. 
- 
-The preferred technique for thwarting guesses at Session IDs is the generation of unique session identifiers using a FIPS 140-2 approved random number generator. 
- 
-However, it is recognized that available DBMS products do not all implement the preferred technique yet may have other protections against session hijacking. Therefore, other techniques are acceptable, provided they are demonstrated to be effective.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79203</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that Windows is configured to require the use of FIPS compliant algorithms. 
- 
-Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing." 
- 
-If the Security Setting for this option is "Disabled", this is a finding.</RawString>
-    </Rule>
     <Rule id="V-213973" severity="medium" conversionstatus="pass" title="SRG-APP-000231-DB-000154" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Backup and recovery of the Service Master Key may be critical to the complete recovery of the database. Creating this backup should be one of the first administrative actions performed on the server.  Not having this key can lead to loss of data during recovery.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1743,36 +1707,6 @@ WHERE predicate IS NOT NULL
 If any audits are returned, review the associated filters to determine whether administrative activities are being excluded.  
  
 If any audits are configured to exclude administrative activities, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214022" severity="high" conversionstatus="pass" title="SRG-APP-000514-DB-000381" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. 
- 
-For detailed information, refer to NIST FIPS Publication 140-2, Security Requirements For Cryptographic Modules. Note that the product's cryptographic modules must be validated and certified by NIST as FIPS-compliant.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79305</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that Windows is configured to require the use of FIPS compliant algorithms. 
- 
-Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing." 
- 
-If the Security Setting for this option is "Disabled" this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214023" severity="high" conversionstatus="pass" title="SRG-APP-000514-DB-000382" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. 
- 
-For detailed information, refer to NIST FIPS Publication 140-2, Security Requirements For Cryptographic Modules. Note that the product's cryptographic modules must be validated and certified by NIST as FIPS-compliant.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79307</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that Windows is configured to require the use of FIPS 140-2 algorithms.
-
-Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing."
-
-If  "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing" is not enabled, this is a finding.</RawString>
     </Rule>
     <Rule id="V-214046" severity="high" conversionstatus="pass" title="SRG-APP-000178-DB-000083" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;To prevent the compromise of authentication information, such as passwords and PINs, during the authentication process, the feedback from the information system must not provide any information that would allow an unauthorized user to compromise the authentication mechanism.
@@ -2599,6 +2533,101 @@ Ensure that "System cryptography: Use FIPS-compliant algorithms for encryption, 
 If  "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not enabled, this is a finding. 
  
 For more information, see https://support.microsoft.com/en-us/kb/3141890.</RawString>
+    </Rule>
+    <Rule id="V-213969" severity="medium" conversionstatus="pass" title="SRG-APP-000179-DB-000114" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Use of weak or not validated cryptographic algorithms undermines the purposes of utilizing encryption and digital signatures to protect data.  Weak algorithms can be easily broken and not validated cryptographic modules may not implement algorithms correctly. Unapproved cryptographic modules or algorithms should not be relied on for authentication, confidentiality, or integrity. Weak cryptography could allow an attacker to gain access to and modify data stored in the database as well as the administration settings of SQL Server. 
+ 
+Applications, including DBMSs, utilizing cryptography are required to use approved NIST FIPS 140-2 validated cryptographic modules that meet the requirements of applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.   
+ 
+The security functions validated as part of FIPS 140-2 for cryptographic modules are described in FIPS 140-2 Annex A. 
+ 
+NSA Type- (where =1, 2, 3, 4) products are NSA-certified, hardware-based encryption modules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf>V-213968</DuplicateOf>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79199</LegacyId>
+      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
+      <OptionValue>enabled</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>In Windows, open Administrative Tools &gt;&gt; Local Security Policy. Expand Local Policies &gt;&gt; Security Options. In the right-side pane, find "System cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing."  
+ 
+If, in the "Security Setting" column, the value is "Disabled," this is a finding. 
+ 
+https://support.microsoft.com/en-us/kb/955720</RawString>
+    </Rule>
+    <Rule id="V-213971" severity="medium" conversionstatus="pass" title="SRG-APP-000224-DB-000384" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;One class of man-in-the-middle, or session hijacking, attack involves the adversary guessing at valid session identifiers based on patterns in identifiers already known. 
+ 
+The preferred technique for thwarting guesses at Session IDs is the generation of unique session identifiers using a FIPS 140-2 approved random number generator. 
+ 
+However, it is recognized that available DBMS products do not all implement the preferred technique yet may have other protections against session hijacking. Therefore, other techniques are acceptable, provided they are demonstrated to be effective.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf>V-213968</DuplicateOf>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79203</LegacyId>
+      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
+      <OptionValue>enabled</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Windows is configured to require the use of FIPS compliant algorithms. 
+ 
+Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing." 
+ 
+If the Security Setting for this option is "Disabled", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-214022" severity="high" conversionstatus="pass" title="SRG-APP-000514-DB-000381" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. 
+ 
+For detailed information, refer to NIST FIPS Publication 140-2, Security Requirements For Cryptographic Modules. Note that the product's cryptographic modules must be validated and certified by NIST as FIPS-compliant.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf>V-213968</DuplicateOf>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79305</LegacyId>
+      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
+      <OptionValue>enabled</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Windows is configured to require the use of FIPS compliant algorithms. 
+ 
+Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing." 
+ 
+If the Security Setting for this option is "Disabled" this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-214023" severity="high" conversionstatus="pass" title="SRG-APP-000514-DB-000382" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. 
+ 
+For detailed information, refer to NIST FIPS Publication 140-2, Security Requirements For Cryptographic Modules. Note that the product's cryptographic modules must be validated and certified by NIST as FIPS-compliant.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf>V-213968</DuplicateOf>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79307</LegacyId>
+      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
+      <OptionValue>enabled</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Windows is configured to require the use of FIPS 140-2 algorithms.
+
+Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing."
+
+If  "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing" is not enabled, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-214024" severity="medium" conversionstatus="pass" title="SRG-APP-000514-DB-000383" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. 
+ 
+It is the responsibility of the data owner to assess the cryptography requirements in light of applicable federal laws, Executive Orders, directives, policies, regulations, and standards. 
+ 
+For detailed information, refer to NIST FIPS Publication 140-2, Security Requirements For Cryptographic Modules. Note that the product's cryptographic modules must be validated and certified by NIST as FIPS-compliant.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf>V-213968</DuplicateOf>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79309</LegacyId>
+      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
+      <OptionValue>enabled</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the server documentation, if this system does not contain data that must be encrypted, this finding is NA.
+
+Verify that Windows is configured to require the use of FIPS 140-2 algorithms for the unclassified information that requires it.
+
+Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing."
+
+If  "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing" is not enabled, this is a finding.</RawString>
     </Rule>
   </SecurityOptionRule>
   <SqlDatabaseRule dscresourcemodule="SqlServerDsc">

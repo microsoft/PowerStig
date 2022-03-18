@@ -1,8 +1,9 @@
 # Versions
 
 ## [Unreleased]
-* Update SQL Server audit coverage [#1038](https://github.com/microsoft/PowerStig/issues/1038)
 
+* Update SQL Server 2016 for duplicate FIPS ID's [#1027](https://github.com/microsoft/PowerStig/issues/1027)
+* Update SQL Server audit coverage [#1038](https://github.com/microsoft/PowerStig/issues/1038)
 * Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 5: [#1042](https://github.com/microsoft/PowerStig/issues/1042)
 * Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 4: [#1044](https://github.com/microsoft/PowerStig/issues/1044)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 8.0 Site STIG V2R5: [#1047](https://github.com/microsoft/PowerStig/issues/1047)
