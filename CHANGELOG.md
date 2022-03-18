@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+Fixed: SQL 2016 STIGs are failing integration tests: [#1073](https://github.com/microsoft/PowerStig/issues/1073)
+
 ## [4.12.0] - 2022-03-18
 
 * Update PowerSTIG to successfully parse/apply Microsoft Outlook 2016 Version 2; Release 2: [#1039](https://github.com/microsoft/PowerStig/issues/1039)
