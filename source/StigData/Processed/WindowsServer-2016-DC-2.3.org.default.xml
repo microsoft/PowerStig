@@ -7,35 +7,35 @@
 -->
 <OrganizationalSettings fullversion="2.3">
   <!-- Ensure ''V-224923.b'' -match '1|3'-->
-  <OrganizationalSetting id="V-224923.b" ValueData="" />
+  <OrganizationalSetting id="V-224923.b" ValueData="1" />
   <!-- Ensure ''V-224924'' -match '1|3|8|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-224924" ValueData="" />
+  <OrganizationalSetting id="V-224924" ValueData="8" />
   <!-- Ensure ''V-224936'' -match '0|1'-->
-  <OrganizationalSetting id="V-224936" ValueData="" />
+  <OrganizationalSetting id="V-224936" ValueData="0" />
   <!-- Ensure ''V-224937'' -ge '32768'-->
-  <OrganizationalSetting id="V-224937" ValueData="" />
+  <OrganizationalSetting id="V-224937" ValueData="32768" />
   <!-- Ensure ''V-224938'' -ge '196608'-->
-  <OrganizationalSetting id="V-224938" ValueData="" />
+  <OrganizationalSetting id="V-224938" ValueData="196608" />
   <!-- Ensure ''V-224939'' -ge '32768'-->
-  <OrganizationalSetting id="V-224939" ValueData="" />
+  <OrganizationalSetting id="V-224939" ValueData="32768" />
   <!-- Ensure ''V-224941'' -match '0|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-224941" ValueData="" />
+  <OrganizationalSetting id="V-224941" ValueData="0" />
   <!-- Ensure ''V-224942'' -match '0|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-224942" ValueData="" />
+  <OrganizationalSetting id="V-224942" ValueData="0" />
   <!-- Ensure ''V-224943'' -match '0|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-224943" ValueData="" />
+  <OrganizationalSetting id="V-224943" ValueData="0" />
   <!-- Ensure ''V-224951'' -match '0|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-224951" ValueData="" />
+  <OrganizationalSetting id="V-224951" ValueData="0" />
   <!-- Ensure ''V-224955'' -match '0|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-224955" ValueData="" />
+  <OrganizationalSetting id="V-224955" ValueData="0" />
   <!-- Ensure ''V-224966'' -le '600' -and ''V-224966'' -ne '0'-->
-  <OrganizationalSetting id="V-224966" PolicyValue="" />
+  <OrganizationalSetting id="V-224966" PolicyValue="600" />
   <!-- Ensure ''V-224967'' -le '10' -and ''V-224967'' -ne '0'-->
-  <OrganizationalSetting id="V-224967" PolicyValue="" />
+  <OrganizationalSetting id="V-224967" PolicyValue="10" />
   <!-- Ensure ''V-224968'' -le '7'-->
-  <OrganizationalSetting id="V-224968" PolicyValue="" />
+  <OrganizationalSetting id="V-224968" PolicyValue="7" />
   <!-- Ensure ''V-224969'' -le '5'-->
-  <OrganizationalSetting id="V-224969" PolicyValue="" />
+  <OrganizationalSetting id="V-224969" PolicyValue="5" />
   <!-- Ensure location for DoD Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-225021.a" Location="" />
   <!-- Ensure location for DoD Root CA 3 certificate is present-->
@@ -51,31 +51,31 @@
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-225023" Location="" />
   <!-- Ensure ''V-225033'' -le '30' -and ''V-225033'' -gt '0'-->
-  <OrganizationalSetting id="V-225033" ValueData="" />
+  <OrganizationalSetting id="V-225033" ValueData="30" />
   <!-- Ensure ''V-225035'' -le '900' -and ''V-225035'' -gt '0'-->
-  <OrganizationalSetting id="V-225035" ValueData="" />
+  <OrganizationalSetting id="V-225035" ValueData="900" />
   <!-- Ensure ''V-225037'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
-  <OrganizationalSetting id="V-225037" ValueData="" />
+  <OrganizationalSetting id="V-225037" ValueData="DoD Notice and Consent Banner" />
   <!-- Ensure ''V-225038'' -match '1|2'-->
-  <OrganizationalSetting id="V-225038" ValueData="" />
+  <OrganizationalSetting id="V-225038" ValueData="1" />
   <!-- Ensure ''V-225063'' -match '1|2'-->
-  <OrganizationalSetting id="V-225063" ValueData="" />
+  <OrganizationalSetting id="V-225063" ValueData="1" />
   <!-- Ensure ''V-225069'' -match '2|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-225069" ValueData="" />
+  <OrganizationalSetting id="V-225069" ValueData="2" />
   <!-- Ensure ''V-224866'' -ge '15' -or ''V-224866'' -eq '0'-->
-  <OrganizationalSetting id="V-224866" PolicyValue="" />
+  <OrganizationalSetting id="V-224866" PolicyValue="15" />
   <!-- Ensure ''V-224867'' -le '3' -and ''V-224867'' -ne '0'-->
-  <OrganizationalSetting id="V-224867" PolicyValue="" />
+  <OrganizationalSetting id="V-224867" PolicyValue="3" />
   <!-- Ensure ''V-224868'' -ge '15'-->
-  <OrganizationalSetting id="V-224868" PolicyValue="" />
+  <OrganizationalSetting id="V-224868" PolicyValue="15" />
   <!-- Ensure ''V-224869'' -ge '24'-->
-  <OrganizationalSetting id="V-224869" PolicyValue="" />
+  <OrganizationalSetting id="V-224869" PolicyValue="24" />
   <!-- Ensure ''V-224870'' -le '60' -and ''V-224870'' -ne '0'-->
-  <OrganizationalSetting id="V-224870" PolicyValue="" />
+  <OrganizationalSetting id="V-224870" PolicyValue="60" />
   <!-- Ensure ''V-224871'' -ne '0'-->
-  <OrganizationalSetting id="V-224871" PolicyValue="" />
+  <OrganizationalSetting id="V-224871" PolicyValue="1" />
   <!-- Ensure ''V-224872'' -ge '14'-->
-  <OrganizationalSetting id="V-224872" PolicyValue="" />
+  <OrganizationalSetting id="V-224872" PolicyValue="14" />
   <!-- Ensure ''V-225026'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-225026" OptionValue="" />
   <!-- Ensure ''V-225027'' -ne 'Guest'-->
