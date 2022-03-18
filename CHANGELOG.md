@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 5: [#1042](https://github.com/microsoft/PowerStig/issues/1042)
 * Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 4: [#1044](https://github.com/microsoft/PowerStig/issues/1044)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 8.0 Site STIG V2R5: [#1047](https://github.com/microsoft/PowerStig/issues/1047)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 Site\Server STIG V2R5: [#1046](https://github.com/microsoft/PowerStig/issues/1046)
