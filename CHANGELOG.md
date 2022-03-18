@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [4.12.0] - 2022-03-18
+
 * Update PowerSTIG to successfully parse/apply Microsoft Outlook 2016 Version 2; Release 2: [#1039](https://github.com/microsoft/PowerStig/issues/1039)
 * Update SQL Server 2016 for duplicate FIPS ID's [#1027](https://github.com/microsoft/PowerStig/issues/1027)
 * Update SQL Server audit coverage [#1038](https://github.com/microsoft/PowerStig/issues/1038)
