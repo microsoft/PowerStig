@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Update SQL Server audit coverage [#1038](https://github.com/microsoft/PowerStig/issues/1038)
 
 * Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 5: [#1042](https://github.com/microsoft/PowerStig/issues/1042)
 * Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 4: [#1044](https://github.com/microsoft/PowerStig/issues/1044)
