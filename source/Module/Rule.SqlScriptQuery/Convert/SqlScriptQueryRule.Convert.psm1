@@ -218,7 +218,11 @@ class SqlScriptQueryRuleConvert : SqlScriptQueryRule
                 $CheckContent -Match "SCHEMA_OBJECT_CHANGE_GROUP" -or #V-79267,79269,79279,79281
                 $CheckContent -Match "SUCCESSFUL_LOGIN_GROUP" -or #V-79287,79297
                 $CheckContent -Match "FAILED_LOGIN_GROUP" -or #V-79289
-                $CheckContent -Match "status_desc = 'STARTED'" #V-79141
+                $CheckContent -Match "d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP'" -or #V-213995,213938,213939,213997,214005,214006,214011,214012,214019,214020
+                $CheckContent -Match "status_desc = 'STARTED'" -or #V-79141
+                $CheckContent -Match "SHUTDOWN SERVER INSTANCE" -or #V-213942
+                $CheckContent -Match """max_rollover_files"" is greater than zero" -or #V-213943
+                $CheckContent -Match """max_file_size"" or ""max_rollover_files""" #V-213983
             )
         )
         {
