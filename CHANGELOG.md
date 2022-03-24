@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Update SQL Server 2016 XML [#1075](https://github.com/microsoft/PowerStig/issues/1075)
 
 ## [4.12.0] - 2022-03-18
 
