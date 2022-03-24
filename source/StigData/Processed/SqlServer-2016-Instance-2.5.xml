@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="2/7/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="3/24/2022">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful Denial of Service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions per user is helpful in reducing these risks. 
@@ -1078,25 +1078,6 @@ Generate a listing of components installed on the server.
 Click Start &gt;&gt; Type "SQL Server 2016 Installation Center" &gt;&gt; Launch the program &gt;&gt; Click Tools &gt;&gt; Click "Installed SQL Server features discovery report" 
  
 Compare the feature listing against the required components listing. If any features are installed, but are not required, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214024" severity="medium" conversionstatus="pass" title="SRG-APP-000514-DB-000383" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. 
- 
-It is the responsibility of the data owner to assess the cryptography requirements in light of applicable federal laws, Executive Orders, directives, policies, regulations, and standards. 
- 
-For detailed information, refer to NIST FIPS Publication 140-2, Security Requirements For Cryptographic Modules. Note that the product's cryptographic modules must be validated and certified by NIST as FIPS-compliant.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79309</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the server documentation, if this system does not contain data that must be encrypted, this finding is NA.
-
-Verify that Windows is configured to require the use of FIPS 140-2 algorithms for the unclassified information that requires it.
-
-Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing."
-
-If  "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing" is not enabled, this is a finding.</RawString>
     </Rule>
     <Rule id="V-214025" severity="medium" conversionstatus="pass" title="SRG-APP-000515-DB-000318" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration. 
