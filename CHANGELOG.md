@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+*Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
+
 ## [4.12.1] - 2022-03-22
 
 Fixed: SQL 2016 STIGs are failing integration tests: [#1073](https://github.com/microsoft/PowerStig/issues/1073)
