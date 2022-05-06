@@ -1,3 +1,2 @@
-V-223167::*::HardCodedRule(FileContentRule)@{DscResource = 'ReplaceText'; Key = 'xpinstall.enabled'; Value = 'false'}
 V-251557::*::HardCodedRule(FileContentRule)@{DscResource = 'ReplaceText'; Key = 'InstallAddonsPermission'; Value = 'false'}
 V-251565::*::.
