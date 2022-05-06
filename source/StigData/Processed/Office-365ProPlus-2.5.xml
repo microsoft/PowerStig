@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Office_365_ProPlus_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Office_365_ProPlus_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Microsoft Office 365 ProPlus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="8/13/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Office_365_ProPlus_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Office_365_ProPlus_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 27 Apr 2022 3.3.0.27375 1.10.0" title="Microsoft Office 365 ProPlus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="5/6/2022">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-223296" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer add-ons are pieces of code, run in Internet Explorer, to provide additional functionality. Rogue add-ons may contain viruses or other malicious code. Disabling or not configuring this setting could allow malicious code or users to become active on user computers or the network. For example, a malicious user can monitor and then use keystrokes that user's type into Internet Explorer. Even legitimate add-ons may demand resources, compromising the performance of Internet Explorer and the operating systems for user computers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -30,7 +30,7 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_mime_handling
 
-If the value for all installed Office programs is set to "True", this is not a finding.</RawString>
+If the value for all installed Office programs is set to is REG_DWORD=1, this is not a finding.</RawString>
     </Rule>
     <Rule id="V-223298" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The Uniform Resource Locator (URL) standard allows user authentication to be included in URL strings in the form http://username:password@example.com. A malicious user might use this URL syntax to create a hyperlink that appears to open a legitimate website but actually opens a deceptive (spoofed) website. For example, the URL http://www.wingtiptoys.com@example.com appears to open http://www.wingtiptoys.com but actually opens http://example.com. To protect users from such attacks, Internet Explorer usually blocks any URLs using this syntax.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -294,7 +294,7 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\Microsoft\office\16.0\access\security
 
-If the value vbawarnings is REG_DWORD = 2, this is not a finding. Values of REG_DWORD = 3 or 4 are also acceptable values. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
+If the value vbawarnings is REG_DWORD = 3, this is not a finding. Values of REG_DWORD = 2 or 4 are also acceptable. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
       <ValueData />
       <ValueName>vbawarnings</ValueName>
       <ValueType>Dword</ValueType>
@@ -469,10 +469,10 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\Software\Policies\Microsoft\Office\Common\Security
 
-If the value UFIControls exists, this is not a finding.</RawString>
+If the value UFIControls is set to REG_DWORD=6, this is not a finding.</RawString>
       <ValueData />
       <ValueName>UFIControls</ValueName>
-      <ValueType>String</ValueType>
+      <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223289" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls whether macros can run in an Office 365 ProPlus application that is opened programmatically by another application. If this policy setting is enabled, the user can choose from three options for controlling macro behavior in Excel, PowerPoint, and Word when the application is opened programmatically:
@@ -505,8 +505,7 @@ If the value AutomationSecurity is REG_DWORD = 2, this is not a finding.</RawStr
 
 The Message Bar in Office 365 ProPlus applications is used to identify security issues, such as unsigned macros or potentially unsafe add-ins. When such issues are detected, the application disables the unsafe feature or content and displays the Message Bar at the top of the active window. The Message Bar informs the users about the nature of the security issue and, in some cases, provides the users with an option to enable the potentially unsafe feature or content, which could harm the user's computer. 
 
-If you enable this policy setting, Office 365 ProPlus applications do not display information in the Message Bar about potentially unsafe content that has been detected or has automatically been blocked.
-&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+If  this policy setting is enabled, Office 365 ProPlus applications do not display information in the Message Bar about potentially unsafe content that has been detected or has automatically been blocked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -520,9 +519,9 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\microsoft\office\16.0\common\trustcenter
 
-If the value automationsecuritypublisher is REG_DWORD = 2, this is not a finding.</RawString>
-      <ValueData>2</ValueData>
-      <ValueName>automationsecuritypublisher</ValueName>
+If the value trustbar is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>trustbar</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223291" severity="medium" conversionstatus="pass" title="SRG-APP-000231" dscresource="RegistryPolicyFile">
@@ -632,27 +631,27 @@ If the value for neverloadmanifests is REG_DWORD = 1, this is not a finding.</Ra
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223295" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy setting allows you to control how ActiveX controls in UserForms should be initialized based upon whether they are Safe for Initialization (SFI) or Unsafe for Initialization (UFI). 
+      <Description>&lt;VulnDiscussion&gt;This policy setting allows the user to control how ActiveX controls in UserForms should be initialized based upon whether they are Safe for Initialization (SFI) or Unsafe for Initialization (UFI). 
  
 ActiveX controls are Component Object Model (COM) objects and have unrestricted access to users' computers. ActiveX controls can access the local file system and change the registry settings of the operating system. If a malicious user repurposes an ActiveX control to take over a user's computer, the effect could be significant. To help improve security, ActiveX developers can mark controls as SFI, which means that the developer states that the controls are safe to open and run and not capable of causing harm to any computers. If a control is not marked SFI, the control could adversely affect a computer, or the developers may not have tested the control in all situations and are not sure whether their control might be compromised at some future date. SFI controls run in safe mode, which limits their access to the computer. For example, a worksheet control can both read and write files when it is in unsafe mode, but perhaps only read from files when it is in safe mode. This functionality allows the control to be used in very powerful ways when safety was not important, but the control would still be safe for use in a Web page. If a control is not marked as SFI, it is marked UFI, which means that it is capable of affecting a user's computer. If UFI ActiveX controls are loaded, they are always loaded in unsafe mode. 
  
-If you enable this policy setting, you can choose from four options for loading controls in UserForms: 
+If this policy setting is enabled, choose from four options for loading controls in UserForms: 
  
 1. For a UFI or SFI signed control that supports safe and unsafe mode, load the control in unsafe mode. For an SFI signed control that only supports a safe mode configuration, load the control in safe mode. This option enforces the default configuration. 
  
 2. Users are prompted to determine how UserForm forms will load. The prompt only displays once per session within an application. When users respond to the prompt, loading continues based on whether the control is UFI or SFI: 
  
-- For a UFI signed control, if users respond Yes to the prompt, load the control in unsafe mode. If users respond No, load the control using the default properties. 
-- For an SFI signed control that supports both safe and unsafe modes, if users respond Yes to the prompt, load the control in unsafe mode. If users respond No, load the control using safe mode. If the SFI control can only support safe mode, load the control in safe mode. This option is the default configuration in the Microsoft Office 365 ProPlus release. 
+- For a UFI signed control, if users respond "Yes" to the prompt, load the control in unsafe mode. If users respond "No", load the control using the default properties. 
+- For an SFI signed control that supports both safe and unsafe modes, if users respond "Yes" to the prompt, load the control in unsafe mode. If users respond "No", load the control using safe mode. If the SFI control can only support safe mode, load the control in safe mode. This option is the default configuration in the Microsoft Office 365 ProPlus release. 
  
 3. Users are prompted to determine how UserForm forms will load. The prompt only displays once per session within an application. When users respond to the prompt, loading continues based on whether the control is UFI or SFI: 
  
-- For a UFI signed control, if users respond Yes to the prompt, load the control in unsafe mode. If users respond No, load the control with its default properties. 
+- For a UFI signed control, if users respond "Yes" to the prompt, load the control in unsafe mode. If users respond "No", load the control with its default properties. 
 - For an SFI signed control, load in safe mode. 
  
 4. For a UFI signed control, load with the default properties of the control. For an SFI signed control, load in safe mode (considered to be the safest mode). 
  
-If you disable or do not configure this policy setting, the behavior is as if you enable this policy setting and then select option 1.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+If  this policy setting is disabled or not configured, the behavior is as if this policy setting is enabled and then select option "1".&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -667,7 +666,8 @@ Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\VBA\Security
 
 If the value LoadControlsInForms is REG_DWORD=1, this is not a finding.
-</RawString>
+
+If the value LoadControlsInForms does not exist, this is not a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>LoadControlsInForms</ValueName>
       <ValueType>Dword</ValueType>
@@ -695,10 +695,10 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKLM\SOFTWARE\Microsoft\Office\Common\COM Compatibility
 
-If the value for COMMENT is REG_DWORD = 1, this is not a finding.</RawString>
-      <ValueData>1</ValueData>
+If the value for COMMENT is REG_SZ = Block all Flash activation, this is not a finding.</RawString>
+      <ValueData>Block all Flash activation</ValueData>
       <ValueName>COMMENT</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-223310" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls whether trusted locations on the network can be used.
@@ -740,18 +740,18 @@ If you enable this policy setting, you can choose from four options for determin
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\16.0\excel\security</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Excel\Security</Key>
       <LegacyId>V-99697</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Application Settings &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; "VBA macro Notification Settings" is set to "Enabled" and "Disable all except digitally signed macros" from the Options. 
 
 Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\Microsoft\office\16.0\excel\security
 
-If the value vbawarnings is REG_DWORD = 3, this is not a finding.</RawString>
-      <ValueData>3</ValueData>
+If the value vbawarnings is REG_DWORD = 3, this is not a finding. Values of REG_DWORD = 2 or 4 are also acceptable. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
+      <ValueData />
       <ValueName>vbawarnings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -1330,7 +1330,7 @@ If you enable this policy setting, you can choose from three options for working
 - Allow different, but warn - Excel opens the files properly, but warns users about the file type mismatch. This option is the default configuration in Excel.
 - Always match file type - Excel does not open any files that have non-matching extensions.
 
-If you disable or do not configure this policy setting, if users attempt to open files with the wrong extension, Excel opens the file and displays a warning that the file type is not what Excel expected.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+If this policy setting is disabled or not configured or if users attempt to open files with the wrong extension, Excel opens the file and displays a warning that the file type is not what Excel expected.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1527,14 +1527,13 @@ Note: This policy setting only applies to subscription versions of Office, such 
       <LegacyId>V-99753</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; External Content &gt;&gt; Always open untrusted database files in Protected View is set to "Enabled".
+      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; External Content &gt;&gt; Always open untrusted database files in Protected View is set to "Enabled".
 
 Use the Windows Registry Editor to navigate to the following key: 
 
-HKCU\software\polices\microsoft\office\16.0\excel\security\protectedview
+HKCU\software\policies\microsoft\office\16.0\excel\security\protectedview
 
-If the value for enabledatabasefileprotectedview is REG_DWORD = 1, this is not a finding.
-</RawString>
+If the value for enabledatabasefileprotectedview is REG_DWORD = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>enabledatabasefileprotectedview</ValueName>
       <ValueType>Dword</ValueType>
@@ -1742,7 +1741,7 @@ If you disable or do not configure this policy setting, Outlook will attempt to 
  
 Use the Windows Registry Editor to navigate to the following key:
 
-HKCU\software\policies\microsoft\office\16.0\outlook\security!authenticationservice
+HKCU\software\policies\microsoft\office\16.0\outlook\security
 
 If the value authenticationservice is set to REG_DWORD = 16 (decimal) or 10 (hex), this is not a finding.</RawString>
       <ValueData />
@@ -1912,7 +1911,7 @@ If you disable or do not configure this policy setting, Outlook does not conside
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\options\mail</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\options\mail</Key>
       <LegacyId>V-99783</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1920,7 +1919,7 @@ If you disable or do not configure this policy setting, Outlook does not conside
 
 Use the Windows Registry to navigate to the following key:
 
-HKCU\software\policies\ microsoft\office\ 16.0\outlook\options\mail
+HKCU\software\policies\microsoft\office\ 16.0\outlook\options\mail
 
 If the value for Internet is set to REG_DWORD = 0, this is not a finding.</RawString>
       <ValueData>0</ValueData>
@@ -1936,7 +1935,7 @@ If you disable or do not configure this policy setting, Outlook users can publis
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\security</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\security</Key>
       <LegacyId>V-99785</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1944,7 +1943,7 @@ If you disable or do not configure this policy setting, Outlook users can publis
 
 Use the Windows Registry to navigate to the following key:
 
-HKCU\software\policies\microsoft\office\16.0\ outlook\security
+HKCU\software\policies\microsoft\office\16.0\outlook\security
 
 If the value for publishtogaldisabled is REG_DWORD = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
@@ -2014,7 +2013,7 @@ If you disable or do not configure this policy setting, when Outlook handles a c
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\security</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\security</Key>
       <LegacyId>V-99791</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2022,7 +2021,7 @@ If you disable or do not configure this policy setting, when Outlook handles a c
 
 Use the Windows Registry to navigate to the following key:
 
-HKCU\software\policies\microsoft\office\16.0\ outlook\security
+HKCU\software\policies\microsoft\office\16.0\outlook\security
 
 If the value for usecrlchasing is set to REG_DWORD = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
@@ -2041,7 +2040,7 @@ Note: In previous versions of Outlook, when security settings were published in 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\security</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\security</Key>
       <LegacyId>V-99793</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2049,7 +2048,7 @@ Note: In previous versions of Outlook, when security settings were published in 
 
 Use the Windows Registry to navigate to the following key:
 
-HKCU\software\policies\microsoft\office\16.0\ outlook\security
+HKCU\software\policies\microsoft\office\16.0\outlook\security
 
 If the value for adminsecuritymode is set to REG_DWORD = 3, this is not a finding.</RawString>
       <ValueData>3</ValueData>
@@ -2145,7 +2144,7 @@ Important: This policy setting only applies if the "Outlook Security Mode" polic
  
 Use the Windows Registry Editor to navigate to the following key: 
 
-HKCU\software\policies\microsoft\office\16.0\outlook \security\FileExtensionsRemoveLevel2
+HKCU\software\policies\microsoft\office\16.0\outlook\security\FileExtensionsRemoveLevel2
 
 If the registry key exists, this is a finding.</RawString>
       <ValueData />
@@ -2496,18 +2495,18 @@ Therefore, if you created a list of trusted publishers in a previous version of 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\project\security</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Project\Security</Key>
       <LegacyId>V-99855</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft PowerPoint 2016 &gt;&gt; PowerPoint Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; VBA Macro Notification Settings is set to "Enabled" "Disable all except digitally signed macros".
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
+      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Project 2016 &gt;&gt; Project Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; VBA Macro Notification Settings is set to "Enabled" "Disable all except digitally signed macros".
 
 Use the Windows Registry Editor to navigate to the following key:
 
-HKCU\software\policies\microsoft\office\16.0\project\security
+HKCU\software\policies\microsoft\office\16.0\ms project\security
 
-If the value for vbawarnings is REG_DWORD = 1, this is not a finding.</RawString>
-      <ValueData>3</ValueData>
+If the value for vbawarnings is REG_DWORD = 3, this is not a finding. Values of REG_DWORD = 2 or 4 are also acceptable. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
+      <ValueData />
       <ValueName>vbawarnings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -2535,16 +2534,16 @@ Therefore, if you created a list of trusted publishers in a previous version of 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\powerpoint\security</Key>
       <LegacyId>V-99825</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft PowerPoint 2016 &gt;&gt; PowerPoint Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; VBA Macro Notification Settings is set to "Enabled" "Disable all except digitally signed macros".
 
 Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\microsoft\office\16.0\powerpoint\security
 
-If the value for vbawarnings is REG_DWORD = 3 this is not a finding.</RawString>
-      <ValueData>3</ValueData>
+If the value for vbawarnings is REG_DWORD = 3 this is not a finding. Values of REG_DWORD = 2 or 4 are also acceptable. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
+      <ValueData />
       <ValueName>vbawarnings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -2881,8 +2880,8 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\microsoft\office\common\security
 
-If the value automationsecuritypublisher is REG_DWORD = 0, this is not a finding.</RawString>
-      <ValueData>0</ValueData>
+If the value automationsecuritypublisher is REG_DWORD = 2, this is not a finding.</RawString>
+      <ValueData>2</ValueData>
       <ValueName>automationsecuritypublisher</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -2934,18 +2933,18 @@ Therefore, if you created a list of trusted publishers in a previous version of 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\publisher\security</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Publisher\Security</Key>
       <LegacyId>V-99861</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
       <RawString>Set policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Publisher 2016 &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; VBA Macro Notification Settings &gt;&gt; VBA Macro Notification Settings to "Enabled" "Disable all except digitally signed macros"
  
 Use the Windows Registry Editor to navigate to the following key: 
 
 HKCU\software\policies\microsoft\office\16.0\publisher\security
 
-If the value vbawarnings is REG_DWORD = 3, this is not a finding.</RawString>
-      <ValueData>3</ValueData>
+If the value vbawarnings is REG_DWORD = 3, this is not a finding. Values of REG_DWORD = 2 or 4 are also acceptable. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
+      <ValueData />
       <ValueName>vbawarnings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -2971,18 +2970,18 @@ Therefore, if you created a list of trusted publishers in a previous version of 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\visio\security</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Visio\Security</Key>
       <LegacyId>V-99863</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates/Microsoft Visio 2016 &gt;&gt; Visio Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; VBA Macro Notification Settings is set to "Enabled" and "Disable all except digitally signed macros".
 
 Use the Windows Registry Editor to navigate to the following key: 
 
 HKCU\software\policies\microsoft\office\16.0\visio\security
 
-If the value for vbawarnings is REG_DWORD = 3, this is not a finding.</RawString>
-      <ValueData>3</ValueData>
+If the value for vbawarnings is REG_DWORD = 3, this is not a finding. Values of REG_DWORD = 2 or 4 are also acceptable. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
+      <ValueData />
       <ValueName>vbawarnings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -3670,18 +3669,18 @@ If you enable this policy setting, you can choose from four options for determin
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\16.0\word\security</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Word\Security</Key>
       <LegacyId>V-99911</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Word 2016 &gt;&gt;  Security &gt;&gt; Trust Center &gt;&gt; "VBA macro Notification Settings" is set to "Enabled" and "Disable all except digitally signed macros" from the Options. 
 
 Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\Microsoft\office\16.0\word\security
 
-If the value vbawarnings is REG_DWORD = 3, this is not a finding.</RawString>
-      <ValueData>3</ValueData>
+If the value vbawarnings is REG_DWORD = 3, this is not a finding. Values of REG_DWORD = 2 or 4 are also acceptable. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
+      <ValueData />
       <ValueName>vbawarnings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>

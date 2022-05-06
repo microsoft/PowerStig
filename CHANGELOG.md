@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 5: [#1078](https://github.com/microsoft/PowerStig/issues/1078)
+
 ## [4.12.1] - 2022-03-22
 
 Fixed: SQL 2016 STIGs are failing integration tests: [#1073](https://github.com/microsoft/PowerStig/issues/1073)
