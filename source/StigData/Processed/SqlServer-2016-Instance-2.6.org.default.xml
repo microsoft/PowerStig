@@ -6,8 +6,6 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="2.6">
-  <!-- Ensure SQL authentication logins are populated from organizational settings.-->
-  <OrganizationalSetting id="V-213964" Ensure="" Name="" />
   <!-- Ensure 'V-214029' is populated with a non-default SA account name-->
   <OrganizationalSetting id="V-214029" VariableValue="stig_sa" />
   <!-- Ensure 'V-213964' sets password policies for SQL authentication logins. Use comma delimiters for multiple logins-->
