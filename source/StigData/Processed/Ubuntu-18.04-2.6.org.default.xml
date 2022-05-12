@@ -34,6 +34,8 @@
   <OrganizationalSetting id="V-219226" ContainsLine="action_mail_acct = root" DoesNotContainPattern="#\s*action_mail_acct\s*=\s*root" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: If the value of the "disk_full_action" option is not "SYSLOG", "SINGLE", or "HALT", or the line is commented out, this is a finding. -->
   <OrganizationalSetting id="V-219227" ContainsLine="disk_full_action = HALT" DoesNotContainPattern="#\s*disk_full_action.*|^\s*disk_full_action\s*=\s*(?!HALT\b)\w+" />
+    <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "maxlogins" item is missing, or the value is not set to 10 or less, or is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-219301" ContainsLine="* hard maxlogins 10" DoesNotContainPattern="^\s*\*\s*hard\s*maxlogins\s*([1][1-9]|[2-9]\d+|[1-9][0-9]\d+)$|^#\s*\*\s*hard\s*maxlogins." />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.-->
   <OrganizationalSetting id="V-219303.b" ContainsLine="TMOUT=900" DoesNotContainPattern="^\s*TMOUT\s*=\s*[0-8]?[0-9]?[0-9]?$|^#\s*TMOUT.*" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" does not exist, is not set to a value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding." -->
