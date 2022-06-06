@@ -354,7 +354,8 @@ function Split-BenchmarkId
     $windowsVariations = @(
         'Microsoft_Windows',
         'Windows_Server',
-        'Windows'
+        'Windows',
+        'MS_Windows_10_STIG'
     )
     $dnsServerVariations = @(
         'Server_Domain_Name_System',
@@ -425,6 +426,7 @@ function Split-BenchmarkId
         {$PSItem -match "Windows_10"}
         {
             $returnId = $id -Replace "Windows", 'WindowsClient'
+            $returnId = $returnId -Replace "MS_", ''
             continue
         }
         {$PSItem -match 'JRE_8'}
