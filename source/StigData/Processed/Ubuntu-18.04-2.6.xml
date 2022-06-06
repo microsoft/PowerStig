@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 27 Jan 2022 3.2.2.36079 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.6" created="3/1/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 27 Jan 2022 3.2.2.36079 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.6" created="5/6/2022">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-219150" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information at rest refers to the state of information when it is located on a secondary storage device (e.g., disk drive and tape drive, when used for backups) within an operating system.
@@ -4052,29 +4052,27 @@ If the command does not return a line, or the line is commented out, this is a f
 
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
-    <Rule id="V-219300" severity="medium" conversionstatus="pass" title="SRG-OS-000477-GPOS-00222" dscresource="nxFileLine">
-      <ContainsLine>-w /sbin/fdisk -p x -k fdisk</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
+    <Rule id="V-219301" severity="low" conversionstatus="pass" title="SRG-OS-000027-GPOS-00008" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Ubuntu operating system management includes the ability to control the number of users and user sessions that utilize an operating system. Limiting the number of allowed users and sessions per user is helpful in reducing the risks related to DoS attacks.
 
-Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-w\s*/sbin/fdisk\s*-p\s*x\s*-k\s*fdisk</DoesNotContainPattern>
+This requirement addresses concurrent sessions for information system accounts and does not address concurrent sessions by single users via multiple system accounts. The maximum number of concurrent sessions should be defined based on mission needs and the operational environment for each system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <FilePath>/etc/security/limits.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100823</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify if the Ubuntu operating system is configured to audit the execution of the partition management program "fdisk".
+      <LegacyId>V-100825</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "maxlogins" item is missing, or the value is not set to 10 or less, or is commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Verify that the Ubuntu operating system limits the number of concurrent sessions to ten for all accounts and/or account types by running the following command:
+$ grep maxlogins /etc/security/limits.conf
 
-Check the currently configured audit rules with the following command:
+The result must contain the following line:
+* hard maxlogins 10
 
-# sudo auditctl -l | grep fdisk
-
--w /sbin/fdisk -p x -k fdisk
-
-If the command does not return a line, or the line is commented out, this is a finding.
-
-Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
+If the "maxlogins" item is missing, or the value is not set to 10 or less, or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219303.b" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
       <ContainsLine>

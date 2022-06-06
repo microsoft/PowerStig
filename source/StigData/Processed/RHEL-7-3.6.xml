@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 27 Jan 2022 3.2.2.36079 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.6" created="3/2/2022">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 27 Jan 2022 3.2.2.36079 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.6" created="5/6/2022">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -2734,7 +2734,7 @@ maxrepeat = 3
 
 If the value of "maxrepeat" is set to more than "3", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204413" severity="medium" conversionstatus="pass" title="SRG-OS-000072-GPOS-00040" dscresource="nxFileLine">
+    <Rule id="V-204414" severity="medium" conversionstatus="pass" title="SRG-OS-000072-GPOS-00040" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
@@ -2745,17 +2745,17 @@ Password complexity is one factor of several that determines how long it takes t
       <DuplicateOf />
       <FilePath>/etc/security/pwquality.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-71915</LegacyId>
+      <LegacyId>V-71917</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxrepeat" is set to more than "3", this is a finding." </OrganizationValueTestString>
-      <RawString>The "maxrepeat" option sets the maximum number of allowed same consecutive characters in a new password.
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: If the value of "maxclassrepeat" is set to "0", more than "4" or is commented out, this is a finding.</OrganizationValueTestString>
+      <RawString>The "maxclassrepeat" option sets the maximum number of allowed same consecutive characters in the same class in the new password.
 
-Check for the value of the "maxrepeat" option in "/etc/security/pwquality.conf" with the following command:
+Check for the value of the "maxclassrepeat" option in "/etc/security/pwquality.conf" with the following command:
 
-# grep maxrepeat /etc/security/pwquality.conf 
-maxrepeat = 3
+$ sudo grep maxclassrepeat /etc/security/pwquality.conf 
+maxclassrepeat = 4
 
-If the value of "maxrepeat" is set to more than "3", this is a finding.</RawString>
+If the value of "maxclassrepeat" is set to "0", more than "4" or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204416" severity="medium" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="nxFileLine">
       <ContainsLine>ENCRYPT_METHOD SHA512</ContainsLine>
@@ -5455,31 +5455,6 @@ $ sudo grep -iw "superusers" /boot/efi/EFI/redhat/grub.cfg
 
 If "superusers" is identical to any OS account name or is missing a name, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-250314" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="nxFileLine">
-      <ContainsLine>%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
-
-Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*%wheel\s*ALL\s*=\s*(ALL)\s*TYPE\s*=\s*sysadm_t\s*ROLE\s*=\s*sysadm_r\s*ALL</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/sudoers.d/</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
-
-Verify the operating system elevates the SELinux context when an administrator calls the sudo command with the following command:
-
-This command must be ran as root:
-# grep sysadm_r /etc/sudoers /etc/sudoers.d/*
-%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL
-
-If results are returned from more than one file location, this is a finding.
-
-If a designated sudoers administrator group or account(s) is not configured to elevate the SELinux type and role to "sysadm_t" and "sysadm_r" with the use of the sudo command, this is a finding.</RawString>
-    </Rule>
   </nxFileLineRule>
   <nxFileRule dscresourcemodule="nx">
     <Rule id="V-204395" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="nxFile">
@@ -6085,6 +6060,30 @@ $ sudo grep -i 'timestamp_timeout' /etc/sudoers /etc/sudoers.d/*
 If results are returned from more than one file location, this is a finding.
 
 If "timestamp_timeout" is set to a negative number, is commented out, or no results are returned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-250314" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="nxFile">
+      <Contents>%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL</Contents>
+      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sudoers.d/250314-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
+
+Verify the operating system elevates the SELinux context when an administrator calls the sudo command with the following command:
+
+This command must be ran as root:
+# grep sysadm_r /etc/sudoers /etc/sudoers.d/*
+%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL
+
+If results are returned from more than one file location, this is a finding.
+
+If a designated sudoers administrator group or account(s) is not configured to elevate the SELinux type and role to "sysadm_t" and "sysadm_r" with the use of the sudo command, this is a finding.</RawString>
     </Rule>
   </nxFileRule>
   <nxPackageRule dscresourcemodule="nx">
