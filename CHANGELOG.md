@@ -5,6 +5,7 @@
 * Update PowerSTIG to successfully parse/apply Microsoft Outlook 2016 Version 2; Release 3: [#1079](https://github.com/microsoft/PowerStig/issues/1079)
 * Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 5: [#1078](https://github.com/microsoft/PowerStig/issues/1078)
 * Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 6: [#1077](https://github.com/microsoft/PowerStig/issues/1077)
+* Update PowerSTIG to parse/convert the Windows Server 2012 R2 MS/DC V3R4: [#1097](https://github.com/microsoft/PowerStig/issues/1097)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 4: [#1096](https://github.com/microsoft/PowerStig/issues/1096)
 * Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
 
