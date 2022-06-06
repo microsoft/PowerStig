@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.1">
+<OrganizationalSettings fullversion="2.4">
   <!-- Ensure 'V-213450' -ge '0' -and 'V-213450' -le '7'-->
   <OrganizationalSetting id="V-213450" ValueData="0" />
   <!-- Ensure 'V-213452' -ge '1' -and 'V-213452' -le '7'-->
