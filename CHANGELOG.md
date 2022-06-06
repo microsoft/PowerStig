@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 5: [#1078](https://github.com/microsoft/PowerStig/issues/1078)
 * Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 6: [#1077](https://github.com/microsoft/PowerStig/issues/1077)
 * Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
 
