@@ -2,7 +2,8 @@
 
 ## [Unreleased]
 
-*Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
+* Update PowerSTIG to parse/convert the Windows Server 2012 R2 MS/DC V3R4: [#1097](https://github.com/microsoft/PowerStig/issues/1097)
+* Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
 
 ## [4.12.1] - 2022-03-22
 
