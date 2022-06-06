@@ -2,7 +2,8 @@
 
 ## [Unreleased]
 
-*Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
+* Update PowerSTIG to Parse/Apply Microsoft SQL Server 2016 Instance STIG, Version 2, Release 7: [#1081](https://github.com/microsoft/PowerStig/issues/1081)
+* Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
 
 ## [4.12.1] - 2022-03-22
 
