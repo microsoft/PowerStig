@@ -9,5 +9,5 @@
   <!-- Ensure SQL authentication logins are populated from organizational settings.-->
   <OrganizationalSetting id="V-213964" Ensure="" Name="" />
   <!-- Ensure 'V-214029' is populated with a non-default SA account name-->
-  <OrganizationalSetting id="V-214029" VariableValue="" />
+  <OrganizationalSetting id="V-214029" VariableValue="stig_sa" />
 </OrganizationalSettings>
