@@ -2,7 +2,8 @@
 
 ## [Unreleased]
 
-*Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 4: [#1096](https://github.com/microsoft/PowerStig/issues/1096)
+* Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
 
 ## [4.12.1] - 2022-03-22
 
