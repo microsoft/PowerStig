@@ -2,7 +2,8 @@
 
 ## [Unreleased]
 
-*Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
+* Update PowerSTIG to successfully parse/apply Microsoft Outlook 2016 Version 2; Release 3: [#1079](https://github.com/microsoft/PowerStig/issues/1079)
+* Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
 
 ## [4.12.1] - 2022-03-22
 
