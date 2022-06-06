@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 4: [#1095](https://github.com/microsoft/PowerStig/issues/1095)
 * Update PowerSTIG to Parse/Apply Microsoft SQL Server 2016 Instance STIG, Version 2, Release 7: [#1081](https://github.com/microsoft/PowerStig/issues/1081)
 * Update PowerSTIG to successfully parse/apply Microsoft Outlook 2016 Version 2; Release 3: [#1079](https://github.com/microsoft/PowerStig/issues/1079)
 * Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 5: [#1078](https://github.com/microsoft/PowerStig/issues/1078)
