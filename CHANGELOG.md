@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-* Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 6: [#1042](https://github.com/microsoft/PowerStig/issues/1042)
+* Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 6: [#1077](https://github.com/microsoft/PowerStig/issues/1077)
 * Fixed: Linux STIGs have 2 bugs [#1090](https://github.com/microsoft/PowerStig/issues/1090)
 
 ## [4.12.1] - 2022-03-22
