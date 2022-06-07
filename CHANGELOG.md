@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to parse/convert the Windows Server 2012 R2 MS/DC V3R4: [#1097](https://github.com/microsoft/PowerStig/issues/1097)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 4: [#1095](https://github.com/microsoft/PowerStig/issues/1095)
 * Update PowerSTIG to Parse/Apply Microsoft SQL Server 2016 Instance STIG, Version 2, Release 7: [#1081](https://github.com/microsoft/PowerStig/issues/1081)
 * Update PowerSTIG to successfully parse/apply Microsoft Outlook 2016 Version 2; Release 3: [#1079](https://github.com/microsoft/PowerStig/issues/1079)
