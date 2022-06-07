@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 4: [#1100](https://github.com/microsoft/PowerStig/issues/1100)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server DNS STIG - Ver 2, Rel 5: [#1099](https://github.com/microsoft/PowerStig/issues/1099)
 * Update PowerSTIG to parse/convert the Windows Server 2012 R2 MS/DC V3R4: [#1097](https://github.com/microsoft/PowerStig/issues/1097)
 * Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 4: [#1095](https://github.com/microsoft/PowerStig/issues/1095)
