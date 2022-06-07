@@ -5,19 +5,17 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.2">
+<OrganizationalSettings fullversion="2.4">
   <!-- Ensure ''V-205632'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
-  <OrganizationalSetting id="V-205632" ValueData="DoD Notice and Consent Banner" />
+  <OrganizationalSetting id="V-205632" ValueData="" />
   <!-- Ensure ''V-205633'' -le '900' -and ''V-205633'' -gt '0'-->
-  <OrganizationalSetting id="V-205633" ValueData="900" />
-  <!-- Ensure location for DoD Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-205648.a" Location="" />
+  <OrganizationalSetting id="V-205633" ValueData="" />
   <!-- Ensure location for DoD Root CA 3 certificate is present-->
-  <OrganizationalSetting id="V-205648.b" Location="" />
+  <OrganizationalSetting id="V-205648.a" Location="" />
   <!-- Ensure location for DoD Root CA 4 certificate is present-->
-  <OrganizationalSetting id="V-205648.c" Location="" />
+  <OrganizationalSetting id="V-205648.b" Location="" />
   <!-- Ensure location for DoD Root CA 5 certificate is present-->
-  <OrganizationalSetting id="V-205648.d" Location="" />
+  <OrganizationalSetting id="V-205648.c" Location="" />
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-205649.a" Location="" />
   <!-- Ensure location for DoD Interoperability Root CA 1 certificate is present-->
@@ -27,49 +25,49 @@
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-205650.b" Location="" />
   <!-- Ensure ''V-205717'' -match '1|2'-->
-  <OrganizationalSetting id="V-205717" ValueData="1" />
+  <OrganizationalSetting id="V-205717" ValueData="" />
   <!-- Ensure ''V-205796'' -ge '32768'-->
-  <OrganizationalSetting id="V-205796" ValueData="32768" />
+  <OrganizationalSetting id="V-205796" ValueData="" />
   <!-- Ensure ''V-205797'' -ge '196608'-->
-  <OrganizationalSetting id="V-205797" ValueData="196608" />
+  <OrganizationalSetting id="V-205797" ValueData="" />
   <!-- Ensure ''V-205798'' -ge '32768'-->
-  <OrganizationalSetting id="V-205798" ValueData="32768" />
+  <OrganizationalSetting id="V-205798" ValueData="" />
   <!-- Ensure ServiceName/StartupType is populated with correct AntiVirus service information-->
   <OrganizationalSetting id="V-205850" ServiceName="" StartupType="" />
   <!-- Ensure ''V-205864.b'' -match '1|3'-->
-  <OrganizationalSetting id="V-205864.b" ValueData="1" />
+  <OrganizationalSetting id="V-205864.b" ValueData="" />
   <!-- Ensure ''V-205865'' -match '1|3|8|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-205865" ValueData="8" />
+  <OrganizationalSetting id="V-205865" ValueData="" />
   <!-- Ensure ''V-205869'' -match '0|1'-->
-  <OrganizationalSetting id="V-205869" ValueData="0" />
+  <OrganizationalSetting id="V-205869" ValueData="" />
   <!-- Ensure ''V-205870'' -match '0|1|2|99|100'-->
-  <OrganizationalSetting id="V-205870" ValueData="0" />
+  <OrganizationalSetting id="V-205870" ValueData="" />
   <!-- Ensure ''V-205906'' -le '4'-->
-  <OrganizationalSetting id="V-205906" ValueData="4" />
+  <OrganizationalSetting id="V-205906" ValueData="" />
   <!-- Ensure ''V-205911'' -le '30' -and ''V-205911'' -gt '0'-->
-  <OrganizationalSetting id="V-205911" ValueData="30" />
+  <OrganizationalSetting id="V-205911" ValueData="" />
   <!-- Ensure ''V-205912'' -match '1|2'-->
-  <OrganizationalSetting id="V-205912" ValueData="1" />
+  <OrganizationalSetting id="V-205912" ValueData="" />
   <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->
   <OrganizationalSetting id="V-214936" ServiceName="" StartupType="" />
   <!-- Ensure ''V-205629'' -le '3' -and ''V-205629'' -ne '0'-->
-  <OrganizationalSetting id="V-205629" PolicyValue="3" />
+  <OrganizationalSetting id="V-205629" PolicyValue="" />
   <!-- Ensure ''V-205630'' -ge '15'-->
-  <OrganizationalSetting id="V-205630" PolicyValue="15" />
+  <OrganizationalSetting id="V-205630" PolicyValue="" />
   <!-- Ensure ''V-205656'' -ne '0'-->
-  <OrganizationalSetting id="V-205656" PolicyValue="1" />
+  <OrganizationalSetting id="V-205656" PolicyValue="" />
   <!-- Ensure ''V-205659'' -le '60' -and ''V-205659'' -ne '0'-->
-  <OrganizationalSetting id="V-205659" PolicyValue="60" />
+  <OrganizationalSetting id="V-205659" PolicyValue="" />
   <!-- Ensure ''V-205660'' -ge '24'-->
-  <OrganizationalSetting id="V-205660" PolicyValue="24" />
+  <OrganizationalSetting id="V-205660" PolicyValue="" />
   <!-- Ensure ''V-205662'' -ge '14'-->
-  <OrganizationalSetting id="V-205662" PolicyValue="14" />
+  <OrganizationalSetting id="V-205662" PolicyValue="" />
   <!-- Ensure ''V-205672'' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'-->
-  <OrganizationalSetting id="V-205672" Identity="Enterprise Admins,Domain Admins,Local account and member of Administrators group,Guests" />
+  <OrganizationalSetting id="V-205672" Identity="" />
   <!-- Ensure ''V-205756'' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'-->
-  <OrganizationalSetting id="V-205756" Identity="Administrators" />
+  <OrganizationalSetting id="V-205756" Identity="" />
   <!-- Ensure ''V-205795'' -ge '15' -or ''V-205795'' -eq '0'-->
-  <OrganizationalSetting id="V-205795" PolicyValue="15" />
+  <OrganizationalSetting id="V-205795" PolicyValue="" />
   <!-- Ensure ''V-205909'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-205909" OptionValue="" />
   <!-- Ensure ''V-205910'' -ne 'Guest'-->
