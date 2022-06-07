@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Microsoft_Windows_2012_Server_DNS_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 23 Jul 2021 3.2.2.36079 1.10.0" title="Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="11/23/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_Server_DNS_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 31 May 2022 3.3.0.27375 1.10.0" title="Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="6/6/2022">
   <DnsServerRootHintRule dscresourcemodule="PSDscResources">
     <Rule id="V-215591" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000102" dscresource="Script">
       <Description>&lt;VulnDiscussion&gt;All caching name servers must be authoritative for the root zone because, without this starting point, they would have no knowledge of the DNS infrastructure and thus would be unable to respond to any queries. The security risk is that an adversary could change the root hints and direct the caching name server to a bogus root server. At that point, every query response from that name server is suspect, which would give the adversary substantial control over the network communication of the name servers' clients. When authoritative servers are sent queries for zones that they are not authoritative for, and they are configured as a non-caching server (as recommended), they can either be configured to return a referral to the root servers or they can be configured to refuse to answer the query. The recommendation is to configure authoritative servers to refuse to answer queries for any zones for which they are not authoritative. This is more efficient for the server and allows it to spend more of its resources doing what its intended purpose is, answering authoritatively for its zone.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -628,7 +628,7 @@ If any RRs (Resource Records) on an external DNS server resolve to IP addresses 
     <Rule id="V-215586" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000092" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Instead of having the same set of authoritative name servers serve different types of clients, an enterprise could have two different sets of authoritative name servers. 
 
-One set, called external name servers, can be located within a DMZ; these would be the only name servers that are accessible to external clients and would serve RRs pertaining to hosts with public services (Web servers that serve external Web pages or provide B2C services, mail servers, etc.) 
+One set, called external name servers, can be located within a DMZ; these would be the only name servers that are accessible to external clients and would serve RRs pertaining to hosts with public services (web servers that serve external web pages or provide B2C services, mail servers, etc.).
 
 The other set, called internal name servers, is to be located within the firewall and should be configured so they are not reachable from outside and hence provide naming services exclusively to internal clients.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -636,15 +636,13 @@ The other set, called internal name servers, is to be located within the firewal
       <LegacyId>V-58605</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Consult with the System Administrator to review the external Windows DNS Server's HBSS firewall policy.
+      <RawString>Consult with the System Administrator to review the external Windows DNS Server's Endpoint Security Solution (ESS) firewall policy.
 
 The inbound TCP and UDP ports 53 rule should be configured to only restrict IP addresses from the internal network.
 
-If the HBSS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
+If the ESS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
 
-If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block internal hosts from querying the external DNS server, this is a finding.
-
-</RawString>
+If neither the DNS server's ESS firewall policy nor the network firewall is configured to block internal hosts from querying the external DNS server, this is a finding.</RawString>
     </Rule>
     <Rule id="V-215587" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000093" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Instead of having the same set of authoritative name servers serve different types of clients, an enterprise could have two different sets of authoritative name servers.
@@ -657,14 +655,13 @@ The other set, called internal name servers, is to be located within the firewal
       <LegacyId>V-58607</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Consult with the System Administrator to review the internal Windows DNS Server's HBSS firewall policy.
+      <RawString>Consult with the System Administrator to review the internal Windows DNS Server's Endpoint Security Solution (ESS) firewall policy.
 
 The inbound TCP and UDP ports 53 rule should be configured to only allow hosts from the internal network to query the internal DNS server.
 
-If the HBSS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
+If the ESS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
 
-If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block external hosts from querying the internal DNS server, this is a finding.
-</RawString>
+If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block external hosts from querying the internal DNS server, this is a finding.</RawString>
     </Rule>
     <Rule id="V-215588" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000095" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Authoritative name servers (especially primary name servers) should be configured with an allow-transfer access control sub statement designating the list of hosts from which zone transfer requests can be accepted. These restrictions address the denial-of-service threat and potential exploits from unrestricted dissemination of information about internal resources. Based on the need-to-know, the only name servers that need to refresh their zone files periodically are the secondary name servers. Zone transfer from primary name servers should be restricted to secondary name servers. The zone transfer should be completely disabled in the secondary name servers. The address match list argument for the allow-transfer sub statement should consist of IP addresses of secondary name servers and stealth secondary name servers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2316,12 +2313,11 @@ The DNS server should perform self-tests, such as at server start-up, to confirm
       <LegacyId>V-58713</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This functionality should be performed by the Host Based Security System (HBSS), mandatory on all DoD systems.
+      <RawString>This functionality should be performed by an Endpoint Security Solution (ESS), mandatory on all DoD systems.
 
-Check to ensure McAfee HBSS is installed and fully operational on the Windows DNS Server.
+Verify ESS is installed and fully operational on the Windows DNS Server.
 
-If all required HBSS products are not installed and/or the installed products are not enabled, this is a finding.
-</RawString>
+If all required ESS products are not installed and/or the installed products are not enabled, this is a finding.</RawString>
     </Rule>
     <Rule id="V-215647" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DNS-000115" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Limiting the number of concurrent sessions reduces the risk of Denial of Service (DoS) on any system.
@@ -2354,13 +2350,13 @@ Verify the Dynamic updates has "Secure only" selected.
 If the zone is Active Directory-Integrated and the Dynamic updates are not configured for "Secure only", this is a finding.</RawString>
     </Rule>
     <Rule id="V-215651" severity="medium" conversionstatus="pass" title="SRG-APP-000089-DNS-000005" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;DNS server performance can be affected when additional logging is enabled, however the enhanced DNS logging and diagnostics feature in Windows Server 2012 R2 is designed to have a very low impact on performance. Enhanced DNS logging and diagnostics in Windows Server 2012 R2 and later includes DNS Audit events and DNS Analytic events. DNS audit logs are enabled by default, and do not significantly affect DNS server performance. DNS analytical logs are not enabled by default and typically will only affect DNS server performance at very high DNS query rates.
+      <Description>&lt;VulnDiscussion&gt;DNS server performance can be affected when additional logging is enabled; however, the enhanced DNS logging and diagnostics feature in Windows Server 2012 R2 is designed to have a very low impact on performance. Enhanced DNS logging and diagnostics in Windows Server 2012 R2 and later includes DNS Audit events and DNS Analytic events. DNS audit logs are enabled by default and do not significantly affect DNS server performance. DNS analytical logs are not enabled by default and typically will only affect DNS server performance at very high DNS query rates.
 
 Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. The actual auditing is performed by the OS/NDM, but the configuration to trigger the auditing is controlled by the DNS server.
 
-In order to compile an accurate risk assessment, it is essential for security personnel to know what is being performed on the system, where an event occurred, when an event occurred, and by whom the event was triggered. Logging the actions of specific events provides a means to investigate an attack, recognize resource utilization or capacity thresholds, or to simply identify an improperly configured DNS system. If auditing is not comprehensive, it will not be useful for intrusion monitoring, security investigations, and forensic analysis. It is important, therefore, to log all possible data related to events so that they can be correlated and analyzed to determine the risk.
+In order to compile an accurate risk assessment, it is essential for security personnel to know what is being performed on the system, where an event occurred, when an event occurred, and by whom the event was triggered. Logging the actions of specific events provides a means to investigate an attack, recognize resource utilization or capacity thresholds, or identify an improperly configured DNS system. If auditing is not comprehensive, it will not be useful for intrusion monitoring, security investigations, and forensic analysis. It is important, therefore, to log all possible data related to events so they can be correlated and analyzed to determine the risk.
 
-Data required to be captured include: whether an event was successful or failed, the event type or category, timestamps for when the event occurred, where the event originated, who/what initiated the event,  affect the event had on the DNS implementation and any processes associated with the event.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Data required to be captured include: whether an event was successful or failed, the event type or category, timestamps for when the event occurred, where the event originated, who/what initiated the event, the effect the event had on the DNS implementation, and any processes associated with the event.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-58551</LegacyId>
@@ -2370,10 +2366,11 @@ Data required to be captured include: whether an event was successful or failed,
 
 Open an elevated Windows PowerShell prompt on a DNS server using the Domain Admin or Enterprise Admin account.
 
-Use the “Get-DnsServerDiagnostics” cmdlet to view the status of individual diagnostic events.
+Use the "Get-DnsServerDiagnostics" cmdlet to view the status of individual diagnostic events.
 
-Verify following diagnostic events are set to "True":
+Verify the following diagnostic events are set to "True":
 Queries, Answers, Notifications, Update, QuestionTransactions, UnmatchedResponse,UseSystemEventLog 
+
 Also set to “True” should be: 
 EnableLoggingForLocalLookupEvent
 EnableLoggingForPluginDLLEvent 
@@ -2385,10 +2382,11 @@ EnableLoggingForTombstoneEvent
 EnableLoggingForZoneDataWriteEvent
 EnableLoggingForZoneLoadingEvent
 
-Note: The UseSystemEventLog does not have to be set to true if all other variables are logged per the requirement and it can be validated that the events are being logged to a different log file destination.
+Note: The UseSystemEventLog does not have to be set to true if all other variables are logged per the requirement and it can be validated that the events are being logged to a different log file destination.                                                                     
 
-If all required diagnostic events are not set to "True", this is a finding.
-</RawString>
+Important: Debug logging can be resource intensive, affecting overall server performance and consuming disk space. Therefore, it should only be used temporarily when more detailed information about server performance is needed and should not be set to always enabled.                                                                                                                                                   
+
+If all required diagnostic events are not set to "True", this is a finding.</RawString>
     </Rule>
     <Rule id="V-215660" severity="medium" conversionstatus="pass" title="SRG-APP-000125-DNS-000012" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Protection of log data includes assuring log data is not accidentally lost or deleted. Backing up audit records to a different system or onto separate media than the system being audited on a defined frequency helps to assure, in the event of a catastrophic system failure, the audit records will be retained. 
@@ -2653,35 +2651,6 @@ If the permissions for these files are not as restrictive as the ACLs listed, th
 </RawString>
     </Rule>
   </PermissionRule>
-  <RegistryRule dscresourcemodule="PSDscResources">
-    <Rule id="V-215597" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000500" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;To prevent the possibility of a denial of service in relation to an IPv4 DNS server trying to respond to IPv6 requests, the server should be configured not to listen on any of its IPv6 interfaces unless it does contain IPv6 AAAA resource records in one of the zones.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters</Key>
-      <LegacyId>V-58627</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>ValueData is set to 255 which disables IPv6 </OrganizationValueTestString>
-      <RawString>Note: If the Windows 2012 DNS server is hosting IPv6 records, this requirement is not applicable. If the Windows 2012 DNS server is only hosting IPv4 records, this requirement must be met.
-
-Log on to the DNS server using the Domain Admin or Enterprise Admin account or Local Administrator account.
-
-From a command prompt, run regedit. 
-In the User Account Control dialog box, click Continue. 
-In Registry Editor, locate and then click the following registry subkey: 
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters \
-Verify the value for “DisabledComponents” is “255 (0xff)”.
-
-If the “DisabledComponents” entry is nonexistent, this is a finding.
-
-If the “DisabledComponents” exists but is not set to “255 (0xff)”, and the DNS server is not hosting any AAAA records, this is a finding.
-</RawString>
-      <ValueData />
-      <ValueName>DisabledComponents</ValueName>
-      <ValueType>DWord</ValueType>
-    </Rule>
-  </RegistryRule>
   <UserRightRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-215632.a" severity="medium" conversionstatus="pass" title="SRG-APP-000246-DNS-000035" dscresource="UserRightsAssignment">
       <Constant>SeRemoteInteractiveLogonRight</Constant>
