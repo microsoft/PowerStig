@@ -3,6 +3,12 @@
 ## [Unreleased]
 
 * Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R7: [#1082](https://github.com/microsoft/PowerStig/issues/1082)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2019 STIG - Ver 2, Rel 4: [#1101](https://github.com/microsoft/PowerStig/issues/1101)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 4: [#1100](https://github.com/microsoft/PowerStig/issues/1100)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 2012 Server DNS STIG - Ver 2, Rel 5: [#1099](https://github.com/microsoft/PowerStig/issues/1099)
+* Update PowerSTIG to parse/convert the Windows Server 2012 R2 MS/DC V3R4: [#1097](https://github.com/microsoft/PowerStig/issues/1097)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 4: [#1095](https://github.com/microsoft/PowerStig/issues/1095)
+* Update PowerSTIG to Parse/Apply Microsoft SQL Server 2016 Instance STIG, Version 2, Release 7: [#1081](https://github.com/microsoft/PowerStig/issues/1081)
 * Update PowerSTIG to successfully parse/apply Microsoft Outlook 2016 Version 2; Release 3: [#1079](https://github.com/microsoft/PowerStig/issues/1079)
 * Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 5: [#1078](https://github.com/microsoft/PowerStig/issues/1078)
 * Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 6: [#1077](https://github.com/microsoft/PowerStig/issues/1077)
