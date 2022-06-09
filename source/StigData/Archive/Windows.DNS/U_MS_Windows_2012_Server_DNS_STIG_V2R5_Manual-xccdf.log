@@ -1,0 +1,2 @@
+V-215652::Auditors (if the site has an Auditors group that further limits this privilege.)::Administrators Auditors (if the site has an Auditors group that further limits this privilege.)
+V-215605::Verify the Owner on the folder, sub-folders, and files are the account under which the DNS Server Service is running.::Verify the permissions on the folder, sub-folders, and files are the account under which the DNS Server Service is running.
