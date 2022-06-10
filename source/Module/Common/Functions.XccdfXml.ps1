@@ -355,7 +355,7 @@ function Split-BenchmarkId
         'Microsoft_Windows',
         'Windows_Server',
         'Windows',
-        'MS_Windows_10_STIG'
+        'Microsoft_Windows_10'
     )
     $dnsServerVariations = @(
         'Server_Domain_Name_System',
