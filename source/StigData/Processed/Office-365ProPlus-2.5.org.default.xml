@@ -1,0 +1,51 @@
+<!--
+    The organizational settings file is used to define the local organizations
+    preferred setting within an allowed range of the STIG.
+
+    Each setting in this file is linked by STIG ID and the valid range is in an
+    associated comment.
+-->
+<OrganizationalSettings fullversion="2.5">
+  <!-- Ensure 'V-223282' is 2|3|4-->
+  <OrganizationalSetting id="V-223282" ValueData="3" />
+  <!-- Ensure 'V-223288' is 6-->
+  <OrganizationalSetting id="V-223288" ValueData="6" />
+  <!-- Ensure 'V-223311' is 2|3|4-->
+  <OrganizationalSetting id="V-223311" ValueData="3" />
+  <!-- Ensure 'V-223333' is 1|DoesNotExist-->
+  <OrganizationalSetting id="V-223333" ValueData="1" />
+  <!-- Ensure 'V-223335' is 1|DoesNotExist-->
+<OrganizationalSetting id="V-223335" ValueData="1" />
+  <!-- Ensure 'V-223340' is 0|DoesNotExist-->
+  <OrganizationalSetting id="V-223340" ValueData="0" />
+  <!-- Ensure 'V-223341' is 0|DoesNotExist-->
+  <OrganizationalSetting id="V-223341" ValueData="1" />
+  <!-- Ensure 'V-223342.a' is 1|DoesNotExist-->
+  <OrganizationalSetting id="V-223342.a" ValueData="1" />
+  <!-- Ensure 'V-223346' is 16(decimal)|10(hex)-->
+  <OrganizationalSetting id="V-223346" ValueData="16" />
+  <!-- Ensure 'V-223356' is 168 or greator-->
+  <OrganizationalSetting id="V-223356" ValueData="168" />
+  <!-- Ensure 'V-223376' is 2|3|4-->
+  <OrganizationalSetting id="V-223376" ValueData="3" />
+  <!-- Ensure 'V-223377' is 2|3|4-->
+  <OrganizationalSetting id="V-223377" ValueData="0" />
+  <!-- Ensure 'V-223378' is 0|DoesNotExist-->
+  <OrganizationalSetting id="V-223378" ValueData="0" />
+  <!-- Ensure 'V-223381' is 0|DoesNotExist-->
+  <OrganizationalSetting id="V-223381" ValueData="0" />
+  <!-- Ensure 'V-223388.a' is 1|DoesNotExist-->
+  <OrganizationalSetting id="V-223388.a" ValueData="1" />
+  <!-- Ensure 'V-223392' is 2|3|4-->
+  <OrganizationalSetting id="V-223392" ValueData="3" />
+  <!-- Ensure 'V-223393' is 2|3|4-->
+  <OrganizationalSetting id="V-223393" ValueData="3" />
+  <!-- Ensure 'V-223401' is 0|DoesNotExist-->
+  <OrganizationalSetting id="V-223401" ValueData="0" />
+  <!-- Ensure 'V-223402' is 0|DoesNotExist-->
+  <OrganizationalSetting id="V-223402" ValueData="0" />
+  <!-- Ensure 'V-223403' is 0|DoesNotExist-->
+  <OrganizationalSetting id="V-223403" ValueData="0" />
+  <!-- Ensure 'V-223417' is 2|3|4-->
+  <OrganizationalSetting id="V-223417" ValueData="3" />
+</OrganizationalSettings>
