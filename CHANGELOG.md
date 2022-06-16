@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [4.13.0] - 2022-06-16
+
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 4: [#1096](https://github.com/microsoft/PowerStig/issues/1096)
 * Update PowerSTIG to parse/apply RHEL 7.x STIG - Ver 3, Rel 7 [#1083](https://github.com/microsoft/PowerStig/issues/1083)
 * Update PowerSTIG to successfully parse/apply Canonical Ubuntu 18.04 LTS STIG - V2R7: [#1082](https://github.com/microsoft/PowerStig/issues/1082)
