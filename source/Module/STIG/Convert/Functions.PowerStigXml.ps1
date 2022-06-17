@@ -256,7 +256,7 @@ function ConvertTo-PowerStigXml
 
         if ($lastline -ne '')
         {
-            Add-Content $path ''
+            Add-Content -Path $path -Value ''
         }
 
         # Get the raw xccdf xml to pull additional details from the root node.
