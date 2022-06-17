@@ -254,7 +254,7 @@ function ConvertTo-PowerStigXml
         $fileLength = $rawXccdf.Length
         $lastLine = $rawXccdf[$fileLength - 1]
 
-        if ($lastline -ne "")
+        if ($lastline -ne '')
         {
             Add-Content $path ''
         }
