@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* PowerSTIG Convert should add newline to raw Xccdf to ensure Pester tests Pass : [#1118](https://github.com/microsoft/PowerStig/issues/1118)
+
 ## [4.13.0] - 2022-06-16
 
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 4: [#1096](https://github.com/microsoft/PowerStig/issues/1096)
