@@ -252,9 +252,9 @@ function ConvertTo-PowerStigXml
         # Add a newline to end of raw xccdf if it doesn't exist
         $rawXccdf = Get-Content -Path $Path
         $fileLength = $rawXccdf.Length
-        $lastLine = $rawXccdf[$fileLength - 1]
+        $lastLine = $rawXccdf[$fileLength]
 
-        if ($lastline -ne '')
+        if ($null -ne $lastline)
         {
             Add-Content -Path $path -Value ''
         }
