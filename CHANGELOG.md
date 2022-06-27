@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* PowerSTIG Convert should add newline to raw Xccdf to ensure Pester tests Pass : [#1118](https://github.com/microsoft/PowerStig/issues/1118)
+
 ## [4.13.1] - 2022-06-27
 
 * Fixed:Split-BenchmarkId returns the wrong value for Windows Defender V2R4 [#1121](https://github.com/microsoft/PowerStig/issues/1121)

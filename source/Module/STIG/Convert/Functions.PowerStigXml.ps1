@@ -249,6 +249,16 @@ function ConvertTo-PowerStigXml
     {
         $convertedStigObjects = ConvertFrom-StigXccdf -Path $Path -RuleIdFilter $RuleIdFilter
 
+        # Add a newline to end of raw xccdf if it doesn't exist
+        $rawXccdf = Get-Content -Path $Path
+        $fileLength = $rawXccdf.Length
+        $lastLine = $rawXccdf[$fileLength - 1]
+
+        if ($lastline -ne '')
+        {
+            Add-Content -Path $path -Value ''
+        }
+
         # Get the raw xccdf xml to pull additional details from the root node.
         [xml] $xccdfXml = Get-Content -Path $Path -Encoding UTF8
         [version] $stigVersionNumber = Get-StigVersionNumber -StigDetails $xccdfXml
