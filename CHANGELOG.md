@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [4.13.1] - 2022-06-27
+
+* Fixed:Split-BenchmarkId returns the wrong value for Windows Defender V2R4 [#1121](https://github.com/microsoft/PowerStig/issues/1121)
+* Fixed: Add Org Default Settings to 2019/2016 [#1120](https://github.com/microsoft/PowerStig/issues/1120)
+
 ## [4.13.0] - 2022-06-16
 
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 4: [#1096](https://github.com/microsoft/PowerStig/issues/1096)
