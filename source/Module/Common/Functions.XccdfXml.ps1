@@ -390,7 +390,7 @@ function Split-BenchmarkId
             $returnId = 'WindowsFirewall_All'
             continue
         }
-        {$PSItem -match "Windows_Defender_Antivirus|MS_Defender_Antivirus"}
+        {$PSItem -match "Windows_Defender_Antivirus"}
         {
             $returnId = 'WindowsDefender_All'
             continue
