@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 5 : [#1145](https://github.com/microsoft/PowerStig/issues/1145)
 * Make LegalNoticeText a default organizational setting : [#1093](https://github.com/microsoft/PowerStig/issues/1093)
 * PowerSTIG Convert should add newline to raw Xccdf to ensure Pester tests Pass : [#1118](https://github.com/microsoft/PowerStig/issues/1118)
 
