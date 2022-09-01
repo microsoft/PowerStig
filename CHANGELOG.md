@@ -4,6 +4,8 @@
 
 * Update PowerSTIG to Parse/Apply Microsoft IIS 8.5 Server STIG V2R4 : [#1142](https://github.com/microsoft/PowerStig/issues/1142)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 8.5 Site STIG V2R6 : [#1136](https://github.com/microsoft/PowerStig/issues/1136)
+* Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 Site\Server STIG V2R6 : [#1134](https://github.com/microsoft/PowerStig/issues/1134)
+* Add Support for Microsoft Publisher 2016 V1R3 : [#1127](https://github.com/microsoft/PowerStig/issues/1127)
 * Make LegalNoticeText a default organizational setting : [#1093](https://github.com/microsoft/PowerStig/issues/1093)
 * PowerSTIG Convert should add newline to raw Xccdf to ensure Pester tests Pass : [#1118](https://github.com/microsoft/PowerStig/issues/1118)
 
