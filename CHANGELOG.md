@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 5 : [#1145](https://github.com/microsoft/PowerStig/issues/1145)
 * Update PowerSTIG to successfully parse/apply Microsoft Internet Explorer 11 STIG - Ver 2, Rel 2 : [#1143](https://github.com/microsoft/PowerStig/issues/1093)
 * Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 6: [#1138](https://github.com/microsoft/PowerStig/issues/1138)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 8.5 Server STIG V2R4 : [#1142](https://github.com/microsoft/PowerStig/issues/1142)
