@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 6: [#1138](https://github.com/microsoft/PowerStig/issues/1138)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 8.5 Server STIG V2R4 : [#1142](https://github.com/microsoft/PowerStig/issues/1142)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 8.5 Site STIG V2R6 : [#1136](https://github.com/microsoft/PowerStig/issues/1136)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 Site\Server STIG V2R6 : [#1134](https://github.com/microsoft/PowerStig/issues/1134)
