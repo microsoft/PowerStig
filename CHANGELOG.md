@@ -3,6 +3,13 @@
 ## [Unreleased]
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 8: [#1151](https://github.com/microsoft/PowerStig/issues/1151)
+* Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 5 : [#1145](https://github.com/microsoft/PowerStig/issues/1145)
+* Update PowerSTIG to successfully parse/apply Microsoft Internet Explorer 11 STIG - Ver 2, Rel 2 : [#1143](https://github.com/microsoft/PowerStig/issues/1093)
+* Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 6: [#1138](https://github.com/microsoft/PowerStig/issues/1138)
+* Update PowerSTIG to Parse/Apply Microsoft IIS 8.5 Server STIG V2R4 : [#1142](https://github.com/microsoft/PowerStig/issues/1142)
+* Update PowerSTIG to Parse/Apply Microsoft IIS 8.5 Site STIG V2R6 : [#1136](https://github.com/microsoft/PowerStig/issues/1136)
+* Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 Site\Server STIG V2R6 : [#1134](https://github.com/microsoft/PowerStig/issues/1134)
+* Add Support for Microsoft Publisher 2016 V1R3 : [#1127](https://github.com/microsoft/PowerStig/issues/1127)
 * Make LegalNoticeText a default organizational setting : [#1093](https://github.com/microsoft/PowerStig/issues/1093)
 * PowerSTIG Convert should add newline to raw Xccdf to ensure Pester tests Pass : [#1118](https://github.com/microsoft/PowerStig/issues/1118)
 
