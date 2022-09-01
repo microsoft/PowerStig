@@ -1,3 +1,5 @@
 V-214465::If the "maxAllowedContentLength" value is not explicitly set to "30000000" or less or a length documented and approved by the ISSO, this is a finding.::If the "maxAllowedContentLength" value is not explicitly set to "30000000" or less or a length approved by the ISSO, this is a finding.
 V-214444::System Administrator::""
 V-214448::*::HardCodedRule(IISLoggingRule)@{DscResource = 'xWebsite'; LogFlags = $null; OrganizationValueTestString = "'{0}' LogFlags must contain at a minimum Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer'"}
+V-214484::*::.
+V-214488::*::HardCodedRule(WebAppPoolRule)@{DscResource = 'xWebAppPool'; Key = 'logEventOnRecycle'; OrganizationValueRequired = 'true'; OrganizationValueTestString = "'{0}' 'Value must contain Time and Schedule but can contain Requests, Memory, IsapiUnhealthy, OnDemand, ConfigChange, PrivateMemory'"}
