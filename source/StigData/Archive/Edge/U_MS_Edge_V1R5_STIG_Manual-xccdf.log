@@ -2,7 +2,7 @@ V-235719::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; En
 V-235720::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge'; ValueData = 1; ValueName = 'PreventSmartScreenPromptOverride'; ValueType = 'Dword'}
 V-235721::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge'; ValueData = 1; ValueName = 'PreventSmartScreenPromptOverrideForFiles'; ValueType = 'Dword'}
 V-235726::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge'; ValueData = $null; ValueName = 'ManagedSearchEngines'; ValueType = 'String'; OrganizationValueTestString = 'all of the search URLs in the list begin with "https" '}
-V-235752::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge'; ValueData = $null; ValueName = 'DownloadRestrictions'; ValueType = 'Dword'; OrganizationValueTestString = '{0} is 1 or 2 '}
+V-235752::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge'; ValueData = $null; ValueName = 'DownloadRestrictions'; ValueType = 'Dword'; OrganizationValueTestString = '{0} is 1 or 2 or 3 '}
 V-235754::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge\ExtensionInstallBlocklist'; ValueData = '*'; ValueName = '1'; ValueType = 'String'}
 V-235759::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge'; ValueData = 'tls1.2'; ValueName = 'SSLVersionMin'; ValueType = 'String'}
 V-235761::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge'; ValueData = 'ntlm,negotiate'; ValueName = 'AuthSchemes'; ValueType = 'String'}
@@ -18,3 +18,4 @@ V-235728::NetworkPredictionOptions::"NetworkPredictionOptions"
 V-235729::HKLM\SOFTWARE\Policies\Microsoft\Edge\Recommended::HKLM\SOFTWARE\Policies\Microsoft\Edge
 V-235767::PaymentMethodQueryEnabled::"PaymentMethodQueryEnabled"
 V-235769::UserFeedbackAllowed::"UserFeedbackAllowed"
+V-251694::*::.
