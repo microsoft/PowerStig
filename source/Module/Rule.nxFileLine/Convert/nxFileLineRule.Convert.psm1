@@ -182,7 +182,6 @@ class nxFileLineRuleConvert : nxFileLineRule
             ) -or
             # CheckContent match for RHEL STIG
             (
-                                     #(?:#|\$\s+sudo)\s+(?:cat|grep|more).*/.*/.*(?:grep|).*
                 $CheckContent -Match '(?:#|\$\s+sudo|#\s+sudo)\s+(?:cat|grep|more).*/.*/.*(?:grep|).*' -and
                 (
                     $CheckContent -Match 'If\s+.*(?:"\w*"|"\w*\s*\w"|the\s+line\s+is\s+commented\s+out).*,\s+this\s+is\s+a\s+finding' -or
