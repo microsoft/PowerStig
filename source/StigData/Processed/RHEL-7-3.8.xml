@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 27 Jul 2022 3.3.0.27375 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.8" created="8/31/2022">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 27 Jul 2022 3.3.0.27375 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.8" created="9/8/2022">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -1956,537 +1956,6 @@ All=p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
 
 If the "sha512" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or another file integrity tool is not using FIPS 140-2-approved cryptographic hashes for validating file contents and directories, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-204536" severity="medium" conversionstatus="pass" title="SRG-OS-000392-GPOS-00172" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
-
-Audit records can be generated from various components within the information system (e.g., module or policy filter).
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72135</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "semanage" command occur.
-
-Check the file system rule in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "/usr/sbin/semanage" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/sbin/semanage -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204537" severity="medium" conversionstatus="pass" title="SRG-OS-000392-GPOS-00172" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
-
-Audit records can be generated from various components within the information system (e.g., module or policy filter).
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72137</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "setsebool" command occur.
-
-Check the file system rule in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "/usr/sbin/setsebool" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/sbin/setsebool -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204538" severity="medium" conversionstatus="pass" title="SRG-OS-000392-GPOS-00172" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
-
-Audit records can be generated from various components within the information system (e.g., module or policy filter).
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72139</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "chcon" command occur.
-
-Check the file system rule in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "/usr/bin/chcon" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/bin/chcon -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204539" severity="medium" conversionstatus="pass" title="SRG-OS-000392-GPOS-00172" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
-
-Audit records can be generated from various components within the information system (e.g., module or policy filter).
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72141</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "setfiles" command occur.
-
-Check the file system rule in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "/usr/sbin/setfiles" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/sbin/setfiles -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204542" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged password commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72149</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "passwd" command occur.
-
-Check the file system rule in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "/usr/bin/passwd" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/bin/passwd -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204543" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged password commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72151</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "unix_chkpwd" command occur.
-
-Check the file system rule in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "/usr/sbin/unix_chkpwd" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/sbin/unix_chkpwd -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204544" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged password commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72153</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "gpasswd" command occur.
-
-Check the file system rule in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "/usr/bin/gpasswd" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/bin/gpasswd -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204545" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged password commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72155</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "chage" command occur.
-
-Check the file system rule in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "/usr/bin/chage" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/bin/chage -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204546" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged password commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72157</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "userhelper" command occur.
-
-Check the file system rule in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "/usr/sbin/userhelper" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/sbin/userhelper -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204547" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged access commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72159</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "su" command occur.
-
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
-
-$ sudo grep -w "/usr/bin/su" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/bin/su -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204548" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged access commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72161</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "sudo" command occur.
-
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
-
-$ sudo grep -w "/usr/bin/sudo" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/bin/sudo -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204550" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged access commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72165</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "newgrp" command occur.
-
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
-
-$ sudo grep -w "/usr/bin/newgrp" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/bin/newgrp -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204551" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged access commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72167</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "chsh" command occur.
-
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
-
-$ sudo grep -w "/usr/bin/chsh" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/bin/chsh -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204552" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged mount commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72171</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "mount" command and syscall occur.
-
-Check that the following system call is being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules": 
-
-$ sudo grep -w "mount" /etc/audit/audit.rules
-
--a always,exit -F arch=b32 -S mount -F auid&gt;=1000 -F auid!=unset -k privileged-mount
--a always,exit -F arch=b64 -S mount -F auid&gt;=1000 -F auid!=unset -k privileged-mount
--a always,exit -F path=/usr/bin/mount -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-mount
-
-If both the "b32" and "b64" audit rules are not defined for the "mount" syscall, this is a finding.
-
-If all uses of the "mount" command are not being audited, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204553" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged mount commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72173</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "umount" command occur.
-
-Check that the following system call is being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules": 
-
-$ sudo grep -w "/usr/bin/umount" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/bin/umount -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-mount 
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204554" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged postfix commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72175</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "postdrop" command occur.
-
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
-
-$ sudo grep -w "/usr/sbin/postdrop" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/sbin/postdrop -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-postfix
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204555" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged postfix commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72177</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "postqueue" command occur. 
-
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
-
-$ sudo grep -w "/usr/sbin/postqueue" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/sbin/postqueue -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-postfix
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204556" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged ssh commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72179</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "ssh-keysign" command occur. 
-
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
-
-$ sudo grep -w "/usr/libexec/openssh/ssh-keysign" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/libexec/openssh/ssh-keysign -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-ssh
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204557" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72183</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "crontab" command occur. 
-
-Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
-
-$ sudo grep -w "/usr/bin/crontab" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/bin/crontab -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-cron
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204558" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00215" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
-
-When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72185</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "pam_timestamp_check" command occur. 
-
-Check the auditing rules in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "/usr/sbin/pam_timestamp_check" /etc/audit/audit.rules
-
--a always,exit -F path=/usr/sbin/pam_timestamp_check -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-pam 
-
-If the command does not return any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204559" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
-
-Audit records can be generated from various components within the information system (e.g., module or policy filter).
-
-Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-78999</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "create_module" syscall occur. 
-
-Check the auditing rules in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "create_module" /etc/audit/audit.rules
-
--a always,exit -F arch=b32 -S create_module -F auid&gt;=1000 -F auid!=unset -k module-change
-
--a always,exit -F arch=b64 -S create_module -F auid&gt;=1000 -F auid!=unset -k module-change
-
-If both the "b32" and "b64" audit rules are not defined for the "create_module" syscall, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204560" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
-
-Audit records can be generated from various components within the information system (e.g., module or policy filter).
-
-The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance can be helped, however, by combining syscalls into one rule whenever possible.
-
-Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72187</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records upon successful/unsuccessful attempts to use the "init_module" and "finit_module" syscalls. 
-
-Check the auditing rules in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep init_module /etc/audit/audit.rules 
-
--a always,exit -F arch=b32 -S init_module,finit_module -F auid&gt;=1000 -F auid!=unset -k modulechange
-
--a always,exit -F arch=b64 -S init_module,finit_module -F auid&gt;=1000 -F auid!=unset -k modulechange
-
-If both the "b32" and "b64" audit rules are not defined for the "init_module" and "finit_module" syscalls, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204562" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
-
-Audit records can be generated from various components within the information system (e.g., module or policy filter).
-
-Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72189</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "delete_module" syscall occur. 
-
-Check the auditing rules in "/etc/audit/audit.rules" with the following command:
-
-$ sudo grep -w "delete_module" /etc/audit/audit.rules
-
--a always,exit -F arch=b32 -S delete_module -F auid&gt;=1000 -F auid!=unset -k module-change
-
--a always,exit -F arch=b64 -S delete_module -F auid&gt;=1000 -F auid!=unset -k module-change
-
-If both the "b32" and "b64" audit rules are not defined for the "delete_module" syscall, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-204574" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Sending rsyslog output to another system ensures that the logs cannot be removed or modified in the event that the system is compromised or has a hardware failure.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2955,26 +2424,6 @@ Verify the operating system does not have nested "include" files or directories 
 $ sudo grep -r include /etc/sudoers.d
 
 If results are returned, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-251704" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
-
-When operating systems provide the capability to escalate a functional capability, it is critical the user re-authenticate.
-
-Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system is not be configured to bypass password requirements for privilege escalation.
-
-Check the configuration of the "/etc/pam.d/sudo" file with the following command:
-
-$ sudo grep pam_succeed_if /etc/pam.d/sudo
-
-If any occurrences of "pam_succeed_if" is returned from the command, this is a finding.</RawString>
     </Rule>
     <Rule id="V-251705" severity="medium" conversionstatus="pass" title="SRG-OS-000445-GPOS-00199" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without verification of the security functions, security functions may not operate correctly, and the failure may go unnoticed. Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters.
@@ -4469,6 +3918,110 @@ If the output does not produce rules containing "-F exit=-EPERM", this is a find
 If the output does not produce rules containing "-F exit=-EACCES", this is a finding.
 </RawString>
     </Rule>
+    <Rule id="V-204536" severity="medium" conversionstatus="pass" title="SRG-OS-000392-GPOS-00172" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/sbin/semanage -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
+
+Audit records can be generated from various components within the information system (e.g., module or policy filter).
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/semanage\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72135</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "semanage" command occur.
+
+Check the file system rule in "/etc/audit/audit.rules" with the following command:
+
+$ sudo grep -w "/usr/sbin/semanage" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/sbin/semanage -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204537" severity="medium" conversionstatus="pass" title="SRG-OS-000392-GPOS-00172" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/sbin/setsebool -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
+
+Audit records can be generated from various components within the information system (e.g., module or policy filter).
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/setsebool\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72137</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "setsebool" command occur.
+
+Check the file system rule in "/etc/audit/audit.rules" with the following command:
+
+$ sudo grep -w "/usr/sbin/setsebool" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/sbin/setsebool -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204538" severity="medium" conversionstatus="pass" title="SRG-OS-000392-GPOS-00172" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
+
+Audit records can be generated from various components within the information system (e.g., module or policy filter).
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chcon\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72139</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "chcon" command occur.
+
+Check the file system rule in "/etc/audit/audit.rules" with the following command:
+
+$ sudo grep -w "/usr/bin/chcon" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204539" severity="medium" conversionstatus="pass" title="SRG-OS-000392-GPOS-00172" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/sbin/setfiles -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
+
+Audit records can be generated from various components within the information system (e.g., module or policy filter).
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000463-GPOS-00207, SRG-OS-000465-GPOS-00209&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/setfiles\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72141</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "setfiles" command occur.
+
+Check the file system rule in "/etc/audit/audit.rules" with the following command:
+
+$ sudo grep -w "/usr/sbin/setfiles" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/sbin/setfiles -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-204540" severity="medium" conversionstatus="pass" title="SRG-OS-000392-GPOS-00172" dscresource="nxFileLine">
       <ContainsLine>-w /var/run/faillock -p wa -k logins</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
@@ -4514,6 +4067,188 @@ Check the file system rules in "/etc/audit/audit.rules" with the following comma
 # grep -i /var/log/lastlog /etc/audit/audit.rules
 
 -w /var/log/lastlog -p wa -k logins 
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204542" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/bin/passwd -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged password commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/passwd\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-passwd</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72149</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "passwd" command occur.
+
+Check the file system rule in "/etc/audit/audit.rules" with the following command:
+
+$ sudo grep -w "/usr/bin/passwd" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/bin/passwd -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204543" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/sbin/unix_chkpwd -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged password commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/unix_chkpwd\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-passwd</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72151</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "unix_chkpwd" command occur.
+
+Check the file system rule in "/etc/audit/audit.rules" with the following command:
+
+$ sudo grep -w "/usr/sbin/unix_chkpwd" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/sbin/unix_chkpwd -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204544" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/bin/gpasswd -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged password commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/gpasswd\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-passwd</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72153</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "gpasswd" command occur.
+
+Check the file system rule in "/etc/audit/audit.rules" with the following command:
+
+$ sudo grep -w "/usr/bin/gpasswd" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/bin/gpasswd -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204545" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/bin/chage -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged password commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chage\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-passwd</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72155</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "chage" command occur.
+
+Check the file system rule in "/etc/audit/audit.rules" with the following command:
+
+$ sudo grep -w "/usr/bin/chage" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/bin/chage -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204546" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/sbin/userhelper -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged password commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/userhelper\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-passwd</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72157</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "userhelper" command occur.
+
+Check the file system rule in "/etc/audit/audit.rules" with the following command:
+
+$ sudo grep -w "/usr/sbin/userhelper" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/sbin/userhelper -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-passwd
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204547" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/bin/su -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged access commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/su\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72159</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "su" command occur.
+
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+
+$ sudo grep -w "/usr/bin/su" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/bin/su -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204548" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/bin/sudo -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged access commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/sudo\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72161</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "sudo" command occur.
+
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+
+$ sudo grep -w "/usr/bin/sudo" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/bin/sudo -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
 
 If the command does not return any output, this is a finding.</RawString>
     </Rule>
@@ -4572,6 +4307,412 @@ Check for modification of the following files being audited by performing the fo
 -w /etc/sudoers.d/ -p wa -k privileged-actions
 
 If the commands do not return output that match the examples, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204550" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/bin/newgrp -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged access commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/newgrp\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72165</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "newgrp" command occur.
+
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+
+$ sudo grep -w "/usr/bin/newgrp" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/bin/newgrp -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204551" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/bin/chsh -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged access commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chsh\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-priv_change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72167</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "chsh" command occur.
+
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+
+$ sudo grep -w "/usr/bin/chsh" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/bin/chsh -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-priv_change
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204552.a" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F arch=b32 -S mount -F auid&gt;=1000 -F auid!=unset -k privileged-mount</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged mount commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*mount\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-mount</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72171.a</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "mount" command and syscall occur.
+Check that the following system call is being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules":
+$ sudo grep -w "mount" /etc/audit/audit.rules
+-a always,exit -F arch=b32 -S mount -F auid&gt;=1000 -F auid!=unset -k privileged-mount
+If both the "b32" and "b64" audit rules are not defined for the "mount" syscall, this is a finding.
+If all uses of the "mount" command are not being audited, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-204552.b" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F arch=b64 -S mount -F auid&gt;=1000 -F auid!=unset -k privileged-mount</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged mount commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*mount\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-mount</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72171.b</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "mount" command and syscall occur.
+Check that the following system call is being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules":
+$ sudo grep -w "mount" /etc/audit/audit.rules
+-a always,exit -F arch=b64 -S mount -F auid&gt;=1000 -F auid!=unset -k privileged-mount
+If both the "b32" and "b64" audit rules are not defined for the "mount" syscall, this is a finding.
+If all uses of the "mount" command are not being audited, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-204552.c" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/bin/mount -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-mount</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged mount commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/mount\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-mount</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72171.c</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "mount" command and syscall occur.
+Check that the following system call is being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules":
+$ sudo grep -w "mount" /etc/audit/audit.rules
+-a always,exit -F path=/usr/bin/mount -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-mount
+If both the "b32" and "b64" audit rules are not defined for the "mount" syscall, this is a finding.
+If all uses of the "mount" command are not being audited, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-204553" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/bin/umount -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-mount</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged mount commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/umount\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-mount</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72173</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "umount" command occur.
+
+Check that the following system call is being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules": 
+
+$ sudo grep -w "/usr/bin/umount" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/bin/umount -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-mount 
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204554" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/sbin/postdrop -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-postfix</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged postfix commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/postdrop\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-postfix</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72175</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "postdrop" command occur.
+
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+
+$ sudo grep -w "/usr/sbin/postdrop" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/sbin/postdrop -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-postfix
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204555" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/sbin/postqueue -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-postfix</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged postfix commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/postqueue\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-postfix</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72177</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "postqueue" command occur. 
+
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+
+$ sudo grep -w "/usr/sbin/postqueue" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/sbin/postqueue -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-postfix
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204556" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/libexec/openssh/ssh-keysign -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-ssh</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged ssh commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/libexec/openssh/ssh-keysign\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-ssh</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72179</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "ssh-keysign" command occur. 
+
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+
+$ sudo grep -w "/usr/libexec/openssh/ssh-keysign" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/libexec/openssh/ssh-keysign -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-ssh
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204557" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/bin/crontab -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-cron</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+At a minimum, the organization must audit the full-text recording of privileged commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
+
+Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/crontab\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-cron</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72183</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "crontab" command occur. 
+
+Check that the following system call is being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+
+$ sudo grep -w "/usr/bin/crontab" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/bin/crontab -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-cron
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204558" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00215" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F path=/usr/sbin/pam_timestamp_check -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-pam</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
+
+When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/pam_timestamp_check\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*privileged-pam</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72185</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "pam_timestamp_check" command occur. 
+
+Check the auditing rules in "/etc/audit/audit.rules" with the following command:
+
+$ sudo grep -w "/usr/sbin/pam_timestamp_check" /etc/audit/audit.rules
+
+-a always,exit -F path=/usr/sbin/pam_timestamp_check -F perm=x -F auid&gt;=1000 -F auid!=unset -k privileged-pam 
+
+If the command does not return any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204559.a" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F arch=b32 -S create_module -F auid&gt;=1000 -F auid!=unset -k module-change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+
+Audit records can be generated from various components within the information system (e.g., module or policy filter).
+
+Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*create_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*module-change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-78999.a</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "create_module" syscall occur.
+Check the auditing rules in "/etc/audit/audit.rules" with the following command:
+$ sudo grep -w "create_module" /etc/audit/audit.rules
+-a always,exit -F arch=b32 -S create_module -F auid&gt;=1000 -F auid!=unset -k module-change
+If both the "b32" and "b64" audit rules are not defined for the "create_module" syscall, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-204559.b" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F arch=b64 -S create_module -F auid&gt;=1000 -F auid!=unset -k module-change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+
+Audit records can be generated from various components within the information system (e.g., module or policy filter).
+
+Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*create_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*module-change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-78999.b</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "create_module" syscall occur.
+Check the auditing rules in "/etc/audit/audit.rules" with the following command:
+$ sudo grep -w "create_module" /etc/audit/audit.rules
+-a always,exit -F arch=b64 -S create_module -F auid&gt;=1000 -F auid!=unset -k module-change
+If both the "b32" and "b64" audit rules are not defined for the "create_module" syscall, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-204560.a" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F arch=b32 -S init_module,finit_module -F auid&gt;=1000 -F auid!=unset -k modulechange</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+
+Audit records can be generated from various components within the information system (e.g., module or policy filter).
+
+The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance can be helped, however, by combining syscalls into one rule whenever possible.
+
+Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*init_module,finit_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*modulechange</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72187.a</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records upon successful/unsuccessful attempts to use the "init_module" and "finit_module" syscalls.
+Check the auditing rules in "/etc/audit/audit.rules" with the following command:
+$ sudo grep init_module /etc/audit/audit.rules
+-a always,exit -F arch=b32 -S init_module,finit_module -F auid&gt;=1000 -F auid!=unset -k modulechange
+If both the "b32" and "b64" audit rules are not defined for the "init_module" and "finit_module" syscalls, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-204560.b" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F arch=b64 -S init_module,finit_module -F auid&gt;=1000 -F auid!=unset -k modulechange</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+
+Audit records can be generated from various components within the information system (e.g., module or policy filter).
+
+The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance can be helped, however, by combining syscalls into one rule whenever possible.
+
+Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*init_module,finit_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*modulechange</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72187.b</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records upon successful/unsuccessful attempts to use the "init_module" and "finit_module" syscalls.
+Check the auditing rules in "/etc/audit/audit.rules" with the following command:
+$ sudo grep init_module /etc/audit/audit.rules
+-a always,exit -F arch=b64 -S init_module,finit_module -F auid&gt;=1000 -F auid!=unset -k modulechange
+If both the "b32" and "b64" audit rules are not defined for the "init_module" and "finit_module" syscalls, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-204562.a" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F arch=b32 -S delete_module -F auid&gt;=1000 -F auid!=unset -k module-change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+
+Audit records can be generated from various components within the information system (e.g., module or policy filter).
+
+Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*delete_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*module-change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72189.a</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "delete_module" syscall occur.
+Check the auditing rules in "/etc/audit/audit.rules" with the following command:
+$ sudo grep -w "delete_module" /etc/audit/audit.rules
+-a always,exit -F arch=b32 -S delete_module -F auid&gt;=1000 -F auid!=unset -k module-change
+If both the "b32" and "b64" audit rules are not defined for the "delete_module" syscall, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-204562.b" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
+      <ContainsLine>-a always,exit -F arch=b64 -S delete_module -F auid&gt;=1000 -F auid!=unset -k module-change</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+
+Audit records can be generated from various components within the information system (e.g., module or policy filter).
+
+Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*delete_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*module-change</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72189.b</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "delete_module" syscall occur.
+Check the auditing rules in "/etc/audit/audit.rules" with the following command:
+$ sudo grep -w "delete_module" /etc/audit/audit.rules
+-a always,exit -F arch=b64 -S delete_module -F auid&gt;=1000 -F auid!=unset -k module-change
+If both the "b32" and "b64" audit rules are not defined for the "delete_module" syscall, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-204563" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
       <ContainsLine>-w /usr/bin/kmod -p x -F auid!=unset -k module-change</ContainsLine>
@@ -5295,6 +5436,29 @@ $ sudo grep -iw "superusers" /boot/efi/EFI/redhat/grub.cfg
     export superusers
 
 If "superusers" is identical to any OS account name or is missing a name, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-251704" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="nxFileLine">
+      <ContainsLine />
+      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
+
+When operating systems provide the capability to escalate a functional capability, it is critical the user re-authenticate.
+
+Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>pam_succeed_if</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/sudo</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system is not be configured to bypass password requirements for privilege escalation.
+
+Check the configuration of the "/etc/pam.d/sudo" file with the following command:
+
+$ sudo grep pam_succeed_if /etc/pam.d/sudo
+
+If any occurrences of "pam_succeed_if" is returned from the command, this is a finding.</RawString>
     </Rule>
   </nxFileLineRule>
   <nxFileRule dscresourcemodule="nx">
