@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 27 Jul 2022 3.3.0.27375 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.8" created="9/8/2022">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 27 Jul 2022 3.3.0.27375 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.8" created="9/12/2022">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -2424,6 +2424,26 @@ Verify the operating system does not have nested "include" files or directories 
 $ sudo grep -r include /etc/sudoers.d
 
 If results are returned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-251704" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
+
+When operating systems provide the capability to escalate a functional capability, it is critical the user re-authenticate.
+
+Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system is not be configured to bypass password requirements for privilege escalation.
+
+Check the configuration of the "/etc/pam.d/sudo" file with the following command:
+
+$ sudo grep pam_succeed_if /etc/pam.d/sudo
+
+If any occurrences of "pam_succeed_if" is returned from the command, this is a finding.</RawString>
     </Rule>
     <Rule id="V-251705" severity="medium" conversionstatus="pass" title="SRG-OS-000445-GPOS-00199" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without verification of the security functions, security functions may not operate correctly, and the failure may go unnoticed. Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters.
@@ -5436,29 +5456,6 @@ $ sudo grep -iw "superusers" /boot/efi/EFI/redhat/grub.cfg
     export superusers
 
 If "superusers" is identical to any OS account name or is missing a name, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-251704" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="nxFileLine">
-      <ContainsLine />
-      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
-
-When operating systems provide the capability to escalate a functional capability, it is critical the user re-authenticate.
-
-Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>pam_succeed_if</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/sudo</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system is not be configured to bypass password requirements for privilege escalation.
-
-Check the configuration of the "/etc/pam.d/sudo" file with the following command:
-
-$ sudo grep pam_succeed_if /etc/pam.d/sudo
-
-If any occurrences of "pam_succeed_if" is returned from the command, this is a finding.</RawString>
     </Rule>
   </nxFileLineRule>
   <nxFileRule dscresourcemodule="nx">
