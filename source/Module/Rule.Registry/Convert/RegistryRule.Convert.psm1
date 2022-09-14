@@ -61,13 +61,19 @@ class RegistryRuleConvert : RegistryRule
         [string] $registryValueData = $this.GetValueData($rawString)
 
         # If a range is found on the value line, it needs further processing.
-        if ($this.TestValueDataStringForRange($registryValueData))
+        if (($this.TestValueDataStringForRange($registryValueData)) -or ($this.RawString -match "LegalNoticeText"))
         {
             # Set the OrganizationValueRequired flag to true so that a org level setting will be required.
             $this.SetOrganizationValueRequired()
 
             # Try to extract a test string from the range text.
             $OrganizationValueTestString = $this.GetOrganizationValueTestString($registryValueData)
+
+            if ($this.RawString -match "LegalNoticeText")
+            {
+                $LegalNoticeTextOrganizationValueTestString = '{0} is set to the required legal notice before logon'
+                $this.set_OrganizationValueTestString($LegalNoticeTextOrganizationValueTestString)
+            }
 
             # If a test string was returned, add it.
             if ($null -ne $OrganizationValueTestString)
