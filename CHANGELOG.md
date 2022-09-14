@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 8: [#1151](https://github.com/microsoft/PowerStig/issues/1151)
 * Update PowerSTIG to Parse/Apply Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 8: [#1140](https://github.com/microsoft/PowerStig/issues/1140)
 * Update PowerSTIG to successfully parse/apply Microsoft Edge STIG - Ver 1, Rel 5 : [#1145](https://github.com/microsoft/PowerStig/issues/1145)
 * Update PowerSTIG to successfully parse/apply Microsoft Internet Explorer 11 STIG - Ver 2, Rel 2 : [#1143](https://github.com/microsoft/PowerStig/issues/1093)
