@@ -8,17 +8,17 @@
 data regularExpression
 {
     ConvertFrom-StringData -StringData @'
-        nxFileLineContainsLine            = #\\s+(?:(?:sudo\\s)*(?:e)*grep|more|cat).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)(?!\\/etc\\/issue)\\/[\\w.\\/-]*\\/[\\w.\\/-]*).*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
+        nxFileLineContainsLine            = (?:#|\\$\\s+sudo|#\\s+sudo)\\s+(?:cat|grep|more).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)(?!\\/etc\\/issue)\\/[\\w.\\/-]*\\/[\\w.\\/-]*).*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
         nxFileLineContainsLineYumConf     = #\\s+(?:grep|more|cat).*\\s+\\/etc\\/yum.conf\\s+(?<setting>.*)
         nxFileLineContainsLineAuditUbuntu = \\s*sudo\\s*aud(i)*tctl\\s*-l\\s*\\|.*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n|.*\\n.*\\n.*\\n.*\\n.*\\n)If.*this is a finding
         nxFileLineContainsLineExclude     = The result must contain the following line:|If\\s+.*commented\\s+(?:out|line).*|#\\s+cat\\s+\\/etc\\/redhat-release|^The\\s+command\\s+will\\s+return\\s+the\\s+banner.*|^Check\\s+the\\s+specified\\s+banner\\s+file.*
-        nxFileLineFilePathAudit           = #\\s+grep.*(?<auditPath>\\/etc\\/audit\\/audit\\.rules).*
+        nxFileLineFilePathAudit           = (?:#|\\$\\s+sudo|#\\s+sudo)\\s+(?:cat|grep|more).*(?<auditPath>\\/etc\\/audit\\/audit\\.rules).*
         nxFileLineFilePathUbuntuBanner    = (?<ubuntuBanner>You are accessing a U.S. Government \\(USG\\) [^"]+(?<=details.))
         nxFileLineFilePathAuditUbuntu     = \\s*sudo\\s*(?<auditPathUbuntu>aud(i)*tctl\\s*-l\\s*\\|)
         nxFileLineFilePathBannerUbuntu    = Ubuntu.*#\\sgrep\\s-i\\sbanner\\s(?<bannerPathUbuntu>\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
         nxFileLineFilePathTftp            = #\\s+grep.*(?<tftpPath>\\/etc\\/xinetd\\.d\\/tftp).*
         nxFileLineFilePathRescue          = #\\s+grep.*(?<rescuePath>\\/usr\\/lib\\/systemd\\/system\\/rescue\\.service).*
-        nxFileLineFilePath                = #\\s+(?:(?:sudo\\s)*(?:e)*grep|more|cat).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
+        nxFileLineFilePath                = (?:#|\\$\\s+sudo|#\\s+sudo)\\s+(?:cat|grep|more).*\\s+(?<filePath>(?!\\/etc\\/redhat-release)\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
         nxFileLineFooterDetection         = ^If\\s+.*$
 '@
 }
@@ -152,7 +152,7 @@ data doesNotContainPattern
         '-a always,exit -F path=/usr/sbin/pam_timestamp_check -F auid>=1000 -F auid!=4294967295 -k privileged-pam'                       = 'DynamicallyGeneratedDoesNotContainPattern'
         '-a always,exit -F path=/usr/sbin/postdrop -F auid>=1000 -F auid!=4294967295 -k privileged-postfix'                              = 'DynamicallyGeneratedDoesNotContainPattern'
         '-a always,exit -F path=/usr/sbin/postqueue -F auid>=1000 -F auid!=4294967295 -k privileged-postfix'                             = 'DynamicallyGeneratedDoesNotContainPattern'
-        '-a always,exit -F path=/usr/sbin/semanage -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change'                          = 'DynamicallyGeneratedDoesNotContainPattern'
+        '-a always,exit -F path=/usr/sbin/semanage -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change'                = 'DynamicallyGeneratedDoesNotContainPattern'
         '-a always,exit -F path=/usr/sbin/setfiles -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change'                          = 'DynamicallyGeneratedDoesNotContainPattern'
         '-a always,exit -F path=/usr/sbin/setsebool -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change'                         = 'DynamicallyGeneratedDoesNotContainPattern'
         '-a always,exit -F path=/usr/sbin/unix_chkpwd -F auid>=1000 -F auid!=4294967295 -k privileged-passwd'                            = 'DynamicallyGeneratedDoesNotContainPattern'

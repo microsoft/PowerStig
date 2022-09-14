@@ -6,7 +6,7 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="3.3">
-    <!-- Ensure ServiceName/StartupType is populated with correct AntiVirus service information-->
+  <!-- Ensure ServiceName/StartupType is populated with correct AntiVirus service information-->
   <OrganizationalSetting id="V-226048" ServiceName="" StartupType="" />
   <!-- Ensure ''V-226056'' -ge '15' -or ''V-226056'' -eq '0'-->
   <OrganizationalSetting id="V-226056" PolicyValue="15" />
@@ -70,6 +70,20 @@
   <OrganizationalSetting id="V-226283" ValueData="30" />
   <!-- Ensure ''V-226287'' -le '900' -and ''V-226287'' -gt '0'-->
   <OrganizationalSetting id="V-226287" ValueData="900" />
+  <!-- Ensure 'V-226288' is set to the required legal notice before logon-->
+  <OrganizationalSetting id="V-226288" ValueData="You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
+-At any time, the USG may inspect and seize data stored on this IS.
+
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details." />
   <!-- Ensure ''V-226289'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
   <OrganizationalSetting id="V-226289" ValueData="DoD Notice and Consent Banner" />
   <!-- Ensure ''V-226290'' -le '4'-->

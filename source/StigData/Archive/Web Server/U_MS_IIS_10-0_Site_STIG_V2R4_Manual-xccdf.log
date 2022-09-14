@@ -1,6 +1,0 @@
-﻿V-218751::System Administrator::""
-V-218735::System Administrator::""
-V-218754::If the "maxAllowedContentLength" value is not explicitly set to "30000000" or less or a length documented and approved by the ISSO, this is a finding.::If the "maxAllowedContentLength" value is not explicitly set to "30000000" or less or a length approved by the ISSO, this is a finding.
-V-218763::*::HardCodedRule(WebConfigurationPropertyRule)@{DscResource = 'xWebConfigKeyValue'; Key = 'timeout'; Value = $null; OrganizationValueTestString = "'{0}' -le '00:15:00'"; ConfigSection = '/system.web/sessionState'}
-V-218775::*::HardCodedRule(WebAppPoolRule)@{DscResource = 'xWebAppPool'; Key = 'logEventOnRecycle'; Value = $null; OrganizationValueTestString = "'{0}' 'Value must contain Time and Schedule but can contain Requests, Memory, IsapiUnhealthy, OnDemand, ConfigChange, PrivateMemory'"}
-
