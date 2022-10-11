@@ -438,6 +438,11 @@ function ConvertTo-AccessControlEntry
 
     $accessControlEntryMatches = $stigString | Select-String -Pattern $regularExpression.spaceDashSpace
 
+    if ($stigString -match 'S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681')
+    {
+        $accessControlEntryMatches += 'S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681 - Read  - This key and subkeys'
+    }
+
     foreach ( $entry in $accessControlEntryMatches )
     {
         if ( $entry -notmatch 'Type|Inherited|Columns|Principal|Applies' )
@@ -468,6 +473,10 @@ function ConvertTo-AccessControlEntry
             if ( $inheritanceInput )
             {
                 $inheritance = $inheritanceInput
+            }
+            if( $entry -match 'S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681')
+            {
+                $Principal = 'S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681'
             }
 
             foreach ( $principal in $principals -split ',' )
