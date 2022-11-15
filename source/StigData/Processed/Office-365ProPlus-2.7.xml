@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Office_365_ProPlus_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Office_365_ProPlus_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 27 Apr 2022 3.3.0.27375 1.10.0" title="Microsoft Office 365 ProPlus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="6/6/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Office_365_ProPlus_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Office_365_ProPlus_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 27 Oct 2022 3.4.0.34222 1.10.0" title="Microsoft Office 365 ProPlus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="11/15/2022">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-223296" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer add-ons are pieces of code, run in Internet Explorer, to provide additional functionality. Rogue add-ons may contain viruses or other malicious code. Disabling or not configuring this setting could allow malicious code or users to become active on user computers or the network. For example, a malicious user can monitor and then use keystrokes that user's type into Internet Explorer. Even legitimate add-ons may demand resources, compromising the performance of Internet Explorer and the operating systems for user computers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -211,6 +211,27 @@ HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RES
 If the value for all installed programs is REG_DWORD = 1, this is not a finding.</RawString>
     </Rule>
   </DocumentRule>
+  <ManualRule dscresourcemodule="None">
+    <Rule id="V-223356" severity="medium" conversionstatus="pass" title="SRG-APP-000630" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;This policy setting allows you to set the minimum key length for an encrypted e-mail message.
+
+If you enable this policy setting, you may set the minimum key length for an encrypted e-mail message. Outlook will display a warning dialog if the user tries to send a message using an encryption key that is below the minimum encryption key value set. The user can still choose to ignore the warning and send using the encryption key originally chosen.
+
+If you disable or do not configure this policy setting, a dialog warning will be shown to the user if the user attempts to send a message using encryption. The user can still choose to ignore the warning and send using the encryption key originally chosen.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-99787</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2016 &gt;&gt; Security &gt;&gt; Cryptography &gt;&gt; Minimum encryption settings is set to "Enabled" and a Minimum key size (in bits) of "168" or above.
+
+Use the Windows Registry to navigate to the following key:
+
+HKCU\software\policies\microsoft\office\16.0\outlook\security
+
+If the value for minenckey is set to 168 or above, this is not a finding.</RawString>
+    </Rule>
+  </ManualRule>
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-223280" severity="medium" conversionstatus="pass" title="SRG-APP-000179" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting allows you to block macros from running in Office files that come from the Internet.
@@ -284,10 +305,10 @@ Therefore, if you created a list of trusted publishers in a previous version of 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Access\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\16.0\access\security</Key>
       <LegacyId>V-99637</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '3|2|4|1'</OrganizationValueTestString>
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Access 2016 &gt;&gt; Application Settings &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; VBA Macro Notification Settings is set to "Disable all except digitally signed macros".
 
 Use the Windows Registry Editor to navigate to the following key: 
@@ -296,7 +317,7 @@ HKCU\software\policies\Microsoft\office\16.0\access\security
 
 If the value vbawarnings is REG_DWORD = 3, this is not a finding. Values of REG_DWORD = 2 or 4 are also acceptable. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
       <ValueData />
-      <ValueName>vbawarnings</ValueName>
+      <ValueName>Disable all except digitally signed macros</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223283" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
@@ -459,10 +480,10 @@ Important: Some ActiveX controls do not respect the safe mode registry setting, 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Common\Security</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\Common\Security</Key>
       <LegacyId>V-99649</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 6</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2016 &gt;&gt; Security Settings "ActiveX Control Initialization" is set to "Enabled (If SFI, load the control in safe mode and use persisted values (if any). If not SFI, prompt the user and advise them that it is marked unsafe. If the user chooses No at the prompt, do not load the control. Otherwise, load it with persisted values.)
 
 Use the Windows Registry Editor to navigate to the following key: 
@@ -470,8 +491,8 @@ Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\Common\Security
 
 If the value UFIControls is set to REG_DWORD=6, this is not a finding.</RawString>
-      <ValueData />
-      <ValueName>UFIControls</ValueName>
+      <ValueData>6</ValueData>
+      <ValueName>ActiveX Control Initialization</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223289" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -536,9 +557,9 @@ If you do not configure this policy setting, Excel, PowerPoint, and Word use Off
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Common\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\common\security</Key>
       <LegacyId>V-99655</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2016 &gt;&gt; Security Settings &gt;&gt; Encryption type for password protected Office 97-2003 files is set to Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256.
  
@@ -546,9 +567,9 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\microsoft\office\16.0\common\security
 
-If the value for defaultencryption12 is set to REG_SZ = "Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256", this is not a finding.</RawString>
-      <ValueData>Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256</ValueData>
-      <ValueName>defaultencryption12</ValueName>
+If the value defaultencryption12 is set to REG_SZ = "Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256", this is not a finding.</RawString>
+      <ValueData />
+      <ValueName>User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2016 &gt;&gt; Security Settings &gt;&gt; Encryption type for password protected Office 97-2003 files is set to Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256. Use the Windows Registry Editor to navigate to the following key: HKCU\software\policies\microsoft\office\16.0\common\security If the value defaultencryption12 is set to REG_SZ = Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256, this is not a finding.</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-223292" severity="medium" conversionstatus="pass" title="SRG-APP-000231" dscresource="RegistryPolicyFile">
@@ -567,9 +588,9 @@ HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\&lt;office application name&gt;
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Common\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\common\security</Key>
       <LegacyId>V-99657</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2016 &gt;&gt; Security Settings &gt;&gt; Encryption type for password protected Office Open XML files is set to Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256.
  
@@ -578,7 +599,7 @@ Use the Windows Registry Editor to navigate to the following key:
 HKCU\software\policies\microsoft\office\16.0\common\security
 
 If the value OpenXMLEncryption is REG_SZ = "Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256", this is not a finding.</RawString>
-      <ValueData>Microsoft Enhanced RSA and AES Cryptographic Provider,AES 256,256</ValueData>
+      <ValueData />
       <ValueName>OpenXMLEncryption</ValueName>
       <ValueType>String</ValueType>
     </Rule>
@@ -607,7 +628,7 @@ HKCU\software\policies\microsoft\office\16.0\common\security\trusted locations
 
 If the value for allow user locations is set to REG_DWORD = 0, this is not a finding.</RawString>
       <ValueData>0</ValueData>
-      <ValueName>allow user locations</ValueName>
+      <ValueName>allow</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223294" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="RegistryPolicyFile">
@@ -655,7 +676,7 @@ If  this policy setting is disabled or not configured, the behavior is as if thi
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\vba\security</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\VBA\Security</Key>
       <LegacyId>V-99665</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -696,9 +717,9 @@ Use the Windows Registry Editor to navigate to the following key:
 HKLM\SOFTWARE\Microsoft\Office\Common\COM Compatibility
 
 If the value for COMMENT is REG_SZ = Block all Flash activation, this is not a finding.</RawString>
-      <ValueData>Block all Flash activation</ValueData>
+      <ValueData>1</ValueData>
       <ValueName>COMMENT</ValueName>
-      <ValueType>String</ValueType>
+      <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223310" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls whether trusted locations on the network can be used.
@@ -740,19 +761,18 @@ If you enable this policy setting, you can choose from four options for determin
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Excel\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\16.0\excel\security</Key>
       <LegacyId>V-99697</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
-      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Application Settings &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; "VBA macro Notification Settings" is set to "Enabled" and "Disable all except digitally signed macros" from the Options. 
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; "Macro Notification Settings" is set to "Enabled" and "Disable VBA macros except digitally signed macros" from the Options is selected.
 
 Use the Windows Registry Editor to navigate to the following key:
-
 HKCU\software\policies\Microsoft\office\16.0\excel\security
 
-If the value vbawarnings is REG_DWORD = 3, this is not a finding. Values of REG_DWORD = 2 or 4 are also acceptable. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
+If the value vbawarnings is REG_DWORD = 3, this is not a finding. A value of REG_DWORD =  4 are also acceptable. If the registry key does not exist or is not configured properly, this is a finding.</RawString>
       <ValueData />
-      <ValueName>vbawarnings</ValueName>
+      <ValueName>Macro Notification Settings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223312" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
@@ -1307,7 +1327,7 @@ If you disable or do not configure this policy setting, users can enable the Aut
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Excel\Options</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\excel\options</Key>
       <LegacyId>V-99737</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1319,10 +1339,10 @@ HKCU\software\policies\microsoft\office\16.0\excel\options
 
 If value for disableautorepublishwarning is REG_DWORD = 0, this is not a finding.</RawString>
       <ValueData>0</ValueData>
-      <ValueName>disableautorepublishwarning</ValueName>
+      <ValueName>User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Save &gt;&gt; Do not show AutoRepublish warning alert is set to Disabled. Use the Windows Registry Editor to navigate to the following key: HKCU\software\policies\microsoft\office\16.0\excel\options If value for disableautorepublishwarning is REG_DWORD = 0, this is not a finding.</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-223332" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="RegistryPolicyFile">
+    <Rule id="V-223332" severity="medium" conversionstatus="fail" title="SRG-APP-000516" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls how Excel loads file types that do not match their extension. Excel can load files with extensions that do not match the files' type. For example, if a comma-separated values (CSV) file named example.csv is renamed example.xls (or any other file extension supported by Excel 2003 and earlier only), Excel can properly load it as a CSV file.
 
 If you enable this policy setting, you can choose from three options for working with files that have non-matching extensions:
@@ -1334,7 +1354,7 @@ If this policy setting is disabled or not configured or if users attempt to open
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Excel\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\excel\security</Key>
       <LegacyId>V-99739</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1345,9 +1365,9 @@ Use the Windows Registry Editor to navigate to the following key:
 HKCU\software\policies\microsoft\office\16.0\excel\security
 
 If value for extensionhardening is REG_DWORD = 2, this is not a finding.</RawString>
-      <ValueData>2</ValueData>
-      <ValueName>extensionhardening</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueData>Always match file type</ValueData>
+      <ValueName>User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Force file extension to match file type is set to Always match file type. Use the Windows Registry Editor to navigate to the following key: HKCU\software\policies\microsoft\office\16.0\excel\security If value for extensionhardening is REG_DWORD = 2, this is not a finding.</ValueName>
+      <ValueType />
     </Rule>
     <Rule id="V-223333" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls whether encrypted macros in Open XML workbooks be are required to be scanned with anti-virus software before being opened.
@@ -1361,10 +1381,10 @@ If you disable or do not configure this policy setting, the behavior will be sim
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Excel\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\excel\security</Key>
       <LegacyId>V-99741</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 1|DoesNotExist</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Scan encrypted macros in Excel Open XML workbooks is set to "Scan encrypted macros (default)".
 
 Use the Windows Registry Editor to navigate to the following key: 
@@ -1374,8 +1394,8 @@ HKCU\software\policies\microsoft\office\16.0\excel\security
 If the value excelbypassencryptiedmacrosscan does not exist, this is not a finding.
 
 If the value for excelbypassencryptedmacroscan is REG_DWORD = 0, this is not a finding.</RawString>
-      <ValueData />
-      <ValueName>excelbypassencryptiedmacrosscan</ValueName>
+      <ValueData>0</ValueData>
+      <ValueName>excelbypassencryptedmacroscan</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223334" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="RegistryPolicyFile">
@@ -1416,10 +1436,10 @@ If you do not configure this policy setting, when users open workbooks that cont
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Excel\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\excel\security</Key>
       <LegacyId>V-99745</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 1|DoesNotExist</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; WEBSERVICE Function Notification Settings is set to "Enabled" and "Disable all with notification".
 
 Use the Windows Registry Editor to navigate to the following key: 
@@ -1431,7 +1451,7 @@ If the value webservicefunctionwarnings does not exist, this is not a finding.
 If the value for webservicefunctionwarnings is REG_DWORD = 1, this is not a finding.
 
 If the value for webservicefunctionwarnings is REG_DWORD = 2, this is a finding.</RawString>
-      <ValueData />
+      <ValueData>1</ValueData>
       <ValueName>webservicefunctionwarnings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -1527,7 +1547,7 @@ Note: This policy setting only applies to subscription versions of Office, such 
       <LegacyId>V-99753</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; External Content &gt;&gt; Always open untrusted database files in Protected View is set to "Enabled".
+      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Always open untrusted database files in Protected View is set to "Enabled".
 
 Use the Windows Registry Editor to navigate to the following key: 
 
@@ -1547,10 +1567,10 @@ If you disable or do not configure this policy setting, files downloaded from th
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Excel\Security\ProtectedView</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\excel\security\protectedview</Key>
       <LegacyId>V-99755</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 0|DoesNotExist</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Do not open files from the Internet zone in Protected View is set to "Disabled".
 
 Use the Windows Registry Editor to navigate to the following key: 
@@ -1562,8 +1582,8 @@ If the value DisableInternetFilesInPV is REG_DWORD = 0, this is not a finding.
 If the value does not exist, this is not a finding.
 
 If the value is REG_DWORD = 1, this is a finding.</RawString>
-      <ValueData />
-      <ValueName>DisableInternetFilesInPV</ValueName>
+      <ValueData>0</ValueData>
+      <ValueName>DisableInternetFilesInPV is REG_DWORD = 0, this is not a finding. If the value does not exist, this is not a finding. If the value</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223341" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -1575,10 +1595,10 @@ If you disable or do not configure this policy setting, files located in unsafe 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Excel\Security\ProtectedView</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\excel\security\protectedview</Key>
       <LegacyId>V-99757</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 0|DoesNotExist</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Do not open files in unsafe locations in Protected View is set to "Disabled".
 
 Use the Windows Registry Editor to navigate to the following key: 
@@ -1590,11 +1610,11 @@ If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not a finding.
 If the value does not exist, this is not a finding.
 
 If the value is REG_DWORD = 1, this is a finding.</RawString>
-      <ValueData />
-      <ValueName>DisableUnsafeLocationsInPV</ValueName>
+      <ValueData>0</ValueData>
+      <ValueName>DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not a finding. If the value does not exist, this is not a finding. If the value</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-223342.a" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+    <Rule id="V-223342" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls how Office handles documents when they fail file validation. 
 
 If you enable this policy setting, you can configure the following options for files that fail file validation:
@@ -1608,40 +1628,9 @@ If you do not configure this policy setting, Office follows the "Open files in P
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Excel\Security\FileValidation</Key>
-      <LegacyId>V-99759.a</LegacyId>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Excel\security\filevalidation</Key>
+      <LegacyId>V-99759</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 1|DoesNotExist</OrganizationValueTestString>
-      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Set document behavior if file validation fails is set to "Enabled: Open in Protected View". Verify the check box for "Allow edit" is not selected.
-
-Use the Windows Registry Editor to navigate to the following key:
-
-HKCU\Software\Policies\Microsoft\Office\16.0\Excel\security\filevalidation
-
-If the value openinprotectedview does not exist, this is not a finding. 
-
-If both the value for openinprotectedview is REG_DWORD = 1 and the value for DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
-      <ValueData />
-      <ValueName>openinprotectedview</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-223342.b" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy setting controls how Office handles documents when they fail file validation. 
-
-If you enable this policy setting, you can configure the following options for files that fail file validation:
-- Block files completely. Users cannot open the files.
-- Open files in Protected View and disallow edit. Users cannot edit the files. This is also how Office handles the files if you disable this policy setting.
-- Open files in Protected View and allow edit. Users can edit the files. This is also how Office handles the files if you do not configure this policy setting.
-
-If you disable this policy setting, Office follows the "Open files in Protected View and disallow edit" behavior.
-
-If you do not configure this policy setting, Office follows the "Open files in Protected View and allow edit" behavior.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Excel\Security\FileValidation</Key>
-      <LegacyId>V-99759.b</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2016 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Set document behavior if file validation fails is set to "Enabled: Open in Protected View". Verify the check box for "Allow edit" is not selected.
 
@@ -1652,8 +1641,8 @@ HKCU\Software\Policies\Microsoft\Office\16.0\Excel\security\filevalidation
 If the value openinprotectedview does not exist, this is not a finding. 
 
 If both the value for openinprotectedview is REG_DWORD = 1 and the value for DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>DisableEditFromPV</ValueName>
+      <ValueData />
+      <ValueName>openinprotectedview does not exist, this is not a finding. If both the value for openinprotectedview</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223343" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -1733,10 +1722,10 @@ If you disable or do not configure this policy setting, Outlook will attempt to 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\security</Key>
       <LegacyId>V-99767</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 16(decimal)|10(hex)</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '16|10'</OrganizationValueTestString>
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2016 &gt;&gt; Account Settings &gt;&gt; Exchange &gt;&gt; Authentication with Exchange Server is set to Kerberos Password Authentication.
  
 Use the Windows Registry Editor to navigate to the following key:
@@ -1745,7 +1734,7 @@ HKCU\software\policies\microsoft\office\16.0\outlook\security
 
 If the value authenticationservice is set to REG_DWORD = 16 (decimal) or 10 (hex), this is not a finding.</RawString>
       <ValueData />
-      <ValueName>authenticationservice</ValueName>
+      <ValueName>User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2016 &gt;&gt; Account Settings &gt;&gt; Exchange &gt;&gt; Authentication with Exchange Server is set to Kerberos Password Authentication. Use the Windows Registry Editor to navigate to the following key: HKCU\software\policies\microsoft\office\16.0\outlook\security If the value authenticationservice is set to REG_DWORD = 16 (decimal) or 10 (hex), this is not a finding.</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223347" severity="medium" conversionstatus="pass" title="SRG-APP-000575" dscresource="RegistryPolicyFile">
@@ -1832,7 +1821,7 @@ If the value for msgformat is set to REG_DWORD = 0, this is not a finding.</RawS
       <ValueName>msgformat</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-223351" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="RegistryPolicyFile">
+    <Rule id="V-223351" severity="medium" conversionstatus="fail" title="SRG-APP-000516" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls your Junk E-mail protection level. The Junk E-mail Filter in Outlook helps to prevent junk e-mail messages, also known as spam, from cluttering user's Inbox. The filter evaluates each incoming message based on several factors, including the time when the message was sent and the content of the message. The filter does not single out any particular sender or message type, but instead analyzes each message based on its content and structure to discover whether or not it is probably spam.
 
 If you enable this policy setting, you can select one of the four listed options available. After you select an option, users will not be able to change it.
@@ -1843,7 +1832,7 @@ If you do not configure this policy setting, users can change their junk e-mail 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\Options\Mail</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\options\mail</Key>
       <LegacyId>V-99777</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1854,9 +1843,9 @@ Use the Windows Registry Editor to navigate to the following key:
 HKCU\software\policies\microsoft\office\16.0\outlook\options\mail
 
 If the value junkmailprotection is set to "3", this is not a finding.</RawString>
-      <ValueData>3</ValueData>
-      <ValueName>junkmailprotection</ValueName>
-      <ValueType>String</ValueType>
+      <ValueData>High</ValueData>
+      <ValueName>User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2016 &gt;&gt; Outlook Options &gt;&gt; Preferences &gt;&gt; Junk E-mail &gt;&gt; Junk E-mail protection level is set to High. Use the Windows Registry Editor to navigate to the following key: HKCU\software\policies\microsoft\office\16.0\outlook\options\mail If the value junkmailprotection is set to 3, this is not a finding.</ValueName>
+      <ValueType />
     </Rule>
     <Rule id="V-223352" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;By default, third-party ActiveX controls are not allowed to run in one-off forms in Outlook. You can change this behavior so that Safe Controls (Microsoft Forms 2.0 controls and the Outlook Recipient and Body controls) are allowed in one-off forms, or so that all ActiveX controls are allowed to run.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1911,7 +1900,7 @@ If you disable or do not configure this policy setting, Outlook does not conside
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\options\mail</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\options\mail</Key>
       <LegacyId>V-99783</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1919,7 +1908,7 @@ If you disable or do not configure this policy setting, Outlook does not conside
 
 Use the Windows Registry to navigate to the following key:
 
-HKCU\software\policies\microsoft\office\ 16.0\outlook\options\mail
+HKCU\software\policies\microsoft\office\16.0\outlook\options\mail
 
 If the value for Internet is set to REG_DWORD = 0, this is not a finding.</RawString>
       <ValueData>0</ValueData>
@@ -1935,7 +1924,7 @@ If you disable or do not configure this policy setting, Outlook users can publis
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\security</Key>
       <LegacyId>V-99785</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1948,30 +1937,6 @@ HKCU\software\policies\microsoft\office\16.0\outlook\security
 If the value for publishtogaldisabled is REG_DWORD = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>publishtogaldisabled</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-223356" severity="medium" conversionstatus="pass" title="SRG-APP-000630" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy setting allows you to set the minimum key length for an encrypted e-mail message.
-
-If you enable this policy setting, you may set the minimum key length for an encrypted e-mail message. Outlook will display a warning dialog if the user tries to send a message using an encryption key that is below the minimum encryption key value set. The user can still choose to ignore the warning and send using the encryption key originally chosen.
-
-If you disable or do not configure this policy setting, a dialog warning will be shown to the user if the user attempts to send a message using encryption. The user can still choose to ignore the warning and send using the encryption key originally chosen.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\Security</Key>
-      <LegacyId>V-99787</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 168 or greator</OrganizationValueTestString>
-      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2016 &gt;&gt; Security &gt;&gt; Cryptography &gt;&gt; Minimum encryption settings is set to "Enabled" and a Minimum key size (in bits) of "168" or above.
-
-Use the Windows Registry to navigate to the following key:
-
-HKCU\software\policies\microsoft\office\16.0\outlook\security
-
-If the value for minenckey is set to 168 or above, this is not a finding.</RawString>
-      <ValueData />
-      <ValueName>minenckey</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223357" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
@@ -2013,7 +1978,7 @@ If you disable or do not configure this policy setting, when Outlook handles a c
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\security</Key>
       <LegacyId>V-99791</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2040,7 +2005,7 @@ Note: In previous versions of Outlook, when security settings were published in 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\security</Key>
       <LegacyId>V-99793</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2076,7 +2041,7 @@ HKCU\software\policies\microsoft\office\16.0\outlook\security
 
 If the value allowuserstolowerattachments is set to REG_DWORD = 0, this is not a finding.</RawString>
       <ValueData>0</ValueData>
-      <ValueName>allowuserstolowerattachments</ValueName>
+      <ValueName>User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2016 &gt;&gt; Security &gt;&gt; Security Form Settings &gt;&gt; Attachment Security &gt;&gt; Allow users to demote attachments to Level 2 is set to Disabled. Use the Windows Registry Editor to navigate to the following key: HKCU\software\policies\microsoft\office\16.0\outlook\security If the value allowuserstolowerattachments is set to REG_DWORD = 0, this is not a finding.</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223361" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
@@ -2108,9 +2073,9 @@ If you enable this policy setting, users can create a list of Level 1 file types
 
 If this policy setting is disabled or not configured, users cannot demote Level 1 attachments to Level 2, and the HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Outlook\Security\Level1Remove registry key has no effect.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <Ensure>Absent</Ensure>
+      <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\security</Key>
       <LegacyId>V-99799</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2121,8 +2086,8 @@ Use the Windows Registry Editor to navigate to the following key:
 HKCU\software\policies\microsoft\office\16.0\outlook\security\FileExtensionsRemoveLevel1
 
 If the registry key exists, this is a finding.</RawString>
-      <ValueData />
-      <ValueName>FileExtensionsRemoveLevel1</ValueName>
+      <ValueData>0</ValueData>
+      <ValueName>User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2016 &gt;&gt; Security &gt;&gt; Security Form Settings &gt;&gt; Attachment Security &gt;&gt; Remove file extensions blocked as Level 1 is set to Disabled. Use the Windows Registry Editor to navigate to the following key: HKCU\software\policies\microsoft\office\16.0\outlook\security\FileExtensionsRemoveLevel1 If the registry key exists, this is a finding.</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223363" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
@@ -2134,9 +2099,9 @@ If you disable or do not configure this policy setting, Outlook does not classif
 
 Important: This policy setting only applies if the "Outlook Security Mode" policy setting under "Microsoft Outlook 2016\Security\Security Form Settings" is configured to "Use Outlook Security Group Policy".&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <Ensure>Absent</Ensure>
+      <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\outlook\security</Key>
       <LegacyId>V-99801</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2147,8 +2112,8 @@ Use the Windows Registry Editor to navigate to the following key:
 HKCU\software\policies\microsoft\office\16.0\outlook\security\FileExtensionsRemoveLevel2
 
 If the registry key exists, this is a finding.</RawString>
-      <ValueData />
-      <ValueName>FileExtensionsRemoveLevel2</ValueName>
+      <ValueData>0</ValueData>
+      <ValueName>User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2016 &gt;&gt; Security &gt;&gt; Security Form Settings &gt;&gt; Attachment Security &gt;&gt; Remove file extensions blocked as Level 2 is set to Disabled. Use the Windows Registry Editor to navigate to the following key: HKCU\software\policies\microsoft\office\16.0\outlook\security\FileExtensionsRemoveLevel2 If the registry key exists, this is a finding.</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223364" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -2495,10 +2460,10 @@ Therefore, if you created a list of trusted publishers in a previous version of 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Project\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\ms project\security</Key>
       <LegacyId>V-99855</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '3|2|4|1'</OrganizationValueTestString>
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Project 2016 &gt;&gt; Project Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; VBA Macro Notification Settings is set to "Enabled" "Disable all except digitally signed macros".
 
 Use the Windows Registry Editor to navigate to the following key:
@@ -2535,7 +2500,7 @@ Therefore, if you created a list of trusted publishers in a previous version of 
       <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\powerpoint\security</Key>
       <LegacyId>V-99825</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '3|2|4|1'</OrganizationValueTestString>
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft PowerPoint 2016 &gt;&gt; PowerPoint Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; VBA Macro Notification Settings is set to "Enabled" "Disable all except digitally signed macros".
 
 Use the Windows Registry Editor to navigate to the following key:
@@ -2555,10 +2520,10 @@ If you enable this policy setting, you can choose from three options to control 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\powerpoint\security</Key>
       <LegacyId>V-99827</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 0|DoesNotExist</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft PowerPoint 2016 &gt;&gt; PowerPoint Options &gt;&gt; Security &gt;&gt; Run Programs is set to "Enabled" "Disable (do not run any programs)".
  
 Use the Windows Registry Editor to navigate to the following key:
@@ -2566,8 +2531,8 @@ Use the Windows Registry Editor to navigate to the following key:
 HKCU\software\policies\microsoft\office\16.0\powerpoint\security
 
 If the value runprograms does not exist, this is not a finding. If the value is REG_DWORD = 0, this is not a finding.</RawString>
-      <ValueData />
-      <ValueName>runprograms</ValueName>
+      <ValueData>0</ValueData>
+      <ValueName>runprograms does not exist, this is not a finding. If the value</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223379" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
@@ -2636,10 +2601,10 @@ If the value OpenInProtectedView is REG_DWORD = 0, this is not a finding.</RawSt
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\PowerPoint\Security</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\PowerPoint\security</Key>
       <LegacyId>V-99833</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 0|DoesNotExist</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft PowerPoint 2016 &gt;&gt; PowerPoint Options &gt;&gt; Security "Scan encrypted macros in PowerPoint Open XML presentations" is set to "Enabled" and "Scan encrypted macros".
 
 Use the Windows Registry Editor to navigate to the following key:
@@ -2649,8 +2614,8 @@ HKCU\Software\Policies\Microsoft\Office\16.0\PowerPoint\security
 If the value PowerPointBypassEncryptedMacroScan does not exist, this is not a finding.
 
 If the value is REG_DWORD = 0, this is not a finding.</RawString>
-      <ValueData />
-      <ValueName>PowerPointBypassEncryptedMacroScan</ValueName>
+      <ValueData>0</ValueData>
+      <ValueName>PowerPointBypassEncryptedMacroScan does not exist, this is not a finding. If the value</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223382" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -2779,7 +2744,7 @@ If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not a finding.
       <ValueName>DisableUnsafeLocationsInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-223388.a" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+    <Rule id="V-223388" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls how Office handles documents when they fail file validation. If you enable this policy setting, you can configure the following options for files that fail file validation:
 
 - Block files completely. Users cannot open the files.
@@ -2790,37 +2755,9 @@ If you disable this policy setting, Office follows the "Open files in Protected 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\PowerPoint\Security\FileValidation</Key>
-      <LegacyId>V-99847.a</LegacyId>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\PowerPoint\security\filevalidation</Key>
+      <LegacyId>V-99847</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 1|DoesNotExist</OrganizationValueTestString>
-      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft PowerPoint 2016 &gt;&gt; PowerPoint Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Set document behavior if file validation fails is set to "Enabled: Open in Protected View". Verify the check box for "Allow edit" is not selected.
-
-Use the Windows Registry Editor to navigate to the following key:
-
-HKCU\Software\Policies\Microsoft\Office\16.0\PowerPoint\security\filevalidation
-
-If the value openinprotectedview does not exist, this is not a finding. 
-
-If both the value for openinprotectedview is REG_DWORD = 1 and the value for DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
-      <ValueData />
-      <ValueName>openinprotectedview</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-223388.b" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy setting controls how Office handles documents when they fail file validation. If you enable this policy setting, you can configure the following options for files that fail file validation:
-
-- Block files completely. Users cannot open the files.
-- Open files in Protected View and disallow edit. Users cannot edit the files. This is also how Office handles the files if you disable this policy setting.
-- Open files in Protected View and allow edit. Users can edit the files. This is also how Office handles the files if you do not configure this policy setting.
-
-If you disable this policy setting, Office follows the "Open files in Protected View and disallow edit" behavior. If you do not configure this policy setting, Office follows the "Open files in Protected View and allow edit" behavior.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\PowerPoint\Security\FileValidation</Key>
-      <LegacyId>V-99847.b</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft PowerPoint 2016 &gt;&gt; PowerPoint Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Set document behavior if file validation fails is set to "Enabled: Open in Protected View". Verify the check box for "Allow edit" is not selected.
 
@@ -2831,8 +2768,8 @@ HKCU\Software\Policies\Microsoft\Office\16.0\PowerPoint\security\filevalidation
 If the value openinprotectedview does not exist, this is not a finding. 
 
 If both the value for openinprotectedview is REG_DWORD = 1 and the value for DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>DisableEditFromPV</ValueName>
+      <ValueData />
+      <ValueName>openinprotectedview does not exist, this is not a finding. If both the value for openinprotectedview</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223389" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -2933,10 +2870,10 @@ Therefore, if you created a list of trusted publishers in a previous version of 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Publisher\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\publisher\security</Key>
       <LegacyId>V-99861</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '3|2|4|1'</OrganizationValueTestString>
       <RawString>Set policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Publisher 2016 &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; VBA Macro Notification Settings &gt;&gt; VBA Macro Notification Settings to "Enabled" "Disable all except digitally signed macros"
  
 Use the Windows Registry Editor to navigate to the following key: 
@@ -2945,7 +2882,7 @@ HKCU\software\policies\microsoft\office\16.0\publisher\security
 
 If the value vbawarnings is REG_DWORD = 3, this is not a finding. Values of REG_DWORD = 2 or 4 are also acceptable. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
       <ValueData />
-      <ValueName>vbawarnings</ValueName>
+      <ValueName>Enabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223393" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
@@ -2970,10 +2907,10 @@ Therefore, if you created a list of trusted publishers in a previous version of 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Visio\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\visio\security</Key>
       <LegacyId>V-99863</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '3|2|4|1'</OrganizationValueTestString>
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates/Microsoft Visio 2016 &gt;&gt; Visio Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; VBA Macro Notification Settings is set to "Enabled" and "Disable all except digitally signed macros".
 
 Use the Windows Registry Editor to navigate to the following key: 
@@ -3193,10 +3130,10 @@ If you disable or do not configure this policy setting, the behavior will be sim
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Word\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\word\security</Key>
       <LegacyId>V-99879</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 0|DoesNotExist</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Word 2016 &gt;&gt; Word Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Scan encrypted macros in Word Open XML documents is set to "Enabled" "Scan encrypted macros (default)".
 
 Use the Windows Registry Editor to navigate to the following key: 
@@ -3204,8 +3141,8 @@ Use the Windows Registry Editor to navigate to the following key:
 HKCU\software\policies\microsoft\office\16.0\word\security
 
 If the value WordBypassEncryptedMacroScan does not exist, this is not a finding. If the value is REG_DWORD = 0, this is not a finding.</RawString>
-      <ValueData />
-      <ValueName>WordBypassEncryptedMacroScan</ValueName>
+      <ValueData>0</ValueData>
+      <ValueName>WordBypassEncryptedMacroScan does not exist, this is not a finding. If the value</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223402" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
@@ -3217,10 +3154,10 @@ If you disable or do not configure this policy setting, files downloaded from th
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Word\Security\ProtectedView</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\word\security\protectedview</Key>
       <LegacyId>V-99881</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 0|DoesNotExist</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy setting, User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Word 2016 &gt;&gt; Word Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Do not open files from the Internet zone in Protected View is set to "Disabled".
 
 Use the Windows Registry Editor to navigate to the following key: 
@@ -3230,8 +3167,8 @@ HKCU\software\policies\microsoft\office\16.0\word\security\protectedview
 If the value for disableinternetfilesinpv is REG_DWORD = 0, this is not a finding. If the value does not exist, this is not a finding.
 
 If the value is REG_DWORD = 1, this is a finding.</RawString>
-      <ValueData />
-      <ValueName>DisableInternetFilesInPV</ValueName>
+      <ValueData>0</ValueData>
+      <ValueName>disableinternetfilesinpv</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223403" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
@@ -3243,10 +3180,10 @@ If you disable or do not configure this policy setting, files located in unsafe 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Word\Security\ProtectedView</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\word\security\protectedview</Key>
       <LegacyId>V-99883</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 0|DoesNotExist</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Word 2016 &gt;&gt; Word Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Do not open files in unsafe locations in Protected View is set to "Disabled".
 
 Use the Windows Registry Editor to navigate to the following key:
@@ -3256,70 +3193,39 @@ HKCU\software\policies\microsoft\office\16.0\word\security\protectedview.
 If the value for disableunsafelocationsinpv is REG_DWORD = 0, this is not a finding. If the value does not exist, this is not a finding.
 
 If the value is REG_DWORD = 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>disableunsafelocationsinpv</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-223404" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting controls how Office handles documents when they fail file validation. 
+
+If you enable this policy setting, you can configure the following options for files that fail file validation:
+- Block files completely. Users cannot open the files.
+- Open files in Protected View and disallow edit. Users cannot edit the files. This is also how Office handles the files if you disable this policy setting.
+- Open files in Protected View and allow edit. Users can edit the files. This is also how Office handles the files if you do not configure this policy setting.
+
+If you disable this policy setting, Office follows the "Open files in Protected View and disallow edit" behavior.
+
+If you do not configure this policy setting, Office follows the "Open files in Protected View and allow edit" behavior.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Word\security\filevalidation</Key>
+      <LegacyId>V-99885</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Word 2016 &gt;&gt; Word Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Set document behavior if file validation fails is set to "Enabled: Open in Protected View". Verify the check box for "Allow edit" is not selected.
+
+Use the Windows Registry Editor to navigate to the following key:
+
+HKCU\Software\Policies\Microsoft\Office\16.0\Word\security\filevalidation
+
+If the value openinprotectedview does not exist, this is not a finding. 
+
+If both the value for openinprotectedview is REG_DWORD = 1 and the value for DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
       <ValueData />
-      <ValueName>DisableUnsafeLocationsInPV</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-223404.a" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy setting controls how Office handles documents when they fail file validation. 
-
-If you enable this policy setting, you can configure the following options for files that fail file validation:
-- Block files completely. Users cannot open the files.
-- Open files in Protected View and disallow edit. Users cannot edit the files. This is also how Office handles the files if you disable this policy setting.
-- Open files in Protected View and allow edit. Users can edit the files. This is also how Office handles the files if you do not configure this policy setting.
-
-If you disable this policy setting, Office follows the "Open files in Protected View and disallow edit" behavior.
-
-If you do not configure this policy setting, Office follows the "Open files in Protected View and allow edit" behavior.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Word\Security\FileValidation</Key>
-      <LegacyId>V-99885.a</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Word 2016 &gt;&gt; Word Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Set document behavior if file validation fails is set to "Enabled: Open in Protected View". Verify the check box for "Allow edit" is not selected.
-
-Use the Windows Registry Editor to navigate to the following key:
-
-HKCU\Software\Policies\Microsoft\Office\16.0\Word\security\filevalidation
-
-If the value openinprotectedview does not exist, this is not a finding. 
-
-If both the value for openinprotectedview is REG_DWORD = 1 and the value for DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>openinprotectedview</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-223404.b" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy setting controls how Office handles documents when they fail file validation. 
-
-If you enable this policy setting, you can configure the following options for files that fail file validation:
-- Block files completely. Users cannot open the files.
-- Open files in Protected View and disallow edit. Users cannot edit the files. This is also how Office handles the files if you disable this policy setting.
-- Open files in Protected View and allow edit. Users can edit the files. This is also how Office handles the files if you do not configure this policy setting.
-
-If you disable this policy setting, Office follows the "Open files in Protected View and disallow edit" behavior.
-
-If you do not configure this policy setting, Office follows the "Open files in Protected View and allow edit" behavior.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Word\Security\FileValidation</Key>
-      <LegacyId>V-99885.b</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Word 2016 &gt;&gt; Word Options &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Protected View &gt;&gt; Set document behavior if file validation fails is set to "Enabled: Open in Protected View". Verify the check box for "Allow edit" is not selected.
-
-Use the Windows Registry Editor to navigate to the following key:
-
-HKCU\Software\Policies\Microsoft\Office\16.0\Word\security\filevalidation
-
-If the value openinprotectedview does not exist, this is not a finding. 
-
-If both the value for openinprotectedview is REG_DWORD = 1 and the value for DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>DisableEditFromPV</ValueName>
+      <ValueName>openinprotectedview does not exist, this is not a finding. If both the value for openinprotectedview</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223405" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
@@ -3669,10 +3575,10 @@ If you enable this policy setting, you can choose from four options for determin
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Word\Security</Key>
+      <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\16.0\word\security</Key>
       <LegacyId>V-99911</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} is 2|3|4</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '3|2|4|1'</OrganizationValueTestString>
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Word 2016 &gt;&gt;  Security &gt;&gt; Trust Center &gt;&gt; "VBA macro Notification Settings" is set to "Enabled" and "Disable all except digitally signed macros" from the Options. 
 
 Use the Windows Registry Editor to navigate to the following key:
@@ -3681,7 +3587,7 @@ HKCU\software\policies\Microsoft\office\16.0\word\security
 
 If the value vbawarnings is REG_DWORD = 3, this is not a finding. Values of REG_DWORD = 2 or 4 are also acceptable. If the registry key does not exist or the value is REG_DWORD =1, this is a finding.</RawString>
       <ValueData />
-      <ValueName>vbawarnings</ValueName>
+      <ValueName>VBA macro Notification Settings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223418" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="RegistryPolicyFile">
