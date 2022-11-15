@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 5: [#1157](https://github.com/microsoft/PowerStig/issues/1157)
+
 ## [4.14.0] - 2022-09-14
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 8: [#1151](https://github.com/microsoft/PowerStig/issues/1151)
