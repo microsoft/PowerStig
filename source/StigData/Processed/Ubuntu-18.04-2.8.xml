@@ -2842,11 +2842,11 @@ disk_full_action = HALT
 If the value of the "disk_full_action" option is not "SYSLOG", "SINGLE", or "HALT", or the line is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219238" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/bin/su -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-priv_change</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/bin/su -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-priv_change</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/bin/su\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-priv_change</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/bin/su\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-priv_change</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2866,11 +2866,11 @@ If the command does not return lines that match the example or the lines are com
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219239" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/chfn -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-chfn</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/chfn -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-chfn</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chfn\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-chfn</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chfn\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-chfn</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2890,11 +2890,11 @@ If the command does not return lines that match the example or the lines are com
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219240" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/bin/mount -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-mount</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/bin/mount -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-mount</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/bin/mount\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-mount</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/bin/mount\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-mount</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2914,11 +2914,11 @@ If the command does not return lines that match the example or the lines are com
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219241" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/bin/umount -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-umount</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/bin/umount -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-umount</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/bin/umount\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-umount</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/bin/umount\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-umount</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2938,11 +2938,11 @@ If the command does not return lines that match the example or the lines are com
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219242" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/ssh-agent -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-ssh</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/ssh-agent -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-ssh</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/ssh-agent\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-ssh</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/ssh-agent\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-ssh</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2962,11 +2962,11 @@ If the command does not return lines that match the example or the lines are com
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219243" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/lib/openssh/ssh-keysign -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-ssh</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/lib/openssh/ssh-keysign -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-ssh</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/lib/openssh/ssh-keysign\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-ssh</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/lib/openssh/ssh-keysign\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-ssh</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2986,7 +2986,7 @@ If the command does not return lines that match the example or the lines are com
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219244.a" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b32 -S setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b32 -S setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr -F auid&gt;=1000 -F auid!=4294967295 -k perm_mod</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
@@ -2994,7 +2994,7 @@ Audit records can be generated from various components within the information sy
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.
 
 Satisfies: SRG-OS-000462-GPOS-00206&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_mod</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3038,7 +3038,7 @@ The "-k" allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219244.c" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b64 -S setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b64 -S setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr -F auid&gt;=1000 -F auid!=4294967295 -k perm_mod</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
@@ -3046,7 +3046,7 @@ Audit records can be generated from various components within the information sy
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.
 
 Satisfies: SRG-OS-000462-GPOS-00206&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_mod</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_mod</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3090,7 +3090,7 @@ The "-k" allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219250.a" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b32 -S chown,fchown,fchownat,lchown -F auid&gt;=1000 -F auid!=-1 -k perm_chng</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b32 -S chown,fchown,fchownat,lchown -F auid&gt;=1000 -F auid!=4294967295 -k perm_chng</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
@@ -3098,7 +3098,7 @@ Audit records can be generated from various components within the information sy
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.
 
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPOS-00206&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*chown,fchown,fchownat,lchown\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_chng</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*chown,fchown,fchownat,lchown\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_chng</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3116,7 +3116,7 @@ The "-k" allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219250.b" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b64 -S chown,fchown,fchownat,lchown -F auid&gt;=1000 -F auid!=-1 -k perm_chng</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b64 -S chown,fchown,fchownat,lchown -F auid&gt;=1000 -F auid!=4294967295 -k perm_chng</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
@@ -3124,7 +3124,7 @@ Audit records can be generated from various components within the information sy
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.
 
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPOS-00206&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*chown,fchown,fchownat,lchown\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_chng</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*chown,fchown,fchownat,lchown\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_chng</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3142,7 +3142,7 @@ The "-k" allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219254.a" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid&gt;=1000 -F auid!=-1 -k perm_chng</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid&gt;=1000 -F auid!=4294967295 -k perm_chng</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
@@ -3150,7 +3150,7 @@ Audit records can be generated from various components within the information sy
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.
 
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPOS-00206&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*chmod,fchmod,fchmodat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_chng</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*chmod,fchmod,fchmodat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_chng</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3168,7 +3168,7 @@ The "-k" allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219254.b" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid&gt;=1000 -F auid!=-1 -k perm_chng</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid&gt;=1000 -F auid!=4294967295 -k perm_chng</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
@@ -3176,7 +3176,7 @@ Audit records can be generated from various components within the information sy
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.
 
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPOS-00206&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*chmod,fchmod,fchmodat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_chng</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*chmod,fchmod,fchmodat\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_chng</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3194,7 +3194,7 @@ The "-k" allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219257.a" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b32 -S creat,open,openat,open_by_handle_at,truncate,ftruncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=-1 -k perm_access</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b32 -S creat,open,openat,open_by_handle_at,truncate,ftruncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=4294967295 -k perm_access</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
@@ -3202,7 +3202,7 @@ Audit records can be generated from various components within the information sy
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.
 
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*creat,open,openat,open_by_handle_at,truncate,ftruncate\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_access</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*creat,open,openat,open_by_handle_at,truncate,ftruncate\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_access</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3220,7 +3220,7 @@ The "-k" allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219257.b" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b32 -S creat,open,openat,open_by_handle_at,truncate,ftruncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=-1 -k perm_access</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b32 -S creat,open,openat,open_by_handle_at,truncate,ftruncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=4294967295 -k perm_access</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
@@ -3228,7 +3228,7 @@ Audit records can be generated from various components within the information sy
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.
 
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*creat,open,openat,open_by_handle_at,truncate,ftruncate\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_access</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*creat,open,openat,open_by_handle_at,truncate,ftruncate\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_access</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3246,7 +3246,7 @@ The "-k" allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219257.c" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b64 -S creat,open,openat,open_by_handle_at,truncate,ftruncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=-1 -k perm_access</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b64 -S creat,open,openat,open_by_handle_at,truncate,ftruncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=4294967295 -k perm_access</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
@@ -3254,7 +3254,7 @@ Audit records can be generated from various components within the information sy
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.
 
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*creat,open,openat,open_by_handle_at,truncate,ftruncate\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_access</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*creat,open,openat,open_by_handle_at,truncate,ftruncate\s*-F\s*exit\s*=\s*-EPERM\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_access</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3272,7 +3272,7 @@ The "-k" allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219257.d" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b64 -S creat,open,openat,open_by_handle_at,truncate,ftruncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=-1 -k perm_access</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b64 -S creat,open,openat,open_by_handle_at,truncate,ftruncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=4294967295 -k perm_access</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
@@ -3280,7 +3280,7 @@ Audit records can be generated from various components within the information sy
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.
 
 Satisfies: SRG-OS-000064-GPOS-00033, SRG-OS-000474-GPOS-00219&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*creat,open,openat,open_by_handle_at,truncate,ftruncate\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_access</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*creat,open,openat,open_by_handle_at,truncate,ftruncate\s*-F\s*exit\s*=\s*-EACCES\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_access</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3298,11 +3298,11 @@ The "-k" allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219263" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/sudo -F perm=x -F auid&gt;=1000 -F auid!=-1 -k priv_cmd</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/sudo -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k priv_cmd</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/sudo\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*priv_cmd</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/sudo\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*priv_cmd</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3322,11 +3322,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219264" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/sudoedit -F perm=x -F auid&gt;=1000 -F auid!=-1 -k priv_cmd</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/sudoedit -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k priv_cmd</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/sudoedit\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*priv_cmd</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/sudoedit\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*priv_cmd</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3346,11 +3346,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219265" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/chsh -F perm=x -F auid&gt;=1000 -F auid!=-1 -k priv_cmd</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/chsh -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k priv_cmd</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chsh\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*priv_cmd</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chsh\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*priv_cmd</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3370,11 +3370,11 @@ If the command does not return a line that matches the example or the line is co
 Notes: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219266" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/newgrp -F perm=x -F auid&gt;=1000 -F auid!=-1 -k priv_cmd</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/newgrp -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k priv_cmd</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/newgrp\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*priv_cmd</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/newgrp\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*priv_cmd</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3394,11 +3394,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219267" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid&gt;=1000 -F auid!=-1 -k perm_chng</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k perm_chng</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chcon\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_chng</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chcon\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_chng</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3418,11 +3418,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219268" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/sbin/apparmor_parser -F perm=x -F auid&gt;=1000 -F auid!=-1 -k perm_chng</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/sbin/apparmor_parser -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k perm_chng</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/sbin/apparmor_parser\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_chng</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/sbin/apparmor_parser\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_chng</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3442,11 +3442,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219269" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/setfacl -F perm=x -F auid&gt;=1000 -F auid!=-1 -k perm_chng</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/setfacl -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k perm_chng</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/setfacl\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_chng</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/setfacl\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_chng</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3466,11 +3466,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219270" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/chacl -F perm=x -F auid&gt;=1000 -F auid!=-1 -k perm_chng</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/chacl -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k perm_chng</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chacl\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*perm_chng</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chacl\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*perm_chng</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3492,11 +3492,11 @@ Note: The '-k' allows for specifying an arbitrary identifier and the string afte
 If the command does not return a line that matches the example or the line is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219271" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/passwd -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-passwd</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/passwd -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-passwd</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/passwd\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-passwd</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/passwd\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-passwd</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3516,11 +3516,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219272" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/sbin/unix_update -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-unix-update</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/sbin/unix_update -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-unix-update</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/sbin/unix_update\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-unix-update</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/sbin/unix_update\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-unix-update</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3540,11 +3540,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219273" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/gpasswd -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-gpasswd</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/gpasswd -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-gpasswd</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/gpasswd\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-gpasswd</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/gpasswd\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-gpasswd</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3564,11 +3564,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219274" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/chage -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-chage</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/chage -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-chage</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chage\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-chage</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/chage\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-chage</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3588,11 +3588,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219275" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/sbin/usermod -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-usermod</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/sbin/usermod -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-usermod</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/usermod\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-usermod</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/usermod\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-usermod</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3612,11 +3612,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219276" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/bin/crontab -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-crontab</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/crontab -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-crontab</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/crontab\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-crontab</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/crontab\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-crontab</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3636,11 +3636,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219277" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F path=/usr/sbin/pam_timestamp_check -F perm=x -F auid&gt;=1000 -F auid!=-1 -k privileged-pam_timestamp_check</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/sbin/pam_timestamp_check -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-pam_timestamp_check</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/pam_timestamp_check\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*privileged-pam_timestamp_check</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/sbin/pam_timestamp_check\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*privileged-pam_timestamp_check</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3660,11 +3660,11 @@ If the command does not return a line that matches the example or the line is co
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-219279.a" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b32 -S finit_module -F auid&gt;=1000 -F auid!=-1 -k module_chng</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b32 -S finit_module -F auid&gt;=1000 -F auid!=4294967295 -k module_chng</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*finit_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*module_chng</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*finit_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*module_chng</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3682,11 +3682,11 @@ The '-k' allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219279.b" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b64 -S finit_module -F auid&gt;=1000 -F auid!=-1 -k module_chng</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b64 -S finit_module -F auid&gt;=1000 -F auid!=4294967295 -k module_chng</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*finit_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*module_chng</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*finit_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*module_chng</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3800,13 +3800,13 @@ The '-k' allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219287.a" severity="medium" conversionstatus="pass" title="SRG-OS-000468-GPOS-00212" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat,rmdir -F auid&gt;=1000 -F auid!=-1 -k delete</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat,rmdir -F auid&gt;=1000 -F auid!=4294967295 -k delete</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*unlink,unlinkat,rename,renameat,rmdir\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*delete</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*unlink,unlinkat,rename,renameat,rmdir\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3824,13 +3824,13 @@ The "-k" allows for specifying an arbitrary identifier and the string after it d
 </RawString>
     </Rule>
     <Rule id="V-219287.b" severity="medium" conversionstatus="pass" title="SRG-OS-000468-GPOS-00212" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat,rmdir -F auid&gt;=1000 -F auid!=-1 -k delete</ContainsLine>
+      <ContainsLine>-a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat,rmdir -F auid&gt;=1000 -F auid!=4294967295 -k delete</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
 The system call rules are loaded into a matching engine that intercepts each syscall made by all programs on the system. Therefore, it is very important to use syscall rules only when absolutely necessary since these affect performance. The more rules, the bigger the performance hit. The performance is helped, however, by combining syscalls into one rule whenever possible.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*unlink,unlinkat,rename,renameat,rmdir\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*delete</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*unlink,unlinkat,rename,renameat,rmdir\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*4294967295\s*-k\s*delete</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
