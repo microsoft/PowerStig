@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update `audit` STIG rules for Canonical Ubuntu 18.04 LTS STIG - V2R7 and V2R8: [#1170](https://github.com/microsoft/PowerStig/issues/1170)
+
 ## [4.14.0] - 2022-09-14
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 8: [#1151](https://github.com/microsoft/PowerStig/issues/1151)
