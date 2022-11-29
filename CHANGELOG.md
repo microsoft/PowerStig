@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 STIG V2R7: [#1175](https://github.com/microsoft/PowerStig/issues/1175)
+
 ## [4.14.0] - 2022-09-14
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 8: [#1151](https://github.com/microsoft/PowerStig/issues/1151)
