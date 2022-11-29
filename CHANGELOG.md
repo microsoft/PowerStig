@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 2: [#1181](https://github.com/microsoft/PowerStig/issues/1181)
+
 ## [4.14.0] - 2022-09-14
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 8: [#1151](https://github.com/microsoft/PowerStig/issues/1151)
