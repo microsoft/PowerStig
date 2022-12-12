@@ -40,3 +40,4 @@ V-237635::*::HardCodedRule(nxFileRule)@{DscResource = 'nxFile'; Contents = $null
 V-244557::*::HardCodedRule(nxFileLineRule)@{DscResource = 'nxFileLine'; ContainsLine = $null; DoesNotContainPattern = $null; FilePath = '/boot/grub2/grub.cfg'; OrganizationValueTestString = '"set superusers =" is set to a unique name in /boot/grub2/grub.cfg'}
 V-244558::*::HardCodedRule(nxFileLineRule)@{DscResource = 'nxFileLine'; ContainsLine = $null; DoesNotContainPattern = $null; FilePath = '/boot/efi/EFI/redhat/grub.cfg'; OrganizationValueTestString = '"set superusers =" is set to a unique name in /boot/efi/EFI/redhat/grub.cfg'}
 V-250314::*::HardCodedRule(nxFileRule)@{DscResource = 'nxFile'; Contents = '%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL'; FilePath = '/etc/sudoers.d/250314-powerstig.conf'}
+V-251704::*::.
