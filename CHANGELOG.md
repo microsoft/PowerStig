@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+Update PowerSTIG to Parse/Apply Windows Server 2019 V2R5 STIG - Ver 2, Rel 5: [#1159](https://github.com/microsoft/PowerStig/issues/1159)
+
 ## [4.14.0] - 2022-09-14
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 8: [#1151](https://github.com/microsoft/PowerStig/issues/1151)
