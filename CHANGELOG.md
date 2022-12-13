@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 9: [#1164](https://github.com/microsoft/PowerStig/issues/1164)
+
 ## [4.14.0] - 2022-09-14
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 8: [#1151](https://github.com/microsoft/PowerStig/issues/1151)
