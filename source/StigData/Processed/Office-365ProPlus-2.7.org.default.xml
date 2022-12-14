@@ -36,7 +36,7 @@
   <OrganizationalSetting id="V-223381" ValueData="0" />
   <!-- Ensure 'V-223388.a' is 1|DoesNotExist-->
   <OrganizationalSetting id="V-223388.a" ValueData="1" />
-  <!-- Ensure 'V-223392' is 2|3|4-->
+  <!-- Ensure 'V-223392' is 3|4-->
   <OrganizationalSetting id="V-223392" ValueData="3" />
   <!-- Ensure 'V-223393' is 2|3|4-->
   <OrganizationalSetting id="V-223393" ValueData="3" />
