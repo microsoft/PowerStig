@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.3">
+<OrganizationalSettings fullversion="2.5">
   <!-- Ensure ''V-224923.b'' -match '1|3'-->
   <OrganizationalSetting id="V-224923.b" ValueData="1" />
   <!-- Ensure ''V-224924'' -match '1|3|8|ShouldBeAbsent'-->
@@ -36,17 +36,15 @@
   <OrganizationalSetting id="V-224968" PolicyValue="7" />
   <!-- Ensure ''V-224969'' -le '5'-->
   <OrganizationalSetting id="V-224969" PolicyValue="5" />
-  <!-- Ensure location for DoD Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-225021.a" Location="" />
   <!-- Ensure location for DoD Root CA 3 certificate is present-->
-  <OrganizationalSetting id="V-225021.b" Location="" />
+  <OrganizationalSetting id="V-225021.a" Location="" />
   <!-- Ensure location for DoD Root CA 4 certificate is present-->
-  <OrganizationalSetting id="V-225021.c" Location="" />
+  <OrganizationalSetting id="V-225021.b" Location="" />
   <!-- Ensure location for DoD Root CA 5 certificate is present-->
-  <OrganizationalSetting id="V-225021.d" Location="" />
+  <OrganizationalSetting id="V-225021.c" Location="" />
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-225022.a" Location="" />
-  <!-- Ensure location for DoD Interoperability Root CA 1 certificate is present-->
+  <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-225022.b" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-225023" Location="" />

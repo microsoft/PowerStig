@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Windows_Server_2016_V2R5_STIG [#1158](https://github.com/microsoft/PowerStig/issues/1158)
 * Update PowerSTIG to Parse/Apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 2: [#1181](https://github.com/microsoft/PowerStig/issues/1181)
 * Update PowerSTIG to Parse/Apply SQL Server 2016 Instance STIG V2R8: [#1177](https://github.com/microsoft/PowerStig/issues/1177)
 * Update PowerSTIG to Parse/Apply MS_Edge_V1R6_STIG: [#1163](https://github.com/microsoft/PowerStig/issues/1163)
