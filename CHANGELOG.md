@@ -3,6 +3,10 @@
 ## [Unreleased]
 
 * Update PowerSTIG to Parse/Apply SQL Server 2016 Instance STIG V2R8: [#1177](https://github.com/microsoft/PowerStig/issues/1177)
+* Update PowerSTIG to Parse/Apply MS_Edge_V1R6_STIG: [#1163](https://github.com/microsoft/PowerStig/issues/1163)
+* Update PowerSTIG to Parse/Apply MS_Office_365_ProPlus_V2R7_STIG #1161: [#1161](https://github.com/microsoft/PowerStig/issues/1161)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 5: [#1157](https://github.com/microsoft/PowerStig/issues/1157)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 11 STIG - Ver 1, Rel 2: [#1131](https://github.com/microsoft/PowerStig/issues/1131)
 
 ## [4.14.0] - 2022-09-14
 
