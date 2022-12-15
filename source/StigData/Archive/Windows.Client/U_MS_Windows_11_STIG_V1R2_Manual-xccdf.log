@@ -1,0 +1,12 @@
+V-253303::"Minimum password length,"::"Minimum password length"
+V-253305::"Store password using reversible encryption"::"Store passwords using reversible encryption"
+V-253395::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System'; ValueData = 'Block'; ValueName = 'ShellSmartScreenLevel'; ValueType = 'String'}<splitRule>HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System'; ValueData = '1'; ValueName = 'EnableSmartScreen'; ValueType = 'Dword'}
+V-253414::Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\::Registry Path: \SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
+V-253363::Registry Path: \SOFTWARE\Policies\Microsoft\ Cryptography\Configuration\SSL\00010002\::Registry Path: \SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002\
+V-253261::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\FVE'; ValueData = $null; ValueName = 'MinimumPIN'; ValueType = 'DWord'; OrganizationValueTestString = 'ValueData is set to 0x00000006 (6) or greater '}
+V-253423::Value data: 0::Value: 0x00000000 (0)
+V-253424::Value data: 1::Value: 0x00000001 (1)
+V-253484::NT SERVICE\autotimesvc is added in v1909 cumulative update.::NT SERVICE\autotimesvc
+V-253446::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'; ValueName = 'LegalNoticeCaption'; ValueType = 'String'; ValueData = $null; OrganizationValueTestString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"}
+V-253445::assistants.  Such communications and work product are private and confidential.  See::assistants. Such communications and work product are private and confidential. See
+V-253351::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam'; ValueData = "Deny"; ValueName = 'Value'; ValueType = 'String'}
