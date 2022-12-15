@@ -90,7 +90,7 @@ class WindowsFeatureRuleConvert : WindowsFeatureRule
     {
         if
         (
-            $CheckContent -Match '(Get-Windows(Optional)?Feature|is not installed by default)' -and
+            $CheckContent -Match '(Get-Windows(Optional)?Feature|is not installed by default|Verify Simple TCP/IP Services has not been installed)' -and
             $CheckContent -NotMatch 'Required roles and features will vary based on the function of the individual system' -or
             $CheckContent -Match 'WebDAV Authoring Rules' -and
             $CheckContent -NotMatch 'HKEY_LOCAL_MACHINE'
