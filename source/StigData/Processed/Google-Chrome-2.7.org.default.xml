@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.5">
+<OrganizationalSettings fullversion="2.7">
   <!-- Ensure 'V-221563' -eq 'oiigbmnaadbkfbmpbfijlflahbdbdgdf | a list of administrator-approved extension IDs'-->
   <OrganizationalSetting id="V-221563" ValueData="" />
   <!-- Ensure 'V-221564' -eq 'an organization approved encrypted search provider'-->
