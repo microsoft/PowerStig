@@ -111,7 +111,8 @@ class ServiceRuleConvert : ServiceRule
             $CheckContent -NotMatch 'Required Services' -and
             $CheckContent -NotMatch 'presence of applications' -and
             $CheckContent -NotMatch 'is not installed by default' -and
-            $CheckContent -NotMatch 'Sql Server'
+            $CheckContent -NotMatch 'Sql Server' -and
+            $CheckContent -NotMatch 'Verify Simple TCP/IP Services has not been installed'
         )
         {
             return $true
