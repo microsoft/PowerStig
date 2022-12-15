@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 5: [#1157](https://github.com/microsoft/PowerStig/issues/1157)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 11 STIG - Ver 1, Rel 2: [#1131](https://github.com/microsoft/PowerStig/issues/1131)
 
 ## [4.14.0] - 2022-09-14
 
