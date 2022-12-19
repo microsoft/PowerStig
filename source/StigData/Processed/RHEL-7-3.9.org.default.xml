@@ -36,7 +36,7 @@
   <OrganizationalSetting id="V-204515" ContainsLine="action_mail_acct = root" DoesNotContainPattern="^#\s*action_mail_acct.*|^action_mail_acct\s*=\s*(?!root\b)\w+" />
   <!-- Ensure the "maxlogins" value is set to "10" or less -->
   <OrganizationalSetting id="V-204576" Contents="* hard maxlogins 10" />
-    <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/tmout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.-->
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/tmout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.-->
   <OrganizationalSetting id="V-204579.b" ContainsLine="declare -xr TMOUT=900" DoesNotContainPattern="^\s*TMOUT\s*=\s*[0-8]?[0-9]?[0-9]?$|^#\s*TMOUT.*" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/bashrc" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.-->
   <OrganizationalSetting id="V-204579.c" ContainsLine="declare -xr TMOUT=900" DoesNotContainPattern="^\s*TMOUT\s*=\s*[0-8]?[0-9]?[0-9]?$|^#\s*TMOUT.*" />
