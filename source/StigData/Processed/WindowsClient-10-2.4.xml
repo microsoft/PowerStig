@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 31 May 2022 3.3.0.27375 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="6/27/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 31 May 2022 3.3.0.27375 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="10/11/2022">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-220739" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2161,6 +2161,14 @@ If the defaults have not been changed, these are not a finding.
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>ReadKey</Rights>
         </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;The registry is integral to the function, security, and stability of the Windows system.  Changing the system's registry permissions allows the possibility of unauthorized and anonymous modification to the operating system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2228,6 +2236,14 @@ If the defaults have not been changed, these are not a finding.
           <Type>
           </Type>
           <Principal>ALL APPLICATION PACKAGES</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681</Principal>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>ReadKey</Rights>

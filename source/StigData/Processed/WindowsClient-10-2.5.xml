@@ -271,7 +271,7 @@ Plug and Play activity records events related to the successful connection of ex
       <LegacyId>V-63451</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -339,7 +339,7 @@ Audit Group Membership records information related to the group membership of a 
       <LegacyId>V-63457</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -644,7 +644,7 @@ Authorization Policy Change records events related to changes in user rights, su
       <LegacyId>V-71761</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -732,7 +732,7 @@ Audit Other System Events records information related to cryptographic key opera
       <LegacyId>V-63499</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -754,7 +754,7 @@ Audit Other System Events records information related to cryptographic key opera
       <LegacyId>V-63503</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -1021,7 +1021,7 @@ Microsoft scheduled end-of-support dates for current Semi-Annual Channel version
 
 v20H2 - 9 May 2023
 v21H1 - 13 Dec 2022
-v21H2 - 11 June 2024                                               
+v21H2 - 11 June 2024
 
 No preview versions will be used in a production environment.
 
@@ -1086,7 +1086,7 @@ Copy the lines below to the PowerShell window and enter.
    if ($lastLogin -eq $null) {
       $lastLogin = 'Never'
    }
-   Write-Host $user.Name $lastLogin $enabled 
+   Write-Host $user.Name $lastLogin $enabled
 }"
 
 This will return a list of local accounts with the account name, last logon, and if the account is enabled (True/False).
@@ -1163,13 +1163,13 @@ Approval must be documented with the ISSO.</RawString>
 If there is no such documented policy or procedure in place, this is a finding.</RawString>
     </Rule>
     <Rule id="V-220946" severity="medium" conversionstatus="pass" title="SRG-OS-000105-GPOS-00052" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without the use of multifactor authentication, the ease of access to privileged and non-privileged functions is greatly increased. 
+      <Description>&lt;VulnDiscussion&gt;Without the use of multifactor authentication, the ease of access to privileged and non-privileged functions is greatly increased.
 
-All domain accounts must be enabled for multifactor authentication with the exception of local emergency accounts. 
+All domain accounts must be enabled for multifactor authentication with the exception of local emergency accounts.
 
 Multifactor authentication requires using two or more factors to achieve authentication.
 
-Factors include: 
+Factors include:
 
 1) Something a user knows (e.g., password/PIN);
 
@@ -1193,7 +1193,7 @@ Satisfies: SRG-OS-000106-GPOS-00053, SRG-OS-000107-GPOS-00054, SRG-OS-000108-GPO
       <OrganizationValueTestString />
       <RawString>If the system is not a member of a domain, this is Not Applicable.
 
-If one of the following settings does not exist and is not populated, this is a finding: 
+If one of the following settings does not exist and is not populated, this is a finding:
 
 Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\Readers
 Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\SmartCards</RawString>
@@ -1264,7 +1264,7 @@ Under "System Summary", if "BIOS Mode" does not display "UEFI", this is a findin
       <LegacyId>V-77085</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Some older systems may not have UEFI firmware. This is currently a CAT III; it will be raised in severity at a future date when broad support of Windows 10 hardware and firmware requirements are expected to be met. Devices that have UEFI firmware must have Secure Boot enabled. 
+      <RawString>Some older systems may not have UEFI firmware. This is currently a CAT III; it will be raised in severity at a future date when broad support of Windows 10 hardware and firmware requirements are expected to be met. Devices that have UEFI firmware must have Secure Boot enabled.
 
 For virtual desktop implementations (VDIs) where the virtual desktop instance is deleted or refreshed upon logoff, this is NA.
 
@@ -1571,7 +1571,7 @@ Technical means such as application whitelisting can be used to enforce the poli
 
 The organization must have a policy that prohibits administrative accounts from using applications that access the Internet, such as web browsers, or with potential Internet sources, such as email, except as necessary for local service administration. The policy should define specific exceptions for local service administration. These exceptions may include HTTP(S)-based tools that are used for the administration of the local system, services, or attached devices.
 
-Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet. 
+Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet.
 
 If accounts with administrative privileges are not prevented from using applications that access the Internet or with potential Internet sources, this is a finding.</RawString>
     </Rule>
@@ -1590,7 +1590,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*ECA*" | FL Subject, Thumbprint, NotAfter
 
-If the following certificate "Subject" and "Thumbprint" information is not displayed, this is a finding. 
+If the following certificate "Subject" and "Thumbprint" information is not displayed, this is a finding.
 
 Subject: CN=ECA Root CA 2, OU=ECA, O=U.S. Government, C=US
 Thumbprint: C313F919A6ED4E0E8451AFA930FB419A20F181E4
@@ -2159,6 +2159,14 @@ If the defaults have not been changed, these are not a finding.
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>ReadKey</Rights>
         </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;The registry is integral to the function, security, and stability of the Windows system.  Changing the system's registry permissions allows the possibility of unauthorized and anonymous modification to the operating system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2226,6 +2234,14 @@ If the defaults have not been changed, these are not a finding.
           <Type>
           </Type>
           <Principal>ALL APPLICATION PACKAGES</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681</Principal>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>ReadKey</Rights>
@@ -2298,7 +2314,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-220704" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;If data at rest is unencrypted, it is vulnerable to disclosure. Even if the operating system enforces permissions on data access, an adversary can remove non-volatile memory and read it directly, thereby circumventing operating system controls. Encrypting the data ensures that confidentiality is protected even when the operating system is not running. Pre-boot authentication prevents unauthorized users from accessing encrypted drives. Increasing the PIN length requires a greater number of guesses for an attacker.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;If data at rest is unencrypted, it is vulnerable to disclosure. Even if the operating system enforces permissions on data access, an adversary can remove non-volatile memory and read it directly, thereby circumventing operating system controls. Encrypting the data ensures that confidentiality is protected even when the operating system is not running. Pre-boot authentication prevents unauthorized users from accessing encrypted drives. Increasing the pin length requires a greater number of guesses for an attacker.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2517,7 +2533,7 @@ This requirement is not applicable to dedicated VTC suites located in approved V
 
 For an external camera, if there is not a method for the operator to manually disconnect the camera at the end of collaborative computing sessions, this is a finding.
 
-For a built-in camera, the camera must be protected by a camera cover (e.g., laptop camera cover slide) when not in use. 
+For a built-in camera, the camera must be protected by a camera cover (e.g., laptop camera cover slide) when not in use.
 
 If the built-in camera is not protected with a camera cover, or if the built-in camera is not disabled in the bios, this is a finding.
 
@@ -2919,7 +2935,7 @@ Enabling "Include command line data for process creation events" will record the
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\
 
 Value Name: ProcessCreationIncludeCmdLine_Enabled
@@ -3054,7 +3070,7 @@ Registry Path: \SYSTEM\CurrentControlSet\Policies\EarlyLaunch\
 Value Name: DriverLoadPolicy
 
 Value Type: REG_DWORD
-Value: 1, 3, or 8 
+Value: 1, 3, or 8
 
 Possible values for this setting are:
 8 - Good only
@@ -3288,7 +3304,7 @@ Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\
 
 Value Name: fAllowToGetHelp
- 
+
 Value Type: REG_DWORD
 Value: 0</RawString>
       <ValueData>0</ValueData>
@@ -4267,7 +4283,7 @@ Enabling PowerShell script block logging will record detailed information from t
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
 
 Value Name: EnableScriptBlockLogging
@@ -4539,7 +4555,7 @@ Value data: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-If the following registry value does not exist or is not configured as specified, this is a finding: 
+If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_CURRENT_USER
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\CloudContent\
@@ -4751,7 +4767,7 @@ Value Name: RequireStrongKey
 
 Value Type: REG_DWORD
 Value: 1
- 
+
 Warning: This setting may prevent a system from being joined to a domain if not configured consistently between systems.</RawString>
       <ValueData>1</ValueData>
       <ValueName>RequireStrongKey</ValueName>
@@ -4796,7 +4812,7 @@ Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: LegalNoticeText
 
 Value Type: REG_SZ
-Value: 
+Value:
 You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
 By using this IS (which includes any device attached to this IS), you consent to the following conditions:
@@ -4853,7 +4869,7 @@ If a site-defined title is used, it can in no case contravene or modify the lang
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive:  HKEY_LOCAL_MACHINE 
+Registry Hive:  HKEY_LOCAL_MACHINE
 Registry Path:  \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\
 
 Value Name:  CachedLogonsCount
@@ -5265,7 +5281,7 @@ Value Name: Enabled
 
 Value Type: REG_DWORD
 Value: 1
- 
+
 Warning: Clients with this setting enabled will not be able to communicate via digitally encrypted or signed protocols with servers that do not support these algorithms.  Both the browser and web server must be configured to use TLS otherwise the browser will not be able to connect to a secure site.</RawString>
       <ValueData>1</ValueData>
       <ValueName>Enabled</ValueName>
@@ -5680,7 +5696,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is a finding. 
+If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is a finding.
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S.Government, C=US
