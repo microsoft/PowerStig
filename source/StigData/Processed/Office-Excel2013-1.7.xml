@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Excel_2013" description="The Microsoft Excel 2013 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Excel_2013_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 27 Apr 2018" title="Microsoft Excel 2013 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="9/6/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Excel_2013" description="The Microsoft Excel 2013 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Excel_2013_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 27 Apr 2018" title="Microsoft Excel 2013 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="10/11/2022">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Uniform Resource Locator (URL) standard allows user authentication to be included in URL strings in the form http://username:password@example.com. A malicious user might use this URL syntax to create a hyperlink that appears to open a legitimate website but actually opens a deceptive (spoofed) website. For example, the URL http://www.wingtiptoys.com@example.com appears to open http://www.wingtiptoys.com but actually opens http://example.com. To protect users from such attacks, Internet Explorer usually blocks any URLs using this syntax.
@@ -8,6 +8,8 @@ This functionality can be controlled separately for instances of Internet Explor
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_HTTP_USERNAME_PASSWORD_DISABLE</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Disable user name and password" is set to "Enabled" and a check in the 'excel.exe' check box is set to present.
@@ -28,6 +30,8 @@ This functionality can be controlled separately for instances of Internet Explor
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SAFE_BINDTOOBJECT</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Bind to Object" is set to "Enabled" and a check in the 'excel.exe' check box is set to present.
@@ -47,6 +51,8 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_UNC_SAVEDFILECHECK</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Saved from URL" is set to "Enabled" and a check in the 'excel.exe' check box is set to present.
@@ -66,6 +72,8 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_VALIDATE_NAVIGATE_URL</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Navigate URL" is set to "Enabled" and a check in the 'excel.exe' check box is set to present.
@@ -85,6 +93,8 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding</RawStr
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WEBOC_POPUPMANAGEMENT</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Block popups" is set to "Enabled" and 'excel.exe' is checked.
@@ -104,6 +114,8 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center "Disable Trust Bar Notification for unsigned application add-ins and block them" is set to "Enabled".
@@ -123,6 +135,8 @@ Criteria: If the value NoTBPromptUnsignedAddin is REG_DWORD = 1, this is not a f
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 -&gt; Office 2013 Converters -&gt; "Block opening of pre-release versions of file formats new to Excel 2013 through the Compatibility Pack for Office 2013 and Excel 2013 Converter" is set to "Enabled".
@@ -142,6 +156,8 @@ Criteria: If the value excel12betafilesfromconverters is REG_DWORD = 1, this is 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\trusted locations</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; Trusted Locations "Disable all trusted locations" is set to Enabled".
@@ -151,8 +167,7 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\15.0\excel\security\trusted locations
 
 Criteria: If the value AllLocationsDisabled is REG_DWORD = 1, this is not a finding.</RawString>
-      <ValueData>
-      </ValueData>
+      <ValueData>1</ValueData>
       <ValueName>AllLocationsDisabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -162,6 +177,8 @@ Criteria: If the value AllLocationsDisabled is REG_DWORD = 1, this is not a find
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security "Scan encrypted macros in Excel Open XML workbooks" is set to "Enabled: Scan encrypted macros (default)".
@@ -181,6 +198,8 @@ Criteria: If the value ExcelBypassEncryptedMacroScan is REG_DWORD = 0, this is n
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\trusted locations</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; Trusted Locations "Allow Trusted Locations on the network" is set to Disabled".
@@ -200,6 +219,8 @@ Criteria: If the value AllowNetworkLocations is REG_DWORD = 0, this is not a fin
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\options</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match '51'</OrganizationValueTestString>
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Save "default file format" is set to "Enabled (Excel Workbook *.xlsx)". 
@@ -219,6 +240,8 @@ Criteria: If the value DefaultFormat is REG_DWORD =  0x00000033(hex) or 51 (Deci
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center "Trust access to Visual Basic Project" is set to "Disabled".
@@ -238,6 +261,8 @@ Criteria: If the value AccessVBOM is REG_DWORD = 0, this is not a finding.</RawS
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center "VBA Macro Notification Settings" is set to "Enabled: Disable all with notification".
@@ -259,6 +284,8 @@ By default, if users attempt to open files with the wrong extension, Excel opens
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security "Force file extension to match file type" is set to "Enabled (Allow different, but warn)".
@@ -278,6 +305,8 @@ Criteria: If the value ExtensionHardening is REG_DWORD = 1, this is not a findin
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\options</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Proofing -&gt; Autocorrect Options "Internet and network paths as hyperlinks" is set to "Disabled".
@@ -298,6 +327,8 @@ By default, a message dialog box displays every time the user saves a published 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\options</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Save "Disable AutoRepublish" is set to "Enabled".
@@ -318,6 +349,8 @@ Criteria: If the value DisableAutoRepublish is REG_DWORD = 1, this is not a find
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\15.0\excel\options\binaryoptions</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel options -&gt; Advanced -&gt; "Ask to update automatic links" is set to "Enabled".
@@ -341,6 +374,8 @@ These types of changes can mean the version on the web page might not be the sam
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\options</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Save "Do not show AutoRepublish warning alert" is set to "Disabled".
@@ -360,6 +395,8 @@ Criteria: If the value DisableAutoRepublishWarning is REG_DWORD = 0, this is not
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\internet</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Advanced -&gt; Web Options -&gt; General "Load pictures from Web pages not created in Excel" is set to "Disabled".
@@ -380,6 +417,8 @@ By default, Excel displays the Record Macro dialog box with "This Workbook alrea
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\options\binaryoptions</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center "Store macro in Personal Macro Workbook by default" is set to "Enabled".
@@ -399,6 +438,8 @@ Criteria: If the value fGlobalSheet_37_1 is REG_DWORD = 1, this is not a finding
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ADDON_MANAGEMENT</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Add-on Management" is set to Enabled" and 'excel.exe' is checked.
@@ -418,6 +459,8 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Protection From Zone Elevation" is set to Enabled" and 'excel.exe' is checked.
@@ -437,6 +480,8 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Restrict ActiveX Install" is set to Enabled" and 'excel.exe' is checked.
@@ -456,6 +501,8 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Restrict File Download" is set to "Enabled" and 'excel.exe' is checked.
@@ -478,6 +525,8 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Scripted Window Security Restrictions" is set to "Enabled" and 'excel.exe' is checked.
@@ -497,6 +546,8 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center "Require that application add-ins are signed by Trusted Publisher" is set to "Enabled".
@@ -516,6 +567,8 @@ Criteria: If the value RequireAddinSig is REG_DWORD = 1, this is not a finding.<
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\filevalidation</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security "Turn off file validation" is set to "Disabled".
@@ -535,6 +588,8 @@ Criteria: If the value EnableOnLoad is REG_DWORD = 1, this is not a finding.</Ra
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "dBase III / IV files" is set to "Enabled: Open/Save blocked, use open policy".
@@ -554,6 +609,8 @@ Criteria: If the value DBaseFiles is REG_DWORD = 2, this is not a finding.</RawS
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Dif and Sylk files" is set to "Enabled: Open/Save blocked, use open policy".
@@ -573,6 +630,8 @@ Criteria: If the value DifandSylkFiles is REG_DWORD = 2, this is not a finding.<
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Excel 2 macrosheets and add-in files" is set to "Enabled: Open/Save blocked, use open policy".
@@ -592,6 +651,8 @@ Criteria: If the value XL2Macros is REG_DWORD = 2, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Excel 2 worksheets" is set to "Enabled: Open/Save blocked, use open policy".
@@ -611,6 +672,8 @@ Criteria: If the value XL2Worksheets is REG_DWORD = 2, this is not a finding.</R
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Excel 3 macrosheets and add-in files" is set to "Enabled: Open/Save blocked, use open policy".
@@ -630,6 +693,8 @@ Criteria: If the value XL3Macros is REG_DWORD = 2, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Excel 3 worksheets" is set to "Enabled: Open/Save blocked, use open policy".
@@ -649,6 +714,8 @@ Criteria: If the value XL3Worksheets is REG_DWORD = 2, this is not a finding.</R
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center  -&gt; File Block Settings "Excel 4 macrosheets and add-in files" is set to "Enabled: Open/Save blocked, use open policy".
@@ -668,6 +735,8 @@ Criteria: If the value XL4Macros is REG_DWORD = 2, this is not a finding.</RawSt
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Excel 4 workbooks" is set to "Enabled: Open/Save blocked, use open policy".
@@ -687,6 +756,8 @@ Criteria: If the value XL4Workbooks is REG_DWORD = 2, this is not a finding.</Ra
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Excel 4 worksheets" is set to "Enabled: Open/Save blocked, use open policy".
@@ -706,6 +777,8 @@ Criteria: If the value XL4Worksheets is REG_DWORD = 2, this is not a finding.</R
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Excel 95 workbooks" is set to "Enabled: Allow editing and open in Protected View".
@@ -725,6 +798,8 @@ Criteria: If the value XL95Workbooks is REG_DWORD = 5, this is not a finding.</R
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Excel 95-97 workbooks and templates" is set to "Enabled: Allow editing and open in Protected View".
@@ -744,6 +819,8 @@ Criteria: If the value XL9597WorkbooksandTemplates is REG_DWORD = 5, this is not
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Set default file block behavior" is set to "Enabled: Blocked files are not opened".
@@ -763,6 +840,8 @@ Criteria: If the value OpenInProtectedView is REG_DWORD = 0, this is not a findi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\fileblock</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Web pages and Excel 2003 XML spreadsheets" is set to "Enabled: Open/Save blocked, use open policy".
@@ -782,6 +861,8 @@ Criteria: If the value HtmlandXmlssFiles is REG_DWORD = 2, this is not a finding
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\protectedview</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; Protected View "Do not open files from the Internet zone in Protected View" is set to "Disabled".
@@ -801,6 +882,8 @@ Criteria: If the value DisableInternetFilesInPV is REG_DWORD = 0, this is not a 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\protectedview</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; Protected View "Do not open files in unsafe locations in Protected View" is set to "Disabled".
@@ -821,6 +904,8 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\filevalidation</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>HKCU\Software\Policies\Microsoft\Office\15.0\excel\security\filevalidation\OpenInProtectedView is set to REG_DWORD = 1</RawString>
@@ -834,6 +919,8 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\filevalidation</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>HKCU\Software\Policies\Microsoft\Office\15.0\excel\security\filevalidation\DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
@@ -847,6 +934,8 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\Excel\security\protectedview</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>The policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; Trust Center -&gt; Protected View Turn off Protected View for attachments opened from Outlook" must be set to Disabled".
@@ -866,6 +955,8 @@ Criteria: If the value DisableAttachmentsInPV  is REG_DWORD = 0, this is not a f
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\15.0\excel\security</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Excel Options -&gt; Security -&gt; " WEBSERVICE Function Notification Settings" is set to "Enabled: Disable all with notifications".
@@ -885,6 +976,8 @@ Criteria: If the value webservicefunctionwarnings is REG_DWORD = 1, this is not 
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\15.0\excel\options</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Excel 2013 -&gt; Data Recovery -&gt; "Do not show data extraction options when opening corrupt workbooks" is set to "Enabled".                                                                                                           Procedure: Use the Windows Registry Editor to navigate to the following key: 
@@ -900,6 +993,8 @@ HKCU\software\policies\microsoft\office\15.0\excel\options                      
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security</Key>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Excel 2013 &gt;&gt; Excel Options &gt;&gt; Security &gt;&gt; Trust Center "Block macros from running in Office files from the Internet" is set to "Enabled".
