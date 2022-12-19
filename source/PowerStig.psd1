@@ -38,7 +38,7 @@
     RequiredModules  = @(
         @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.4.0.0'},
         @{ModuleName = 'AuditSystemDsc'; ModuleVersion = '1.1.0'},
-        @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.4.2'},
+        @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.4.3'},
         @{ModuleName = 'ComputerManagementDsc'; ModuleVersion = '8.4.0'},
         @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.3.0.151'},
         @{ModuleName = 'GPRegistryPolicyDsc'; ModuleVersion = '1.2.0'},
