@@ -1,9 +1,4 @@
 <DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 27 Oct 2022 3.4.0.34222 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.9" created="12/19/2022">
-  <nxFileLineRule dscresourcemodule="nx">
-    <Rule id="V-204579.b" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 27 Oct 2022 3.4.0.34222 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.9" created="12/12/2022">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -5000,6 +4995,60 @@ etc/profile.d/tmout.sh:declare -xr TMOUT=900
 If conflicting results are returned, this is a finding.
 If "TMOUT" is not set to "900" or less to enforce session termination after inactivity, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-204579.c" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
+
+Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
+
+Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/bashrc</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72223.c</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/bashrc" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</OrganizationValueTestString>
+      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
+
+Check the value of the system inactivity timeout with the following command:
+
+$ sudo grep -irw tmout /etc/profile /etc/bashrc /etc/profile.d
+
+etc/profile.d/tmout.sh:declare -xr TMOUT=900
+
+If conflicting results are returned, this is a finding.
+If "TMOUT" is not set to "900" or less to enforce session termination after inactivity, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204579.d" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
+
+Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
+
+Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/profile</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72223.d</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</OrganizationValueTestString>
+      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
+
+Check the value of the system inactivity timeout with the following command:
+
+$ sudo grep -irw tmout /etc/profile /etc/bashrc /etc/profile.d
+
+etc/profile.d/tmout.sh:declare -xr TMOUT=900
+
+If conflicting results are returned, this is a finding.
+If "TMOUT" is not set to "900" or less to enforce session termination after inactivity, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-204580" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="nxFileLine">
       <ContainsLine>banner /etc/issue</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Display of a standardized and approved use notification before granting access to the publicly accessible operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.
@@ -5689,89 +5738,6 @@ If the "maxlogins" item is missing, commented out, or the value is not set to "1
     </Rule>
     <Rule id="V-204579.a" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFile">
       <Contents />
->>>>>>> 131bb0cef3bf69c87d107174aefc92d466ca779f
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
-
-Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
-
-Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/profile.d/tmout.sh</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72223.b</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/tmout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</OrganizationValueTestString>
-      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
-
-Check the value of the system inactivity timeout with the following command:
-
-$ sudo grep -irw tmout /etc/profile /etc/bashrc /etc/profile.d
-
-etc/profile.d/tmout.sh:declare -xr TMOUT=900
-
-If conflicting results are returned, this is a finding.
-If "TMOUT" is not set to "900" or less to enforce session termination after inactivity, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204579.c" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
-
-Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
-
-Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/bashrc</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72223.c</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/bashrc" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</OrganizationValueTestString>
-      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
-
-Check the value of the system inactivity timeout with the following command:
-
-$ sudo grep -irw tmout /etc/profile /etc/bashrc /etc/profile.d
-
-etc/profile.d/tmout.sh:declare -xr TMOUT=900
-
-If conflicting results are returned, this is a finding.
-If "TMOUT" is not set to "900" or less to enforce session termination after inactivity, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-204579.d" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
-
-Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
-
-Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/profile</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-72223.d</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</OrganizationValueTestString>
-      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
-
-Check the value of the system inactivity timeout with the following command:
-
-$ sudo grep -irw tmout /etc/profile /etc/bashrc /etc/profile.d
-
-etc/profile.d/tmout.sh:declare -xr TMOUT=900
-
-If conflicting results are returned, this is a finding.
-If "TMOUT" is not set to "900" or less to enforce session termination after inactivity, this is a finding.</RawString>
-    </Rule>
-  </nxFileLineRule>
-  <nxFileRule dscresourcemodule="nx">
-    <Rule id="V-204579.a" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFile">
-      <Contents />
       <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
 
 Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
@@ -5794,5 +5760,814 @@ etc/profile.d/tmout.sh:declare -xr TMOUT=900
 If conflicting results are returned, this is a finding.
 If "TMOUT" is not set to "900" or less to enforce session termination after inactivity, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-204584" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>kernel.randomize_va_space = 2</Contents>
+      <Description>&lt;VulnDiscussion&gt;Address space layout randomization (ASLR) makes it more difficult for an attacker to predict the location of attack code he or she has introduced into a process's address space during an attempt at exploitation. Additionally, ASLR also makes it more difficult for an attacker to know the location of existing code in order to repurpose it using return-oriented programming (ROP) techniques.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204584-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-77825</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system implements virtual address space randomization.
+
+# grep kernel.randomize_va_space /etc/sysctl.conf /etc/sysctl.d/*
+
+kernel.randomize_va_space = 2
+
+If "kernel.randomize_va_space" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out or does not have a value of "2", this is a finding.
+
+Check that the operating system implements virtual address space randomization with the following command:
+
+# /sbin/sysctl -a | grep kernel.randomize_va_space 
+
+kernel.randomize_va_space = 2
+
+If "kernel.randomize_va_space" does not have a value of "2", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204609" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.conf.all.accept_source_route = 0</Contents>
+      <Description>&lt;VulnDiscussion&gt;Source-routed packets allow the source of the packet to suggest that routers forward the packet along a different path than configured on the router, which can be used to bypass network security measures. This requirement applies only to the forwarding of source-routed traffic, such as when IPv4 forwarding is enabled and the system is functioning as a router.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204609-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72283</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system does not accept IPv4 source-routed packets.
+
+# grep net.ipv4.conf.all.accept_source_route /etc/sysctl.conf /etc/sysctl.d/*
+
+net.ipv4.conf.all.accept_source_route = 0
+
+If " net.ipv4.conf.all.accept_source_route " is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "0", this is a finding.
+
+Check that the operating system implements the accept source route variable with the following command:
+
+# /sbin/sysctl -a | grep net.ipv4.conf.all.accept_source_route
+net.ipv4.conf.all.accept_source_route = 0
+
+If the returned line does not have a value of "0", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204610" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.conf.all.rp_filter = 1</Contents>
+      <Description>&lt;VulnDiscussion&gt;Enabling reverse path filtering drops packets with source addresses that should not have been able to be received on the interface they were received on. It should not be used on systems which are routers for complicated networks, but is helpful for end hosts and routers serving small networks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204610-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-92251</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system uses a reverse-path filter for IPv4:
+
+# grep net.ipv4.conf.all.rp_filter /etc/sysctl.conf /etc/sysctl.d/*
+net.ipv4.conf.all.rp_filter = 1
+
+If "net.ipv4.conf.all.rp_filter" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "1", this is a finding.
+
+Check that the operating system implements the accept source route variable with the following command:
+
+# /sbin/sysctl -a | grep net.ipv4.conf.all.rp_filter
+net.ipv4.conf.all.rp_filter = 1
+
+If the returned line does not have a value of "1", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204611" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.conf.default.rp_filter = 1</Contents>
+      <Description>&lt;VulnDiscussion&gt;Enabling reverse path filtering drops packets with source addresses that should not have been able to be received on the interface they were received on. It should not be used on systems which are routers for complicated networks, but is helpful for end hosts and routers serving small networks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204611-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-92253</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system uses a reverse-path filter for IPv4:
+
+# grep net.ipv4.conf.default.rp_filter /etc/sysctl.conf /etc/sysctl.d/*
+net.ipv4.conf.default.rp_filter = 1
+
+If "net.ipv4.conf.default.rp_filter" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "1", this is a finding.
+
+Check that the operating system implements the accept source route variable with the following command:
+
+# /sbin/sysctl -a | grep net.ipv4.conf.default.rp_filter
+net.ipv4.conf.default.rp_filter = 1
+
+If the returned line does not have a value of "1", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204612" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.conf.default.accept_source_route = 0</Contents>
+      <Description>&lt;VulnDiscussion&gt;Source-routed packets allow the source of the packet to suggest that routers forward the packet along a different path than configured on the router, which can be used to bypass network security measures. This requirement applies only to the forwarding of source-routed traffic, such as when IPv4 forwarding is enabled and the system is functioning as a router.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204612-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72285</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system does not accept IPv4 source-routed packets by default.
+
+# grep net.ipv4.conf.default.accept_source_route /etc/sysctl.conf /etc/sysctl.d/*
+net.ipv4.conf.default.accept_source_route = 0
+
+If " net.ipv4.conf.default.accept_source_route " is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "0", this is a finding.
+
+Check that the operating system implements the accept source route variable with the following command:
+
+# /sbin/sysctl -a | grep net.ipv4.conf.default.accept_source_route
+net.ipv4.conf.default.accept_source_route = 0
+
+If the returned line does not have a value of "0", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204613" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.icmp_echo_ignore_broadcasts = 1</Contents>
+      <Description>&lt;VulnDiscussion&gt;Responding to broadcast (ICMP) echoes facilitates network mapping and provides a vector for amplification attacks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204613-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72287</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system does not respond to IPv4 ICMP echoes sent to a broadcast address.
+
+# grep net.ipv4.icmp_echo_ignore_broadcasts /etc/sysctl.conf /etc/sysctl.d/*
+
+If " net.ipv4.icmp_echo_ignore_broadcasts" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "1", this is a finding.
+
+Check that the operating system implements the "icmp_echo_ignore_broadcasts" variable with the following command:
+
+# /sbin/sysctl -a | grep net.ipv4.icmp_echo_ignore_broadcasts
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+
+If the returned line does not have a value of "1", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204614" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.conf.default.accept_redirects = 0</Contents>
+      <Description>&lt;VulnDiscussion&gt;ICMP redirect messages are used by routers to inform hosts that a more direct route exists for a particular destination. These messages modify the host's route table and are unauthenticated. An illicit ICMP redirect message could result in a man-in-the-middle attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204614-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72289</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system will not accept IPv4 ICMP redirect messages.
+
+# grep 'net.ipv4.conf.default.accept_redirects' /etc/sysctl.conf /etc/sysctl.d/*
+
+If " net.ipv4.conf.default.accept_redirects " is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "0", this is a finding.
+
+Check that the operating system implements the value of the "accept_redirects" variables with the following command:
+
+# /sbin/sysctl -a | grep 'net.ipv4.conf.default.accept_redirects'
+net.ipv4.conf.default.accept_redirects = 0
+
+If the returned line does not have a value of "0", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204615" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.conf.all.accept_redirects = 0</Contents>
+      <Description>&lt;VulnDiscussion&gt;ICMP redirect messages are used by routers to inform hosts that a more direct route exists for a particular destination. These messages modify the host's route table and are unauthenticated. An illicit ICMP redirect message could result in a man-in-the-middle attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204615-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-73175</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system ignores IPv4 ICMP redirect messages.
+
+# grep 'net.ipv4.conf.all.accept_redirects' /etc/sysctl.conf /etc/sysctl.d/*
+
+If " net.ipv4.conf.all.accept_redirects " is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "0", this is a finding.
+
+Check that the operating system implements the "accept_redirects" variables with the following command:
+
+# /sbin/sysctl -a | grep 'net.ipv4.conf.all.accept_redirects'
+
+net.ipv4.conf.all.accept_redirects = 0
+
+If the returned line does not have a value of "0", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204616" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.conf.default.send_redirects = 0</Contents>
+      <Description>&lt;VulnDiscussion&gt;ICMP redirect messages are used by routers to inform hosts that a more direct route exists for a particular destination. These messages contain information from the system's route table, possibly revealing portions of the network topology.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204616-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72291</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system does not allow interfaces to perform IPv4 ICMP redirects by default.
+
+# grep 'net.ipv4.conf.default.send_redirects' /etc/sysctl.conf /etc/sysctl.d/*
+
+If "net.ipv4.conf.default.send_redirects" is not configured in the "/etc/sysctl.conf" file or in the /etc/sysctl.d/ directory, is commented out or does not have a value of "0", this is a finding.
+
+Check that the operating system implements the "default send_redirects" variables with the following command:
+
+# /sbin/sysctl -a | grep 'net.ipv4.conf.default.send_redirects'
+
+net.ipv4.conf.default.send_redirects = 0 
+
+If the returned line does not have a value of "0", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204617" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.conf.all.send_redirects = 0</Contents>
+      <Description>&lt;VulnDiscussion&gt;ICMP redirect messages are used by routers to inform hosts that a more direct route exists for a particular destination. These messages contain information from the system's route table, possibly revealing portions of the network topology.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204617-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72293</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system does not send IPv4 ICMP redirect messages.
+
+# grep 'net.ipv4.conf.all.send_redirects' /etc/sysctl.conf /etc/sysctl.d/*
+
+If "net.ipv4.conf.all.send_redirects" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out or does not have a value of "0", this is a finding.
+
+Check that the operating system implements the "all send_redirects" variables with the following command:
+
+# /sbin/sysctl -a | grep 'net.ipv4.conf.all.send_redirects'
+
+net.ipv4.conf.all.send_redirects = 0
+
+If the returned line does not have a value of "0", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204625" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv4.ip_forward = 0</Contents>
+      <Description>&lt;VulnDiscussion&gt;Routing protocol daemons are typically used on routers to exchange network topology information with other routers. If this software is used when not required, system network information may be unnecessarily transmitted across the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204625-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72309</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system is not performing packet forwarding, unless the system is a router.
+
+# grep net.ipv4.ip_forward /etc/sysctl.conf /etc/sysctl.d/*
+
+net.ipv4.ip_forward = 0
+
+If "net.ipv4.ip_forward" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "0", this is a finding.
+
+Check that the operating system does not implement IP forwarding using the following command:
+
+# /sbin/sysctl -a | grep net.ipv4.ip_forward
+net.ipv4.ip_forward = 0
+
+If IP forwarding value is "1" and the system is hosting any application, database, or web servers, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204630" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>net.ipv6.conf.all.accept_source_route = 0</Contents>
+      <Description>&lt;VulnDiscussion&gt;Source-routed packets allow the source of the packet to suggest that routers forward the packet along a different path than configured on the router, which can be used to bypass network security measures. This requirement applies only to the forwarding of source-routed traffic, such as when IPv6 forwarding is enabled and the system is functioning as a router.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sysctl.d/204630-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72319</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If IPv6 is not enabled, the key will not exist, and this is Not Applicable.
+
+Verify the system does not accept IPv6 source-routed packets.
+
+# grep net.ipv6.conf.all.accept_source_route /etc/sysctl.conf /etc/sysctl.d/*
+
+net.ipv6.conf.all.accept_source_route = 0
+
+If "net.ipv6.conf.all.accept_source_route" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out or does not have a value of "0", this is a finding.
+
+Check that the operating system implements the accept source route variable with the following command:
+
+# /sbin/sysctl -a | grep net.ipv6.conf.all.accept_source_route
+net.ipv6.conf.all.accept_source_route = 0
+
+If the returned lines do not have a value of "0", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-237634.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>Defaults !targetpw</Contents>
+      <Description>&lt;VulnDiscussion&gt;The sudoers security policy requires that users authenticate themselves before they can use sudo. When sudoers requires authentication, it validates the invoking user's credentials. If the rootpw, targetpw, or runaspw flags are defined and not disabled, by default the operating system will prompt the invoking user for the "root" user password. 
+For more information on each of the listed configurations, reference the sudoers(5) manual page.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sudoers.d/237634a-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the sudoers security policy is configured to use the invoking user's password for privilege escalation.
+
+$ sudo egrep -ir '(rootpw|targetpw|runaspw)' /etc/sudoers /etc/sudoers.d* | grep -v '#'
+
+/etc/sudoers:Defaults !targetpw
+/etc/sudoers:Defaults !rootpw
+/etc/sudoers:Defaults !runaspw
+
+If conflicting results are returned, this is a finding.
+If "Defaults !targetpw" is not defined, this is a finding.
+If "Defaults !rootpw" is not defined, this is a finding.
+If "Defaults !runaspw" is not defined, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-237634.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>Defaults !rootpw</Contents>
+      <Description>&lt;VulnDiscussion&gt;The sudoers security policy requires that users authenticate themselves before they can use sudo. When sudoers requires authentication, it validates the invoking user's credentials. If the rootpw, targetpw, or runaspw flags are defined and not disabled, by default the operating system will prompt the invoking user for the "root" user password. 
+For more information on each of the listed configurations, reference the sudoers(5) manual page.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sudoers.d/237634b-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the sudoers security policy is configured to use the invoking user's password for privilege escalation.
+
+$ sudo egrep -ir '(rootpw|targetpw|runaspw)' /etc/sudoers /etc/sudoers.d* | grep -v '#'
+
+/etc/sudoers:Defaults !targetpw
+/etc/sudoers:Defaults !rootpw
+/etc/sudoers:Defaults !runaspw
+
+If conflicting results are returned, this is a finding.
+If "Defaults !targetpw" is not defined, this is a finding.
+If "Defaults !rootpw" is not defined, this is a finding.
+If "Defaults !runaspw" is not defined, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-237634.c" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
+      <Contents>Defaults !runaspw</Contents>
+      <Description>&lt;VulnDiscussion&gt;The sudoers security policy requires that users authenticate themselves before they can use sudo. When sudoers requires authentication, it validates the invoking user's credentials. If the rootpw, targetpw, or runaspw flags are defined and not disabled, by default the operating system will prompt the invoking user for the "root" user password. 
+For more information on each of the listed configurations, reference the sudoers(5) manual page.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sudoers.d/237634c-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the sudoers security policy is configured to use the invoking user's password for privilege escalation.
+
+$ sudo egrep -ir '(rootpw|targetpw|runaspw)' /etc/sudoers /etc/sudoers.d* | grep -v '#'
+
+/etc/sudoers:Defaults !targetpw
+/etc/sudoers:Defaults !rootpw
+/etc/sudoers:Defaults !runaspw
+
+If conflicting results are returned, this is a finding.
+If "Defaults !targetpw" is not defined, this is a finding.
+If "Defaults !rootpw" is not defined, this is a finding.
+If "Defaults !runaspw" is not defined, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-237635" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="nxFile">
+      <Contents>
+      </Contents>
+      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
+
+When operating systems provide the capability to escalate a functional capability, it is critical the organization requires the user to re-authenticate when using the "sudo" command.
+
+If the value is set to an integer less than 0, the user's time stamp will not expire and the user will not have to re-authenticate for privileged actions until the user's session is terminated.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sudoers.d/237635-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the "Defaults timestamp_timeout=[value]" must be a number that is greater than or equal to "0" </OrganizationValueTestString>
+      <RawString>Verify the operating system requires re-authentication when using the "sudo" command to elevate privileges.
+
+$ sudo grep -ir 'timestamp_timeout' /etc/sudoers /etc/sudoers.d
+/etc/sudoers:Defaults timestamp_timeout=0
+
+If conflicting results are returned, this is a finding.
+
+If "timestamp_timeout" is set to a negative number, is commented out, or no results are returned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-250314" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="nxFile">
+      <Contents>%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL</Contents>
+      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FilePath>/etc/sudoers.d/250314-powerstig.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system elevates the SELinux context when an administrator calls the sudo command with the following command:
+
+This command must be ran as root:
+# grep -r sysadm_r /etc/sudoers /etc/sudoers.d
+%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL
+
+If conflicting results are returned, this is a finding.
+
+If a designated sudoers administrator group or account(s) is not configured to elevate the SELinux type and role to "sysadm_t" and "sysadm_r" with the use of the sudo command, this is a finding.</RawString>
+    </Rule>
   </nxFileRule>
+  <nxPackageRule dscresourcemodule="nx">
+    <Rule id="V-204442" severity="high" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;It is detrimental for operating systems to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
+
+Operating systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).
+
+The rsh-server service provides an unencrypted remote access service that does not provide for the confidentiality and integrity of user passwords or the remote session and has very weak authentication.
+
+If a privileged user were to log on using this service, the privileged user password could be compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71967</LegacyId>
+      <Name>rsh-server</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check to see if the rsh-server package is installed with the following command:
+
+# yum list installed rsh-server
+
+If the rsh-server package is installed, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204443" severity="high" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;Removing the "ypserv" package decreases the risk of the accidental (or intentional) activation of NIS or NIS+ services.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71969</LegacyId>
+      <Name>ypserv</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>The NIS service provides an unencrypted authentication service that does not provide for the confidentiality and integrity of user passwords or the remote session.
+
+Check to see if the "ypserve" package is installed with the following command:
+
+# yum list installed ypserv
+
+If the "ypserv" package is installed, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204497" severity="high" conversionstatus="pass" title="SRG-OS-000033-GPOS-00014" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of using encryption to protect data. The operating system must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated.
+
+Satisfies: SRG-OS-000033-GPOS-00014, SRG-OS-000185-GPOS-00079, SRG-OS-000396-GPOS-00176, SRG-OS-000405-GPOS-00184, SRG-OS-000478-GPOS-00223&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72067</LegacyId>
+      <Name>dracut-fips</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system implements DoD-approved encryption to protect the confidentiality of remote access sessions.
+
+Check to see if the "dracut-fips" package is installed with the following command:
+
+# yum list installed dracut-fips
+
+dracut-fips-033-360.el7_2.x86_64.rpm
+
+If a "dracut-fips" package is installed, check to see if the kernel command line is configured to use FIPS mode with the following command:
+
+Note: GRUB 2 reads its configuration from the "/boot/grub2/grub.cfg" file on traditional BIOS-based machines and from the "/boot/efi/EFI/redhat/grub.cfg" file on UEFI machines.
+
+# grep fips /boot/grub2/grub.cfg
+/vmlinuz-3.8.0-0.40.el7.x86_64 root=/dev/mapper/rhel-root ro rd.md=0 rd.dm=0 rd.lvm.lv=rhel/swap crashkernel=auto rd.luks=0 vconsole.keymap=us rd.lvm.lv=rhel/root rhgb fips=1 quiet
+
+If the kernel command line is configured to use FIPS mode, check to see if the system is in FIPS mode with the following command:
+
+# cat /proc/sys/crypto/fips_enabled 
+1
+
+If a "dracut-fips" package is not installed, the kernel command line does not have a fips entry, or the system has a value of "0" for "fips_enabled" in "/proc/sys/crypto", this is a finding.
+
+Verify the file /etc/system-fips exists.
+
+# ls -l /etc/system-fips
+
+If this file does not exist, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204498" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;ACLs can provide permissions beyond those permitted through the file mode and must be verified by file integrity tools.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72069</LegacyId>
+      <Name>aide</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the file integrity tool is configured to verify ACLs.
+
+Check to see if Advanced Intrusion Detection Environment (AIDE) is installed on the system with the following command:
+
+# yum list installed aide
+
+If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system. 
+
+If there is no application installed to perform file integrity checks, this is a finding.
+
+Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory. 
+
+Use the following command to determine if the file is in another location:
+
+# find / -name aide.conf
+
+Check the "aide.conf" file to determine if the "acl" rule has been added to the rule list being applied to the files and directories selection lists.
+
+An example rule that includes the "acl" rule is below:
+
+All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
+/bin All # apply the custom rule to the files in bin 
+/sbin All # apply the same custom rule to the files in sbin 
+
+If the "acl" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or ACLs are not being checked by another file integrity tool, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204502" severity="high" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;It is detrimental for operating systems to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
+
+Operating systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).
+
+Examples of non-essential capabilities include, but are not limited to, games, software packages, tools, and demonstration software not related to requirements or providing a wide array of functionality not required for every mission, but which cannot be disabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72077</LegacyId>
+      <Name>telnet-server</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system is configured to disable non-essential capabilities. The most secure way of ensuring a non-essential capability is disabled is to not have the capability installed.
+
+The telnet service provides an unencrypted remote access service that does not provide for the confidentiality and integrity of user passwords or the remote session.
+
+If a privileged user were to log on using this service, the privileged user password could be compromised. 
+
+Check to see if the telnet-server package is installed with the following command:
+
+# yum list installed telnet-server
+
+If the telnet-server package is installed, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204585" severity="medium" conversionstatus="pass" title="SRG-OS-000423-GPOS-00187" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered. 
+
+This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification. 
+
+Protecting the confidentiality and integrity of organizational information can be accomplished by physical means (e.g., employing physical distribution systems) or by logical means (e.g., employing cryptographic techniques). If physical means of protection are employed, logical means (cryptography) do not have to be employed, and vice versa.
+
+Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188, SRG-OS-000425-GPOS-00189, SRG-OS-000426-GPOS-00190&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72233</LegacyId>
+      <Name>openssh-server</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check to see if sshd is installed with the following command:
+
+# yum list installed \*ssh\*
+libssh2.x86_64 1.4.3-8.el7 @anaconda/7.1
+openssh.x86_64 6.6.1p1-11.el7 @anaconda/7.1
+openssh-server.x86_64 6.6.1p1-11.el7 @anaconda/7.1
+
+If the "SSH server" package is not installed, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204604.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;Firewalls protect computers from network attacks by blocking or limiting access to open network ports. Application firewalls limit which applications are allowed to communicate over the network.
+
+Satisfies: SRG-OS-000480-GPOS-00227, SRG-OS-000480-GPOS-00231, SRG-OS-000480-GPOS-00232&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72273.a</LegacyId>
+      <Name>firewalld</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system enabled an application firewall.
+
+Check to see if "firewalld" is installed with the following command:
+
+# yum list installed firewalld
+firewalld-0.3.9-11.el7.noarch.rpm
+
+If the "firewalld" package is not installed, ask the System Administrator if another firewall application (such as iptables) is installed. 
+
+If an application firewall is not installed, this is a finding. 
+
+Check to see if the firewall is loaded and active with the following command:
+
+# systemctl status firewalld
+firewalld.service - firewalld - dynamic firewall daemon
+
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled)
+   Active: active (running) since Tue 2014-06-17 11:14:49 CEST; 5 days ago
+
+If "firewalld" does not show a status of "loaded" and "active", this is a finding. 
+
+Check the state of the firewall:
+
+# firewall-cmd --state 
+running
+
+If "firewalld" does not show a state of "running", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204620" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;The FTP service provides an unencrypted remote access that does not provide for the confidentiality and integrity of user passwords or the remote session. If a privileged user were to log on using this service, the privileged user password could be compromised. SSH or other encrypted file transfer methods must be used in place of this service.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72299</LegacyId>
+      <Name>vsftpd</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify an FTP server has not been installed on the system.
+
+Check to see if an FTP server has been installed with the following commands:
+
+# yum list installed vsftpd
+
+ vsftpd-3.0.2.el7.x86_64.rpm
+
+If "vsftpd" is installed and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204621" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;If TFTP is required for operational support (such as the transmission of router configurations) its use must be documented with the Information System Security Officer (ISSO), restricted to only authorized personnel, and have access control rules established.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72301</LegacyId>
+      <Name>tftp-server</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify a TFTP server has not been installed on the system.
+
+Check to see if a TFTP server has been installed with the following command:
+
+# yum list installed tftp-server
+tftp-server-0.49-9.el7.x86_64.rpm
+
+If TFTP is installed and the requirement for TFTP is not documented with the ISSO, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204631" severity="medium" conversionstatus="pass" title="SRG-OS-000375-GPOS-00160" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;Using an authentication device, such as a CAC or token that is separate from the information system, ensures that even if the information system is compromised, that compromise will not affect credentials stored on the authentication device.
+
+Multifactor solutions that require devices separate from information systems gaining access include, for example, hardware tokens providing time-based or challenge-response authenticators and smart cards such as the U.S. Government Personal Identity Verification card and the DoD Common Access Card.
+
+A privileged account is defined as an information system account with authorizations of a privileged user.
+
+Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
+
+This requirement only applies to components where this is specific to the function of the device or has the concept of an organizational user (e.g., VPN, proxy capability). This does not apply to authentication for the purpose of configuring the device itself (management).
+
+Satisfies: SRG-OS-000375-GPOS-00160, SRG-OS-000375-GPOS-00161, SRG-OS-000375-GPOS-00162&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72417</LegacyId>
+      <Name>pam_pkcs11</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system has the packages required for multifactor authentication installed.
+
+Check for the presence of the packages required to support multifactor authentication with the following commands:
+
+# yum list installed pam_pkcs11
+pam_pkcs11-0.6.2-14.el7.noarch.rpm
+
+If the "pam_pkcs11" package is not installed, this is a finding.</RawString>
+    </Rule>
+  </nxPackageRule>
+  <nxServiceRule dscresourcemodule="nx">
+    <Rule id="V-204451" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Automatically mounting file systems permits easy introduction of unknown devices, thereby facilitating malicious activity.
+
+Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPOS-00227&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>False</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-71985</LegacyId>
+      <Name>autofs</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system disables the ability to automount devices.
+
+Check to see if automounter service is active with the following command:
+
+# systemctl status autofs
+autofs.service - Automounts filesystems on demand
+   Loaded: loaded (/usr/lib/systemd/system/autofs.service; disabled)
+   Active: inactive (dead)
+
+If the "autofs" status is set to "active" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+      <State />
+    </Rule>
+    <Rule id="V-204492" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Kernel core dumps may contain the full contents of system memory at the time of the crash. Kernel core dumps may consume a considerable amount of disk space and may result in denial of service by exhausting the available space on the target file system partition.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>False</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72057</LegacyId>
+      <Name>kdump</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that kernel core dumps are disabled unless needed.
+
+Check the status of the "kdump" service with the following command:
+
+# systemctl status kdump.service
+kdump.service - Crash recovery kernel arming
+   Loaded: loaded (/usr/lib/systemd/system/kdump.service; enabled)
+   Active: active (exited) since Wed 2015-08-26 13:08:09 EDT; 43min ago
+ Main PID: 1130 (code=exited, status=0/SUCCESS)
+kernel arming.
+
+If the "kdump" service is active, ask the System Administrator if the use of the service is required and documented with the Information System Security Officer (ISSO).
+
+If the service is active and is not documented, this is a finding.</RawString>
+      <State />
+    </Rule>
+    <Rule id="V-204503" severity="medium" conversionstatus="pass" title="SRG-OS-000038-GPOS-00016" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Without establishing what type of events occurred, it would be difficult to establish, correlate, and investigate the events leading up to an outage or attack.
+
+Audit record content that may be necessary to satisfy this requirement includes, for example, time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, filenames involved, and access control or flow control rules invoked.
+
+Associating event types with detected events in the operating system audit logs provides a means of investigating an attack; recognizing resource utilization or capacity thresholds; or identifying an improperly configured operating system.
+
+Satisfies: SRG-OS-000038-GPOS-00016, SRG-OS-000039-GPOS-00017, SRG-OS-000042-GPOS-00021, SRG-OS-000254-GPOS-00095, SRG-OS-000255-GPOS-00096&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72079</LegacyId>
+      <Name>auditd</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system produces audit records containing information to establish when (date and time) the events occurred.
+
+Check to see if auditing is active by issuing the following command:
+
+# systemctl is-active auditd.service
+active
+
+If the "auditd" status is not active, this is a finding.</RawString>
+      <State>Running</State>
+    </Rule>
+    <Rule id="V-204586" severity="medium" conversionstatus="pass" title="SRG-OS-000423-GPOS-00187" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered. 
+
+This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification. 
+
+Protecting the confidentiality and integrity of organizational information can be accomplished by physical means (e.g., employing physical distribution systems) or by logical means (e.g., employing cryptographic techniques). If physical means of protection are employed, then logical means (cryptography) do not have to be employed, and vice versa.
+
+Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188, SRG-OS-000425-GPOS-00189, SRG-OS-000426-GPOS-00190&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72235</LegacyId>
+      <Name>sshd</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify SSH is loaded and active with the following command:
+
+# systemctl status sshd
+sshd.service - OpenSSH server daemon
+Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled)
+Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago
+Main PID: 1348 (sshd)
+CGroup: /system.slice/sshd.service
+1053 /usr/sbin/sshd -D
+
+If "sshd" does not show a status of "active" and "running", this is a finding.</RawString>
+      <State>Running</State>
+    </Rule>
+    <Rule id="V-204604.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Firewalls protect computers from network attacks by blocking or limiting access to open network ports. Application firewalls limit which applications are allowed to communicate over the network.
+
+Satisfies: SRG-OS-000480-GPOS-00227, SRG-OS-000480-GPOS-00231, SRG-OS-000480-GPOS-00232&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72273.b</LegacyId>
+      <Name>firewalld</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system enabled an application firewall.
+
+Check to see if "firewalld" is installed with the following command:
+
+# yum list installed firewalld
+firewalld-0.3.9-11.el7.noarch.rpm
+
+If the "firewalld" package is not installed, ask the System Administrator if another firewall application (such as iptables) is installed. 
+
+If an application firewall is not installed, this is a finding. 
+
+Check to see if the firewall is loaded and active with the following command:
+
+# systemctl status firewalld
+firewalld.service - firewalld - dynamic firewall daemon
+
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled)
+   Active: active (running) since Tue 2014-06-17 11:14:49 CEST; 5 days ago
+
+If "firewalld" does not show a status of "loaded" and "active", this is a finding. 
+
+Check the state of the firewall:
+
+# firewall-cmd --state 
+running
+
+If "firewalld" does not show a state of "running", this is a finding.</RawString>
+      <State>Running</State>
+    </Rule>
+  </nxServiceRule>
 </DISASTIG>
