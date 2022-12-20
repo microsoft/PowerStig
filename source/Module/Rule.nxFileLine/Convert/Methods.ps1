@@ -46,7 +46,8 @@ function Get-nxFileLineContainsLine
         }
         elseif ($rawString -match 'You are accessing a U.S. Government \(USG\) [^"]+(?<=details.)')
         {
-            $results = $matches.Values -replace '\.\r|:\r', ".`n"
+            $results = $matches.Values -replace '\.\r', ".`n"
+            $results = $results -replace ':\r', ":`n"
         }
 
         return $results

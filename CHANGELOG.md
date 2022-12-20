@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 9: [#1164](https://github.com/microsoft/PowerStig/issues/1164)
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R9: [#1179](https://github.com/microsoft/PowerStig/issues/1179)
 * Upgrade AccessControlDSC to Version 1.4.3 [#1151](https://github.com/microsoft/PowerStig/issues/1153)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 STIG V2R7: [#1175](https://github.com/microsoft/PowerStig/issues/1175)
