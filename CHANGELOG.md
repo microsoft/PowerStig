@@ -2,6 +2,22 @@
 
 ## [Unreleased]
 
+## [4.15.0] - 2022-12-29
+
+* Update PowerSTIG to Parse/Apply Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 9: [#1164](https://github.com/microsoft/PowerStig/issues/1164)
+* Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R9: [#1179](https://github.com/microsoft/PowerStig/issues/1179)
+* Upgrade AccessControlDSC to Version 1.4.3 [#1151](https://github.com/microsoft/PowerStig/issues/1153)
+* Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 STIG V2R7: [#1175](https://github.com/microsoft/PowerStig/issues/1175)
+* Update PowerSTIG to Parse/Apply Google_Chrome_V2R7_STIG: [#1160](https://github.com/microsoft/PowerStig/issues/1160)
+* Update PowerSTIG to Parse/Apply Windows Server 2019 V2R5 STIG - Ver 2, Rel 5: [#1159](https://github.com/microsoft/PowerStig/issues/1159)
+* Update PowerSTIG to Parse/Apply Windows_Server_2016_V2R5_STIG [#1158](https://github.com/microsoft/PowerStig/issues/1158)
+* Update PowerSTIG to Parse/Apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 2: [#1181](https://github.com/microsoft/PowerStig/issues/1181)
+* Update PowerSTIG to Parse/Apply SQL Server 2016 Instance STIG V2R8: [#1177](https://github.com/microsoft/PowerStig/issues/1177)
+* Update PowerSTIG to Parse/Apply MS_Edge_V1R6_STIG: [#1163](https://github.com/microsoft/PowerStig/issues/1163)
+* Update PowerSTIG to Parse/Apply MS_Office_365_ProPlus_V2R7_STIG #1161: [#1161](https://github.com/microsoft/PowerStig/issues/1161)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 10 STIG - Ver 2, Rel 5: [#1157](https://github.com/microsoft/PowerStig/issues/1157)
+* Update PowerSTIG to successfully parse/apply Microsoft Windows 11 STIG - Ver 1, Rel 2: [#1131](https://github.com/microsoft/PowerStig/issues/1131)
+
 ## [4.14.0] - 2022-09-14
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 8: [#1151](https://github.com/microsoft/PowerStig/issues/1151)
