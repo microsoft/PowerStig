@@ -96,7 +96,7 @@ The list of STIGs that we are currently covering.
 |[Ubuntu](https://github.com/Microsoft/PowerStig/wiki/Ubuntu) | Provides a mechanism to manage Ubuntu Linux STIG settings. |
 |[Vsphere](https://github.com/Microsoft/PowerStig/wiki/Vsphere) | Provides a mechanism to manage VMware Vsphere STIG settings. |
 |[WindowsClient](https://github.com/Microsoft/PowerStig/wiki/WindowsClient) | Provides a mechanism to manage Windows Client STIG settings. |
-|[WindowsDefender](https://github.com/Microsoft/PowerStig/wiki/WindowsDefender) | Provides a mechanism to manage Windows Client STIG settings. |
+|[WindowsDefender](https://github.com/Microsoft/PowerStig/wiki/WindowsDefender) | Provides a mechanism to manage Windows Defender STIG settings. |
 |[WindowsDnsServer](https://github.com/Microsoft/PowerStig/wiki/WindowsDnsServer) | Provides a mechanism to manage Windows DNS Server STIG settings. |
 |[WindowsFirewall](https://github.com/Microsoft/PowerStig/wiki/WindowsFirewall) | Provides a mechanism to manage the Windows Firewall STIG settings. |
 |[WindowsServer](https://github.com/Microsoft/PowerStig/wiki/WindowsServer) | Provides a mechanism to manage the Windows Server STIG settings. |
