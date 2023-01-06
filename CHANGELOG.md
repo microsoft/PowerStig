@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update Readme to reflect all covered technologies [#1184](https://github.com/microsoft/PowerStig/issues/1184)
+
 ## [4.15.0] - 2022-12-29
 
 * Update PowerSTIG to Parse/Apply Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 9: [#1164](https://github.com/microsoft/PowerStig/issues/1164)

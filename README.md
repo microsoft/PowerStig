@@ -80,10 +80,23 @@ The list of STIGs that we are currently covering.
 
 |Name|Description|
 | ---- | --- |
-|[Browser](https://github.com/Microsoft/PowerStig/wiki/Browser) | Provides a mechanism to manage Browser STIG settings. |
+|[Adobe](https://github.com/Microsoft/PowerStig/wiki/Adobe)| Provides a mechanism to manage Adobe STIG settings.|
+|[Chrome](https://github.com/Microsoft/PowerStig/wiki/Chrome)| Provides a mechanism to manage Google Chrome STIG settings.|
 |[DotNetFramework](https://github.com/Microsoft/PowerStig/wiki/DotNetFramework) | Provides a mechanism to manage .Net Framework STIG settings. |
+|[Edge](https://github.com/Microsoft/PowerStig/wiki/Edge) | Provides a mechanism to manage Microsoft Edge STIG settings. |
+|[Firefox](https://github.com/Microsoft/PowerStig/wiki/Firefox) | Provides a mechanism to manage Firefox STIG settings. |
+|[IisServer](https://github.com/Microsoft/PowerStig/wiki/IisServer) | Provides a mechanism to manage IIS Server settings. |
+|[IisSite](https://github.com/Microsoft/PowerStig/wiki/IisSite) | Provides a mechanism to manage IIS Site settings. |
+|[InternetExplorer](https://github.com/Microsoft/PowerStig/wiki/InternetExplorer) | Provides a mechanism to manage Microsoft Internet Explorer settings. |
+|[McAfee](https://github.com/Microsoft/PowerStig/wiki/McAfee) | Provides a mechanism to manage McAfee settings. |
 |[Office](https://github.com/Microsoft/PowerStig/wiki/Office) | Provides a mechanism to manage Microsoft Office STIG settings. |
+|[OracleJRE](https://github.com/Microsoft/PowerStig/wiki/OracleJRE) | Provides a mechanism to manage Oracle Java Runtime Environment STIG settings. |
+|[RHEL](https://github.com/Microsoft/PowerStig/wiki/RHEL) | Provides a mechanism to manage RedHat Enterprise Linux STIG settings. |
 |[SqlServer](https://github.com/Microsoft/PowerStig/wiki/SqlServer) | Provides a mechanism to manage SqlServer STIG settings. |
+|[Ubuntu](https://github.com/Microsoft/PowerStig/wiki/Ubuntu) | Provides a mechanism to manage Ubuntu Linux STIG settings. |
+|[Vsphere](https://github.com/Microsoft/PowerStig/wiki/Vsphere) | Provides a mechanism to manage VMware Vsphere STIG settings. |
+|[WindowsClient](https://github.com/Microsoft/PowerStig/wiki/WindowsClient) | Provides a mechanism to manage Windows Client STIG settings. |
+|[WindowsDefender](https://github.com/Microsoft/PowerStig/wiki/WindowsDefender) | Provides a mechanism to manage Windows Client STIG settings. |
 |[WindowsDnsServer](https://github.com/Microsoft/PowerStig/wiki/WindowsDnsServer) | Provides a mechanism to manage Windows DNS Server STIG settings. |
 |[WindowsFirewall](https://github.com/Microsoft/PowerStig/wiki/WindowsFirewall) | Provides a mechanism to manage the Windows Firewall STIG settings. |
 |[WindowsServer](https://github.com/Microsoft/PowerStig/wiki/WindowsServer) | Provides a mechanism to manage the Windows Server STIG settings. |
