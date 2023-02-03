@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft IIS 8.0 Site V2R7 & Server STIG V2R5 [#1195](https://github.com/microsoft/PowerStig/issues/1195)
 * Update Readme to reflect all covered technologies [#1184](https://github.com/microsoft/PowerStig/issues/1184)
 
 ## [4.15.0] - 2022-12-29
