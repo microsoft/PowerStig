@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Google Chrome V2R8 [#1192](https://github.com/microsoft/PowerStig/issues/1192)
 * Update Readme to reflect all covered technologies [#1184](https://github.com/microsoft/PowerStig/issues/1184)
 
 ## [4.15.0] - 2022-12-29

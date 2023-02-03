@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 27 Apr 2022 3.3.0.27375 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.6" created="6/6/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 26 Jan 2023 3.4.0.34222 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.8" created="2/3/2023">
   <ManualRule dscresourcemodule="None">
     <Rule id="V-221584" severity="medium" conversionstatus="pass" title="SRG-APP-000456" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Google Chrome is being continually updated by the vendor in order to address identified security vulnerabilities. Running an older version of the browser can introduce security vulnerabilities to the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -606,8 +606,8 @@ Windows method:
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221592" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;If set to “False”, prevents Chrome Cleanup from scanning the system for unwanted software and performing cleanups. Manually triggering Chrome Cleanup from chrome://settings/cleanup is disabled.
-If set to “True” or unset, Chrome Cleanup periodically scans the system for unwanted software and should any be found, will ask the user if they wish to remove it. Manually triggering Chrome Cleanup from chrome://settings is enabled.
+      <Description>&lt;VulnDiscussion&gt;If set to "False", prevents Chrome Cleanup from scanning the system for unwanted software and performing cleanups. Manually triggering Chrome Cleanup from chrome://settings/cleanup is disabled.
+If set to "True" or unset, Chrome Cleanup periodically scans the system for unwanted software and should any be found, will ask the user if they wish to remove it. Manually triggering Chrome Cleanup from chrome://settings is enabled.
 This policy is available only on Windows instances that are joined to a Microsoft Active Directory domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -620,7 +620,7 @@ This policy is available only on Windows instances that are joined to a Microsof
  1. In the omnibox (address bar) type chrome://policy
  2. If "ChromeCleanupEnabled" is not displayed under the "Policy Name" column or it is not set to "False", this is a finding.
 Windows method:
- 1. Start regedit
+ 1. Start regedit.
  2. Navigate to HKLM\Software\Policies\Google\Chrome\
  3. If the "ChromeCleanupEnabled" value name does not exist or its value data is not set to "0", this is a finding.</RawString>
       <ValueData>0</ValueData>
