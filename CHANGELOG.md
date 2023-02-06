@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Canonical RHEL 8 - Ver 1, Rel 8: [#1198](https://github.com/microsoft/PowerStig/issues/1198)
 * Update Readme to reflect all covered technologies [#1184](https://github.com/microsoft/PowerStig/issues/1184)
 
 ## [4.15.0] - 2022-12-29
