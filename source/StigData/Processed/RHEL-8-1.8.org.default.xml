@@ -38,14 +38,6 @@
   <OrganizationalSetting id="V-230346.a" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "lock-after-time" is not set to "900" or less in the global tmux configuration file to enforce session lock after inactivity, this is a finding." -->
   <OrganizationalSetting id="V-230353" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxclassrepeat" is set to "0", more than "4" or is commented out, this is a finding." -->
-  <OrganizationalSetting id="V-230360" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "maxrepeat" is set to more than "3" or is commented out, this is a finding." -->
-  <OrganizationalSetting id="V-230361" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "minclass" is set to less than "4" or is commented out, this is a finding." -->
-  <OrganizationalSetting id="V-230362" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8" or is commented out, this is a finding." -->
-  <OrganizationalSetting id="V-230363" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is not "1" or greater, or is commented out, this is a finding." -->
   <OrganizationalSetting id="V-230365" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is greater than "60", or commented out, this is a finding." -->
