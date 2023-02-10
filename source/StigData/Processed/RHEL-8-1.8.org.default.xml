@@ -8,32 +8,8 @@
 <OrganizationalSettings fullversion="1.8">
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ENCRYPT_METHOD" does not equal SHA512 or greater, this is a finding." -->
   <OrganizationalSetting id="V-230231" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230332.a" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230332.b" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230332.c" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230332.d" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230332.e" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230332.f" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0"), is missing or commented out, this is a finding." -->
   <OrganizationalSetting id="V-230333" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "fail_interval" option is not set to "900" or less (but not "0") on the "preauth" lines with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230334.a" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "fail_interval" option is not set to "900" or less (but not "0") on the "preauth" lines with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230334.b" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "fail_interval" option is not set to "900" or less (but not "0") on the "preauth" lines with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230334.c" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "fail_interval" option is not set to "900" or less (but not "0") on the "preauth" lines with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230334.d" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "fail_interval" option is not set to "900" or less (but not "0") on the "preauth" lines with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230334.e" ContainsLine="" DoesNotContainPattern="" />
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "fail_interval" option is not set to "900" or less (but not "0") on the "preauth" lines with the "pam_faillock.so" module, or is missing from this line, this is a finding." -->
-  <OrganizationalSetting id="V-230334.f" ContainsLine="" DoesNotContainPattern="" />
   <!-- Ensure the "maxlogins" value is set to "10" or less -->
   <OrganizationalSetting id="V-230346" Contents="" />
   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "lock-after-time" is not set to "900" or less in the global tmux configuration file to enforce session lock after inactivity, this is a finding." -->
