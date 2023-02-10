@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Microsoft IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="11/3/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 26 Jan 2023 3.4.0.34222 1.10.0" title="Microsoft IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="2/3/2023">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-214399" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -776,9 +776,10 @@ Open the IIS 8.5 Manager.
 
 Click the IIS 8.5 web server name.
 
-Double-click the “.NET Authorization Rules” icon.
+Double-click the ".NET Authorization Rules" icon.
 
-If any groups other than “Administrators” are listed, this is a finding.</RawString>
+Ensure "All Users" is set to "Allow", and "Anonymous Users" is set to "Deny", otherwise this is a finding.
+If any other rules are present, this is a finding.</RawString>
     </Rule>
     <Rule id="V-214442" severity="medium" conversionstatus="pass" title="SRG-APP-000001-WSR-000001" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Resource exhaustion can occur when an unlimited number of concurrent requests are allowed on a website, facilitating a Denial of Service attack. Mitigating this kind of attack will include limiting the number of concurrent HTTP/HTTPS requests per IP address and may include, where feasible, limiting parameter values associated with keepalive (i.e., a parameter used to limit the amount of time a connection may be inactive).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
