@@ -959,8 +959,7 @@ If any OS shell MIME types are configured, this is a finding.
           </Type>
           <Principal>System</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
         <Entry>
@@ -968,8 +967,7 @@ If any OS shell MIME types are configured, this is a finding.
           </Type>
           <Principal>Administrators</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
         <Entry>
@@ -977,8 +975,7 @@ If any OS shell MIME types are configured, this is a finding.
           </Type>
           <Principal>TrustedInstaller</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
         <Entry>
@@ -986,8 +983,7 @@ If any OS shell MIME types are configured, this is a finding.
           </Type>
           <Principal>ALL APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
         <Entry>
@@ -995,8 +991,7 @@ If any OS shell MIME types are configured, this is a finding.
           </Type>
           <Principal>ALL RESTRICTED APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
         <Entry>
@@ -1004,8 +999,7 @@ If any OS shell MIME types are configured, this is a finding.
           </Type>
           <Principal>Users</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute,ListDirectory</Rights>
         </Entry>
         <Entry>
