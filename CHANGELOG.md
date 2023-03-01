@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Windows Server 2022 V1R1 STIG - Ver 1, Rel 1: [#1190](https://github.com/microsoft/PowerStig/issues/1190)
+
 ## [4.15.0] - 2022-12-29
 
 * Update PowerSTIG to Parse/Apply Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 9: [#1164](https://github.com/microsoft/PowerStig/issues/1164)

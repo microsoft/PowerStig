@@ -130,7 +130,7 @@ If the value for the "Minimum password age" is set to "0" days ("Password can be
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '14'</OrganizationValueTestString>
-      <PolicyName>Minimum password length,</PolicyName>
+      <PolicyName>Minimum password length</PolicyName>
       <PolicyValue />
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
@@ -138,7 +138,7 @@ Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
 
-If the value for the "Minimum password length," is less than "14" characters, this is a finding.
+If the value for the "Minimum password length" is less than "14" characters, this is a finding.
 
 </RawString>
     </Rule>
