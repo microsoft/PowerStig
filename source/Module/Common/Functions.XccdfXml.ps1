@@ -283,7 +283,12 @@ function Get-PowerStigFileList
         $Path
     )
 
-    $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id -FilePath $Path
+    $benchmarkId = $stigDetails.Benchmark.id
+
+    # Windows Server 2022 Benchmark names refixed with MS (Microsoft, not Member Server), remove MS_ to parse benchmark id correctly
+    $benchmarkId = $benchmarkId -replace "MS_Windows_Server_", "Windows_Server_"
+
+    $id = Split-BenchmarkId -Id $benchmarkId -FilePath $Path
 
     $fileNameBase = "$($id.Technology)-$($id.TechnologyVersion)"
 
