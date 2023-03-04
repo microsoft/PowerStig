@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 27 Apr 2022 3.3.0.27375 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.6" created="6/6/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 26 Jan 2023 3.4.0.34222 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.8" created="2/10/2023">
   <ManualRule dscresourcemodule="None">
     <Rule id="V-221584" severity="medium" conversionstatus="pass" title="SRG-APP-000456" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Google Chrome is being continually updated by the vendor in order to address identified security vulnerabilities. Running an older version of the browser can introduce security vulnerabilities to the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -7,7 +7,7 @@
       <LegacyId>V-44805</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
+      <RawString>Universal method:
 1. In the omnibox (address bar) type chrome://settings/help
 2. Cross-reference the build information displayed with the Google Chrome site to identify, at minimum, the oldest supported build available.  As of July 2019, this is 74.x.x.
 3. If the installed version of Chrome is not supported by Google, this is a finding.</RawString>
@@ -23,23 +23,23 @@
       <LegacyId>V-44711</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
+      <RawString>Universal method:
+   1. In the omnibox (address bar) type chrome://policy
    2. If RemoteAccessHostFirewallTraversal is not displayed under the Policy Name column or it is not set to false under the Policy Value column, then this is a finding.
 
 Windows registry:
    1. Start regedit
    2. Navigate to HKLM\Software\Policies\Google\Chrome\
-   3. If the RemoteAccessHostFirewallTraversal value name does not exist or its value data is not set to 0, then this is a finding.  
+   3. If the RemoteAccessHostFirewallTraversal value name does not exist or its value data is not set to 0, then this is a finding.
 </RawString>
       <ValueData>0</ValueData>
       <ValueName>RemoteAccessHostFirewallTraversal</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221559" severity="medium" conversionstatus="pass" title="SRG-APP-000206" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Website tracking is the practice of gathering information as to which websites were accesses by a browser. The common method of doing this is to have a website create a tracking cookie on the browser.   If the information of what sites are being accessed is made available to unauthorized persons, this violates confidentiality requirements, and over time poses a significant OPSEC issue. This policy setting allows you to set whether websites are allowed to track the user’s physical location. Tracking the user’s physical location can be allowed by default, denied by default or the user can be asked every time a website requests the physical location.   
-   1 = Allow sites to track the user’s physical location   
-   2 = Do not allow any site to track the user’s physical location   
+      <Description>&lt;VulnDiscussion&gt;Website tracking is the practice of gathering information as to which websites were accesses by a browser. The common method of doing this is to have a website create a tracking cookie on the browser.   If the information of what sites are being accessed is made available to unauthorized persons, this violates confidentiality requirements, and over time poses a significant OPSEC issue. This policy setting allows you to set whether websites are allowed to track the user’s physical location. Tracking the user’s physical location can be allowed by default, denied by default or the user can be asked every time a website requests the physical location.
+   1 = Allow sites to track the user’s physical location
+   2 = Do not allow any site to track the user’s physical location
    3 = Ask whenever a site wants to track the user’s physical location&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -48,8 +48,8 @@ Windows registry:
       <LegacyId>V-44723</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:               
-   1. In the omnibox (address bar) type chrome://policy             
+      <RawString>Universal method:
+   1. In the omnibox (address bar) type chrome://policy
    2. If DefaultGeolocationSetting is not displayed under the Policy Name column or it is not set to 2, then this is a finding.
 
 Windows method:
@@ -62,8 +62,8 @@ Windows method:
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221561" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Chrome allows you to manage whether unwanted pop-up windows appear. Pop-up windows that are opened when the end user clicks a link are not blocked. If you enable this policy setting, most unwanted pop-up windows are prevented from appearing. If you disable this policy setting, pop-up windows are not prevented from appearing. If you disable this policy setting, scripts can continue to create pop-up windows, and pop-ups that hide other windows. Recommend configuring this setting to ‘2’ to help prevent malicious websites from controlling the pop-up windows or fooling users into clicking on the wrong window.  If you do not configure this policy setting, most unwanted pop-up windows are prevented from appearing.  If this policy is left not set, 'BlockPopups' will be used and the user will be able to change it.    
-   1 = Allow all sites to show pop-ups    
+      <Description>&lt;VulnDiscussion&gt;Chrome allows you to manage whether unwanted pop-up windows appear. Pop-up windows that are opened when the end user clicks a link are not blocked. If you enable this policy setting, most unwanted pop-up windows are prevented from appearing. If you disable this policy setting, pop-up windows are not prevented from appearing. If you disable this policy setting, scripts can continue to create pop-up windows, and pop-ups that hide other windows. Recommend configuring this setting to ‘2’ to help prevent malicious websites from controlling the pop-up windows or fooling users into clicking on the wrong window.  If you do not configure this policy setting, most unwanted pop-up windows are prevented from appearing.  If this policy is left not set, 'BlockPopups' will be used and the user will be able to change it.
+   1 = Allow all sites to show pop-ups
    2 = Do not allow any site to show pop-ups&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -72,8 +72,8 @@ Windows method:
       <LegacyId>V-44719</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
- 1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+ 1. In the omnibox (address bar) type chrome://policy
  2. If DefaultPopupsSetting is not displayed under the Policy Name column or it is not set to 2, then this is a finding.
 
 Windows method:
@@ -95,8 +95,8 @@ Note:  If AO Approved exceptions to this rule have been enabled, this is not a f
       <LegacyId>V-44727</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
- 1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+ 1. In the omnibox (address bar) type chrome://policy
  2. If ExtensionInstallBlocklist is not displayed under the Policy Name column or it is not set to * under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -116,8 +116,8 @@ Windows method:
       <LegacyId>V-44729</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -eq 'oiigbmnaadbkfbmpbfijlflahbdbdgdf | a list of administrator-approved extension IDs'</OrganizationValueTestString>
-      <RawString>Universal method: 
-1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+1. In the omnibox (address bar) type chrome://policy
 2. If ExtensionInstallAllowlist is not displayed under the Policy Name column or it is not set to oiigbmnaadbkfbmpbfijlflahbdbdgdf or a list of administrator approved extension IDs, then this is a finding.
 
 Windows method:
@@ -137,8 +137,8 @@ Windows method:
       <LegacyId>V-44733</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -eq 'an organization approved encrypted search provider'</OrganizationValueTestString>
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
+      <RawString>Universal method:
+   1. In the omnibox (address bar) type chrome://policy
    2. If DefaultSearchProviderName is displayed under the Policy Name column or it is not set to an organization approved encrypted search provider that corresponds to the encrypted search provider set in DTBC-0008(ex. Google Encrypted, Bing Encrypted) under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -161,7 +161,7 @@ Windows method:
       <OrganizationValueTestString>{0} -eq 'an organization-approved encrypted search string'</OrganizationValueTestString>
       <RawString>If the system is on the SIPRNet, this requirement is NA.
 
-Universal method: 
+Universal method:
 1. In the omnibox (address bar) type chrome://policy.
 2. If DefaultSearchProviderSearchURL is not displayed under the Policy Name column or it is not set to an organization-approved encrypted search string (ex. https://www.google.com/search?q={searchTerms} or https://www.bing.com/search?q={searchTerms} ) under the Policy Value column, this is a finding.
 
@@ -182,8 +182,8 @@ Windows method:
       <LegacyId>V-44737</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
- 1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+ 1. In the omnibox (address bar) type chrome://policy
  2. If DefaultSearchProviderEnabled is not displayed under the Policy Name column or it is not set to true under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -205,8 +205,8 @@ Note: This policy will only display in the chrome://policy tab on domain joined 
       <LegacyId>V-44741</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:           
-   1. In the omnibox (address bar) type chrome://policy           
+      <RawString>Universal method:
+   1. In the omnibox (address bar) type chrome://policy
    2. If PasswordManagerEnabled is not displayed under the Policy Name column or it is not set to false under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -227,8 +227,8 @@ Windows method:
       <LegacyId>V-44753</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
+      <RawString>Universal method:
+   1. In the omnibox (address bar) type chrome://policy
    2. If BackgroundModeEnabled is not displayed under the Policy Name column and it is not set to false under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -249,8 +249,8 @@ Windows method:
       <LegacyId>V-44759</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:        
-  1. In the omnibox (address bar) type chrome://policy        
+      <RawString>Universal method:
+  1. In the omnibox (address bar) type chrome://policy
   2. If SyncDisabled is not displayed under the Policy Name column or it is not set to true under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -268,7 +268,7 @@ This policy disables the listed protocol schemes in Google Chrome, URLs using a 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\URLBlocklis</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\URLBlocklist</Key>
       <LegacyId>V-44761</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -295,8 +295,8 @@ Windows method:
       <LegacyId>V-44765</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
+      <RawString>Universal method:
+   1. In the omnibox (address bar) type chrome://policy
    2. If CloudPrintProxyEnabled is not displayed under the Policy Name column or it is not set to false under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -336,8 +336,8 @@ Windows method:
       <LegacyId>V-44771</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
- 1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+ 1. In the omnibox (address bar) type chrome://policy
  2. If MetricsReportingEnabled is not displayed under the Policy Name column or it is not set to false under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -359,8 +359,8 @@ Note: This policy will only display in the chrome://policy tab on domain joined 
       <LegacyId>V-44773</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
+      <RawString>Universal method:
+   1. In the omnibox (address bar) type chrome://policy
    2. If SearchSuggestEnabled is not displayed under the Policy Name column or it is not set to false under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -381,8 +381,8 @@ Windows method:
       <LegacyId>V-44775</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
+      <RawString>Universal method:
+   1. In the omnibox (address bar) type chrome://policy
    2. If ImportSavedPasswords is not displayed under the Policy Name column or it is not set to false under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -394,9 +394,9 @@ Windows method:
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221578" severity="medium" conversionstatus="pass" title="SRG-APP-000080" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Incognito mode allows the user to browse the Internet without recording their browsing history/activity.  From a forensics perspective, this is unacceptable.  Best practice requires that browser history is retained.  The "IncognitoModeAvailability" setting controls whether the user may utilize Incognito mode in Google Chrome. If 'Enabled' is selected or the policy is left unset, pages may be opened in Incognito mode. If 'Disabled' is selected, pages may not be opened in Incognito mode. If 'Forced' is selected, pages may be opened ONLY in Incognito mode.   
-   0 = Incognito mode available.    
-   1 = Incognito mode disabled.    
+      <Description>&lt;VulnDiscussion&gt;Incognito mode allows the user to browse the Internet without recording their browsing history/activity.  From a forensics perspective, this is unacceptable.  Best practice requires that browser history is retained.  The "IncognitoModeAvailability" setting controls whether the user may utilize Incognito mode in Google Chrome. If 'Enabled' is selected or the policy is left unset, pages may be opened in Incognito mode. If 'Disabled' is selected, pages may not be opened in Incognito mode. If 'Forced' is selected, pages may be opened ONLY in Incognito mode.
+   0 = Incognito mode available.
+   1 = Incognito mode disabled.
    2 = Incognito mode forced.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -405,8 +405,8 @@ Windows method:
       <LegacyId>V-44777</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
+      <RawString>Universal method:
+   1. In the omnibox (address bar) type chrome://policy
    2. If IncognitoModeAvailability is not displayed under the Policy Name column or it is not set to 1 under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -427,8 +427,8 @@ Windows method:
       <LegacyId>V-44789</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
+      <RawString>Universal method:
+   1. In the omnibox (address bar) type chrome://policy
    2. If EnableOnlineRevocationChecks is not displayed under the Policy Name column or it is not set to true under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -455,8 +455,8 @@ If this policy is set to 'EnhancedProtection' (value 2), Safe Browsing is always
       <LegacyId>V-44791</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
- 1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+ 1. In the omnibox (address bar) type chrome://policy
  2. If SafeBrowsingProtectionLevel is not displayed under the Policy Name column or it is not set to 1 or 2 under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -476,8 +476,8 @@ Windows method:
       <LegacyId>V-44793</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method:        
-   1. In the omnibox (address bar) type chrome://policy        
+      <RawString>Universal method:
+   1. In the omnibox (address bar) type chrome://policy
    2. If the policy 'SavingBrowserHistoryDisabled' is not shown or is not set to false, then this is a finding.
 
 Windows method:
@@ -498,8 +498,8 @@ Windows method:
       <LegacyId>V-75165</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
- 1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+ 1. In the omnibox (address bar) type chrome://policy
  2. If the policy "AllowDeletingBrowserHistory" is not shown or is not set to false, this is a finding.
 
 Windows method:
@@ -533,7 +533,7 @@ Windows method:
     <Rule id="V-221588" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Configure the type of downloads that Google Chrome will completely block, without letting users override the security decision. If you set this policy, Google Chrome will prevent certain types of downloads, and will not let user bypass the security warnings. When the "Block dangerous downloads" option is chosen, all downloads are allowed, except for those that carry SafeBrowsing warnings. When the "Block potentially dangerous downloads" option is chosen, all downloads allowed, except for those that carry SafeBrowsing warnings of potentially dangerous downloads. When the "Block all downloads" option is chosen, all downloads are blocked.  When this policy is not set, (or the "No special restrictions" option is chosen), the downloads will go through the usual security restrictions based on SafeBrowsing analysis results.
 
-Note that these restrictions apply to downloads triggered from web page content, as well as the 'download link...' context menu option. These restrictions do not apply to the save / download of the currently displayed page, nor does it apply to saving as PDF from the printing options. See https://developers.google.com/safe-browsing for more info on SafeBrowsing. 
+Note that these restrictions apply to downloads triggered from web page content, as well as the 'download link...' context menu option. These restrictions do not apply to the save / download of the currently displayed page, nor does it apply to saving as PDF from the printing options. See https://developers.google.com/safe-browsing for more info on SafeBrowsing.
 0 = No special restrictions
 1 = Block dangerous downloads
 2 = Block potentially dangerous downloads
@@ -594,7 +594,7 @@ If this policy is left not set, ”3” will be used, and the user will be able 
       <LegacyId>V-81587</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
+      <RawString>Universal method:
  1. In the omnibox (address bar) type chrome://policy
  2. If "DefaultWebUsbGuardSetting" is not displayed under the "Policy Name" column or it is not set to "2", this is a finding.
 Windows method:
@@ -606,8 +606,8 @@ Windows method:
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221592" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;If set to “False”, prevents Chrome Cleanup from scanning the system for unwanted software and performing cleanups. Manually triggering Chrome Cleanup from chrome://settings/cleanup is disabled.
-If set to “True” or unset, Chrome Cleanup periodically scans the system for unwanted software and should any be found, will ask the user if they wish to remove it. Manually triggering Chrome Cleanup from chrome://settings is enabled.
+      <Description>&lt;VulnDiscussion&gt;If set to "False", prevents Chrome Cleanup from scanning the system for unwanted software and performing cleanups. Manually triggering Chrome Cleanup from chrome://settings/cleanup is disabled.
+If set to "True" or unset, Chrome Cleanup periodically scans the system for unwanted software and should any be found, will ask the user if they wish to remove it. Manually triggering Chrome Cleanup from chrome://settings is enabled.
 This policy is available only on Windows instances that are joined to a Microsoft Active Directory domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -616,11 +616,11 @@ This policy is available only on Windows instances that are joined to a Microsof
       <LegacyId>V-81591</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
+      <RawString>Universal method:
  1. In the omnibox (address bar) type chrome://policy
  2. If "ChromeCleanupEnabled" is not displayed under the "Policy Name" column or it is not set to "False", this is a finding.
 Windows method:
- 1. Start regedit
+ 1. Start regedit.
  2. Navigate to HKLM\Software\Policies\Google\Chrome\
  3. If the "ChromeCleanupEnabled" value name does not exist or its value data is not set to "0", this is a finding.</RawString>
       <ValueData>0</ValueData>
@@ -639,7 +639,7 @@ This policy is available only on Windows instances that are joined to a Microsof
       <LegacyId>V-81593</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
+      <RawString>Universal method:
  1. In the omnibox (address bar) type chrome://policy
  2. If "ChromeCleanupReportingEnabled" is not displayed under the "Policy Name" column or it is not set to "False", this is a finding.
 Windows method:
@@ -660,7 +660,7 @@ If this policy set to ”False”, Google Cast will be disabled.&lt;/VulnDiscuss
       <LegacyId>V-81597</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
+      <RawString>Universal method:
  1. In the omnibox (address bar) type chrome://policy
  2. If "EnableMediaRouter" is not displayed under the "Policy Name" column or it is not set to "False", this is a finding.
 Windows method:
@@ -682,7 +682,7 @@ If the policy is set to "True", Google Chrome is allowed to autoplay media. If t
       <LegacyId>V-81581</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
+      <RawString>Universal method:
  1. In the omnibox (address bar) type chrome://policy
  2. If "AutoplayAllowed" is not displayed under the "Policy Name" column or it is not set to "False", this is a finding.
 Windows method:
@@ -727,7 +727,7 @@ If this policy is left not set, URL-keyed anonymized data collection will be ena
       <LegacyId>V-91203</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
+      <RawString>Universal method:
 1. In the omnibox (address bar) type chrome://policy
 2. If "UrlKeyedAnonymizedDataCollectionEnabled" is not displayed under the “Policy Name” column or it is not set to "0" under the “Policy Value” column, this is a finding.
 Windows method:
@@ -770,8 +770,8 @@ Windows method:
       <LegacyId>V-97525</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
-1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+1. In the omnibox (address bar) type chrome://policy
 2. If the policy "DeveloperToolsAvailability" is not shown or is not set to "2", this is a finding.
 
 Windows method:
@@ -793,8 +793,8 @@ If this policy is set to false, Google Chrome will not allow guest profiles to b
       <LegacyId>V-102867</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
-1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+1. In the omnibox (address bar) type chrome://policy
 2. If BrowserGuestModeEnabled is not displayed under the Policy Name column or it is not set to 0 under the Policy Value column, this is a finding.
 
 Windows method:
@@ -817,8 +817,8 @@ If this setting is enabled or has no value, the user will be able to control Aut
       <LegacyId>V-102869</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
-1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+1. In the omnibox (address bar) type chrome://policy
 2. If AutofillCreditCardEnabled is not displayed under the Policy Name column or it is not set to 0 under the Policy Value column, this is a finding.
 
 Windows method:
@@ -841,8 +841,8 @@ If this setting is enabled or has no value, the user will be able to control Aut
       <LegacyId>V-102871</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
-1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+1. In the omnibox (address bar) type chrome://policy
 2. If AutofillAddressEnabled is not displayed under the Policy Name column or it is not set to 0 under the Policy Value column, this is a finding.
 
 Windows method:
@@ -865,8 +865,8 @@ If it is not set, the user may be asked whether to import, or importing may happ
       <LegacyId>V-102873</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
-1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+1. In the omnibox (address bar) type chrome://policy
 2. If ImportAutofillFormData is not displayed under the Policy Name column or it is not set to 0 under the Policy Value column, this is a finding.
 
 Windows method:
@@ -891,7 +891,7 @@ When set, Google Chrome will not use SSL/TLS versions less than the specified ve
       <LegacyId>V-81583</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
+      <RawString>Universal method:
  1. In the omnibox (address bar) type chrome://policy
  2. If "SSLVersionMin" is not displayed under the "Policy Name" column or it is not set to "tls1.2", this is a finding.
 Windows method:
@@ -916,8 +916,8 @@ Leaving the policy unset lets sites ask for access, but users can change this se
       <LegacyId>V-26961</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
-1. In the omnibox (address bar) type chrome://policy 
+      <RawString>Universal method:
+1. In the omnibox (address bar) type chrome://policy
 2. If DefaultWebBluetoothGuardSetting is not displayed under the Policy Name column or it is not set to 2 under the Policy Value column, then this is a finding.
 
 Windows method:
@@ -942,7 +942,7 @@ Setting the policy to Disabled disallows the use of QUIC protocol.&lt;/VulnDiscu
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
+      <RawString>Universal method:
 1. In the omnibox (address bar), type chrome://policy.
 2. If QuicAllowed is not displayed under the Policy Name column or it is not set to False under the Policy Value column, this is a finding.
 
@@ -966,7 +966,7 @@ For URLs not covered by the patterns specified here, or for all URLs if this pol
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Universal method: 
+      <RawString>Universal method:
 1. In the omnibox (address bar) type chrome://policy.
 2. If the policy "CookiesSessionOnlyForUrls" exists and has any defined values, this is a finding.
 

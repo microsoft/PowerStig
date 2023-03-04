@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 27 Oct 2022 3.4.0.34222 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="2/14/2023">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 26 Jan 2023 3.4.0.34222 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.8" created="2/14/2023">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218784" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -80,7 +80,7 @@ Note: If additional software is needed, supporting documentation must be signed 
       <LegacyId>V-100139</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Obtain a list of the user accounts with access to the system, including all local and domain accounts. 
+      <RawString>Obtain a list of the user accounts with access to the system, including all local and domain accounts.
 
 Review the privileges to the web server for each account.
 
@@ -122,7 +122,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 
 Navigate to HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ContentIndex\Catalogs\.
 
-If this key exists, then indexing is enabled. 
+If this key exists, then indexing is enabled.
 
 If the key does not exist, this check is Not Applicable.
 
@@ -305,7 +305,7 @@ Verify, at a minimum, the following tuning settings in the registry.
 
 Access the IIS 10.0 web server registry.
 
-Verify the following keys are present and configured. The required setting depends upon the requirements of the application. 
+Verify the following keys are present and configured. The required setting depends upon the requirements of the application.
 
 Recommended settings are not provided as these settings must be explicitly configured to show a conscientious tuning has been made.
 
@@ -789,7 +789,7 @@ Access the "Apps" menu. Under "Administrative Tools", select "Computer Managemen
 
 In left pane, expand "Local Users and Groups" and click "Users".
 
-Review the local users listed in the middle pane. 
+Review the local users listed in the middle pane.
 
 If any local accounts are present and used by IIS 10.0, verify with System Administrator that default passwords have been changed.
 
@@ -805,6 +805,7 @@ If passwords have not been changed from the default, this is a finding.</RawStri
       <RawString>Note: If ASP.NET is not installed, this is Not Applicable.
 Note: If the Server is hosting Microsoft SharePoint, this is Not Applicable.
 Note: If the server is hosting WSUS, this is Not Applicable.
+Note: If the server is hosting Exchange, this is Not Applicable.
 
 Open the IIS 10.0 Manager.
 
@@ -812,7 +813,7 @@ Click the IIS 10.0 web server name.
 
 Double-click the ".NET Authorization Rules" icon.
 
-Ensure "All Users" is set to "Allow", and "Anonymous Users" is set to "Deny" otherwise, this is a finding.
+Ensure "All Users" is set to "Allow", and "Anonymous Users" is set to "Deny", otherwise this is a finding.
 If any other rules are present, this is a finding.</RawString>
     </Rule>
     <Rule id="V-218826" severity="medium" conversionstatus="pass" title="SRG-APP-000001-WSR-000001" dscresource="None">
