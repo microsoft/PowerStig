@@ -14,22 +14,16 @@
   <OrganizationalSetting id="V-254343.b" ValueData="1" />
   <!-- Ensure ''V-254344'' -match '1|3|8|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-254344" ValueData="8" />
+  <!-- Ensure ''V-254356'' -match '0|1'-->
+  <OrganizationalSetting id="V-254356" ValueData="1" />
+  <!-- Ensure ''V-254357'' -match '0|1|2|99|100'-->
+  <OrganizationalSetting id="V-254357" ValueData="100" />
   <!-- Ensure ''V-254358'' -ge '32768'-->
   <OrganizationalSetting id="V-254358" ValueData="32768" />
   <!-- Ensure ''V-254359'' -ge '196608'-->
   <OrganizationalSetting id="V-254359" ValueData="196608" />
   <!-- Ensure ''V-254360'' -ge '32768'-->
   <OrganizationalSetting id="V-254360" ValueData="32768" />
-  <!-- Ensure ''V-254362'' -match '0|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-254362" ValueData="0" />
-  <!-- Ensure ''V-254363'' -match '0|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-254363" ValueData="0" />
-  <!-- Ensure ''V-254364'' -match '0|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-254364" ValueData="0" />
-  <!-- Ensure ''V-254371'' -match '0|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-254371" ValueData="0" />
-  <!-- Ensure ''V-254375'' -match '0|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-254375" ValueData="0" />
   <!-- Ensure ''V-254387'' -le '600' -and ''V-254387'' -ne '0'-->
   <OrganizationalSetting id="V-254387" PolicyValue="600" />
   <!-- Ensure ''V-254388'' -le '10' -and ''V-254388'' -ne '0'-->
