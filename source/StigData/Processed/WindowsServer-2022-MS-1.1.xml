@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_MS_STIG_V1R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 09 Sep 2022 3.4.0.34222 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="3/4/2023">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_MS_STIG_V1R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 09 Sep 2022 3.4.0.34222 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="3/5/2023">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-254285" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1478,32 +1478,6 @@ TPM Manufacturer Information - Specific Version = 2.0 or 1.2
 
 If a TPM is not found or is not ready for use, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-254248" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Malicious software can establish a base on individual desktops and servers. Employing an automated mechanism to detect this type of software will aid in elimination of the software from the operating system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify an antivirus solution is installed on the system. The antivirus solution may be bundled with an approved host-based security solution.
-
-If there is no antivirus solution installed on the system, this is a finding.
-
-Verify if Microsoft Defender antivirus is in use or enabled:
-
-Open "PowerShell".
-
-Enter "get-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayName"
-
-Verify if third-party antivirus is in use or enabled:
-
-Open "PowerShell".
-
-Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayName
-
-Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayName</RawString>
-    </Rule>
     <Rule id="V-254255" severity="low" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Windows shares are a means by which files, folders, printers, and other resources can be published for network users to access. Improper configuration can permit access to devices and data beyond a user's need.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1661,22 +1635,6 @@ Satisfies: SRG-OS-000425-GPOS-00189, SRG-OS-000426-GPOS-00190&lt;/VulnDiscussion
       <RawString>If the data owner has a strict requirement for ensuring data integrity and confidentiality is maintained at every step of the data transfer and handling process, verify protection methods such as TLS, encrypted VPNs, or IPsec have been implemented.
 
 If protection methods have not been implemented, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-254265" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack, allowing or blocking inbound and outbound connections based on a set of rules.
-
-Satisfies: SRG-OS-000480-GPOS-00227, SRG-OS-000480-GPOS-00232&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Determine if a host-based firewall is installed and enabled on the system.
-
-If a host-based firewall is not installed and enabled on the system, this is a finding.
-
-The configuration requirements will be determined by the applicable firewall STIG.</RawString>
     </Rule>
     <Rule id="V-254267" severity="medium" conversionstatus="pass" title="SRG-OS-000002-GPOS-00002" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If temporary user accounts remain active when no longer needed or for an excessive period, these accounts may be used to gain unauthorized access. To mitigate this risk, automated termination of all temporary accounts must be set upon account creation.
@@ -3524,8 +3482,8 @@ Value: 0x00000000 (0)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -match '0|1'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -3535,7 +3493,7 @@ Value Name: AllowTelemetry
 
 Type: REG_DWORD
 Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</RawString>
-      <ValueData>0</ValueData>
+      <ValueData />
       <ValueName>AllowTelemetry</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -3547,8 +3505,8 @@ Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -match '0|1|2|99|100'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -3564,7 +3522,7 @@ Value: 0x00000000 (0) - No peering (HTTP Only)
 0x00000064 (100) - Bypass mode, Delivery Optimization not used (Bypass)
 
 A value of 0x00000003 (3), Internet, is a finding.</RawString>
-      <ValueData>0</ValueData>
+      <ValueData />
       <ValueName>DODownloadMode</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -3676,13 +3634,13 @@ Value: 0x00000001 (1)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '0|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>The default behavior is for Data Execution Prevention to be turned on for File Explorer.
 
 If the registry value name below does not exist, this is not a finding.
 
-If it exists and is configured with a value of "0", this is not a finding.
+If it exists and is configured with a value of "0x00000000 (0) (or if the Value Name does not exist)", this is not a finding.
 
 If it exists and is configured with a value of "1", this is a finding.
 
@@ -3693,7 +3651,7 @@ Value Name: NoDataExecutionPrevention
 
 Value Type: REG_DWORD
 Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
-      <ValueData />
+      <ValueData>0</ValueData>
       <ValueName>NoDataExecutionPrevention</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -3705,13 +3663,13 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '0|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>The default behavior is for File Explorer heap termination on corruption to be enabled.
 
 If the registry Value Name below does not exist, this is not a finding.
 
-If it exists and is configured with a value of "0", this is not a finding.
+If it exists and is configured with a value of "0x00000000 (0) (or if the Value Name does not exist)", this is not a finding.
 
 If it exists and is configured with a value of "1", this is a finding.
 
@@ -3722,7 +3680,7 @@ Value Name: NoHeapTerminationOnCorruption
 
 Value Type: REG_DWORD
 Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
-      <ValueData />
+      <ValueData>0</ValueData>
       <ValueName>NoHeapTerminationOnCorruption</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -3734,13 +3692,13 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '0|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>The default behavior is for shell protected mode to be turned on for File Explorer.
 
 If the registry value name below does not exist, this is not a finding.
 
-If it exists and is configured with a value of "0", this is not a finding.
+If it exists and is configured with a value of "0x00000000 (0) (or if the Value Name does not exist)", this is not a finding.
 
 If it exists and is configured with a value of "1", this is a finding.
 
@@ -3751,7 +3709,7 @@ Value Name: PreXPSP2ShellProtocolBehavior
 
 Value Type: REG_DWORD
 Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
-      <ValueData />
+      <ValueData>0</ValueData>
       <ValueName>PreXPSP2ShellProtocolBehavior</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -3909,13 +3867,13 @@ Value: 0x00000001 (1)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\Feeds</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '0|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>The default behavior is for the Windows RSS platform to not use Basic authentication over HTTP connections.
 
 If the registry value name below does not exist, this is not a finding.
 
-If it exists and is configured with a value of "0", this is not a finding.
+If it exists and is configured with a value of "0x00000000 (0) (or if the Value Name does not exist)", this is not a finding.
 
 If it exists and is configured with a value of "1", this is a finding.
 
@@ -3926,7 +3884,7 @@ Value Name: AllowBasicAuthInClear
 
 Value Type: REG_DWORD
 Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
-      <ValueData />
+      <ValueData>0</ValueData>
       <ValueName>AllowBasicAuthInClear</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -4007,13 +3965,13 @@ Value: 0x00000000 (0)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '0|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>The default behavior is for Internet Explorer to warn users and select whether to allow or refuse installation when a web-based program attempts to install software on the system.
 
 If the registry value name below does not exist, this is not a finding.
 
-If it exists and is configured with a value of "0", this is not a finding.
+If it exists and is configured with a value of "0x00000000 (0) (or if the Value Name does not exist)", this is not a finding.
 
 If it exists and is configured with a value of "1", this is a finding.
 
@@ -4024,7 +3982,7 @@ Value Name: SafeForScripting
 
 Value Type: REG_DWORD
 Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
-      <ValueData />
+      <ValueData>0</ValueData>
       <ValueName>SafeForScripting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -4688,8 +4646,8 @@ Satisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000228-GPOS-00088&lt;/VulnDiscussion
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE 
@@ -4705,7 +4663,7 @@ Value: See message title options below
 If an organization-defined title is used, it can in no case contravene or modify the language of the banner text required in WN22-SO-000150.
 
 Automated tools may only search for the titles defined above. If an organization-defined title is used, a manual review will be required.</RawString>
-      <ValueData>See message title options below</ValueData>
+      <ValueData />
       <ValueName>LegalNoticeCaption</ValueName>
       <ValueType>String</ValueType>
     </Rule>
@@ -5295,8 +5253,8 @@ Value: 0x00000000 (0)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
       <RawString>UAC requirements are NA for Server Core installations (this is default installation option for Windows Server 2022 versus Server with Desktop Experience).
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
@@ -5309,7 +5267,7 @@ Value Name: ConsentPromptBehaviorAdmin
 Value Type: REG_DWORD
 Value: 0x00000002 (2) (Prompt for consent on the secure desktop)
 0x00000001 (1) (Prompt for credentials on the secure desktop)</RawString>
-      <ValueData>2</ValueData>
+      <ValueData />
       <ValueName>ConsentPromptBehaviorAdmin</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -5450,13 +5408,13 @@ Value: 0x00000001 (1)</RawString>
       <Key>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '2|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>The default behavior is for Windows to mark file attachments with their zone information.
 
 If the registry Value Name below does not exist, this is not a finding.
 
-If it exists and is configured with a value of "2", this is not a finding.
+If it exists and is configured with a value of "0x00000002 (2) (or if the Value Name does not exist)", this is not a finding.
 
 If it exists and is configured with a value of "1", this is a finding.
 
@@ -5467,7 +5425,7 @@ Value Name: SaveZoneInformation
 
 Value Type: REG_DWORD
 Value: 0x00000002 (2) (or if the Value Name does not exist)</RawString>
-      <ValueData />
+      <ValueData>2</ValueData>
       <ValueName>SaveZoneInformation</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -5674,6 +5632,62 @@ If the value for "Accounts: Rename guest account" is not set to a value other th
 </RawString>
     </Rule>
   </SecurityOptionRule>
+  <ServiceRule dscresourcemodule="PSDscResources">
+    <Rule id="V-254248" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Service">
+      <Description>&lt;VulnDiscussion&gt;Malicious software can establish a base on individual desktops and servers. Employing an automated mechanism to detect this type of software will aid in elimination of the software from the operating system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>ServiceName/StartupType is populated with correct AntiVirus service information</OrganizationValueTestString>
+      <RawString>Verify an antivirus solution is installed on the system. The antivirus solution may be bundled with an approved host-based security solution.
+
+If there is no antivirus solution installed on the system, this is a finding.
+
+Verify if Microsoft Defender antivirus is in use or enabled:
+
+Open "PowerShell".
+
+Enter "get-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayName"
+
+Verify if third-party antivirus is in use or enabled:
+
+Open "PowerShell".
+
+Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayName
+
+Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayName</RawString>
+      <ServiceName>
+      </ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>
+      </StartupType>
+    </Rule>
+    <Rule id="V-254265" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Service">
+      <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack, allowing or blocking inbound and outbound connections based on a set of rules.
+
+Satisfies: SRG-OS-000480-GPOS-00227, SRG-OS-000480-GPOS-00232&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>ServiceName/StartupType is populated with correct Firewall service information</OrganizationValueTestString>
+      <RawString>Determine if a host-based firewall is installed and enabled on the system.
+
+If a host-based firewall is not installed and enabled on the system, this is a finding.
+
+The configuration requirements will be determined by the applicable firewall STIG.</RawString>
+      <ServiceName>
+      </ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>
+      </StartupType>
+    </Rule>
+  </ServiceRule>
   <UserRightRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-254434" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
       <Constant>SeNetworkLogonRight</Constant>
@@ -6130,12 +6144,12 @@ Accounts with the "Create symbolic links" user right can create pointers to othe
       <DisplayName>Create symbolic links</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators</Identity>
+      <Identity />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'</OrganizationValueTestString>
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
 Run "gpedit.msc".
