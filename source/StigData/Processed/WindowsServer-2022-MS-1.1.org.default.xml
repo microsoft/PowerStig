@@ -86,6 +86,8 @@ By using this IS (which includes any device attached to this IS), you consent to
   <OrganizationalSetting id="V-254447" OptionValue="" />
   <!-- Ensure ''V-254448'' -ne 'Guest'-->
   <OrganizationalSetting id="V-254448" OptionValue="" />
+  <!-- Ensure ''V-254484'' -match '1|2'-->
+  <OrganizationalSetting id="V-254484" ValueData="1" />
   <!-- Ensure ''V-254499'' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'-->
   <OrganizationalSetting id="V-254499" Identity="Administrators" />
 </OrganizationalSettings>
