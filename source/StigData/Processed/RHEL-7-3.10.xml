@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 27 Jul 2022 3.3.0.27375 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.8" created="9/12/2022">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R10_Manual-xccdf.xml" releaseinfo="Release: 10 Benchmark Date: 26 Jan 2023 3.4.0.34222 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.10" created="3/6/2023">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -13,16 +13,16 @@ Satisfies: SRG-OS-000257-GPOS-00098, SRG-OS-000278-GPOS-00108&lt;/VulnDiscussion
 
 Check the default file permissions, ownership, and group membership of system files and commands with the following command:
 
-# for i in `rpm -Va | egrep '^.{1}M|^.{5}U|^.{6}G' | cut -d " " -f 4,5`;do for j in `rpm -qf $i`;do rpm -ql $j --dump | cut -d " " -f 1,5,6,7 | grep $i;done;done
+     # for i in `rpm -Va | grep -E '^.{1}M|^.{5}U|^.{6}G' | cut -d " " -f 4,5`;do for j in `rpm -qf $i`;do rpm -ql $j --dump | cut -d " " -f 1,5,6,7 | grep $i;done;done
 
-/var/log/gdm 040755 root root
-/etc/audisp/audisp-remote.conf 0100640 root root
-/usr/bin/passwd 0104755 root root
+     /var/log/gdm 040755 root root
+     /etc/audisp/audisp-remote.conf 0100640 root root
+     /usr/bin/passwd 0104755 root root
 
 For each file returned, verify the current permissions, ownership, and group membership:
-# ls -la &lt;filename&gt;
+     # ls -la &lt;filename&gt;
 
--rw-------. 1 root root 133 Jan 11 13:25 /etc/audisp/audisp-remote.conf
+     -rw-------. 1 root root 2017 Nov 1 10:03 /etc/audisp/audisp-remote.conf
 
 If the file is more permissive than the default permissions, this is a finding.
 
@@ -82,14 +82,14 @@ Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion
       <LegacyId>V-71891</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system enables a user's session lock until that user re-establishes access using established identification and authentication procedures. The screen program must be installed to lock sessions on the console.
+      <RawString>Verify the operating system enables a user's session lock until that user re-establishes access using established identification and authentication procedures.
 
 Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Check to see if the screen lock is enabled with the following command:
 
-# grep -i lock-enabled /etc/dconf/db/local.d/*
-lock-enabled=true
+     # grep -ir lock-enabled /etc/dconf/db/local.d/ | grep -v locks
+     lock-enabled=true
 
 If the "lock-enabled" setting is missing or is not set to "true", this is a finding.</RawString>
     </Rule>
@@ -131,14 +131,14 @@ The session lock is implemented at the point where session activity can be deter
       <LegacyId>V-71893</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system initiates a screensaver after a 15-minute period of inactivity for graphical user interfaces. The screen program must be installed to lock sessions on the console.
+      <RawString>Verify the operating system initiates a screensaver after a 15-minute period of inactivity for graphical user interfaces.
 
 Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Check to see if GNOME is configured to display a screensaver after a 15 minute delay with the following command:
 
-# grep -i idle-delay /etc/dconf/db/local.d/*
-idle-delay=uint32 900
+     # grep -i idle-delay /etc/dconf/db/local.d/*
+     idle-delay=uint32 900
 
 If the "idle-delay" setting is missing or is not set to "900" or less, this is a finding.</RawString>
     </Rule>
@@ -151,15 +151,14 @@ The session lock is implemented at the point where session activity can be deter
       <LegacyId>V-71899</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system initiates a session lock after a 15-minute period of inactivity for graphical user interfaces. The screen program must be installed to lock sessions on the console.
+      <RawString>Verify the operating system initiates a session lock after a 15-minute period of inactivity for graphical user interfaces.
 
-Note: If the system does not have a Graphical User Interface installed, this requirement is Not Applicable.
+Note: If the system does not have a GNOME installed, this requirement is Not Applicable.
 
 Check for the session lock settings with the following commands:
 
-# grep -i idle-activation-enabled /etc/dconf/db/local.d/*
-
-idle-activation-enabled=true
+     # grep -i idle-activation-enabled /etc/dconf/db/local.d/*
+     idle-activation-enabled=true
 
 If "idle-activation-enabled" is not set to "true", this is a finding.</RawString>
     </Rule>
@@ -174,12 +173,12 @@ The session lock is implemented at the point where session activity can be deter
       <OrganizationValueTestString />
       <RawString>Verify the operating system initiates a session lock a for graphical user interfaces when the screensaver is activated. 
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 If GNOME is installed, check to see a session lock occurs when the screensaver is activated with the following command:
 
-# grep -i lock-delay /etc/dconf/db/local.d/*
-lock-delay=uint32 5
+     # grep -i lock-delay /etc/dconf/db/local.d/*
+     lock-delay=uint32 5
 
 If the "lock-delay" setting is missing, or is not set to "5" or less, this is a finding.</RawString>
     </Rule>
@@ -213,11 +212,11 @@ If the value of "retry" is set to "0" or greater than "3", this is a finding.</R
 
 Check that the system is configured to create SHA512 hashed passwords with the following command:
 
-# grep password /etc/pam.d/system-auth /etc/pam.d/password-auth
+     # grep password /etc/pam.d/system-auth /etc/pam.d/password-auth
 
 Outcome should look like following:
-/etc/pam.d/system-auth-ac:password    sufficient    pam_unix.so sha512 shadow try_first_pass use_authtok
-/etc/pam.d/password-auth:password    sufficient    pam_unix.so sha512 shadow try_first_pass use_authtok
+     /etc/pam.d/system-auth-ac:password    sufficient    pam_unix.so sha512 shadow try_first_pass use_authtok
+     /etc/pam.d/password-auth:password     sufficient    pam_unix.so sha512 shadow try_first_pass use_authtok
 
 If the "/etc/pam.d/system-auth" and "/etc/pam.d/password-auth" configuration files allow for password hashes other than SHA512 to be used, this is a finding.</RawString>
     </Rule>
@@ -249,9 +248,8 @@ If the "crypt_style" variable is not set to "sha512", is not in the defaults sec
 
 Check for the value of the "remember" argument in "/etc/pam.d/system-auth" and "/etc/pam.d/password-auth" with the following command:
 
-# grep -i remember /etc/pam.d/system-auth /etc/pam.d/password-auth
-
-password    requisite     pam_pwhistory.so use_authtok remember=5 retry=3
+     # grep -i remember /etc/pam.d/system-auth /etc/pam.d/password-auth
+     password     requisite     pam_pwhistory.so use_authtok remember=5 retry=3
 
 If the line containing the "pam_pwhistory.so" line does not have the "remember" module argument set, is commented out, or the value of the "remember" module argument is set to less than "5", this is a finding.</RawString>
     </Rule>
@@ -275,11 +273,11 @@ Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>Check that the system locks an account for a minimum of 15 minutes after three unsuccessful logon attempts within a period of 15 minutes with the following command:
 
-# grep pam_faillock.so /etc/pam.d/password-auth
+     # grep pam_faillock.so /etc/pam.d/password-auth
 
-auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
-auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
-account required pam_faillock.so 
+auth        required      pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth        [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account     required      pam_faillock.so 
 
 If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
 
@@ -293,11 +291,11 @@ Note: The maximum configurable value for "unlock_time" is "604800".
 
 If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
 
-# grep pam_faillock.so /etc/pam.d/system-auth
+     # grep pam_faillock.so /etc/pam.d/system-auth
 
-auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
-auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
-account required pam_faillock.so 
+auth        required      pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+auth        [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account     required      pam_faillock.so
 
 If the "deny" parameter is set to "0" or a value greater than "3" on both "auth" lines with the "pam_faillock.so" module, or is missing from these lines, this is a finding.
 
@@ -322,17 +320,19 @@ Satisfies: SRG-OS-000329-GPOS-00128, SRG-OS-000021-GPOS-00005&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>Verify the operating system automatically locks the root account, for a minimum of 15 minutes, when three unsuccessful logon attempts in 15 minutes are made.
 
-# grep pam_faillock.so /etc/pam.d/password-auth
-auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900 
-auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900 
-account required pam_faillock.so
+     # grep pam_faillock.so /etc/pam.d/password-auth
+
+auth        required      pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900 
+auth        [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900 
+account     required      pam_faillock.so
 
 If the "even_deny_root" setting is not defined on both lines with the "pam_faillock.so" module, is commented out, or is missing from a line, this is a finding.
 
-# grep pam_faillock.so /etc/pam.d/system-auth
-auth required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900 
-auth [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
-account required pam_faillock.so
+     # grep pam_faillock.so /etc/pam.d/system-auth
+
+auth        required      pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900 
+auth        [default=die] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900
+account     required      pam_faillock.so
 
 If the "even_deny_root" setting is not defined on both lines with the "pam_faillock.so" module, is commented out, or is missing from a line, this is a finding.</RawString>
     </Rule>
@@ -589,7 +589,7 @@ Check all local interactive user initialization files for interactive users with
 
 Note: The example is for a system that is configured to create users home directories in the "/home" directory.
 
-# grep -i umask /home/*/.*
+$ sudo grep -ir ^umask /home | grep -v '.bash_history'
 
 If any local interactive user initialization files are found to have a umask statement that has a value less restrictive than "077", this is a finding.</RawString>
     </Rule>
@@ -658,7 +658,7 @@ If a "grub.cfg" is found in any subdirectories other than "/boot/grub2" and "/bo
 
 Check that the grub configuration file has the set root command in each menu entry with the following commands:
 
-# grep -c menuentry /boot/grub2/grub.cfg
+# grep -cw menuentry /boot/grub2/grub.cfg
 1
 # grep 'set root' /boot/grub2/grub.cfg
 set root=(hd0,1)
@@ -1094,6 +1094,51 @@ ssh_sysadm_login --&gt; off
 
 If the "ssh_sysadm_login" boolean is not "off" and is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-251704" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
+
+When operating systems provide the capability to escalate a functional capability, it is critical the user re-authenticate.
+
+Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system is not be configured to bypass password requirements for privilege escalation.
+
+Check the configuration of the "/etc/pam.d/sudo" file with the following command:
+
+$ sudo grep pam_succeed_if /etc/pam.d/sudo
+
+If any occurrences of "pam_succeed_if" is returned from the command, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-255927" severity="low" conversionstatus="pass" title="SRG-OS-000138-GPOS-00069" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Restricting access to the kernel message buffer limits access only to root. This prevents attackers from gaining additional system information as a non-privileged user.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system is configured to restrict access to the kernel message buffer with the following commands:
+
+     $ sudo sysctl kernel.dmesg_restrict
+     kernel.dmesg_restrict = 1
+
+If "kernel.dmesg_restrict" is not set to "1" or is missing, this is a finding.
+
+Check that the configuration files are present to enable this kernel parameter:
+
+     $ sudo grep -r kernel.dmesg_restrict /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
+     /etc/sysctl.conf:kernel.dmesg_restrict = 1
+     /etc/sysctl.d/99-sysctl.conf:kernel.dmesg_restrict = 1
+
+If "kernel.dmesg_restrict" is not set to "1", is missing or commented out, this is a finding.
+
+If conflicting results are returned, this is a finding.</RawString>
+    </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
     <Rule id="V-204394" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="None">
@@ -1219,7 +1264,7 @@ If any of the above checks are not configured, ask the administrator to indicate
     <Rule id="V-204445" severity="medium" conversionstatus="pass" title="SRG-OS-000363-GPOS-00150" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Unauthorized changes to the baseline configuration could make the system vulnerable to various attacks or allow unauthorized access to the operating system. Changes to operating system configurations can have unintended side effects, some of which may be relevant to security.
 
-Detecting such changes and providing an automated response can help avoid unintended, negative consequences that could ultimately affect the security state of the operating system. The operating system's Information Management Officer (IMO)/Information System Security Officer (ISSO) and System Administrators (SAs) must be notified via email and/or monitoring system trap when there is an unauthorized modification of a configuration item.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Detecting such changes and providing an automated response can help avoid unintended, negative consequences that could ultimately affect the security state of the operating system. The operating system's Information System Security Manager (ISSM)/Information System Security Officer (ISSO) and System Administrators (SAs) must be notified via email and/or monitoring system trap when there is an unauthorized modification of a configuration item.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71973</LegacyId>
@@ -1229,29 +1274,23 @@ Detecting such changes and providing an automated response can help avoid uninte
 
 Note: A file integrity tool other than Advanced Intrusion Detection Environment (AIDE) may be used, but the tool must be executed at least once per week.
 
-Check to see if AIDE is installed on the system with the following command:
-
-# yum list installed aide
-
-If AIDE is not installed, ask the SA how file integrity checks are performed on the system.
-
 Check for the presence of a cron job running daily or weekly on the system that executes AIDE daily to scan for changes to the system baseline. The command used in the example will use a daily occurrence.
 
 Check the cron directories for a script file controlling the execution of the file integrity application. For example, if AIDE is installed on the system, use the following command:
 
-# ls -al /etc/cron.* | grep aide
--rwxr-xr-x 1 root root 29 Nov 22 2015 aide
+     # ls -al /etc/cron.* | grep aide
+     -rwxr-xr-x 1 root root 602 Mar 6 20:02 aide
 
-# grep aide /etc/crontab /var/spool/cron/root
-/etc/crontab: 30 04 * * * root /usr/sbin/aide  --check
-/var/spool/cron/root: 30 04 * * * /usr/sbin/aide  --check
+     # grep aide /etc/crontab /var/spool/cron/root
+     /etc/crontab: 30 04 * * * root /usr/sbin/aide  --check
+     /var/spool/cron/root: 30 04 * * * /usr/sbin/aide  --check
 
 If the file integrity application does not exist, or a script file controlling the execution of the file integrity application does not exist, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204446" severity="medium" conversionstatus="pass" title="SRG-OS-000363-GPOS-00150" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Unauthorized changes to the baseline configuration could make the system vulnerable to various attacks or allow unauthorized access to the operating system. Changes to operating system configurations can have unintended side effects, some of which may be relevant to security.
 
-Detecting such changes and providing an automated response can help avoid unintended, negative consequences that could ultimately affect the security state of the operating system. The operating system's Information Management Officer (IMO)/Information System Security Officer (ISSO) and System Administrators (SAs) must be notified via email and/or monitoring system trap when there is an unauthorized modification of a configuration item.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Detecting such changes and providing an automated response can help avoid unintended, negative consequences that could ultimately affect the security state of the operating system. The operating system's Information System Security Manager (ISSM)/Information System Security Officer (ISSO) and System Administrators (SAs) must be notified via email and/or monitoring system trap when there is an unauthorized modification of a configuration item.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71975</LegacyId>
@@ -1261,29 +1300,23 @@ Detecting such changes and providing an automated response can help avoid uninte
 
 Note: A file integrity tool other than Advanced Intrusion Detection Environment (AIDE) may be used, but the tool must be executed and notify specified individuals via email or an alert.
 
-Check to see if AIDE is installed on the system with the following command:
-
-# yum list installed aide
-
-If AIDE is not installed, ask the SA how file integrity checks are performed on the system. 
-
 Check for the presence of a cron job running routinely on the system that executes AIDE to scan for changes to the system baseline. The commands used in the example will use a daily occurrence.
 
 Check the cron directories for a "crontab" script file controlling the execution of the file integrity application. For example, if AIDE is installed on the system, use the following command:
+    
+     # ls -al /etc/cron.* | grep aide
+     -rwxr-xr-x 1 root root 602 Mar 6 20:02 aide
 
-# ls -al /etc/cron.* | grep aide
--rwxr-xr-x 1 root root 32 Jul 1 2011 aide
-
-# grep aide /etc/crontab /var/spool/cron/root
-/etc/crontab: 30 04 * * * root /usr/sbin/aide  --check
-/var/spool/cron/root: 30 04 * * * /usr/sbin/aide  --check
+     # grep aide /etc/crontab /var/spool/cron/root
+     /etc/crontab: 30 04 * * * root /usr/sbin/aide  --check
+     /var/spool/cron/root: 30 04 * * * /usr/sbin/aide  --check
 
 AIDE does not have a configuration that will send a notification, so the cron job uses the mail application on the system to email the results of the file integrity run as in the following example:
 
-# more /etc/cron.daily/aide
-#!/bin/bash
+     # more /etc/cron.daily/aide
+     #!/bin/bash
 
-/usr/sbin/aide --check | /bin/mail -s "$HOSTNAME - Daily aide integrity check run" root@sysname.mil
+     /usr/sbin/aide --check | /var/spool/mail -s "$HOSTNAME - Daily aide integrity check run" root@sysname.mil
 
 If the file integrity application does not notify designated personnel of changes, this is a finding.</RawString>
     </Rule>
@@ -1467,15 +1500,13 @@ If any home directories referenced in "/etc/passwd" are not owned by the interac
 
 Check the home directory assignment for all local interactive users on the system with the following command:
 
-# ls -ld $(awk -F: '($3&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $6}' /etc/passwd)
-
--rwxr-x--- 1 smithj users 18 Mar 5 17:06 /home/smithj
+     # ls -ld $(awk -F: '($3&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $6}' /etc/passwd)
+     -rwxr-x--- 1 smithj users 13 Apr 1 04:20 /home/smithj
 
 Check the user's primary group with the following command:
 
-# grep $(grep smithj /etc/passwd | awk -F: ‘{print $4}’) /etc/group
-
-users:x:250:smithj,jonesj,jacksons
+     # grep $(grep smithj /etc/passwd | awk -F: '{print $4}') /etc/group
+     users:x:250:smithj,marinc,chongt
 
 If the user home directory referenced in "/etc/passwd" is not group-owned by that user's primary GID, this is a finding.</RawString>
     </Rule>
@@ -1897,27 +1928,18 @@ If no result is returned, or "/var/log/audit" is not on a separate file system, 
       <OrganizationValueTestString />
       <RawString>Verify the file integrity tool is configured to verify extended attributes.
 
-Check to see if Advanced Intrusion Detection Environment (AIDE) is installed on the system with the following command:
-
-# yum list installed aide
-
-If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system.
-
-If there is no application installed to perform file integrity checks, this is a finding.
-
 Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory.
 
 Use the following command to determine if the file is in another location:
-
-# find / -name aide.conf
+     # find / -name aide.conf
 
 Check the "aide.conf" file to determine if the "xattrs" rule has been added to the rule list being applied to the files and directories selection lists.
 
 An example rule that includes the "xattrs" rule follows:
 
-All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All # apply the custom rule to the files in bin 
-/sbin All # apply the same custom rule to the files in sbin 
+     All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
+     /bin All # apply the custom rule to the files in bin 
+     /sbin All # apply the same custom rule to the files in sbin 
 
 If the "xattrs" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or extended attributes are not being checked by another file integrity tool, this is a finding.</RawString>
     </Rule>
@@ -1932,27 +1954,19 @@ Red Hat Enterprise Linux operating system installation media ships with an optio
       <OrganizationValueTestString />
       <RawString>Verify the file integrity tool is configured to use FIPS 140-2-approved cryptographic hashes for validating file contents and directories.
 
-Check to see if AIDE is installed on the system with the following command:
-
-# yum list installed aide
-
-If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system. 
-
-If there is no application installed to perform file integrity checks, this is a finding.
-
 Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory. 
 
 Use the following command to determine if the file is in another location:
 
-# find / -name aide.conf
+     # find / -name aide.conf
 
 Check the "aide.conf" file to determine if the "sha512" rule has been added to the rule list being applied to the files and directories selection lists. Exclude any log files, or files expected to change frequently, to reduce unnecessary notifications.
 
 An example rule that includes the "sha512" rule follows:
-
-All=p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All # apply the custom rule to the files in bin 
-/sbin All # apply the same custom rule to the files in sbin 
+ 
+     All=p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
+     /bin All # apply the custom rule to the files in bin 
+     /sbin All # apply the same custom rule to the files in sbin 
 
 If the "sha512" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or another file integrity tool is not using FIPS 140-2-approved cryptographic hashes for validating file contents and directories, this is a finding.</RawString>
     </Rule>
@@ -2076,17 +2090,17 @@ If any file has a mode more permissive than "0644", this is a finding.</RawStrin
       <LegacyId>V-72257</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the SSH private host key files have mode "0600" or less permissive.
+      <RawString>Verify the SSH private host key files have mode "0640" or less permissive.
 
 The following command will find all SSH private key files on the system and list their modes:
 
-# find / -name '*ssh_host*key' | xargs ls -lL
+     # find / -name '*ssh_host*key' | xargs ls -lL
 
--rw------- 1 root ssh_keys 668 Nov 28 06:43 ssh_host_dsa_key
--rw------- 1 root ssh_keys 582 Nov 28 06:43 ssh_host_key
--rw------- 1 root ssh_keys 887 Nov 28 06:43 ssh_host_rsa_key
+     -rw-r----- 1 root ssh_keys 112 Apr 1 11:59 ssh_host_dsa_key
+     -rw-r----- 1 root ssh_keys 202 Apr 1 11:59 ssh_host_key
+     -rw-r----- 1 root ssh_keys 352 Apr 1 11:59 ssh_host_rsa_key
 
-If any file has a mode more permissive than "0600", this is a finding.</RawString>
+If any file has a mode more permissive than "0640", this is a finding.</RawString>
     </Rule>
     <Rule id="V-204606" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The .shosts files are used to configure host-based authentication for individual users or the system via SSH. Host-based authentication is not sufficient for preventing unauthorized access to the system, as it does not require interactive identification and authentication of a connection request, or for the use of two-factor authentication.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2289,8 +2303,7 @@ If there is no anti-virus solution installed on the system, this is a finding.</
 
 The session lock is implemented at the point where session activity can be determined.
 
-The ability to enable/disable a session lock is given to the user by default. Disabling the user’s ability to disengage the graphical user interface session lock provides the assurance that all sessions will lock after the specified period of time.
-&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+The ability to enable/disable a session lock is given to the user by default. Disabling the user’s ability to disengage the graphical user interface session lock provides the assurance that all sessions will lock after the specified period of time.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-78995</LegacyId>
@@ -2298,23 +2311,20 @@ The ability to enable/disable a session lock is given to the user by default. Di
       <OrganizationValueTestString />
       <RawString>Verify the operating system prevents a user from overriding the screensaver lock-enabled setting for the graphical user interface. 
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Determine which profile the system database is using with the following command:
-# grep system-db /etc/dconf/profile/user
-
-system-db:local
+     # grep system-db /etc/dconf/profile/user
+     system-db:local
 
 Check for the lock-enabled setting with the following command:
 
 Note: The example below is using the database "local" for the system, so the path is "/etc/dconf/db/local.d". This path must be modified if a database other than "local" is being used.
 
-# grep -i lock-enabled /etc/dconf/db/local.d/locks/*
+     # grep -i lock-enabled /etc/dconf/db/local.d/locks/*
+     /org/gnome/desktop/screensaver/lock-enabled
 
-/org/gnome/desktop/screensaver/lock-enabled
-
-If the command does not return a result, this is a finding.
-</RawString>
+If the command does not return a result, this is a finding.</RawString>
     </Rule>
     <Rule id="V-219059" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Automatically mounting file systems permits easy introduction of unknown devices, thereby facilitating malicious activity.
@@ -2425,26 +2435,6 @@ $ sudo grep -r include /etc/sudoers.d
 
 If results are returned, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-251704" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
-
-When operating systems provide the capability to escalate a functional capability, it is critical the user re-authenticate.
-
-Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system is not be configured to bypass password requirements for privilege escalation.
-
-Check the configuration of the "/etc/pam.d/sudo" file with the following command:
-
-$ sudo grep pam_succeed_if /etc/pam.d/sudo
-
-If any occurrences of "pam_succeed_if" is returned from the command, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-251705" severity="medium" conversionstatus="pass" title="SRG-OS-000445-GPOS-00199" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without verification of the security functions, security functions may not operate correctly, and the failure may go unnoticed. Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters.
 
@@ -2458,14 +2448,57 @@ This requirement applies to the Red Hat Enterprise Linux operating system perfor
       <RawString>Verify that Advanced Intrusion Detection Environment (AIDE) is installed and verifies the correct operation of all security functions.
 
 Check that the AIDE package is installed with the following command:
+     $ sudo rpm -q aide
 
-$ sudo rpm -q aide
-
-aide-0.15.1-13.el7.x86_64
+     aide-0.15.1-13.el7.x86_64
 
 If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system. 
 
-If there is no application installed to perform integrity checks, this is a finding.</RawString>
+If there is no application installed to perform integrity checks, this is a finding.
+
+If AIDE is installed, check if it has been initialized with the following command:
+     $ sudo /usr/sbin/aide --check
+
+If the output is "Couldn't open file /var/lib/aide/aide.db.gz for reading", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-254523" severity="medium" conversionstatus="pass" title="SRG-OS-000123-GPOS-00064" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Emergency accounts are privileged accounts established in response to crisis situations where the need for rapid account activation is required. Therefore, emergency account activation may bypass normal account authorization processes. If these accounts are automatically disabled, system maintenance during emergencies may not be possible, thus adversely affecting system availability.
+
+Emergency accounts are different from infrequently used accounts (i.e., local logon accounts used by the organization's system administrators when network or normal logon/access is not available). Infrequently used accounts are not subject to automatic termination dates. Emergency accounts are accounts created in response to crisis situations, usually for use by maintenance personnel. The automatic expiration or disabling time period may be extended as needed until the crisis is resolved; however, it must not be extended indefinitely. A permanent account should be established for privileged users who need long-term maintenance accounts.
+
+To address access requirements, many RHEL systems can be integrated with enterprise-level authentication/access mechanisms that meet or exceed access control policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify emergency accounts have been provisioned with an expiration date of 72 hours.
+
+For every existing emergency account, run the following command to obtain its account expiration information.
+
+$ sudo chage -l system_account_name
+
+Verify each of these accounts has an expiration date set within 72 hours.
+If any emergency accounts have no expiration date set or do not expire within 72 hours, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-255928" severity="medium" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When using the authconfig utility to modify authentication configuration settings, the "system-auth" and "password-auth" files and any custom settings that they may contain are overwritten. This can be avoided by creating new local configuration files and creating new or moving existing symbolic links to them. The authconfig utility will recognize the local configuration files and not overwrite them, while writing its own settings to the original configuration files.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify "system-auth" and "password-auth" files are symbolic links pointing to "system-auth-local" and "password-auth-local":
+     $ sudo ls -l /etc/pam.d/{password,system}-auth
+
+     lrwxrwxrwx. 1 root root 30 Apr 1 11:59 /etc/pam.d/password-auth -&gt; /etc/pam.d/password-auth-local
+     lrwxrwxrwx. 1 root root 28 Apr 1 11:59 /etc/pam.d/system-auth -&gt; /etc/pam.d/system-auth-local
+   
+If system-auth and password-auth files are not symbolic links, this is a finding.
+
+If system-auth and password-auth are symbolic links but do not point to "system-auth-local" and "password-auth-local", this is a finding.</RawString>
     </Rule>
   </ManualRule>
   <nxFileLineRule dscresourcemodule="nx">
@@ -2483,20 +2516,18 @@ The session lock is implemented at the point where session activity can be deter
       <OrganizationValueTestString />
       <RawString>Verify the operating system prevents a user from overriding a screensaver lock after a 15-minute period of inactivity for graphical user interfaces. 
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Determine which profile the system database is using with the following command:
-# grep system-db /etc/dconf/profile/user
-
-system-db:local
+     # grep system-db /etc/dconf/profile/user
+     system-db:local
 
 Check for the lock delay setting with the following command:
 
 Note: The example below is using the database "local" for the system, so the path is "/etc/dconf/db/local.d". This path must be modified if a database other than "local" is being used.
 
-# grep -i lock-delay /etc/dconf/db/local.d/locks/*
-
-/org/gnome/desktop/screensaver/lock-delay
+     # grep -i lock-delay /etc/dconf/db/local.d/locks/*
+     /org/gnome/desktop/screensaver/lock-delay
 
 If the command does not return a result, this is a finding.</RawString>
     </Rule>
@@ -2514,20 +2545,18 @@ The session lock is implemented at the point where session activity can be deter
       <OrganizationValueTestString />
       <RawString>Verify the operating system prevents a user from overriding session idle delay after a 15-minute period of inactivity for graphical user interfaces. 
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console. 
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Determine which profile the system database is using with the following command:
-# grep system-db /etc/dconf/profile/user
-
-system-db:local
+     # grep system-db /etc/dconf/profile/user
+     system-db:local
 
 Check for the session idle delay setting with the following command:
 
 Note: The example below is using the database "local" for the system, so the path is "/etc/dconf/db/local.d". This path must be modified if a database other than "local" is being used.
 
-# grep -i idle-delay /etc/dconf/db/local.d/locks/*
-
-/org/gnome/desktop/session/idle-delay
+     # grep -i idle-delay /etc/dconf/db/local.d/locks/*
+     /org/gnome/desktop/session/idle-delay
 
 If the command does not return a result, this is a finding.</RawString>
     </Rule>
@@ -2547,20 +2576,20 @@ The ability to enable/disable a session lock is given to the user by default. Di
       <OrganizationValueTestString />
       <RawString>Verify the operating system prevents a user from overriding the screensaver idle-activation-enabled setting for the graphical user interface. 
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Determine which profile the system database is using with the following command:
-# grep system-db /etc/dconf/profile/user
+     # grep system-db /etc/dconf/profile/user
 
-system-db:local
+     system-db:local
 
 Check for the idle-activation-enabled setting with the following command:
 
 Note: The example below is using the database "local" for the system, so the path is "/etc/dconf/db/local.d". This path must be modified if a database other than "local" is being used.
 
-# grep -i idle-activation-enabled /etc/dconf/db/local.d/locks/*
+     # grep -i idle-activation-enabled /etc/dconf/db/local.d/locks/*
 
-/org/gnome/desktop/screensaver/idle-activation-enabled
+     /org/gnome/desktop/screensaver/idle-activation-enabled
 
 If the command does not return a result, this is a finding.</RawString>
     </Rule>
@@ -3262,11 +3291,10 @@ Satisfies: SRG-OS-000046-GPOS-00022, SRG-OS-000047-GPOS-00023&lt;/VulnDiscussion
 
 Check to see what level "auditctl" is set to with following command: 
 
-# auditctl -s | grep -i "fail"
+     # auditctl -s | grep -i "fail"
+     failure 2
 
-failure 2
-
-Note: If the value of "failure" is set to "2", the system is configured to panic (shut down) in the event of an auditing failure. If the value of "failure" is set to "1", the system is configured to only send information to the kernel log regarding the failure.
+Note: If the value of "failure" is set to "2", the system is configured to panic (shut down) in the event of an auditing failure. If the value of "failure" is set to "1", the system will not shut down and instead will record the audit failure in the kernel log. If the system is configured as per requirement RHEL-07-031000, the kernel log will be sent to a log aggregation server and generate an alert.
 
 If the "failure" setting is set to any value other than "1" or "2", this is a finding.
 
@@ -4735,7 +4763,7 @@ If both the "b32" and "b64" audit rules are not defined for the "delete_module" 
 </RawString>
     </Rule>
     <Rule id="V-204563" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
-      <ContainsLine>-w /usr/bin/kmod -p x -F auid!=unset -k module-change</ContainsLine>
+      <ContainsLine>-a always,exit -F path=/usr/bin/kmod -F perm=x -F auid&gt;=1000 -F auid!=unset -k modules</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
@@ -4743,7 +4771,7 @@ Audit records can be generated from various components within the information sy
 When a user logs on, the auid is set to the uid of the account that is being authenticated. Daemons are not user sessions and have the loginuid set to -1. The auid representation is an unsigned 32-bit integer, which equals 4294967295. The audit system interprets -1, 4294967295, and "unset" in the same way.
 
 Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-w\s*/usr/bin/kmod\s*-p\s*x\s*-F\s*auid!\s*=\s*unset\s*-k\s*module-change</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*path\s*=\s*/usr/bin/kmod\s*-F\s*perm\s*=\s*x\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*unset\s*-k\s*modules</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4754,9 +4782,9 @@ Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion
 
 Check the auditing rules in "/etc/audit/audit.rules" with the following command:
 
-# grep -iw kmod /etc/audit/audit.rules
+$ sudo grep "/usr/bin/kmod" /etc/audit/audit.rules
 
--w /usr/bin/kmod -p x -F auid!=unset -k module-change
+-a always,exit -F path=/usr/bin/kmod -F perm=x -F auid&gt;=1000 -F auid!=unset -k modules
 
 If the command does not return any output, this is a finding.</RawString>
     </Rule>
@@ -4967,11 +4995,66 @@ Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion
 
 Check the value of the system inactivity timeout with the following command:
 
-# grep -i tmout /etc/profile.d/*
+$ sudo grep -irw tmout /etc/profile /etc/bashrc /etc/profile.d
 
 etc/profile.d/tmout.sh:declare -xr TMOUT=900
 
-If "TMOUT" is not set to "900" or less in a script located in the /etc/profile.d/ directory to enforce session termination after inactivity, this is a finding.</RawString>
+If conflicting results are returned, this is a finding.
+If "TMOUT" is not set to "900" or less to enforce session termination after inactivity, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204579.c" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
+
+Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
+
+Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/bashrc</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72223.c</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/bashrc" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</OrganizationValueTestString>
+      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
+
+Check the value of the system inactivity timeout with the following command:
+
+$ sudo grep -irw tmout /etc/profile /etc/bashrc /etc/profile.d
+
+etc/profile.d/tmout.sh:declare -xr TMOUT=900
+
+If conflicting results are returned, this is a finding.
+If "TMOUT" is not set to "900" or less to enforce session termination after inactivity, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-204579.d" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
+
+Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
+
+Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/profile</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-72223.d</LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</OrganizationValueTestString>
+      <RawString>Verify the operating system terminates all network connections associated with a communications session at the end of the session or based on inactivity.
+
+Check the value of the system inactivity timeout with the following command:
+
+$ sudo grep -irw tmout /etc/profile /etc/bashrc /etc/profile.d
+
+etc/profile.d/tmout.sh:declare -xr TMOUT=900
+
+If conflicting results are returned, this is a finding.
+If "TMOUT" is not set to "900" or less to enforce session termination after inactivity, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204580" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="nxFileLine">
       <ContainsLine>banner /etc/issue</ContainsLine>
@@ -5330,12 +5413,14 @@ If the "UsePrivilegeSeparation" keyword is set to "no", is missing, or the retur
       <LegacyId>V-72267</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the SSH daemon performs compression after a user successfully authenticates.
+      <RawString>Note: For RHEL 7.4 and above, this requirement is not applicable.
+
+Verify the SSH daemon performs compression after a user successfully authenticates.
 
 Check that the SSH daemon performs compression after a user successfully authenticates with the following command:
 
-# grep -i compression /etc/ssh/sshd_config
-Compression delayed
+     # grep -i compression /etc/ssh/sshd_config
+     Compression delayed
 
 If the "Compression" keyword is set to "yes", is missing, or the returned line is commented out, this is a finding.</RawString>
     </Rule>
@@ -5457,6 +5542,24 @@ $ sudo grep -iw "superusers" /boot/efi/EFI/redhat/grub.cfg
 
 If "superusers" is identical to any OS account name or is missing a name, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-255925" severity="medium" conversionstatus="pass" title="SRG-OS-000033-GPOS-00014" dscresource="nxFileLine">
+      <ContainsLine>KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;The use of FIPS-validated cryptographic algorithms is enforced by enabling kernel FIPS mode. In the event that kernel FIPS mode is disabled, the use of nonvalidated cryptographic algorithms will be permitted systemwide. The SSH server configuration must manually define only FIPS-validated key exchange algorithms to prevent the use of nonvalidated algorithms.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*KexAlgorithms\s*ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/ssh/sshd_config</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the SSH server is configured to use only FIPS-validated key exchange algorithms:
+
+     $ sudo grep -i kexalgorithms /etc/ssh/sshd_config
+     KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256
+ 
+If "KexAlgorithms" is not configured, is commented out, or does not contain only the algorithms "ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256" in exact order, this is a finding.</RawString>
+    </Rule>
   </nxFileLineRule>
   <nxFileRule dscresourcemodule="nx">
     <Rule id="V-204395" severity="medium" conversionstatus="pass" title="SRG-OS-000023-GPOS-00006" dscresource="nxFile">
@@ -5538,20 +5641,18 @@ The session lock is implemented at the point where session activity can be deter
       <OrganizationValueTestString />
       <RawString>Verify the operating system prevents a user from overriding a screensaver lock after a 15-minute period of inactivity for graphical user interfaces. 
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Determine which profile the system database is using with the following command:
-# grep system-db /etc/dconf/profile/user
-
-system-db:local
+     # grep system-db /etc/dconf/profile/user
+     system-db:local
 
 Check for the lock delay setting with the following command:
 
 Note: The example below is using the database "local" for the system, so the path is "/etc/dconf/db/local.d". This path must be modified if a database other than "local" is being used.
 
-# grep -i lock-delay /etc/dconf/db/local.d/locks/*
-
-/org/gnome/desktop/screensaver/lock-delay
+     # grep -i lock-delay /etc/dconf/db/local.d/locks/*
+     /org/gnome/desktop/screensaver/lock-delay
 
 If the command does not return a result, this is a finding.</RawString>
     </Rule>
@@ -5677,11 +5778,12 @@ Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000163-GPOS-00072&lt;/VulnDiscussion
 
 Check the value of the system inactivity timeout with the following command:
 
-# grep -i tmout /etc/profile.d/*
+$ sudo grep -irw tmout /etc/profile /etc/bashrc /etc/profile.d
 
 etc/profile.d/tmout.sh:declare -xr TMOUT=900
 
-If "TMOUT" is not set to "900" or less in a script located in the /etc/profile.d/ directory to enforce session termination after inactivity, this is a finding.</RawString>
+If conflicting results are returned, this is a finding.
+If "TMOUT" is not set to "900" or less to enforce session termination after inactivity, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204584" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>kernel.randomize_va_space = 2</Contents>
@@ -5694,19 +5796,19 @@ If "TMOUT" is not set to "900" or less in a script located in the /etc/profile.d
       <OrganizationValueTestString />
       <RawString>Verify the operating system implements virtual address space randomization.
 
-# grep kernel.randomize_va_space /etc/sysctl.conf /etc/sysctl.d/*
+     # grep -r kernel.randomize_va_space /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
+     kernel.randomize_va_space = 2
 
-kernel.randomize_va_space = 2
-
-If "kernel.randomize_va_space" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out or does not have a value of "2", this is a finding.
+If "kernel.randomize_va_space" is not configured in the /etc/sysctl.conf file or or in any of the other sysctl.d directories, is commented out or does not have a value of "2", this is a finding.
 
 Check that the operating system implements virtual address space randomization with the following command:
 
-# /sbin/sysctl -a | grep kernel.randomize_va_space 
+     # /sbin/sysctl -a | grep kernel.randomize_va_space 
+     kernel.randomize_va_space = 2
 
-kernel.randomize_va_space = 2
+If "kernel.randomize_va_space" does not have a value of "2", this is a finding.
 
-If "kernel.randomize_va_space" does not have a value of "2", this is a finding.</RawString>
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204609" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv4.conf.all.accept_source_route = 0</Contents>
@@ -5719,22 +5821,23 @@ If "kernel.randomize_va_space" does not have a value of "2", this is a finding.<
       <OrganizationValueTestString />
       <RawString>Verify the system does not accept IPv4 source-routed packets.
 
-# grep net.ipv4.conf.all.accept_source_route /etc/sysctl.conf /etc/sysctl.d/*
+     # grep -r net.ipv4.conf.all.accept_source_route /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
+     net.ipv4.conf.all.accept_source_route = 0
 
-net.ipv4.conf.all.accept_source_route = 0
-
-If " net.ipv4.conf.all.accept_source_route " is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "0", this is a finding.
+If "net.ipv4.conf.all.accept_source_route" is not configured in the /etc/sysctl.conf file or in any of the other sysctl.d directories, is commented out, or does not have a value of "0", this is a finding.
 
 Check that the operating system implements the accept source route variable with the following command:
 
-# /sbin/sysctl -a | grep net.ipv4.conf.all.accept_source_route
-net.ipv4.conf.all.accept_source_route = 0
+     # /sbin/sysctl -a | grep net.ipv4.conf.all.accept_source_route
+     net.ipv4.conf.all.accept_source_route = 0
 
-If the returned line does not have a value of "0", this is a finding.</RawString>
+If the returned line does not have a value of "0", this is a finding.
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204610" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv4.conf.all.rp_filter = 1</Contents>
-      <Description>&lt;VulnDiscussion&gt;Enabling reverse path filtering drops packets with source addresses that should not have been able to be received on the interface they were received on. It should not be used on systems which are routers for complicated networks, but is helpful for end hosts and routers serving small networks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Enabling reverse path filtering drops packets with source addresses that should not have been able to be received on the interface they were received on. It should not be used on systems that are routers for complicated networks, but is helpful for end hosts and routers serving small networks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <FilePath>/etc/sysctl.d/204610-powerstig.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5743,17 +5846,19 @@ If the returned line does not have a value of "0", this is a finding.</RawString
       <OrganizationValueTestString />
       <RawString>Verify the system uses a reverse-path filter for IPv4:
 
-# grep net.ipv4.conf.all.rp_filter /etc/sysctl.conf /etc/sysctl.d/*
-net.ipv4.conf.all.rp_filter = 1
+     # grep -r net.ipv4.conf.all.rp_filter /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
+     net.ipv4.conf.all.rp_filter = 1
 
-If "net.ipv4.conf.all.rp_filter" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "1", this is a finding.
+If "net.ipv4.conf.all.rp_filter" is not configured in the /etc/sysctl.conf file or in any of the other sysctl.d directories, is commented out, or does not have a value of "1", this is a finding.
 
 Check that the operating system implements the accept source route variable with the following command:
 
-# /sbin/sysctl -a | grep net.ipv4.conf.all.rp_filter
-net.ipv4.conf.all.rp_filter = 1
+     # /sbin/sysctl -a | grep net.ipv4.conf.all.rp_filter
+     net.ipv4.conf.all.rp_filter = 1
 
-If the returned line does not have a value of "1", this is a finding.</RawString>
+If the returned line does not have a value of "1", this is a finding.
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204611" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv4.conf.default.rp_filter = 1</Contents>
@@ -5766,17 +5871,19 @@ If the returned line does not have a value of "1", this is a finding.</RawString
       <OrganizationValueTestString />
       <RawString>Verify the system uses a reverse-path filter for IPv4:
 
-# grep net.ipv4.conf.default.rp_filter /etc/sysctl.conf /etc/sysctl.d/*
-net.ipv4.conf.default.rp_filter = 1
+     # grep -r net.ipv4.conf.default.rp_filter /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
+     net.ipv4.conf.default.rp_filter = 1
 
-If "net.ipv4.conf.default.rp_filter" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "1", this is a finding.
+If "net.ipv4.conf.default.rp_filter" is not configured in the /etc/sysctl.conf file or in any of the other sysctl.d directories, is commented out, or does not have a value of "1", this is a finding.
 
 Check that the operating system implements the accept source route variable with the following command:
 
-# /sbin/sysctl -a | grep net.ipv4.conf.default.rp_filter
-net.ipv4.conf.default.rp_filter = 1
+     # /sbin/sysctl -a | grep net.ipv4.conf.default.rp_filter
+     net.ipv4.conf.default.rp_filter = 1
 
-If the returned line does not have a value of "1", this is a finding.</RawString>
+If the returned line does not have a value of "1", this is a finding.
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204612" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv4.conf.default.accept_source_route = 0</Contents>
@@ -5789,17 +5896,19 @@ If the returned line does not have a value of "1", this is a finding.</RawString
       <OrganizationValueTestString />
       <RawString>Verify the system does not accept IPv4 source-routed packets by default.
 
-# grep net.ipv4.conf.default.accept_source_route /etc/sysctl.conf /etc/sysctl.d/*
-net.ipv4.conf.default.accept_source_route = 0
+     # grep -r net.ipv4.conf.default.accept_source_route /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
+     net.ipv4.conf.default.accept_source_route = 0
 
-If " net.ipv4.conf.default.accept_source_route " is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "0", this is a finding.
+If  "net.ipv4.conf.default.accept_source_route" is not configured in the /etc/sysctl.conf file or in any of the other sysctl.d directories, is commented out, or does not have a value of "0", this is a finding.
 
 Check that the operating system implements the accept source route variable with the following command:
 
-# /sbin/sysctl -a | grep net.ipv4.conf.default.accept_source_route
-net.ipv4.conf.default.accept_source_route = 0
+     # /sbin/sysctl -a | grep net.ipv4.conf.default.accept_source_route
+     net.ipv4.conf.default.accept_source_route = 0
 
-If the returned line does not have a value of "0", this is a finding.</RawString>
+If the returned line does not have a value of "0", this is a finding.
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204613" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv4.icmp_echo_ignore_broadcasts = 1</Contents>
@@ -5812,16 +5921,18 @@ If the returned line does not have a value of "0", this is a finding.</RawString
       <OrganizationValueTestString />
       <RawString>Verify the system does not respond to IPv4 ICMP echoes sent to a broadcast address.
 
-# grep net.ipv4.icmp_echo_ignore_broadcasts /etc/sysctl.conf /etc/sysctl.d/*
+     # grep -r net.ipv4.icmp_echo_ignore_broadcasts /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
 
-If " net.ipv4.icmp_echo_ignore_broadcasts" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "1", this is a finding.
+If "net.ipv4.icmp_echo_ignore_broadcasts" is not configured in the /etc/sysctl.conf file or in any of the other sysctl.d directories, is commented out, or does not have a value of "1", this is a finding.
 
 Check that the operating system implements the "icmp_echo_ignore_broadcasts" variable with the following command:
 
-# /sbin/sysctl -a | grep net.ipv4.icmp_echo_ignore_broadcasts
-net.ipv4.icmp_echo_ignore_broadcasts = 1
+     # /sbin/sysctl -a | grep net.ipv4.icmp_echo_ignore_broadcasts
+     net.ipv4.icmp_echo_ignore_broadcasts = 1
 
-If the returned line does not have a value of "1", this is a finding.</RawString>
+If the returned line does not have a value of "1", this is a finding.
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204614" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv4.conf.default.accept_redirects = 0</Contents>
@@ -5834,16 +5945,18 @@ If the returned line does not have a value of "1", this is a finding.</RawString
       <OrganizationValueTestString />
       <RawString>Verify the system will not accept IPv4 ICMP redirect messages.
 
-# grep 'net.ipv4.conf.default.accept_redirects' /etc/sysctl.conf /etc/sysctl.d/*
+     # grep -r net.ipv4.conf.default.accept_redirects /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
 
-If " net.ipv4.conf.default.accept_redirects " is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "0", this is a finding.
+If "net.ipv4.conf.default.accept_redirects" is not configured in the /etc/sysctl.conf file or in any of the other sysctl.d directories, is commented out, or does not have a value of "0", this is a finding.
 
 Check that the operating system implements the value of the "accept_redirects" variables with the following command:
 
-# /sbin/sysctl -a | grep 'net.ipv4.conf.default.accept_redirects'
-net.ipv4.conf.default.accept_redirects = 0
+    # /sbin/sysctl -a | grep net.ipv4.conf.default.accept_redirects
+    net.ipv4.conf.default.accept_redirects = 0
 
-If the returned line does not have a value of "0", this is a finding.</RawString>
+If the returned line does not have a value of "0", this is a finding.
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204615" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv4.conf.all.accept_redirects = 0</Contents>
@@ -5856,17 +5969,18 @@ If the returned line does not have a value of "0", this is a finding.</RawString
       <OrganizationValueTestString />
       <RawString>Verify the system ignores IPv4 ICMP redirect messages.
 
-# grep 'net.ipv4.conf.all.accept_redirects' /etc/sysctl.conf /etc/sysctl.d/*
+     # grep -r net.ipv4.conf.all.accept_redirects /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
 
-If " net.ipv4.conf.all.accept_redirects " is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "0", this is a finding.
+If "net.ipv4.conf.all.accept_redirects" is not configured in the /etc/sysctl.conf file or in any of the other sysctl.d directories, is commented out, or does not have a value of "0", this is a finding.
 
 Check that the operating system implements the "accept_redirects" variables with the following command:
 
-# /sbin/sysctl -a | grep 'net.ipv4.conf.all.accept_redirects'
+     # /sbin/sysctl -a | grep net.ipv4.conf.all.accept_redirects
+     net.ipv4.conf.all.accept_redirects = 0
 
-net.ipv4.conf.all.accept_redirects = 0
+If the returned line does not have a value of "0", this is a finding.
 
-If the returned line does not have a value of "0", this is a finding.</RawString>
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204616" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv4.conf.default.send_redirects = 0</Contents>
@@ -5879,17 +5993,18 @@ If the returned line does not have a value of "0", this is a finding.</RawString
       <OrganizationValueTestString />
       <RawString>Verify the system does not allow interfaces to perform IPv4 ICMP redirects by default.
 
-# grep 'net.ipv4.conf.default.send_redirects' /etc/sysctl.conf /etc/sysctl.d/*
+     # grep -r net.ipv4.conf.default.send_redirects /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
 
-If "net.ipv4.conf.default.send_redirects" is not configured in the "/etc/sysctl.conf" file or in the /etc/sysctl.d/ directory, is commented out or does not have a value of "0", this is a finding.
+If "net.ipv4.conf.default.send_redirects" is not configured in the "/etc/sysctl.conf" file or in any of the other sysctl.d directories, is commented out or does not have a value of "0", this is a finding.
 
 Check that the operating system implements the "default send_redirects" variables with the following command:
 
-# /sbin/sysctl -a | grep 'net.ipv4.conf.default.send_redirects'
+     # /sbin/sysctl -a | grep net.ipv4.conf.default.send_redirects
+     net.ipv4.conf.default.send_redirects = 0 
 
-net.ipv4.conf.default.send_redirects = 0 
+If the returned line does not have a value of "0", this is a finding.
 
-If the returned line does not have a value of "0", this is a finding.</RawString>
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204617" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv4.conf.all.send_redirects = 0</Contents>
@@ -5902,17 +6017,18 @@ If the returned line does not have a value of "0", this is a finding.</RawString
       <OrganizationValueTestString />
       <RawString>Verify the system does not send IPv4 ICMP redirect messages.
 
-# grep 'net.ipv4.conf.all.send_redirects' /etc/sysctl.conf /etc/sysctl.d/*
+     # grep -r net.ipv4.conf.all.send_redirects /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
 
-If "net.ipv4.conf.all.send_redirects" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out or does not have a value of "0", this is a finding.
+If "net.ipv4.conf.all.send_redirects" is not configured in the /etc/sysctl.conf file or in any of the other sysctl.d directories, is commented out or does not have a value of "0", this is a finding.
 
 Check that the operating system implements the "all send_redirects" variables with the following command:
 
-# /sbin/sysctl -a | grep 'net.ipv4.conf.all.send_redirects'
+     # /sbin/sysctl -a | grep net.ipv4.conf.all.send_redirects
+     net.ipv4.conf.all.send_redirects = 0
 
-net.ipv4.conf.all.send_redirects = 0
+If the returned line does not have a value of "0", this is a finding.
 
-If the returned line does not have a value of "0", this is a finding.</RawString>
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204625" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv4.ip_forward = 0</Contents>
@@ -5925,18 +6041,19 @@ If the returned line does not have a value of "0", this is a finding.</RawString
       <OrganizationValueTestString />
       <RawString>Verify the system is not performing packet forwarding, unless the system is a router.
 
-# grep net.ipv4.ip_forward /etc/sysctl.conf /etc/sysctl.d/*
+     # grep -r net.ipv4.ip_forward /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
+     net.ipv4.ip_forward = 0
 
-net.ipv4.ip_forward = 0
-
-If "net.ipv4.ip_forward" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out, or does not have a value of "0", this is a finding.
+If "net.ipv4.ip_forward" is not configured in the /etc/sysctl.conf file or in any of the other sysctl.d directories, is commented out, or does not have a value of "0", this is a finding.
 
 Check that the operating system does not implement IP forwarding using the following command:
 
-# /sbin/sysctl -a | grep net.ipv4.ip_forward
-net.ipv4.ip_forward = 0
+     # /sbin/sysctl -a | grep net.ipv4.ip_forward
+     net.ipv4.ip_forward = 0
 
-If IP forwarding value is "1" and the system is hosting any application, database, or web servers, this is a finding.</RawString>
+If IP forwarding value is "1" and the system is hosting any application, database, or web servers, this is a finding.
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204630" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>net.ipv6.conf.all.accept_source_route = 0</Contents>
@@ -5951,18 +6068,19 @@ If IP forwarding value is "1" and the system is hosting any application, databas
 
 Verify the system does not accept IPv6 source-routed packets.
 
-# grep net.ipv6.conf.all.accept_source_route /etc/sysctl.conf /etc/sysctl.d/*
+     # grep -r net.ipv6.conf.all.accept_source_route /run/sysctl.d/* /etc/sysctl.d/* /usr/local/lib/sysctl.d/* /usr/lib/sysctl.d/* /lib/sysctl.d/* /etc/sysctl.conf 2&gt; /dev/null
+     net.ipv6.conf.all.accept_source_route = 0
 
-net.ipv6.conf.all.accept_source_route = 0
-
-If "net.ipv6.conf.all.accept_source_route" is not configured in the /etc/sysctl.conf file or in the /etc/sysctl.d/ directory, is commented out or does not have a value of "0", this is a finding.
+If "net.ipv6.conf.all.accept_source_route" is not configured in the /etc/sysctl.conf file or in any of the other sysctl.d directories, is commented out or does not have a value of "0", this is a finding.
 
 Check that the operating system implements the accept source route variable with the following command:
 
-# /sbin/sysctl -a | grep net.ipv6.conf.all.accept_source_route
-net.ipv6.conf.all.accept_source_route = 0
+     # /sbin/sysctl -a | grep net.ipv6.conf.all.accept_source_route
+     net.ipv6.conf.all.accept_source_route = 0
 
-If the returned lines do not have a value of "0", this is a finding.</RawString>
+If the returned lines do not have a value of "0", this is a finding.
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-237634.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFile">
       <Contents>Defaults !targetpw</Contents>
@@ -5977,11 +6095,11 @@ For more information on each of the listed configurations, reference the sudoers
       <OrganizationValueTestString />
       <RawString>Verify that the sudoers security policy is configured to use the invoking user's password for privilege escalation.
 
-$ sudo egrep -ir '(rootpw|targetpw|runaspw)' /etc/sudoers /etc/sudoers.d* | grep -v '#'
+     $ sudo grep -Eir '(rootpw|targetpw|runaspw)' /etc/sudoers /etc/sudoers.d* | grep -v '#'
 
-/etc/sudoers:Defaults !targetpw
-/etc/sudoers:Defaults !rootpw
-/etc/sudoers:Defaults !runaspw
+     /etc/sudoers:Defaults !targetpw
+     /etc/sudoers:Defaults !rootpw
+     /etc/sudoers:Defaults !runaspw
 
 If conflicting results are returned, this is a finding.
 If "Defaults !targetpw" is not defined, this is a finding.
@@ -6001,11 +6119,11 @@ For more information on each of the listed configurations, reference the sudoers
       <OrganizationValueTestString />
       <RawString>Verify that the sudoers security policy is configured to use the invoking user's password for privilege escalation.
 
-$ sudo egrep -ir '(rootpw|targetpw|runaspw)' /etc/sudoers /etc/sudoers.d* | grep -v '#'
+     $ sudo grep -Eir '(rootpw|targetpw|runaspw)' /etc/sudoers /etc/sudoers.d* | grep -v '#'
 
-/etc/sudoers:Defaults !targetpw
-/etc/sudoers:Defaults !rootpw
-/etc/sudoers:Defaults !runaspw
+     /etc/sudoers:Defaults !targetpw
+     /etc/sudoers:Defaults !rootpw
+     /etc/sudoers:Defaults !runaspw
 
 If conflicting results are returned, this is a finding.
 If "Defaults !targetpw" is not defined, this is a finding.
@@ -6025,11 +6143,11 @@ For more information on each of the listed configurations, reference the sudoers
       <OrganizationValueTestString />
       <RawString>Verify that the sudoers security policy is configured to use the invoking user's password for privilege escalation.
 
-$ sudo egrep -ir '(rootpw|targetpw|runaspw)' /etc/sudoers /etc/sudoers.d* | grep -v '#'
+     $ sudo grep -Eir '(rootpw|targetpw|runaspw)' /etc/sudoers /etc/sudoers.d* | grep -v '#'
 
-/etc/sudoers:Defaults !targetpw
-/etc/sudoers:Defaults !rootpw
-/etc/sudoers:Defaults !runaspw
+     /etc/sudoers:Defaults !targetpw
+     /etc/sudoers:Defaults !rootpw
+     /etc/sudoers:Defaults !runaspw
 
 If conflicting results are returned, this is a finding.
 If "Defaults !targetpw" is not defined, this is a finding.
@@ -6172,27 +6290,19 @@ If this file does not exist, this is a finding.</RawString>
       <OrganizationValueTestString />
       <RawString>Verify the file integrity tool is configured to verify ACLs.
 
-Check to see if Advanced Intrusion Detection Environment (AIDE) is installed on the system with the following command:
-
-# yum list installed aide
-
-If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system. 
-
-If there is no application installed to perform file integrity checks, this is a finding.
-
 Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory. 
 
 Use the following command to determine if the file is in another location:
 
-# find / -name aide.conf
+     # find / -name aide.conf
 
 Check the "aide.conf" file to determine if the "acl" rule has been added to the rule list being applied to the files and directories selection lists.
 
 An example rule that includes the "acl" rule is below:
 
-All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All # apply the custom rule to the files in bin 
-/sbin All # apply the same custom rule to the files in sbin 
+     All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
+     /bin All # apply the custom rule to the files in bin 
+     /sbin All # apply the same custom rule to the files in sbin 
 
 If the "acl" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or ACLs are not being checked by another file integrity tool, this is a finding.</RawString>
     </Rule>
@@ -6349,6 +6459,33 @@ pam_pkcs11-0.6.2-14.el7.noarch.rpm
 
 If the "pam_pkcs11" package is not installed, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-255926" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, operating systems need to be able to identify when a user's session has idled and take action to initiate the session lock.
+
+The screen and tmux packages allow for a session lock to be implemented and configured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <Name>
+      </Name>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>Specify either tmux or screen depending on preference</OrganizationValueTestString>
+      <RawString>Verify the operating system has the screen package installed.
+
+Check to see if the screen package is installed with the following command:
+
+     # yum list installed screen
+     screen-4.3.1-3-x86_64.rpm
+
+If the screen package is not installed, check to see if the tmux package is installed with the following command:
+
+     # yum list installed tmux
+     tmux-1.8-4.el7.x86_64.rpm
+
+If either the screen package or the tmux package is not installed, this is a finding.</RawString>
+    </Rule>
   </nxPackageRule>
   <nxServiceRule dscresourcemodule="nx">
     <Rule id="V-204451" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxService">
@@ -6431,7 +6568,7 @@ This requirement applies to both internal and external networks and all types of
 
 Protecting the confidentiality and integrity of organizational information can be accomplished by physical means (e.g., employing physical distribution systems) or by logical means (e.g., employing cryptographic techniques). If physical means of protection are employed, then logical means (cryptography) do not have to be employed, and vice versa.
 
-Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000423-GPOS-00188, SRG-OS-000423-GPOS-00189, SRG-OS-000423-GPOS-00190&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188, SRG-OS-000425-GPOS-00189, SRG-OS-000426-GPOS-00190&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Enabled>True</Enabled>
       <IsNullOrEmpty>False</IsNullOrEmpty>
