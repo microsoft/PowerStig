@@ -283,12 +283,7 @@ function Get-PowerStigFileList
         $Path
     )
 
-    $benchmarkId = $stigDetails.Benchmark.id
-
-    # Windows Server 2022 Benchmark names refixed with MS (Microsoft, not Member Server), remove MS_ to parse benchmark id correctly
-    $benchmarkId = $benchmarkId -replace "MS_Windows_Server_", "Windows_Server_"
-
-    $id = Split-BenchmarkId -Id $benchmarkId -FilePath $Path
+    $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id -FilePath $Path
 
     $fileNameBase = "$($id.Technology)-$($id.TechnologyVersion)"
 
@@ -456,6 +451,7 @@ function Split-BenchmarkId
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
             $id = $id -replace '_2012_', '_2012R2_'
             $returnId = $id -replace ($windowsVariations -join '|'), 'WindowsServer'
+            $returnId = $returnId -replace 'MS_', ''
             continue
         }
         {$PSItem -match "Active_Directory"}
