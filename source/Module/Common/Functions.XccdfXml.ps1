@@ -514,8 +514,8 @@ function Split-BenchmarkId
         {$PSItem -match 'Ubuntu'}
         {
             $ubuntuId = $id -split '_'
-            $ubuntuVersion = $ubuntuId[3] -replace '-', '.'
-            $returnId = '{0}_{1}' -f $ubuntuId[2], $ubuntuVersion
+            $ubuntuVersion = $ubuntuId[-1] -replace '-', '.'
+            $returnId = '{0}_{1}' -f $ubuntuId[-2], $ubuntuVersion
             continue
         }
         default
