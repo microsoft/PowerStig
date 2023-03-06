@@ -72,7 +72,7 @@ For detailed information, please see the [StigData Wiki](https://github.com/Micr
 
 PowerStig.DSC is not really a specific module, but rather a collection of PowerShell Desired State Configuration (DSC) composite resources to manage the configurable items in each STIG.
 Each composite uses [PowerStig.Data](#powerstigdata) classes to retrieve PowerStig XML.
-This allows the PowerStig.Data classes to manage exceptions, Org settings, and skipped rules uniformly across all composite resources. The standard DSC ResourceID's can them be used by additional automation to automatically generate compliance reports or trigger other automation solutions.
+This allows the PowerStig.Data classes to manage exceptions, Org settings, and skipped rules uniformly across all composite resources. The standard DSC ResourceID's can then be used by additional automation to automatically generate compliance reports or trigger other automation solutions.
 
 ### Composite Resources
 
