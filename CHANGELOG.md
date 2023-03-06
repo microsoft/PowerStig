@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R10: [#1193](https://github.com/microsoft/PowerStig/issues/1193)
+* Update PowerSTIG to Parse/Apply CAN_Ubuntu_18-04_LTS_V2R10_STIG: [#1191](https://github.com/microsoft/PowerStig/issues/1191)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 STIG V2R8: [#1196](https://github.com/microsoft/PowerStig/issues/1196)
 * Update PowerSTIG to Parse/Apply Google Chrome V2R8 [#1192](https://github.com/microsoft/PowerStig/issues/1192)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 8.5 Site V2R7 & Server STIG V2R5 [#1195](https://github.com/microsoft/PowerStig/issues/1195)
