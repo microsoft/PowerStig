@@ -155,7 +155,7 @@ stages:
         dependsOn: Test_Unit
         condition: succeededOrFailed()
         pool:
-          vmImage: 'ubuntu 18.04'
+          vmImage: 'ubuntu-latest'
         timeoutInMinutes: 0
         steps:
           - pwsh: |
