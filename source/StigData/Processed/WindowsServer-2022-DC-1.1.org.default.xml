@@ -72,8 +72,6 @@ By using this IS (which includes any device attached to this IS), you consent to
   <OrganizationalSetting id="V-254459" ValueData="1" />
   <!-- Ensure ''V-254484'' -match '1|2'-->
   <OrganizationalSetting id="V-254484" ValueData="1" />
-  <!-- Ensure ''V-254490'' -match '2|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-254490" ValueData="2" />
   <!-- Ensure ''V-254285'' -ge '15' -or ''V-254285'' -eq '0'-->
   <OrganizationalSetting id="V-254285" PolicyValue="15" />
   <!-- Ensure ''V-254286'' -le '3' -and ''V-254286'' -ne '0'-->
