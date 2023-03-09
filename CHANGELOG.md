@@ -8,6 +8,7 @@
 * Update PowerSTIG to Parse/Apply Google Chrome V2R8 [#1192](https://github.com/microsoft/PowerStig/issues/1192)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 8.5 Site V2R7 & Server STIG V2R5 [#1195](https://github.com/microsoft/PowerStig/issues/1195)
 * Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus V2R8 #1194: [#1194](https://github.com/microsoft/PowerStig/issues/1194)
+* Update PowerSTIG to Parse/Apply Microsoft Windows Server 2022 V1R1 STIG - Ver 1, Rel 1: [#1190](https://github.com/microsoft/PowerStig/issues/1190)
 * Update Readme to reflect all covered technologies [#1184](https://github.com/microsoft/PowerStig/issues/1184)
 
 ## [4.15.0] - 2022-12-29

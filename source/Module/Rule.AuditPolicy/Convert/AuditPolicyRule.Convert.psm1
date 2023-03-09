@@ -66,6 +66,9 @@ class AuditPolicyRuleConvert : AuditPolicyRule
         $thisSubcategory = $regex.Groups.Where(
             {$_.Name -eq 'subcategory'}
         ).Value
+        
+        # Windows STIGS have 'Audit Audit' as part of the string, but the actual policy is 'Audit Policy Change'
+        $thisSubcategory = $thisSubcategory -replace 'Audit Audit', 'Audit'
 
         if (-not $this.SetStatus($thisSubcategory))
         {

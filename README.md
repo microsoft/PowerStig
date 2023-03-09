@@ -147,3 +147,4 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@mikedzikowski](https://github.com/mikedzikowski) (Mike Dzikowski)
 * [@togriffith](https://github.com/mikedzikowski) (Tony Griffith)
 * [@hinderjd](https://github.com/hinderjd) (James Hinders)
+* [@ruandersMSFT](https://github.com/ruandersMSFT) (Russell Anderson)
