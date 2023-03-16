@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [4.16.0] - 2023-03-16
+
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R10: [#1193](https://github.com/microsoft/PowerStig/issues/1193)
 * Update PowerSTIG to Parse/Apply CAN_Ubuntu_18-04_LTS_V2R10_STIG: [#1191](https://github.com/microsoft/PowerStig/issues/1191)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 STIG V2R8: [#1196](https://github.com/microsoft/PowerStig/issues/1196)
