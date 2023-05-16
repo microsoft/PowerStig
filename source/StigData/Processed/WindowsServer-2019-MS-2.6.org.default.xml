@@ -31,13 +31,9 @@ By using this IS (which includes any device attached to this IS), you consent to
   <!-- Ensure location for DoD Root CA 5 certificate is present-->
   <OrganizationalSetting id="V-205648.c" Location="" />
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-205649.a" Location="" />
-  <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-205649.b" Location="" />
+  <OrganizationalSetting id="V-205649" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-205650.a" Location="" />
-  <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-205650.b" Location="" />
+  <OrganizationalSetting id="V-205650" Location="" />
   <!-- Ensure ''V-205717'' -match '1|2'-->
   <OrganizationalSetting id="V-205717" ValueData="1" />
   <!-- Ensure ''V-205796'' -ge '32768'-->
