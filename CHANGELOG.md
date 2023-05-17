@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus V2R9 #1221: [#1221](https://github.com/microsoft/PowerStig/issues/1221)
+
 ## [4.16.0] - 2023-03-16
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R10: [#1193](https://github.com/microsoft/PowerStig/issues/1193)
