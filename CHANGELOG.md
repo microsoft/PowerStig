@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Added support for Ubuntu 20x: [#1225](https://github.com/microsoft/PowerStig/issues/1225)
+  
 ## [4.16.0] - 2023-03-16
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R10: [#1193](https://github.com/microsoft/PowerStig/issues/1193)
