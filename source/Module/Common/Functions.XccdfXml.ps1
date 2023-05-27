@@ -514,10 +514,22 @@ function Split-BenchmarkId
         }
         {$PSItem -match 'Ubuntu'}
         {
-            $ubuntuId = $id -split '_'
-            $ubuntuVersion = $ubuntuId[-1] -replace '-', '.'
-            $returnId = '{0}_{1}' -f $ubuntuId[-2], $ubuntuVersion
-            continue
+            if($ubuntuId.Count -eq 3)
+            {
+                $ubuntuVersion = $ubuntuId[-1] -replace '-', '.'
+                $returnId = '{0}_{1}' -f $ubuntuId[-2], $ubuntuVersion
+                continue
+            }
+            elseif($ubuntuId.Count -eq 4)
+            {
+                $ubuntuVersion = $ubuntuId[-2] -replace '-', '.'
+                $returnId = '{0}_{1}' -f $ubuntuId[-3], $ubuntuVersion
+                continue
+            }
+            else
+            {
+               Write-Verbose "Ubuntu Stig naming is in an unexpected format.  `$UbuntuId: $($UbuntuId)"
+            }
         }
         default
         {
