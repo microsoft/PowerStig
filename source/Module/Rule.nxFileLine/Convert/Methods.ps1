@@ -254,31 +254,31 @@ function Split-nxFileLineMultipleEntries
     [array] $splitFilePathLineNumber = ($CheckContent | Select-String -Pattern $splitFilePathPatternAggregate).LineNumber
 
     #checking against $splitFilePathLineNumber which can be null.  If the above is null, try to fine the line using contains()
-	if($null -eq $splitFilePathLineNumber -or $splitFilePathLineNumber.Count -le 0)
-	{
-		try 
-		{
-			$i = 0
-			foreach($item in $CheckContent)
-			{
-				if($item.ToLower().Contains("grep"))
-				{
-					$splitFilePathLineNumber = $i - 1
-					break
-				}
-				$i++
-			}
-		}
-		catch {Write-Verbose "Error getting header information: $($_.Exception.Message)"}
-		$headerFileLine = $CheckContent[$splitFilePathLineNumber]
-	}
-	else 
-	{
-		 # Header for the rule should start at 0 through the first detected file path subtract 2 since Select-String LineNumber is not 0 based
-		$headerLineRange = 0..($splitFilePathLineNumber[0] - 2)
-		$headerFileLine = $CheckContent[$headerLineRange]   
+    if($null -eq $splitFilePathLineNumber -or $splitFilePathLineNumber.Count -le 0)
+    {
+        try 
+        {
+            $i = 0
+            foreach($item in $CheckContent)
+            {
+                if($item.ToLower().Contains("grep"))
+                {
+                    $splitFilePathLineNumber = $i - 1
+                    break
+                }
+                $i++
+            }
         }
-	
+        catch {Write-Verbose "Error getting header information: $($_.Exception.Message)"}
+        $headerFileLine = $CheckContent[$splitFilePathLineNumber]
+    }
+    else 
+    {
+         # Header for the rule should start at 0 through the first detected file path subtract 2 since Select-String LineNumber is not 0 based
+        $headerLineRange = 0..($splitFilePathLineNumber[0] - 2)
+        $headerFileLine = $CheckContent[$headerLineRange]   
+    }
+    
     # Footer should start from the last detected "If" to the end of CheckContent
     [array] $footerDetection = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFooterDetection).LineNumber
     $footerLineRange = ($footerDetection[-1] - 1)..($CheckContent.Count - 1)
