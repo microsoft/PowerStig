@@ -277,7 +277,8 @@ function Split-nxFileLineMultipleEntries
 		 # Header for the rule should start at 0 through the first detected file path subtract 2 since Select-String LineNumber is not 0 based
 		$headerLineRange = 0..($splitFilePathLineNumber[0] - 2)
 		$headerFileLine = $CheckContent[$headerLineRange]   
-
+	}
+	
     # Footer should start from the last detected "If" to the end of CheckContent
     [array] $footerDetection = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFooterDetection).LineNumber
     $footerLineRange = ($footerDetection[-1] - 1)..($CheckContent.Count - 1)
