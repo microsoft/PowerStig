@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Update PowerSTIG to Parse/Apply Windows Server 2019 STIG V2R7: [#1230](https://github.com/microsoft/PowerStig/issues/1230)
 
 ## [4.16.0] - 2023-03-16
 
