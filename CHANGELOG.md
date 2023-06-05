@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Update PowerSTIG to Parse/Apply Windows Server 2022 STIG V1R3: [#1231](https://github.com/microsoft/PowerStig/issues/1231)
 
 ## [4.16.0] - 2023-03-16
 
