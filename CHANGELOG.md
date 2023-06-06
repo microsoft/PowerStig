@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Update PowerSTIG to Parse/Apply Microsoft Windows 11 STIG V1R4: [#1232](https://github.com/microsoft/PowerStig/issues/1232)
 
 ## [4.16.0] - 2023-03-16
 
