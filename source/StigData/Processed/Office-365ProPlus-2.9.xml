@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Office_365_ProPlus_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Office_365_ProPlus_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 27 Oct 2022 3.4.0.34222 1.10.0" title="Microsoft Office 365 ProPlus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="12/14/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Office_365_ProPlus_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Office_365_ProPlus_STIG_V2R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 27 Apr 2023 3.4.0.34222 1.10.0" title="Microsoft Office 365 ProPlus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.9" created="5/17/2023">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-223296" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer add-ons are pieces of code, run in Internet Explorer, to provide additional functionality. Rogue add-ons may contain viruses or other malicious code. Disabling or not configuring this setting could allow malicious code or users to become active on user computers or the network. For example, a malicious user can monitor and then use keystrokes that user's type into Internet Explorer. Even legitimate add-ons may demand resources, compromising the performance of Internet Explorer and the operating systems for user computers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1107,12 +1107,12 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\microsoft\office\16.0\excel\security\fileblock
 
-If the value for xl9597workbooksandtemplates is REG_DWORD = 2, this is not a finding.</RawString>
+If the value for xl95workbooks is REG_DWORD = 2, this is not a finding.</RawString>
       <ValueData>2</ValueData>
-      <ValueName>xl9597workbooksandtemplates</ValueName>
+      <ValueName>xl95workbooks</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-223324" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="None">
+    <Rule id="V-223324" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting allows you to determine whether users can open, view, edit, or save Excel files with the format specified by the title of this policy setting. If you enable this policy setting, you can specify whether users can open, view, edit, or save files. The options that can be selected are below. Note: Not all options may be available for this policy setting.
 
 - Do not block: The file type will not be blocked.
@@ -1123,7 +1123,7 @@ If the value for xl9597workbooksandtemplates is REG_DWORD = 2, this is not a fin
 - Allow editing and open in Protected View: Both opening and saving of the file type will be blocked, and the option to edit will be enabled. 
 
 If you disable or do not configure this policy setting, the file type will not be blocked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-223323</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\office\16.0\excel\security\fileblock</Key>
@@ -1370,7 +1370,7 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\microsoft\office\16.0\excel\security
 
-If the value excelbypassencryptiedmacrosscan does not exist, this is not a finding.
+If the value excelbypassencryptedmacroscan does not exist, this is not a finding.
 
 If the value for excelbypassencryptedmacroscan is REG_DWORD = 0, this is not a finding.</RawString>
       <ValueData />
