@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.4">
+<OrganizationalSettings fullversion="2.7">
   <!-- Ensure ValueData is set to 0x00000006 (6) or greater -->
   <OrganizationalSetting id="V-220704" ValueData="" />
   <!-- Ensure ''V-220739'' -ge '15' -or ''V-220739'' -eq '0'-->
@@ -28,8 +28,8 @@
   <OrganizationalSetting id="V-220780" ValueData="1024000" />
   <!-- Ensure ''V-220781'' -ge '32768'-->
   <OrganizationalSetting id="V-220781" ValueData="32768" />
-  <!-- Ensure ''V-220806'' -match '1|ShouldBeAbsent'-->
-  <OrganizationalSetting id="V-220806" ValueData="1" />
+  <!-- Ensure ''V-220806'' -match '3|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-220806" ValueData="3" />
   <!-- Ensure ''V-220811.b'' -match '1|3'-->
   <OrganizationalSetting id="V-220811.b" ValueData="1" />
   <!-- Ensure ''V-220813'' -match '1|3|8'-->
@@ -57,9 +57,7 @@
   <!-- Ensure location for DoD Root CA 5 certificate is present-->
   <OrganizationalSetting id="V-220903.c" Location="" />
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-220905.a" Location="" />
-  <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-220905.b" Location="" />
+  <OrganizationalSetting id="V-220905" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-220906" Location="" />
   <!-- Ensure ''V-220911'' -ne 'Administrator'-->
