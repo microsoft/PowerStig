@@ -1,0 +1,19 @@
+V-254248::*::HardCodedRule(ServiceRule)@{DscResource = 'Service'; Ensure = 'Present'; ServiceName = $null; ServiceState = 'Running'; StartupType = $null; OrganizationValueTestString = 'ServiceName/StartupType is populated with correct AntiVirus service information'}
+V-254255::*::''
+V-254265::*::HardCodedRule(ServiceRule)@{DscResource = 'Service'; Ensure = 'Present'; ServiceName = $null; ServiceState = 'Running'; StartupType = $null; OrganizationValueTestString = 'ServiceName/StartupType is populated with correct Firewall service information'}
+V-254291::"Minimum password length,"::"Minimum password length"
+V-254356::0x00000000 (0) (Security), 0x00000001 (1) (Basic)::0 or 1
+V-254357::0x00000000 (0) - No peering (HTTP Only)::0, 1, 2, 99 or 100
+V-254362::0x00000000 (0) (or if the Value Name does not exist)::0
+V-254363::0x00000000 (0) (or if the Value Name does not exist)::0
+V-254364::0x00000000 (0) (or if the Value Name does not exist)::0
+V-254371::0x00000000 (0) (or if the Value Name does not exist)::0
+V-254375::0x00000000 (0) (or if the Value Name does not exist)::0
+V-254443::DoD Root CA 3- DoD Interoperability Root CA 2 - 49CBE933151872E17C8EAE7F0ABA97FB610F6477::DoD Root CA 3 - DoD Interoperability Root CA 2 - 49CBE933151872E17C8EAE7F0ABA97FB610F6477
+V-254443::Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US::Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
+V-254443::Thumbprint: A8C27332CCB4CA49554CE55D34062A7DD2850C02::Thumbprint: 49CBE933151872E17C8EAE7F0ABA97FB610F6477
+V-254443::NotAfter: 8/26/2022 9:25:51 AM::NotAfter: 11/16/2024
+V-254458::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'; ValueName = 'LegalNoticeCaption'; ValueType = 'String'; ValueData = $null; OrganizationValueTestString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"}
+V-254484::0x00000002 (2) (Prompt for consent on the secure desktop)::1 or 2
+V-254490::0x00000002 (2) (or if the Value Name does not exist)::2
+V-254499::- Administrators::- Administrators`r`nSystems that have the Hyper-V role will also have "Virtual Machines" given this user right (this may be displayed as "NT Virtual Machine\Virtual Machines", SID S-1-5-83-0). This is not a finding.

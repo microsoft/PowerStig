@@ -1,6 +1,14 @@
 # Versions
 
 ## [Unreleased]
+* Update PowerSTIG to Parse/Apply Windows Server 2022 STIG V1R3: [#1231](https://github.com/microsoft/PowerStig/issues/1231)
+* Update PowerSTIG to Parse/Apply Windows Server 2019 STIG V2R7: [#1230](https://github.com/microsoft/PowerStig/issues/1230)
+* Update PowerSTIG to Parse/Apply Microsoft Windows 11 STIG V1R4: [#1232](https://github.com/microsoft/PowerStig/issues/1232)
+* Update PowerSTIG to Parse/Apply Microsoft Windows 10 STIG V2R7: [#1233](https://github.com/microsoft/PowerStig/issues/1233)
+
+* Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus V2R9 #1221: [#1221](https://github.com/microsoft/PowerStig/issues/1221)
+
+* Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R11: [#1243](https://github.com/microsoft/PowerStig/issues/1243)
 
 * Update PowerSTIG to Parse/Apply CAN_Ubuntu_18-04_LTS_V2R11_STIG: [#1239](https://github.com/microsoft/PowerStig/issues/1239)
 
