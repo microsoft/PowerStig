@@ -6,6 +6,8 @@
 * Update PowerSTIG to Parse/Apply Microsoft Windows 11 STIG V1R4: [#1232](https://github.com/microsoft/PowerStig/issues/1232)
 * Update PowerSTIG to Parse/Apply Microsoft Windows 10 STIG V2R7: [#1233](https://github.com/microsoft/PowerStig/issues/1233)
 
+* Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus V2R9 #1221: [#1221](https://github.com/microsoft/PowerStig/issues/1221)
+
 ## [4.16.0] - 2023-03-16
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R10: [#1193](https://github.com/microsoft/PowerStig/issues/1193)
