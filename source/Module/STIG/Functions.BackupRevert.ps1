@@ -43,7 +43,7 @@ function Backup-StigSettings
     if ($validStigs.Name -notContains $StigName.Trim())
     {
         $errorArray = $validStigs.Name -join("`n")
-        Write-Host "StigName not valid, options are :`n$errorArray"
+        Write-Host "StigName '$($StigName.Trim())' not valid, options are :`n$errorArray"
         break
     }
 
@@ -429,7 +429,7 @@ function Restore-StigSettings
     if ($validStigs.Name -notContains $StigName.Trim())
     {
         $errorArray = $validStigs.Name -join("`n")
-        Write-Host "StigName not valid, options are :`n$errorArray"
+        Write-Host "StigName '$($StigName.Trim())' not valid, options are :`n$errorArray"
         break
     }
 
