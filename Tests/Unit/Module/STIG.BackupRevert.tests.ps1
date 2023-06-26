@@ -19,7 +19,7 @@ Describe 'Backup-StigSettings' {
     }
 
     It 'Should not throw Sql Server 2016' {
-        {Backup-StigSettings -StigName "SqlServer-2016-Instance-2.3.xml"} | Should -not -Throw
+        {Backup-StigSettings -StigName "SqlServer-2016-Instance-2.8.xml"} | Should -not -Throw
     }
 
     It 'Should return string with valid STIGs' {
@@ -49,7 +49,7 @@ Describe 'Restore-StigSettings' {
     }
 
     It 'Should not throw for Sql Server 2016' {
-        {Restore-StigSettings -StigName "SqlServer-2016-Instance-2.3.xml" -Confirm:$false} | Should -Not -Throw
+        {Restore-StigSettings -StigName "SqlServer-2016-Instance-2.8.xml" -Confirm:$false} | Should -Not -Throw
     }
 
 }
