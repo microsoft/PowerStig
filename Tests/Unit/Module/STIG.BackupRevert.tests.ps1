@@ -15,7 +15,7 @@ Describe 'Backup-StigSettings' {
     }
 
     It 'Should not throw WindowsClient' {
-        {Backup-StigSettings -StigName "WindowsClient-10-2.2.xml"} | Should -not -Throw
+        {Backup-StigSettings -StigName "WindowsClient-10-2.7.xml"} | Should -not -Throw
     }
 
     It 'Should not throw Sql Server 2016' {
@@ -45,7 +45,7 @@ Describe 'Restore-StigSettings' {
     }
 
     It 'Should not throw for Client' {
-        {Restore-StigSettings -StigName "WindowsClient-10-2.2.xml" -Confirm:$false} | Should -Not -Throw
+        {Restore-StigSettings -StigName "WindowsClient-10-2.7.xml" -Confirm:$false} | Should -Not -Throw
     }
 
     It 'Should not throw for Sql Server 2016' {

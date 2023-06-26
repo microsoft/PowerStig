@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 31 May 2022 3.3.0.27375 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="10/11/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 07 Jun 2023 3.4.0.34222 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="6/5/2023">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-220739" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -997,9 +997,9 @@ Policy Change  &gt;&gt; MPSSVC Rule-Level Policy Change - Failure
     <Rule id="V-220706" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="AuditSetting">
       <Description>&lt;VulnDiscussion&gt;Windows 10 is maintained by Microsoft at servicing levels for specific periods of time to support Windows as a Service. Systems at unsupported servicing levels or releases will not receive security updates for new vulnerabilities, which leaves them subject to exploitation.
 
-New versions with feature updates are planned to be released on a semi-annual basis with an estimated support timeframe of 18 to 30 months depending on the release. Support for previously released versions has been extended for Enterprise editions.
+New versions with feature updates are planned to be released on a semiannual basis with an estimated support timeframe of 18 to 30 months depending on the release. Support for previously released versions has been extended for Enterprise editions.
 
-A separate servicing branch intended for special purpose systems is the Long-Term Servicing Channel (LTSC, formerly Branch - LTSB), which will receive security updates for 10 years but excludes feature updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+A separate servicing branch intended for special-purpose systems is the Long-Term Servicing Channel (LTSC, formerly Branch - LTSB), which will receive security updates for 10 years but excludes feature updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DesiredValue>10.0.190</DesiredValue>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1017,13 +1017,11 @@ If the "About Windows" dialog box does not display the following or greater, thi
 
 Note: Microsoft has extended support for previous versions, providing critical and important updates for Windows 10 Enterprise.
 
-Microsoft scheduled end of support dates for current Semi-Annual Channel versions:
+Microsoft scheduled end-of-support dates for current Semi-Annual Channel versions:
 
-v1909 - 10 May 2022
-v2004 - 14 December 2021
-v20H2 – 9 May 2023
-v21H1 -13 Dec 2022
-v21H2 - 11 June 2024                                                
+v20H2 - 9 May 2023
+v21H1 - 13 Dec 2022
+v21H2 - 11 June 2024                                               
 
 No preview versions will be used in a production environment.
 
@@ -1160,12 +1158,12 @@ Approval must be documented with the ISSO.</RawString>
       <LegacyId>V-102611</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Ensure there is a documented policy or procedure in place that non-persistent VM sessions do not exceed 24 hours.
+      <RawString>Ensure there is a documented policy or procedure in place that nonpersistent VM sessions do not exceed 24 hours. If the system is NOT a nonpersistent VM, this is Not Applicable.
 
-If there is no such documented policy or procedure in place, this is a finding.</RawString>
+If no such documented policy or procedure is in place, this is a finding.</RawString>
     </Rule>
     <Rule id="V-220946" severity="medium" conversionstatus="pass" title="SRG-OS-000105-GPOS-00052" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without the use of multifactor authentication, the ease of access to privileged and non-privileged functions is greatly increased. 
+      <Description>&lt;VulnDiscussion&gt;Without the use of multifactor authentication, the ease of access to privileged and nonprivileged functions is greatly increased. 
 
 All domain accounts must be enabled for multifactor authentication with the exception of local emergency accounts. 
 
@@ -1193,7 +1191,7 @@ Satisfies: SRG-OS-000106-GPOS-00053, SRG-OS-000107-GPOS-00054, SRG-OS-000108-GPO
       <LegacyId>V-102627</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the system is not a member of a domain, this is Not Applicable.
+      <RawString>If the system is a member of a domain, this is Not Applicable.
 
 If one of the following settings does not exist and is not populated, this is a finding: 
 
@@ -1203,7 +1201,7 @@ Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\SmartCards</R
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
     <Rule id="V-220697" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Features such as Credential Guard use virtualization based security to protect information that could be used in credential theft attacks if compromised. There are a number of system requirements that must be met in order for Credential Guard to be configured and enabled properly. Virtualization based security and Credential Guard are only available with Windows 10 Enterprise 64-bit version.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Features such as Credential Guard use virtualization-based security to protect information that could be used in credential theft attacks if compromised. A number of system requirements must be met for Credential Guard to be configured and enabled properly. Virtualization-based security and Credential Guard are only available with Windows 10 Enterprise 64-bit version.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-63319</LegacyId>
@@ -1211,7 +1209,7 @@ Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\SmartCards</R
       <OrganizationValueTestString />
       <RawString>Verify domain-joined systems are using Windows 10 Enterprise Edition 64-bit version.
 
-For standalone systems, this is NA.
+For standalone or nondomain-joined systems, this is NA.
 
 Open "Settings".
 
@@ -1222,7 +1220,7 @@ If "Edition" is not "Windows 10 Enterprise", this is a finding.
 If "System type" is not "64-bit operating system…", this is a finding.</RawString>
     </Rule>
     <Rule id="V-220698" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Credential Guard uses virtualization based security to protect information that could be used in credential theft attacks if compromised. There are a number of system requirements that must be met in order for Credential Guard to be configured and enabled properly. Without a TPM enabled and ready for use, Credential Guard keys are stored in a less secure method using software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Credential Guard uses virtualization-based security to protect information that could be used in credential theft attacks if compromised. A number of system requirements must be met for Credential Guard to be configured and enabled properly. Without a TPM enabled and ready for use, Credential Guard keys are stored in a less secure method using software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-63323</LegacyId>
@@ -1230,9 +1228,9 @@ If "System type" is not "64-bit operating system…", this is a finding.</RawStr
       <OrganizationValueTestString />
       <RawString>Verify domain-joined systems have a TPM enabled and ready for use.
 
-For standalone systems, this is NA.
+For standalone or nondomain-joined systems, this is NA.
 
-Virtualization based security, including Credential Guard, currently cannot be implemented in virtual desktop implementations (VDI) due to specific supporting requirements including a TPM, UEFI with Secure Boot, and the capability to run the Hyper-V feature within the virtual desktop.
+Virtualization-based security, including Credential Guard, currently cannot be implemented in virtual desktop implementations (VDI) due to specific supporting requirements including a TPM, UEFI with Secure Boot, and the capability to run the Hyper-V feature within the virtual desktop.
 
 For VDIs where the virtual desktop instance is deleted or refreshed upon logoff, this is NA.
 
@@ -1298,23 +1296,23 @@ If the operating system drive or any fixed data drives have "Turn on BitLocker",
 NOTE: An alternate encryption application may be used in lieu of BitLocker providing it is configured for full disk encryption and satisfies the pre-boot authentication requirements (WN10-00-000031 and WN10-00-000032).</RawString>
     </Rule>
     <Rule id="V-220705" severity="medium" conversionstatus="pass" title="SRG-OS-000370-GPOS-00155" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Utilizing a whitelist provides a configuration management method for allowing the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
+      <Description>&lt;VulnDiscussion&gt;Utilizing an allowlist provides a configuration management method for allowing the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
 
-The organization must identify authorized software programs and only permit execution of authorized software. The process used to identify software programs that are authorized to execute on organizational information systems is commonly referred to as whitelisting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+The organization must identify authorized software programs and only permit execution of authorized software. The process used to identify software programs that are authorized to execute on organizational information systems is commonly referred to as allowlisting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-63345</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This is applicable to unclassified systems; for other systems this is NA.
+      <RawString>This is applicable to unclassified systems; for other systems, this is Not Applicable.
 
-Verify the operating system employs a deny-all, permit-by-exception policy to allow the execution of authorized software programs. This must include packaged apps such as the universals apps installed by default on systems.
+Verify the operating system employs a deny-all, permit-by-exception policy to allow the execution of authorized software programs. This must include packaged apps such as the universal apps installed by default on systems.
 
-If an application whitelisting program is not in use on the system, this is a finding.
+If an application allowlisting program is not in use on the system, this is a finding.
 
-Configuration of whitelisting applications will vary by the program.
+Configuration of allowlisting applications will vary by the program.
 
-AppLocker is a whitelisting application built into Windows 10 Enterprise.  A deny-by-default implementation is initiated by enabling any AppLocker rules within a category, only allowing what is specified by defined rules.
+AppLocker is an allowlisting application built into Windows 10 Enterprise. A deny-by-default implementation is initiated by enabling any AppLocker rules within a category, only allowing what is specified by defined rules.
 
 If AppLocker is used, perform the following to view the configuration of AppLocker:
 Run "PowerShell".
@@ -1324,9 +1322,9 @@ Get-AppLockerPolicy -Effective -XML &gt; c:\temp\file.xml
 
 This will produce an xml file with the effective settings that can be viewed in a browser or opened in a program such as Excel for review.
 
-Implementation guidance for AppLocker is available in the NSA paper "Application Whitelisting using Microsoft AppLocker" at the following link:
+Implementation guidance for AppLocker is available at the following link:
 
-https://www.iad.gov/iad/library/ia-guidance/tech-briefs/application-whitelisting-using-microsoft-applocker.cfm</RawString>
+https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/applocker/applocker-policies-deployment-guide</RawString>
     </Rule>
     <Rule id="V-220707" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Malicious software can establish a base on individual desktops and servers. Employing an automated mechanism to detect this type of software will aid in elimination of the software from the operating system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1440,13 +1438,16 @@ If the group contains any accounts, the accounts must be specifically for backup
 If the group contains any standard user accounts used for performing normal user tasks, this is a finding.</RawString>
     </Rule>
     <Rule id="V-220715" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;To minimize potential points of attack, local user accounts, other than built-in accounts and local administrator accounts, must not exist on a workstation in a domain.  Users must log onto workstations in a domain with their domain accounts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;To minimize potential points of attack, local user accounts, other than built-in accounts and local administrator accounts, must not exist on a workstation in a domain. Users must log on to workstations in a domain with their domain accounts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-63367</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Run "Computer Management".
+      <RawString>For standalone or nondomain-joined systems, this is Not Applicable.
+
+Run "Computer Management".
+
 Navigate to System Tools &gt;&gt; Local Users and Groups &gt;&gt; Users.
 
 If local users other than the accounts listed below exist on a workstation in a domain, this is a finding.
@@ -1594,10 +1595,6 @@ Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*ECA*" | FL Su
 
 If the following certificate "Subject" and "Thumbprint" information is not displayed, this is a finding. 
 
-Subject: CN=ECA Root CA 2, OU=ECA, O=U.S. Government, C=US
-Thumbprint: C313F919A6ED4E0E8451AFA930FB419A20F181E4
-NotAfter: 3/30/2028
-
 Subject: CN=ECA Root CA 4, OU=ECA, O=U.S. Government, C=US
 Thumbprint: 73E8BB08E337D6A5A6AEF90CFFDD97D9176CB582
 NotAfter: 12/30/2029
@@ -1626,20 +1623,16 @@ Select the "Details" Tab.
 
 Scroll to the bottom and select "Thumbprint".
 
-If the ECA Root CA certificates below are not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
-
-ECA Root CA 2
-Thumbprint: C313F919A6ED4E0E8451AFA930FB419A20F181E4
-Valid to: Thursday, March 30, 2028
+If the ECA Root CA certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
 
 ECA Root CA 4
 Thumbprint: 73E8BB08E337D6A5A6AEF90CFFDD97D9176CB582
 Valid to: Sunday, December 30, 2029</RawString>
     </Rule>
     <Rule id="V-220952" severity="medium" conversionstatus="pass" title="SRG-OS-000076-GPOS-00044" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the password. A local Administrator account is not generally used and its password not may be changed as frequently as necessary. Changing the password for enabled Administrator accounts on a regular basis will limit its exposure.
+      <Description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the password. A local Administrator account is not generally used and its password may not be changed as frequently as necessary. Changing the password for enabled Administrator accounts on a regular basis will limit its exposure.
 
-It is highly recommended to use Microsoft's Local Administrator Password Solution (LAPS). Domain-joined systems can configure this to occur more frequently. LAPS will change the password every "30" days by default. The AO still has the overall authority to use another equivalent capability to accomplish the check.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Windows LAPS must be used  to change the built-in Administrator account password.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-99555</LegacyId>
@@ -1647,13 +1640,29 @@ It is highly recommended to use Microsoft's Local Administrator Password Solutio
       <OrganizationValueTestString />
       <RawString>Review the password last set date for the enabled local Administrator account.
 
-On the local domain joined workstation:
+On the local domain-joined workstation:
 
 Open "PowerShell".
 
-Enter "Get-LocalUser –Name * | Select-Object *”
+Enter "Get-LocalUser –Name * | Select-Object *".
 
 If the "PasswordLastSet" date is greater than "60" days old for the local Administrator account for administering the computer/domain, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-256894" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Internet Explorer 11 (IE11) is no longer supported on Windows 10 semi-annual channel. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Determine if IE11 is installed or enabled on Windows 10 semi-annual channel.
+
+If IE11 is installed or not disabled on Windows 10 semi-annual channel, this is a finding.
+
+If IE11 is installed on a unsupported operating system and is enabled or installed, this is a finding.
+
+For more information, visit: https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge#what-is-the-lifecycle-policy-for-internet-explorer-</RawString>
     </Rule>
   </ManualRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
@@ -2851,19 +2860,19 @@ Value: NistP384 NistP256</RawString>
       <ValueType>MultiString</ValueType>
     </Rule>
     <Rule id="V-220806" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Multiple network connections can provide additional attack vectors to a system and must be limited. The "Minimize the number of simultaneous connections to the Internet or a Windows Domain" setting prevents systems from automatically establishing multiple connections.  When both wired and wireless connections are available, for example, the less preferred connection (typically wireless) will be disconnected.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Multiple network connections can provide additional attack vectors to a system and must be limited. The "Minimize the number of simultaneous connections to the Internet or a Windows Domain" setting prevents systems from automatically establishing multiple connections. When both wired and wireless connections are available, for example, the less-preferred connection (typically wireless) will be disconnected.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy</Key>
       <LegacyId>V-63581</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '1|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '3|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior for "Minimize the number of simultaneous connections to the Internet or a Windows Domain" is "Enabled".
 
 If the registry value name below does not exist, this is not a finding.
 
-If it exists and is configured with a value of "1", this is not a finding.
+If it exists and is configured with a value of "3", this is not a finding.
 
 If it exists and is configured with a value of "0", this is a finding.
 
@@ -2873,7 +2882,7 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy\
 Value Name: fMinimizeConnections
 
 Value Type: REG_DWORD
-Value: 1 (or if the Value Name does not exist)</RawString>
+Value: 3 (or if the Value Name does not exist)</RawString>
       <ValueData />
       <ValueName>fMinimizeConnections</ValueName>
       <ValueType>Dword</ValueType>
@@ -3019,13 +3028,14 @@ Value: 1 (Secure Boot only) or 3 (Secure Boot and DMA Protection)</RawString>
       <OrganizationValueTestString />
       <RawString>Confirm Credential Guard is running on domain-joined systems.
 
-For those devices that support Credential Guard, this feature must be enabled. Organizations need to take the appropriate action to acquire and implement compatible hardware with Credential Guard enabled.
+For devices that support Credential Guard, this feature must be enabled. Organizations must take the appropriate action to acquire and implement compatible hardware with Credential Guard enabled.
 
-Virtualization based security, including Credential Guard, currently cannot be implemented in virtual desktop implementations (VDI) due to specific supporting requirements including a TPM, UEFI with Secure Boot, and the capability to run the Hyper-V feature within the virtual desktop.
+Virtualization based security, including Credential Guard, currently cannot be implemented in virtual desktop implementations (VDIs) due to specific supporting requirements including a TPM, UEFI with Secure Boot, and the capability to run the Hyper-V feature within the virtual desktop.
 
-For VDIs where the virtual desktop instance is deleted or refreshed upon logoff, this is NA.
+For VDIs where the virtual desktop instance is deleted or refreshed upon logoff, this is Not Applicable.
 
-Run "PowerShell" with elevated privileges (run as administrator).
+Run "PowerShell" with elevated privileges (run as administrator). 
+
 Enter the following:
 "Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard"
 
@@ -3034,8 +3044,10 @@ If "SecurityServicesRunning" does not include a value of "1" (e.g., "{1, 2}"), t
 Alternately:
 
 Run "System Information".
+
 Under "System Summary", verify the following:
-If "Device Guard Security Services Running" does not list "Credential Guard", this is finding.
+
+If "Virtualization-based Security Services Running" does not list "Credential Guard", this is finding.
 
 The policy settings referenced in the Fix section will configure the following registry value. However, due to hardware requirements, the registry value alone does not ensure proper function.
 
@@ -3044,9 +3056,7 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DeviceGuard\
 
 Value Name: LsaCfgFlags
 Value Type: REG_DWORD
-Value: 0x00000001 (1) (Enabled with UEFI lock)
-
-</RawString>
+Value: 0x00000001 (1) (Enabled with UEFI lock)</RawString>
       <ValueData>1</ValueData>
       <ValueName>LsaCfgFlags</ValueName>
       <ValueType>Dword</ValueType>
@@ -3181,7 +3191,7 @@ Value: 1</RawString>
       <LegacyId>V-63627</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match '1|ShouldBeAbsent'</OrganizationValueTestString>
-      <RawString>This requirement is applicable to domain-joined systems, for standalone systems this is NA.
+      <RawString>This requirement is applicable to domain-joined systems. For standalone or nondomain-joined systems, this is NA.
 
 The default behavior for "Support device authentication using certificate" is "Automatic".
 
@@ -3224,7 +3234,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-220820" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;The username is one part of logon credentials that could be used to gain access to a system.  Preventing the enumeration of users limits this information to authorized personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;The username is one part of logon credentials that could be used to gain access to a system. Preventing the enumeration of users limits this information to authorized personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3232,7 +3242,7 @@ Value: 1</RawString>
       <LegacyId>V-63633</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This requirement is applicable to domain-joined systems, for standalone systems this is NA.
+      <RawString>This requirement is applicable to domain-joined systems. For standalone or nondomain-joined systems, this is NA.
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
@@ -3571,7 +3581,7 @@ If an organization is using v1709 or later of Windows 10 this may be configured 
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-220835.a" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Windows 10 allows Windows Update to obtain updates from additional sources instead of Microsoft. In addition to Microsoft, updates can be obtained from and sent to PCs on the local network as well as on the Internet. This is part of the Windows Update trusted process, however to minimize outside exposure, obtaining updates from or sending to systems on the Internet must be prevented.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Windows 10 allows Windows Update to obtain updates from additional sources instead of Microsoft. In addition to Microsoft, updates can be obtained from and sent to PCs on the local network as well as on the internet. This is part of the Windows Update trusted process; however, to minimize outside exposure, obtaining updates from or sending to systems on the internet must be prevented.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3589,7 +3599,7 @@ Value: 0x00000000 (0) - No peering (HTTP Only)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-220835.b" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Windows 10 allows Windows Update to obtain updates from additional sources instead of Microsoft. In addition to Microsoft, updates can be obtained from and sent to PCs on the local network as well as on the Internet. This is part of the Windows Update trusted process, however to minimize outside exposure, obtaining updates from or sending to systems on the Internet must be prevented.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Windows 10 allows Windows Update to obtain updates from additional sources instead of Microsoft. In addition to Microsoft, updates can be obtained from and sent to PCs on the local network as well as on the internet. This is part of the Windows Update trusted process; however, to minimize outside exposure, obtaining updates from or sending to systems on the internet must be prevented.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5516,7 +5526,7 @@ Value: 0x00000002 (2) (or if the Value Name does not exist)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-250319.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Additional security requirements are applied to Universal Naming Convention (UNC) paths specified in Hardened UNC paths before allowing access them. This aids in preventing tampering with or spoofing of connections to these paths.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Additional security requirements are applied to Universal Naming Convention (UNC) paths specified in Hardened UNC paths before allowing access to them. This aids in preventing tampering with or spoofing of connections to these paths.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5534,7 +5544,7 @@ Value: RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-250319.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Additional security requirements are applied to Universal Naming Convention (UNC) paths specified in Hardened UNC paths before allowing access them. This aids in preventing tampering with or spoofing of connections to these paths.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Additional security requirements are applied to Universal Naming Convention (UNC) paths specified in Hardened UNC paths before allowing access to them. This aids in preventing tampering with or spoofing of connections to these paths.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5623,7 +5633,7 @@ Value: 0x00000001 (1) (Enabled with UEFI lock), or 0x00000002 (2) (Enabled witho
   <RootCertificateRule dscresourcemodule="CertificateDsc">
     <Rule id="V-220903.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName>DoD Root CA 3</CertificateName>
-      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root Certificate Authorities (CAs). The DoD root certificates will ensure  the trust chain is established for server certificates issued from the DoD CAs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root Certificate Authorities (CAs). The DoD root certificates will ensure the trust chain is established for server certificates issued from the DoD CAs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-63579.a</LegacyId>
@@ -5635,7 +5645,7 @@ Value: 0x00000001 (1) (Enabled with UEFI lock), or 0x00000002 (2) (Enabled witho
     </Rule>
     <Rule id="V-220903.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName>DoD Root CA 4</CertificateName>
-      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root Certificate Authorities (CAs). The DoD root certificates will ensure  the trust chain is established for server certificates issued from the DoD CAs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root Certificate Authorities (CAs). The DoD root certificates will ensure the trust chain is established for server certificates issued from the DoD CAs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-63579.b</LegacyId>
@@ -5647,7 +5657,7 @@ Value: 0x00000001 (1) (Enabled with UEFI lock), or 0x00000002 (2) (Enabled witho
     </Rule>
     <Rule id="V-220903.c" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName>DoD Root CA 5</CertificateName>
-      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root Certificate Authorities (CAs). The DoD root certificates will ensure  the trust chain is established for server certificates issued from the DoD CAs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root Certificate Authorities (CAs). The DoD root certificates will ensure the trust chain is established for server certificates issued from the DoD CAs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-63579.c</LegacyId>
@@ -5657,28 +5667,60 @@ Value: 0x00000001 (1) (Enabled with UEFI lock), or 0x00000002 (2) (Enabled witho
       <RawString>DoD Root CA 5,4ECB5CC3095670454DA1CBD410FC921F46B8564B</RawString>
       <Thumbprint>4ECB5CC3095670454DA1CBD410FC921F46B8564B</Thumbprint>
     </Rule>
-    <Rule id="V-220905.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+    <Rule id="V-220905" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName>DoD Interoperability Root CA 2</CertificateName>
       <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-63587.a</LegacyId>
+      <LegacyId>V-63587</LegacyId>
       <Location />
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>location for DoD Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
-      <RawString>DoD Interoperability Root CA 2,AC06108CA348CC03B53795C64BF84403C1DBD341</RawString>
-      <Thumbprint>AC06108CA348CC03B53795C64BF84403C1DBD341</Thumbprint>
-    </Rule>
-    <Rule id="V-220905.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
-      <CertificateName>DoD Interoperability Root CA 2</CertificateName>
-      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-63587.b</LegacyId>
-      <Location />
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>location for DoD Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
-      <RawString>DoD Interoperability Root CA 2,49CBE933151872E17C8EAE7F0ABA97FB610F6477</RawString>
+      <RawString>Verify the DoD Interoperability cross-certificates are installed on unclassified systems as Untrusted Certificates.
+
+Run "PowerShell" as an administrator.
+
+Execute the following command:
+
+Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
+
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding.
+
+Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: 49CBE933151872E17C8EAE7F0ABA97FB610F6477
+NotAfter: 11/16/2024 
+
+Alternately, use the Certificates MMC snap-in:
+
+Run "MMC".
+
+Select "File", "Add/Remove Snap-in".
+
+Select "Certificates", click "Add".
+
+Select "Computer account", click "Next".
+
+Select "Local computer: (the computer this console is running on)", click "Finish".
+
+Click "OK".
+
+Expand "Certificates" and navigate to Untrusted Certificates &gt;&gt; Certificates.
+
+For each certificate with "DoD Root CA…" under "Issued To" and "DoD Interoperability Root CA…" under "Issued By":
+
+Right-click on the certificate and select "Open".
+
+Select the "Details" tab.
+
+Scroll to the bottom and select "Thumbprint".
+
+If the certificates below are not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
+
+Issued To: DoD Root CA 3
+Issued By: DoD Interoperability Root CA 2
+Thumbprint: 49CBE933151872E17C8EAE7F0ABA97FB610F6477
+Valid to: Wednesday, November 16, 2024</RawString>
       <Thumbprint>49CBE933151872E17C8EAE7F0ABA97FB610F6477</Thumbprint>
     </Rule>
     <Rule id="V-220906" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
@@ -5698,14 +5740,14 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is a finding. 
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding. 
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S.Government, C=US
-Thumbprint: AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9
-NotAfter: 8/26/2022 9:07:50 AM
+Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025 9:56:22 AM
 
-Alternately use the Certificates MMC snap-in:
+Alternately, use the Certificates MMC snap-in:
 
 Run "MMC".
 
@@ -5719,7 +5761,7 @@ Select "Local computer: (the computer this console is running on)", click "Finis
 
 Click "OK".
 
-Expand "Certificates" and navigate to "Untrusted Certificates &gt;&gt; Certificates".
+Expand "Certificates" and navigate to Untrusted Certificates &gt;&gt; Certificates.
 
 For each certificate with "US DoD CCEB Interoperability Root CA …" under "Issued By":
 
@@ -5732,10 +5774,10 @@ Scroll to the bottom and select "Thumbprint".
 If the certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S.Government, C=US
-Thumbprint: AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9
-NotAfter: 8/26/2022 9:07:50 AM</RawString>
-      <Thumbprint>AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9</Thumbprint>
+Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025 9:56:22 AM</RawString>
+      <Thumbprint>9B74964506C7ED9138070D08D5F8B969866560C8</Thumbprint>
     </Rule>
   </RootCertificateRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
@@ -6157,11 +6199,11 @@ Note: "Local account" is a built-in security group used to assign user rights an
     </Rule>
     <Rule id="V-220969" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
       <Constant>SeDenyBatchLogonRight</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high level capabilities.
+      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 The "Deny log on as a batch job" right defines accounts that are prevented from logging on to the system as a batch job, such as Task Scheduler.
 
-In an Active Directory Domain, denying logons to the Enterprise Admins and Domain Admins groups on lower trust systems helps mitigate the risk of privilege escalation from credential theft attacks which could lead to the compromise of an entire domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+In an Active Directory Domain, denying logons to the Enterprise Admins and Domain Admins groups on lower-trust systems helps mitigate the risk of privilege escalation from credential theft attacks that could lead to the compromise of an entire domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Deny log on as a batch job</DisplayName>
       <DuplicateOf />
       <Force>False</Force>
@@ -6170,14 +6212,14 @@ In an Active Directory Domain, denying logons to the Enterprise Admins and Domai
       <LegacyId>V-63873</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This requirement is applicable to domain-joined systems, for standalone systems this is NA.
+      <RawString>This requirement is applicable to domain-joined systems. For standalone or nondomain-joined systems, this is NA.
 
 Verify the effective setting in Local Group Policy Editor.
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If the following groups or accounts are not defined for the "Deny log on as a batch job" right, this is a finding:
+If the following groups or accounts are not defined for the "Deny log on as a batch job" right, this is a finding.
 
 Domain Systems Only:
 Enterprise Admin Group
@@ -6200,14 +6242,14 @@ Incorrect configurations could prevent services from starting and result in a Do
       <LegacyId>V-63875</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This requirement is applicable to domain-joined systems, for standalone systems this is NA.
+      <RawString>This requirement is applicable to domain-joined systems. For standalone or nondomain-joined systems, this is NA.
 
 Verify the effective setting in Local Group Policy Editor.
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If the following groups or accounts are not defined for the "Deny log on as a service" right , this is a finding:
+If the following groups or accounts are not defined for the "Deny log on as a service" right , this is a finding.
 
 Domain Systems Only:
 Enterprise Admins Group
