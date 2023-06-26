@@ -1,38 +1,5 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 27 Oct 2022 3.4.0.34222 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="2/14/2023">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 27 Apr 2023 3.4.0.34222 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.9" created="6/14/2023">
   <DocumentRule dscresourcemodule="None">
-    <Rule id="V-218784" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
-
-An alternative to remote administration of the web server is to perform web server administration locally at the console. Local administration at the console implies physical access to the server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100103</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If web administration is performed at the console, this check is NA.
-
-If web administration is performed remotely the following checks will apply:
-
-If administration of the server is performed remotely, it will only be performed securely by system administrators.
-
-If website administration or web application administration has been delegated, those users will be documented and approved by the ISSO.
-
-Remote administration must be in compliance with any requirements contained within the Windows Server STIGs, and any applicable Network STIGs.
-
-Remote administration of any kind will be restricted to documented and authorized personnel.
-
-All users performing remote administration must be authenticated.
-
-All remote sessions will be encrypted and utilize FIPS 140-2-approved protocols.
-
-FIPS 140-2-approved TLS versions include TLS V1.1 or greater.
-
-Review with site management how remote administration is configured on the website, if applicable.
-
-If remote management meets the criteria listed above, this is not a finding.
-
-If remote management is utilized and does not meet the criteria listed above, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-218792" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000015" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;User management and authentication can be an essential part of any application hosted by the web server. Along with authenticating users, the user management function must perform several other tasks enterprise-wide, such as password complexity, locking users after a configurable number of failed logons, and management of temporary and emergency accounts.
 
@@ -129,37 +96,6 @@ If the key does not exist, this check is Not Applicable.
 Review the Catalog keys to determine if directories other than web document directories are being indexed.
 
 If so, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-218811" severity="high" conversionstatus="pass" title="SRG-APP-000315-WSR-000003" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Logging into a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100157</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If web administration is performed at the console, this check is NA.
-
-If web administration is performed remotely, the following checks will apply:
-
-If administration of the server is performed remotely, it will only be performed securely by system administrators.
-
-If website administration or web application administration has been delegated, those users will be documented and approved by the ISSO.
-
-Remote administration must be in compliance with any requirements contained within the Windows Server STIGs and any applicable Network STIGs.
-
-Remote administration of any kind will be restricted to documented and authorized personnel.
-
-All users performing remote administration must be authenticated.
-
-All remote sessions will be encrypted and utilize FIPS 140-2-approved protocols.
-
-FIPS 140-2-approved TLS versions include TLS V1.2 or greater.
-
-Review with site management how remote administration is configured on the website, if applicable.
-
-If remote management meets the criteria listed above, this is not a finding.
-
-If remote management is utilized and does not meet the criteria listed above, this is a finding.</RawString>
     </Rule>
     <Rule id="V-218813" severity="medium" conversionstatus="pass" title="SRG-APP-000316-WSR-000170" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;During an attack on the web server or any of the hosted applications, the system administrator may need to disconnect or disable access by users to stop the attack.
@@ -805,6 +741,7 @@ If passwords have not been changed from the default, this is a finding.</RawStri
       <RawString>Note: If ASP.NET is not installed, this is Not Applicable.
 Note: If the Server is hosting Microsoft SharePoint, this is Not Applicable.
 Note: If the server is hosting WSUS, this is Not Applicable.
+Note: If the server is hosting Exchange, this is Not Applicable.
 
 Open the IIS 10.0 Manager.
 
@@ -812,7 +749,7 @@ Click the IIS 10.0 web server name.
 
 Double-click the ".NET Authorization Rules" icon.
 
-Ensure "All Users" is set to "Allow", and "Anonymous Users" is set to "Deny" otherwise, this is a finding.
+Ensure "All Users" is set to "Allow", and "Anonymous Users" is set to "Deny", otherwise this is a finding.
 If any other rules are present, this is a finding.</RawString>
     </Rule>
     <Rule id="V-218826" severity="medium" conversionstatus="pass" title="SRG-APP-000001-WSR-000001" dscresource="None">
@@ -1049,24 +986,20 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <OrganizationValueTestString />
       <RawString>Access the IIS 10.0 Web Server.
 
-Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
-
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "DisabledByDefault".
+Verify a REG_DWORD value of "1" for "Enabled".
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault".
+Verify a REG_DWORD value of "0" for "Enabled".
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>1</ValueData>
@@ -1086,24 +1019,20 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <OrganizationValueTestString />
       <RawString>Access the IIS 10.0 Web Server.
 
-Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
-
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "DisabledByDefault".
+Verify a REG_DWORD value of "1" for "Enabled".
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault".
+Verify a REG_DWORD value of "0" for "Enabled".
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>0</ValueData>
@@ -1123,24 +1052,20 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <OrganizationValueTestString />
       <RawString>Access the IIS 10.0 Web Server.
 
-Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
-
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "DisabledByDefault".
+Verify a REG_DWORD value of "1" for "Enabled".
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault".
+Verify a REG_DWORD value of "0" for "Enabled".
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>1</ValueData>
@@ -1160,24 +1085,20 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <OrganizationValueTestString />
       <RawString>Access the IIS 10.0 Web Server.
 
-Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
-
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "DisabledByDefault".
+Verify a REG_DWORD value of "1" for "Enabled".
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault".
+Verify a REG_DWORD value of "0" for "Enabled".
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>1</ValueData>
@@ -1197,24 +1118,20 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <OrganizationValueTestString />
       <RawString>Access the IIS 10.0 Web Server.
 
-Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
-
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "DisabledByDefault".
+Verify a REG_DWORD value of "1" for "Enabled".
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault".
+Verify a REG_DWORD value of "0" for "Enabled".
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>1</ValueData>
@@ -1234,24 +1151,20 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <OrganizationValueTestString />
       <RawString>Access the IIS 10.0 Web Server.
 
-Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
-
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "DisabledByDefault".
+Verify a REG_DWORD value of "1" for "Enabled".
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault".
+Verify a REG_DWORD value of "0" for "Enabled".
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>0</ValueData>
@@ -1271,24 +1184,20 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <OrganizationValueTestString />
       <RawString>Access the IIS 10.0 Web Server.
 
-Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
-
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "DisabledByDefault".
+Verify a REG_DWORD value of "1" for "Enabled".
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault".
+Verify a REG_DWORD value of "0" for "Enabled".
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>0</ValueData>
@@ -1308,24 +1217,20 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <OrganizationValueTestString />
       <RawString>Access the IIS 10.0 Web Server.
 
-Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
-
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "DisabledByDefault".
+Verify a REG_DWORD value of "1" for "Enabled".
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault".
+Verify a REG_DWORD value of "0" for "Enabled".
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>0</ValueData>
@@ -1345,24 +1250,20 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <OrganizationValueTestString />
       <RawString>Access the IIS 10.0 Web Server.
 
-Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
-
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
-Verify a REG_DWORD value of "0" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "DisabledByDefault".
+Verify a REG_DWORD value of "1" for "Enabled".
 
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
-
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-Verify a REG_DWORD value of "1" for "DisabledByDefault"
-Verify a REG_DWORD value of "0" for "Enabled"
+Verify a REG_DWORD value of "1" for "DisabledByDefault".
+Verify a REG_DWORD value of "0" for "Enabled".
 
 If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>0</ValueData>
