@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [4.17.0] - 2023-06-27
+
 * Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 STIG Server V2R9 Site V2R8: [#1242](https://github.com/microsoft/PowerStig/issues/1242)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 8.5 Site V2R8 [#1241](https://github.com/microsoft/PowerStig/issues/1241)
 * Update PowerSTIG to Parse/Apply SQL Server 2016 Instance STIG V2R9: [#1245](https://github.com/microsoft/PowerStig/issues/1245)
