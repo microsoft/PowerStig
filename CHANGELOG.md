@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus V2R10 #1259: [#1221](https://github.com/microsoft/PowerStig/issues/1259)
+Update PowerSTIG to Parse/Apply SQL Server 2016 Instance STIG V2R10: [#1257](https://github.com/microsoft/PowerStig/issues/1257)
 
 ## [4.17.0] - 2023-06-27
 
