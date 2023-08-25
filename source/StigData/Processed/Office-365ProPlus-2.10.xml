@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Office_365_ProPlus_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Office_365_ProPlus_STIG_V2R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 26 Jan 2023 3.4.0.34222 1.10.0" title="Microsoft Office 365 ProPlus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.8" created="2/3/2023">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Office_365_ProPlus_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Office_365_ProPlus_STIG_V2R10_Manual-xccdf.xml" releaseinfo="Release: 10 Benchmark Date: 10 Aug 2023 3.4.1.22916 1.10.0" title="Microsoft Office 365 ProPlus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.10" created="8/15/2023">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-223296" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer add-ons are pieces of code, run in Internet Explorer, to provide additional functionality. Rogue add-ons may contain viruses or other malicious code. Disabling or not configuring this setting could allow malicious code or users to become active on user computers or the network. For example, a malicious user can monitor and then use keystrokes that user's type into Internet Explorer. Even legitimate add-ons may demand resources, compromising the performance of Internet Explorer and the operating systems for user computers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1370,7 +1370,7 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\microsoft\office\16.0\excel\security
 
-If the value excelbypassencryptiedmacrosscan does not exist, this is not a finding.
+If the value excelbypassencryptedmacroscan does not exist, this is not a finding.
 
 If the value for excelbypassencryptedmacroscan is REG_DWORD = 0, this is not a finding.</RawString>
       <ValueData />
@@ -1832,13 +1832,11 @@ If the value for msgformat is set to REG_DWORD = 0, this is not a finding.</RawS
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223351" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy setting controls your Junk E-mail protection level. The Junk E-mail Filter in Outlook helps to prevent junk e-mail messages, also known as spam, from cluttering user's Inbox. The filter evaluates each incoming message based on several factors, including the time when the message was sent and the content of the message. The filter does not single out any particular sender or message type, but instead analyzes each message based on its content and structure to discover whether or not it is probably spam.
+      <Description>&lt;VulnDiscussion&gt;This policy setting controls the Junk E-mail protection level. The Junk E-mail Filter in Outlook helps to prevent junk email messages, also known as spam, from cluttering a user's Inbox. The filter evaluates each incoming message based on several factors, including the time when the message was sent and the content of the message. The filter does not single out any particular sender or message type, but instead analyzes each message based on its content and structure to determine if it is likely spam.
 
-If you enable this policy setting, you can select one of the four listed options available. After you select an option, users will not be able to change it.
+A Junk E-mail filtering option of "No Automatic Filtering" will evaluate emails against domain names and email addresses in the blocked sender list and send them to the Junk E-mail folder. 
 
-If you disable this policy setting, Outlook reverts to the user-defined protection level.
-
-If you do not configure this policy setting, users can change their junk e-mail filtering options.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+A Junk E-mail filtering option of "High" is not recommended when behind enterprise-level capabilities such as Enterprise Email Security Gateway (EEMSG), Cloud-Based Internet Isolation (CBII), and O365 Exchange Online Protection (EOP).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1846,13 +1844,19 @@ If you do not configure this policy setting, users can change their junk e-mail 
       <LegacyId>V-99777</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2016 &gt;&gt; Outlook Options &gt;&gt; Preferences &gt;&gt; Junk E-mail &gt;&gt; Junk E-mail protection level is set to "High".
+      <RawString>Note: If the Outlook client application is not used to access Office 365 email (i.e., email is only accessed via Outlook Web Access [OWA]), this check is not applicable.  
+
+Verify Outlook Junk E-mail protection is set to "No Automatic Filtering".
+
+In Outlook, click Home tab &gt;&gt; Delete group &gt;&gt; Junk &gt;&gt; Junk E-mail Options.
+
+Verify Junk E-mail protection is set to "No Automatic Filtering".
  
-Use the Windows Registry Editor to navigate to the following key: 
+If the system being inspected is not behind EEMSG, CBII, or O365 EOP, the Junk E-mail protection level must be set to "High".
 
-HKCU\software\policies\microsoft\office\16.0\outlook\options\mail
+If Junk E-mail protection is not set to "No Automatic Filtering", this is a finding.
 
-If the value junkmailprotection is set to "3", this is not a finding.</RawString>
+If the system is not behind enterprise-level capabilities such as EEMSG, CBII, or O365 EOP and the Junk E-mail protection is not set to "High", this is a  finding.</RawString>
       <ValueData>3</ValueData>
       <ValueName>junkmailprotection</ValueName>
       <ValueType>String</ValueType>
