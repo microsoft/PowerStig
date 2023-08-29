@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R12: [#1254](https://github.com/microsoft/PowerStig/issues/1254)
 
 * Update PowerSTIG to Parse/Apply Microsoft Office 365 ProPlus V2R10 #1259: [#1221](https://github.com/microsoft/PowerStig/issues/1259)
 * Update PowerSTIG to Parse/Apply SQL Server 2016 Instance STIG V2R10: [#1257](https://github.com/microsoft/PowerStig/issues/1257)
