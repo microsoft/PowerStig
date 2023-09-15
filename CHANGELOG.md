@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Fix for Chrome issue Registry Path is incorrect [#1215](https://github.com/microsoft/PowerStig/issues/1215)
+
 ## [4.18.0] - 2023-09-05
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R12: [#1254](https://github.com/microsoft/PowerStig/issues/1254)
