@@ -283,7 +283,7 @@ Windows method:
 
 </RawString>
       <ValueData>javascript://*</ValueData>
-      <ValueName>CookiesSessionOnlyForUrls</ValueName>
+      <ValueName>1</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-221573" severity="medium" conversionstatus="pass" title="SRG-APP-000047" dscresource="RegistryPolicyFile">
