@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Update PowerSTIG to Parse/Apply vSphere 7.0 vCenter V1R2 [#1269](https://github.com/microsoft/PowerStig/issues/1269)
 
 ## [4.18.0] - 2023-09-05
 
