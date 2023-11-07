@@ -1272,7 +1272,7 @@ Get-AdvancedSetting -Entity &lt;vcenter server name&gt; -Name config.log.level a
 If the "config.log.level" value is not set to "info" or does not exist, this is a finding.</RawString>
     </Rule>
     <Rule id="V-256355" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="VMHostAdvancedSettings">
-      <AdvancedSettings>'' = '30'</AdvancedSettings>
+      <AdvancedSettings>'VirtualCenter.VimPasswordExpirationInDays' = '30'</AdvancedSettings>
       <Description>&lt;VulnDiscussion&gt;By default, vCenter will change the "vpxuser" password automatically every 30 days. Ensure this setting meets site policies. If it does not, configure it to meet password aging policies. 
 
 Note: It is very important the password aging policy is not shorter than the default interval that is set to automatically change the "vpxuser" password to preclude the possibility that vCenter might be locked out of an ESXi host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1297,7 +1297,7 @@ Get-AdvancedSetting -Entity &lt;vcenter server name&gt; -Name VirtualCenter.VimP
 If the "VirtualCenter.VimPasswordExpirationInDays" is set to a value other than "30" or does not exist, this is a finding.</RawString>
     </Rule>
     <Rule id="V-256356" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="VMHostAdvancedSettings">
-      <AdvancedSettings>'' = '32'</AdvancedSettings>
+      <AdvancedSettings>'vpxd.event.syslog.enabled' = '32'</AdvancedSettings>
       <Description>&lt;VulnDiscussion&gt;The "vpxuser" password default length is 32 characters. Ensure this setting meets site policies; if not, configure to meet password length policies.
 
 Longer passwords make brute-force password attacks more difficult. The "vpxuser" password is added by vCenter, meaning no manual intervention is normally required. The "vpxuser" password length must never be modified to less than the default length of 32 characters.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1324,7 +1324,7 @@ If the "config.vpxd.hostPasswordLength" is set to a value other than "32", this 
 If the setting does not exist, this is not a finding.</RawString>
     </Rule>
     <Rule id="V-256360" severity="medium" conversionstatus="pass" title="SRG-APP-000358" dscresource="VMHostAdvancedSettings">
-      <AdvancedSettings>'' = 'true'</AdvancedSettings>
+      <AdvancedSettings>'vpxd.event.syslog.enabled' = 'true'</AdvancedSettings>
       <Description>&lt;VulnDiscussion&gt;vCenter server generates volumes of security-relevant application-level events. Examples include logins, system reconfigurations, system degradation warnings, and more. To ensure these events are available for forensic analysis and correlation, they must be sent to the syslog and forwarded on to the configured Security Information and Event Management (SIEM) system and/or central log server.
 
 The vCenter server sends events to syslog by default, but this configuration must be verified and maintained.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
