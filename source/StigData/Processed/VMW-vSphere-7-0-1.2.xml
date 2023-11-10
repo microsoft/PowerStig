@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="VMW_vSphere_7-0_vCenter_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_VMW_vSphere_7-0_vCenter_STIG_V1R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 26 Jul 2023 3.4.0.34222 1.10.0" title="VMware vSphere 7.0 vCenter Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.2" created="11/1/2023">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="VMW_vSphere_7-0_vCenter_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_VMW_vSphere_7-0_vCenter_STIG_V1R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 26 Jul 2023 3.4.0.34222 1.10.0" title="VMware vSphere 7.0 vCenter Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.2" created="11/10/2023">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-256351" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The distributed virtual switch can export NetFlow information about traffic crossing the switch. NetFlow exports are not encrypted and can contain information about the virtual network, making it easier for a man-in-the-middle attack to be executed successfully. If NetFlow export is required, verify that all NetFlow target Internet Protocols (IPs) are correct.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -403,6 +403,30 @@ View the value of the "Session timeout" setting.
 If "Session timeout" is not set to "10 minute(s)" or below, this is a finding.
 
 Note: If vCenter is not 7.0 U2 or newer, this setting is not available through the UI and must be checked with the "session.timeout" setting in the "/etc/vmware/vsphere-ui/webclient.properties file".</RawString>
+    </Rule>
+    <Rule id="V-256335" severity="medium" conversionstatus="pass" title="SRG-APP-000211" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Users and service accounts must only be assigned privileges they require. Least privilege requires that these privileges must only be assigned if needed to reduce risk of confidentiality, availability, or integrity loss.
+
+Satisfies: SRG-APP-000211, SRG-APP-000233, SRG-APP-000380&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>From the vSphere Client, go to Administration &gt;&gt; Access Control &gt;&gt; Roles.
+
+View each role and verify the users and/or groups assigned to it by clicking "Usage".
+
+or
+
+From a PowerCLI command prompt while connected to the vCenter server, run the following command:
+
+Get-VIPermission | Sort Role | Select Role,Principal,Entity,Propagate,IsGroup | FT -Auto
+
+Application service account and user required privileges should be documented.
+
+If any user or service account has more privileges than required, this is a finding.</RawString>
     </Rule>
     <Rule id="V-256336" severity="medium" conversionstatus="pass" title="SRG-APP-000247" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;DoS is a condition when a resource is not available for legitimate users. When this occurs, the organization either cannot accomplish its mission or must operate at degraded capacity.
@@ -969,6 +993,68 @@ Under "Authentication method", examine the allowed methods.
 
 If "Smart card authentication" is not enabled and "Password and windows session authentication" is not disabled , this is a finding.</RawString>
     </Rule>
+    <Rule id="V-256364" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;In vSphere, a number of default roles contain permission to perform cryptographic operations such as Key Management Server (KMS) functions and encrypting and decrypting virtual machine disks. These roles must be reserved for cryptographic administrators where virtual machine encryption and/or vSAN encryption is in use.
+
+A new built-in role called "No Cryptography Administrator" exists to provide all administrative permissions except cryptographic operations. Permissions must be restricted such that normal vSphere administrators are assigned the "No Cryptography Administrator" role or more restrictive.
+
+These default roles must be tightly controlled and must not be applied to administrators who will not be doing cryptographic work. Catastrophic data loss can result from poorly administered cryptography.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>By default, there are four roles that contain cryptographic-related permissions: Administrator, No Trusted Infrastructure Administrator, vCLSAdmin, and vSphere Kubernetes Manager.
+
+From the vSphere Client, go to Administration &gt;&gt; Access Control &gt;&gt; Roles.
+
+or
+
+From a PowerCLI command prompt while connected to the vCenter server, run the following command:
+
+Get-VIPermission | Where {$_.Role -eq "Admin" -or $_.Role -eq "NoTrustedAdmin" -or $_.Role -eq "vCLSAdmin" -or $_.Role -eq "vSphereKubernetesManager"} | Select Role,Principal,Entity,Propagate,IsGroup | FT -Auto
+
+If there are any users or groups assigned to the default roles with cryptographic permissions and are not explicitly designated to perform cryptographic operations, this is a finding.
+
+The built-in solution users assigned to the administrator role are NOT a finding.</RawString>
+    </Rule>
+    <Rule id="V-256365" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;These permissions must be reserved for cryptographic administrators where virtual machine encryption and/or vSAN encryption is in use. Catastrophic data loss can result from poorly administered cryptography.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>By default, there are four roles that contain cryptographic-related permissions: Administrator, No Trusted Infrastructure Administrator, vCLSAdmin, and vSphere Kubernetes Manager.
+
+From the vSphere Client, go to Administration &gt;&gt; Access Control &gt;&gt; Roles.
+
+Highlight each role and click the 'Privileges" button in the right pane.
+
+Verify that only the Administrator, No Trusted Infrastructure Administrator, vCLSAdmin, and vSphere Kubernetes Manager and any site-specific cryptographic roles have the following permissions:
+
+Cryptographic Operations privileges
+Global.Diagnostics
+Host.Inventory.Add host to cluster
+Host.Inventory.Add standalone host
+Host.Local operations.Manage user groups
+
+or
+
+From a PowerCLI command prompt while connected to the vCenter server, run the following commands:
+
+$roles = Get-VIRole
+ForEach($role in $roles){
+    $privileges = $role.PrivilegeList
+    If($privileges -match "Crypto*" -or $privileges -match "Global.Diagnostics" -or $privileges -match "Host.Inventory.Add*" -or $privileges -match "Host.Local operations.Manage user groups"){
+    Write-Host "$role has Cryptographic privileges"
+    }
+}
+
+If any role other than the four default roles contain the permissions listed above and is not authorized to perform cryptographic-related operations, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-256366" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;When enabled, vSphere performs bidirectional authentication of both the iSCSI target and host. When not authenticating both the iSCSI target and host, the potential exists for a man-in-the-middle attack in which an attacker might impersonate either side of the connection to steal data. Bidirectional authentication mitigates this risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1150,103 +1236,6 @@ Interview the system administrator and determine if a password was provided for 
 If backups exist for the Native Key Provider that are not password protected, this is a finding.</RawString>
     </Rule>
   </ManualRule>
-  <PermissionRule dscresourcemodule="AccessControlDsc">
-    <Rule id="V-256335" severity="medium" conversionstatus="fail" title="SRG-APP-000211" dscresource="">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;Users and service accounts must only be assigned privileges they require. Least privilege requires that these privileges must only be assigned if needed to reduce risk of confidentiality, availability, or integrity loss.
-
-Satisfies: SRG-APP-000211, SRG-APP-000233, SRG-APP-000380&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>From the vSphere Client, go to Administration &gt;&gt; Access Control &gt;&gt; Roles.
-
-View each role and verify the users and/or groups assigned to it by clicking "Usage".
-
-or
-
-From a PowerCLI command prompt while connected to the vCenter server, run the following command:
-
-Get-VIPermission | Sort Role | Select Role,Principal,Entity,Propagate,IsGroup | FT -Auto
-
-Application service account and user required privileges should be documented.
-
-If any user or service account has more privileges than required, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-256364" severity="medium" conversionstatus="fail" title="SRG-APP-000516" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;In vSphere, a number of default roles contain permission to perform cryptographic operations such as Key Management Server (KMS) functions and encrypting and decrypting virtual machine disks. These roles must be reserved for cryptographic administrators where virtual machine encryption and/or vSAN encryption is in use.
-
-A new built-in role called "No Cryptography Administrator" exists to provide all administrative permissions except cryptographic operations. Permissions must be restricted such that normal vSphere administrators are assigned the "No Cryptography Administrator" role or more restrictive.
-
-These default roles must be tightly controlled and must not be applied to administrators who will not be doing cryptographic work. Catastrophic data loss can result from poorly administered cryptography.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-256335</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>By default, there are four roles that contain cryptographic-related permissions: Administrator, No Trusted Infrastructure Administrator, vCLSAdmin, and vSphere Kubernetes Manager.
-
-From the vSphere Client, go to Administration &gt;&gt; Access Control &gt;&gt; Roles.
-
-or
-
-From a PowerCLI command prompt while connected to the vCenter server, run the following command:
-
-Get-VIPermission | Where {$_.Role -eq "Admin" -or $_.Role -eq "NoTrustedAdmin" -or $_.Role -eq "vCLSAdmin" -or $_.Role -eq "vSphereKubernetesManager"} | Select Role,Principal,Entity,Propagate,IsGroup | FT -Auto
-
-If there are any users or groups assigned to the default roles with cryptographic permissions and are not explicitly designated to perform cryptographic operations, this is a finding.
-
-The built-in solution users assigned to the administrator role are NOT a finding.</RawString>
-    </Rule>
-    <Rule id="V-256365" severity="medium" conversionstatus="fail" title="SRG-APP-000516" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;These permissions must be reserved for cryptographic administrators where virtual machine encryption and/or vSAN encryption is in use. Catastrophic data loss can result from poorly administered cryptography.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-256335</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>By default, there are four roles that contain cryptographic-related permissions: Administrator, No Trusted Infrastructure Administrator, vCLSAdmin, and vSphere Kubernetes Manager.
-
-From the vSphere Client, go to Administration &gt;&gt; Access Control &gt;&gt; Roles.
-
-Highlight each role and click the 'Privileges" button in the right pane.
-
-Verify that only the Administrator, No Trusted Infrastructure Administrator, vCLSAdmin, and vSphere Kubernetes Manager and any site-specific cryptographic roles have the following permissions:
-
-Cryptographic Operations privileges
-Global.Diagnostics
-Host.Inventory.Add host to cluster
-Host.Inventory.Add standalone host
-Host.Local operations.Manage user groups
-
-or
-
-From a PowerCLI command prompt while connected to the vCenter server, run the following commands:
-
-$roles = Get-VIRole
-ForEach($role in $roles){
-    $privileges = $role.PrivilegeList
-    If($privileges -match "Crypto*" -or $privileges -match "Global.Diagnostics" -or $privileges -match "Host.Inventory.Add*" -or $privileges -match "Host.Local operations.Manage user groups"){
-    Write-Host "$role has Cryptographic privileges"
-    }
-}
-
-If any role other than the four default roles contain the permissions listed above and is not authorized to perform cryptographic-related operations, this is a finding.</RawString>
-    </Rule>
-  </PermissionRule>
   <VsphereAdvancedSettingsRule dscresourcemodule="Vmware.vSphereDSC">
     <Rule id="V-256321" severity="medium" conversionstatus="pass" title="SRG-APP-000095" dscresource="VMHostAdvancedSettings">
       <AdvancedSettings>'' = 'info'</AdvancedSettings>
