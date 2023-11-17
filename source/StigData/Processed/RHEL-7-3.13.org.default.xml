@@ -5,8 +5,8 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="3.11">
-  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8", this is a finding." -->
+<OrganizationalSettings fullversion="3.13">
+   <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "difok" is set to less than "8", this is a finding." -->
   <OrganizationalSetting id="V-204411" ContainsLine="difok = 8" DoesNotContainPattern="#\s*difok\s*=.*|^\s*difok\s*=\s*(-|)[0-7]$" />
   <!-- Ensure that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "minclass" is set to less than "4", this is a finding." -->
   <OrganizationalSetting id="V-204412" ContainsLine="minclass = 4" DoesNotContainPattern="^#\s*minclass\s*=.*|^\s*minclass\s*=\s*(?!\d{2,})[1-3]" />

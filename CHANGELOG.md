@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply U_RHEL_7_V3R13_STIG: [#1283](https://github.com/microsoft/PowerStig/issues/1283)
+
 ## [4.18.0] - 2023-09-05
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R12: [#1254](https://github.com/microsoft/PowerStig/issues/1254)
