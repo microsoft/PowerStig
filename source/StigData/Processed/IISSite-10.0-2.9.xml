@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 27 Oct 2022 3.4.0.34222 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="11/28/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 25 Oct 2023 3.4.1.22916 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.9" created="11/20/2023">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218744" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.
@@ -9,7 +9,9 @@ For Handler Mappings, the ISSO must document and approve all allowable file exte
       <LegacyId>V-100209</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>For Handler Mappings, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Handler Mappings in IIS 10.0. Handler Mappings at the site level take precedence over Handler Mappings at the server level.
+      <RawString>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+
+For Handler Mappings, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Handler Mappings in IIS 10.0. Handler Mappings at the site level take precedence over Handler Mappings at the server level.
 
 Open the IIS 10.0 Manager.
 
@@ -28,7 +30,9 @@ For Request Filtering, the ISSO must document and approve all allowable file ext
       <LegacyId>V-100211</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>For Request Filtering, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Request Filtering in IIS 10.0. Request Filtering at the site level take precedence over Request Filtering at the server level.
+      <RawString>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+
+For Request Filtering, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Request Filtering in IIS 10.0. Request Filtering at the site level take precedence over Request Filtering at the server level.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server: 
 
@@ -322,26 +326,24 @@ Open the IIS 10.0 Manager.
 
 Double-click "Authentication" in the IIS section of the website’s Home Pane.
 
-If Anonymous access is disabled, this is Not a Finding.
+If "Anonymous access" is disabled, this is Not a Finding.
 
-If Anonymous access is enabled, click "Anonymous Authentication".
+If "Anonymous access" is enabled, click "Anonymous Authentication".
 
 Click "Edit" in the "Actions" pane.
 
-If the "Specific user" radio button is enabled and an ID is specified in the adjacent control box, this is the ID being used for anonymous access. Note: account name.
+If the "Specific user" radio button is enabled and an ID is specified in the adjacent control box, this is the ID being used for anonymous access. Note the account name.
 
 If nothing is tied to "Specific User", this is Not a Finding.
 
 Check privileged groups that may allow the anonymous account inappropriate membership:
-Open "Server Manager" on the machine.
+Open "Computer Management" on the machine.
 
-Expand Configuration.
+Expand "Local Users and Groups".
 
-Expand Local Users and Groups.
+Open "Groups".
 
-Click "Groups".
-
-Review members of any of the following privileged groups:
+Review the members of any of the following privileged groups:
 
 Administrators
 Backup Operators
@@ -361,7 +363,7 @@ Double-click each group and review its members.
 If the IUSR account or any account noted above used for anonymous access is a member of any group with privileged access, this is a finding.</RawString>
     </Rule>
     <Rule id="V-218752" severity="medium" conversionstatus="pass" title="SRG-APP-000233-WSR-000146" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The web document (home) directory is accessed by multiple anonymous users when the web server is in production. By locating the web document (home) directory on the same partition as the web server system file, the risk for unauthorized access to these protected files is increased. Additionally, having the web document (home) directory path on the same drive as the system folders also increases the potential for a drive space exhaustion attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;The content database is accessed by multiple anonymous users when the web server is in production. By locating the content database on the same partition as the web server system file, the risk for unauthorized access to these protected files is increased. Additionally, having the content database path on the same drive as the system folders also increases the potential for a drive space exhaustion attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100225</LegacyId>
@@ -666,7 +668,8 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a public IIS 10.0 web server, this is Not Applicable.
-
+Note: If the server is hosting SharePoint, this is Not Applicable.
+Note: If the server is hosting WSUS, this is Not Applicable.
 Note: If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 10.0 server, and the IIS 10.0 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -689,6 +692,9 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a private IIS 10.0 web server, this is Not Applicable.
+Note: If the server being reviewed is a public IIS 10.0 web server not requiring authentication, this is Not Applicable.
+Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+Note: If the server being reviewed is hosting WSUS, this is Not Applicable.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
@@ -714,6 +720,7 @@ Satisfies: SRG-APP-000172-WSR-000104, SRG-APP-000224-WSR-000135, SRG-APP-000427-
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a public IIS 10.0 web server, this is Not Applicable.
 Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+Note: If the server being reviewed is hosting WSUS, this is Not Applicable.
 Note: If certificate handling is performed at the Proxy/Load Balancer, this is Not Applicable.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
@@ -1118,7 +1125,9 @@ Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not ot
       <LegacyId>V-100235</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
 
@@ -1140,7 +1149,9 @@ If the "Allow double escaping" check box is checked, this is a finding.</RawStri
       <LegacyId>V-100237</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
 
@@ -1212,7 +1223,8 @@ If any error message is not set to "Detailed errors for local requests and custo
       <LegacyId>V-100243</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: If the ".NET feature" is not installed, this check is Not Applicable.
+      <RawString>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+Note: If the ".NET feature" is not installed, this check is Not Applicable.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
