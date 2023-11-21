@@ -4,6 +4,7 @@
 
 * Update PowerSTIG to Parse/Apply U_MS_Office_365_ProPlus_V2R11_STIG: [#1281](https://github.com/microsoft/PowerStig/issues/1281)
 * Update PowerSTIG to Parse/Apply U_MS_Windows_11_V1R5_STIG: [#1273](https://github.com/microsoft/PowerStig/issues/1273)
+* Update PowerSTIG to Parse/Apply U_MS_Windows_Server_2016_V2R7_STIG: [#1275](https://github.com/microsoft/PowerStig/issues/1275)
 
 ## [4.18.0] - 2023-09-05
 
