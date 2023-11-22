@@ -6315,7 +6315,7 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       <RawString>DoD Root CA 5,4ECB5CC3095670454DA1CBD410FC921F46B8564B</RawString>
       <Thumbprint>4ECB5CC3095670454DA1CBD410FC921F46B8564B</Thumbprint>
     </Rule>
-    <Rule id="V-225021.d" severity="medium" conversionstatus="fail" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+    <Rule id="V-225021.d" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName />
       <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root Certificate Authorities (CAs). The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
 
