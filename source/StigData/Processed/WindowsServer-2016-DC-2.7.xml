@@ -7205,31 +7205,6 @@ If any accounts or groups other than the following are granted the "Modify firmw
 
 </RawString>
     </Rule>
-    <Rule id="V-225087" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
-      <Constant>SeSystemEnvironmentPrivilege</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-Accounts with the "Modify firmware environment values" user right can change hardware configuration environment variables. This could result in hardware failures or a denial of service.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Modify firmware environment values</DisplayName>
-      <DuplicateOf />
-      <Force>True</Force>
-      <Identity>Administrators</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-73795</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Modify firmware environment values" user right, this is a finding.
-
-- Administrators
-
-</RawString>
-    </Rule>
     <Rule id="V-225089" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeProfileSingleProcessPrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
