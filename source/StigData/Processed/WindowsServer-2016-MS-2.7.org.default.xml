@@ -37,6 +37,8 @@
   <!-- Ensure location for DoD Root CA 5 certificate is present-->
   <OrganizationalSetting id="V-225021.c" Location="" />
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-225022" Location="" />
+  <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-225022.a" Location="" />
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-225022.b" Location="" />
