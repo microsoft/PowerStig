@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply U_MS_IIS_10-0_Y23M10_STIG: [#1280](https://github.com/microsoft/PowerStig/issues/1280)
 * Update GPRegistryPolicyDSC to version 1.3.1: [#1284](https://github.com/microsoft/PowerStig/issues/1284)
 * Fix for Chrome issue Registry Path is incorrect [#1215](https://github.com/microsoft/PowerStig/issues/1215)
 * Update PowerSTIG to Parse/Apply U_MS_Office_365_ProPlus_V2R11_STIG: [#1281](https://github.com/microsoft/PowerStig/issues/1281)
