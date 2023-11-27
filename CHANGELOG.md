@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Fix for Chrome issue Registry Path is incorrect [#1215](https://github.com/microsoft/PowerStig/issues/1215)
 * Update PowerSTIG to Parse/Apply U_MS_Office_365_ProPlus_V2R11_STIG: [#1281](https://github.com/microsoft/PowerStig/issues/1281)
 * Update PowerSTIG to Parse/Apply U_MS_Windows_11_V1R5_STIG: [#1273](https://github.com/microsoft/PowerStig/issues/1273)
 
