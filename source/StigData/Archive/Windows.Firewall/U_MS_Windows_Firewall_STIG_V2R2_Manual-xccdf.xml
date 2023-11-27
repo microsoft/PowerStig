@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type='text/xsl' href='STIG_unclass.xsl'?><Benchmark xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd" id="Windows_Firewall_with_Advanced_Security" xml:lang="en" xmlns="http://checklists.nist.gov/xccdf/1.1"><status date="2023-08-23">accepted</status><title>Microsoft Windows Defender Firewall with Advanced Security Security Technical Implementation Guide</title><description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</description><notice id="terms-of-use" xml:lang="en"></notice><front-matter xml:lang="en"></front-matter><rear-matter xml:lang="en"></rear-matter><reference href="https://cyber.mil"><dc:publisher>DISA</dc:publisher><dc:source>STIG.DOD.MIL</dc:source></reference><plain-text id="release-info">Release: 2 Benchmark Date: 09 Nov 2023</plain-text><plain-text id="generator">3.4.1.22916</plain-text><plain-text id="conventionsVersion">1.10.0</plain-text><version>2</version><Profile id="MAC-1_Classified"><title>I - Mission Critical Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-241989" selected="true" /><select idref="V-241990" selected="true" /><select idref="V-241991" selected="true" /><select idref="V-241992" selected="true" /><select idref="V-241993" selected="true" /><select idref="V-241994" selected="true" /><select idref="V-241995" selected="true" /><select idref="V-241996" selected="true" /><select idref="V-241997" selected="true" /><select idref="V-241998" selected="true" /><select idref="V-241999" selected="true" /><select idref="V-242000" selected="true" /><select idref="V-242001" selected="true" /><select idref="V-242002" selected="true" /><select idref="V-242003" selected="true" /><select idref="V-242004" selected="true" /><select idref="V-242005" selected="true" /><select idref="V-242006" selected="true" /><select idref="V-242007" selected="true" /><select idref="V-242008" selected="true" /><select idref="V-242009" selected="true" /></Profile><Profile id="MAC-1_Public"><title>I - Mission Critical Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-241989" selected="true" /><select idref="V-241990" selected="true" /><select idref="V-241991" selected="true" /><select idref="V-241992" selected="true" /><select idref="V-241993" selected="true" /><select idref="V-241994" selected="true" /><select idref="V-241995" selected="true" /><select idref="V-241996" selected="true" /><select idref="V-241997" selected="true" /><select idref="V-241998" selected="true" /><select idref="V-241999" selected="true" /><select idref="V-242000" selected="true" /><select idref="V-242001" selected="true" /><select idref="V-242002" selected="true" /><select idref="V-242003" selected="true" /><select idref="V-242004" selected="true" /><select idref="V-242005" selected="true" /><select idref="V-242006" selected="true" /><select idref="V-242007" selected="true" /><select idref="V-242008" selected="true" /><select idref="V-242009" selected="true" /></Profile><Profile id="MAC-1_Sensitive"><title>I - Mission Critical Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-241989" selected="true" /><select idref="V-241990" selected="true" /><select idref="V-241991" selected="true" /><select idref="V-241992" selected="true" /><select idref="V-241993" selected="true" /><select idref="V-241994" selected="true" /><select idref="V-241995" selected="true" /><select idref="V-241996" selected="true" /><select idref="V-241997" selected="true" /><select idref="V-241998" selected="true" /><select idref="V-241999" selected="true" /><select idref="V-242000" selected="true" /><select idref="V-242001" selected="true" /><select idref="V-242002" selected="true" /><select idref="V-242003" selected="true" /><select idref="V-242004" selected="true" /><select idref="V-242005" selected="true" /><select idref="V-242006" selected="true" /><select idref="V-242007" selected="true" /><select idref="V-242008" selected="true" /><select idref="V-242009" selected="true" /></Profile><Profile id="MAC-2_Classified"><title>II - Mission Support Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-241989" selected="true" /><select idref="V-241990" selected="true" /><select idref="V-241991" selected="true" /><select idref="V-241992" selected="true" /><select idref="V-241993" selected="true" /><select idref="V-241994" selected="true" /><select idref="V-241995" selected="true" /><select idref="V-241996" selected="true" /><select idref="V-241997" selected="true" /><select idref="V-241998" selected="true" /><select idref="V-241999" selected="true" /><select idref="V-242000" selected="true" /><select idref="V-242001" selected="true" /><select idref="V-242002" selected="true" /><select idref="V-242003" selected="true" /><select idref="V-242004" selected="true" /><select idref="V-242005" selected="true" /><select idref="V-242006" selected="true" /><select idref="V-242007" selected="true" /><select idref="V-242008" selected="true" /><select idref="V-242009" selected="true" /></Profile><Profile id="MAC-2_Public"><title>II - Mission Support Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-241989" selected="true" /><select idref="V-241990" selected="true" /><select idref="V-241991" selected="true" /><select idref="V-241992" selected="true" /><select idref="V-241993" selected="true" /><select idref="V-241994" selected="true" /><select idref="V-241995" selected="true" /><select idref="V-241996" selected="true" /><select idref="V-241997" selected="true" /><select idref="V-241998" selected="true" /><select idref="V-241999" selected="true" /><select idref="V-242000" selected="true" /><select idref="V-242001" selected="true" /><select idref="V-242002" selected="true" /><select idref="V-242003" selected="true" /><select idref="V-242004" selected="true" /><select idref="V-242005" selected="true" /><select idref="V-242006" selected="true" /><select idref="V-242007" selected="true" /><select idref="V-242008" selected="true" /><select idref="V-242009" selected="true" /></Profile><Profile id="MAC-2_Sensitive"><title>II - Mission Support Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-241989" selected="true" /><select idref="V-241990" selected="true" /><select idref="V-241991" selected="true" /><select idref="V-241992" selected="true" /><select idref="V-241993" selected="true" /><select idref="V-241994" selected="true" /><select idref="V-241995" selected="true" /><select idref="V-241996" selected="true" /><select idref="V-241997" selected="true" /><select idref="V-241998" selected="true" /><select idref="V-241999" selected="true" /><select idref="V-242000" selected="true" /><select idref="V-242001" selected="true" /><select idref="V-242002" selected="true" /><select idref="V-242003" selected="true" /><select idref="V-242004" selected="true" /><select idref="V-242005" selected="true" /><select idref="V-242006" selected="true" /><select idref="V-242007" selected="true" /><select idref="V-242008" selected="true" /><select idref="V-242009" selected="true" /></Profile><Profile id="MAC-3_Classified"><title>III - Administrative Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-241989" selected="true" /><select idref="V-241990" selected="true" /><select idref="V-241991" selected="true" /><select idref="V-241992" selected="true" /><select idref="V-241993" selected="true" /><select idref="V-241994" selected="true" /><select idref="V-241995" selected="true" /><select idref="V-241996" selected="true" /><select idref="V-241997" selected="true" /><select idref="V-241998" selected="true" /><select idref="V-241999" selected="true" /><select idref="V-242000" selected="true" /><select idref="V-242001" selected="true" /><select idref="V-242002" selected="true" /><select idref="V-242003" selected="true" /><select idref="V-242004" selected="true" /><select idref="V-242005" selected="true" /><select idref="V-242006" selected="true" /><select idref="V-242007" selected="true" /><select idref="V-242008" selected="true" /><select idref="V-242009" selected="true" /></Profile><Profile id="MAC-3_Public"><title>III - Administrative Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-241989" selected="true" /><select idref="V-241990" selected="true" /><select idref="V-241991" selected="true" /><select idref="V-241992" selected="true" /><select idref="V-241993" selected="true" /><select idref="V-241994" selected="true" /><select idref="V-241995" selected="true" /><select idref="V-241996" selected="true" /><select idref="V-241997" selected="true" /><select idref="V-241998" selected="true" /><select idref="V-241999" selected="true" /><select idref="V-242000" selected="true" /><select idref="V-242001" selected="true" /><select idref="V-242002" selected="true" /><select idref="V-242003" selected="true" /><select idref="V-242004" selected="true" /><select idref="V-242005" selected="true" /><select idref="V-242006" selected="true" /><select idref="V-242007" selected="true" /><select idref="V-242008" selected="true" /><select idref="V-242009" selected="true" /></Profile><Profile id="MAC-3_Sensitive"><title>III - Administrative Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-241989" selected="true" /><select idref="V-241990" selected="true" /><select idref="V-241991" selected="true" /><select idref="V-241992" selected="true" /><select idref="V-241993" selected="true" /><select idref="V-241994" selected="true" /><select idref="V-241995" selected="true" /><select idref="V-241996" selected="true" /><select idref="V-241997" selected="true" /><select idref="V-241998" selected="true" /><select idref="V-241999" selected="true" /><select idref="V-242000" selected="true" /><select idref="V-242001" selected="true" /><select idref="V-242002" selected="true" /><select idref="V-242003" selected="true" /><select idref="V-242004" selected="true" /><select idref="V-242005" selected="true" /><select idref="V-242006" selected="true" /><select idref="V-242007" selected="true" /><select idref="V-242008" selected="true" /><select idref="V-242009" selected="true" /></Profile><Group id="V-241989"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-241989r922928_rule" weight="10.0" severity="medium"><version>WNFWA-000001</version><title>Windows Defender Firewall with Advanced Security must be enabled when connected to a domain.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. This setting enables the firewall when connected to the domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17415</ident><ident system="http://cyber.mil/legacy">SV-54833</ident><ident system="http://cyber.mil/cci">CCI-001414</ident><fixtext fixref="F-45223r922927_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Domain Profile tab &gt;&gt; State, "Firewall state" to "On (recommended)".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set domainprofile state on".
+or
+"Netsh advfirewall set allprofiles state on".</fixtext><fix id="F-45223r922927_fix" /><check system="C-45264r921981_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the system is not a member of a domain, the Domain Profile requirements can be marked NA.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\
+
+Value Name:  EnableFirewall
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\
+
+Value Name:  EnableFirewall
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-241990"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-241990r922930_rule" weight="10.0" severity="medium"><version>WNFWA-000002</version><title>Windows Defender Firewall with Advanced Security must be enabled when connected to a private network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. This setting enables the firewall when connected to a private network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17416</ident><ident system="http://cyber.mil/legacy">SV-54849</ident><ident system="http://cyber.mil/cci">CCI-001414</ident><fixtext fixref="F-45224r922929_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Private Profile tab &gt;&gt; State, "Firewall state" to "On (recommended)".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set privateprofile state on".
+or
+"Netsh advfirewall set allprofiles state on".</fixtext><fix id="F-45224r922929_fix" /><check system="C-45265r921984_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\
+
+Value Name:  EnableFirewall
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\
+
+Value Name:  EnableFirewall
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-241991"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-241991r922932_rule" weight="10.0" severity="medium"><version>WNFWA-000003</version><title>Windows Defender Firewall with Advanced Security must be enabled when connected to a public network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. This setting enables the firewall when connected to a public network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17417</ident><ident system="http://cyber.mil/legacy">SV-54855</ident><ident system="http://cyber.mil/cci">CCI-001414</ident><fixtext fixref="F-45225r922931_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Public Profile tab &gt;&gt; State, "Firewall state" to "On (recommended)".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set publicprofile state on".
+or
+"Netsh advfirewall set allprofiles state on".</fixtext><fix id="F-45225r922931_fix" /><check system="C-45266r921987_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\
+
+Value Name:  EnableFirewall
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\
+
+Value Name:  EnableFirewall
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-241992"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-241992r922934_rule" weight="10.0" severity="high"><version>WNFWA-000004</version><title>Windows Defender Firewall with Advanced Security must block unsolicited inbound connections when connected to a domain.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Unsolicited inbound connections may be malicious attempts to gain access to a system. Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked in the domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17418</ident><ident system="http://cyber.mil/legacy">SV-54859</ident><ident system="http://cyber.mil/cci">CCI-000382</ident><fixtext fixref="F-45226r922933_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Domain Profile tab &gt;&gt; State, "Inbound connections" to "Block (default)".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set domainprofile firewallpolicy blockinbound,allowoutbound".
+or
+"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound".
+
+Both inbound and outbound parameters must be specified to execute this command.</fixtext><fix id="F-45226r922933_fix" /><check system="C-45267r698215_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the system is not a member of a domain, the Domain Profile requirements can be marked NA.
+
+If the system is a member of a domain and the firewall's Domain Profile is not enabled (see V-17415), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\
+
+Value Name:  DefaultInboundAction
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\
+
+Value Name:  DefaultInboundAction
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-241993"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-241993r922936_rule" weight="10.0" severity="medium"><version>WNFWA-000005</version><title>Windows Defender Firewall with Advanced Security must allow outbound connections, unless a rule explicitly blocks the connection when connected to a domain.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Outbound connections are allowed in the domain, unless a rule explicitly blocks the connection. This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17419</ident><ident system="http://cyber.mil/legacy">SV-54863</ident><ident system="http://cyber.mil/cci">CCI-001094</ident><fixtext fixref="F-45227r922935_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Domain Profile tab &gt;&gt; State, "Outbound connections" to "Allow (default)".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set domainprofile firewallpolicy blockinbound,allowoutbound".
+or
+"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound".
+
+Both inbound and outbound parameters must be specified to execute this command.</fixtext><fix id="F-45227r922935_fix" /><check system="C-45268r698218_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the system is not a member of a domain, the Domain Profile requirements can be marked NA.
+
+If the system is a member of a domain and the firewall's Domain Profile is not enabled (see V-17415), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\
+
+Value Name:  DefaultOutboundAction
+
+Type:  REG_DWORD
+Value:  0x00000000 (0)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\
+
+Value Name:  DefaultOutboundAction
+
+Type:  REG_DWORD
+Value:  0x00000000 (0)</check-content></check></Rule></Group><Group id="V-241994"><title>SRG-OS-000327-GPOS-00127</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-241994r922938_rule" weight="10.0" severity="low"><version>WNFWA-000009</version><title>Windows Defender Firewall with Advanced Security log size must be configured for domain connections.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. The firewall log file size for a domain connection will be set to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17425</ident><ident system="http://cyber.mil/legacy">SV-54874</ident><ident system="http://cyber.mil/cci">CCI-000140</ident><fixtext fixref="F-45228r922937_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Microsoft Defender Firewall with Advanced Security &gt;&gt; Microsoft Defender Firewall with Advanced Security &gt;&gt; Microsoft Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Domain Profile tab &gt;&gt; Logging (select Customize), "Size limit (KB):" to "16,384" or greater.
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh command may also be used to configure this setting:
+
+"Netsh advfirewall set domainprofile logging maxfilesize 16384" or greater.</fixtext><fix id="F-45228r922937_fix" /><check system="C-45269r698221_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the system is not a member of a domain, the Domain Profile requirements can be marked NA.
+
+If the system is a member of a domain and the firewall's Domain Profile is not enabled (see V-17415), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\
+
+Value Name:  LogFileSize
+
+Type:  REG_DWORD
+Value:  0x00004000 (16384) (or greater)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\
+
+Value Name:  LogFileSize
+
+Type:  REG_DWORD
+Value:  0x00004000 (16384) (or greater)</check-content></check></Rule></Group><Group id="V-241995"><title>SRG-OS-000327-GPOS-00127</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-241995r922940_rule" weight="10.0" severity="low"><version>WNFWA-000010</version><title>Windows Defender Firewall with Advanced Security must log dropped packets when connected to a domain.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of dropped packets for a domain connection will be enabled to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17426</ident><ident system="http://cyber.mil/legacy">SV-54877</ident><ident system="http://cyber.mil/cci">CCI-000172</ident><fixtext fixref="F-45229r922939_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Domain Profile tab &gt;&gt; Logging (select Customize), "Log dropped packets" to "Yes".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set domainprofile logging droppedconnections enable".
+or
+"Netsh advfirewall set allprofiles logging droppedconnections enable".</fixtext><fix id="F-45229r922939_fix" /><check system="C-45270r698224_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the system is not a member of a domain, the Domain Profile requirements can be marked NA.
+
+If the system is a member of a domain and the firewall's Domain Profile is not enabled (see V-17415), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\
+
+Value Name:  LogDroppedPackets
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\
+
+Value Name:  LogDroppedPackets
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-241996"><title>SRG-OS-000327-GPOS-00127</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-241996r922942_rule" weight="10.0" severity="low"><version>WNFWA-000011</version><title>Windows Defender Firewall with Advanced Security must log successful connections when connected to a domain.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of successful connections for a domain connection will be enabled to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17427</ident><ident system="http://cyber.mil/legacy">SV-54878</ident><ident system="http://cyber.mil/cci">CCI-001462</ident><fixtext fixref="F-45230r922941_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Domain Profile tab &gt;&gt; Logging (select Customize), "Log successful connections" to "Yes".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set domainprofile logging allowedconnections enable".
+or
+"Netsh advfirewall set allprofiles logging allowedconnections enable".</fixtext><fix id="F-45230r922941_fix" /><check system="C-45271r698227_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the system is not a member of a domain, the Domain Profile requirements can be marked NA.
+
+If the system is a member of a domain and the firewall's Domain Profile is not enabled (see V-17415), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\
+
+Value Name:  LogSuccessfulConnections
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\
+
+Value Name:  LogSuccessfulConnections
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-241997"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-241997r922944_rule" weight="10.0" severity="high"><version>WNFWA-000012</version><title>Windows Defender Firewall with Advanced Security must block unsolicited inbound connections when connected to a private network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Unsolicited inbound connections may be malicious attempts to gain access to a system. Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a private network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17428</ident><ident system="http://cyber.mil/legacy">SV-54879</ident><ident system="http://cyber.mil/cci">CCI-000382</ident><fixtext fixref="F-45231r922943_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Private Profile tab &gt;&gt; State, "Inbound connections" to "Block (default)".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set privateprofile firewallpolicy blockinbound,allowoutbound".
+or
+"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound".
+
+Both inbound and outbound parameters must be specified to execute this command.</fixtext><fix id="F-45231r922943_fix" /><check system="C-45272r698230_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the firewall's Private Profile is not enabled (see V-17416), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\
+
+Value Name:  DefaultInboundAction
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\
+
+Value Name:  DefaultInboundAction
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-241998"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-241998r922946_rule" weight="10.0" severity="medium"><version>WNFWA-000013</version><title>Windows Defender Firewall with Advanced Security must allow outbound connections, unless a rule explicitly blocks the connection when connected to a private network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Outbound connections are allowed on a private network, unless a rule explicitly blocks the connection. This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17429</ident><ident system="http://cyber.mil/legacy">SV-54890</ident><ident system="http://cyber.mil/cci">CCI-001094</ident><fixtext fixref="F-45232r922945_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Private Profile tab &gt;&gt; State, "Outbound connections" to "Allow (default)".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set privateprofile firewallpolicy blockinbound,allowoutbound".
+or
+"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound".
+
+Both inbound and outbound parameters must be specified to execute this command.</fixtext><fix id="F-45232r922945_fix" /><check system="C-45273r698233_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the firewall's Private Profile is not enabled (see V-17416), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\
+
+Value Name:  DefaultOutboundAction
+
+Type:  REG_DWORD
+Value:  0x00000000 (0)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\
+
+Value Name:  DefaultOutboundAction
+
+Type:  REG_DWORD
+Value:  0x00000000 (0)</check-content></check></Rule></Group><Group id="V-241999"><title>SRG-OS-000327-GPOS-00127</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-241999r922948_rule" weight="10.0" severity="low"><version>WNFWA-000017</version><title>Windows Defender Firewall with Advanced Security log size must be configured for private network connections.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. The firewall log file size for a private connection will be set to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17435</ident><ident system="http://cyber.mil/legacy">SV-54903</ident><ident system="http://cyber.mil/cci">CCI-000140</ident><fixtext fixref="F-45233r922947_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Private Profile tab &gt;&gt; Logging (select Customize), "Size limit (KB)" to "16,384" or greater.
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh command may also be used to configure this setting:
+
+"Netsh advfirewall set privateprofile logging maxfilesize 16384" or greater.</fixtext><fix id="F-45233r922947_fix" /><check system="C-45274r698236_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the firewall's Private Profile is not enabled (see V-17416), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\
+
+Value Name:  LogFileSize
+
+Type:  REG_DWORD
+Value:  0x00004000 (16384) (or greater)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\
+
+Value Name:  LogFileSize
+
+Type:  REG_DWORD
+Value:  0x00004000 (16384) (or greater)</check-content></check></Rule></Group><Group id="V-242000"><title>SRG-OS-000327-GPOS-00127</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-242000r922950_rule" weight="10.0" severity="low"><version>WNFWA-000018</version><title>Windows Defender Firewall with Advanced Security must log dropped packets when connected to a private network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of dropped packets for a private network connection will be enabled to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17436</ident><ident system="http://cyber.mil/legacy">SV-54904</ident><ident system="http://cyber.mil/cci">CCI-000172</ident><fixtext fixref="F-45234r922949_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Private Profile tab &gt;&gt; Logging (select Customize), "Log dropped packets" to "Yes".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set privateprofile logging droppedconnections enable".
+or
+"Netsh advfirewall set allprofiles logging droppedconnections enable".</fixtext><fix id="F-45234r922949_fix" /><check system="C-45275r698239_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the firewall's Private Profile is not enabled (see V-17416), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\
+
+Value Name:  LogDroppedPackets
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\
+
+Value Name:  LogDroppedPackets
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-242001"><title>SRG-OS-000327-GPOS-00127</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-242001r922952_rule" weight="10.0" severity="low"><version>WNFWA-000019</version><title>Windows Defender Firewall with Advanced Security must log successful connections when connected to a private network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of successful connections for a private network connection will be enabled to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17437</ident><ident system="http://cyber.mil/legacy">SV-54905</ident><ident system="http://cyber.mil/cci">CCI-001462</ident><fixtext fixref="F-45235r922951_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Microsoft Defender Firewall with Advanced Security &gt;&gt; Microsoft Defender Firewall with Advanced Security &gt;&gt; Microsoft Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Private Profile tab &gt;&gt; Logging (select Customize), "Logged successful connections" to "Yes".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set privateprofile logging allowedconnections enable".
+or
+"Netsh advfirewall set allprofiles logging allowedconnections enable".</fixtext><fix id="F-45235r922951_fix" /><check system="C-45276r698242_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the firewall's Private Profile is not enabled (see V-17416), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\
+
+Value Name:  LogSuccessfulConnections
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\
+
+Value Name:  LogSuccessfulConnections
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-242002"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-242002r922954_rule" weight="10.0" severity="high"><version>WNFWA-000020</version><title>Windows Defender Firewall with Advanced Security must block unsolicited inbound connections when connected to a public network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Unsolicited inbound connections may be malicious attempts to gain access to a system. Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a public network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17438</ident><ident system="http://cyber.mil/legacy">SV-54906</ident><ident system="http://cyber.mil/cci">CCI-000382</ident><fixtext fixref="F-45236r922953_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Public Profile tab &gt;&gt; State, "Inbound connections" to "Block (default)".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set publicprofile firewallpolicy blockinbound,allowoutbound".
+or
+"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound".
+
+Both inbound and outbound parameters must be specified to execute this command.</fixtext><fix id="F-45236r922953_fix" /><check system="C-45277r698245_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the firewall's Public Profile is not enabled (see V-17417), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\
+
+Value Name:  DefaultInboundAction
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\
+
+Value Name:  DefaultInboundAction
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-242003"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-242003r922956_rule" weight="10.0" severity="medium"><version>WNFWA-000021</version><title>Windows Defender Firewall with Advanced Security must allow outbound connections, unless a rule explicitly blocks the connection when connected to a public network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Outbound connections are allowed on a public network, unless a rule explicitly blocks the connection. This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17439</ident><ident system="http://cyber.mil/legacy">SV-54908</ident><ident system="http://cyber.mil/cci">CCI-001094</ident><fixtext fixref="F-45237r922955_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Public Profile tab &gt;&gt; State, "Outbound connections" to "Allow (default)".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set publicprofile firewallpolicy blockinbound,allowoutbound".
+or
+"Netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound".
+
+Both inbound and outbound parameters must be specified to execute this command.</fixtext><fix id="F-45237r922955_fix" /><check system="C-45278r698248_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the firewall's Public Profile is not enabled (see V-17417), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\
+
+Value Name:  DefaultOutboundAction
+
+Type:  REG_DWORD
+Value:  0x00000000 (0)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\
+
+Value Name:  DefaultOutboundAction
+
+Type:  REG_DWORD
+Value:  0x00000000 (0)</check-content></check></Rule></Group><Group id="V-242004"><title>SRG-OS-000327-GPOS-00127</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-242004r922958_rule" weight="10.0" severity="medium"><version>WNFWA-000024</version><title>Windows Defender Firewall with Advanced Security local firewall rules must not be merged with Group Policy settings when connected to a public network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Local firewall rules will not be merged with Group Policy settings on a public network to prevent Group Policy settings from being changed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17442</ident><ident system="http://cyber.mil/legacy">SV-54917</ident><ident system="http://cyber.mil/cci">CCI-001190</ident><fixtext fixref="F-45238r922957_fix">If the system is not a member of a domain, this is NA.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Public Profile tab &gt;&gt; Settings (select Customize) &gt;&gt; Rule merging, "Apply local firewall rules:" to "No".</fixtext><fix id="F-45238r922957_fix" /><check system="C-45279r698251_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the system is not a member of a domain, this is NA.
+
+If the firewall's Public Profile is not enabled (see V-17417), this requirement is also a finding.
+
+Verify the registry value below.
+
+If this registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\
+
+Value Name:  AllowLocalPolicyMerge
+
+Type:  REG_DWORD
+Value:  0x00000000 (0)</check-content></check></Rule></Group><Group id="V-242005"><title>SRG-OS-000327-GPOS-00127</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-242005r922960_rule" weight="10.0" severity="medium"><version>WNFWA-000025</version><title>Windows Defender Firewall with Advanced Security local connection rules must not be merged with Group Policy settings when connected to a public network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Local connection rules will not be merged with Group Policy settings on a public network to prevent Group Policy settings from being changed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17443</ident><ident system="http://cyber.mil/legacy">SV-54918</ident><ident system="http://cyber.mil/cci">CCI-001190</ident><fixtext fixref="F-45239r922959_fix">If the system is not a member of a domain, this is NA.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Public Profile tab &gt;&gt; Settings (select Customize) &gt;&gt; Rule merging, "Apply local connection security rules:" to "No".</fixtext><fix id="F-45239r922959_fix" /><check system="C-45280r698254_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the system is not a member of a domain, this is NA.
+
+If the firewall's Public Profile is not enabled (see V-17417), this requirement is also a finding.
+
+Verify the registry value below.
+
+If this registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\
+
+Value Name:  AllowLocalIPsecPolicyMerge
+
+Type:  REG_DWORD
+Value:  0x00000000 (0)</check-content></check></Rule></Group><Group id="V-242006"><title>SRG-OS-000327-GPOS-00127</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-242006r922962_rule" weight="10.0" severity="low"><version>WNFWA-000027</version><title>Windows Defender Firewall with Advanced Security log size must be configured for public network connections.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. The firewall log file size for a public network connection will be set to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17445</ident><ident system="http://cyber.mil/legacy">SV-54921</ident><ident system="http://cyber.mil/cci">CCI-000140</ident><fixtext fixref="F-45240r922961_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Microsoft Defender Firewall with Advanced Security &gt;&gt; Microsoft Defender Firewall with Advanced Security &gt;&gt; Microsoft Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Public Profile tab &gt;&gt; Logging (select Customize), "Size limit (KB)" to "16,384" or greater.
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh command may also be used to configure this setting:
+
+"Netsh advfirewall set publicprofile logging maxfilesize 16384" or greater.</fixtext><fix id="F-45240r922961_fix" /><check system="C-45281r698257_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the firewall's Public Profile is not enabled (see V-17417), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\
+
+Value Name:  LogFileSize
+
+Type:  REG_DWORD
+Value:  0x00004000 (16384) (or greater)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\
+
+Value Name:  LogFileSize
+
+Type:  REG_DWORD
+Value:  0x00004000 (16384) (or greater)</check-content></check></Rule></Group><Group id="V-242007"><title>SRG-OS-000327-GPOS-00127</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-242007r922964_rule" weight="10.0" severity="low"><version>WNFWA-000028</version><title>Windows Defender Firewall with Advanced Security must log dropped packets when connected to a public network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of dropped packets for a public network connection will be enabled to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17446</ident><ident system="http://cyber.mil/legacy">SV-54922</ident><ident system="http://cyber.mil/cci">CCI-000172</ident><fixtext fixref="F-45241r922963_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Public Profile tab &gt;&gt; Logging (select Customize), "Log dropped packets" to "Yes".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set publicprofile logging droppedconnections enable".
+or
+"Netsh advfirewall set allprofiles logging droppedconnections enable".</fixtext><fix id="F-45241r922963_fix" /><check system="C-45282r698260_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the firewall's Public Profile is not enabled (see V-17417), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\
+
+Value Name:  LogDroppedPackets
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\
+
+Value Name:  LogDroppedPackets
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-242008"><title>SRG-OS-000327-GPOS-00127</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-242008r922966_rule" weight="10.0" severity="low"><version>WNFWA-000029</version><title>Windows Defender Firewall with Advanced Security must log successful connections when connected to a public network.</title><description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack. To be effective, it must be enabled and properly configured. Logging of successful connections for a public network connection will be enabled to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-17447</ident><ident system="http://cyber.mil/legacy">SV-54923</ident><ident system="http://cyber.mil/cci">CCI-001462</ident><fixtext fixref="F-45242r922965_fix">The preferred method of configuring the firewall settings is with a policy, particularly in a domain environment.
+
+Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall with Advanced Security &gt;&gt; Windows Defender Firewall Properties (this link will be in the right pane) &gt;&gt; Public Profile tab &gt;&gt; Logging (select Customize), "Logged successful connections" to "Yes".
+
+In addition to using policies, systems may also be configured using the firewall GUI or Netsh commands. These methods may be more appropriate for standalone systems.
+
+The configuration settings in the GUI are the same as those specified in the policy above. Microsoft Defender Firewall Properties will be a link in the center pane after opening Microsoft Defender Firewall with Advanced Security.
+
+The following Netsh commands may also be used to configure this setting:
+
+"Netsh advfirewall set publicprofile logging allowedconnections enable".
+or
+"Netsh advfirewall set allprofiles logging allowedconnections enable".</fixtext><fix id="F-45242r922965_fix" /><check system="C-45283r698263_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>If the firewall's Public Profile is not enabled (see V-17417), this requirement is also a finding.
+
+If the following policy-based registry value exists and is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\
+
+Value Name:  LogSuccessfulConnections
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)
+
+If the policy-based registry value does not exist, verify the following registry value. If it is not configured as specified, this is a finding.
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\
+
+Value Name:  LogSuccessfulConnections
+
+Type:  REG_DWORD
+Value:  0x00000001 (1)</check-content></check></Rule></Group><Group id="V-242009"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-242009r922967_rule" weight="10.0" severity="medium"><version>WNFWA-000100</version><title>Inbound exceptions to the firewall on domain workstations must only allow authorized remote management hosts.</title><description>&lt;VulnDiscussion&gt;Allowing inbound access to domain workstations from other systems may allow lateral movement across systems if credentials are compromised. Limiting inbound connections only from authorized remote management systems will help limit this exposure.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows Defender Firewall with Advanced Security</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows Defender Firewall with Advanced Security</dc:subject><dc:identifier>5363</dc:identifier></reference><ident system="http://cyber.mil/legacy">V-36440</ident><ident system="http://cyber.mil/legacy">SV-55086</ident><ident system="http://cyber.mil/cci">CCI-000067</ident><fixtext fixref="F-45243r698267_fix">Ensure firewall exceptions to inbound connections on domain workstations only allow authorized management systems and remote management hosts.
+
+Firewall rules can be complex and should be thoroughly tested before applying in a production environment.
+
+One method for restricting inbound connections is to only allow exceptions for a specific scope of remote IP addresses. For any inbound rules that allow connections from other systems, configure the Scope for Remote IP addresses to those of authorized management systems and remote management hosts. This may be defined as an IP address, subnet, or range. Apply the rule to all firewall profiles.</fixtext><fix id="F-45243r698267_fix" /><check system="C-45284r922024_chk"><check-content-ref href="Windows_Defender_Firewall_with_Advanced_Security_STIG.xml" name="M" /><check-content>This requirement is NA for servers and non domain workstations.
+
+Verify firewall exceptions for inbound connections on domain workstations only allow authorized management systems and remote management hosts.
+
+Review inbound firewall exception rules in Microsoft Defender Firewall with Advanced Security. Firewall rules can be complex and should be reviewed with the firewall administrator.
+
+One method for restricting inbound connections is to only allow exceptions for a specific scope of remote IP addresses.
+
+If allowed inbound exceptions are not limited to authorized management systems and remote management hosts, this is a finding.</check-content></check></Rule></Group></Benchmark>
