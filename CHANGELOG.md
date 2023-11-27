@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply U_CAN_Ubuntu_18-04_LTS_V2R12_STIG: [#1278](https://github.com/microsoft/PowerStig/issues/1278)
 * Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 STIG Server V2R10 Site V2R9: [#1280](https://github.com/microsoft/PowerStig/issues/1280)
 * Update PowerSTIG to Parse/Apply U_MS_IIS_10-0_Y23M10_STIG: [#1280](https://github.com/microsoft/PowerStig/issues/1280)
 * Update GPRegistryPolicyDSC to version 1.3.1: [#1284](https://github.com/microsoft/PowerStig/issues/1284)
