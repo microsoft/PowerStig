@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Windows Server 2022 STIG V1R4: [#1277](https://github.com/microsoft/PowerStig/issues/1277)
+
 ## [4.18.0] - 2023-09-05
 
 * Update PowerSTIG to Parse/Apply Red Hat Enterprise Linux 7 STIG V3R12: [#1254](https://github.com/microsoft/PowerStig/issues/1254)
