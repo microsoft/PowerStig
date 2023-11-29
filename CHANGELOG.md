@@ -3,6 +3,14 @@
 ## [Unreleased]
 
 * Update PowerSTIG to Parse/Apply Windows Server 2022 STIG V1R4: [#1277](https://github.com/microsoft/PowerStig/issues/1277)
+* Update PowerSTIG to Parse/Apply U_CAN_Ubuntu_18-04_LTS_V2R12_STIG: [#1278](https://github.com/microsoft/PowerStig/issues/1278)
+* Update PowerSTIG to Parse/Apply Microsoft IIS 10.0 STIG Server V2R10 Site V2R9: [#1280](https://github.com/microsoft/PowerStig/issues/1280)
+* Update PowerSTIG to Parse/Apply U_MS_IIS_10-0_Y23M10_STIG: [#1280](https://github.com/microsoft/PowerStig/issues/1280)
+* Update GPRegistryPolicyDSC to version 1.3.1: [#1284](https://github.com/microsoft/PowerStig/issues/1284)
+* Fix for Chrome issue Registry Path is incorrect [#1215](https://github.com/microsoft/PowerStig/issues/1215)
+* Update PowerSTIG to Parse/Apply U_MS_Office_365_ProPlus_V2R11_STIG: [#1281](https://github.com/microsoft/PowerStig/issues/1281)
+* Update PowerSTIG to Parse/Apply U_MS_Windows_11_V1R5_STIG: [#1273](https://github.com/microsoft/PowerStig/issues/1273)
+* Update PowerSTIG to Parse/Apply U_MS_Windows_Firewall_STIG_V2R2_STIG: [#1274](https://github.com/microsoft/PowerStig/issues/1274)
 
 ## [4.18.0] - 2023-09-05
 
