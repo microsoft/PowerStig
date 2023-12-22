@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type='text/xsl' href='STIG_unclass.xsl'?>
 <Benchmark xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd" id="MS_Windows_Server_2022_MS_STIG" xml:lang="en" xmlns="http://checklists.nist.gov/xccdf/1.1">
-  <status date="2022-08-25">accepted</status>
+  <status date="2023-09-11">accepted</status>
   <title>Microsoft Windows Server 2022 Security Technical Implementation Guide</title>
-  <description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</description>
+  <description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</description>
   <notice id="terms-of-use" xml:lang="en">
   </notice>
   <front-matter xml:lang="en">
@@ -14,8 +14,8 @@
     <dc:publisher>DISA</dc:publisher>
     <dc:source>STIG.DOD.MIL</dc:source>
   </reference>
-  <plain-text id="release-info">Release: 1 Benchmark Date: 09 Sep 2022</plain-text>
-  <plain-text id="generator">3.4.0.34222</plain-text>
+  <plain-text id="release-info">Release: 4 Benchmark Date: 09 Nov 2023</plain-text>
+  <plain-text id="generator">3.4.1.22916</plain-text>
   <plain-text id="conventionsVersion">1.10.0</plain-text>
   <version>1</version>
   <Profile id="MAC-1_Classified">
@@ -91,7 +91,6 @@
     <select idref="V-254305" selected="true" />
     <select idref="V-254306" selected="true" />
     <select idref="V-254307" selected="true" />
-    <select idref="V-254308" selected="true" />
     <select idref="V-254309" selected="true" />
     <select idref="V-254310" selected="true" />
     <select idref="V-254311" selected="true" />
@@ -194,7 +193,6 @@
     <select idref="V-254408" selected="true" />
     <select idref="V-254409" selected="true" />
     <select idref="V-254410" selected="true" />
-    <select idref="V-254411" selected="true" />
     <select idref="V-254412" selected="true" />
     <select idref="V-254413" selected="true" />
     <select idref="V-254414" selected="true" />
@@ -370,7 +368,6 @@
     <select idref="V-254305" selected="true" />
     <select idref="V-254306" selected="true" />
     <select idref="V-254307" selected="true" />
-    <select idref="V-254308" selected="true" />
     <select idref="V-254309" selected="true" />
     <select idref="V-254310" selected="true" />
     <select idref="V-254311" selected="true" />
@@ -473,7 +470,6 @@
     <select idref="V-254408" selected="true" />
     <select idref="V-254409" selected="true" />
     <select idref="V-254410" selected="true" />
-    <select idref="V-254411" selected="true" />
     <select idref="V-254412" selected="true" />
     <select idref="V-254413" selected="true" />
     <select idref="V-254414" selected="true" />
@@ -649,7 +645,6 @@
     <select idref="V-254305" selected="true" />
     <select idref="V-254306" selected="true" />
     <select idref="V-254307" selected="true" />
-    <select idref="V-254308" selected="true" />
     <select idref="V-254309" selected="true" />
     <select idref="V-254310" selected="true" />
     <select idref="V-254311" selected="true" />
@@ -752,7 +747,6 @@
     <select idref="V-254408" selected="true" />
     <select idref="V-254409" selected="true" />
     <select idref="V-254410" selected="true" />
-    <select idref="V-254411" selected="true" />
     <select idref="V-254412" selected="true" />
     <select idref="V-254413" selected="true" />
     <select idref="V-254414" selected="true" />
@@ -928,7 +922,6 @@
     <select idref="V-254305" selected="true" />
     <select idref="V-254306" selected="true" />
     <select idref="V-254307" selected="true" />
-    <select idref="V-254308" selected="true" />
     <select idref="V-254309" selected="true" />
     <select idref="V-254310" selected="true" />
     <select idref="V-254311" selected="true" />
@@ -1031,7 +1024,6 @@
     <select idref="V-254408" selected="true" />
     <select idref="V-254409" selected="true" />
     <select idref="V-254410" selected="true" />
-    <select idref="V-254411" selected="true" />
     <select idref="V-254412" selected="true" />
     <select idref="V-254413" selected="true" />
     <select idref="V-254414" selected="true" />
@@ -1207,7 +1199,6 @@
     <select idref="V-254305" selected="true" />
     <select idref="V-254306" selected="true" />
     <select idref="V-254307" selected="true" />
-    <select idref="V-254308" selected="true" />
     <select idref="V-254309" selected="true" />
     <select idref="V-254310" selected="true" />
     <select idref="V-254311" selected="true" />
@@ -1310,7 +1301,6 @@
     <select idref="V-254408" selected="true" />
     <select idref="V-254409" selected="true" />
     <select idref="V-254410" selected="true" />
-    <select idref="V-254411" selected="true" />
     <select idref="V-254412" selected="true" />
     <select idref="V-254413" selected="true" />
     <select idref="V-254414" selected="true" />
@@ -1486,7 +1476,6 @@
     <select idref="V-254305" selected="true" />
     <select idref="V-254306" selected="true" />
     <select idref="V-254307" selected="true" />
-    <select idref="V-254308" selected="true" />
     <select idref="V-254309" selected="true" />
     <select idref="V-254310" selected="true" />
     <select idref="V-254311" selected="true" />
@@ -1589,7 +1578,6 @@
     <select idref="V-254408" selected="true" />
     <select idref="V-254409" selected="true" />
     <select idref="V-254410" selected="true" />
-    <select idref="V-254411" selected="true" />
     <select idref="V-254412" selected="true" />
     <select idref="V-254413" selected="true" />
     <select idref="V-254414" selected="true" />
@@ -1765,7 +1753,6 @@
     <select idref="V-254305" selected="true" />
     <select idref="V-254306" selected="true" />
     <select idref="V-254307" selected="true" />
-    <select idref="V-254308" selected="true" />
     <select idref="V-254309" selected="true" />
     <select idref="V-254310" selected="true" />
     <select idref="V-254311" selected="true" />
@@ -1868,7 +1855,6 @@
     <select idref="V-254408" selected="true" />
     <select idref="V-254409" selected="true" />
     <select idref="V-254410" selected="true" />
-    <select idref="V-254411" selected="true" />
     <select idref="V-254412" selected="true" />
     <select idref="V-254413" selected="true" />
     <select idref="V-254414" selected="true" />
@@ -2044,7 +2030,6 @@
     <select idref="V-254305" selected="true" />
     <select idref="V-254306" selected="true" />
     <select idref="V-254307" selected="true" />
-    <select idref="V-254308" selected="true" />
     <select idref="V-254309" selected="true" />
     <select idref="V-254310" selected="true" />
     <select idref="V-254311" selected="true" />
@@ -2147,7 +2132,6 @@
     <select idref="V-254408" selected="true" />
     <select idref="V-254409" selected="true" />
     <select idref="V-254410" selected="true" />
-    <select idref="V-254411" selected="true" />
     <select idref="V-254412" selected="true" />
     <select idref="V-254413" selected="true" />
     <select idref="V-254414" selected="true" />
@@ -2323,7 +2307,6 @@
     <select idref="V-254305" selected="true" />
     <select idref="V-254306" selected="true" />
     <select idref="V-254307" selected="true" />
-    <select idref="V-254308" selected="true" />
     <select idref="V-254309" selected="true" />
     <select idref="V-254310" selected="true" />
     <select idref="V-254311" selected="true" />
@@ -2426,7 +2409,6 @@
     <select idref="V-254408" selected="true" />
     <select idref="V-254409" selected="true" />
     <select idref="V-254410" selected="true" />
-    <select idref="V-254411" selected="true" />
     <select idref="V-254412" selected="true" />
     <select idref="V-254413" selected="true" />
     <select idref="V-254414" selected="true" />
@@ -2557,12 +2539,12 @@ If users with administrative privileges do not have separate accounts for admini
   <Group id="V-254239">
     <title>SRG-OS-000076-GPOS-00044</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254239r848533_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254239r928653_rule" weight="10.0" severity="medium">
       <version>WN22-00-000020</version>
       <title>Windows Server 2022 passwords for the built-in Administrator account must be changed at least every 60 days.</title>
       <description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the password. The built-in Administrator account is not generally used and its password may not be changed as frequently as necessary. Changing the password for the built-in Administrator account on a regular basis will limit its exposure.
 
-It is highly recommended to use Microsoft's Local Administrator Password Solution (LAPS). Domain-joined systems can configure this to occur more frequently. LAPS will change the password every "30" days by default. The AO still has the overall authority to use another equivalent capability to accomplish the check.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+Windows LAPS must be used to change the built-in Administrator account password.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
       <reference>
         <dc:title>DPMS Target Microsoft Windows Server 2022</dc:title>
         <dc:publisher>DISA</dc:publisher>
@@ -2571,31 +2553,33 @@ It is highly recommended to use Microsoft's Local Administrator Password Solutio
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-000199</ident>
-      <fixtext fixref="F-57675r848532_fix">Change the built-in Administrator account password at least every "60" days.
+      <fixtext fixref="F-57675r928653_fix">Change the enabled local Administrator account password at least every 60 days. Windows LAPS must be used to change the built-in Administrator account password. Domain-joined systems can configure this to occur more frequently. LAPS will change the password every 30 days by default. 
 
-It is highly recommended to use Microsoft's LAPS, which may be used on domain-joined member servers to accomplish this. The AO still has the overall authority to use another equivalent capability to accomplish the check.</fixtext>
-      <fix id="F-57675r848532_fix" />
-      <check system="C-57724r848531_chk">
+More information is available at:
+https://techcommunity.microsoft.com/t5/windows-it-pro-blog/by-popular-demand-windows-laps-available-now/ba-p/3788747
+https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview#windows-laps-supported-platforms-and-azure-ad-laps-preview-status</fixtext>
+      <fix id="F-57675r928653_fix" />
+      <check system="C-57724r928652_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
-        <check-content>Review the password last set date for the built-in Administrator account.
+        <check-content>If there are no enabled local Administrator accounts, this is Not Applicable.
 
-Domain controllers:
+Review the password last set date for the enabled local Administrator account.
+
+On the local domain-joined workstation:
 
 Open "PowerShell".
 
-Enter "Get-ADUser -Filter * -Properties SID, PasswordLastSet | Where SID -Like "*-500" | Ft Name, SID, PasswordLastSet".
+Enter "Get-LocalUser -Name * | Select-Object *".
 
-If the "PasswordLastSet" date is greater than "60" days old, this is a finding.
+If the "PasswordLastSet" date is greater than "60" days old for the local Administrator account for administering the computer/domain, this is a finding.
 
-Member servers and standalone or nondomain-joined systems:
+Verify LAPS is configured and operational. 
 
-Open "Command Prompt".
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Set to enabled. Password Complexity, large letters + small letters + numbers + special, Password Length 14, Password Age 60. If not configured as shown, this is a finding. 
 
-Enter 'Net User [account name] | Find /i "Password Last Set"', where [account name] is the name of the built-in administrator account.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Name of administrator Account to manage &gt;&gt; Set to enabled &gt;&gt; Administrator account name is populated. If it is not, this is a finding. 
 
-(The name of the built-in Administrator account must be changed to something other than "Administrator" per STIG requirements.)
-
-If the "PasswordLastSet" date is greater than "60" days old, this is a finding.</check-content>
+Verify LAPS Operational logs &gt;&gt; Event Viewer &gt;&gt; Applications and Services Logs &gt;&gt; Microsoft &gt;&gt; Windows &gt;&gt; LAPS &gt;&gt; Operational. Verify LAPS policy process is completing. If it is not, this is a finding.</check-content>
       </check>
     </Rule>
   </Group>
@@ -2770,12 +2754,12 @@ If unapproved shared accounts exist, this is a finding.</check-content>
   <Group id="V-254245">
     <title>SRG-OS-000370-GPOS-00155</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254245r848551_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254245r890536_rule" weight="10.0" severity="medium">
       <version>WN22-00-000080</version>
       <title>Windows Server 2022 must employ a deny-all, permit-by-exception policy to allow the execution of authorized software programs.</title>
-      <description>&lt;VulnDiscussion&gt;Using a whitelist provides a configuration management method to allow the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
+      <description>&lt;VulnDiscussion&gt;Using an allowlist provides a configuration management method to allow the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
 
-The organization must identify authorized software programs and only permit execution of authorized software. The process used to identify software programs that are authorized to execute on organizational information systems is commonly referred to as whitelisting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+The organization must identify authorized software programs and only permit execution of authorized software. The process used to identify software programs that are authorized to execute on organizational information systems is commonly referred to as allowlisting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
       <reference>
         <dc:title>DPMS Target Microsoft Windows Server 2022</dc:title>
         <dc:publisher>DISA</dc:publisher>
@@ -2784,25 +2768,25 @@ The organization must identify authorized software programs and only permit exec
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-001774</ident>
-      <fixtext fixref="F-57681r848550_fix">Configure an application whitelisting program to employ a deny-all, permit-by-exception policy to allow the execution of authorized software programs.
+      <fixtext fixref="F-57681r890535_fix">Configure an application allowlisting program to employ a deny-all, permit-by-exception policy to allow the execution of authorized software programs.
 
-Configuration of whitelisting applications will vary by the program. AppLocker is a whitelisting application built in to Windows Server.
+Configuration of allowlisting applications will vary by the program. AppLocker is an allowlisting application built in to Windows Server.
 
 If AppLocker is used, it is configured through group policy in Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Application Control Policies &gt;&gt; AppLocker.
 
-Implementation guidance for AppLocker is available in the NSA paper "Application Whitelisting using Microsoft AppLocker" at the following link:
+Implementation guidance for AppLocker is available at the following link:
 
-https://www.iad.gov/iad/library/ia-guidance/tech-briefs/application-whitelisting-using-microsoft-applocker.cfm</fixtext>
-      <fix id="F-57681r848550_fix" />
-      <check system="C-57730r848549_chk">
+https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/applocker/applocker-policies-deployment-guide</fixtext>
+      <fix id="F-57681r890535_fix" />
+      <check system="C-57730r890534_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
         <check-content>Verify the operating system employs a deny-all, permit-by-exception policy to allow the execution of authorized software programs.
 
-If an application whitelisting program is not in use on the system, this is a finding.
+If an application allowlisting program is not in use on the system, this is a finding.
 
-Configuration of whitelisting applications will vary by the program.
+Configuration of allowlisting applications will vary by the program.
 
-AppLocker is a whitelisting application built in to Windows Server. A deny-by-default implementation is initiated by enabling any AppLocker rules within a category, only allowing what is specified by defined rules.
+AppLocker is an allowlisting application built in to Windows Server. A deny-by-default implementation is initiated by enabling any AppLocker rules within a category, only allowing what is specified by defined rules.
 
 If AppLocker is used, perform the following to view the configuration of AppLocker:
 
@@ -2818,9 +2802,9 @@ Get-AppLockerPolicy -Effective -XML &gt; c:\temp\file.xml
 
 This will produce an xml file with the effective settings that can be viewed in a browser or opened in a program such as Excel for review.
 
-Implementation guidance for AppLocker is available in the NSA paper "Application Whitelisting using Microsoft AppLocker" at the following link:
+Implementation guidance for AppLocker is available at the following link:
 
-https://www.iad.gov/iad/library/ia-guidance/tech-briefs/application-whitelisting-using-microsoft-applocker.cfm</check-content>
+https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/applocker/applocker-policies-deployment-guide</check-content>
       </check>
     </Rule>
   </Group>
@@ -3282,7 +3266,7 @@ Successfully processed 1 files; Failed processing 0 files</check-content>
   <Group id="V-254254">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254254r848578_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254254r921937_rule" weight="10.0" severity="medium">
       <version>WN22-00-000170</version>
       <title>Windows Server 2022 default permissions for the HKEY_LOCAL_MACHINE registry hive must be maintained.</title>
       <description>&lt;VulnDiscussion&gt;The registry is integral to the function, security, and stability of the Windows system. Changing the system's registry permissions allows the possibility of unauthorized and anonymous modification to the operating system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -3294,7 +3278,7 @@ Successfully processed 1 files; Failed processing 0 files</check-content>
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-002235</ident>
-      <fixtext fixref="F-57690r848577_fix">Maintain the default permissions for the HKEY_LOCAL_MACHINE registry hive.
+      <fixtext fixref="F-57690r921936_fix">Maintain the default permissions for the HKEY_LOCAL_MACHINE registry hive.
 
 The default permissions of the higher-level keys are noted below.
 
@@ -3327,12 +3311,12 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Server Operators - Read - This Key and subkeys    (Domain controllers only)
+Server Operators - Read - This Key and subkeys (Domain controllers only)
 
-Microsoft has also given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2022 to the following SID.
+Microsoft has also given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2022 to the following SID:
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681</fixtext>
-      <fix id="F-57690r848577_fix" />
-      <check system="C-57739r848576_chk">
+      <fix id="F-57690r921936_fix" />
+      <check system="C-57739r921935_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
         <check-content>Review the registry permissions for the keys of the HKEY_LOCAL_MACHINE hive noted below.
 
@@ -3373,13 +3357,13 @@ Principal - Access - Applies to
 Users - Read - This key and subkeys
 Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - Subkeys only
+CREATOR OWNER - Full Control - Subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Server Operators - Read - This Key and subkeys    (Domain controllers only)
+Server Operators - Read - This Key and subkeys (Domain controllers only)
 
 Other examples under the noted keys may also be sampled. There may be some instances where nonprivileged groups have greater than Read permission.
 
-Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2022 to the following SID, this is currently not a finding.
+Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2022 to the following SID. This is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
 
 If the defaults have not been changed, these are not a finding.</check-content>
@@ -3574,7 +3558,7 @@ If any enabled user accounts are returned with a "PasswordExpires" status of "Fa
   <Group id="V-254259">
     <title>SRG-OS-000363-GPOS-00150</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254259r848593_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254259r890538_rule" weight="10.0" severity="medium">
       <version>WN22-00-000220</version>
       <title>Windows Server 2022 system files must be monitored for unauthorized changes.</title>
       <description>&lt;VulnDiscussion&gt;Monitoring system files for changes against a baseline on a regular basis may help detect the possible introduction of malicious code on a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -3588,13 +3572,13 @@ If any enabled user accounts are returned with a "PasswordExpires" status of "Fa
       <ident system="http://cyber.mil/cci">CCI-001744</ident>
       <fixtext fixref="F-57695r848592_fix">Monitor the system for unauthorized changes to system files (e.g., *.exe, *.bat, *.com, *.cmd, and *.dll) against a baseline on a weekly basis. This can be done with the use of various monitoring tools.</fixtext>
       <fix id="F-57695r848592_fix" />
-      <check system="C-57744r848591_chk">
+      <check system="C-57744r890537_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
         <check-content>Determine whether the system is monitored for unauthorized changes to system files (e.g., *.exe, *.bat, *.com, *.cmd, and *.dll) against a baseline on a weekly basis.
 
 If system files are not monitored for unauthorized changes, this is a finding.
 
-A properly configured and approved DoD ESS solution that supports a File Integrity Monitor (FIM) module will meet the requirement for file integrity checking.</check-content>
+An approved and properly configured solution will contain both a list of baselines that includes all system file locations and a file comparison task that is scheduled to run at least weekly.</check-content>
       </check>
     </Rule>
   </Group>
@@ -4431,9 +4415,9 @@ If the site includes any system areas such as root of the drive, Program Files, 
   <Group id="V-254281">
     <title>SRG-OS-000355-GPOS-00143</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254281r848659_rule" weight="10.0" severity="low">
+    <Rule id="SV-254281r921940_rule" weight="10.0" severity="low">
       <version>WN22-00-000440</version>
-      <title>The Windows Server 2022 time service must synchronize with an appropriate DoD time source.</title>
+      <title>The Windows Server 2022 time service must synchronize with an appropriate DOD time source.</title>
       <description>&lt;VulnDiscussion&gt;The Windows Time Service controls time synchronization settings. Time synchronization is essential for authentication and auditing purposes. If the Windows Time Service is used, it must synchronize with a secure, authorized time source. Domain-joined systems are automatically configured to synchronize with domain controllers. If an NTP server is configured, it must synchronize with a secure, authorized time source.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
       <reference>
         <dc:title>DPMS Target Microsoft Windows Server 2022</dc:title>
@@ -4443,15 +4427,15 @@ If the site includes any system areas such as root of the drive, Program Files, 
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-001891</ident>
-      <fixtext fixref="F-57717r848658_fix">Configure the system to synchronize time with an appropriate DoD time source.
+      <fixtext fixref="F-57717r921939_fix">Configure the system to synchronize time with an appropriate DOD time source.
 
 Domain-joined systems use NT5DS to synchronize time from other systems in the domain by default.
 
-If the system needs to be configured to an NTP server, configure the system to point to an authorized time server by setting the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; Windows Time Service &gt;&gt; Time Providers. Change "Configure Windows NTP Client" to "Enabled", and configure the "NtpServer" field to point to an appropriate DoD time server.
+If the system needs to be configured to an NTP server, configure the system to point to an authorized time server by setting the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; Windows Time Service &gt;&gt; Time Providers. Change "Configure Windows NTP Client" to "Enabled", and configure the "NtpServer" field to point to an appropriate DOD time server.
 
-The US Naval Observatory operates stratum 1 time servers, identified at https://www.usno.navy.mil/USNO/time/ntp/dod-customers. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.</fixtext>
-      <fix id="F-57717r848658_fix" />
-      <check system="C-57766r848657_chk">
+The US Naval Observatory operates stratum 1 time servers, identified at https://www.cnmoc.usff.navy.mil/Our-Commands/United-States-Naval-Observatory/Precise-Time-Department/Network-Time-Protocol-NTP/. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.</fixtext>
+      <fix id="F-57717r921939_fix" />
+      <check system="C-57766r921938_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
         <check-content>Review the Windows time service configuration.
 
@@ -4465,7 +4449,7 @@ If the value for "Type" under "NTP Client" is not "NT5DS", this is a finding.
 
 Other systems:
 
-If systems are configured with a "Type" of "NTP", including standalone or nondomain-joined systems and the domain controller with the PDC Emulator role, and do not have a DoD time server defined for "NTPServer", this is a finding.
+If systems are configured with a "Type" of "NTP", including standalone or nondomain-joined systems and the domain controller with the PDC Emulator role, and do not have a DOD time server defined for "NTPServer", this is a finding.
 
 To determine the domain controller with the PDC Emulator role:
 
@@ -4540,7 +4524,7 @@ If a value of "True" is not returned, this is a finding.</check-content>
   <Group id="V-254294">
     <title>SRG-OS-000342-GPOS-00133</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254294r848698_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254294r877390_rule" weight="10.0" severity="medium">
       <version>WN22-AU-000010</version>
       <title>Windows Server 2022 audit records must be backed up to a different system or media than the system being audited.</title>
       <description>&lt;VulnDiscussion&gt;Protection of log data includes ensuring the log data is not accidentally lost or deleted. Audit information stored in one location is vulnerable to accidental or incidental deletion or alteration.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -5078,46 +5062,6 @@ Compare the "AuditPol" settings with the following:
 If the system does not audit the following, this is a finding.
 
 Detailed Tracking &gt;&gt; Process Creation - Success</check-content>
-      </check>
-    </Rule>
-  </Group>
-  <Group id="V-254308">
-    <title>SRG-OS-000240-GPOS-00090</title>
-    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254308r848740_rule" weight="10.0" severity="medium">
-      <version>WN22-AU-000150</version>
-      <title>Windows Server 2022 must be configured to audit Logon/Logoff - Account Lockout successes.</title>
-      <description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
-
-Account Lockout events can be used to identify potentially malicious logon attempts.
-
-Satisfies: SRG-OS-000240-GPOS-00090, SRG-OS-000470-GPOS-00214&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-      <reference>
-        <dc:title>DPMS Target Microsoft Windows Server 2022</dc:title>
-        <dc:publisher>DISA</dc:publisher>
-        <dc:type>DPMS Target</dc:type>
-        <dc:subject>Microsoft Windows Server 2022</dc:subject>
-        <dc:identifier>5485</dc:identifier>
-      </reference>
-      <ident system="http://cyber.mil/cci">CCI-000172</ident>
-      <ident system="http://cyber.mil/cci">CCI-001404</ident>
-      <fixtext fixref="F-57744r848739_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Logon/Logoff &gt;&gt; Audit Account Lockout with "Success" selected.</fixtext>
-      <fix id="F-57744r848739_fix" />
-      <check system="C-57793r848738_chk">
-        <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
-        <check-content>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN22-SO-000050) for the detailed auditing subcategories to be effective. 
-
-Use the "AuditPol" tool to review the current Audit Policy configuration:
-
-Open "PowerShell" or a "Command Prompt" with elevated privileges ("Run as administrator").
-
-Enter "AuditPol /get /category:*"
-
-Compare the "AuditPol" settings with the following:
-
-If the system does not audit the following, this is a finding.
-
-Logon/Logoff &gt;&gt; Account Lockout - Success</check-content>
       </check>
     </Rule>
   </Group>
@@ -6864,10 +6808,10 @@ Value: 0x00000000 (0)</check-content>
   <Group id="V-254356">
     <title>SRG-OS-000480-GPOS-00227</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254356r848884_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254356r916220_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000250</version>
-      <title>Windows Server 2022 Telemetry must be configured to Security or Basic.</title>
-      <description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Limiting this capability will prevent potentially sensitive information from being sent outside the enterprise. The "Security" option for Telemetry configures the lowest amount of data, effectively none outside of the Malicious Software Removal Tool (MSRT), Defender, and telemetry client settings. "Basic" sends basic diagnostic and usage data and may be required to support some Microsoft services.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <title>Windows Server 2022 Diagnostic Data must be configured to send "required diagnostic data" or "optional diagnostic data".</title>
+      <description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Limiting this capability will prevent potentially sensitive information from being sent outside the enterprise. The "send required diagnostic data" option for Allow Diagnostic Data configures the lowest amount of data, effectively none outside of the Malicious Software Removal Tool (MSRT), Defender, and Diagnostic Data client settings. "Optional Diagnostic Data" sends basic diagnostic and usage data and may be required to support some Microsoft services.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
       <reference>
         <dc:title>DPMS Target Microsoft Windows Server 2022</dc:title>
         <dc:publisher>DISA</dc:publisher>
@@ -6876,9 +6820,9 @@ Value: 0x00000000 (0)</check-content>
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-57792r848883_fix">Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Data Collection and Preview Build &gt;&gt; Allow Telemetry to "Enabled" with "0 - Security [Enterprise Only]" or "1 - Basic" selected in "Options".</fixtext>
-      <fix id="F-57792r848883_fix" />
-      <check system="C-57841r848882_chk">
+      <fixtext fixref="F-57792r902887_fix">Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Data Collection and Preview Build &gt;&gt; Allow Diagnostic Data to "Enabled" with "Send required diagnostic data" selected or "Send optional diagnostic data".</fixtext>
+      <fix id="F-57792r902887_fix" />
+      <check system="C-57841r916219_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
         <check-content>If the following registry value does not exist or is not configured as specified, this is a finding:
 
@@ -6888,14 +6832,14 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DataCollection\
 Value Name: AllowTelemetry
 
 Type: REG_DWORD
-Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</check-content>
+Value:  0x00000001 (1), 0x00000003 (3)</check-content>
       </check>
     </Rule>
   </Group>
   <Group id="V-254357">
     <title>SRG-OS-000480-GPOS-00227</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254357r848887_rule" weight="10.0" severity="low">
+    <Rule id="SV-254357r890545_rule" weight="10.0" severity="low">
       <version>WN22-CC-000260</version>
       <title>Windows Server 2022 Windows Update must not obtain updates from other PCs on the internet.</title>
       <description>&lt;VulnDiscussion&gt;Windows Update can obtain updates from additional sources instead of Microsoft. In addition to Microsoft, updates can be obtained from and sent to PCs on the local network as well as on the internet. This is part of the Windows Update trusted process; however, to minimize outside exposure, obtaining updates from or sending to systems on the internet must be prevented.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -6907,17 +6851,17 @@ Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</check-content>
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-57793r848886_fix">Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Delivery Optimization &gt;&gt; Download Mode to "Enabled" with any option except "Internet" selected.
+      <fixtext fixref="F-57793r890544_fix">Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Delivery Optimization &gt;&gt; Download Mode to "Enabled" with any option except "Internet" selected.
 
 Acceptable selections include:
 
-Bypass (100)
-Group (2)
 HTTP only (0)
 LAN (1)
+Group (2)
+Internet (3)
 Simple (99)</fixtext>
-      <fix id="F-57793r848886_fix" />
-      <check system="C-57842r848885_chk">
+      <fix id="F-57793r890544_fix" />
+      <check system="C-57842r890543_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
         <check-content>If the following registry value does not exist or is not configured as specified, this is a finding:
 
@@ -6931,7 +6875,6 @@ Value: 0x00000000 (0) - No peering (HTTP Only)
 0x00000001 (1) - Peers on same NAT only (LAN)
 0x00000002 (2) - Local Network / Private group peering (Group)
 0x00000063 (99) - Simple download mode, no peering (Simple)
-0x00000064 (100) - Bypass mode, Delivery Optimization not used (Bypass)
 
 A value of 0x00000003 (3), Internet, is a finding.</check-content>
       </check>
@@ -6940,7 +6883,7 @@ A value of 0x00000003 (3), Internet, is a finding.</check-content>
   <Group id="V-254358">
     <title>SRG-OS-000341-GPOS-00132</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254358r848890_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254358r877391_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000270</version>
       <title>Windows Server 2022 Application event log size must be configured to 32768 KB or greater.</title>
       <description>&lt;VulnDiscussion&gt;Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -6973,7 +6916,7 @@ Value: 0x00008000 (32768) (or greater)</check-content>
   <Group id="V-254359">
     <title>SRG-OS-000341-GPOS-00132</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254359r848893_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254359r877391_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000280</version>
       <title>Windows Server 2022 Security event log size must be configured to 196608 KB or greater.</title>
       <description>&lt;VulnDiscussion&gt;Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -7006,7 +6949,7 @@ Value: 0x00030000 (196608) (or greater)</check-content>
   <Group id="V-254360">
     <title>SRG-OS-000341-GPOS-00132</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254360r848896_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254360r877391_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000290</version>
       <title>Windows Server 2022 System event log size must be configured to 32768 KB or greater.</title>
       <description>&lt;VulnDiscussion&gt;Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -7288,7 +7231,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254368">
     <title>SRG-OS-000033-GPOS-00014</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254368r848920_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254368r877398_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000370</version>
       <title>Windows Server 2022 Remote Desktop Services must require secure Remote Procedure Call (RPC) communications.</title>
       <description>&lt;VulnDiscussion&gt;Allowing unsecure RPC communication exposes the system to man-in-the-middle attacks and data disclosure attacks. A man-in-the-middle attack occurs when an intruder captures packets between a client and server and modifies them before allowing the packets to be exchanged. Usually the attacker will modify the information in the packets in an attempt to cause either the client or server to reveal sensitive information.
@@ -7322,7 +7265,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254369">
     <title>SRG-OS-000033-GPOS-00014</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254369r848923_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254369r877398_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000380</version>
       <title>Windows Server 2022 Remote Desktop Services must be configured with the client connection encryption set to High Level.</title>
       <description>&lt;VulnDiscussion&gt;Remote connections must be encrypted to prevent interception of data or sensitive information. Selecting "High Level" will ensure encryption of Remote Desktop Services sessions in both directions.
@@ -7558,7 +7501,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</check-content>
   <Group id="V-254376">
     <title>SRG-OS-000480-GPOS-00229</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254376r848944_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254376r877377_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000450</version>
       <title>Windows Server 2022 must disable automatically signing in the last interactive user after a system-initiated restart.</title>
       <description>&lt;VulnDiscussion&gt;Windows can be configured to automatically sign the user back in after a Windows Update restart. Some protections are in place to help ensure this is done in a secure fashion; however, disabling this will prevent the caching of credentials for this purpose and also ensure the user is aware of the restart.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -7622,7 +7565,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254378">
     <title>SRG-OS-000125-GPOS-00065</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254378r848950_rule" weight="10.0" severity="high">
+    <Rule id="SV-254378r877395_rule" weight="10.0" severity="high">
       <version>WN22-CC-000470</version>
       <title>Windows Server 2022 Windows Remote Management (WinRM) client must not use Basic authentication.</title>
       <description>&lt;VulnDiscussion&gt;Basic authentication uses plain-text passwords that could be used to compromise a system. Disabling Basic authentication will reduce this potential.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -7653,7 +7596,7 @@ Value: 0x00000000 (0)</check-content>
   <Group id="V-254379">
     <title>SRG-OS-000393-GPOS-00173</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254379r848953_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254379r877382_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000480</version>
       <title>Windows Server 2022 Windows Remote Management (WinRM) client must not allow unencrypted traffic.</title>
       <description>&lt;VulnDiscussion&gt;Unencrypted remote access to a system can allow sensitive information to be compromised. Windows remote management connections must be encrypted to prevent this.
@@ -7687,7 +7630,7 @@ Value: 0x00000000 (0)</check-content>
   <Group id="V-254380">
     <title>SRG-OS-000125-GPOS-00065</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254380r848956_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254380r877395_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000490</version>
       <title>Windows Server 2022 Windows Remote Management (WinRM) client must not use Digest authentication.</title>
       <description>&lt;VulnDiscussion&gt;Digest authentication is not as strong as other options and may be subject to man-in-the-middle attacks. Disallowing Digest authentication will reduce this potential.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -7718,7 +7661,7 @@ Value: 0x00000000 (0)</check-content>
   <Group id="V-254381">
     <title>SRG-OS-000125-GPOS-00065</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254381r848959_rule" weight="10.0" severity="high">
+    <Rule id="SV-254381r877395_rule" weight="10.0" severity="high">
       <version>WN22-CC-000500</version>
       <title>Windows Server 2022 Windows Remote Management (WinRM) service must not use Basic authentication.</title>
       <description>&lt;VulnDiscussion&gt;Basic authentication uses plain-text passwords that could be used to compromise a system. Disabling Basic authentication will reduce this potential.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -7749,7 +7692,7 @@ Value: 0x00000000 (0)</check-content>
   <Group id="V-254382">
     <title>SRG-OS-000393-GPOS-00173</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254382r848962_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254382r877382_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000510</version>
       <title>Windows Server 2022 Windows Remote Management (WinRM) service must not allow unencrypted traffic.</title>
       <description>&lt;VulnDiscussion&gt;Unencrypted remote access to a system can allow sensitive information to be compromised. Windows remote management connections must be encrypted to prevent this.
@@ -7851,7 +7794,7 @@ Value: 1</check-content>
   <Group id="V-254428">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254428r849100_rule" weight="10.0" severity="high">
+    <Rule id="SV-254428r877392_rule" weight="10.0" severity="high">
       <version>WN22-MS-000010</version>
       <title>Windows Server 2022 must only allow administrators responsible for the member server or standalone or nondomain-joined system to have Administrator rights on the system.</title>
       <description>&lt;VulnDiscussion&gt;An account that does not have Administrator duties must not have Administrator rights. Such rights would allow the account to bypass or modify required security restrictions on that machine and make it vulnerable to attack.
@@ -7972,7 +7915,7 @@ Value: 0x00000000 (0)</check-content>
   <Group id="V-254431">
     <title>SRG-OS-000379-GPOS-00164</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254431r849109_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254431r877039_rule" weight="10.0" severity="medium">
       <version>WN22-MS-000040</version>
       <title>Windows Server 2022 must restrict unauthenticated Remote Procedure Call (RPC) clients from connecting to the RPC server on domain-joined member servers and standalone or nondomain-joined systems.</title>
       <description>&lt;VulnDiscussion&gt;Unauthenticated RPC clients may allow anonymous access to sensitive information. Configuring RPC to restrict unauthenticated RPC clients from connecting to the RPC server will prevent anonymous connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -8038,7 +7981,7 @@ Value:  4 (or less)</check-content>
   <Group id="V-254433">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254433r849115_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254433r877392_rule" weight="10.0" severity="medium">
       <version>WN22-MS-000060</version>
       <title>Windows Server 2022 must restrict remote calls to the Security Account Manager (SAM) to Administrators on domain-joined member servers and standalone or nondomain-joined systems.</title>
       <description>&lt;VulnDiscussion&gt;The Windows SAM stores users' passwords. Restricting Remote Procedure Call (RPC) connections to the SAM to Administrators helps protect those credentials.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -8153,7 +8096,7 @@ https://docs.microsoft.com/en-us/windows/security/identity-protection/credential
   <Group id="V-254442">
     <title>SRG-OS-000066-GPOS-00034</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254442r849142_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254442r921943_rule" weight="10.0" severity="medium">
       <version>WN22-PK-000010</version>
       <title>Windows Server 2022 must have the DoD Root Certificate Authority (CA) certificates installed in the Trusted Root Store.</title>
       <description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
@@ -8168,17 +8111,18 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       </reference>
       <ident system="http://cyber.mil/cci">CCI-000185</ident>
       <ident system="http://cyber.mil/cci">CCI-002470</ident>
-      <fixtext fixref="F-57878r849141_fix">Install the DoD Root CA certificates:
+      <fixtext fixref="F-57878r921942_fix">Install the DoD Root CA certificates:
 
 DoD Root CA 3
 DoD Root CA 4
 DoD Root CA 5
+DoD Root CA 6
 
-The InstallRoot tool is available on Cyber Exchange at https://cyber.mil/pki-pke/tools-configuration-files.</fixtext>
-      <fix id="F-57878r849141_fix" />
-      <check system="C-57927r849140_chk">
+The InstallRoot tool is available on Cyber Exchange at https://cyber.mil/pki-pke/tools-configuration-files. Certificate bundles published by the PKI can be found at https://crl.gds.disa.mil/.</fixtext>
+      <fix id="F-57878r921942_fix" />
+      <check system="C-57927r921941_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
-        <check-content>The certificates and thumbprints referenced below apply to unclassified systems; see PKE documentation for other networks.
+        <check-content>The certificates and thumbprints referenced below apply to unclassified systems; refer to PKE documentation for other networks.
 
 Open "Windows PowerShell" as an administrator.
 
@@ -8187,10 +8131,6 @@ Execute the following command:
 Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*DoD*" | FL Subject, Thumbprint, NotAfter
 
 If the following certificate "Subject" and "Thumbprint" information is not displayed, this is a finding. 
-
-Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: 8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561
-NotAfter: 12/5/2029
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: D73CA91102A2204A36459ED32213B467D7CE97FB
@@ -8203,6 +8143,10 @@ NotAfter: 7/25/2032
 Subject: CN=DoD Root CA 5, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: 4ECB5CC3095670454DA1CBD410FC921F46B8564B
 NotAfter: 6/14/2041
+
+Subject: CN=DoD Root CA 6, OU=PKI, OU=DoD, O=U.S. Government, C=US 
+Thumbprint : D37ECF61C0B4ED88681EF3630C4E2FC787B37AEF
+NotAfter: 1/24/2053 11:36:17 AM
 
 Alternately, use the Certificates MMC snap-in:
 
@@ -8240,14 +8184,18 @@ Valid to: Sunday, July 25, 2032
 
 DoD Root CA 5
 Thumbprint: 4ECB5CC3095670454DA1CBD410FC921F46B8564B
-Valid to: Friday, June 14, 2041</check-content>
+Valid to: Friday, June 14, 2041
+
+DoD Root CA 6
+Thumbprint: D37ECF61C0B4ED88681EF3630C4E2FC787B37AEFB
+Valid to: Friday, January 24, 2053</check-content>
       </check>
     </Rule>
   </Group>
   <Group id="V-254443">
     <title>SRG-OS-000066-GPOS-00034</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254443r849145_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254443r890553_rule" weight="10.0" severity="medium">
       <version>WN22-PK-000020</version>
       <title>Windows Server 2022 must have the DoD Interoperability Root Certificate Authority (CA) cross-certificates installed in the Untrusted Certificates Store on unclassified systems.</title>
       <description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
@@ -8262,19 +8210,17 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       </reference>
       <ident system="http://cyber.mil/cci">CCI-000185</ident>
       <ident system="http://cyber.mil/cci">CCI-002470</ident>
-      <fixtext fixref="F-57879r849144_fix">Install the DoD Interoperability Root CA cross-certificates on unclassified systems.
+      <fixtext fixref="F-57879r890552_fix">Install the DoD Interoperability Root CA cross-certificates on unclassified systems.
 
 Issued To - Issued By - Thumbprint
 
 DoD Root CA 3- DoD Interoperability Root CA 2 - 49CBE933151872E17C8EAE7F0ABA97FB610F6477
 
-DoD Root CA 3 - DoD Interoperability Root CA 2 - AC06108CA348CC03B53795C64BF84403C1DBD341
-
 Administrators must run the Federal Bridge Certification Authority (FBCA) Cross-Certificate Removal Tool once as an administrator and once as the current user.
 
-The FBCA Cross-Certificate Remover Tool and User Guide are available on Cyber Exchange at https://cyber.mil/pki-pke/tools-configuration-files.</fixtext>
-      <fix id="F-57879r849144_fix" />
-      <check system="C-57928r849143_chk">
+The FBCA Cross-Certificate Remover Tool and User Guide are available on Cyber Exchange at https://cyber.mil/pki-pke/tools-configuration-files. Certificate bundles published by the PKI can be found at https://crl.gds.disa.mil/.</fixtext>
+      <fix id="F-57879r890552_fix" />
+      <check system="C-57928r890551_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
         <check-content>This is applicable to unclassified systems. It is NA for others.
 
@@ -8288,13 +8234,8 @@ If the following certificate "Subject", "Issuer", and "Thumbprint" information i
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
-NotAfter: 1/22/2022 10:22:56 AM
-
-Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=DoD Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: A8C27332CCB4CA49554CE55D34062A7DD2850C02
-NotAfter: 8/26/2022 9:25:51 AM
+Thumbprint: 49CBE933151872E17C8EAE7F0ABA97FB610F6477
+NotAfter: 11/16/2024 09:57:16 AM
 
 Alternately, use the Certificates MMC snap-in:
 
@@ -8325,19 +8266,14 @@ If the certificates below are not listed or the value for the "Thumbprint" field
 Issued To: DoD Root CA 3
 Issued By: DoD Interoperability Root CA 2
 Thumbprint: 49CBE933151872E17C8EAE7F0ABA97FB610F6477
-Valid to: Wednesday, November 16, 2024
-
-Issued To: DoD Root CA 3
-Issued By: DoD Interoperability Root CA 2
-Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
-Valid to: Saturday, January 22, 2022</check-content>
+Valid to: Wednesday, November 16, 2024</check-content>
       </check>
     </Rule>
   </Group>
   <Group id="V-254444">
     <title>SRG-OS-000066-GPOS-00034</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254444r849148_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254444r894343_rule" weight="10.0" severity="medium">
       <version>WN22-PK-000030</version>
       <title>Windows Server 2022 must have the US DoD CCEB Interoperability Root CA cross-certificates in the Untrusted Certificates Store on unclassified systems.</title>
       <description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
@@ -8352,19 +8288,17 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       </reference>
       <ident system="http://cyber.mil/cci">CCI-000185</ident>
       <ident system="http://cyber.mil/cci">CCI-002470</ident>
-      <fixtext fixref="F-57880r849147_fix">Install the US DoD CCEB Interoperability Root CA cross-certificate on unclassified systems.
+      <fixtext fixref="F-57880r894342_fix">Install the US DoD CCEB Interoperability Root CA cross-certificate on unclassified systems.
 
 Issued To - Issued By - Thumbprint
 
-DoD Root CA 3 - US DoD CCEB Interoperability Root CA 2 - AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9
-
-DoD Root CA 3 - US DoD CCEB Interoperability Root CA 2 - 929BF3196896994C0A201DF4A5B71F603FEFBF2E
+DoD Root CA 3 - US DoD CCEB Interoperability Root CA 2 - 9B74964506C7ED9138070D08D5F8B969866560C8
 
 Administrators must run the Federal Bridge Certification Authority (FBCA) Cross-Certificate Removal Tool once as an administrator and once as the current user.
 
-The FBCA Cross-Certificate Remover Tool and User Guide are available on Cyber Exchange at https://cyber.mil/pki-pke/tools-configuration-files.</fixtext>
-      <fix id="F-57880r849147_fix" />
-      <check system="C-57929r849146_chk">
+The FBCA Cross-Certificate Remover Tool and User Guide are available on Cyber Exchange at https://cyber.mil/pki-pke/tools-configuration-files. PKI can be found at https://crl.gds.disa.mil/.</fixtext>
+      <fix id="F-57880r894342_fix" />
+      <check system="C-57929r890554_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
         <check-content>This is applicable to unclassified systems. It is NA for others.
 
@@ -8378,13 +8312,8 @@ If the following certificate "Subject", "Issuer", and "Thumbprint" information i
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9
-NotAfter: 8/26/2022 9:07:50 AM
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
-NotAfter: 9/27/2022
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025 9:56:22 AM
 
 Alternately, use the Certificates MMC snap-in:
 
@@ -8414,13 +8343,8 @@ If the certificate below is not listed or the value for the "Thumbprint" field i
 
 Issued To: DoD Root CA 3
 Issued By: US DoD CCEB Interoperability Root CA 2
-Thumbprint: AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9
-Valid to: Friday, August 26, 2022
-
-Issued To: DoD Root CA 3
-Issued By: US DoD CCEB Interoperability Root CA 2
-Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
-Valid: Friday, September 27, 2022</check-content>
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025</check-content>
       </check>
     </Rule>
   </Group>
@@ -8489,7 +8413,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254450">
     <title>SRG-OS-000423-GPOS-00187</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254450r849166_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254450r916422_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000060</version>
       <title>Windows Server 2022 setting Domain member: Digitally encrypt or sign secure channel data (always) must be configured to Enabled.</title>
       <description>&lt;VulnDiscussion&gt;Requests sent on the secure channel are authenticated, and sensitive information (such as passwords) is encrypted, but not all information is encrypted. If this policy is enabled, outgoing secure channel traffic will be encrypted and signed.
@@ -8523,7 +8447,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254451">
     <title>SRG-OS-000423-GPOS-00187</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254451r849169_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254451r916422_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000070</version>
       <title>Windows Server 2022 setting Domain member: Digitally encrypt secure channel data (when possible) must be configured to Enabled.</title>
       <description>&lt;VulnDiscussion&gt;Requests sent on the secure channel are authenticated, and sensitive information (such as passwords) is encrypted, but not all information is encrypted. If this policy is enabled, outgoing secure channel traffic will be encrypted.
@@ -8557,7 +8481,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254452">
     <title>SRG-OS-000423-GPOS-00187</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254452r849172_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254452r916422_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000080</version>
       <title>Windows Server 2022 setting Domain member: Digitally sign secure channel data (when possible) must be configured to Enabled.</title>
       <description>&lt;VulnDiscussion&gt;Requests sent on the secure channel are authenticated, and sensitive information (such as passwords) is encrypted, but the channel is not integrity checked. If this policy is enabled, outgoing secure channel traffic will be signed.
@@ -8591,7 +8515,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254453">
     <title>SRG-OS-000379-GPOS-00164</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254453r849175_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254453r877039_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000090</version>
       <title>Windows Server 2022 computer account password must not be prevented from being reset.</title>
       <description>&lt;VulnDiscussion&gt;Computer account passwords are changed automatically on a regular basis. Disabling automatic password changes can make the system more vulnerable to malicious access. Frequent password changes can be a significant safeguard for the system. A new password for the computer account will be generated every 30 days.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -8657,7 +8581,7 @@ Value: 0x0000001e (30) (or less, but not 0)</check-content>
   <Group id="V-254455">
     <title>SRG-OS-000423-GPOS-00187</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254455r849181_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254455r916422_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000110</version>
       <title>Windows Server 2022 must be configured to require a strong session key.</title>
       <description>&lt;VulnDiscussion&gt;A computer connecting to a domain controller will establish a secure channel. The secure channel connection may be subject to compromise, such as hijacking or eavesdropping, if strong session keys are not used to establish the connection. Requiring strong session keys enforces 128-bit encryption between systems.
@@ -8874,7 +8798,7 @@ If configuring this on servers causes issues, such as terminating users' remote 
   <Group id="V-254460">
     <title>SRG-OS-000423-GPOS-00187</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254460r849196_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254460r916422_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000160</version>
       <title>Windows Server 2022 setting Microsoft network client: Digitally sign communications (always) must be configured to Enabled.</title>
       <description>&lt;VulnDiscussion&gt;The server message block (SMB) protocol provides the basis for many network operations. Digitally signed SMB packets aid in preventing man-in-the-middle attacks. If this policy is enabled, the SMB client will only communicate with an SMB server that performs SMB packet signing.
@@ -8908,7 +8832,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254461">
     <title>SRG-OS-000423-GPOS-00187</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254461r849199_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254461r916422_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000170</version>
       <title>Windows Server 2022 setting Microsoft network client: Digitally sign communications (if server agrees) must be configured to Enabled.</title>
       <description>&lt;VulnDiscussion&gt;The server message block (SMB) protocol provides the basis for many network operations. If this policy is enabled, the SMB client will request packet signing when communicating with an SMB server that is enabled or required to perform SMB packet signing.
@@ -8942,7 +8866,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254462">
     <title>SRG-OS-000074-GPOS-00042</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254462r849202_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254462r877396_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000180</version>
       <title>Windows Server 2022 unencrypted passwords must not be sent to third-party Server Message Block (SMB) servers.</title>
       <description>&lt;VulnDiscussion&gt;Some non-Microsoft SMB servers only support unencrypted (plain-text) password authentication. Sending plain-text passwords across the network when authenticating to an SMB server reduces the overall security of the environment. Check with the vendor of the SMB server to determine if there is a way to support encrypted password authentication.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -8973,7 +8897,7 @@ Value:  0x00000000 (0)</check-content>
   <Group id="V-254463">
     <title>SRG-OS-000423-GPOS-00187</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254463r849205_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254463r916422_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000190</version>
       <title>Windows Server 2022 setting Microsoft network server: Digitally sign communications (always) must be configured to Enabled.</title>
       <description>&lt;VulnDiscussion&gt;The server message block (SMB) protocol provides the basis for many network operations. Digitally signed SMB packets aid in preventing man-in-the-middle attacks. If this policy is enabled, the SMB server will only communicate with an SMB client that performs SMB packet signing.
@@ -9007,7 +8931,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254464">
     <title>SRG-OS-000423-GPOS-00187</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254464r849208_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254464r916422_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000200</version>
       <title>Windows Server 2022 setting Microsoft network server: Digitally sign communications (if client agrees) must be configured to Enabled.</title>
       <description>&lt;VulnDiscussion&gt;The server message block (SMB) protocol provides the basis for many network operations. Digitally signed SMB packets aid in preventing man-in-the-middle attacks. If this policy is enabled, the SMB server will negotiate SMB packet signing as requested by the client.
@@ -9326,7 +9250,7 @@ Value: 0x7ffffff8 (2147483640)</check-content>
   <Group id="V-254474">
     <title>SRG-OS-000073-GPOS-00041</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254474r849238_rule" weight="10.0" severity="high">
+    <Rule id="SV-254474r877397_rule" weight="10.0" severity="high">
       <version>WN22-SO-000300</version>
       <title>Windows Server 2022 must be configured to prevent the storage of the LAN Manager hash of passwords.</title>
       <description>&lt;VulnDiscussion&gt;The LAN Manager hash uses a weak encryption algorithm and there are several tools available that use this hash to retrieve account passwords. This setting controls whether a LAN Manager hash of the password is stored in the SAM the next time the password is changed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -9518,7 +9442,7 @@ Value:  0x00000002 (2)</check-content>
   <Group id="V-254480">
     <title>SRG-OS-000478-GPOS-00223</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254480r849256_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254480r877466_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000360</version>
       <title>Windows Server 2022 must be configured to use FIPS-compliant algorithms for encryption, hashing, and signing.</title>
       <description>&lt;VulnDiscussion&gt;This setting ensures the system uses algorithms that are FIPS-compliant for encryption, hashing, and signing. FIPS-compliant algorithms meet specific standards established by the U.S. Government and must be the algorithms used for all OS encryption functions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -10116,9 +10040,9 @@ If the value for the "Minimum password age" is set to "0" days ("Password can be
   <Group id="V-254291">
     <title>SRG-OS-000078-GPOS-00046</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254291r848689_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254291r890539_rule" weight="10.0" severity="medium">
       <version>WN22-AC-000070</version>
-      <title>Windows Server 2020 minimum password length must be configured to 14 characters.</title>
+      <title>Windows Server 2022 minimum password length must be configured to 14 characters.</title>
       <description>&lt;VulnDiscussion&gt;Information systems not protected with strong password schemes (including passwords of minimum length) provide the opportunity for anyone to crack the password, thus gaining access to the system and compromising the device, information, or the local network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
       <reference>
         <dc:title>DPMS Target Microsoft Windows Server 2022</dc:title>
@@ -10183,7 +10107,7 @@ If the value for "Password must meet complexity requirements" is not set to "Ena
   <Group id="V-254293">
     <title>SRG-OS-000073-GPOS-00041</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254293r848695_rule" weight="10.0" severity="high">
+    <Rule id="SV-254293r877397_rule" weight="10.0" severity="high">
       <version>WN22-AC-000090</version>
       <title>Windows Server 2022 reversible password encryption must be disabled.</title>
       <description>&lt;VulnDiscussion&gt;Storing passwords using reversible encryption is essentially the same as storing clear-text versions of the passwords, which are easily compromised. For this reason, this policy must never be enabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -10367,7 +10291,7 @@ All Systems:
   <Group id="V-254437">
     <title>SRG-OS-000080-GPOS-00048</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254437r849127_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254437r890547_rule" weight="10.0" severity="medium">
       <version>WN22-MS-000100</version>
       <title>Windows Server 2022 Deny log on as a service user right on domain-joined member servers must be configured to prevent access from highly privileged domain accounts. No other groups or accounts must be assigned this right.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -10391,9 +10315,9 @@ Domain systems:
 - Enterprise Admins Group
 - Domain Admins Group</fixtext>
       <fix id="F-57873r849126_fix" />
-      <check system="C-57922r849125_chk">
+      <check system="C-57922r890546_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
-        <check-content>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
+        <check-content>This applies to member servers. A separate version applies to domain controllers.
 
 Verify the effective setting in Local Group Policy Editor.
 
@@ -10527,7 +10451,7 @@ All Systems:
   <Group id="V-254440">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254440r849136_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254440r877392_rule" weight="10.0" severity="medium">
       <version>WN22-MS-000130</version>
       <title>Windows Server 2022 Enable computer and user accounts to be trusted for delegation user right must not be assigned to any groups or accounts on domain-joined member servers and standalone or nondomain-joined systems.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -10655,7 +10579,7 @@ If the value for "Accounts: Rename guest account" is not set to a value other th
   <Group id="V-254491">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254491r849289_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254491r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000010</version>
       <title>Windows Server 2022 Access Credential Manager as a trusted caller user right must not be assigned to any groups or accounts.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -10688,7 +10612,7 @@ If any accounts or groups are granted the "Access Credential Manager as a truste
   <Group id="V-254492">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254492r849292_rule" weight="10.0" severity="high">
+    <Rule id="SV-254492r877392_rule" weight="10.0" severity="high">
       <version>WN22-UR-000020</version>
       <title>Windows Server 2022 Act as part of the operating system user right must not be assigned to any groups or accounts.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -10758,7 +10682,7 @@ If any accounts or groups other than the following are granted the "Allow log on
   <Group id="V-254494">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254494r849298_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254494r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000040</version>
       <title>Windows Server 2022 back up files and directories user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -10795,7 +10719,7 @@ If any accounts or groups other than the following are granted the "Back up file
   <Group id="V-254495">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254495r849301_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254495r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000050</version>
       <title>Windows Server 2022 create a pagefile user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -10832,7 +10756,7 @@ If any accounts or groups other than the following are granted the "Create a pag
   <Group id="V-254496">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254496r849304_rule" weight="10.0" severity="high">
+    <Rule id="SV-254496r877392_rule" weight="10.0" severity="high">
       <version>WN22-UR-000060</version>
       <title>Windows Server 2022 create a token object user right must not be assigned to any groups or accounts.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -10865,7 +10789,7 @@ If any accounts or groups are granted the "Create a token object" user right, th
   <Group id="V-254497">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254497r849307_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254497r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000070</version>
       <title>Windows Server 2022 create global objects user right must only be assigned to Administrators, Service, Local Service, and Network Service.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -10908,7 +10832,7 @@ If any accounts or groups other than the following are granted the "Create globa
   <Group id="V-254498">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254498r849310_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254498r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000080</version>
       <title>Windows Server 2022 create permanent shared objects user right must not be assigned to any groups or accounts.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -10941,7 +10865,7 @@ If any accounts or groups are granted the "Create permanent shared objects" user
   <Group id="V-254499">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254499r849313_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254499r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000090</version>
       <title>Windows Server 2022 create symbolic links user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -10980,7 +10904,7 @@ If any accounts or groups other than the following are granted the "Create symbo
   <Group id="V-254500">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254500r849316_rule" weight="10.0" severity="high">
+    <Rule id="SV-254500r877392_rule" weight="10.0" severity="high">
       <version>WN22-UR-000100</version>
       <title>Windows Server 2022 debug programs user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -11017,7 +10941,7 @@ If any accounts or groups other than the following are granted the "Debug progra
   <Group id="V-254501">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254501r849319_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254501r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000110</version>
       <title>Windows Server 2022 force shutdown from a remote system user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -11054,7 +10978,7 @@ If any accounts or groups other than the following are granted the "Force shutdo
   <Group id="V-254502">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254502r849322_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254502r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000120</version>
       <title>Windows Server 2022 generate security audits user right must only be assigned to Local Service and Network Service.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -11093,7 +11017,7 @@ If any accounts or groups other than the following are granted the "Generate sec
   <Group id="V-254503">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254503r849325_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254503r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000130</version>
       <title>Windows Server 2022 impersonate a client after authentication user right must only be assigned to Administrators, Service, Local Service, and Network Service.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -11136,7 +11060,7 @@ If any accounts or groups other than the following are granted the "Impersonate 
   <Group id="V-254504">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254504r849328_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254504r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000140</version>
       <title>Windows Server 2022 increase scheduling priority: user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -11173,7 +11097,7 @@ If any accounts or groups other than the following are granted the "Increase sch
   <Group id="V-254505">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254505r849331_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254505r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000150</version>
       <title>Windows Server 2022 load and unload device drivers user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -11210,7 +11134,7 @@ If any accounts or groups other than the following are granted the "Load and unl
   <Group id="V-254506">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254506r849334_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254506r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000160</version>
       <title>Windows Server 2022 lock pages in memory user right must not be assigned to any groups or accounts.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -11289,7 +11213,7 @@ If any accounts or groups other than the following are granted the "Manage audit
   <Group id="V-254508">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254508r849340_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254508r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000180</version>
       <title>Windows Server 2022 modify firmware environment values user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -11326,7 +11250,7 @@ If any accounts or groups other than the following are granted the "Modify firmw
   <Group id="V-254509">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254509r849343_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254509r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000190</version>
       <title>Windows Server 2022 perform volume maintenance tasks user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -11363,7 +11287,7 @@ If any accounts or groups other than the following are granted the "Perform volu
   <Group id="V-254510">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254510r849346_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254510r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000200</version>
       <title>Windows Server 2022 profile single process user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -11400,7 +11324,7 @@ If any accounts or groups other than the following are granted the "Profile sing
   <Group id="V-254511">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254511r849349_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254511r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000210</version>
       <title>Windows Server 2022 restore files and directories user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
@@ -11437,7 +11361,7 @@ If any accounts or groups other than the following are granted the "Restore file
   <Group id="V-254512">
     <title>SRG-OS-000324-GPOS-00125</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254512r849352_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254512r877392_rule" weight="10.0" severity="medium">
       <version>WN22-UR-000220</version>
       <title>Windows Server 2022 take ownership of files or other objects user right must only be assigned to the Administrators group.</title>
       <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
