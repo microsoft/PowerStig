@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [4.19.0] - 2023-12-22
+
 * Update PowerSTIG to Parse/Apply U_MS_Windows_Server_2019_V2R8_STIG [#1276](https://github.com/microsoft/PowerStig/issues/1276)
 * Update PowerSTIG to Parse/Apply U_MS_Windows_Server_2022_V1R4_STIG: [#1277](https://github.com/microsoft/PowerStig/issues/1277)
 * Update PowerSTIG to Parse/Apply U_MS_Windows_Server_2016_V2R7_STIG [#1275](https://github.com/microsoft/PowerStig/issues/1275)
