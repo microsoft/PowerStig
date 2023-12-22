@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R11_Manual-xccdf.xml" releaseinfo="Release: 11 Benchmark Date: 27 Apr 2023 3.4.0.34222 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.11" created="6/15/2023">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R13_Manual-xccdf.xml" releaseinfo="Release: 13 Benchmark Date: 25 Oct 2023 3.4.1.22916 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.13" created="12/11/2023">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -445,29 +445,28 @@ GRUB2_PASSWORD=grub.pbkdf2.sha512.[password_hash]
 If the grub superusers password does not begin with "grub.pbkdf2.sha512", this is a finding.</RawString>
     </Rule>
     <Rule id="V-204444" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+      <Description>&lt;VulnDiscussion&gt;Preventing nonprivileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
 
-Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Nonprivileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from nonprivileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71971</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
-
-Verify the operating system prevents non-privileged users from executing privileged functions to include disabling, circumventing, or altering implemented security safeguards/countermeasures.
+      <RawString>Verify the operating system prevents non-privileged users from executing privileged functions to include disabling, circumventing, or altering implemented security safeguards/countermeasures.
 
 Get a list of authorized users for the system.
 
 Check the list against the system by using the following command:
 
-$ sudo semanage login -l | more
+     $ sudo semanage login -l | more
 
-Login Name SELinux User MLS/MCS Range Service
-__default__ user_u s0-s0:c0.c1023 *
-root unconfined_u s0-s0:c0.c1023 *
-system_u system_u s0-s0:c0.c1023 *
-joe staff_u s0-s0:c0.c1023 *
+     Login Name    SELinux User    MLS/MCS Range    Service
+
+     __default__   user_u                 s0-s0:c0.c1023        *
+     root                   unconfined_u  s0-s0:c0.c1023        *
+     system_u        system_u           s0-s0:c0.c1023        *
+     joe                     staff_u                s0-s0:c0.c1023        *
 
 All administrators must be mapped to the , "staff_u", or an appropriately tailored confined SELinux user as defined by the organization.
 
@@ -639,7 +638,7 @@ UUID=a411dc99-f2a1-4c87-9e05-184977be8539 /tmp   ext4   rw,relatime,discard,data
 If "tmp.mount" service is not enabled or the "/tmp" directory is not defined in the fstab with a device and mount point, this is a finding. </RawString>
     </Rule>
     <Rule id="V-204501" severity="medium" conversionstatus="pass" title="SRG-OS-000364-GPOS-00151" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Malicious users with removable boot media can gain access to a system configured to use removable media as the boot loader. If removable media is designed to be used as the boot loader, the requirement must be documented with the Information System Security Officer (ISSO).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Malicious users with removable boot media can gain access to a system configured to use removable media as the boot loader. If removable media is designed to be used as the boot loader, the requirement must be documented with the information system security officer (ISSO).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72075</LegacyId>
@@ -651,17 +650,23 @@ Note: GRUB 2 reads its configuration from the "/boot/grub2/grub.cfg" file on tra
 
 Check for the existence of alternate boot loader configuration files with the following command:
 
-# find / -name grub.cfg
-/boot/grub2/grub.cfg
+     # find / -name grub.cfg
+     /boot/efi/EFI/redhat/grub.cfg
 
-If a "grub.cfg" is found in any subdirectories other than "/boot/grub2" and "/boot/efi/EFI/redhat", ask the System Administrator if there is documentation signed by the ISSO to approve the use of removable media as a boot loader. 
+If a "grub.cfg" is found in any subdirectories other than "/boot/grub2/" and "/boot/efi/EFI/redhat/", ask the system administrator (SA) if there is documentation signed by the ISSO to approve the use of removable media as a boot loader. 
 
-Check that the grub configuration file has the set root command in each menu entry with the following commands:
+List the number of menu entries defined in the grub configuration file with the following command (the number will vary between systems):
 
-# grep -cw menuentry /boot/grub2/grub.cfg
-1
-# grep 'set root' /boot/grub2/grub.cfg
-set root=(hd0,1)
+     # grep -cw menuentry /boot/efi/EFI/redhat/grub.cfg
+     4
+
+Check that the grub configuration file has the "set root" command for each menu entry with the following command ("set root" defines the disk and partition or directory where the kernel and GRUB 2 modules are stored):
+
+     # grep 'set root' /boot/efi/EFI/redhat/grub.cfg
+     set root='hd0,gpt2'
+     set root='hd0,gpt2'
+     set root='hd0,gpt2'
+     set root='hd0,gpt2'
 
 If the system is using an alternate boot loader on removable media, and documentation does not exist approving the alternate configuration, this is a finding.</RawString>
     </Rule>
@@ -1046,33 +1051,34 @@ If any are more permissive, this is a finding.
 The owner and group owner of all audit log files must both be "root". If any other owner or group owner is listed, this is a finding.</RawString>
     </Rule>
     <Rule id="V-250312" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+      <Description>&lt;VulnDiscussion&gt;Preventing nonprivileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
 
-Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Nonprivileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from nonprivileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
-
-Verify the operating system confines SELinux users to roles that conform to least privilege.
+      <RawString>Verify the operating system confines SELinux users to roles that conform to least privilege.
 
 Check the SELinux User list to SELinux Roles mapping by using the following command:
 
-$ sudo semanage user -l
-SELinuxUser LabelingPrefix MLS/MCSLevel MLS/MCSRange SELinuxRoles
-guest_u            user  s0  s0  guest_r
-root                   user  s0  s0-s0:c0.c1023  staff_r sysadm_r system_r unconfined_r
-staff_u              user  s0  s0-s0:c0.c1023  staff_r sysadm_r
-sysadm_u         user  s0  s0-s0:c0.c1023  sysadm_r 
-system_u          user  s0  s0-s0:c0.c1023  system_r unconfined_r
-unconfined_u  user  s0  s0-s0:c0.c1023  system_r unconfined_r
-user_u               user  s0  s0  user_r
-xguest_u           user  s0  s0  xguest_r
+     $ sudo semanage user -l
 
-If the output differs from the above example, ask the SA to demonstrate how the SELinux User mappings are exercising least privilege. If deviations from the example are not documented with the ISSO and do not demonstrate least privilege, this is a finding.</RawString>
+                                     Labeling  MLS/               MLS/
+     SELinux User      Prefix       MCS Level    MCS Range          SELinux Roles
+
+     guest_u                user          s0                     s0                             guest_r
+     root                        user          s0                     s0-s0:c0.c1023    staff_r sysadm_r system_r unconfined_r
+     staff_u                  user          s0                     s0-s0:c0.c1023    staff_r sysadm_r system_r unconfined_r
+     sysadm_u            user          s0                     s0-s0:c0.c1023    sysadm_r
+     system_u             user          s0                     s0-s0:c0.c1023    system_r unconfined_r
+     unconfined_u    user          s0                     s0-s0:c0.c1023    system_r unconfined_r
+     user_u                   user          s0                     s0                            user_r
+     xguest_u              user          s0                     s0                            xguest_r
+
+If the output differs from the above example, ask the system administrator (SA) to demonstrate how the SELinux User mappings are exercising least privilege. If deviations from the example are not documented with the information system security officer (ISSO) and do not demonstrate least privilege, this is a finding.</RawString>
     </Rule>
     <Rule id="V-250313" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
@@ -1331,11 +1337,11 @@ If the file integrity application does not notify designated personnel of change
 
 Check that the ctrl-alt-del.target is masked and not active with the following command:
 
-$ sudo systemctl status ctrl-alt-del.target
+     # systemctl status ctrl-alt-del.target
 
-ctrl-alt-del.target
-Loaded: masked (/dev/null; bad)
-Active: inactive (dead)
+     ctrl-alt-del.target
+     Loaded: masked (/dev/null; bad)
+     Active: inactive (dead)
 
 If the ctrl-alt-del.target is not masked, this is a finding.
 
@@ -1587,24 +1593,25 @@ If any files are found with a mode more permissive than "0750", this is a findin
       <OrganizationValueTestString />
       <RawString>Verify the local initialization files of all local interactive users are owned by that user.
 
-Check the home directory assignment for all non-privileged users on the system with the following command:
+Check the home directory assignment for all nonprivileged users on the system with the following command:
 
 Note: The example will be for the smithj user, who has a home directory of "/home/smithj".
 
-# awk -F: '($3&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $1, $3, $6}' /etc/passwd
-smithj 1000 /home/smithj
+     # awk -F: '($3&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $1, $3, $6}' /etc/passwd
+     
+     smithj 1000 /home/smithj
 
 Note: This may miss interactive users that have been assigned a privileged User Identifier (UID). Evidence of interactive use may be obtained from a number of log files containing system logon information.
 
-Check the owner of all local interactive user's initialization files with the following command:
+Check the owner of all local interactive users' initialization files with the following command:
 
-# ls -al /home/smithj/.[^.]* | more
+     # ls -al /home/smithj/.[^.]* | more
 
--rwxr-xr-x 1 smithj users 896 Mar 10 2011 .profile
--rwxr-xr-x 1 smithj users 497 Jan 6 2007 .login
--rwxr-xr-x 1 smithj users 886 Jan 6 2007 .something
+     -rw-------. 1 smithj users 2984 Apr 27 19:02 .bash_history
+     -rw-r--r--. 1 smithj users   18 Aug 21  2019 .bash_logout
+     -rw-r--r--. 1 smithj users  193 Aug 21  2019 .bash_profile
 
-If all local interactive user's initialization files are not owned by that user or root, this is a finding.</RawString>
+If all local interactive users' initialization files are not owned by that user or root, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204475" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Local initialization files for interactive users are used to configure the user's shell environment upon logon. Malicious modification of these files could compromise accounts upon logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1615,27 +1622,29 @@ If all local interactive user's initialization files are not owned by that user 
       <OrganizationValueTestString />
       <RawString>Verify the local initialization files of all local interactive users are group-owned by that user's primary Group Identifier (GID).
 
-Check the home directory assignment for all non-privileged users on the system with the following command:
+Check the home directory assignment for all nonprivileged users on the system with the following command:
 
 Note: The example will be for the smithj user, who has a home directory of "/home/smithj" and a primary group of "users".
 
-# awk -F: '($4&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $1, $4, $6}' /etc/passwd
-smithj 1000 /home/smithj
+     # awk -F: '($4&gt;=1000)&amp;&amp;($7 !~ /nologin/){print $1, $4, $6}' /etc/passwd
+     
+     smithj 1000 /home/smithj
 
-# grep 1000 /etc/group
-users:x:1000:smithj,jonesj,jacksons 
+     # grep 1000 /etc/group
+     
+     users:x:1000:smithj,jonesj,jacksons 
 
 Note: This may miss interactive users that have been assigned a privileged User Identifier (UID). Evidence of interactive use may be obtained from a number of log files containing system logon information.
 
-Check the group owner of all local interactive user's initialization files with the following command:
+Check the group owner of all local interactive users' initialization files with the following command:
 
-# ls -al /home/smithj/.[^.]* | more
+     # ls -al /home/smithj/.[^.]* | more
 
--rwxr-xr-x 1 smithj users 896 Mar 10 2011 .profile
--rwxr-xr-x 1 smithj users 497 Jan 6 2007 .login
--rwxr-xr-x 1 smithj users 886 Jan 6 2007 .something
+     -rw-------. 1 smithj users 2984 Apr 27 19:02 .bash_history
+     -rw-r--r--. 1 smithj users   18 Aug 21  2019 .bash_logout
+     -rw-r--r--. 1 smithj users  193 Aug 21  2019 .bash_profile
 
-If all local interactive user's initialization files are not group-owned by that user's primary GID, this is a finding.</RawString>
+If all local interactive users' initialization files are not group-owned by that user's primary GID, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204476" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Local initialization files are used to configure the user's shell environment upon logon. Malicious modification of these files could compromise accounts upon logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1650,11 +1659,11 @@ Check the mode on all local initialization files with the following command:
 
 Note: The example will be for the "smithj" user, who has a home directory of "/home/smithj".
 
-# ls -al /home/smithj/.[^.]* | more
+     # ls -al /home/smithj/.[^.]* | more
 
--rwxr----- 1 smithj users 896 Mar 10 2011 .profile
--rwxr----- 1 smithj users 497 Jan 6 2007 .login
--rwxr----- 1 smithj users 886 Jan 6 2007 .something
+     -rw-------. 1 smithj users 2984 Apr 27 19:02 .bash_history
+     -rw-r--r--. 1 smithj users   18 Aug 21  2019 .bash_logout
+     -rw-r--r--. 1 smithj users  193 Aug 21  2019 .bash_profile
 
 If any local initialization files have a mode more permissive than "0740", this is a finding.</RawString>
     </Rule>
@@ -1983,12 +1992,13 @@ Check the configuration of "rsyslog" with the following command:
 
 Note: If another logging package is used, substitute the utility configuration file for "/etc/rsyslog.conf".
 
-# grep @ /etc/rsyslog.conf /etc/rsyslog.d/*.conf
-*.* @@logagg.site.mil
+     # grep @ /etc/rsyslog.conf /etc/rsyslog.d/*.conf
 
-If there are no lines in the "/etc/rsyslog.conf" or "/etc/rsyslog.d/*.conf" files that contain the "@" or "@@" symbol(s), and the lines with the correct symbol(s) to send output to another system do not cover all "rsyslog" output, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media. 
+     *.* @@[logaggregationserver.example.mil]:[port]
 
-If the lines are commented out or there is no evidence that the audit logs are being sent to another system, this is a finding.</RawString>
+If there are no lines in the "/etc/rsyslog.conf" or "/etc/rsyslog.d/*.conf" files that contain the "@" or "@@" symbol(s), and the lines with the correct symbol(s) to send output to another system do not cover all "rsyslog" output, ask the system administrator to indicate how the audit logs are offloaded to a different system or media. 
+
+If the lines are commented out or there is no evidence that the audit logs are being sent to another log aggregation server, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204577" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;In order to prevent unauthorized connection of devices, unauthorized transfer of information, or unauthorized tunneling (i.e., embedding of data types within data types), organizations must disable or restrict unused or unnecessary physical and logical ports/protocols on information systems.
@@ -2969,10 +2979,10 @@ Operating systems need to track periods of inactivity and disable application id
       <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "INACTIVE" is set to "-1", a value greater than "35", is commented out, or is not defined, this is a finding." </OrganizationValueTestString>
       <RawString>If passwords are not being used for authentication, this is Not Applicable.
 
-Verify the operating system disables account identifiers (individuals, groups, roles, and devices) after the password expires with the following command:
+Verify the operating system disables account identifiers (individuals, groups, roles, and devices) after the password has expired with the following command:
 
-# grep -i inactive /etc/default/useradd
-INACTIVE=35
+     # grep -i inactive /etc/default/useradd
+     INACTIVE=35
 
 If "INACTIVE" is set to "-1", a value greater than "35", is commented out, or is not defined, this is a finding.</RawString>
     </Rule>
@@ -5181,9 +5191,9 @@ If the text in the file does not match the Standard Mandatory DoD Notice and Con
     <Rule id="V-204587" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
+      <Description>&lt;VulnDiscussion&gt;Terminating an unresponsive SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
 
-Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
+Terminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level and deallocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean the operating system terminates all sessions or network access; it only ends the unresponsive session and releases the resources associated with that session.
 
 Satisfies: SRG-OS-000163-GPOS-00072, SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>
@@ -5193,18 +5203,18 @@ Satisfies: SRG-OS-000163-GPOS-00072, SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72237</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding." </OrganizationValueTestString>
-      <RawString>Verify the operating system automatically terminates a user session after inactivity time-outs have expired.
+      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the information system security officer (ISSO) as an operational requirement, this is a finding." </OrganizationValueTestString>
+      <RawString>Verify the SSH server automatically terminates a user session after the SSH client has been unresponsive for 10 minutes.
 
 Check for the value of the "ClientAliveInterval" keyword with the following command:
 
-# grep -iw clientaliveinterval /etc/ssh/sshd_config
+     # grep -iw clientaliveinterval /etc/ssh/sshd_config
 
-ClientAliveInterval 600
+     ClientAliveInterval 600
 
-If "ClientAliveInterval" is not configured, commented out, or has a value of "0", this is a finding.
+If "ClientAliveInterval" is not configured, is commented out, or has a value of "0", this is a finding.
 
-If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If "ClientAliveInterval" has a value that is greater than "600" and is not documented with the information system security officer (ISSO) as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204588" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>RhostsRSAAuthentication no</ContainsLine>
@@ -5233,9 +5243,9 @@ If the value is returned as "yes", the returned line is commented out, or no out
     </Rule>
     <Rule id="V-204589" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="nxFileLine">
       <ContainsLine>ClientAliveCountMax 0</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
+      <Description>&lt;VulnDiscussion&gt;Terminating an unresponsive SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
 
-Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
+Terminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level and deallocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean the operating system terminates all sessions or network access; it only ends the unresponsive session and releases the resources associated with that session.
 
 Satisfies: SRG-OS-000163-GPOS-00072, SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>^#\s*ClientAliveCountMax.*$|^ClientAliveCountMax\s*(?!0\b)\w*$</DoesNotContainPattern>
@@ -5245,12 +5255,12 @@ Satisfies: SRG-OS-000163-GPOS-00072, SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion
       <LegacyId>V-72241</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system automatically terminates a user session after inactivity time-outs have expired.
+      <RawString>Verify the SSH server automatically terminates a user session after the SSH client has become unresponsive.
 
 Check for the value of the "ClientAliveCountMax" keyword with the following command:
 
-# grep -i clientalivecount /etc/ssh/sshd_config
-ClientAliveCountMax 0
+     # grep -i clientalivecount /etc/ssh/sshd_config
+     ClientAliveCountMax 0
 
 If "ClientAliveCountMax" is not set to "0", this is a finding.</RawString>
     </Rule>
@@ -6262,10 +6272,10 @@ If conflicting results are returned, this is a finding.
 If "timestamp_timeout" is set to a negative number, is commented out, or no results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-250314" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="nxFile">
-      <Contents>%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL</Contents>
-      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+      <Contents>%{designated_group_or_user_name} ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL</Contents>
+      <Description>&lt;VulnDiscussion&gt;Preventing nonprivileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
 
-Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Nonprivileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from nonprivileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <FilePath>/etc/sudoers.d/250314-powerstig.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6276,8 +6286,9 @@ Privileged functions include, for example, establishing accounts, performing sys
       <RawString>Verify the operating system elevates the SELinux context when an administrator calls the sudo command with the following command:
 
 This command must be ran as root:
-# grep -r sysadm_r /etc/sudoers /etc/sudoers.d
-%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL
+
+     # grep -r sysadm_r /etc/sudoers /etc/sudoers.d
+     %{designated_group_or_user_name} ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL
 
 If conflicting results are returned, this is a finding.
 
