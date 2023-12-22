@@ -51,7 +51,7 @@
   <!-- Ensure ''V-225033'' -le '30' -and ''V-225033'' -gt '0'-->
   <OrganizationalSetting id="V-225033" ValueData="30" />
   <!-- Ensure ''V-225035'' -le '900' -and ''V-225035'' -gt '0'-->
-    <OrganizationalSetting id="V-225035" ValueData="900" />
+  <OrganizationalSetting id="V-225035" ValueData="900" />
   <!-- Ensure 'V-225036' is set to the required legal notice before logon-->
   <OrganizationalSetting id="V-225036" ValueData="You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
