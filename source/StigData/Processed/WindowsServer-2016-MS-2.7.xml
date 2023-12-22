@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_MS_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 31 May 2022 3.3.0.27375 1.10.0" title="Microsoft Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="6/27/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_MS_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 09 Nov 2023 3.4.1.22916 1.10.0" title="Microsoft Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="12/22/2023">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-224866" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -190,7 +190,7 @@ Credential Validation records events related to validation tests on credentials 
       <LegacyId>V-73413</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -216,7 +216,7 @@ Credential Validation records events related to validation tests on credentials 
       <LegacyId>V-73415</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -244,7 +244,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPO
       <LegacyId>V-73419</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -272,7 +272,7 @@ Satisfies: SRG-OS-000004-GPOS-00004, SRG-OS-000239-GPOS-00089, SRG-OS-000240-GPO
       <LegacyId>V-73423</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -300,7 +300,7 @@ Satisfies: SRG-OS-000004-GPOS-00004, SRG-OS-000239-GPOS-00089, SRG-OS-000240-GPO
       <LegacyId>V-73427</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -328,7 +328,7 @@ Satisfies: SRG-OS-000004-GPOS-00004, SRG-OS-000239-GPOS-00089, SRG-OS-000240-GPO
       <LegacyId>V-73429</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -354,7 +354,7 @@ Plug and Play activity records events related to the successful connection of ex
       <LegacyId>V-73431</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -382,7 +382,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion
       <LegacyId>V-73433</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -397,34 +397,6 @@ If the system does not audit the following, this is a finding.
 Detailed Tracking &gt;&gt; Process Creation - Success</RawString>
       <Subcategory>Process Creation</Subcategory>
     </Rule>
-    <Rule id="V-224889" severity="medium" conversionstatus="pass" title="SRG-OS-000240-GPOS-00090" dscresource="AuditPolicySubcategory">
-      <AuditFlag>Success</AuditFlag>
-      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
-
-Account Lockout events can be used to identify potentially malicious logon attempts.
-
-Satisfies: SRG-OS-000240-GPOS-00090, SRG-OS-000470-GPOS-00214&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-73443</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
-
-Use the AuditPol tool to review the current Audit Policy configuration:
-
-Open an elevated "Command Prompt" (run as administrator).
-
-Enter "AuditPol /get /category:*"
-
-Compare the AuditPol settings with the following.
-
-If the system does not audit the following, this is a finding.
-
-Logon/Logoff &gt;&gt; Account Lockout - Success</RawString>
-      <Subcategory>Account Lockout</Subcategory>
-    </Rule>
     <Rule id="V-224890" severity="medium" conversionstatus="pass" title="SRG-OS-000240-GPOS-00090" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
@@ -438,7 +410,7 @@ Satisfies: SRG-OS-000240-GPOS-00090, SRG-OS-000470-GPOS-00214&lt;/VulnDiscussion
       <LegacyId>V-73445</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -462,7 +434,7 @@ Audit Group Membership records information related to the group membership of a 
       <LegacyId>V-73447</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -470,7 +442,7 @@ Open an elevated "Command Prompt" (run as administrator).
 
 Enter "AuditPol /get /category:*"
 
-Compare the AuditPol settings with the following.
+Compare the AuditPol settings with the following. 
 
 If the system does not audit the following, this is a finding.
 
@@ -490,7 +462,7 @@ Satisfies: SRG-OS-000032-GPOS-00013, SRG-OS-000470-GPOS-00214, SRG-OS-000472-GPO
       <LegacyId>V-73449</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -518,7 +490,7 @@ Satisfies: SRG-OS-000032-GPOS-00013, SRG-OS-000470-GPOS-00214, SRG-OS-000472-GPO
       <LegacyId>V-73451</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -546,7 +518,7 @@ Satisfies: SRG-OS-000032-GPOS-00013, SRG-OS-000470-GPOS-00214, SRG-OS-000472-GPO
       <LegacyId>V-73453</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -574,7 +546,7 @@ Satisfies: SRG-OS-000470-GPOS-00214, SRG-OS-000472-GPOS-00217, SRG-OS-000473-GPO
       <LegacyId>V-73455</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -652,7 +624,7 @@ Removable Storage auditing under Object Access records events related to access 
       <LegacyId>V-73457</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -680,7 +652,7 @@ Removable Storage auditing under Object Access records events related to access 
       <LegacyId>V-73459</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -710,7 +682,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <LegacyId>V-73461</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -738,7 +710,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <LegacyId>V-73463</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -766,7 +738,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPO
       <LegacyId>V-73465</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -794,7 +766,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPO
       <LegacyId>V-73467</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -822,7 +794,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPO
       <LegacyId>V-73469</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -850,7 +822,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPO
       <LegacyId>V-73471</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -878,7 +850,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <LegacyId>V-73473</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -906,7 +878,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <LegacyId>V-73475</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -934,7 +906,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <LegacyId>V-73477</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -962,7 +934,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <LegacyId>V-73479</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -970,7 +942,7 @@ Open an elevated "Command Prompt" (run as administrator).
 
 Enter "AuditPol /get /category:*".
 
-Compare the AuditPol settings with the following.
+Compare the AuditPol settings with the following. 
 
 If the system does not audit the following, this is a finding.
 
@@ -990,7 +962,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <LegacyId>V-73481</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -1018,7 +990,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPO
       <LegacyId>V-73483</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -1046,7 +1018,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000471-GPOS-00215, SRG-OS-000471-GPO
       <LegacyId>V-73489</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -1074,7 +1046,7 @@ Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000471-GPOS-00215, SRG-OS-000471-GPO
       <LegacyId>V-73491</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN16-SO-000050) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 
@@ -1153,9 +1125,9 @@ If unapproved shared accounts exist, this is a finding.</RawString>
       <LegacyId>V-73245</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Determine whether there is a HIDS or HIPS on each server.
+      <RawString>Determine whether there is a HIDS or HIPS on each server. 
 
-If the HIPS component of ESS is installed and active on the host and the alerts of blocked activity are being logged and monitored, this meets the requirement.
+If the HIPS component of ESS is installed and active on the host and the alerts of blocked activity are being logged and monitored, this meets the requirement. 
 
 A HIDS device is not required on a system that has the role as the Network Intrusion Device (NID). However, this exception needs to be documented with the ISSO.
 
@@ -1174,11 +1146,11 @@ If there are no printers configured, this is NA. (Exclude Microsoft Print to PDF
 
 For each printer:
 
-Right-click on the printer.
+Right-click on the printer. 
 
-Select "Printer Properties".
+Select "Printer Properties". 
 
-Select the "Sharing" tab.
+Select the "Sharing" tab. 
 
 If "Share this printer" is checked, select the "Security" tab.
 
@@ -1205,7 +1177,7 @@ Enter "Search-ADAccount -AccountInactive -UsersOnly -TimeSpan 35.00:00:00"
 
 This will return accounts that have not been logged on to for 35 days, along with various attributes such as the Enabled status and LastLogonDate.
 
-Member servers and standalone systems:
+Member servers and standalone or nondomain-joined systems:
 
 Copy or enter the lines below to the PowerShell window and enter. (Entering twice may be required. Do not include the quotes at the beginning and end of the query.)
 
@@ -1216,7 +1188,7 @@ Copy or enter the lines below to the PowerShell window and enter. (Entering twic
  if ($lastLogin -eq $null) {
  $lastLogin = 'Never'
  }
- Write-Host $user.Name $lastLogin $enabled
+ Write-Host $user.Name $lastLogin $enabled 
 }"
 
 This will return a list of local accounts with the account name, last logon, and if the account is enabled (True/False).
@@ -1285,7 +1257,7 @@ Note: Example of documentation can be a copy of the site's CCB approved Software
       <LegacyId>V-73217</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify each user with administrative privileges has been assigned a unique administrative account separate from their standard user account.
+      <RawString>Verify each user with administrative privileges has been assigned a unique administrative account separate from their standard user account. 
 
 If users with administrative privileges do not have separate accounts for administrative functions and standard user functions, this is a finding.</RawString>
     </Rule>
@@ -1308,7 +1280,7 @@ Enter "Get-ADUser -Filter * -Properties SID, PasswordLastSet | Where SID -Like "
 
 If the "PasswordLastSet" date is greater than "60" days old, this is a finding.
 
-Member servers and standalone systems:
+Member servers and standalone or nondomain-joined systems:
 
 Open "Command Prompt".
 
@@ -1386,7 +1358,7 @@ Enter "Get-AdUser -Identity [application account name] -Properties PasswordLastS
 
 If the "PasswordLastSet" date is more than one year old, this is a finding.
 
-Member servers and standalone systems:
+Member servers and standalone or nondomain-joined systems:
 
 Open "Command Prompt".
 
@@ -1395,23 +1367,21 @@ Enter 'Net User [application account name] | Find /i "Password Last Set"', where
 If the "Password Last Set" date is more than one year old, this is a finding.</RawString>
     </Rule>
     <Rule id="V-224826" severity="medium" conversionstatus="pass" title="SRG-OS-000370-GPOS-00155" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Using a whitelist provides a configuration management method to allow the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
+      <Description>&lt;VulnDiscussion&gt;Using an allowlist provides a configuration management method to allow the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
 
-The organization must identify authorized software programs and only permit execution of authorized software. The process used to identify software programs that are authorized to execute on organizational information systems is commonly referred to as whitelisting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+The organization must identify authorized software programs and only permit execution of authorized software. The process used to identify software programs that are authorized to execute on organizational information systems is commonly referred to as allowlisting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73235</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This is applicable to unclassified systems. For other systems, this is NA.
+      <RawString>Verify the operating system employs a deny-all, permit-by-exception policy to allow the execution of authorized software programs.
 
-Verify the operating system employs a deny-all, permit-by-exception policy to allow the execution of authorized software programs.
+If an application allowlisting program is not in use on the system, this is a finding.
 
-If an application whitelisting program is not in use on the system, this is a finding.
+Configuration of allowlisting applications will vary by the program.
 
-Configuration of whitelisting applications will vary by the program.
-
-AppLocker is a whitelisting application built into Windows Server. A deny-by-default implementation is initiated by enabling any AppLocker rules within a category, only allowing what is specified by defined rules.
+AppLocker is an allowlisting application built into Windows Server. A deny-by-default implementation is initiated by enabling any AppLocker rules within a category, only allowing what is specified by defined rules.
 
 If AppLocker is used, perform the following to view the configuration of AppLocker:
 
@@ -1427,20 +1397,18 @@ Get-AppLockerPolicy -Effective -XML &gt; c:\temp\file.xml
 
 This will produce an xml file with the effective settings that can be viewed in a browser or opened in a program such as Excel for review.
 
-Implementation guidance for AppLocker is available in the NSA paper "Application Whitelisting using Microsoft AppLocker" at the following link:
+Implementation guidance for AppLocker is available at the following link:
 
-https://www.iad.gov/iad/library/ia-guidance/tech-briefs/application-whitelisting-using-microsoft-applocker.cfm</RawString>
+https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/applocker/applocker-policies-deployment-guide</RawString>
     </Rule>
     <Rule id="V-224827" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Credential Guard uses virtualization-based security to protect data that could be used in credential theft attacks if compromised. A number of system requirements must be met in order for Credential Guard to be configured and enabled properly. Without a TPM enabled and ready for use, Credential Guard keys are stored in a less secure method using software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Credential Guard uses virtualization-based security to protect data that could be used in credential theft attacks if compromised. A number of system requirements must be met for Credential Guard to be configured and enabled properly. Without a TPM enabled and ready for use, Credential Guard keys are stored in a less secure method using software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73237</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>For standalone systems, this is NA.
-
-Current hardware and virtual environments may not support virtualization-based security features, including Credential Guard, due to specific supporting requirements including a TPM, UEFI with Secure Boot, and the capability to run the Hyper-V feature within a virtual machine.
+      <RawString>For standalone or nondomain-joined systems, this is NA.
 
 Verify the system has a TPM and it is ready for use.
 
@@ -1498,7 +1466,7 @@ Exclude disabled accounts (e.g., DefaultAccount, Guest) and Trusted Domain Objec
 
 If "Passwordnotrequired" is "True" or blank for any enabled user account, this is a finding.
 
-Member servers and standalone systems:
+Member servers and standalone or nondomain-joined systems:
 
 Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordRequired=False and LocalAccount=True" | FT Name, PasswordRequired, Disabled, LocalAccount'.
 
@@ -1521,11 +1489,11 @@ Domain Controllers:
 
 Enter "Search-ADAccount -PasswordNeverExpires -UsersOnly | FT Name, PasswordNeverExpires, Enabled".
 
-Exclude application accounts, disabled accounts (e.g., DefaultAccount, Guest) and the krbtgt account.
+Exclude application accounts, disabled accounts (e.g., DefaultAccount, Guest), and the krbtgt account.
 
 If any enabled user accounts are returned with a "PasswordNeverExpires" status of "True", this is a finding.
 
-Member servers and standalone systems:
+Member servers and standalone or nondomain-joined systems:
 
 Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordExpires=False and LocalAccount=True" | FT Name, PasswordExpires, Disabled, LocalAccount'.
 
@@ -1540,11 +1508,11 @@ If any enabled user accounts are returned with a "PasswordExpires" status of "Fa
       <LegacyId>V-73265</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Determine whether the system is monitored for unauthorized changes to system files (e.g., *.exe, *.bat, *.com, *.cmd, and *.dll) against a baseline on a weekly basis.
+      <RawString>Determine if the system is monitored for unauthorized changes to system files (e.g., *.exe, *.bat, *.com, *.cmd, and *.dll) against a baseline on a weekly basis.
 
-A properly configured and approved DoD ESS solution that supports a File Integrity Monitor (FIM) module will meet the requirement for file integrity checking.
+If system files are not being monitored for unauthorized changes, this is a finding. 
 
-If system files are not monitored for unauthorized changes, this is a finding.</RawString>
+An approved and properly configured solution will contain both a list of baselines that includes all system file locations and a file comparison task that is scheduled to run at least weekly.</RawString>
     </Rule>
     <Rule id="V-224841" severity="medium" conversionstatus="pass" title="SRG-OS-000138-GPOS-00069" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Shares on a system provide network access. To prevent exposing sensitive information, where shares are necessary, permissions must be reconfigured to give the minimum access to accounts that require it.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1641,7 +1609,7 @@ Enter "Search-ADAccount -AccountExpiring | FT Name, AccountExpirationDate".
 
 If "AccountExpirationDate" has not been defined within 72 hours for any temporary user account, this is a finding.
 
-Member servers and standalone systems:
+Member servers and standalone or nondomain-joined systems:
 
 Open "Command Prompt".
 
@@ -1674,7 +1642,7 @@ Enter "Search-ADAccount –AccountExpiring | FT Name, AccountExpirationDate".
 
 If "AccountExpirationDate" has been defined and is not within 72 hours for an emergency administrator account, this is a finding.
 
-Member servers and standalone systems:
+Member servers and standalone or nondomain-joined systems:
 
 Open "Command Prompt".
 
@@ -1739,7 +1707,7 @@ If the value for "Type" under "NTP Client" is not "NT5DS", this is a finding.
 
 Other systems:
 
-If systems are configured with a "Type" of "NTP", including standalone systems and the domain controller with the PDC Emulator role, and do not have a DoD time server defined for "NTPServer", this is a finding.
+If systems are configured with a "Type" of "NTP", including standalone or nondomain-joined systems and the domain controller with the PDC Emulator role, and do not have a DoD time server defined for "NTPServer", this is a finding.
 
 To determine the domain controller with the PDC Emulator role:
 
@@ -1754,7 +1722,7 @@ Enter "Get-ADDomain | FT PDCEmulator".</RawString>
       <LegacyId>V-90355</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Some older systems may not have UEFI firmware. This is currently a CAT III; it will be raised in severity at a future date when broad support of Windows hardware and firmware requirements are expected to be met. Devices that have UEFI firmware must have Secure Boot enabled.
+      <RawString>Some older systems may not have UEFI firmware. This is currently a CAT III; it will be raised in severity at a future date when broad support of Windows hardware and firmware requirements are expected to be met. Devices that have UEFI firmware must have Secure Boot enabled. 
 
 Run "System Information".
 
@@ -1787,13 +1755,13 @@ Under "System Summary", if "BIOS Mode" does not display "UEFI", this is a findin
 If it has not, this is a finding.</RawString>
     </Rule>
     <Rule id="V-224876" severity="medium" conversionstatus="pass" title="SRG-OS-000479-GPOS-00224" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Protection of log data includes assuring the log data is not accidentally lost or deleted. Audit information stored in one location is vulnerable to accidental or incidental deletion or alteration.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Protection of log data includes ensuring the log data is not accidentally lost or deleted. Audit information stored in one location is vulnerable to accidental or incidental deletion or alteration.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-73403</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the audit records, at a minimum, are off-loaded for interconnected systems in real time and off-loaded for standalone systems weekly.
+      <RawString>Verify the audit records, at a minimum, are offloaded for interconnected systems in real time and offloaded for standalone or nondomain-joined systems weekly. 
 
 If they are not, this is a finding.</RawString>
     </Rule>
@@ -1802,7 +1770,7 @@ If they are not, this is a finding.</RawString>
 
 System administrators must log on to systems using only accounts with the minimum level of authority necessary.
 
-For domain-joined member servers, the Domain Admins group must be replaced by a domain member server administrator group (see V-36433 in the Active Directory Domain STIG). Restricting highly privileged accounts from the local Administrators group helps mitigate the risk of privilege escalation resulting from credential theft attacks.
+For domain-joined member servers, the Domain Admins group must be replaced by a domain member server administrator group (refer to AD.0003 in the Active Directory Domain STIG). Restricting highly privileged accounts from the local Administrators group helps mitigate the risk of privilege escalation resulting from credential theft attacks.
 
 Standard user accounts must not be members of the built-in Administrators group.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1810,7 +1778,7 @@ Standard user accounts must not be members of the built-in Administrators group.
       <LegacyId>V-73221</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone systems. A separate version applies to domain controllers.
+      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
 
 Open "Computer Management".
 
@@ -2826,11 +2794,11 @@ Value: 0x00000004 (4)</RawString>
       <LegacyId>V-73493</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the registry value below.
+      <RawString>Verify the registry value below. 
 
 If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\Personalization\
 
 Value Name: NoLockScreenSlideshow
@@ -2896,7 +2864,7 @@ Value: 0x00000002 (2)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: DisableIPSourceRouting
@@ -2918,7 +2886,7 @@ Value: 0x00000002 (2)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: EnableICMPRedirect
@@ -3022,7 +2990,7 @@ Enabling "Include command line data for process creation events" will record the
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\
 
 Value Name: ProcessCreationIncludeCmdLine_Enabled
@@ -3034,7 +3002,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-224923.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Virtualization Based Security (VBS) provides the platform for the additional security features Credential Guard and virtualization-based protection of code integrity. Secure Boot is the minimum security level, with DMA protection providing additional memory protection. DMA Protection requires a CPU that supports input/output memory management unit (IOMMU).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Virtualization-based security (VBS) provides the platform for the additional security features Credential Guard and virtualization-based protection of code integrity. Secure Boot is the minimum security level, with DMA protection providing additional memory protection. DMA Protection requires a CPU that supports input/output memory management unit (IOMMU).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3052,7 +3020,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-224923.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Virtualization Based Security (VBS) provides the platform for the additional security features Credential Guard and virtualization-based protection of code integrity. Secure Boot is the minimum security level, with DMA protection providing additional memory protection. DMA Protection requires a CPU that supports input/output memory management unit (IOMMU).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Virtualization-based security (VBS) provides the platform for the additional security features Credential Guard and virtualization-based protection of code integrity. Secure Boot is the minimum security level, with DMA protection providing additional memory protection. DMA Protection requires a CPU that supports input/output memory management unit (IOMMU).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3124,7 +3092,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-224926" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and will prevent uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and will prevent uncontrolled updates to the system. 
 
 This setting prevents the computer from downloading print driver packages over HTTP.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -3182,7 +3150,7 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>Verify the registry value below. If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
 
 Value Name: DontDisplayNetworkSelectionUI
@@ -3820,7 +3788,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <OrganizationValueTestString />
       <RawString>Verify the registry value below. If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: DisableAutomaticRestartSignOn
@@ -3844,7 +3812,7 @@ Enabling PowerShell script block logging will record detailed information from t
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
 
 Value Name: EnableScriptBlockLogging
@@ -4004,7 +3972,7 @@ With User Account Control enabled, filtering the privileged token for local admi
       <LegacyId>V-73495</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This applies to member servers. For domain controllers and standalone systems, this is NA.
+      <RawString>This applies to member servers. For domain controllers and standalone or nondomain-joined systems, this is NA.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
@@ -4030,7 +3998,7 @@ This setting may cause issues with some network scanning tools if local administ
       <LegacyId>V-73533</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This applies to member servers. For domain controllers and standalone systems, this is NA.
+      <RawString>This applies to member servers. For domain controllers and standalone or nondomain-joined systems, this is NA.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
@@ -4054,7 +4022,7 @@ Value: 0x00000000 (0)</RawString>
       <LegacyId>V-73541</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone systems, It is NA for domain controllers.
+      <RawString>This applies to member servers and standalone or nondomain-joined systems. It is NA for domain controllers.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
@@ -4078,7 +4046,7 @@ Value:  0x00000001 (1)</RawString>
       <LegacyId>V-73651</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -le '4'</OrganizationValueTestString>
-      <RawString>This applies to member servers. For domain controllers and standalone systems, this is NA.
+      <RawString>This applies to member servers. For domain controllers and standalone or nondomain-joined systems, this is NA.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
@@ -4094,7 +4062,7 @@ Value:  4 (or less)</RawString>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-225012" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Credential Guard uses virtualization-based security to protect data that could be used in credential theft attacks if compromised. This authentication information, which was stored in the Local Security Authority (LSA) in previous versions of Windows, is isolated from the rest of operating system and can only be accessed by privileged system software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Credential Guard uses virtualization-based security to protect data that could be used in credential theft attacks if compromised. This authentication information, which was stored in the Local Security Authority (LSA) in previous versions of Windows, is isolated from the rest of the operating system and can only be accessed by privileged system software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4102,9 +4070,7 @@ Value:  4 (or less)</RawString>
       <LegacyId>V-73515</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>For domain controllers and standalone systems, this is NA.
-
-Current hardware and virtual environments may not support virtualization-based security features, including Credential Guard, due to specific supporting requirements, including a TPM, UEFI with Secure Boot, and the capability to run the Hyper-V feature within a virtual machine.
+      <RawString>For domain controllers and standalone or nondomain-joined systems, this is NA.
 
 Open "PowerShell" with elevated privileges (run as administrator).
 
@@ -4120,7 +4086,7 @@ Run "System Information".
 
 Under "System Summary", verify the following:
 
-If "Device Guard Security Services Running" does not list "Credential Guard", this is finding.
+If "Device Guard Security Services Running" does not list "Credential Guard", this is a finding.
 
 The policy settings referenced in the Fix section will configure the following registry value. However, due to hardware requirements, the registry value alone does not ensure proper function.
 
@@ -4147,7 +4113,7 @@ https://docs.microsoft.com/en-us/windows/security/identity-protection/credential
       <LegacyId>V-73677</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone systems; it is NA for domain controllers.
+      <RawString>This applies to member servers and standalone or nondomain-joined systems. It is NA for domain controllers.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
@@ -4173,7 +4139,7 @@ Value: O:BAG:BAD:(A;;RC;;;BA)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: LimitBlankPasswordUse
@@ -4185,7 +4151,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-225028" severity="medium" conversionstatus="pass" title="SRG-OS-000062-GPOS-00031" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. 
 This setting allows administrators to enable more precise auditing capabilities.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4196,7 +4162,7 @@ This setting allows administrators to enable more precise auditing capabilities.
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: SCENoApplyLegacyAuditPolicy
@@ -4220,7 +4186,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: RequireSignOrSeal
@@ -4290,7 +4256,7 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: DisablePasswordChange
@@ -4314,7 +4280,7 @@ Value: 0x00000000 (0)</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: MaximumPasswordAge
@@ -4338,14 +4304,14 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: RequireStrongKey
 
 Value Type: REG_DWORD
 Value: 0x00000001 (1)
-
+ 
 This setting may prevent a system from being joined to a domain if not configured consistently between systems.</RawString>
       <ValueData>1</ValueData>
       <ValueName>RequireStrongKey</ValueName>
@@ -4362,7 +4328,7 @@ This setting may prevent a system from being joined to a domain if not configure
       <OrganizationValueTestString>'{0}' -le '900' -and '{0}' -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: InactivityTimeoutSecs
@@ -4386,7 +4352,7 @@ Satisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000024-GPOS-00007, SRG-OS-000228-GPO
       <OrganizationValueTestString>{0} is set to the required legal notice before logon</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: LegalNoticeText
@@ -4424,7 +4390,7 @@ Satisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000228-GPOS-00088&lt;/VulnDiscussion
       <OrganizationValueTestString>'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: LegalNoticeCaption
@@ -4432,7 +4398,7 @@ Value Name: LegalNoticeCaption
 Value Type: REG_SZ
 Value: See message title options below
 
-"DoD Notice and Consent Banner", "US Department of Defense Warning Statement", or an organization-defined equivalent.
+"DoD Notice and Consent Banner", "US Department of Defense Warning Statement", or an organization-defined equivalent. 
 
 If an organization-defined title is used, it can in no case contravene or modify the language of the banner text required in WN16-SO-000150.
 
@@ -4452,9 +4418,9 @@ Automated tools may only search for the titles defined above. If an organization
       <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\
-
+ 
 Value Name: scremoveoption
 
 Value Type: REG_SZ
@@ -4478,7 +4444,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\
 
 Value Name: RequireSecuritySignature
@@ -4502,7 +4468,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\
 
 Value Name: EnableSecuritySignature
@@ -4548,7 +4514,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: RequireSecuritySignature
@@ -4572,7 +4538,7 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188&lt;/VulnDiscussion
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: EnableSecuritySignature
@@ -4594,7 +4560,7 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: RestrictAnonymousSAM
@@ -4616,7 +4582,7 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: RestrictAnonymous
@@ -4638,7 +4604,7 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: EveryoneIncludesAnonymous
@@ -4660,7 +4626,7 @@ Value: 0x00000000 (0)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: RestrictNullSessAccess
@@ -4772,7 +4738,7 @@ Value: 0x7ffffff8 (2147483640)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 
 Value Name: NoLMHash
@@ -4784,7 +4750,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-225054" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;The Kerberos v5 authentication protocol is the default for authentication of users who are logging on to domain accounts. NTLM, which is less secure, is retained in later Windows versions for compatibility with clients and servers that are running earlier versions of Windows or applications that still use it. It is also used to authenticate logons to standalone computers that are running later versions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;The Kerberos v5 authentication protocol is the default for authentication of users who are logging on to domain accounts. NTLM, which is less secure, is retained in later Windows versions for compatibility with clients and servers that are running earlier versions of Windows or applications that still use it. It is also used to authenticate logons to standalone or nondomain-joined computers that are running later versions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4816,7 +4782,7 @@ Value: 0x00000005 (5)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Services\LDAP\
 
 Value Name: LDAPClientIntegrity
@@ -4838,7 +4804,7 @@ Value: 0x00000001 (1)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0\
 
 Value Name: NTLMMinClientSec
@@ -4860,7 +4826,7 @@ Value: 0x20080000 (537395200)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0\
 
 Value Name: NTLMMinServerSec
@@ -4919,7 +4885,7 @@ Value Name: Enabled
 
 Value Type: REG_DWORD
 Value: 0x00000001 (1)
-
+ 
 Clients with this setting enabled will not be able to communicate via digitally encrypted or signed protocols with servers that do not support these algorithms. Both the browser and web server must be configured to use TLS; otherwise. the browser will not be able to connect to a secure site.</RawString>
       <ValueData>1</ValueData>
       <ValueName>Enabled</ValueName>
@@ -4936,7 +4902,7 @@ Clients with this setting enabled will not be able to communicate via digitally 
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SYSTEM\CurrentControlSet\Control\Session Manager\
 
 Value Name: ProtectionMode
@@ -4962,7 +4928,7 @@ Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: FilterAdministratorToken
@@ -4986,7 +4952,7 @@ Value: 0x00000001 (1)</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableUIADesktopToggle
@@ -5037,7 +5003,7 @@ Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: ConsentPromptBehaviorUser
@@ -5061,7 +5027,7 @@ Value: 0x00000000 (0)</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableInstallerDetection
@@ -5085,7 +5051,7 @@ Value: 0x00000001 (1)</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableSecureUIAPaths
@@ -5111,7 +5077,7 @@ Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableLUA
@@ -5135,7 +5101,7 @@ Value: 0x00000001 (1)</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableVirtualization
@@ -5214,6 +5180,31 @@ Value: 1</RawString>
       <ValueName>NoReadingPane</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
+    <Rule id="V-257502" severity="medium" conversionstatus="pass" title="SRG-OS-000041-GPOS-00019" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Enabling PowerShell Transcription will record detailed information from the processing of PowerShell commands and scripts. This can provide additional detail when malware has run on a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription\
+
+Value Name: EnableTranscripting
+
+Value Type: REG_DWORD
+Value: 1</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>EnableTranscripting</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
   </RegistryRule>
   <RootCertificateRule dscresourcemodule="CertificateDsc">
     <Rule id="V-225021.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
@@ -5258,32 +5249,78 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       <RawString>DoD Root CA 5,4ECB5CC3095670454DA1CBD410FC921F46B8564B</RawString>
       <Thumbprint>4ECB5CC3095670454DA1CBD410FC921F46B8564B</Thumbprint>
     </Rule>
-    <Rule id="V-225022.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
-      <CertificateName>DoD Interoperability Root CA 2</CertificateName>
-      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+    <Rule id="V-225021.d" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>DoD Root CA 6</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root Certificate Authorities (CAs). The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
 
 Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-73607.a</LegacyId>
+      <LegacyId>V-73605.d</LegacyId>
       <Location />
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>location for DoD Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
-      <RawString>DoD Interoperability Root CA 2,AC06108CA348CC03B53795C64BF84403C1DBD341</RawString>
-      <Thumbprint>AC06108CA348CC03B53795C64BF84403C1DBD341</Thumbprint>
+      <OrganizationValueTestString>location for DoD Root CA 6 certificate is present</OrganizationValueTestString>
+      <RawString>DoD Root CA 6,D37ECF61C0B4ED88681EF3630C4E2FC787B37AEFB</RawString>
+      <Thumbprint>D37ECF61C0B4ED88681EF3630C4E2FC787B37AEFB</Thumbprint>
     </Rule>
-    <Rule id="V-225022.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+    <Rule id="V-225022" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName>DoD Interoperability Root CA 2</CertificateName>
       <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
 
 Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-73607.b</LegacyId>
+      <LegacyId>V-73607</LegacyId>
       <Location />
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>location for DoD Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
-      <RawString>DoD Interoperability Root CA 2,49CBE933151872E17C8EAE7F0ABA97FB610F6477</RawString>
+      <RawString>Verify the DoD Interoperability cross-certificates are installed on unclassified systems as Untrusted Certificates.
+
+Run "PowerShell" as an administrator.
+
+Execute the following command:
+
+Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
+
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding. 
+
+Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: 49CBE933151872E17C8EAE7F0ABA97FB610F6477
+NotAfter: 11/16/2024 9:57:16 AM
+
+Alternately use the Certificates MMC snap-in:
+
+Run "MMC".
+
+Select "File", "Add/Remove Snap-in".
+
+Select "Certificates", click "Add".
+
+Select "Computer account", click "Next".
+
+Select "Local computer: (the computer this console is running on)", click "Finish".
+
+Click "OK".
+
+Expand "Certificates" and navigate to Untrusted Certificates &gt;&gt; Certificates.
+
+For each certificate with "DoD Root CA…" under "Issued To" and "DoD Interoperability Root CA…" under "Issued By":
+
+Right-click on the certificate and select "Open".
+
+Select the "Details" tab.
+
+Scroll to the bottom and select "Thumbprint".
+
+If the certificates below are not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
+
+If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
+
+Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: 49CBE933151872E17C8EAE7F0ABA97FB610F6477
+NotAfter: 11/16/2024 9:57:16 AM</RawString>
       <Thumbprint>49CBE933151872E17C8EAE7F0ABA97FB610F6477</Thumbprint>
     </Rule>
     <Rule id="V-225023" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
@@ -5305,12 +5342,12 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is a finding.
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding. 
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9
-NotAfter: 8/26/2022
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025
 
 Alternately use the Certificates MMC snap-in:
 
@@ -5332,7 +5369,7 @@ For each certificate with "US DoD CCEB Interoperability Root CA …" under "Issu
 
 Right-click on the certificate and select "Open".
 
-Select the "Details" Tab.
+Select the "Details" tab.
 
 Scroll to the bottom and select "Thumbprint".
 
@@ -5340,10 +5377,9 @@ If the certificate below is not listed or the value for the "Thumbprint" field i
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9
-Valid: Friday, August 26, 2022
-</RawString>
-      <Thumbprint>AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9</Thumbprint>
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025</RawString>
+      <Thumbprint>9B74964506C7ED9138070D08D5F8B969866560C8</Thumbprint>
     </Rule>
   </RootCertificateRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
@@ -5438,7 +5474,7 @@ Accounts with the "Access this computer from the network" user right may access 
       <LegacyId>V-73733</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone systems. A separate version applies to domain controllers.
+      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
 
 Verify the effective setting in Local Group Policy Editor.
 
@@ -5472,7 +5508,7 @@ The Guests group must be assigned this right to prevent unauthenticated access.&
       <LegacyId>V-73759</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'</OrganizationValueTestString>
-      <RawString>This applies to member servers and standalone systems. A separate version applies to domain controllers.
+      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
 
 Verify the effective setting in Local Group Policy Editor.
 
@@ -5509,7 +5545,7 @@ The Guests group must be assigned to prevent unauthenticated access.&lt;/VulnDis
       <LegacyId>V-73763</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone systems. A separate version applies to domain controllers.
+      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
 
 Verify the effective setting in Local Group Policy Editor.
 
@@ -5558,7 +5594,7 @@ If the following accounts or groups are not defined for the "Deny log on as a se
 - Enterprise Admins Group
 - Domain Admins Group
 
-If any accounts or groups are defined for the "Deny log on as a service" user right on non-domain-joined systems, this is a finding.
+If any accounts or groups are defined for the "Deny log on as a service" user right on nondomain-joined systems, this is a finding.
 
 </RawString>
     </Rule>
@@ -5579,7 +5615,7 @@ The Guests group must be assigned this right to prevent unauthenticated access.&
       <LegacyId>V-73771</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone systems. A separate version applies to domain controllers.
+      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
 
 Verify the effective setting in Local Group Policy Editor.
 
@@ -5617,7 +5653,7 @@ The Guests group must be assigned this right to prevent unauthenticated access.&
       <LegacyId>V-73775</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone systems. A separate version applies to domain controllers.
+      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
 
 Verify the effective setting in Local Group Policy Editor.
 
@@ -5650,7 +5686,7 @@ The "Enable computer and user accounts to be trusted for delegation" user right 
       <LegacyId>V-73779</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone systems. A separate version applies to domain controllers.
+      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
 
 Verify the effective setting in Local Group Policy Editor.
 
@@ -6107,7 +6143,11 @@ Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups other than the following are granted the "Perform volume maintenance tasks" user right, this is a finding.
+If an application requires this user right, this is not a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
 
 - Administrators
 

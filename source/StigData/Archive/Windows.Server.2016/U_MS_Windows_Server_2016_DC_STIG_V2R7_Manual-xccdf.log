@@ -20,3 +20,7 @@ V-224936::Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)::Value: 0x000
 V-225063::Value: 0x00000002 (2) (Prompt for consent on the secure desktop)::Value: 1 or 2
 V-225079::Passwords for application accounts with this user right must be protected as highly privileged accounts.::""
 V-225037::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'; ValueName = 'LegalNoticeCaption'; ValueType = 'String'; ValueData = $null; OrganizationValueTestString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"}
+V-225088::The requirement must be documented with the ISSO.::If any accounts or groups other than the following are granted the "Perform volume maintenance tasks" user right, this is a finding.
+V-225021::Alternately, use the Certificates MMC snap-in::Subject: CN=DoD Root CA 6, OU=PKI, OU=DoD, O=U.S. Government, C=US
+V-225021::Run "MMC".::Thumbprint: D37ECF61C0B4ED88681EF3630C4E2FC787B37AEFB
+V-225021::Select "File", "Add/Remove Snap-in".::NotAfter: 1/24/2053
