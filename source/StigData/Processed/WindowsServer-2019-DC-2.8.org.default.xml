@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.6">
+<OrganizationalSettings fullversion="2.8">
   <!-- Ensure 'V-205631' is set to the required legal notice before logon-->
   <OrganizationalSetting id="V-205631" ValueData="You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
@@ -30,6 +30,8 @@ By using this IS (which includes any device attached to this IS), you consent to
   <OrganizationalSetting id="V-205648.b" Location="" />
   <!-- Ensure location for DoD Root CA 5 certificate is present-->
   <OrganizationalSetting id="V-205648.c" Location="" />
+  <!-- Ensure location for DoD Root CA 6 certificate is present-->
+  <OrganizationalSetting id="V-205648.d" Location="" />
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-205649" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
