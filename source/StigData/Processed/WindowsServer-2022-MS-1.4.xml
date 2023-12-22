@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_MS_STIG_V1R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 09 Sep 2022 3.4.0.34222 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="3/8/2023">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_MS_STIG_V1R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 09 Nov 2023 3.4.1.22916 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.4" created="12/22/2023">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-254285" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -411,35 +411,6 @@ If the system does not audit the following, this is a finding.
 
 Detailed Tracking &gt;&gt; Process Creation - Success</RawString>
       <Subcategory>Process Creation</Subcategory>
-    </Rule>
-    <Rule id="V-254308" severity="medium" conversionstatus="pass" title="SRG-OS-000240-GPOS-00090" dscresource="AuditPolicySubcategory">
-      <AuditFlag>Success</AuditFlag>
-      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
-
-Account Lockout events can be used to identify potentially malicious logon attempts.
-
-Satisfies: SRG-OS-000240-GPOS-00090, SRG-OS-000470-GPOS-00214&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN22-SO-000050) for the detailed auditing subcategories to be effective. 
-
-Use the "AuditPol" tool to review the current Audit Policy configuration:
-
-Open "PowerShell" or a "Command Prompt" with elevated privileges ("Run as administrator").
-
-Enter "AuditPol /get /category:*"
-
-Compare the "AuditPol" settings with the following:
-
-If the system does not audit the following, this is a finding.
-
-Logon/Logoff &gt;&gt; Account Lockout - Success</RawString>
-      <Subcategory>Account Lockout</Subcategory>
     </Rule>
     <Rule id="V-254309" severity="medium" conversionstatus="pass" title="SRG-OS-000240-GPOS-00090" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
@@ -1311,32 +1282,32 @@ If users with administrative privileges do not have separate accounts for admini
     <Rule id="V-254239" severity="medium" conversionstatus="pass" title="SRG-OS-000076-GPOS-00044" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the password. The built-in Administrator account is not generally used and its password may not be changed as frequently as necessary. Changing the password for the built-in Administrator account on a regular basis will limit its exposure.
 
-It is highly recommended to use Microsoft's Local Administrator Password Solution (LAPS). Domain-joined systems can configure this to occur more frequently. LAPS will change the password every "30" days by default. The AO still has the overall authority to use another equivalent capability to accomplish the check.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Windows LAPS must be used to change the built-in Administrator account password.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the password last set date for the built-in Administrator account.
+      <RawString>If there are no enabled local Administrator accounts, this is Not Applicable.
 
-Domain controllers:
+Review the password last set date for the enabled local Administrator account.
+
+On the local domain-joined workstation:
 
 Open "PowerShell".
 
-Enter "Get-ADUser -Filter * -Properties SID, PasswordLastSet | Where SID -Like "*-500" | Ft Name, SID, PasswordLastSet".
+Enter "Get-LocalUser -Name * | Select-Object *".
 
-If the "PasswordLastSet" date is greater than "60" days old, this is a finding.
+If the "PasswordLastSet" date is greater than "60" days old for the local Administrator account for administering the computer/domain, this is a finding.
 
-Member servers and standalone or nondomain-joined systems:
+Verify LAPS is configured and operational. 
 
-Open "Command Prompt".
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Set to enabled. Password Complexity, large letters + small letters + numbers + special, Password Length 14, Password Age 60. If not configured as shown, this is a finding. 
 
-Enter 'Net User [account name] | Find /i "Password Last Set"', where [account name] is the name of the built-in administrator account.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Name of administrator Account to manage &gt;&gt; Set to enabled &gt;&gt; Administrator account name is populated. If it is not, this is a finding. 
 
-(The name of the built-in Administrator account must be changed to something other than "Administrator" per STIG requirements.)
-
-If the "PasswordLastSet" date is greater than "60" days old, this is a finding.</RawString>
+Verify LAPS Operational logs &gt;&gt; Event Viewer &gt;&gt; Applications and Services Logs &gt;&gt; Microsoft &gt;&gt; Windows &gt;&gt; LAPS &gt;&gt; Operational. Verify LAPS policy process is completing. If it is not, this is a finding.</RawString>
     </Rule>
     <Rule id="V-254240" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Using applications that access the internet or have potential internet sources using administrative privileges exposes a system to compromise. If a flaw in an application is exploited while running as a privileged user, the entire system could be compromised. Web browsers and email are common attack vectors for introducing malicious code and must not be run with an administrative account.
@@ -1421,9 +1392,9 @@ Enter 'Net User [application account name] | Find /i "Password Last Set"', where
 If the "Password Last Set" date is more than one year old, this is a finding.</RawString>
     </Rule>
     <Rule id="V-254245" severity="medium" conversionstatus="pass" title="SRG-OS-000370-GPOS-00155" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Using a whitelist provides a configuration management method to allow the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
+      <Description>&lt;VulnDiscussion&gt;Using an allowlist provides a configuration management method to allow the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
 
-The organization must identify authorized software programs and only permit execution of authorized software. The process used to identify software programs that are authorized to execute on organizational information systems is commonly referred to as whitelisting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+The organization must identify authorized software programs and only permit execution of authorized software. The process used to identify software programs that are authorized to execute on organizational information systems is commonly referred to as allowlisting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
@@ -1432,11 +1403,11 @@ The organization must identify authorized software programs and only permit exec
       <OrganizationValueTestString />
       <RawString>Verify the operating system employs a deny-all, permit-by-exception policy to allow the execution of authorized software programs.
 
-If an application whitelisting program is not in use on the system, this is a finding.
+If an application allowlisting program is not in use on the system, this is a finding.
 
-Configuration of whitelisting applications will vary by the program.
+Configuration of allowlisting applications will vary by the program.
 
-AppLocker is a whitelisting application built in to Windows Server. A deny-by-default implementation is initiated by enabling any AppLocker rules within a category, only allowing what is specified by defined rules.
+AppLocker is an allowlisting application built in to Windows Server. A deny-by-default implementation is initiated by enabling any AppLocker rules within a category, only allowing what is specified by defined rules.
 
 If AppLocker is used, perform the following to view the configuration of AppLocker:
 
@@ -1452,9 +1423,9 @@ Get-AppLockerPolicy -Effective -XML &gt; c:\temp\file.xml
 
 This will produce an xml file with the effective settings that can be viewed in a browser or opened in a program such as Excel for review.
 
-Implementation guidance for AppLocker is available in the NSA paper "Application Whitelisting using Microsoft AppLocker" at the following link:
+Implementation guidance for AppLocker is available at the following link:
 
-https://www.iad.gov/iad/library/ia-guidance/tech-briefs/application-whitelisting-using-microsoft-applocker.cfm</RawString>
+https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/applocker/applocker-policies-deployment-guide</RawString>
     </Rule>
     <Rule id="V-254246" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Credential Guard uses virtualization-based security to protect data that could be used in credential theft attacks if compromised. A number of system requirements must be met in order for Credential Guard to be configured and enabled properly. Without a TPM enabled and ready for use, Credential Guard keys are stored in a less secure method using software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1574,7 +1545,7 @@ If any enabled user accounts are returned with a "PasswordExpires" status of "Fa
 
 If system files are not monitored for unauthorized changes, this is a finding.
 
-A properly configured and approved DoD ESS solution that supports a File Integrity Monitor (FIM) module will meet the requirement for file integrity checking.</RawString>
+An approved and properly configured solution will contain both a list of baselines that includes all system file locations and a file comparison task that is scheduled to run at least weekly.</RawString>
     </Rule>
     <Rule id="V-254260" severity="medium" conversionstatus="pass" title="SRG-OS-000138-GPOS-00069" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Shares on a system provide network access. To prevent exposing sensitive information, where shares are necessary, permissions must be reconfigured to give the minimum access to accounts that require it.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1764,7 +1735,7 @@ If the value for "Type" under "NTP Client" is not "NT5DS", this is a finding.
 
 Other systems:
 
-If systems are configured with a "Type" of "NTP", including standalone or nondomain-joined systems and the domain controller with the PDC Emulator role, and do not have a DoD time server defined for "NTPServer", this is a finding.
+If systems are configured with a "Type" of "NTP", including standalone or nondomain-joined systems and the domain controller with the PDC Emulator role, and do not have a DOD time server defined for "NTPServer", this is a finding.
 
 To determine the domain controller with the PDC Emulator role:
 
@@ -2432,7 +2403,7 @@ Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
 Other examples under the noted keys may also be sampled. There may be some instances where nonprivileged groups have greater than Read permission.
-Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2022 to the following SID, this is currently not a finding.
+Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2022 to the following SID. This is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
 If the defaults have not been changed, these are not a finding.
 </RawString>
@@ -2513,7 +2484,7 @@ SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
 Other examples under the noted keys may also be sampled. There may be some instances where nonprivileged groups have greater than Read permission.
-Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2022 to the following SID, this is currently not a finding.
+Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2022 to the following SID. This is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
 If the defaults have not been changed, these are not a finding.
 </RawString>
@@ -2600,11 +2571,11 @@ Principal - Access - Applies to
 Users - Read - This key and subkeys
 Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - Subkeys only
+CREATOR OWNER - Full Control - Subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Server Operators - Read - This Key and subkeys    (Domain controllers only)
+Server Operators - Read - This Key and subkeys (Domain controllers only)
 Other examples under the noted keys may also be sampled. There may be some instances where nonprivileged groups have greater than Read permission.
-Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2022 to the following SID, this is currently not a finding.
+Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2022 to the following SID. This is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
 If the defaults have not been changed, these are not a finding.
 </RawString>
@@ -3475,15 +3446,15 @@ Value: 0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-254356" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Limiting this capability will prevent potentially sensitive information from being sent outside the enterprise. The "Security" option for Telemetry configures the lowest amount of data, effectively none outside of the Malicious Software Removal Tool (MSRT), Defender, and telemetry client settings. "Basic" sends basic diagnostic and usage data and may be required to support some Microsoft services.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Limiting this capability will prevent potentially sensitive information from being sent outside the enterprise. The "send required diagnostic data" option for Allow Diagnostic Data configures the lowest amount of data, effectively none outside of the Malicious Software Removal Tool (MSRT), Defender, and Diagnostic Data client settings. "Optional Diagnostic Data" sends basic diagnostic and usage data and may be required to support some Microsoft services.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection</Key>
       <LegacyId>
       </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '0|1'</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -3492,8 +3463,8 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DataCollection\
 Value Name: AllowTelemetry
 
 Type: REG_DWORD
-Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</RawString>
-      <ValueData />
+Value:  0x00000001 (1), 0x00000003 (3)</RawString>
+      <ValueData>1</ValueData>
       <ValueName>AllowTelemetry</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -3519,7 +3490,6 @@ Value: 0x00000000 (0) - No peering (HTTP Only)
 0x00000001 (1) - Peers on same NAT only (LAN)
 0x00000002 (2) - Local Network / Private group peering (Group)
 0x00000063 (99) - Simple download mode, no peering (Simple)
-0x00000064 (100) - Bypass mode, Delivery Optimization not used (Bypass)
 
 A value of 0x00000003 (3), Internet, is a finding.</RawString>
       <ValueData />
@@ -5432,21 +5402,6 @@ Value: 0x00000002 (2) (or if the Value Name does not exist)</RawString>
   </RegistryRule>
   <RootCertificateRule dscresourcemodule="CertificateDsc">
     <Rule id="V-254442.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
-      <CertificateName>DoD Root CA 2</CertificateName>
-      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
-
-Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <Location />
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>location for DoD Root CA 2 certificate is present</OrganizationValueTestString>
-      <RawString>DoD Root CA 2,8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561</RawString>
-      <Thumbprint>8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561</Thumbprint>
-    </Rule>
-    <Rule id="V-254442.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName>DoD Root CA 3</CertificateName>
       <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
 
@@ -5461,7 +5416,7 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       <RawString>DoD Root CA 3,D73CA91102A2204A36459ED32213B467D7CE97FB</RawString>
       <Thumbprint>D73CA91102A2204A36459ED32213B467D7CE97FB</Thumbprint>
     </Rule>
-    <Rule id="V-254442.c" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+    <Rule id="V-254442.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName>DoD Root CA 4</CertificateName>
       <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
 
@@ -5476,7 +5431,7 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       <RawString>DoD Root CA 4,B8269F25DBD937ECAFD4C35A9838571723F2D026</RawString>
       <Thumbprint>B8269F25DBD937ECAFD4C35A9838571723F2D026</Thumbprint>
     </Rule>
-    <Rule id="V-254442.d" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+    <Rule id="V-254442.c" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName>DoD Root CA 5</CertificateName>
       <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
 
@@ -5491,7 +5446,22 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       <RawString>DoD Root CA 5,4ECB5CC3095670454DA1CBD410FC921F46B8564B</RawString>
       <Thumbprint>4ECB5CC3095670454DA1CBD410FC921F46B8564B</Thumbprint>
     </Rule>
-    <Rule id="V-254443.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+    <Rule id="V-254442.d" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>DoD Root CA 6</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for DoD Root CA 6 certificate is present</OrganizationValueTestString>
+      <RawString>DoD Root CA 6,D37ECF61C0B4ED88681EF3630C4E2FC787B37AEFB</RawString>
+      <Thumbprint>D37ECF61C0B4ED88681EF3630C4E2FC787B37AEFB</Thumbprint>
+    </Rule>
+    <Rule id="V-254443" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName>DoD Interoperability Root CA 2</CertificateName>
       <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
 
@@ -5503,25 +5473,54 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       <Location />
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>location for DoD Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
-      <RawString>DoD Interoperability Root CA 2,AC06108CA348CC03B53795C64BF84403C1DBD341</RawString>
-      <Thumbprint>AC06108CA348CC03B53795C64BF84403C1DBD341</Thumbprint>
-    </Rule>
-    <Rule id="V-254443.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
-      <CertificateName>DoD Interoperability Root CA 1</CertificateName>
-      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+      <RawString>This is applicable to unclassified systems. It is NA for others.
 
-Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <Location />
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>location for DoD Interoperability Root CA 1 certificate is present</OrganizationValueTestString>
-      <RawString>DoD Interoperability Root CA 1,49CBE933151872E17C8EAE7F0ABA97FB610F6477</RawString>
+Open "PowerShell" as an administrator.
+
+Execute the following command:
+
+Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
+
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding. 
+
+Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: A8C27332CCB4CA49554CE55D34062A7DD2850C02
+NotAfter: 8/26/2022 9:25:51 AM 09:57:16 AM
+
+Alternately, use the Certificates MMC snap-in:
+
+Run "MMC".
+
+Select "File", "Add/Remove Snap-in".
+
+Select "Certificates" and click "Add".
+
+Select "Computer account" and click "Next".
+
+Select "Local computer: (the computer this console is running on)" and click "Finish".
+
+Click "OK".
+
+Expand "Certificates" and navigate to Untrusted Certificates &gt;&gt; Certificates.
+
+For each certificate with "DoD Root CA..." under "Issued To" and "DoD Interoperability Root CA..." under "Issued By":
+
+Right-click on the certificate and select "Open".
+
+Select the "Details" tab.
+
+Scroll to the bottom and select "Thumbprint".
+
+If the certificates below are not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
+
+Issued To: DoD Root CA 3
+Issued By: DoD Interoperability Root CA 2
+Thumbprint: A8C27332CCB4CA49554CE55D34062A7DD2850C02
+Valid to: Wednesday, November 16, 2024</RawString>
       <Thumbprint>49CBE933151872E17C8EAE7F0ABA97FB610F6477</Thumbprint>
     </Rule>
-    <Rule id="V-254444.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+    <Rule id="V-254444" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName>US DoD CCEB Interoperability Root CA 2</CertificateName>
       <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
 
@@ -5533,23 +5532,52 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       <Location />
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>location for US DoD CCEB Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
-      <RawString>US DoD CCEB Interoperability Root CA 2,AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9</RawString>
-      <Thumbprint>AF132AC65DE86FC4FB3FE51FD637EBA0FF0B12A9</Thumbprint>
-    </Rule>
-    <Rule id="V-254444.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
-      <CertificateName>US DoD CCEB Interoperability Root CA 2</CertificateName>
-      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+      <RawString>This is applicable to unclassified systems. It is NA for others.
 
-Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <Location />
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>location for US DoD CCEB Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
-      <RawString>US DoD CCEB Interoperability Root CA 2,929BF3196896994C0A201DF4A5B71F603FEFBF2E</RawString>
-      <Thumbprint>929BF3196896994C0A201DF4A5B71F603FEFBF2E</Thumbprint>
+Open "PowerShell" as an administrator.
+
+Execute the following command:
+
+Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
+
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding. 
+
+Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025 9:56:22 AM
+
+Alternately, use the Certificates MMC snap-in:
+
+Run "MMC".
+
+Select "File", "Add/Remove Snap-in".
+
+Select "Certificates" and click "Add".
+
+Select "Computer account" and click "Next".
+
+Select "Local computer: (the computer this console is running on)" and click "Finish".
+
+Click "OK".
+
+Expand "Certificates" and navigate to Untrusted Certificates &gt;&gt; Certificates.
+
+For each certificate with "US DoD CCEB Interoperability Root CA ..." under "Issued By":
+
+Right-click on the certificate and select "Open".
+
+Select the "Details" tab.
+
+Scroll to the bottom and select "Thumbprint".
+
+If the certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
+
+Issued To: DoD Root CA 3
+Issued By: US DoD CCEB Interoperability Root CA 2
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025</RawString>
+      <Thumbprint>9B74964506C7ED9138070D08D5F8B969866560C8</Thumbprint>
     </Rule>
   </RootCertificateRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
@@ -5813,7 +5841,7 @@ Incorrect configurations could prevent services from starting and result in a de
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
+      <RawString>This applies to member servers. A separate version applies to domain controllers.
 
 Verify the effective setting in Local Group Policy Editor.
 
