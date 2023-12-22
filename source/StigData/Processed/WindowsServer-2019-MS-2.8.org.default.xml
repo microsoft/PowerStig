@@ -7,7 +7,7 @@
 -->
 <OrganizationalSettings fullversion="2.8">
   <!-- Ensure 'V-205631' is set to the required legal notice before logon-->
-  <<OrganizationalSetting id="V-205631" ValueData="You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+  <OrganizationalSetting id="V-205631" ValueData="You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
 By using this IS (which includes any device attached to this IS), you consent to the following conditions:
 
@@ -63,7 +63,7 @@ By using this IS (which includes any device attached to this IS), you consent to
   <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->
   <OrganizationalSetting id="V-214936" ServiceName="" StartupType="" />
   <!-- Ensure ''V-205629'' -le '3' -and ''V-205629'' -ne '0'-->
-    <OrganizationalSetting id="V-205629" PolicyValue="3" />
+  <OrganizationalSetting id="V-205629" PolicyValue="3" />
   <!-- Ensure ''V-205630'' -ge '15'-->
   <OrganizationalSetting id="V-205630" PolicyValue="15" />
   <!-- Ensure ''V-205656'' -ne '0'-->

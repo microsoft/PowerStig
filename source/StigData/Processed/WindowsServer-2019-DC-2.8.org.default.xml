@@ -66,7 +66,7 @@ By using this IS (which includes any device attached to this IS), you consent to
   <OrganizationalSetting id="V-205911" ValueData="30" />
   <!-- Ensure ''V-205912'' -match '1|2'-->
   <OrganizationalSetting id="V-205912" ValueData="1" />
- <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->
+  <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->
   <OrganizationalSetting id="V-214936" ServiceName="" StartupType="" />
   <!-- Ensure ''V-205629'' -le '3' -and ''V-205629'' -ne '0'-->
   <OrganizationalSetting id="V-205629" PolicyValue="3" />
