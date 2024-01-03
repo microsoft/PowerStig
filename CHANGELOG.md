@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update Powerstig to Parse\apply Microsoft OneNote 2016 STIG V1R2 [#1303](https://github.com/microsoft/PowerStig/issues/1303)
+
 ## [4.19.0] - 2023-12-22
 
 * Update PowerSTIG to Parse/Apply U_MS_Windows_Server_2019_V2R8_STIG [#1276](https://github.com/microsoft/PowerStig/issues/1276)
