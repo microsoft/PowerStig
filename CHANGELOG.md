@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update Powerstig to Parse\apply Microsoft OneNote 2016 STIG V1R2 [#1303](https://github.com/microsoft/PowerStig/issues/1303)
+* Update Powerstig to Parse\apply Microsoft Skype for Business 2016 STIG V1R1 [#1305](https://github.com/microsoft/PowerStig/issues/1305)
 
 ## [4.19.0] - 2023-12-22
 
