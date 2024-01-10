@@ -371,7 +371,10 @@ function Split-BenchmarkId
         'PowerPoint',
         'Word',
         'System',
-        'Visio'
+        'Visio',
+        'Access',
+        'OneNote',
+        'Skype_for_Business'
     )
 
     $id = $id -replace ($idVariations -join '|'), ''
@@ -470,20 +473,24 @@ function Split-BenchmarkId
             $returnId = "FireFox_All"
             continue
         }
-        {$PSItem -match 'Excel|Outlook|PowerPoint|Word|System|Visio|ProPlus|Publisher'}
+        {$PSItem -match 'Excel|Outlook|PowerPoint|Word|System|Visio|ProPlus|Publisher|Access|OneNote|Skype_for_Business'}
         {
             $officeStig = ($id -split '_')
 
             if ($PSItem -match 'System|365')
             {
-                $officeStig = $officeStig[2], $officeStig[3] -join ""
-                $returnId = '{0}_{1}' -f 'Office', $officeStig
+                $officeStig = $officeStig[2], $officeStig[3] -join ""                
+            }
+            elseif ($PSItem -match 'Skype_for_Business')
+            {
+                $officeStig = $officeStig[1], $officeStig[-1] -join ""
             }
             else
             {
                 $officeStig = $officeStig[1], $officeStig[2] -join ""
-                $returnId = '{0}_{1}' -f 'Office', $officeStig
             }
+
+            $returnId = '{0}_{1}' -f 'Office', $officeStig
 
             continue
         }
