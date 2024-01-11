@@ -2,8 +2,13 @@
 
 ## [Unreleased]
 
-* Update Powerstig to Parse\apply Microsoft OneNote 2016 STIG V1R2 [#1303](https://github.com/microsoft/PowerStig/issues/1303)
-* Update Powerstig to Parse\apply Microsoft Skype for Business 2016 STIG V1R1 [#1305](https://github.com/microsoft/PowerStig/issues/1305)
+* Update Powerstig to Parse/apply Microsoft OneNote 2016 STIG V1R2 [#1303](https://github.com/microsoft/PowerStig/issues/1303)
+* Update Powerstig to Parse/apply Microsoft Skype for Business 2016 STIG V1R1 [#1305](https://github.com/microsoft/PowerStig/issues/1305)
+* Update Powerstig to Parse/apply Microsoft OneNote 2016 STIG V1R2 [#1303](https://github.com/microsoft/PowerStig/issues/1303)
+* Update Powerstig to Parse/apply Microsoft Access 2016 STIG V1R1 [#1307](https://github.com/microsoft/PowerStig/issues/1307)
+* Update Powerstig to correct Filename for Microsoft OneNote 2016 STIG V1R1 [#1309](https://github.com/microsoft/PowerStig/issues/1309)
+* Update PowerSTIG to Parse/Apply U_MOZ_Firefox_STIG_V6R5 [#1256](https://github.com/microsoft/PowerStig/issues/1256)
+* Update Powerstig to Parse/apply Microsoft OneNote 2016 STIG V1R2 [#1303](https://github.com/microsoft/PowerStig/issues/1303)
 
 ## [4.19.0] - 2023-12-22
 
