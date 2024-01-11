@@ -17,11 +17,20 @@ foreach ($stig in $stigList)
     $powerstigXml = [xml](Get-Content -Path $stig.Path) |
         Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
 
-    $skipRule = Get-Random -InputObject $powerstigXml.FileContentRule.Rule.id
+    if ($stig.StigVersion -match "^6")
+    {
+        $ruleType = "RegistryRule"
+    }
+    else 
+    {
+        $ruleType = "FileContentRule"
+    }
+    
+    $skipRule = Get-Random -InputObject $powerstigXml.$ruleType.Rule.id
     $skipRuleType = $null
     $expectedSkipRuleTypeCount = 0 + $blankSkipRuleId.Count
 
-    $skipRuleMultiple = Get-Random -InputObject $powerstigXml.FileContentRule.Rule.id -Count 2
+    $skipRuleMultiple = Get-Random -InputObject $powerstigXml.$ruleType.Rule.id -Count 2
     $skipRuleTypeMultiple = $null
     $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
 
@@ -33,7 +42,7 @@ foreach ($stig in $stigList)
     $expectedMultipleSkipRuleSeverityCount = ($expectedMultipleSkipRuleSeverity | Measure-Object).Count + $blankSkipRuleId.Count
 
     $getRandomExceptionRuleParams = @{
-        RuleType       = 'FileContentRule'
+        RuleType       = $ruleType
         PowerStigXml   = $powerstigXml
         ParameterValue = 1234567
     }
