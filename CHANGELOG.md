@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse\apply U_CAN_Ubuntu_18-04_LTS_V2R13_STIG [#1319](https://github.com/microsoft/PowerStig/issues/1319)
+
 ## [4.20.0] - 2024-01-12
 
 * Update Powerstig to Parse/apply Microsoft OneNote 2016 STIG V1R2 [#1303](https://github.com/microsoft/PowerStig/issues/1303)
