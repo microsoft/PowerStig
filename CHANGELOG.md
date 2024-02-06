@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse\apply U_MS_SQL_Server_2016_Instance_V2R11_Manual_STIG [#1321](https://github.com/microsoft/PowerStig/issues/1321)
+
 ## [4.20.0] - 2024-01-12
 
 * Update Powerstig to Parse/apply Microsoft OneNote 2016 STIG V1R2 [#1303](https://github.com/microsoft/PowerStig/issues/1303)
