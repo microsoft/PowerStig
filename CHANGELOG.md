@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft .NET 4 V2R2 [#1325](https://github.com/microsoft/PowerStig/issues/1325)
+
 ## [4.20.0] - 2024-01-12
 
 * Update Powerstig to Parse/apply Microsoft OneNote 2016 STIG V1R2 [#1303](https://github.com/microsoft/PowerStig/issues/1303)
