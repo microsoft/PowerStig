@@ -1,4 +1,24 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IE_11_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IE11_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 27 Oct 2021 3.2.2.36079 1.10.0" title="Microsoft Internet Explorer 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="11/3/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IE_11_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IE11_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 24 Jan 2024 3.4.1.22916 1.10.0" title="Microsoft Internet Explorer 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="2/16/2024">
+  <ManualRule dscresourcemodule="None">
+    <Rule id="V-252910" severity="high" conversionstatus="pass" title="SRG-APP-000456" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Security flaws with software applications are discovered daily. Vendors are constantly updating and patching their products to address newly discovered security vulnerabilities. Organizations (including any contractor to the organization) are required to promptly install security-relevant software updates (e.g., patches, service packs, and hot fixes). Flaws discovered during security assessments, continuous monitoring, incident response activities, or information system error handling must also be addressed expeditiously.
+
+Organization-defined time periods for updating security-relevant software may vary based on a variety of factors including, for example, the security category of the information system or the criticality of the update (i.e., severity of the vulnerability related to the discovered flaw).
+
+This requirement will apply to software patch management solutions that are used to install patches across the enclave and also to applications that are not part of that patch management solution. For example, many browsers today provide the capability to install their own patch software. Patch criticality, as well as system criticality, will vary. Therefore, the tactical situations regarding the patch management process will also vary. This means the time period used must be a configurable parameter. Time frames for application of security-relevant software updates may depend on the Information Assurance Vulnerability Management (IAVM) process.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Internet Explorer 11 is no longer supported on Windows 10 General Availability Channel.
+
+If Internet Explorer 11 is installed and enabled on Windows 10 General Availability Channel, this is a finding.
+
+If Internet Explorer 11 is installed and enabled on an unsupported OS, this is a finding.</RawString>
+    </Rule>
+  </ManualRule>
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-223015" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This parameter warns users if the certificate being presented by the website is invalid. Since server certificates are used to validate the identity of the web server it is critical to warn the user of a potential issue with the certificate being presented by the web server. This setting aids to prevent spoofing attacks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -552,9 +572,7 @@ If the value "VersionCheckEnabled" is REG_DWORD = 1, this is not a finding.</Raw
       <LegacyId>V-72761</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: Only applies to Windows 10 version 1607 and higher and Windows Server 2016 systems. For other Windows versions, this check is Not Applicable. 
-
-In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Internet Zone, verify "Allow only approved domains to use the TDC ActiveX control" is “Enabled”. 
+      <RawString>In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Internet Zone, verify "Allow only approved domains to use the TDC ActiveX control" is “Enabled”. 
 
 In the Options window, verify the “Only allow approved domains to use the TDC ActiveX control" drop-down box is set to “Enable”. 
 
@@ -592,9 +610,7 @@ If the value "120c" is REG_DWORD = “3”, this is not a finding.</RawString>
       <LegacyId>V-72763</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: Only applies to Windows 10 version 1607 and higher and Windows Server 2016 systems. For other Windows versions, this check is Not Applicable. 
-
-In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Restricted Sites Zone, verify "Allow only approved domains to use the TDC ActiveX control" is “Enabled”. 
+      <RawString>In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Restricted Sites Zone, verify "Allow only approved domains to use the TDC ActiveX control" is “Enabled”. 
 
 In the Options window, verify the “Only allow approved domains to use the TDC ActiveX control" drop-down box is set to “Enable”. 
 
@@ -622,10 +638,7 @@ If the value "120c" is REG_DWORD = “3”, this is not a finding.</RawString>
 
 Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3
 
-If the value for "140C" is not REG_DWORD = 3, this is a finding.
-
-Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and is otherwise not applicable.
-</RawString>
+If the value for "140C" is not REG_DWORD = 3, this is a finding.</RawString>
       <ValueData>3</ValueData>
       <ValueName>140C</ValueName>
       <ValueType>Dword</ValueType>
@@ -657,10 +670,7 @@ Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and
 
 Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4
 
-If the value for "140C" is not REG_DWORD = 3, this is a finding.
-
-Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and is otherwise not applicable.
-</RawString>
+If the value for "140C" is not REG_DWORD = 3, this is a finding.</RawString>
       <ValueData>3</ValueData>
       <ValueName>140C</ValueName>
       <ValueType>Dword</ValueType>
@@ -2027,23 +2037,6 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueData>3</ValueData>
       <ValueName>2709</ValueName>
       <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-223150" severity="medium" conversionstatus="pass" title="SRG-APP-000233" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Enhanced Protected Mode provides additional protection against malicious websites by using 64-bit processes on 64-bit versions of Windows. For computers running at least Windows 8, Enhanced Protected Mode also limits the locations Internet Explorer can read from in the registry and the file system. If you enable this policy setting, Enhanced Protected Mode will be turned on. Any zone that has Protected Mode enabled will use Enhanced Protected Mode. Users will not be able to disable Enhanced Protected Mode. If you disable this policy setting, Enhanced Protected Mode will be turned off. Any zone that has Protected Mode enabled will use the version of Protected Mode introduced in Internet Explorer 7 for Windows Vista. If you do not configure this policy, users will be able to turn on or turn off Enhanced Protected Mode on the "Advanced" tab of the Internet Options dialog box.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main</Key>
-      <LegacyId>V-46987</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: If McAfee ENS Web Control is being used, this is Not Applicable.
-
-The policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Internet Explorer-&gt; Internet Control Panel-&gt; Advanced Page 'Turn on Enhanced Protected Mode' must be 'Enabled'. Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Internet Explorer\Main Criteria: If the value "Isolation" is REG_SZ = 'PMEM', this is not a finding.
-</RawString>
-      <ValueData>PMEM</ValueData>
-      <ValueName>Isolation</ValueName>
-      <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-250540" severity="medium" conversionstatus="pass" title="SRG-APP-000416" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This parameter ensures only DoD-approved ciphers and algorithms are enabled for use by the web browser by allowing you to turn on/off support for TLS and SSL. TLS is a protocol for protecting communications between the browser and the target server. When the browser attempts to set up a protected communication with the target server, the browser and server negotiate which protocol and version to use. The browser and server attempt to match each other's list of supported protocols and versions and pick the most preferred match.

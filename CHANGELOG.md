@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Internet Explorer 11 V2R5 [#1323](https://github.com/microsoft/PowerStig/issues/1303)
+
 ## [4.20.0] - 2024-01-12
 
 * Update Powerstig to Parse/apply Microsoft OneNote 2016 STIG V1R2 [#1303](https://github.com/microsoft/PowerStig/issues/1303)
