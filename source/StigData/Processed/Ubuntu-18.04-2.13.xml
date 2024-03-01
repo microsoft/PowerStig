@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R11_Manual-xccdf.xml" releaseinfo="Release: 11 Benchmark Date: 27 Apr 2023 3.4.0.34222 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.11" created="6/14/2023">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V2R13_Manual-xccdf.xml" releaseinfo="Release: 13 Benchmark Date: 24 Jan 2024 3.4.1.22916 1.10.0" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.13" created="2/6/2024">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-219150" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information at rest refers to the state of information when it is located on a secondary storage device (e.g., disk drive and tape drive, when used for backups) within an operating system.
@@ -3539,7 +3539,7 @@ Audit records can be generated from various components within the information sy
 
 Check the currently configured audit rules with the following command:
 
-# sudo audtctl -l | grep chacl
+# sudo auditctl -l | grep chacl
 
 -a always,exit -F path=/usr/bin/chacl -F perm=x -F auid&gt;=1000 -F auid!=-1 -k perm_chng
 
@@ -3717,50 +3717,6 @@ If the command does not return a line that matches the example or the line is co
 
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
-    <Rule id="V-219279.a" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b32 -S finit_module -F auid&gt;=1000 -F auid!=-1 -k module_chng</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
-
-Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*finit_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*module_chng</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100781.a</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system generates an audit record when successful/unsuccessful attempts to use the "finit_module" syscall.
-Check the currently configured audit rules with the following command:
-# sudo auditctl -l | grep -w finit_module
--a always,exit -F arch=b32 -S finit_module -F auid&gt;=1000 -F auid!=-1 -k module_chng
-If the command does not return a line that matches the example or the line is commented out, this is a finding.
-Notes:
-For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
-The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.
-</RawString>
-    </Rule>
-    <Rule id="V-219279.b" severity="medium" conversionstatus="pass" title="SRG-OS-000064-GPOS-00033" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b64 -S finit_module -F auid&gt;=1000 -F auid!=-1 -k module_chng</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
-
-Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*finit_module\s*-F\s*auid&gt;\s*=\s*1000\s*-F\s*auid!\s*=\s*-1\s*-k\s*module_chng</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100781.b</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system generates an audit record when successful/unsuccessful attempts to use the "finit_module" syscall.
-Check the currently configured audit rules with the following command:
-# sudo auditctl -l | grep -w finit_module
--a always,exit -F arch=b64 -S finit_module -F auid&gt;=1000 -F auid!=-1 -k module_chng
-If the command does not return a line that matches the example or the line is commented out, this is a finding.
-Notes:
-For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
-The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.
-</RawString>
-    </Rule>
     <Rule id="V-219281.a" severity="medium" conversionstatus="pass" title="SRG-OS-000326-GPOS-00126" dscresource="nxFileLine">
       <ContainsLine>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -F key=execpriv</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;In certain situations, software applications/programs need to execute with elevated privileges to perform required functions. However, if the privileges required for execution are at a higher level than the privileges assigned to organizational users invoking such applications/programs, those users are indirectly provided with greater privileges than assigned by the organizations.
@@ -3903,50 +3859,6 @@ If the command does not return audit rules for the "unlink", "unlinkat", "rename
 Notes:
 For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
 The "-k" allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.
-</RawString>
-    </Rule>
-    <Rule id="V-219291.a" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b32 -S init_module -S finit_module -k modules</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
-
-Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b32\s*-S\s*init_module\s*-S\s*finit_module\s*-k\s*modules</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100805.a</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system generates an audit record when adding and deleting kernel modules.
-Check the currently configured audit rules with the following command:
-# sudo auditctl -l | grep -E 'init_module|finit_module'
--a always,exit -F arch=b32 -S init_module -S finit_module -k modules
-If the command does not return lines that matches the example or the lines are commented out, this is a finding.
-Notes:
-For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
-The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.
-</RawString>
-    </Rule>
-    <Rule id="V-219291.b" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="nxFileLine">
-      <ContainsLine>-a always,exit -F arch=b64 -S init_module -S finit_module -k modules</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
-
-Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-a\s*always,exit\s*-F\s*arch\s*=\s*b64\s*-S\s*init_module\s*-S\s*finit_module\s*-k\s*modules</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100805.b</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system generates an audit record when adding and deleting kernel modules.
-Check the currently configured audit rules with the following command:
-# sudo auditctl -l | grep -E 'init_module|finit_module'
--a always,exit -F arch=b64 -S init_module -S finit_module -k modules
-If the command does not return lines that matches the example or the lines are commented out, this is a finding.
-Notes:
-For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
-The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.
 </RawString>
     </Rule>
     <Rule id="V-219296.a" severity="medium" conversionstatus="pass" title="SRG-OS-000477-GPOS-00222" dscresource="nxFileLine">
@@ -4481,10 +4393,10 @@ Peripherals include, but are not limited to, such devices as flash drives, exter
       <OrganizationValueTestString />
       <RawString>Note: The "install" and "blacklist" methods are utilized together to fully disable automatic mounting of the USB mass storage driver.
 
-Verify that Ubuntu operating system disables ability to load the USB storage kernel module:
-$ grep usb-storage /etc/modprobe.d/* | grep "/bin/true" 
+Verify the Ubuntu operating system disables the ability to load the USB storage kernel module:
+$ grep usb-storage /etc/modprobe.d/* | grep "/bin/false" 
 
-install usb-storage /bin/true
+install usb-storage /bin/false
 
 If the command does not return any output, or the line is commented out, this is a finding.
 
@@ -4509,10 +4421,10 @@ Peripherals include, but are not limited to, such devices as flash drives, exter
       <OrganizationValueTestString />
       <RawString>Note: The "install" and "blacklist" methods are utilized together to fully disable automatic mounting of the USB mass storage driver.
 
-Verify that Ubuntu operating system disables ability to load the USB storage kernel module:
-$ grep usb-storage /etc/modprobe.d/* | grep "/bin/true" 
+Verify the Ubuntu operating system disables the ability to load the USB storage kernel module:
+$ grep usb-storage /etc/modprobe.d/* | grep "/bin/false" 
 
-install usb-storage /bin/true
+install usb-storage /bin/false
 
 If the command does not return any output, or the line is commented out, this is a finding.
 
@@ -4621,10 +4533,10 @@ Peripherals include, but are not limited to, such devices as flash drives, exter
       <OrganizationValueTestString />
       <RawString>Note: The "install" and "blacklist" methods are utilized together to fully disable automatic mounting of the USB mass storage driver.
 
-Verify that Ubuntu operating system disables ability to load the USB storage kernel module:
-$ grep usb-storage /etc/modprobe.d/* | grep "/bin/true" 
+Verify the Ubuntu operating system disables the ability to load the USB storage kernel module:
+$ grep usb-storage /etc/modprobe.d/* | grep "/bin/false" 
 
-install usb-storage /bin/true
+install usb-storage /bin/false
 
 If the command does not return any output, or the line is commented out, this is a finding.
 
