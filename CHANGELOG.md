@@ -3,6 +3,10 @@
 ## [Unreleased]
 
 * Update PowerSTIG to Parse/Apply Internet Explorer 11 V2R5 [#1323](https://github.com/microsoft/PowerStig/issues/1303)
+* Update PowerSTIG to Parse/Apply Microsoft .NET 4 V2R2 [#1325](https://github.com/microsoft/PowerStig/issues/1325)
+* Update Powerstig to Parse/Apply U_MS_SQL_Server_2016_Instance_V2R11_Manual_STIG [#1321](https://github.com/microsoft/PowerStig/issues/1321)
+* Update Powerstig to Parse/Apply U_CAN_Ubuntu_18-04_LTS_V2R13_STIG [#1319](https://github.com/microsoft/PowerStig/issues/1319)
+* Fix for Invalid value for V-221588 in default Chrome organizational settings [#1329](https://github.com/microsoft/PowerStig/issues/1329)
 * Update PowerSTIG to Parse/Apply U_RHEL_7_V3R14_STIG [#1315](https://github.com/microsoft/PowerStig/issues/1315)
 
 ## [4.20.0] - 2024-01-12

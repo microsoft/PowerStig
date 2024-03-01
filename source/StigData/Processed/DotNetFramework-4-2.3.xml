@@ -1,13 +1,19 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_DotNet_Framework_4-0_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 22 Jan 2021 3.2.1.41666 1.10.0" title="Microsoft DotNet Framework 4.0 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="2/2/2021">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_DotNet_Framework_4-0_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 24 Jan 2024 3.4.1.22916 1.10.0" title="Microsoft DotNet Framework 4.0 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="2/16/2024">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-225227" severity="medium" conversionstatus="pass" title="SRG-APP-000120" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A successful disaster recovery plan requires that CAS policy and CAS policy configuration files are identified and included in systems disaster backup and recovery events.  Documentation regarding the location of system and application specific CAS policy configuration files and the frequency in which backups occur is required.  If these files are not identified and the information is not documented, there is the potential that critical application configuration files may not be included in disaster recovery events which could lead to an availability risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;A successful disaster recovery plan requires that CAS policy and CAS policy configuration files are identified and included in systems disaster backup and recovery events. Documentation regarding the location of system and application specific CAS policy configuration files and the frequency in which backups occur is required. If these files are not identified and the information is not documented, there is the potential that critical application configuration files may not be included in disaster recovery events which could lead to an availability risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-7069</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Ask the System Administrator if all CAS policy and policy configuration files are included in the system backup. If they are not, this is a finding.
+      <RawString>The infrastructure to enable Code Access Security (CAS) exists only in .NET Framework 2.x-4.x.
+
+The requirement is Not Applicable (NA) for .NET Framework greater than 4.x.
+
+(Note: The infrastructure is deprecated and is not receiving servicing or security fixes.)
+
+Ask the System Administrator if all CAS policy and policy configuration files are included in the system backup. If they are not, this is a finding.
 
 Ask the System Administrator if the policy and configuration files are backed up prior to migration, deployment, and reconfiguration. If they are not, this is a finding.
 
@@ -16,27 +22,33 @@ Ask the System Administrator for documentation that shows CAS Policy configurati
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
     <Rule id="V-225225" severity="medium" conversionstatus="pass" title="SRG-APP-000175" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A .Net assembly will satisfy the Publisher Membership Condition if it is signed with a software publisher’s Authenticode X.509v3 digital certificate that can be verified by the Windows operating system as having a chain of trust that leads to a trusted root certificate stored in the user’s certificate store. The  Publisher Membership Condition can be used to identify an organization, developer, vendor, or other entity as the ultimate source of the assembly, even if the code itself was obtained from a third party, such as a mirror site.  Access to system resources, such as file systems or printers, may then be granted to the assembly based on the trust relationship with the identified entity.
+      <Description>&lt;VulnDiscussion&gt;A .Net assembly will satisfy the Publisher Membership Condition if it is signed with a software publisher’s Authenticode X.509v3 digital certificate that can be verified by the Windows operating system as having a chain of trust that leads to a trusted root certificate stored in the user’s certificate store. The Publisher Membership Condition can be used to identify an organization, developer, vendor, or other entity as the ultimate source of the assembly, even if the code itself was obtained from a third party, such as a mirror site. Access to system resources, such as file systems or printers, may then be granted to the assembly based on the trust relationship with the identified entity.
 
-Certificates used to sign assemblies so the Publisher Member Condition may be applied must originate from a trusted source.  Using a certificate that is not from a trusted source could potentially violate  system integrity and confidentiality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Certificates used to sign assemblies so the Publisher Member Condition may be applied must originate from a trusted source. Using a certificate that is not from a trusted source could potentially violate system integrity and confidentiality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-7063</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Caspol.exe is a Microsoft tool used for working with .Net policy.  Use caspol.exe to list the code groups and any publisher membership conditions.
+      <RawString>The infrastructure to enable Code Access Security (CAS) exists only in .NET Framework 2.x-4.x. 
 
-The location of the caspol utility is dependent upon the system architecture of the system running .Net. 
+This requirement is Not Applicable (NA) for .NET Framework greater than 4.x.
+
+(Note: The infrastructure is deprecated and is not receiving servicing or security fixes.)
+
+Caspol.exe is a Microsoft tool used for working with .Net policy. Use caspol.exe to list the code groups and any publisher membership conditions.
+
+The location of the caspol utility is dependent upon the system architecture of the system running .Net.
 
 For 32 bit systems, caspol.exe is located at %SYSTEMROOT%\Microsoft.NET\Framework\v4.0.30319.
  
-For 64 bit systems, caspol.exe is located at %SYSTEMROOT%\Microsoft.NET\Framework64\v4.0.30319.  
+For 64 bit systems, caspol.exe is located at %SYSTEMROOT%\Microsoft.NET\Framework64\v4.0.30319.
 
 Example:
 
 cd %SYSTEMROOT%\Microsoft.NET\Framework\v4.0.30319
 
-To check code groups for the machine, run the following command.
+To check code groups for the machine, run the following command:
 
 caspol.exe -m -lg
 
@@ -65,27 +77,32 @@ Code Groups:
    1.6.  Publisher - 30818902818100E47B359ACC061D70C237B572FA276C9854CFABD469DFB74E77D026630BEE2A0C2F8170A823AE69FDEB65704D7FD446DEFEF1F6BA12B6ACBDB1BFA7B9B595AB9A40636467CFF7C73F198B53A9A7CF177F6E7896EBC591DD3003C5992A266C0AD9FBEE4E2A056BE7F7ED154D806F7965F83B0AED616C192C6416CFCB46FC2F5CFD0203010001: FullTrust
 Success
 
-Section 1.6 above indicates the presence of a publishers key that meets the Publishers Membership Condition and is also given full trust. 
+Section 1.6 above indicates the presence of a publisher's key that meets the Publisher's Membership Condition and is also given full trust.
 
-If the Publisher Membership Condition is used on a non-default Code Group and the use of that publisher's certificate is not documented and approved by the IAO, this is a finding.
-</RawString>
+If the Publisher Membership Condition is used on a nondefault Code Group and the use of that publisher's certificate is not documented and approved by the ISSO, this is a finding.</RawString>
     </Rule>
     <Rule id="V-225226" severity="medium" conversionstatus="pass" title="SRG-APP-000176" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The Strong Name Membership condition requires that member assemblies be defined with Strong Names.  A strong name consists of the assembly's identity, simple text name, version number, and culture information (if provided) — plus a public key and a digital signature.  If assemblies do not have a strong name assigned, the assembly cannot be unique and the author of the code cannot be uniquely identified.  In order to create the strong name, the developer must use a cryptographic key pair to sign the assembly.  If the developer does not protect the key, the key can be stolen and used to sign any application, including malware applications.  This could adversely affect application integrity and confidentiality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;The Strong Name Membership condition requires that member assemblies be defined with Strong Names. A strong name consists of the assembly's identity, simple text name, version number, and culture information (if provided) — plus a public key and a digital signature. If assemblies do not have a strong name assigned, the assembly cannot be unique and the author of the code cannot be uniquely identified. In order to create the strong name, the developer must use a cryptographic key pair to sign the assembly. If the developer does not protect the key, the key can be stolen and used to sign any application, including malware applications. This could adversely affect application integrity and confidentiality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-7067</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the application is a COTS product, the requirement is Not Applicable (NA).
+      <RawString>If the application is a COTS product, this requirement is Not Applicable (NA).
 
-Caspol.exe is a Microsoft tool used for working with .Net policy.  Use caspol.exe to list the code groups and any publisher membership conditions.
+The infrastructure to enable Code Access Security (CAS) exists only in .NET Framework 2.x-4.x.
 
-The location of the caspol utility is dependent upon the system architecture of the system running .Net. 
+The requirement is Not Applicable (NA) for .NET Framework greater than 4.x.
+
+(Note: The infrastructure is deprecated and is not receiving servicing or security fixes.)
+
+Caspol.exe is a Microsoft tool used for working with .Net policy. Use caspol.exe to list the code groups and any publisher membership conditions.
+
+The location of the caspol utility is dependent upon the system architecture of the system running .Net.
 
 For 32 bit systems, caspol.exe is located at %SYSTEMROOT%\Microsoft.NET\Framework\v4.0.30319.
  
-For 64 bit systems, caspol.exe is located at %SYSTEMROOT%\Microsoft.NET\Framework64\v4.0.30319.  
+For 64 bit systems, caspol.exe is located at %SYSTEMROOT%\Microsoft.NET\Framework64\v4.0.30319.
 
 Example:
 
@@ -121,9 +138,9 @@ Code Groups:
    1.6.  Publisher - 30818902818100E47B359ACC061D70C237B572FA276C9854CFABD469DFB74E77D026630BEE2A0C2F8170A823AE69FDEB65704D7FD446DEFEF1F6BA12B6ACBDB1BFA7B9B595AB9A40636467CFF7C73F198B53A9A7CF177F6E7896EBC591DD3003C5992A266C0AD9FBEE4E2A056BE7F7ED154D806F7965F83B0AED616C192C6416CFCB46FC2F5CFD0203010001: FullTrust
 Success
 
-An assembly will satisfy the StrongName Membership Condition if its metadata contains the strongly identifying data associated with the specified strong name. At the least, this means it has been digitally signed with the private key associated with the public key recorded in the policy.
+An assembly will satisfy the StrongNameMembershipCondition if its metadata contains the strongly identifying data associated with the specified strong name. At the least, this means it has been digitally signed with the private key associated with the public key recorded in the policy.
 
-The presence of the encryption key values in the StrongName field indicates the use of StrongName Membership Condition. 
+The presence of the encryption key values in the StrongName field indicates the use of StrongNameMembershipCondition. 
 
 If a Strong Name Membership Condition is assigned to a non-default Code Group the private key must be adequately protected by the software developer or the entity responsible for signing the assemblies. 
 
@@ -132,10 +149,9 @@ Ask the Systems Programmer how the private keys are protected.
 Private keys are simply values stored as strings of data.  Keys can be stored in files on the file system or in a centralized data repository. 
 
 Adequate protection methods include, but are not limited to:
-
- - utilizing centralized key management;
- - using strict file permissions to limit access; and
- - tying strong pass phrases to the key.
+- utilizing centralized key management;
+- using strict file permissions to limit access; and
+- tying strong pass phrases to the key.
 
 If the private key used to sign the assembly is not adequately protected, this is a finding.</RawString>
     </Rule>
@@ -348,9 +364,7 @@ Search each file for the "defaultProxy" element.
 
 If the "defaultProxy" setting "enabled=false" or if the "bypasslist", "module", or "proxy" child elements have configuration entries and there are no documented approvals from the IAO, this is a finding.
 
-If the "defaultProxy" element is empty then the framework is using default browser settings, this is not a finding.
-
-</RawString>
+ If the "defaultProxy" element is empty or if "useSystemDefault =True” then the framework is using default browser settings, this is not a finding.</RawString>
     </Rule>
     <Rule id="V-225235" severity="medium" conversionstatus="pass" title="SRG-APP-000095" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Event tracing captures information about applications utilizing the .NET CLR and the .NET CLR itself. This includes security oriented information, such as Strong Name and Authenticode verification.  

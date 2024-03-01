@@ -13,7 +13,7 @@
   <!-- Ensure 'V-221565' -eq 'an organization-approved encrypted search string'-->
   <OrganizationalSetting id="V-221565" ValueData="" />
   <!-- Ensure 'V-221588' -eq '1|2'-->
-  <OrganizationalSetting id="V-221588" ValueData="[*.]mil,[*.]gov" />
+  <OrganizationalSetting id="V-221588" ValueData="1" />
   <!-- Ensure 'V-221596' -eq 'a list of administrator-approved URLs-->
-  <OrganizationalSetting id="V-221596" ValueData="" />
+  <OrganizationalSetting id="V-221596" ValueData="[*.]mil,[*.]gov" />
 </OrganizationalSettings>
