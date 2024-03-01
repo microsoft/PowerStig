@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R12_Manual-xccdf.xml" releaseinfo="Release: 12 Benchmark Date: 26 Jul 2023 3.4.0.34222 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.12" created="8/28/2023">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R14_Manual-xccdf.xml" releaseinfo="Release: 14 Benchmark Date: 24 Jan 2024 3.4.1.22916 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.14" created="2/5/2024">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -445,29 +445,28 @@ GRUB2_PASSWORD=grub.pbkdf2.sha512.[password_hash]
 If the grub superusers password does not begin with "grub.pbkdf2.sha512", this is a finding.</RawString>
     </Rule>
     <Rule id="V-204444" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+      <Description>&lt;VulnDiscussion&gt;Preventing nonprivileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
 
-Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Nonprivileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from nonprivileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71971</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
-
-Verify the operating system prevents non-privileged users from executing privileged functions to include disabling, circumventing, or altering implemented security safeguards/countermeasures.
+      <RawString>Verify the operating system prevents non-privileged users from executing privileged functions to include disabling, circumventing, or altering implemented security safeguards/countermeasures.
 
 Get a list of authorized users for the system.
 
 Check the list against the system by using the following command:
 
-$ sudo semanage login -l | more
+     $ sudo semanage login -l | more
 
-Login Name SELinux User MLS/MCS Range Service
-__default__ user_u s0-s0:c0.c1023 *
-root unconfined_u s0-s0:c0.c1023 *
-system_u system_u s0-s0:c0.c1023 *
-joe staff_u s0-s0:c0.c1023 *
+     Login Name    SELinux User    MLS/MCS Range    Service
+
+     __default__   user_u                 s0-s0:c0.c1023        *
+     root                   unconfined_u  s0-s0:c0.c1023        *
+     system_u        system_u           s0-s0:c0.c1023        *
+     joe                     staff_u                s0-s0:c0.c1023        *
 
 All administrators must be mapped to the , "staff_u", or an appropriately tailored confined SELinux user as defined by the organization.
 
@@ -639,7 +638,7 @@ UUID=a411dc99-f2a1-4c87-9e05-184977be8539 /tmp   ext4   rw,relatime,discard,data
 If "tmp.mount" service is not enabled or the "/tmp" directory is not defined in the fstab with a device and mount point, this is a finding. </RawString>
     </Rule>
     <Rule id="V-204501" severity="medium" conversionstatus="pass" title="SRG-OS-000364-GPOS-00151" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Malicious users with removable boot media can gain access to a system configured to use removable media as the boot loader. If removable media is designed to be used as the boot loader, the requirement must be documented with the Information System Security Officer (ISSO).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Malicious users with removable boot media can gain access to a system configured to use removable media as the boot loader. If removable media is designed to be used as the boot loader, the requirement must be documented with the information system security officer (ISSO).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-72075</LegacyId>
@@ -651,17 +650,23 @@ Note: GRUB 2 reads its configuration from the "/boot/grub2/grub.cfg" file on tra
 
 Check for the existence of alternate boot loader configuration files with the following command:
 
-# find / -name grub.cfg
-/boot/grub2/grub.cfg
+     # find / -name grub.cfg
+     /boot/efi/EFI/redhat/grub.cfg
 
-If a "grub.cfg" is found in any subdirectories other than "/boot/grub2" and "/boot/efi/EFI/redhat", ask the System Administrator if there is documentation signed by the ISSO to approve the use of removable media as a boot loader. 
+If a "grub.cfg" is found in any subdirectories other than "/boot/grub2/" and "/boot/efi/EFI/redhat/", ask the system administrator (SA) if there is documentation signed by the ISSO to approve the use of removable media as a boot loader. 
 
-Check that the grub configuration file has the set root command in each menu entry with the following commands:
+List the number of menu entries defined in the grub configuration file with the following command (the number will vary between systems):
 
-# grep -cw menuentry /boot/grub2/grub.cfg
-1
-# grep 'set root' /boot/grub2/grub.cfg
-set root=(hd0,1)
+     # grep -cw menuentry /boot/efi/EFI/redhat/grub.cfg
+     4
+
+Check that the grub configuration file has the "set root" command for each menu entry with the following command ("set root" defines the disk and partition or directory where the kernel and GRUB 2 modules are stored):
+
+     # grep 'set root' /boot/efi/EFI/redhat/grub.cfg
+     set root='hd0,gpt2'
+     set root='hd0,gpt2'
+     set root='hd0,gpt2'
+     set root='hd0,gpt2'
 
 If the system is using an alternate boot loader on removable media, and documentation does not exist approving the alternate configuration, this is a finding.</RawString>
     </Rule>
@@ -704,25 +709,24 @@ Verify the operating system implements cryptography to protect the integrity of 
 
 To determine if LDAP is being used for authentication, use the following command:
 
-# systemctl status sssd.service
-sssd.service - System Security Services Daemon
-Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
-Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
+     # systemctl status sssd.service
+     sssd.service - System Security Services Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
+     Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
 
 If the "sssd.service" is "active", then LDAP is being used. 
 
 Determine the "id_provider" the LDAP is currently using:
 
-# grep -i "id_provider" /etc/sssd/sssd.conf
-
-id_provider = ad
+     # grep -ir id_provider /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     id_provider = ad
 
 If "id_provider" is set to "ad", this is Not Applicable.
 
 Ensure that LDAP is configured to use TLS by using the following command:
 
-# grep -i "start_tls" /etc/sssd/sssd.conf
-ldap_id_use_start_tls = true
+     # grep -ir start_tls /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     ldap_id_use_start_tls = true
 
 If the "ldap_id_use_start_tls" option is not "true", this is a finding.</RawString>
     </Rule>
@@ -741,25 +745,24 @@ Verify the operating system implements cryptography to protect the integrity of 
 
 To determine if LDAP is being used for authentication, use the following command:
 
-# systemctl status sssd.service
-sssd.service - System Security Services Daemon
-Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
-Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
+     # systemctl status sssd.service
+     sssd.service - System Security Services Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
+     Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
 
 If the "sssd.service" is "active", then LDAP is being used. 
 
 Determine the "id_provider" the LDAP is currently using:
 
-# grep -i "id_provider" /etc/sssd/sssd.conf
-
-id_provider = ad
+     # grep -ir id_provider /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     id_provider = ad
 
 If "id_provider" is set to "ad", this is Not Applicable.
 
 Verify the sssd service is configured to require the use of certificates:
 
-# grep -i tls_reqcert /etc/sssd/sssd.conf
-ldap_tls_reqcert = demand
+     # grep -ir tls_reqcert /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     ldap_tls_reqcert = demand
 
 If the "ldap_tls_reqcert" setting is missing, commented out, or does not exist, this is a finding.
 
@@ -1046,33 +1049,34 @@ If any are more permissive, this is a finding.
 The owner and group owner of all audit log files must both be "root". If any other owner or group owner is listed, this is a finding.</RawString>
     </Rule>
     <Rule id="V-250312" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+      <Description>&lt;VulnDiscussion&gt;Preventing nonprivileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
 
-Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Nonprivileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from nonprivileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
-
-Verify the operating system confines SELinux users to roles that conform to least privilege.
+      <RawString>Verify the operating system confines SELinux users to roles that conform to least privilege.
 
 Check the SELinux User list to SELinux Roles mapping by using the following command:
 
-$ sudo semanage user -l
-SELinuxUser LabelingPrefix MLS/MCSLevel MLS/MCSRange SELinuxRoles
-guest_u            user  s0  s0  guest_r
-root                   user  s0  s0-s0:c0.c1023  staff_r sysadm_r system_r unconfined_r
-staff_u              user  s0  s0-s0:c0.c1023  staff_r sysadm_r
-sysadm_u         user  s0  s0-s0:c0.c1023  sysadm_r 
-system_u          user  s0  s0-s0:c0.c1023  system_r unconfined_r
-unconfined_u  user  s0  s0-s0:c0.c1023  system_r unconfined_r
-user_u               user  s0  s0  user_r
-xguest_u           user  s0  s0  xguest_r
+     $ sudo semanage user -l
 
-If the output differs from the above example, ask the SA to demonstrate how the SELinux User mappings are exercising least privilege. If deviations from the example are not documented with the ISSO and do not demonstrate least privilege, this is a finding.</RawString>
+                                     Labeling  MLS/               MLS/
+     SELinux User      Prefix       MCS Level    MCS Range          SELinux Roles
+
+     guest_u                user          s0                     s0                             guest_r
+     root                        user          s0                     s0-s0:c0.c1023    staff_r sysadm_r system_r unconfined_r
+     staff_u                  user          s0                     s0-s0:c0.c1023    staff_r sysadm_r system_r unconfined_r
+     sysadm_u            user          s0                     s0-s0:c0.c1023    sysadm_r
+     system_u             user          s0                     s0-s0:c0.c1023    system_r unconfined_r
+     unconfined_u    user          s0                     s0-s0:c0.c1023    system_r unconfined_r
+     user_u                   user          s0                     s0                            user_r
+     xguest_u              user          s0                     s0                            xguest_r
+
+If the output differs from the above example, ask the system administrator (SA) to demonstrate how the SELinux User mappings are exercising least privilege. If deviations from the example are not documented with the information system security officer (ISSO) and do not demonstrate least privilege, this is a finding.</RawString>
     </Rule>
     <Rule id="V-250313" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
@@ -1084,13 +1088,11 @@ Privileged functions include, for example, establishing accounts, performing sys
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
-
-Verify the operating system prevents privileged accounts from utilizing SSH.
+      <RawString>Verify the operating system prevents privileged accounts from utilizing SSH.
 Check the SELinux ssh_sysadm_login boolean with the following command:
 
-$ sudo getsebool ssh_sysadm_login
-ssh_sysadm_login --&gt; off
+     $ sudo getsebool ssh_sysadm_login
+     ssh_sysadm_login --&gt; off
 
 If the "ssh_sysadm_login" boolean is not "off" and is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
@@ -1331,11 +1333,11 @@ If the file integrity application does not notify designated personnel of change
 
 Check that the ctrl-alt-del.target is masked and not active with the following command:
 
-$ sudo systemctl status ctrl-alt-del.target
+     # systemctl status ctrl-alt-del.target
 
-ctrl-alt-del.target
-Loaded: masked (/dev/null; bad)
-Active: inactive (dead)
+     ctrl-alt-del.target
+     Loaded: masked (/dev/null; bad)
+     Active: inactive (dead)
 
 If the ctrl-alt-del.target is not masked, this is a finding.
 
@@ -2041,26 +2043,24 @@ Verify the operating system implements cryptography to protect the integrity of 
 
 To determine if LDAP is being used for authentication, use the following command:
 
-# systemctl status sssd.service
-sssd.service - System Security Services Daemon
-Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
-Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
+     # systemctl status sssd.service
+     sssd.service - System Security Services Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
+     Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
 
 If the "sssd.service" is "active", then LDAP is being used.
 
 Determine the "id_provider" that the LDAP is currently using:
 
-# grep -i "id_provider" /etc/sssd/sssd.conf
-
-id_provider = ad
+     # grep -ir id_provider /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     id_provider = ad
 
 If "id_provider" is set to "ad", this is Not Applicable.
 
 Check the path to the X.509 certificate for peer authentication with the following command:
 
-# grep -i tls_cacert /etc/sssd/sssd.conf
-
-ldap_tls_cacert = /etc/pki/tls/certs/ca-bundle.crt
+     # grep -ir tls_cacert /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     ldap_tls_cacert = /etc/pki/tls/certs/ca-bundle.crt
 
 Verify the "ldap_tls_cacert" option points to a file that contains the trusted CA certificate.
 
@@ -2272,18 +2272,15 @@ If there is any output from the command for system files or binaries, this is a 
       <LegacyId>V-92255</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Per OPORD 16-0080, the preferred endpoint security tool is McAfee Endpoint Security for Linux (ENSL) in conjunction with SELinux. 
+      <RawString>Check that the following package has been installed:
 
-Procedure:
-Check that the following package has been installed:
-
-# rpm -qa | grep -i mcafeetp
+     # rpm -qa | grep -i mcafeetp
 
 If the "mcafeetp" package is not installed, this is a finding.
 
 Verify that the daemon is running:
 
-# ps -ef | grep -i mfetpd
+     # ps -ef | grep -i mfetpd
 
 If the daemon is not running, this is a finding.</RawString>
     </Rule>
@@ -2973,10 +2970,10 @@ Operating systems need to track periods of inactivity and disable application id
       <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "INACTIVE" is set to "-1", a value greater than "35", is commented out, or is not defined, this is a finding." </OrganizationValueTestString>
       <RawString>If passwords are not being used for authentication, this is Not Applicable.
 
-Verify the operating system disables account identifiers (individuals, groups, roles, and devices) after the password expires with the following command:
+Verify the operating system disables account identifiers (individuals, groups, roles, and devices) after the password has expired with the following command:
 
-# grep -i inactive /etc/default/useradd
-INACTIVE=35
+     # grep -i inactive /etc/default/useradd
+     INACTIVE=35
 
 If "INACTIVE" is set to "-1", a value greater than "35", is commented out, or is not defined, this is a finding.</RawString>
     </Rule>
@@ -3105,9 +3102,8 @@ Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
 
-# grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install usb-storage /bin/true
+     # grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install usb-storage /bin/false
 
 If the command does not return any output, or the line is commented out, and use of USB Storage is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -3115,10 +3111,10 @@ Verify the operating system disables the ability to use USB mass storage devices
 
 Check to see if USB mass storage is disabled with the following command:
 
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
-blacklist usb-storage
+     # grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist usb-storage
 
-If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204449.d" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFileLine">
       <ContainsLine>blacklist usb-storage</ContainsLine>
@@ -3134,9 +3130,8 @@ Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
 
-# grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install usb-storage /bin/true
+     # grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install usb-storage /bin/false
 
 If the command does not return any output, or the line is commented out, and use of USB Storage is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -3144,10 +3139,10 @@ Verify the operating system disables the ability to use USB mass storage devices
 
 Check to see if USB mass storage is disabled with the following command:
 
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
-blacklist usb-storage
+     # grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist usb-storage
 
-If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204450.b" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
       <ContainsLine>install dccp /bin/true</ContainsLine>
@@ -3161,9 +3156,8 @@ If the command does not return any output or the output is not "blacklist usb-st
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
 
-# grep -r dccp /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install dccp /bin/true
+     # grep -r dccp /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install dccp /bin/false
 
 If the command does not return any output, or the line is commented out, and use of DCCP is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -3171,11 +3165,10 @@ Verify the operating system disables the ability to use the DCCP kernel module.
 
 Check to see if the DCCP kernel module is disabled with the following command:
 
-# grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     # grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist dccp
 
-blacklist dccp
-
-If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204450.c" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
       <ContainsLine>blacklist dccp</ContainsLine>
@@ -3189,9 +3182,8 @@ If the command does not return any output or the output is not "blacklist dccp",
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
 
-# grep -r dccp /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install dccp /bin/true
+     # grep -r dccp /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install dccp /bin/false
 
 If the command does not return any output, or the line is commented out, and use of DCCP is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -3199,11 +3191,10 @@ Verify the operating system disables the ability to use the DCCP kernel module.
 
 Check to see if the DCCP kernel module is disabled with the following command:
 
-# grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     # grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist dccp
 
-blacklist dccp
-
-If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204452" severity="low" conversionstatus="pass" title="SRG-OS-000437-GPOS-00194" dscresource="nxFileLine">
       <ContainsLine>clean_requirements_on_remove=1</ContainsLine>
@@ -3236,14 +3227,12 @@ This requirement applies to operating systems performing security function verif
       <LegacyId>V-71989</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
-
-Verify the operating system verifies correct operation of all security functions.
+      <RawString>Verify the operating system verifies correct operation of all security functions.
 
 Check if "SELinux" is active and in "Enforcing" mode with the following command:
 
-# getenforce
-Enforcing
+     # getenforce
+     Enforcing
 
 If "SELinux" is not active and not in "Enforcing" mode, this is a finding.</RawString>
     </Rule>
@@ -3259,39 +3248,27 @@ This requirement applies to operating systems performing security function verif
       <LegacyId>V-71991</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
-
-Verify the operating system verifies correct operation of all security functions.
+      <RawString>Verify the operating system verifies correct operation of all security functions.
 
 Check if "SELinux" is active and is enforcing the targeted policy with the following command:
 
-# sestatus
-
-SELinux status: enabled
-
-SELinuxfs mount: /selinux
-
-SELinux root directory: /etc/selinux
-
-Loaded policy name: targeted
-
-Current mode: enforcing
-
-Mode from config file: enforcing
-
-Policy MLS status: enabled
-
-Policy deny_unknown status: allowed
-
-Max kernel policy version: 28
+     # sestatus
+     SELinux status: enabled
+     SELinuxfs mount: /selinux
+     SELinux root directory: /etc/selinux
+     Loaded policy name: targeted
+     Current mode: enforcing
+     Mode from config file: enforcing
+     Policy MLS status: enabled
+     Policy deny_unknown status: allowed
+     Max kernel policy version: 28
 
 If the "Loaded policy name" is not set to "targeted", this is a finding.
 
 Verify that the /etc/selinux/config file is configured to the "SELINUXTYPE" to "targeted":
 
-# grep -i "selinuxtype" /etc/selinux/config | grep -v '^#'
-
-SELINUXTYPE = targeted
+     # grep -i "selinuxtype" /etc/selinux/config | grep -v '^#'
+     SELINUXTYPE = targeted
 
 If no results are returned or "SELINUXTYPE" is not set to "targeted", this is a finding.</RawString>
     </Rule>
@@ -5756,9 +5733,8 @@ Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
 
-# grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install usb-storage /bin/true
+     # grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install usb-storage /bin/false
 
 If the command does not return any output, or the line is commented out, and use of USB Storage is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -5766,10 +5742,10 @@ Verify the operating system disables the ability to use USB mass storage devices
 
 Check to see if USB mass storage is disabled with the following command:
 
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
-blacklist usb-storage
+     # grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist usb-storage
 
-If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204449.b" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFile">
       <Contents />
@@ -5784,9 +5760,8 @@ Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
 
-# grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install usb-storage /bin/true
+     # grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install usb-storage /bin/false
 
 If the command does not return any output, or the line is commented out, and use of USB Storage is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -5794,10 +5769,10 @@ Verify the operating system disables the ability to use USB mass storage devices
 
 Check to see if USB mass storage is disabled with the following command:
 
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
-blacklist usb-storage
+     # grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist usb-storage
 
-If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204450.a" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFile">
       <Contents />
@@ -5810,9 +5785,8 @@ If the command does not return any output or the output is not "blacklist usb-st
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
 
-# grep -r dccp /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install dccp /bin/true
+     # grep -r dccp /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install dccp /bin/false
 
 If the command does not return any output, or the line is commented out, and use of DCCP is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -5820,11 +5794,10 @@ Verify the operating system disables the ability to use the DCCP kernel module.
 
 Check to see if the DCCP kernel module is disabled with the following command:
 
-# grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     # grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist dccp
 
-blacklist dccp
-
-If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204576" severity="low" conversionstatus="pass" title="SRG-OS-000027-GPOS-00008" dscresource="nxFile">
       <Contents>
@@ -6266,10 +6239,10 @@ If conflicting results are returned, this is a finding.
 If "timestamp_timeout" is set to a negative number, is commented out, or no results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-250314" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="nxFile">
-      <Contents>%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL</Contents>
-      <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
+      <Contents>%{designated_group_or_user_name} ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL</Contents>
+      <Description>&lt;VulnDiscussion&gt;Preventing nonprivileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.
 
-Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Non-privileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from non-privileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Privileged functions include, for example, establishing accounts, performing system integrity checks, or administering cryptographic key management activities. Nonprivileged users are individuals who do not possess appropriate authorizations. Circumventing intrusion detection and prevention mechanisms or malicious code protection mechanisms are examples of privileged functions that require protection from nonprivileged users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <FilePath>/etc/sudoers.d/250314-powerstig.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6280,8 +6253,9 @@ Privileged functions include, for example, establishing accounts, performing sys
       <RawString>Verify the operating system elevates the SELinux context when an administrator calls the sudo command with the following command:
 
 This command must be ran as root:
-# grep -r sysadm_r /etc/sudoers /etc/sudoers.d
-%wheel ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL
+
+     # grep -r sysadm_r /etc/sudoers /etc/sudoers.d
+     %{designated_group_or_user_name} ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL
 
 If conflicting results are returned, this is a finding.
 
