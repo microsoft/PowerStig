@@ -2,7 +2,9 @@
 
 ## [Unreleased]
 
-* Update Powerstig to parse\apply U_Google_Chrome_V2R9_STIG [#1317](https://github.com/microsoft/PowerStig/issues/1317)
+## [4.21.0] - 2024-03-01
+
+* Update Powerstig to Parse/Apply U_Google_Chrome_V2R9_STIG [#1317](https://github.com/microsoft/PowerStig/issues/1317)
 * Update PowerSTIG to Parse/Apply Internet Explorer 11 V2R5 [#1323](https://github.com/microsoft/PowerStig/issues/1303)
 * Update PowerSTIG to Parse/Apply Microsoft .NET 4 V2R2 [#1325](https://github.com/microsoft/PowerStig/issues/1325)
 * Update Powerstig to Parse/Apply U_MS_SQL_Server_2016_Instance_V2R11_Manual_STIG [#1321](https://github.com/microsoft/PowerStig/issues/1321)
