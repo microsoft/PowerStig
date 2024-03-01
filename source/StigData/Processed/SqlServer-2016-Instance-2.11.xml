@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 27 Apr 2023 3.4.0.34222 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.9" created="5/23/2023">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R11_Manual-xccdf.xml" releaseinfo="Release: 11 Benchmark Date: 24 Jan 2024 3.4.1.22916 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.11" created="2/6/2024">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful Denial of Service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions per user is helpful in reducing these risks. 
@@ -1288,9 +1288,42 @@ For SQLCMD, which cannot be configured not to accept a plain-text password, and 
 
 Request evidence that all users of the tool are trained in the importance of not using the plain-text password option and in how to keep the password hidden; and that they adhere to this practice; if not, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-259739" severity="high" conversionstatus="pass" title="SRG-APP-000456-DB-000400" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Unsupported commercial and database systems should not be used because fixes to newly identified bugs will not be implemented by the vendor. The lack of support can result in potential vulnerabilities.
+
+Systems at unsupported servicing levels or releases will not receive security updates for new vulnerabilities, which leaves them subject to exploitation.
+
+When maintenance updates and patches are no longer available, the database software is no longer considered supported and should be upgraded or decommissioned.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the system documentation and interview the database administrator.
+
+Identify all database software components.
+
+Review the version and release information.
+
+Verify the SQL Server version via one of the following methods: 
+Connect to the server by using Object Explorer in SQL Server Management Studio. After Object Explorer is connected, it will show the version information in parentheses, together with the user name that is used to connect to the specific instance of SQL Server.
+
+Or, from SQL Server Management Studio:
+
+SELECT @@VERSION;
+
+More information for finding the version is available at the following link:
+https://learn.microsoft.com/en-us/troubleshoot/sql/releases/find-my-sql-version
+
+Access the vendor website or use other means to verify the version is still supported.
+https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2016
+
+If the installed version or any of the software components are not supported by the vendor, this is a finding.</RawString>
+    </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
-    <Rule id="V-213934" severity="high" conversionstatus="pass" title="SRG-APP-000080-DB-000063" dscresource="None">
+    <Rule id="V-213934" severity="medium" conversionstatus="pass" title="SRG-APP-000080-DB-000063" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message.  
  
 Non-repudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database. 
@@ -1612,9 +1645,9 @@ SQL Server will be configured to check for and install security-relevant softwar
       <LegacyId>V-79249</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Obtain evidence that software patches are consistently applied to SQL Server within the time frame defined for each patch. To be considered supported, Microsoft must report that the version is supported by security patches to known vulnerability.  Review the Support dates at: https://support.microsoft.com/en-us/lifecycle?C2=1044 
+      <RawString>Obtain evidence that software patches are consistently applied to SQL Server within the time frame defined for each patch. To be considered supported, Microsoft must report that the version is supported by security patches to known vulnerability. Review the Support dates at: https://learn.microsoft.com/en-us/troubleshoot/sql/releases/download-and-install-latest-updates
  
-Check the SQL Server Version by running the following script:  Print @@version 
+Check the SQL Server version by running the following script: Print @@version 
  
 If the SQL Server version is not shown as supported, this is a finding. 
  
