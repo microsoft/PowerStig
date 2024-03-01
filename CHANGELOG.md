@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 * Update PowerSTIG to Parse/Apply Microsoft .NET 4 V2R2 [#1325](https://github.com/microsoft/PowerStig/issues/1325)
+* Fix for Invalid value for V-221588 in default Chrome organizational settings [#1329](https://github.com/microsoft/PowerStig/issues/1329)
+* Update PowerSTIG to Parse/Apply U_RHEL_7_V3R14_STIG [#1315](https://github.com/microsoft/PowerStig/issues/1315)
 
 ## [4.20.0] - 2024-01-12
 
