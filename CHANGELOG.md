@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update Powerstig to parse\apply U_Google_Chrome_V2R9_STIG [#1317](https://github.com/microsoft/PowerStig/issues/1317)
+* Update PowerSTIG to Parse/Apply U_RHEL_7_V3R14_STIG [#1315](https://github.com/microsoft/PowerStig/issues/1315)
 
 ## [4.20.0] - 2024-01-12
 
