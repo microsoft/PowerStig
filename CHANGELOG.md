@@ -1,6 +1,8 @@
 # Versions
 
 ## [Unreleased]
+* Update PowerSTIG to Parse/Apply Oracle Linux 8 V1R9 [#1333](https://github.com/microsoft/PowerStig/issues/1333)
+
 
 ## [4.21.0] - 2024-03-01
 

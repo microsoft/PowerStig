@@ -1,0 +1,55 @@
+<!--
+    The organizational settings file is used to define the local organizations
+    preferred setting within an allowed range of the STIG.
+
+    Each setting in this file is linked by STIG ID and the valid range is in an
+    associated comment.
+-->
+<OrganizationalSettings fullversion="1.9">
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ENCRYPT_METHOD" does not equal SHA512 or greater, this is a finding." -->
+  <OrganizationalSetting id="V-248533" ContainsLine="ENCRYPT_METHOD = SHA512" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" does not exist, does not have a product value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-248553" ContainsLine="ClientAliveInterval 600" DoesNotContainPattern="^\s*ClientAliveInterval\s*[0-5]?[0-9]?[0-9]?\s*$|^#\s*ClientAliveInterval.*|^\s*ClientAliveInterval\s*$" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." -->
+  <OrganizationalSetting id="V-248652.a" ContainsLine="deny = 3" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." -->
+  <OrganizationalSetting id="V-248652.b" ContainsLine="deny = 3" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." -->
+  <OrganizationalSetting id="V-248652.c" ContainsLine="deny = 3" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." -->
+  <OrganizationalSetting id="V-248652.d" ContainsLine="deny = 3" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." -->
+  <OrganizationalSetting id="V-248652.e" ContainsLine="deny = 3" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." -->
+  <OrganizationalSetting id="V-248652.f" ContainsLine="deny = 3" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") or is missing or commented out, this is a finding." -->
+  <OrganizationalSetting id="V-248653" ContainsLine="deny = 3" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "maxlogins" item is missing or commented out, or the value is not set to "10" or less for all domains that have the "maxlogins" item assigned, this is a finding." -->
+  <OrganizationalSetting id="V-248681" ContainsLine="lock-after-time = 900" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is not "1" or greater or is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-248695" ContainsLine="PASS_MIN_DAYS 1" DoesNotContainPattern="^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is greater than "60", or commented out, this is a finding." -->
+  <OrganizationalSetting id="V-248696" ContainsLine="PASS_MAX_DAYS 60" DoesNotContainPattern="^\s*PASS_MAX_DAYS\s*([6][1-9]|[7-9][0-9]|\d{3,})$|#\s*PASS_MAX_DAYS.*" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the line containing "pam_pwhistory.so" does not have the "remember" module argument set, is commented out, or the value of the "remember" module argument is set to less than "5", this is a finding." -->
+  <OrganizationalSetting id="V-248698" ContainsLine="pam_pwhistory.so remember" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_LEN" parameter value is less than "15" or is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-248700" ContainsLine="PASS_MIN_LEN = 15" DoesNotContainPattern="^\s*PASS_MIN_LEN\s*=\s*([0-9]|[1][1-4])$|#\s*PASS_MIN_LEN.*" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "inactive" is set to zero, a negative number, or is greater than 35, this is a finding." -->
+  <OrganizationalSetting id="V-248703.a" ContainsLine="INACTIVE=35" DoesNotContainPattern="^#\s*INACTIVE\s*=.*|^\s*INACTIVE\s*=\s*(3[5-9]|[4-9]\d+|\d{3,})" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "inactive" is set to zero, a negative number, or is greater than 35, this is a finding." -->
+  <OrganizationalSetting id="V-248703.b" ContainsLine="INACTIVE=35" DoesNotContainPattern="^#\s*INACTIVE\s*=.*|^\s*INACTIVE\s*=\s*(3[5-9]|[4-9]\d+|\d{3,})" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "inactive" is set to zero, a negative number, or is greater than 35, this is a finding." -->
+  <OrganizationalSetting id="V-248704.a" ContainsLine="INACTIVE=35" DoesNotContainPattern="^#\s*INACTIVE\s*=.*|^\s*INACTIVE\s*=\s*(3[5-9]|[4-9]\d+|\d{3,})" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "inactive" is set to zero, a negative number, or is greater than 35, this is a finding." -->
+  <OrganizationalSetting id="V-248704.b" ContainsLine="INACTIVE=35" DoesNotContainPattern="^#\s*INACTIVE\s*=.*|^\s*INACTIVE\s*=\s*(3[5-9]|[4-9]\d+|\d{3,})" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "FAIL_DELAY" is not set to "4" or greater or the line is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-248712" ContainsLine="FAIL_DELAY 4" DoesNotContainPattern="^#\s*FAIL_DELAY.*|^FAIL_DELAY\s*(?!\d{2,})[1-3]" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "maxpoll" option is set to a number greater than "16" or the line is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-248820" ContainsLine="maxpoll = 16" DoesNotContainPattern="^\s*maxpoll\s*=\s*([0-9]|[1][1-5])$|#\s*maxpoll.*" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding." -->
+  <OrganizationalSetting id="V-252658" ContainsLine="retry = 3" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "retry" is set to "0" or greater than "3", this is a finding." -->
+  <OrganizationalSetting id="V-252659" ContainsLine="retry = 3" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the line containing "pam_pwhistory.so" does not have the "remember" module argument set, is commented out, or the value of the "remember" module argument is set to less than "5", this is a finding." -->
+  <OrganizationalSetting id="V-252661" ContainsLine="pam_pwhistory.so remember" DoesNotContainPattern="" />
+</OrganizationalSettings>
