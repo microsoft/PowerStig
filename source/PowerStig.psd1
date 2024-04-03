@@ -1,6 +1,5 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-
 @{
     # Script module or binary module file associated with this manifest.
     RootModule = 'PowerStig.psm1'
