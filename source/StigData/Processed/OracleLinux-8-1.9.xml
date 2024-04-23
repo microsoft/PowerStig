@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="OracleLinux_8_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_OracleLinux_8_STIG_V1R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 24 Jan 2024 3.4.1.22916 1.10.0" title="Oracle Linux 8 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.9" created="3/30/2024">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="OracleLinux_8_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_OracleLinux_8_STIG_V1R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 24 Jan 2024 3.4.1.22916 1.10.0" title="Oracle Linux 8 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.9" created="4/23/2024">
   <ManualRule dscresourcemodule="None">
     <Rule id="V-248519" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without establishing what type of events occurred and their source, location, and outcome, it would be difficult to establish, correlate, and investigate the events leading up to an outage or attack. 
@@ -373,6 +373,28 @@ $ sudo grep -iw grub2_password /boot/grub2/user.cfg
 GRUB2_PASSWORD=grub.pbkdf2.sha512.[password_hash] 
  
 If the grub superusers account password does not begin with "grub.pbkdf2.sha512", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248543" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore cannot be relied on to provide confidentiality or integrity, and DoD data may be compromised. 
+ 
+OL 8 systems using encryption are required to use FIPS-compliant mechanisms for authenticating to cryptographic modules. 
+ 
+FIPS 140-2 is the current standard for validating that mechanisms used to access cryptographic modules use authentication that meets DoD requirements. This allows for Security Levels 1, 2, 3, or 4 for use on a general-purpose computing system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the "pam_unix.so" module is configured to use sha512.
+
+Check that pam_unix.so module is configured to use sha512 in /etc/pam.d/system-auth with the following command:
+
+$ sudo grep password /etc/pam.d/system-auth | grep pam_unix
+
+password sufficient pam_unix.so sha512
+
+If "sha512" is missing, or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248545" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore cannot be relied on to provide confidentiality or integrity, and DoD data may be compromised.
@@ -1029,6 +1051,29 @@ If conflicting results are returned, this is a finding.
 If "Defaults !targetpw" is not defined, this is a finding.
 If "Defaults !rootpw" is not defined, this is a finding.
 If "Defaults !runaspw" is not defined, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248585" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
+
+When operating systems provide the capability to escalate a functional capability, it is critical the organization requires the user to re-authenticate when using the "sudo" command.
+
+If the value is set to an integer less than 0, the user's time stamp will not expire and the user will not have to re-authenticate for privileged actions until the user's session is terminated.
+
+Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system requires re-authentication when using the "sudo" command to elevate privileges.
+
+     $ sudo grep -Eir 'timestamp_timeout' /etc/sudoers /etc/sudoers.d*
+     /etc/sudoers:Defaults timestamp_timeout=0
+
+If conflicting results are returned, this is a finding.
+
+If "timestamp_timeout" is set to a negative number, is commented out, or no results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248586" severity="low" conversionstatus="pass" title="SRG-OS-000375-GPOS-00160" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Using an authentication device, such as a DoD Common Access Card (CAC) or token that is separate from the information system, ensures that even if the information system is compromised, credentials stored on the authentication device will not be affected. 
@@ -1979,6 +2024,42 @@ Verify each of these accounts has an expiration date set within 72 hours.
  
 If any temporary accounts have no expiration date set or do not expire within 72 hours, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-248654" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
+ 
+OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
+ 
+From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
+
+Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the system locks an account after three unsuccessful logon attempts within a period of 15 minutes with the following commands. 
+ 
+Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable. 
+ 
+Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable. 
+ 
+$ sudo grep pam_faillock.so /etc/pam.d/password-auth 
+ 
+auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 even_deny_root fail_interval=900 unlock_time=0 
+auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0 
+account required pam_faillock.so 
+ 
+If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding. 
+ 
+$ sudo grep pam_faillock.so /etc/pam.d/system-auth 
+ 
+auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 even_deny_root fail_interval=900 unlock_time=0 
+auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0 
+account required pam_faillock.so 
+ 
+If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-248656" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
  
@@ -2178,6 +2259,34 @@ $ sudo grep "maxlogins" /etc/security/limits.conf /etc/security/limits.d/*.conf
 This can be set as a global domain (with the * wildcard) but may be set differently for multiple domains. 
  
 If the "maxlogins" item is missing or commented out, or the value is not set to "10" or less for all domains that have the "maxlogins" item assigned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248667" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account.
+
+In OL 8.2 the "/etc/security/faillock.conf" file was incorporated to centralize the configuration of the pam_faillock.so module.  Also introduced is a "local_users_only" option that will only track failed user authentication attempts for local users in /etc/passwd and ignore centralized (AD, IdM, LDAP, etc.) users to allow the centralized platform to solely manage user lockout.
+
+From "faillock.conf" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable a different tally directory must be set with the "dir" option.
+
+The preauth argument must be used when the module is called before the modules that ask for user credentials, such as the password.
+
+Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: This check applies to OL versions 8.2 or newer, if the system is OL version 8.0 or 8.1, this check is not applicable.
+
+Verify the pam_faillock.so module is present in the "/etc/pam.d/system-auth" file:
+
+$ sudo grep pam_faillock.so /etc/pam.d/system-auth
+
+auth               required                           pam_faillock.so preauth
+auth               required                           pam_faillock.so authfail
+account          required                           pam_faillock.so
+
+If the pam_faillock.so module is not present in the "/etc/pam.d/system-auth" file with the "preauth" line listed before pam_unix.so, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248669" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account.
@@ -2722,6 +2831,61 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000104-GPOS-00051, SRG-OS-000121-GPO
 $ sudo awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd 
  
 If output is produced and the accounts listed are interactive user accounts, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248702" severity="medium" conversionstatus="pass" title="SRG-OS-000105-GPOS-00052" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Using an authentication device, such as a Common Access Card (CAC) or token that is separate from the information system, ensures that even if the information system is compromised, that compromise will not affect credentials stored on the authentication device. 
+ 
+Multifactor solutions that require devices separate from information systems gaining access include, for example, hardware tokens providing time-based or challenge-response authenticators and smart cards such as the U.S. Government Personal Identity Verification card and the DoD CAC. 
+ 
+There are various methods of implementing multifactor authentication for OL 8. Some methods include a local system multifactor account mapping or joining the system to a domain and using an idM server or Microsoft Windows Active Directory server. Any of these methods will require that the client operating system handle the multifactor authentication correctly.
+
+Satisfies: SRG-OS-000105-GPOS-00052, SRG-OS-000106-GPOS-00053, SRG-OS-000107-GPOS-00054, SRG-OS-000108-GPOS-00055&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify OL 8 uses multifactor authentication for local access to accounts.
+
+Note: If the System Administrator demonstrates the use of an approved alternate multifactor authentication method, this requirement is not applicable.
+
+Check that the "pam_cert_auth" setting is set to "true" in the "/etc/sssd/sssd.conf" file.
+
+Check that the "try_cert_auth" or "require_cert_auth" options are configured in both "/etc/pam.d/system-auth" and "/etc/pam.d/smartcard-auth" files with the following command:
+
+     $ sudo grep -ir cert_auth /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf /etc/pam.d/*
+
+     /etc/sssd/sssd.conf:pam_cert_auth = True
+     /etc/pam.d/smartcard-auth:auth sufficient pam_sss.so try_cert_auth
+     /etc/pam.d/system-auth:auth [success=done authinfo_unavail=ignore ignore=ignore default=die] pam_sss.so try_cert_auth
+
+If "pam_cert_auth" is not set to "true" in "/etc/sssd/sssd.conf", this is a finding.
+
+If "pam_sss.so" is not set to "try_cert_auth" or "require_cert_auth" in both the "/etc/pam.d/smartcard-auth" and "/etc/pam.d/system-auth" files, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248703" severity="medium" conversionstatus="pass" title="SRG-OS-000118-GPOS-00060" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system. Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained. 
+ 
+OL 8 needs to track periods of inactivity and disable application identifiers after 35 days of inactivity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the account identifiers (individuals, groups, roles, and devices) are disabled after 35 days of inactivity by checking the account inactivity value with the following command: 
+ 
+$ sudo grep 'inactive\|pam_unix' /etc/pam.d/system-auth | grep -w auth
+ 
+auth      required      pam_lastlog.so inactive=35
+auth      sufficient     pam_unix.so 
+
+If the pam_lastlog.so module is listed below the pam_unix.so module in the "system-auth" file, this is a finding.
+
+If the value of "inactive" is set to zero, a negative number, or is greater than 35, this is a finding.
+
+If the line is commented out or missing, ask the administrator to indicate how the system disables access for account identifiers. If there is no evidence that the system is disabling access for account identifiers after 35 days of inactivity, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248705" severity="medium" conversionstatus="pass" title="SRG-OS-000206-GPOS-00084" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Unauthorized disclosure of the contents of the /var/log/lastlog file can reveal system data to attackers, thus compromising its confidentiality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3268,6 +3432,56 @@ $ sudo grep -w unix_chkpwd /etc/audit/audit.rules
 If the command does not return all lines or the lines are commented out, this is a finding. 
  
 Note: The "-k" allows for specifying an arbitrary identifier, and the string after it does not need to match the example output above.</RawString>
+    </Rule>
+    <Rule id="V-248801" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+ 
+Audit records can be generated from various components within the information system (e.g., module or policy filter). 
+ 
+The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records. 
+ 
+DoD has defined the list of events for which OL 8 will provide an audit record generation capability as the following: 
+ 
+1) Successful and unsuccessful attempts to access, modify, or delete privileges, security objects, security levels, or categories of information (e.g., classification levels); 
+ 
+2) Access actions, such as successful and unsuccessful logon attempts, privileged activities or other system-level access, starting and ending time for user access to the system, concurrent logons from different workstations, successful and unsuccessful accesses to objects, all program initiations, and all direct access to the information system; 
+ 
+3) All account creations, modifications, disabling, and terminations; and 
+ 
+4) All kernel module load, unload, and restart actions. 
+ 
+From "Pam_Faillock man" pages: Note the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
+
+Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000062-GPOS-00031, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215, SRG-OS-000473-GPOS-00218&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify OL 8 generates an audit record for any attempted modifications to the "faillock" file.  
+ 
+Determine where the faillock tallies are stored with the following commands: 
+ 
+For OL versions 8.0 and 8.1: 
+ 
+$ sudo grep -i pam_faillock.so /etc/pam.d/system-auth 
+ 
+auth required pam_faillock.so preauth dir=/var/log/faillock silent deny=3 fail_interval=900 even_deny_root 
+ 
+For OL versions 8.2 and newer: 
+ 
+$ sudo grep dir /etc/security/faillock.conf 
+ 
+dir=/var/log/faillock 
+ 
+Using the location of the faillock log file, check that the following calls are being audited by running the following command to check the file system rules in "/etc/audit/audit.rules": 
+ 
+$ sudo grep -w faillock /etc/audit/audit.rules 
+ 
+-w /var/log/faillock -p wa -k logins 
+ 
+If the command does not return a line or the line is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248806" severity="medium" conversionstatus="pass" title="SRG-OS-000063-GPOS-00032" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without the capability to restrict the roles and individuals that can select which events are audited, unauthorized personnel may be able to prevent the auditing of critical events. Misconfigured audits may degrade the system's performance by overwhelming the audit log. Misconfigured audits may also make it more difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -5437,6 +5651,28 @@ $ sudo grep pam_succeed_if /etc/pam.d/sudo
 
 If any occurrences of "pam_succeed_if" is returned from the command, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-252657" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. "pwquality" enforces complex password construction configuration and has the ability to limit brute-force attacks on the system.
+
+OL 8 utilizes "pwquality" as a mechanism to enforce password complexity. This is set in both:
+/etc/pam.d/password-auth
+/etc/pam.d/system-auth&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system uses "pwquality" to enforce the password complexity rules. 
+
+Check for the use of "pwquality" in the system-auth file with the following command:
+
+     $ sudo cat /etc/pam.d/system-auth | grep pam_pwquality
+
+     password requisite pam_pwquality.so
+
+If the command does not return a line containing the value "pam_pwquality.so" as shown, or the line is commented out, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-252662" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Routing protocol daemons are typically used on routers to exchange network topology information with other routers. If this software is used when not required, system network information may be unnecessarily transmitted across the network.
 
@@ -5879,31 +6115,6 @@ ExecStart=-/usr/lib/systemd/systemd-sulogin-shell emergency
  
 If the "ExecStart" line is configured for anything other than "/usr/lib/systemd/systemd-sulogin-shell emergency" or is commented out or missing, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-248543" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="nxFileLine">
-      <ContainsLine>password sufficient pam_unix.so sha512</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore cannot be relied on to provide confidentiality or integrity, and DoD data may be compromised. 
- 
-OL 8 systems using encryption are required to use FIPS-compliant mechanisms for authenticating to cryptographic modules. 
- 
-FIPS 140-2 is the current standard for validating that mechanisms used to access cryptographic modules use authentication that meets DoD requirements. This allows for Security Levels 1, 2, 3, or 4 for use on a general-purpose computing system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*password\s*sufficient\s*pam_unix.so\s*sha512</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the "pam_unix.so" module is configured to use sha512.
-
-Check that pam_unix.so module is configured to use sha512 in /etc/pam.d/system-auth with the following command:
-
-$ sudo grep password /etc/pam.d/system-auth | grep pam_unix
-
-password sufficient pam_unix.so sha512
-
-If "sha512" is missing, or is commented out, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-248544" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="nxFileLine">
       <ContainsLine>password sufficient pam_unix.so sha512</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore cannot be relied on to provide confidentiality or integrity, and DoD data may be compromised. 
@@ -6274,32 +6485,6 @@ $ sudo grep -ir nopasswd /etc/sudoers /etc/sudoers.d
 %admin ALL=(ALL) NOPASSWD: ALL
 
 If any occurrences of "NOPASSWD" are returned from the command and have not been documented with the ISSO as an organizationally defined administrative group using MFA, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-248585" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="nxFileLine">
-      <ContainsLine>If conflicting results are returned, this is a finding.</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
-
-When operating systems provide the capability to escalate a functional capability, it is critical the organization requires the user to re-authenticate when using the "sudo" command.
-
-If the value is set to an integer less than 0, the user's time stamp will not expire and the user will not have to re-authenticate for privileged actions until the user's session is terminated.
-
-Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*If\s*conflicting\s*results\s*are\s*returned,\s*this\s*is\s*a\s*finding.</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/sudoers</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system requires re-authentication when using the "sudo" command to elevate privileges.
-
-     $ sudo grep -Eir 'timestamp_timeout' /etc/sudoers /etc/sudoers.d*
-     /etc/sudoers:Defaults timestamp_timeout=0
-
-If conflicting results are returned, this is a finding.
-
-If "timestamp_timeout" is set to a negative number, is commented out, or no results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248590" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="nxFileLine">
       <ContainsLine>GRUB_CMDLINE_LINUX="page_poison=1"</ContainsLine>
@@ -6933,159 +7118,6 @@ deny = 3
  
 If the "deny" option is not set to "3" or less (but not "0") or is missing or commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-248654.a" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 even_deny_root fail_interval=900 unlock_time=0</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*auth\s*required\s*pam_faillock.so\s*preauth\s*dir\s*=\s*/var/log/faillock\s*silent\s*audit\s*deny\s*=\s*3\s*even_deny_root\s*fail_interval\s*=\s*900\s*unlock_time\s*=\s*0</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/password-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts within a period of 15 minutes with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/password-auth
-auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 even_deny_root fail_interval=900 unlock_time=0
-If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding.
-If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248654.b" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*auth\s*required\s*pam_faillock.so\s*authfail\s*dir\s*=\s*/var/log/faillock\s*unlock_time\s*=\s*0</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/password-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts within a period of 15 minutes with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/password-auth
-auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0
-If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding.
-If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248654.c" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>account required pam_faillock.so</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*account\s*required\s*pam_faillock.so</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/password-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts within a period of 15 minutes with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/password-auth
-account required pam_faillock.so
-If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding.
-If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248654.d" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 even_deny_root fail_interval=900 unlock_time=0</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*auth\s*required\s*pam_faillock.so\s*preauth\s*dir\s*=\s*/var/log/faillock\s*silent\s*audit\s*deny\s*=\s*3\s*even_deny_root\s*fail_interval\s*=\s*900\s*unlock_time\s*=\s*0</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts within a period of 15 minutes with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/system-auth
-auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 even_deny_root fail_interval=900 unlock_time=0
-If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248654.e" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*auth\s*required\s*pam_faillock.so\s*authfail\s*dir\s*=\s*/var/log/faillock\s*unlock_time\s*=\s*0</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts within a period of 15 minutes with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/system-auth
-auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0
-If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248654.f" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>account required pam_faillock.so</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*account\s*required\s*pam_faillock.so</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts within a period of 15 minutes with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/system-auth
-account required pam_faillock.so
-If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding.
-</RawString>
-    </Rule>
     <Rule id="V-248655" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
       <ContainsLine>fail_interval = 900</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
@@ -7247,90 +7279,6 @@ $ sudo grep even_deny_root /etc/security/faillock.conf
 even_deny_root 
  
 If the "even_deny_root" option is not set or is missing or commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-248667.a" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>auth required pam_faillock.so preauth auth required pam_faillock.so authfail account required pam_faillock.so</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account.
-
-In OL 8.2 the "/etc/security/faillock.conf" file was incorporated to centralize the configuration of the pam_faillock.so module.  Also introduced is a "local_users_only" option that will only track failed user authentication attempts for local users in /etc/passwd and ignore centralized (AD, IdM, LDAP, etc.) users to allow the centralized platform to solely manage user lockout.
-
-From "faillock.conf" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable a different tally directory must be set with the "dir" option.
-
-The preauth argument must be used when the module is called before the modules that ask for user credentials, such as the password.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*auth\s*required\s*pam_faillock.so\s*preauth\s*auth\s*required\s*pam_faillock.so\s*authfail\s*account\s*required\s*pam_faillock.so</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: This check applies to OL versions 8.2 or newer, if the system is OL version 8.0 or 8.1, this check is not applicable.
-Verify the pam_faillock.so module is present in the "/etc/pam.d/system-auth" file:
-$ sudo grep pam_faillock.so /etc/pam.d/system-auth
-auth               required                           pam_faillock.so preauth
-auth               required                           pam_faillock.so authfail
-account          required                           pam_faillock.so
-If the pam_faillock.so module is not present in the "/etc/pam.d/system-auth" file with the "preauth" line listed before pam_unix.so, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248667.b" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>auth required pam_faillock.so preauth auth required pam_faillock.so authfail account required pam_faillock.so</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account.
-
-In OL 8.2 the "/etc/security/faillock.conf" file was incorporated to centralize the configuration of the pam_faillock.so module.  Also introduced is a "local_users_only" option that will only track failed user authentication attempts for local users in /etc/passwd and ignore centralized (AD, IdM, LDAP, etc.) users to allow the centralized platform to solely manage user lockout.
-
-From "faillock.conf" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable a different tally directory must be set with the "dir" option.
-
-The preauth argument must be used when the module is called before the modules that ask for user credentials, such as the password.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*auth\s*required\s*pam_faillock.so\s*preauth\s*auth\s*required\s*pam_faillock.so\s*authfail\s*account\s*required\s*pam_faillock.so</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: This check applies to OL versions 8.2 or newer, if the system is OL version 8.0 or 8.1, this check is not applicable.
-Verify the pam_faillock.so module is present in the "/etc/pam.d/system-auth" file:
-$ sudo grep pam_faillock.so /etc/pam.d/system-auth
-auth               required                           pam_faillock.so preauth
-auth               required                           pam_faillock.so authfail
-account          required                           pam_faillock.so
-If the pam_faillock.so module is not present in the "/etc/pam.d/system-auth" file with the "preauth" line listed before pam_unix.so, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248667.c" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>auth required pam_faillock.so preauth auth required pam_faillock.so authfail account required pam_faillock.so</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account.
-
-In OL 8.2 the "/etc/security/faillock.conf" file was incorporated to centralize the configuration of the pam_faillock.so module.  Also introduced is a "local_users_only" option that will only track failed user authentication attempts for local users in /etc/passwd and ignore centralized (AD, IdM, LDAP, etc.) users to allow the centralized platform to solely manage user lockout.
-
-From "faillock.conf" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable a different tally directory must be set with the "dir" option.
-
-The preauth argument must be used when the module is called before the modules that ask for user credentials, such as the password.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*auth\s*required\s*pam_faillock.so\s*preauth\s*auth\s*required\s*pam_faillock.so\s*authfail\s*account\s*required\s*pam_faillock.so</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: This check applies to OL versions 8.2 or newer, if the system is OL version 8.0 or 8.1, this check is not applicable.
-Verify the pam_faillock.so module is present in the "/etc/pam.d/system-auth" file:
-$ sudo grep pam_faillock.so /etc/pam.d/system-auth
-auth               required                           pam_faillock.so preauth
-auth               required                           pam_faillock.so authfail
-account          required                           pam_faillock.so
-If the pam_faillock.so module is not present in the "/etc/pam.d/system-auth" file with the "preauth" line listed before pam_unix.so, this is a finding.
-</RawString>
     </Rule>
     <Rule id="V-248668.a" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
       <ContainsLine>auth required pam_faillock.so preauth auth required pam_faillock.so authfail account required pam_faillock.so</ContainsLine>
@@ -7903,110 +7851,6 @@ $ sudo grep -i pass_min_len /etc/login.defs
 PASS_MIN_LEN 15 
  
 If the "PASS_MIN_LEN" parameter value is less than "15" or is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-248702.a" severity="medium" conversionstatus="pass" title="SRG-OS-000105-GPOS-00052" dscresource="nxFileLine">
-      <ContainsLine>/etc/pam.d/smartcard-auth:auth sufficient pam_sss.so try_cert_auth</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Using an authentication device, such as a Common Access Card (CAC) or token that is separate from the information system, ensures that even if the information system is compromised, that compromise will not affect credentials stored on the authentication device. 
- 
-Multifactor solutions that require devices separate from information systems gaining access include, for example, hardware tokens providing time-based or challenge-response authenticators and smart cards such as the U.S. Government Personal Identity Verification card and the DoD CAC. 
- 
-There are various methods of implementing multifactor authentication for OL 8. Some methods include a local system multifactor account mapping or joining the system to a domain and using an idM server or Microsoft Windows Active Directory server. Any of these methods will require that the client operating system handle the multifactor authentication correctly.
-
-Satisfies: SRG-OS-000105-GPOS-00052, SRG-OS-000106-GPOS-00053, SRG-OS-000107-GPOS-00054, SRG-OS-000108-GPOS-00055&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*/etc/pam.d/smartcard-auth:auth\s*sufficient\s*pam_sss.so\s*try_cert_auth</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/smartcard-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify OL 8 uses multifactor authentication for local access to accounts.
-Note: If the System Administrator demonstrates the use of an approved alternate multifactor authentication method, this requirement is not applicable.
-Check that the "pam_cert_auth" setting is set to "true" in the "/etc/sssd/sssd.conf" file.
-Check that the "try_cert_auth" or "require_cert_auth" options are configured in both "/etc/pam.d/system-auth" and "/etc/pam.d/smartcard-auth" files with the following command:
-$ sudo grep -ir cert_auth /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf /etc/pam.d/*
-/etc/sssd/sssd.conf:pam_cert_auth = True
-/etc/pam.d/smartcard-auth:auth sufficient pam_sss.so try_cert_auth
-If "pam_cert_auth" is not set to "true" in "/etc/sssd/sssd.conf", this is a finding.
-If "pam_sss.so" is not set to "try_cert_auth" or "require_cert_auth" in both the "/etc/pam.d/smartcard-auth" and "/etc/pam.d/system-auth" files, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248702.b" severity="medium" conversionstatus="pass" title="SRG-OS-000105-GPOS-00052" dscresource="nxFileLine">
-      <ContainsLine>/etc/pam.d/system-auth:auth [success=done authinfo_unavail=ignore ignore=ignore default=die] pam_sss.so try_cert_auth</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Using an authentication device, such as a Common Access Card (CAC) or token that is separate from the information system, ensures that even if the information system is compromised, that compromise will not affect credentials stored on the authentication device. 
- 
-Multifactor solutions that require devices separate from information systems gaining access include, for example, hardware tokens providing time-based or challenge-response authenticators and smart cards such as the U.S. Government Personal Identity Verification card and the DoD CAC. 
- 
-There are various methods of implementing multifactor authentication for OL 8. Some methods include a local system multifactor account mapping or joining the system to a domain and using an idM server or Microsoft Windows Active Directory server. Any of these methods will require that the client operating system handle the multifactor authentication correctly.
-
-Satisfies: SRG-OS-000105-GPOS-00052, SRG-OS-000106-GPOS-00053, SRG-OS-000107-GPOS-00054, SRG-OS-000108-GPOS-00055&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*/etc/pam.d/system-auth:auth\s*[success\s*=\s*done\s*authinfo_unavail\s*=\s*ignore\s*ignore\s*=\s*ignore\s*default\s*=\s*die]\s*pam_sss.so\s*try_cert_auth</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify OL 8 uses multifactor authentication for local access to accounts.
-Note: If the System Administrator demonstrates the use of an approved alternate multifactor authentication method, this requirement is not applicable.
-Check that the "pam_cert_auth" setting is set to "true" in the "/etc/sssd/sssd.conf" file.
-Check that the "try_cert_auth" or "require_cert_auth" options are configured in both "/etc/pam.d/system-auth" and "/etc/pam.d/smartcard-auth" files with the following command:
-$ sudo grep -ir cert_auth /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf /etc/pam.d/*
-/etc/sssd/sssd.conf:pam_cert_auth = True
-/etc/pam.d/system-auth:auth [success=done authinfo_unavail=ignore ignore=ignore default=die] pam_sss.so try_cert_auth
-If "pam_cert_auth" is not set to "true" in "/etc/sssd/sssd.conf", this is a finding.
-If "pam_sss.so" is not set to "try_cert_auth" or "require_cert_auth" in both the "/etc/pam.d/smartcard-auth" and "/etc/pam.d/system-auth" files, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248703.a" severity="medium" conversionstatus="pass" title="SRG-OS-000118-GPOS-00060" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system. Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained. 
- 
-OL 8 needs to track periods of inactivity and disable application identifiers after 35 days of inactivity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "inactive" is set to zero, a negative number, or is greater than 35, this is a finding." </OrganizationValueTestString>
-      <RawString>Verify the account identifiers (individuals, groups, roles, and devices) are disabled after 35 days of inactivity by checking the account inactivity value with the following command:
-$ sudo grep 'inactive\|pam_unix' /etc/pam.d/system-auth | grep -w auth
-auth      required      pam_lastlog.so inactive=35
-auth      sufficient     pam_unix.so
-If the pam_lastlog.so module is listed below the pam_unix.so module in the "system-auth" file, this is a finding.
-If the value of "inactive" is set to zero, a negative number, or is greater than 35, this is a finding.
-If the line is commented out or missing, ask the administrator to indicate how the system disables access for account identifiers. If there is no evidence that the system is disabling access for account identifiers after 35 days of inactivity, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248703.b" severity="medium" conversionstatus="pass" title="SRG-OS-000118-GPOS-00060" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system. Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained. 
- 
-OL 8 needs to track periods of inactivity and disable application identifiers after 35 days of inactivity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of "inactive" is set to zero, a negative number, or is greater than 35, this is a finding." </OrganizationValueTestString>
-      <RawString>Verify the account identifiers (individuals, groups, roles, and devices) are disabled after 35 days of inactivity by checking the account inactivity value with the following command:
-$ sudo grep 'inactive\|pam_unix' /etc/pam.d/system-auth | grep -w auth
-auth      required      pam_lastlog.so inactive=35
-auth      sufficient     pam_unix.so
-If the pam_lastlog.so module is listed below the pam_unix.so module in the "system-auth" file, this is a finding.
-If the value of "inactive" is set to zero, a negative number, or is greater than 35, this is a finding.
-If the line is commented out or missing, ask the administrator to indicate how the system disables access for account identifiers. If there is no evidence that the system is disabling access for account identifiers after 35 days of inactivity, this is a finding.
-</RawString>
     </Rule>
     <Rule id="V-248704.a" severity="medium" conversionstatus="pass" title="SRG-OS-000118-GPOS-00060" dscresource="nxFileLine">
       <ContainsLine>
@@ -9972,191 +9816,6 @@ If the command does not return a line or the line is commented out, this is a fi
  
 Note: The "-k" allows for specifying an arbitrary identifier, and the string after it does not need to match the example output above.</RawString>
     </Rule>
-    <Rule id="V-248801.a" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
-      <ContainsLine>auth required pam_faillock.so preauth dir=/var/log/faillock silent deny=3 fail_interval=900 even_deny_root</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
- 
-Audit records can be generated from various components within the information system (e.g., module or policy filter). 
- 
-The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records. 
- 
-DoD has defined the list of events for which OL 8 will provide an audit record generation capability as the following: 
- 
-1) Successful and unsuccessful attempts to access, modify, or delete privileges, security objects, security levels, or categories of information (e.g., classification levels); 
- 
-2) Access actions, such as successful and unsuccessful logon attempts, privileged activities or other system-level access, starting and ending time for user access to the system, concurrent logons from different workstations, successful and unsuccessful accesses to objects, all program initiations, and all direct access to the information system; 
- 
-3) All account creations, modifications, disabling, and terminations; and 
- 
-4) All kernel module load, unload, and restart actions. 
- 
-From "Pam_Faillock man" pages: Note the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000062-GPOS-00031, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215, SRG-OS-000473-GPOS-00218&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*auth\s*required\s*pam_faillock.so\s*preauth\s*dir\s*=\s*/var/log/faillock\s*silent\s*deny\s*=\s*3\s*fail_interval\s*=\s*900\s*even_deny_root</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify OL 8 generates an audit record for any attempted modifications to the "faillock" file.
-Determine where the faillock tallies are stored with the following commands:
-For OL versions 8.0 and 8.1:
-$ sudo grep -i pam_faillock.so /etc/pam.d/system-auth
-auth required pam_faillock.so preauth dir=/var/log/faillock silent deny=3 fail_interval=900 even_deny_root
-If the command does not return a line or the line is commented out, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248801.b" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
-      <ContainsLine>For OL versions 8.2 and newer:</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
- 
-Audit records can be generated from various components within the information system (e.g., module or policy filter). 
- 
-The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records. 
- 
-DoD has defined the list of events for which OL 8 will provide an audit record generation capability as the following: 
- 
-1) Successful and unsuccessful attempts to access, modify, or delete privileges, security objects, security levels, or categories of information (e.g., classification levels); 
- 
-2) Access actions, such as successful and unsuccessful logon attempts, privileged activities or other system-level access, starting and ending time for user access to the system, concurrent logons from different workstations, successful and unsuccessful accesses to objects, all program initiations, and all direct access to the information system; 
- 
-3) All account creations, modifications, disabling, and terminations; and 
- 
-4) All kernel module load, unload, and restart actions. 
- 
-From "Pam_Faillock man" pages: Note the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000062-GPOS-00031, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215, SRG-OS-000473-GPOS-00218&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*For\s*OL\s*versions\s*8.2\s*and\s*newer:</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify OL 8 generates an audit record for any attempted modifications to the "faillock" file.
-Determine where the faillock tallies are stored with the following commands:
-For OL versions 8.0 and 8.1:
-$ sudo grep -i pam_faillock.so /etc/pam.d/system-auth
-For OL versions 8.2 and newer:
-If the command does not return a line or the line is commented out, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248801.c" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
-      <ContainsLine>dir=/var/log/faillock</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
- 
-Audit records can be generated from various components within the information system (e.g., module or policy filter). 
- 
-The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records. 
- 
-DoD has defined the list of events for which OL 8 will provide an audit record generation capability as the following: 
- 
-1) Successful and unsuccessful attempts to access, modify, or delete privileges, security objects, security levels, or categories of information (e.g., classification levels); 
- 
-2) Access actions, such as successful and unsuccessful logon attempts, privileged activities or other system-level access, starting and ending time for user access to the system, concurrent logons from different workstations, successful and unsuccessful accesses to objects, all program initiations, and all direct access to the information system; 
- 
-3) All account creations, modifications, disabling, and terminations; and 
- 
-4) All kernel module load, unload, and restart actions. 
- 
-From "Pam_Faillock man" pages: Note the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000062-GPOS-00031, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215, SRG-OS-000473-GPOS-00218&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*dir\s*=\s*/var/log/faillock</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/security/faillock.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify OL 8 generates an audit record for any attempted modifications to the "faillock" file.
-Determine where the faillock tallies are stored with the following commands:
-For OL versions 8.0 and 8.1:
-$ sudo grep dir /etc/security/faillock.conf
-dir=/var/log/faillock
-If the command does not return a line or the line is commented out, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248801.d" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
-      <ContainsLine>Using the location of the faillock log file, check that the following calls are being audited by running the following command to check the file system rules in "/etc/audit/audit.rules":</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
- 
-Audit records can be generated from various components within the information system (e.g., module or policy filter). 
- 
-The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records. 
- 
-DoD has defined the list of events for which OL 8 will provide an audit record generation capability as the following: 
- 
-1) Successful and unsuccessful attempts to access, modify, or delete privileges, security objects, security levels, or categories of information (e.g., classification levels); 
- 
-2) Access actions, such as successful and unsuccessful logon attempts, privileged activities or other system-level access, starting and ending time for user access to the system, concurrent logons from different workstations, successful and unsuccessful accesses to objects, all program initiations, and all direct access to the information system; 
- 
-3) All account creations, modifications, disabling, and terminations; and 
- 
-4) All kernel module load, unload, and restart actions. 
- 
-From "Pam_Faillock man" pages: Note the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000062-GPOS-00031, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215, SRG-OS-000473-GPOS-00218&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*Using\s*the\s*location\s*of\s*the\s*faillock\s*log\s*file,\s*check\s*that\s*the\s*following\s*calls\s*are\s*being\s*audited\s*by\s*running\s*the\s*following\s*command\s*to\s*check\s*the\s*file\s*system\s*rules\s*in\s*"/etc/audit/audit.rules":</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify OL 8 generates an audit record for any attempted modifications to the "faillock" file.
-Determine where the faillock tallies are stored with the following commands:
-For OL versions 8.0 and 8.1:
-$ sudo grep dir /etc/security/faillock.conf
-Using the location of the faillock log file, check that the following calls are being audited by running the following command to check the file system rules in "/etc/audit/audit.rules":
-If the command does not return a line or the line is commented out, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248801.e" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
-      <ContainsLine>-w /var/log/faillock -p wa -k logins</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
- 
-Audit records can be generated from various components within the information system (e.g., module or policy filter). 
- 
-The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records. 
- 
-DoD has defined the list of events for which OL 8 will provide an audit record generation capability as the following: 
- 
-1) Successful and unsuccessful attempts to access, modify, or delete privileges, security objects, security levels, or categories of information (e.g., classification levels); 
- 
-2) Access actions, such as successful and unsuccessful logon attempts, privileged activities or other system-level access, starting and ending time for user access to the system, concurrent logons from different workstations, successful and unsuccessful accesses to objects, all program initiations, and all direct access to the information system; 
- 
-3) All account creations, modifications, disabling, and terminations; and 
- 
-4) All kernel module load, unload, and restart actions. 
- 
-From "Pam_Faillock man" pages: Note the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000062-GPOS-00031, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215, SRG-OS-000473-GPOS-00218&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*-w\s*/var/log/faillock\s*-p\s*wa\s*-k\s*logins</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify OL 8 generates an audit record for any attempted modifications to the "faillock" file.
-Determine where the faillock tallies are stored with the following commands:
-For OL versions 8.0 and 8.1:
-$ sudo grep -w faillock /etc/audit/audit.rules
--w /var/log/faillock -p wa -k logins
-If the command does not return a line or the line is commented out, this is a finding.
-</RawString>
-    </Rule>
     <Rule id="V-248802" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
       <ContainsLine>-w /var/log/lastlog -p wa -k logins</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
@@ -11217,31 +10876,6 @@ $ sudo grep server_args /etc/xinetd.d/tftp
 server_args = -s /var/lib/tftpboot 
  
 If the "server_args" line does not have a "-s" option and a subdirectory is not assigned, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-252657" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
-      <ContainsLine>password requisite pam_pwquality.so</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. "pwquality" enforces complex password construction configuration and has the ability to limit brute-force attacks on the system.
-
-OL 8 utilizes "pwquality" as a mechanism to enforce password complexity. This is set in both:
-/etc/pam.d/password-auth
-/etc/pam.d/system-auth&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*password\s*requisite\s*pam_pwquality.so</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system uses "pwquality" to enforce the password complexity rules. 
-
-Check for the use of "pwquality" in the system-auth file with the following command:
-
-     $ sudo cat /etc/pam.d/system-auth | grep pam_pwquality
-
-     password requisite pam_pwquality.so
-
-If the command does not return a line containing the value "pam_pwquality.so" as shown, or the line is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-252658" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>
