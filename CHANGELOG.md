@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft Windows 10 STIG - Ver 2, Rel 9 [#1342](https://github.com/microsoft/PowerStig/issues/1342)
+
 ## [4.21.0] - 2024-03-01
 
 * Update Powerstig to Parse/Apply U_Google_Chrome_V2R9_STIG [#1317](https://github.com/microsoft/PowerStig/issues/1317)
