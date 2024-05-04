@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to Parse/Apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 8 [#1340](https://github.com/microsoft/PowerStig/issues/1340)
+
 ## [4.21.0] - 2024-03-01
 
 * Update Powerstig to Parse/Apply U_Google_Chrome_V2R9_STIG [#1317](https://github.com/microsoft/PowerStig/issues/1317)
