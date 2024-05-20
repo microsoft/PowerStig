@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse\apply U_MS_SQL_Server_2016_Instance_V2R12 [#1348](https://github.com/microsoft/PowerStig/issues/1348) 
+
 ## [4.21.0] - 2024-03-01
 
 * Update Powerstig to Parse/Apply U_Google_Chrome_V2R9_STIG [#1317](https://github.com/microsoft/PowerStig/issues/1317)
