@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse\apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 4 [#1349](https://github.com/microsoft/PowerStig/issues/1349)
+
 ## [4.21.0] - 2024-03-01
 
 * Update Powerstig to Parse/Apply U_Google_Chrome_V2R9_STIG [#1317](https://github.com/microsoft/PowerStig/issues/1317)
