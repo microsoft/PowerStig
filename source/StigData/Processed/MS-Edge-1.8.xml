@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Edge_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Edge_V1R6_STIG_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 27 Oct 2022 3.4.0.34222 1.10.0" title="Microsoft Edge Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="11/15/2022">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Edge_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Edge_V1R8_STIG_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 24 Apr 2024 3.4.1.22916 1.10.0" title="Microsoft Edge Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="5/20/2024">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-235722" severity="low" conversionstatus="pass" title="SRG-APP-000073" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Configure the list of Microsoft Defender SmartScreen trusted domains. This means Microsoft Defender SmartScreen will not check for potentially malicious resources, such as phishing software and other malware, if the source URLs match these domains. The Microsoft Defender SmartScreen download protection service will not check downloads hosted on these domains.
@@ -1427,6 +1427,76 @@ HKLM\SOFTWARE\Policies\Microsoft\Edge
 If the value for "QuicAllowed" is not set to "REG_DWORD = 0", this is a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>QuicAllowed</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-260465" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Visual Search allows for quick exploration of more related content about entities in an image.
+
+If this policy is enabled or not configured, Visual Search will be enabled via image hover, context menu, and search in Sidebar.
+
+If this policy is disabled, Visual Search will be disabled and more information about images will not be available via hover, context menu, and search in Sidebar.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Visual search enabled" is set to "Disabled".
+
+Use the Windows Registry Editor to navigate to the following key:
+HKLM\SOFTWARE\Policies\Microsoft\Edge
+
+If the value for "VisualSearchEnabled" is not set to "REG_DWORD = 0", this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>VisualSearchEnabled</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-260466" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;The Sidebar is a launcher bar on the right side of Microsoft Edge's screen.
+
+If this policy is enabled or not configured, the Sidebar will be shown. If this policy is disabled, the Sidebar will never be shown.
+
+Disabling Sidebar will disable Copilot.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Show Hubs Sidebar" is set to "Disabled".
+
+Use the Windows Registry Editor to navigate to the following key:
+HKLM\SOFTWARE\Policies\Microsoft\Edge
+
+If the value for "HubsSidebarEnabled" is not set to "REG_DWORD = 0", this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>HubsSidebarEnabled</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-260467" severity="medium" conversionstatus="pass" title="SRG-APP-000080" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Cookies must only be allowed per session and only for approved URLs as permanently stored cookies can be used for malicious intent. 
+
+Approved URLs may be allowlisted via the "CookiesAllowedForUrls" or "SaveCookiesOnExit" policy settings, but these are not requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for "Computer Configuration/Administrative Templates/Microsoft Edge/Content settings/Configure cookies" is set to "Enabled" with the option value set to "Keep cookies for the duration of the session, except ones listed in 'SaveCookiesOnExit'".
+
+Use the Windows Registry Editor to navigate to the following key:
+HKLM\SOFTWARE\Policies\Microsoft\Edge
+
+If the value for “DefaultCookiesSetting” is not set to "REG_DWORD = 4", this is a finding.</RawString>
+      <ValueData>4</ValueData>
+      <ValueName>Computer Configuration/Administrative Templates/Microsoft Edge/Content settings/Configure cookies</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
