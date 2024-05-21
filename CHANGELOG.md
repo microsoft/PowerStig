@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse\apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 12 [#1351](https://github.com/microsoft/PowerStig/issues/1351)
+
 ## [4.21.0] - 2024-03-01
 
 * Update Powerstig to Parse/Apply U_Google_Chrome_V2R9_STIG [#1317](https://github.com/microsoft/PowerStig/issues/1317)
