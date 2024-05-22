@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse\apply Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 14 [#1347](https://github.com/microsoft/PowerStig/issues/1347)
+
 ## [4.21.0] - 2024-03-01
 
 * Update Powerstig to Parse/Apply U_Google_Chrome_V2R9_STIG [#1317](https://github.com/microsoft/PowerStig/issues/1317)
