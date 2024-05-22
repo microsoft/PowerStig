@@ -2,7 +2,8 @@
 
 ## [Unreleased]
 
-* Update Powerstig to parse\apply U_MS_SQL_Server_2016_Instance_V2R12 [#1348](https://github.com/microsoft/PowerStig/issues/1348) 
+* Update Powerstig to parse/apply U_MS_SQL_Server_2016_Instance_V2R12 [#1348](https://github.com/microsoft/PowerStig/issues/1348) 
+* Update Powerstig to parse/apply Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 14 [#1347](https://github.com/microsoft/PowerStig/issues/1347)
 
 ## [4.21.0] - 2024-03-01
 
