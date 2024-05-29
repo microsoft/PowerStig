@@ -19,3 +19,4 @@ V-235729::HKLM\SOFTWARE\Policies\Microsoft\Edge\Recommended::HKLM\SOFTWARE\Polic
 V-235767::PaymentMethodQueryEnabled::"PaymentMethodQueryEnabled"
 V-235769::UserFeedbackAllowed::"UserFeedbackAllowed"
 V-251694::*::.
+V-260467::DefaultCookiesSetting::DefaultCookieSetting
