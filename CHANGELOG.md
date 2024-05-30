@@ -2,7 +2,12 @@
 
 ## [Unreleased]
 
-* Update Powerstig to parse\apply Microsoft Edge STIG - Ver 1, Rel 8 [#1350](https://github.com/microsoft/PowerStig/issues/1350)
+* Update Powerstig to parse/apply Microsoft Edge STIG - Ver 1, Rel 8 [#1350](https://github.com/microsoft/PowerStig/issues/1350)
+* Update Powerstig to parse/apply Microsoft Office System 2016 STIG - Ver 2, Rel 3 [#1352](https://github.com/microsoft/PowerStig/issues/1352)
+* Update Powerstig to parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 12 [#1351](https://github.com/microsoft/PowerStig/issues/1351)
+* Update Powerstig to parse/apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 4 [#1349](https://github.com/microsoft/PowerStig/issues/1349)
+* Update Powerstig to parse/apply U_MS_SQL_Server_2016_Instance_V2R12 [#1348](https://github.com/microsoft/PowerStig/issues/1348) 
+* Update Powerstig to parse/apply Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 14 [#1347](https://github.com/microsoft/PowerStig/issues/1347)
 
 ## [4.21.0] - 2024-03-01
 
