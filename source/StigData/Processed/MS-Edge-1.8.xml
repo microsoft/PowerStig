@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Edge_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Edge_V1R8_STIG_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 24 Apr 2024 3.4.1.22916 1.10.0" title="Microsoft Edge Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="5/28/2024">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Edge_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Edge_V1R8_STIG_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 24 Apr 2024 3.4.1.22916 1.10.0" title="Microsoft Edge Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="5/30/2024">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-235722" severity="low" conversionstatus="pass" title="SRG-APP-000073" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Configure the list of Microsoft Defender SmartScreen trusted domains. This means Microsoft Defender SmartScreen will not check for potentially malicious resources, such as phishing software and other malware, if the source URLs match these domains. The Microsoft Defender SmartScreen download protection service will not check downloads hosted on these domains.
@@ -1484,7 +1484,7 @@ Approved URLs may be allowlisted via the "CookiesAllowedForUrls" or "SaveCookies
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge</Key>
+      <Key>Computer Configuration/Administrative Templates/Microsoft Edge/Content settings/Configure cookies</Key>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1496,7 +1496,7 @@ HKLM\SOFTWARE\Policies\Microsoft\Edge
 
 If the value for “DefaultCookiesSetting” is not set to "REG_DWORD = 4", this is a finding.</RawString>
       <ValueData>4</ValueData>
-      <ValueName>Computer Configuration/Administrative Templates/Microsoft Edge/Content settings/Configure cookies</ValueName>
+      <ValueName>DefaultCookieSetting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
