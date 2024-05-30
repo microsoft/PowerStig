@@ -1484,7 +1484,7 @@ Approved URLs may be allowlisted via the "CookiesAllowedForUrls" or "SaveCookies
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>Computer Configuration/Administrative Templates/Microsoft Edge/Content settings/Configure cookies</Key>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge</Key>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>

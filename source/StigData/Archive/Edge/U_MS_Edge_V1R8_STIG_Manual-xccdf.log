@@ -19,4 +19,4 @@ V-235729::HKLM\SOFTWARE\Policies\Microsoft\Edge\Recommended::HKLM\SOFTWARE\Polic
 V-235767::PaymentMethodQueryEnabled::"PaymentMethodQueryEnabled"
 V-235769::UserFeedbackAllowed::"UserFeedbackAllowed"
 V-251694::*::.
-V-260467::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'Computer Configuration/Administrative Templates/Microsoft Edge/Content settings/Configure cookies'; ValueData = '4'; ValueName = 'DefaultCookieSetting'; ValueType = 'Dword'}
+V-260467::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge'; ValueData = '4'; ValueName = 'DefaultCookieSetting'; ValueType = 'Dword'}
