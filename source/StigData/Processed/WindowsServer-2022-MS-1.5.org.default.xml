@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="1.3">
+<OrganizationalSettings fullversion="1.5">
   <!-- Ensure ServiceName/StartupType is populated with correct AntiVirus service information-->
   <OrganizationalSetting id="V-254248" ServiceName="" StartupType="" />
   <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->
@@ -30,6 +30,8 @@
   <OrganizationalSetting id="V-254442.b" Location="" />
   <!-- Ensure location for DoD Root CA 5 certificate is present-->
   <OrganizationalSetting id="V-254442.c" Location="" />
+  <!-- Ensure location for DoD Root CA 6 certificate is present-->
+  <OrganizationalSetting id="V-254442.d" Location="" />
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-254443" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
