@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R10_Manual-xccdf.xml" releaseinfo="Release: 10 Benchmark Date: 27 Jul 2023 3.4.0.34222 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.10" created="8/15/2023">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R12_Manual-xccdf.xml" releaseinfo="Release: 12 Benchmark Date: 24 Apr 2024 3.4.1.22916 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.12" created="5/20/2024">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful Denial of Service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions per user is helpful in reducing these risks. 
@@ -664,21 +664,27 @@ For each user database where encryption is required, verify that encryption is i
 Verify that there are physical security measures, operating system access control lists and organizational controls appropriate to the sensitivity level of the data in the database(s). If not, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213976" severity="medium" conversionstatus="pass" title="SRG-APP-000243-DB-000373" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The purpose of this control is to prevent information, including encrypted representations of information, produced by the actions of a prior user/role (or the actions of a process acting on behalf of a prior user/role) from being available to any current user/role (or current process) that obtains access to a shared system resource (e.g., registers, main memory, secondary storage) after the resource has been released back to the information system. Control of information in shared resources is also referred to as object reuse.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;The purpose of this control is to prevent information, including encrypted representations of information, produced by the actions of a prior user/role (or the actions of a process acting on behalf of a prior user/role) from being available to any current user/role (or current process) that obtains access to a shared system resource (e.g., registers, main memory, secondary storage) after the resource has been released back to the information system. Control of information in shared resources is also referred to as object reuse.
+
+When Instant File Initialization (IFI) is in use, the deleted disk content is overwritten only as new data is written to the files. For this reason, the deleted content might be accessed by an unauthorized principal until some other data writes on that specific area of the data file.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79213</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the system documentation to determine if Instant File Initialization (IFI) is required.
+      <RawString>Review system configuration to determine whether IFI support has been enabled (by default in SQL Server 2016).
 
-If IFI is documented as required, this is not a finding.
+Start &gt;&gt; Control Panel &gt;&gt; System and Security &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; Perform volume maintenance tasks
 
-Review system configuration to determine whether IFI support has been enabled (by default in SQL Server 2016).
+The default SQL service account for a default instance is NT SERVICE\MSSQLSERVER or for a named instance is NT SERVICE\MSSQL$InstanceName.
 
-Start &gt;&gt; Control Panel &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy &gt;&gt; Local Policies &gt;&gt; User Rights Assignment
+If the SQL service account or SQL service SID has been granted "Perform volume maintenance tasks" Local Rights Assignment, this means that Instant File Initialization (IFI) is enabled.
 
-If the SQL Service SID (Default instance: NT SERVICE\MSSQLSERVER. Named instance: NT SERVICE\MSSQL$InstanceName) has been granted "Perform volume maintenance tasks" Local Rights Assignment and if it is not documented in the system documentation, this is a finding.</RawString>
+Review the system documentation to determine if Instant File Initialization (IFI) is required.
+
+If IFI is enabled but not documented as required, this is a finding.
+
+If IFI is not enabled, this is not a finding.</RawString>
     </Rule>
     <Rule id="V-213977" severity="medium" conversionstatus="pass" title="SRG-APP-000243-DB-000374" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;SQL Server must prevent unauthorized and unintended information transfer via shared system resources. Permitting only SQL Server processes and authorized, administrative users to have access to the files where the database resides helps ensure that those files are not shared inappropriately and are not open to backdoor access and manipulation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1288,9 +1294,42 @@ For SQLCMD, which cannot be configured not to accept a plain-text password, and 
 
 Request evidence that all users of the tool are trained in the importance of not using the plain-text password option and in how to keep the password hidden; and that they adhere to this practice; if not, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-259739" severity="high" conversionstatus="pass" title="SRG-APP-000456-DB-000400" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Unsupported commercial and database systems should not be used because fixes to newly identified bugs will not be implemented by the vendor. The lack of support can result in potential vulnerabilities.
+
+Systems at unsupported servicing levels or releases will not receive security updates for new vulnerabilities, which leaves them subject to exploitation.
+
+When maintenance updates and patches are no longer available, the database software is no longer considered supported and should be upgraded or decommissioned.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the system documentation and interview the database administrator.
+
+Identify all database software components.
+
+Review the version and release information.
+
+Verify the SQL Server version via one of the following methods: 
+Connect to the server by using Object Explorer in SQL Server Management Studio. After Object Explorer is connected, it will show the version information in parentheses, together with the user name that is used to connect to the specific instance of SQL Server.
+
+Or, from SQL Server Management Studio:
+
+SELECT @@VERSION;
+
+More information for finding the version is available at the following link:
+https://learn.microsoft.com/en-us/troubleshoot/sql/releases/find-my-sql-version
+
+Access the vendor website or use other means to verify the version is still supported.
+https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2016
+
+If the installed version or any of the software components are not supported by the vendor, this is a finding.</RawString>
+    </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
-    <Rule id="V-213934" severity="high" conversionstatus="pass" title="SRG-APP-000080-DB-000063" dscresource="None">
+    <Rule id="V-213934" severity="medium" conversionstatus="pass" title="SRG-APP-000080-DB-000063" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message.  
  
 Non-repudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database. 
@@ -1506,35 +1545,35 @@ If any nodes have a certificate in use by SQL that is not issued or approved by 
 </RawString>
     </Rule>
     <Rule id="V-213973" severity="medium" conversionstatus="pass" title="SRG-APP-000231-DB-000154" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Backup and recovery of the Service Master Key may be critical to the complete recovery of the database. Creating this backup should be one of the first administrative actions performed on the server.  Not having this key can lead to loss of data during recovery.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Backup and recovery of the Service Master Key may be critical to the complete recovery of the database. Creating this backup should be one of the first administrative actions performed on the server. Not having this key can lead to loss of data during recovery.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79207</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review procedures for, and evidence of backup of, the Server Service Master Key in the System Security Plan.  
+      <RawString>Review procedures for and evidence of backup of the Server Service Master Key in the System Security Plan.  
  
-If the procedures or evidence does not exist, this is a finding.  
+If the procedures or evidence does not exist, this is a finding.
  
-If the procedures do not indicate offline and off-site storage of the Service Master Key, this is a finding.  
- 
+If the procedures do not indicate that a backup of the Service Master Key is stored in a secure location that is not on the SQL Server, this is a finding. 
+
 If procedures do not indicate access restrictions to the Service Master Key backup, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213974" severity="medium" conversionstatus="pass" title="SRG-APP-000231-DB-000154" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Backup and recovery of the Master Key may be critical to the complete recovery of the database.  Not having this key can lead to loss of data during recovery.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Backup and recovery of the Master Key may be critical to the complete recovery of the database. Not having this key can lead to loss of data during recovery.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79209</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the application owner and Authorizing Official have determined that encryption of data at rest is not required, this is not a finding. 
+      <RawString>If the application owner and authorizing official have determined that encryption of data at rest is not required, this is not a finding. 
  
-Review procedures for, and evidence of backup of, the Master Key in the System Security Plan.  
+Review procedures for and evidence of backup of the Master Key in the System Security Plan.  
  
 If the procedures or evidence does not exist, this is a finding.  
  
-If the procedures do not indicate offline and off-site storage of the Master Key, this is a finding.  
- 
+If the procedures do not indicate that a backup of the Master Key is stored in a secure location that is not on the SQL Server, this is a finding.
+
 If procedures do not indicate access restrictions to the Master Key backup, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213978" severity="medium" conversionstatus="pass" title="SRG-APP-000267-DB-000163" dscresource="None">
@@ -2653,11 +2692,15 @@ If any of these databases exist, this is a finding.</RawString>
   </SqlDatabaseRule>
   <SqlLoginRule dscresourcemodule="SqlServerDsc">
     <Rule id="V-213964" severity="high" conversionstatus="pass" title="SRG-APP-000164-DB-000401" dscresource="SqlLogin">
-      <Description>&lt;VulnDiscussion&gt;OS/enterprise authentication and identification must be used (SRG-APP-000023-DB-000001). Native DBMS authentication may be used only when circumstances make it unavoidable; and must be documented and AO-approved. 
+      <Description>&lt;VulnDiscussion&gt;Windows Authentication is the default authentication mode and is much more secure than SQL Server Authentication. Windows Authentication uses Kerberos security protocol, provides password policy enforcement with regard to complexity validation for strong passwords, provides support for account lockout, and supports password expiration. A connection made using Windows Authentication is sometimes called a trusted connection, because SQL Server trusts the credentials provided by Windows.
+
+By using Windows Authentication, Windows groups can be created at the domain level, and a login can be created on SQL Server for the entire group. Managing access at the domain level can simplify account administration.
+
+OS/enterprise authentication and identification must be used (SRG-APP-000023-DB-000001). Native SQL Server authentication may be used only when circumstances make it unavoidable and must be documented and AO-approved. 
  
-The DoD standard for authentication is DoD-approved PKI certificates. Authentication based on User ID and Password may be used only when it is not possible to employ a PKI certificate, and requires AO approval. 
+The DOD standard for authentication is DOD-approved PKI certificates. Authentication based on User ID and Password may be used only when it is not possible to employ a PKI certificate and requires AO approval. 
  
-In such cases, the DoD standards for password complexity and lifetime must be implemented. DBMS products that can inherit the rules for these from the operating system or access control program (e.g., Microsoft Active Directory) must be configured to do so. For other DBMSs, the rules must be enforced using available configuration parameters or custom code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+In such cases, the DOD standards for password complexity and lifetime must be implemented. DBMS products that can inherit the rules for these from the operating system or access control program (e.g., Microsoft Active Directory) must be configured to do so. For other DBMSs, the rules must be enforced using available configuration parameters or custom code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure />
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2673,9 +2716,9 @@ In such cases, the DoD standards for password complexity and lifetime must be im
 
 SELECT CASE SERVERPROPERTY('IsIntegratedSecurityOnly') WHEN 1 THEN 'Windows Authentication' WHEN 0 THEN 'SQL Server Authentication' END as [Authentication Mode]
 
-If the returned value in the "[Authentication Mode]" column is "Windows Authentication", this is not a finding.
+If the returned value in the "Authentication Mode" column is "Windows Authentication", this is not a finding.
 
-SQL Server should be configured to inherit password complexity and password lifetime rules from the operating system.
+If the returned value in the "Authentication Mode" column is "SQL Server Authentication", SQL Server should be configured to inherit password complexity and password lifetime rules from the operating system.
 
 Review SQL Server to ensure logons are created with respect to the complexity settings and password lifetime rules by running the statement:
 
@@ -2686,15 +2729,13 @@ Review any accounts returned by the query other than the disabled SA account, ##
 
 If any account does not have both "is_expiration_checked" and "is_policy_checked" equal to “1”, this is a finding.
 
-Review the Operating System settings relating to password complexity.
+Review the operating system settings relating to password complexity.
 
-Determine whether the following rules are enforced. If any are not, this is a finding.
+To check the server operating system for password complexity:
 
-Check the server operating system for password complexity:
+Navigate to Start &gt;&gt; All Programs &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy, and to review the local policies on the machine, go to Account Policy &gt;&gt; Password Policy.
 
-Navigate to Start &gt;&gt; All Programs &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy, and to review the local policies on the machine, go to Account Policy &gt;&gt; Password Policy:.
-
-Ensure the DISA Windows Password Policy is set on the SQL Server member server.</RawString>
+Ensure the DISA Windows Password Policy is set on the SQL Server member server. If any are not, this is a finding.</RawString>
     </Rule>
   </SqlLoginRule>
   <SqlProtocolRule dscresourcemodule="SqlServerDsc">
