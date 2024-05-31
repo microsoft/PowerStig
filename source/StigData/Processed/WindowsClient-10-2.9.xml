@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 07 Jun 2023 3.4.0.34222 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="6/5/2023">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V2R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 15 May 2024 3.4.1.22916 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.9" created="5/4/2024">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-220739" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1000,7 +1000,7 @@ Policy Change  &gt;&gt; MPSSVC Rule-Level Policy Change - Failure
 New versions with feature updates are planned to be released on a semiannual basis with an estimated support timeframe of 18 to 30 months depending on the release. Support for previously released versions has been extended for Enterprise editions.
 
 A separate servicing branch intended for special-purpose systems is the Long-Term Servicing Channel (LTSC, formerly Branch - LTSB), which will receive security updates for 10 years but excludes feature updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DesiredValue>10.0.190</DesiredValue>
+      <DesiredValue>10.0.19044</DesiredValue>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-63349</LegacyId>
@@ -1013,15 +1013,14 @@ A separate servicing branch intended for special-purpose systems is the Long-Ter
 
 If the "About Windows" dialog box does not display the following or greater, this is a finding:
 
-"Microsoft Windows Version 20H2 (OS Build 190xx.x)"
+"Microsoft Windows Version 21H2 (OS Build 19044.x)"
 
 Note: Microsoft has extended support for previous versions, providing critical and important updates for Windows 10 Enterprise.
 
 Microsoft scheduled end-of-support dates for current Semi-Annual Channel versions:
 
-v20H2 - 9 May 2023
-v21H1 - 13 Dec 2022
-v21H2 - 11 June 2024                                               
+v22H2 - 14 Oct 2025
+v21H2 - 13 Jun 2024
 
 No preview versions will be used in a production environment.
 
@@ -1172,9 +1171,7 @@ Multifactor authentication requires using two or more factors to achieve authent
 Factors include: 
 
 1) Something a user knows (e.g., password/PIN);
-
 2) Something a user has (e.g., cryptographic identification device, token); and
-
 3) Something a user is (e.g., biometric).
 
 A privileged account is defined as an information system account with authorizations of a privileged user.
@@ -1191,7 +1188,7 @@ Satisfies: SRG-OS-000106-GPOS-00053, SRG-OS-000107-GPOS-00054, SRG-OS-000108-GPO
       <LegacyId>V-102627</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the system is a member of a domain, this is Not Applicable.
+      <RawString>If the system is not a member of a domain, this is Not Applicable.
 
 If one of the following settings does not exist and is not populated, this is a finding: 
 
@@ -1272,7 +1269,7 @@ Run "System Information".
 
 Under "System Summary", if "Secure Boot State" does not display "On", this is finding.</RawString>
     </Rule>
-    <Rule id="V-220702" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
+    <Rule id="V-220702" severity="high" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If data at rest is unencrypted, it is vulnerable to disclosure. Even if the operating system enforces permissions on data access, an adversary can remove non-volatile memory and read it directly, thereby circumventing operating system controls. Encrypting the data ensures that confidentiality is protected even when the operating system is not running.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1304,9 +1301,7 @@ The organization must identify authorized software programs and only permit exec
       <LegacyId>V-63345</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This is applicable to unclassified systems; for other systems, this is Not Applicable.
-
-Verify the operating system employs a deny-all, permit-by-exception policy to allow the execution of authorized software programs. This must include packaged apps such as the universal apps installed by default on systems.
+      <RawString>Verify the operating system employs a deny-all, permit-by-exception policy to allow the execution of authorized software programs. This must include packaged apps such as the universal apps installed by default on systems.
 
 If an application allowlisting program is not in use on the system, this is a finding.
 
@@ -1632,21 +1627,31 @@ Valid to: Sunday, December 30, 2029</RawString>
     <Rule id="V-220952" severity="medium" conversionstatus="pass" title="SRG-OS-000076-GPOS-00044" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the password. A local Administrator account is not generally used and its password may not be changed as frequently as necessary. Changing the password for enabled Administrator accounts on a regular basis will limit its exposure.
 
-Windows LAPS must be used  to change the built-in Administrator account password.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Windows LAPS must be used to change the built-in Administrator account password.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-99555</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the password last set date for the enabled local Administrator account.
+      <RawString>If there are no enabled local Administrator accounts, this is Not Applicable.
 
-On the local domain-joined workstation:
+Review the password last set date for the enabled local Administrator account.
+
+On the stand alone or domain-joined workstation:
 
 Open "PowerShell".
 
-Enter "Get-LocalUser –Name * | Select-Object *".
+Enter "Get-LocalUser -Name * | Select-Object *".
 
-If the "PasswordLastSet" date is greater than "60" days old for the local Administrator account for administering the computer/domain, this is a finding.</RawString>
+If the "PasswordLastSet" date is greater than "60" days old for the local Administrator account for administering the computer/domain, this is a finding.
+
+Verify LAPS is configured and operational. 
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Set to enabled. Password Complexity, large letters + small letters + numbers + special, Password Length 14, Password Age 60. If not configured as shown, this is a finding. 
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Name of administrator Account to manage &gt;&gt; Set to enabled &gt;&gt; Administrator account name is populated. If it is not, this is a finding. 
+
+Verify LAPS Operational logs &gt;&gt; Event Viewer &gt;&gt; Applications and Services Logs &gt;&gt; Microsoft &gt;&gt; Windows &gt;&gt; LAPS &gt;&gt; Operational. Verify LAPS policy process is completing. If it is not, this is a finding.</RawString>
     </Rule>
     <Rule id="V-256894" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer 11 (IE11) is no longer supported on Windows 10 semi-annual channel. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1663,6 +1668,39 @@ If IE11 is installed or not disabled on Windows 10 semi-annual channel, this is 
 If IE11 is installed on a unsupported operating system and is enabled or installed, this is a finding.
 
 For more information, visit: https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge#what-is-the-lifecycle-policy-for-internet-explorer-</RawString>
+    </Rule>
+    <Rule id="V-257589" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When this policy setting is enabled, the operating system generates audit events when a process fails to start and the name of the program or user that created it.
+
+These audit events can assist in understanding how a computer is being used and tracking user activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Ensure Audit Process Creation auditing has been enabled: 
+
+Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt;System Audit Policies &gt;&gt; Detailed Tracking &gt;&gt; Audit Process Creation". 
+
+If "Audit Process Creation" is not set to "Failure", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-257593" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Having portproxy enabled or configured in Windows 10 could allow a man-in-the-middle attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check the registry key for existence of proxied ports:
+HKLM\SYSTEM\CurrentControlSet\Services\PortProxy\. 
+
+If the key contains v4tov4\tcp\ or is populated v4tov4\tcp\, this is a finding. 
+
+Run "netsh interface portproxy show all". 
+
+If the command displays any results, this is a finding.</RawString>
     </Rule>
   </ManualRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
@@ -1719,9 +1757,9 @@ For more information, visit: https://learn.microsoft.com/en-us/lifecycle/faq/int
       <Path>%SystemDrive%\</Path>
       <RawString>The default file system permissions are adequate when the Security Option "Network access: Let Everyone permissions apply to anonymous users" is set to "Disabled" (WN10-SO-000160).
 If the default file system permissions are maintained and the referenced option is set to "Disabled", this is not a finding.
-Verify the default permissions for the sample directories below. Non-privileged groups such as Users or Authenticated Users must not have greater than Read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
+Verify the default permissions for the sample directories below. Nonprivileged groups such as Users or Authenticated Users must not have greater than Read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
 Viewing in File Explorer:
-Select the "Security" tab, and the "Advanced" button.
+Select the "Security" tab and the "Advanced" button.
 C:\
 Type - "Allow" for all
 Inherited from - "None" for all
@@ -1819,9 +1857,9 @@ Alternately use icacls.
       <Path>%ProgramFiles%</Path>
       <RawString>The default file system permissions are adequate when the Security Option "Network access: Let Everyone permissions apply to anonymous users" is set to "Disabled" (WN10-SO-000160).
 If the default file system permissions are maintained and the referenced option is set to "Disabled", this is not a finding.
-Verify the default permissions for the sample directories below. Non-privileged groups such as Users or Authenticated Users must not have greater than Read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
+Verify the default permissions for the sample directories below. Nonprivileged groups such as Users or Authenticated Users must not have greater than Read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
 Viewing in File Explorer:
-Select the "Security" tab, and the "Advanced" button.
+Select the "Security" tab and the "Advanced" button.
 \Program Files
 Type - "Allow" for all
 Inherited from - "None" for all
@@ -1923,9 +1961,9 @@ Alternately use icacls.
       <Path>%Windir%</Path>
       <RawString>The default file system permissions are adequate when the Security Option "Network access: Let Everyone permissions apply to anonymous users" is set to "Disabled" (WN10-SO-000160).
 If the default file system permissions are maintained and the referenced option is set to "Disabled", this is not a finding.
-Verify the default permissions for the sample directories below. Non-privileged groups such as Users or Authenticated Users must not have greater than Read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
+Verify the default permissions for the sample directories below. Nonprivileged groups such as Users or Authenticated Users must not have greater than Read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
 Viewing in File Explorer:
-Select the "Security" tab, and the "Advanced" button.
+Select the "Security" tab and the "Advanced" button.
 \Windows
 Type - "Allow" for all
 Inherited from - "None" for all
@@ -2288,7 +2326,7 @@ If the defaults have not been changed, these are not a finding.
     </Rule>
   </PermissionRule>
   <RegistryRule dscresourcemodule="PSDscResources">
-    <Rule id="V-220703.a" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="RegistryPolicyFile">
+    <Rule id="V-220703.a" severity="high" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;If data at rest is unencrypted, it is vulnerable to disclosure. Even if the operating system enforces permissions on data access, an adversary can remove non-volatile memory and read it directly, thereby circumventing operating system controls. Encrypting the data ensures that confidentiality is protected even when the operating system is not running. Pre-boot authentication prevents unauthorized users from accessing encrypted drives.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -2306,7 +2344,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>UseAdvancedStartup</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220703.b" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="RegistryPolicyFile">
+    <Rule id="V-220703.b" severity="high" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;If data at rest is unencrypted, it is vulnerable to disclosure. Even if the operating system enforces permissions on data access, an adversary can remove non-volatile memory and read it directly, thereby circumventing operating system controls. Encrypting the data ensures that confidentiality is protected even when the operating system is not running. Pre-boot authentication prevents unauthorized users from accessing encrypted drives.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -2324,7 +2362,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>UseTPMPIN</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220704" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="Registry">
+    <Rule id="V-220704" severity="high" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;If data at rest is unencrypted, it is vulnerable to disclosure. Even if the operating system enforces permissions on data access, an adversary can remove non-volatile memory and read it directly, thereby circumventing operating system controls. Encrypting the data ensures that confidentiality is protected even when the operating system is not running. Pre-boot authentication prevents unauthorized users from accessing encrypted drives. Increasing the PIN length requires a greater number of guesses for an attacker.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3556,7 +3594,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-220834" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Limiting this capability will prevent potentially sensitive information from being sent outside the enterprise. The "Security" option for Telemetry configures the lowest amount of data, effectively none outside of the Malicious Software Removal Tool (MSRT), Defender and telemetry client settings. "Basic" sends basic diagnostic and usage data and may be required to support some Microsoft services. "Enhanced" includes additional information on how Windows and apps are used and advanced reliability data. Windows Analytics can use a "limited enhanced" level to provide information such as health data for devices.  This requires the configuration of an additional setting available with v1709 and later of Windows 10. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Limiting this capability will prevent potentially sensitive information from being sent outside the enterprise. The "Security" option for Telemetry configures the lowest amount of data, effectively none outside of the Malicious Software Removal Tool (MSRT), Defender, and telemetry client settings. "Basic" sends basic diagnostic and usage data and may be required to support some Microsoft services. "Enhanced" includes additional information on how Windows and apps are used and advanced reliability data. Windows Analytics can use a "limited enhanced" level to provide information such as health data for devices. This requires the configuration of an additional setting available with v1709 and later of Windows 10.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3575,7 +3613,7 @@ Type: REG_DWORD
 Value: 0x00000000 (0) (Security)
 0x00000001 (1) (Basic)
 
-If an organization is using v1709 or later of Windows 10 this may be configured to "Enhanced" to support Windows Analytics. V-82145 must also be configured to limit the Enhanced diagnostic data to the minimum required by Windows Analytics. This registry value will then be 0x00000002 (2).</RawString>
+If an organization is using v1709 or later of Windows 10, this may be configured to "Enhanced" to support Windows Analytics. V-220833 must also be configured to limit the Enhanced diagnostic data to the minimum required by Windows Analytics. This registry value will then be 0x00000002 (2).</RawString>
       <ValueData>0</ValueData>
       <ValueName>AllowTelemetry</ValueName>
       <ValueType>Dword</ValueType>
