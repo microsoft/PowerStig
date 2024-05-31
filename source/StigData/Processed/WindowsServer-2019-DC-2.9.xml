@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2019_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2019_DC_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 07 Jun 2023 3.4.0.34222 1.10.0" title="Microsoft Windows Server 2019 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="6/5/2023">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2019_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2019_DC_STIG_V2R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 15 May 2024 3.4.1.22916 1.10.0" title="Microsoft Windows Server 2019 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.9" created="5/4/2024">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-205702" severity="medium" conversionstatus="pass" title="SRG-OS-000112-GPOS-00057" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This policy setting determines whether the Kerberos Key Distribution Center (KDC) validates every request for a session ticket against the user rights policy of the target computer. The policy is enabled by default, which is the most secure setting for validating that access to target resources is not circumvented.
@@ -1751,25 +1751,25 @@ Windows LAPS must be used to change the built-in Administrator account password.
       <LegacyId>V-93473</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the password last set date for the built-in Administrator account.
+      <RawString>If there are no enabled local Administrator accounts, this is Not Applicable.
 
-Domain controllers:
+Review the password last set date for the enabled local Administrator account.
+
+On the stand alone or domain-joined workstation:
 
 Open "PowerShell".
 
-Enter "Get-ADUser -Filter * -Properties SID, PasswordLastSet | Where SID -Like "*-500" | Ft Name, SID, PasswordLastSet".
+Enter "Get-LocalUser -Name * | Select-Object *".
 
-If the "PasswordLastSet" date is greater than "60" days old, this is a finding.
+If the "PasswordLastSet" date is greater than "60" days old for the local Administrator account for administering the computer/domain, this is a finding.
 
-Member servers and standalone or nondomain-joined systems:
+Verify LAPS is configured and operational. 
 
-Open "Command Prompt".
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Set to enabled. Password Complexity, large letters + small letters + numbers + special, Password Length 14, Password Age 60. If not configured as shown, this is a finding. 
 
-Enter 'Net User [account name] | Find /i "Password Last Set"', where [account name] is the name of the built-in administrator account.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Name of administrator Account to manage &gt;&gt; Set to enabled &gt;&gt; Administrator account name is populated. If it is not, this is a finding. 
 
-(The name of the built-in Administrator account must be changed to something other than "Administrator" per STIG requirements.)
-
-If the "PasswordLastSet" date is greater than "60" days old, this is a finding.</RawString>
+Verify LAPS Operational logs &gt;&gt; Event Viewer &gt;&gt; Applications and Services Logs &gt;&gt; Microsoft &gt;&gt; Windows &gt;&gt; LAPS &gt;&gt; Operational. Verify LAPS policy process is completing. If it is not, this is a finding.</RawString>
     </Rule>
     <Rule id="V-205658" severity="medium" conversionstatus="pass" title="SRG-OS-000076-GPOS-00044" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Passwords that do not expire or are reused increase the exposure of a password with greater probability of being discovered or cracked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1799,7 +1799,7 @@ Exclude application accounts and disabled accounts (e.g., DefaultAccount, Guest)
 If any enabled user accounts are returned with a "PasswordExpires" status of "False", this is a finding.</RawString>
     </Rule>
     <Rule id="V-205661" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Application/service account passwords must be of sufficient length to prevent being easily cracked. Application/service accounts that are manually managed must have passwords at least 15 characters in length.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Application/service account passwords must be of sufficient length to prevent being easily cracked. Application/service accounts that are manually managed must have passwords at least 14 characters in length.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-93461</LegacyId>
@@ -1807,7 +1807,7 @@ If any enabled user accounts are returned with a "PasswordExpires" status of "Fa
       <OrganizationValueTestString />
       <RawString>Determine if manually managed application/service accounts exist. If none exist, this is NA.
 
-Verify the organization has a policy to ensure passwords for manually managed application/service accounts are at least 15 characters in length.
+Verify the organization has a policy to ensure passwords for manually managed application/service accounts are at least 14 characters in length.
 
 If such a policy does not exist or has not been implemented, this is a finding.</RawString>
     </Rule>
@@ -2057,7 +2057,7 @@ The quotes are required and dc=[forest-name] is the fully qualified LDAP name of
 
 If the results do not specify a "MaxConnIdleTime" or it has a value greater than "300" (5 minutes), this is a finding.</RawString>
     </Rule>
-    <Rule id="V-205727" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
+    <Rule id="V-205727" severity="high" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;This requirement addresses protection of user-generated data as well as operating system-specific configuration data. Organizations may choose to employ different mechanisms to achieve confidentiality and integrity protections, as appropriate, in accordance with the security category and/or classification of the information.
 
 Selection of a cryptographic mechanism is based on the need to protect the integrity of organizational information. The strength of the mechanism is commensurate with the security category and/or classification of the information. Organizations have the flexibility to either encrypt all information on storage devices (i.e., full disk encryption) or encrypt specific data structures (e.g., files, records, or fields).
@@ -2546,7 +2546,7 @@ If the value for "Type" under "NTP Client" is not "NT5DS", this is a finding.
 
 Other systems:
 
-If systems are configured with a "Type" of "NTP", including standalone or nondomain-joined systems and the domain controller with the PDC Emulator role, and do not have a DoD time server defined for "NTPServer", this is a finding.
+If systems are configured with a "Type" of "NTP", including standalone or nondomain-joined systems and the domain controller with the PDC Emulator role, and do not have a DOD time server defined for "NTPServer", this is a finding.
 
 To determine the domain controller with the PDC Emulator role:
 
@@ -3093,7 +3093,9 @@ Satisfies: SRG-OS-000257-GPOS-00098, SRG-OS-000258-GPOS-00099&lt;/VulnDiscussion
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <Path>%windir%\SYSTEM32\eventvwr.exe</Path>
-      <RawString>Navigate to "%SystemRoot%\System32".
+      <RawString>This is not applicable for Windows Core Editions
+
+Navigate to "%SystemRoot%\System32".
 
 View the permissions on "Eventvwr.exe".
 
@@ -6265,6 +6267,31 @@ Value: 1</RawString>
       <ValueName>NoReadingPane</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
+    <Rule id="V-257503" severity="medium" conversionstatus="pass" title="SRG-OS-000041-GPOS-00019" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Enabling PowerShell Transcription will record detailed information from the processing of PowerShell commands and scripts. This can provide additional detail when malware has run on a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription\
+
+Value Name: EnableTranscripting
+
+Value Type: REG_DWORD
+Value: 1</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>EnableTranscripting</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
   </RegistryRule>
   <RootCertificateRule dscresourcemodule="CertificateDsc">
     <Rule id="V-205648.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
@@ -6308,6 +6335,20 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       <OrganizationValueTestString>location for DoD Root CA 5 certificate is present</OrganizationValueTestString>
       <RawString>DoD Root CA 5,4ECB5CC3095670454DA1CBD410FC921F46B8564B</RawString>
       <Thumbprint>4ECB5CC3095670454DA1CBD410FC921F46B8564B</Thumbprint>
+    </Rule>
+    <Rule id="V-205648.d" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>DoD Root CA 6</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root CAs. The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-93487.d</LegacyId>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for DoD Root CA 6 certificate is present</OrganizationValueTestString>
+      <RawString>DoD Root CA 6,D37ECF61C0B4ED88681EF3630C4E2FC787B37AEF</RawString>
+      <Thumbprint>D37ECF61C0B4ED88681EF3630C4E2FC787B37AEF</Thumbprint>
     </Rule>
     <Rule id="V-205649" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName>DoD Interoperability Root CA 2</CertificateName>
