@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update Powerstig to parse/apply Microsoft Edge STIG - Ver 1, Rel 8 [#1350](https://github.com/microsoft/PowerStig/issues/1350)
+* Update PowerSTIG to Parse/Apply Microsoft Windows 11 STIG - Ver 1, Rel 6 [#1341](https://github.com/microsoft/PowerStig/issues/1341)
 * Update Powerstig to parse/apply Microsoft Office System 2016 STIG - Ver 2, Rel 3 [#1352](https://github.com/microsoft/PowerStig/issues/1352)
 * Update Powerstig to parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 12 [#1351](https://github.com/microsoft/PowerStig/issues/1351)
 * Update Powerstig to parse/apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 4 [#1349](https://github.com/microsoft/PowerStig/issues/1349)
