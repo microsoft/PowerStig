@@ -17,3 +17,4 @@ V-254458::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Pr
 V-254484::0x00000002 (2) (Prompt for consent on the secure desktop)::1 or 2
 V-254490::0x00000002 (2) (or if the Value Name does not exist)::2
 V-254499::- Administrators::- Administrators`r`nSystems that have the Hyper-V role will also have "Virtual Machines" given this user right (this may be displayed as "NT Virtual Machine\Virtual Machines", SID S-1-5-83-0). This is not a finding.
+V-254254::CREATOR OWNER - Full Control - Subkeys::CREATOR OWNER - Full Control - Subkeys Only
