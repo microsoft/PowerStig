@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [4.22.0] - 2024-05-31
+
 * Update Powerstig to parse/apply Microsoft Edge STIG - Ver 1, Rel 8 [#1350](https://github.com/microsoft/PowerStig/issues/1350)
 * Update PowerSTIG to Parse/Apply Microsoft Windows 11 STIG - Ver 1, Rel 6 [#1341](https://github.com/microsoft/PowerStig/issues/1341)
 * Update PowerSTIG to Parse/Apply Microsoft Windows 10 STIG - Ver 2, Rel 9 [#1342](https://github.com/microsoft/PowerStig/issues/1342)
