@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 27 Apr 2023 3.4.0.34222 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.9" created="6/14/2023">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 24 Jul 2024 3.5 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="7/20/2024">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218792" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000015" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;User management and authentication can be an essential part of any application hosted by the web server. Along with authenticating users, the user management function must perform several other tasks enterprise-wide, such as password complexity, locking users after a configurable number of failed logons, and management of temporary and emergency accounts.
@@ -544,15 +544,17 @@ If the paths of all log files are not part of the system backup and/or not backe
 
 Under the "Connections" pane on the left side of the management console, select the IIS 10.0 web server.
 
-If, under the IIS installed features, "Application Request Routing Cache" is not present, this is not a finding.
+If, under the IIS installed features "Application Request Routing Cache" is not present, this is not a finding.
 
-If, under the IIS installed features, "Application Request Routing Cache" is present, double-click the icon to open the feature.
+If, under the IIS installed features "Application Request Routing Cache" is present, double-click the icon to open the feature.
 
-From the right "Actions" pane, under "Proxy", select "Server Proxy Settings...".
+From the right "Actions" pane under "Proxy", select "Server Proxy Settings...".
 
 In the "Application Request Routing" settings window, verify whether "Enable proxy" is selected.
 
-If “Enable proxy" is selected under the "Application Request Routing" settings, this is a finding.</RawString>
+If "Enable proxy" is selected under the "Application Request Routing" settings, this is a finding.
+
+If the server has been approved to be a Proxy server, this requirement is Not Applicable.</RawString>
     </Rule>
     <Rule id="V-218795" severity="high" conversionstatus="pass" title="SRG-APP-000141-WSR-000077" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Web server documentation, sample code, example applications, and tutorials may be an exploitable threat to a web server. A production web server may only contain components that are operationally necessary (i.e., compiled code, scripts, web content, etc.). Delete all directories containing samples and any scripts used to execute the samples.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -742,6 +744,7 @@ If passwords have not been changed from the default, this is a finding.</RawStri
 Note: If the Server is hosting Microsoft SharePoint, this is Not Applicable.
 Note: If the server is hosting WSUS, this is Not Applicable.
 Note: If the server is hosting Exchange, this is Not Applicable.
+Note: If the server is public facing, this is Not Applicable.
 
 Open the IIS 10.0 Manager.
 
@@ -1326,22 +1329,7 @@ If the "cookieless" is not set to "UseCookies", this is a finding.
 Note: If IIS 10.0 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.</RawString>
       <Value>UseCookies</Value>
     </Rule>
-    <Rule id="V-218805.a" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="xWebConfigKeyValue">
-      <ConfigSection>/system.web/sessionState</ConfigSection>
-      <Description>&lt;VulnDiscussion&gt;ASP.NET provides a session state, which is available as the HttpSessionState class, as a method of storing session-specific information that is visible only within the session. ASP.NET session state identifies requests from the same browser during a limited time window as a session and provides the ability to persist variable values for the duration of that session.
-
-When using the URI mode for cookie settings under session state, IIS will reject and reissue session IDs that do not have active sessions. Configuring IIS to expire session IDs and regenerate tokens gives a potential attacker less time to capture a cookie and gain access to server content.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>timeout</Key>
-      <LegacyId>V-100145.a</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -le '00:20:00'</OrganizationValueTestString>
-      <RawString>Under Time-out (in minutes), verify “20 minutes or less” is selected.</RawString>
-      <Value>
-      </Value>
-    </Rule>
-    <Rule id="V-218805.b" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="None">
+    <Rule id="V-218805.a" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="None">
       <ConfigSection>/system.web/sessionState</ConfigSection>
       <Description>&lt;VulnDiscussion&gt;ASP.NET provides a session state, which is available as the HttpSessionState class, as a method of storing session-specific information that is visible only within the session. ASP.NET session state identifies requests from the same browser during a limited time window as a session and provides the ability to persist variable values for the duration of that session.
 
@@ -1349,7 +1337,7 @@ When using the URI mode for cookie settings under session state, IIS will reject
       <DuplicateOf>V-218804</DuplicateOf>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>cookieless</Key>
-      <LegacyId>V-100145.b</LegacyId>
+      <LegacyId>V-100145.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
