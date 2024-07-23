@@ -45,7 +45,7 @@ Describe 'Restore-StigSettings' {
     }
 
     It 'Should not throw for Client' {
-        {Restore-StigSettings -StigName "WindowsClient-10-2.8.xml" -Confirm:$false} | Should -Not -Throw
+        {Restore-StigSettings -StigName "WindowsClient-10-2.9.xml" -Confirm:$false} | Should -Not -Throw
     }
 
     It 'Should not throw for Sql Server 2016' {
