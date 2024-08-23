@@ -64,6 +64,7 @@
         'McAfee',
         'Office',
         'OracleJRE',
+        'OracleLinux',
         'SqlServer',
         'WindowsClient',
         'WindowsDefender',
