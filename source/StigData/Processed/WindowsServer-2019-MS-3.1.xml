@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2019_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2019_MS_STIG_V2R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 09 Nov 2023 3.4.1.22916 1.10.0" title="Microsoft Windows Server 2019 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.8" created="12/22/2023">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2019_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2019_MS_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 24 Jul 2024 3.5 1.10.0" title="Microsoft Windows Server 2019 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="7/20/2024">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-205629" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. The higher this value is, the less effective the account lockout feature will be in protecting the local system. The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack while allowing for honest errors made during normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -121,7 +121,7 @@ If the value is set to "0" (never expires), this is a finding.
 </RawString>
     </Rule>
     <Rule id="V-205660" severity="medium" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="AccountPolicy">
-      <Description>&lt;VulnDiscussion&gt;A system is more vulnerable to unauthorized access when system users recycle the same password several times without being required to change to a unique password on a regularly scheduled basis. This enables users to effectively negate the purpose of mandating periodic password changes. The default value is "24" for Windows domain systems. DoD has decided this is the appropriate value for all Windows systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;A system is more vulnerable to unauthorized access when system users recycle the same password several times without being required to change to a unique password on a regularly scheduled basis. This enables users to effectively negate the purpose of mandating periodic password changes. The default value is "24" for Windows domain systems. DOD has decided this is the appropriate value for all Windows systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-93479</LegacyId>
@@ -1178,7 +1178,7 @@ Exclude the following accounts:
 
 If any enabled accounts have not been logged on to within the past 35 days, this is a finding.
 
-Inactive accounts that have been reviewed and deemed to be required must be documented with the ISSO.</RawString>
+Inactive accounts that have been reviewed and deemed to be required must be documented with the information system security officer (ISSO).</RawString>
     </Rule>
     <Rule id="V-205728" severity="medium" conversionstatus="pass" title="SRG-OS-000191-GPOS-00080" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without the use of automated mechanisms to scan for security flaws on a continuous and/or periodic basis, the operating system or other system components may remain vulnerable to the exploits presented by undetected software flaws. The operating system may have an integrated solution incorporating continuous scanning using ESS and periodic scanning using other tools.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1187,7 +1187,7 @@ Inactive accounts that have been reviewed and deemed to be required must be docu
       <LegacyId>V-93567</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify DoD-approved ESS software is installed and properly operating. Ask the site ISSM for documentation of the ESS software installation and configuration.
+      <RawString>Verify DOD-approved ESS software is installed and properly operating. Ask the site information system security manager (ISSM) for documentation of the ESS software installation and configuration.
 
 If the ISSM is not able to provide a documented configuration for an installed ESS or if the ESS software is not properly maintained or used, this is a finding.
 
@@ -1269,7 +1269,7 @@ Windows LAPS must be used to change the built-in Administrator account password.
 
 Review the password last set date for the enabled local Administrator account.
 
-On the local domain-joined workstation:
+On the stand alone or domain-joined workstation:
 
 Open "PowerShell".
 
@@ -1313,7 +1313,7 @@ Exclude application accounts and disabled accounts (e.g., DefaultAccount, Guest)
 If any enabled user accounts are returned with a "PasswordExpires" status of "False", this is a finding.</RawString>
     </Rule>
     <Rule id="V-205661" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Application/service account passwords must be of sufficient length to prevent being easily cracked. Application/service accounts that are manually managed must have passwords at least 15 characters in length.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Application/service account passwords must be of sufficient length to prevent being easily cracked. Application/service accounts that are manually managed must have passwords at least 14 characters in length.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-93461</LegacyId>
@@ -1321,7 +1321,7 @@ If any enabled user accounts are returned with a "PasswordExpires" status of "Fa
       <OrganizationValueTestString />
       <RawString>Determine if manually managed application/service accounts exist. If none exist, this is NA.
 
-Verify the organization has a policy to ensure passwords for manually managed application/service accounts are at least 15 characters in length.
+Verify the organization has a policy to ensure passwords for manually managed application/service accounts are at least 14 characters in length.
 
 If such a policy does not exist or has not been implemented, this is a finding.</RawString>
     </Rule>
@@ -1437,7 +1437,7 @@ Select the "Security" tab.
 
 If the permissions have not been configured to restrict permissions to the specific groups or accounts that require access, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-205727" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
+    <Rule id="V-205727" severity="high" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;This requirement addresses protection of user-generated data as well as operating system-specific configuration data. Organizations may choose to employ different mechanisms to achieve confidentiality and integrity protections, as appropriate, in accordance with the security category and/or classification of the information.
 
 Selection of a cryptographic mechanism is based on the need to protect the integrity of organizational information. The strength of the mechanism is commensurate with the security category and/or classification of the information. Organizations have the flexibility to either encrypt all information on storage devices (i.e., full disk encryption) or encrypt specific data structures (e.g., files, records, or fields).
@@ -2003,7 +2003,9 @@ Satisfies: SRG-OS-000257-GPOS-00098, SRG-OS-000258-GPOS-00099&lt;/VulnDiscussion
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <Path>%windir%\SYSTEM32\eventvwr.exe</Path>
-      <RawString>Navigate to "%SystemRoot%\System32".
+      <RawString>This is not applicable for Windows Core Editions
+
+Navigate to "%SystemRoot%\System32".
 
 View the permissions on "Eventvwr.exe".
 
@@ -2555,7 +2557,7 @@ Inherited from - "None" for all
 Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
-Server Operators – Read – This Key and subkeys    (Domain controllers only)
+Server Operators â€“ Read â€“ This Key and subkeys    (Domain controllers only)
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2019 to the following SID, this is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
@@ -2636,7 +2638,7 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Server Operators – Read – This Key and subkeys    (Domain controllers only)
+Server Operators â€“ Read â€“ This Key and subkeys    (Domain controllers only)
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2019 to the following SID, this is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
@@ -2717,7 +2719,7 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Server Operators – Read – This Key and subkeys    (Domain controllers only)
+Server Operators â€“ Read â€“ This Key and subkeys    (Domain controllers only)
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2019 to the following SID, this is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
@@ -5515,15 +5517,15 @@ Verify if Windows Defender is in use or enabled:
 
 Open "PowerShell".
 
-Enter “get-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayName”
+Enter â€œget-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayNameâ€
 
 Verify if third-party anti-virus is in use or enabled:
 
 Open "PowerShell".
 
-Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayName”
+Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayNameâ€
 
-Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayName”
+Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayNameâ€
 </RawString>
       <ServiceName>
       </ServiceName>
