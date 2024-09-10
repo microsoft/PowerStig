@@ -11,6 +11,8 @@
 
 * Update Powerstig to parse\apply Microsoft IIS 10.0 Server STIG [#1371](https://github.com/microsoft/PowerStig/issues/1371)
 
+* Update Powerstig to parse\apply Microsoft Office 365 ProPlus STIG - Ver 3, Rel 1 [#1372](https://github.com/microsoft/PowerStig/issues/1372)
+
 ## [4.22.0] - 2024-05-31
 
 * Update Powerstig to parse/apply Microsoft Edge STIG - Ver 1, Rel 8 [#1350](https://github.com/microsoft/PowerStig/issues/1350)
