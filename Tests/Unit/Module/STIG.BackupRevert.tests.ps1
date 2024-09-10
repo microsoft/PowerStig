@@ -49,9 +49,7 @@ Describe 'Restore-StigSettings' {
     }
 
     It 'Should not throw for Sql Server 2016' {
-
         {Restore-StigSettings -StigName "SqlServer-2016-Instance-2.12.xml" -Confirm:$false} | Should -Not -Throw
-
     }
 
 }
