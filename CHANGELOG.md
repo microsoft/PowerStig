@@ -5,6 +5,8 @@
 
 * Update Powerstig to parse\apply Microsoft Windows Server 2019 STIG - Ver 3, Rel 1 [#1369](https://github.com/microsoft/PowerStig/issues/1369)
 
+* Update Powerstig to parse\apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 1 [#1370](https://github.com/microsoft/PowerStig/issues/1370)
+
 ## [4.22.0] - 2024-05-31
 
 * Update Powerstig to parse/apply Microsoft Edge STIG - Ver 1, Rel 8 [#1350](https://github.com/microsoft/PowerStig/issues/1350)
