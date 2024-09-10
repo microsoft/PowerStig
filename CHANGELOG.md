@@ -9,6 +9,8 @@
 
 * Update Powerstig to parse\apply U_MS_SQL_Server_2016_Instance_V3R1_Manual_STIG [#1373](https://github.com/microsoft/PowerStig/issues/1373)
 
+* Update Powerstig to parse\apply Microsoft IIS 10.0 Server STIG [#1371](https://github.com/microsoft/PowerStig/issues/1371)
+
 ## [4.22.0] - 2024-05-31
 
 * Update Powerstig to parse/apply Microsoft Edge STIG - Ver 1, Rel 8 [#1350](https://github.com/microsoft/PowerStig/issues/1350)
