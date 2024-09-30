@@ -2,9 +2,21 @@
 
 ## [Unreleased]
 
+## [4.23.0] - 2024-09-11
+
+* Update Powerstig to parse\apply Oracle Linux 8 STIG - Ver 2, Rel 1 [#1380](https://github.com/microsoft/PowerStig/issues/1380)
+* Update Powerstig to parse\apply Microsoft Windows Server 2019 STIG - Ver 3, Rel 1 [#1369](https://github.com/microsoft/PowerStig/issues/1369)
+* Update Powerstig to parse\apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 1 [#1370](https://github.com/microsoft/PowerStig/issues/1370)
+* Update Powerstig to parse\apply U_MS_SQL_Server_2016_Instance_V3R1_Manual_STIG [#1373](https://github.com/microsoft/PowerStig/issues/1373)
+* Update Powerstig to parse\apply Microsoft IIS 10.0 Server STIG [#1371](https://github.com/microsoft/PowerStig/issues/1371)
+* Update Powerstig to parse\apply Microsoft Office 365 ProPlus STIG - Ver 3, Rel 1 [#1372](https://github.com/microsoft/PowerStig/issues/1372)
+* Update Powerstig to parse\apply Microsoft Windows 11 STIG - Ver 2, Rel 1 [#1368](https://github.com/microsoft/PowerStig/issues/1368)
+* Update Powerstig to parse\apply Microsoft Windows 10 STIG - Ver 3, Rel 1 [#1366](https://github.com/microsoft/PowerStig/issues/1366)
+* Update Powerstig to parse/apply Microsoft Edge STIG - Ver 2, Rel 1 [#1364](https://github.com/microsoft/PowerStig/issues/1350)
+
 ## [4.22.0] - 2024-05-31
 
-* Update Powerstig to parse/apply Microsoft Edge STIG - Ver 1, Rel 8 [#1350](https://github.com/microsoft/PowerStig/issues/1350)
+* Update Powerstig to parse/apply Microsoft Edge STIG - Ver 1, Rel 8 [#1350](https://github.com/microsoft/PowerStig/issues/1364)
 * Update PowerSTIG to Parse/Apply Microsoft Windows 11 STIG - Ver 1, Rel 6 [#1341](https://github.com/microsoft/PowerStig/issues/1341)
 * Update PowerSTIG to Parse/Apply Microsoft Windows 10 STIG - Ver 2, Rel 9 [#1342](https://github.com/microsoft/PowerStig/issues/1342)
 * Update PowerSTIG to Parse/Apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 8 [#1340](https://github.com/microsoft/PowerStig/issues/1340)
