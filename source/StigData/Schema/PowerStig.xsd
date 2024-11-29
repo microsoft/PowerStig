@@ -1,525 +1,661 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
-  <xs:element name="DISASTIG">
-    <xs:complexType>
-      <xs:all>
-        <xs:element name="AccountPolicyRule" minOccurs="0">
-          <xs:complexType>
+The schema still seems to have issues with missing and duplicate attributes.
+
+I created an XSD based on the XML files in the Processed folder:
+
+PowerStig.xsd:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="DISASTIG">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="PolicyName" type="xs:string"/>
-                    <xs:element name="PolicyValue" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:choice minOccurs="0">
+                    <xs:sequence>
+                        <xs:element ref="DnsServerRootHintRule"/>
+                        <xs:element ref="DnsServerSettingRule"/>
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element ref="AccountPolicyRule"/>
+                        <xs:element ref="AuditPolicyRule"/>
+                        <xs:element ref="AuditSettingRule"/>
+                    </xs:sequence>
+                </xs:choice>
+                <xs:element minOccurs="0" ref="DocumentRule"/>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="FileContentRule"/>
+                    <xs:element ref="IisLoggingRule"/>
+                </xs:choice>
+                <xs:element minOccurs="0" ref="ManualRule"/>
+                <xs:element minOccurs="0" ref="MimeTypeRule"/>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="nxFileLineRule"/>
+                    <xs:sequence>
+                        <xs:element ref="SslSettingsRule"/>
+                        <xs:element ref="WebAppPoolRule"/>
+                    </xs:sequence>
+                </xs:choice>
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="nxFileRule"/>
+                    <xs:element ref="nxPackageRule"/>
+                </xs:sequence>
+                <xs:element minOccurs="0" ref="nxServiceRule"/>
+                <xs:element minOccurs="0" ref="PermissionRule"/>
+                <xs:element minOccurs="0" ref="RegistryRule"/>
+                <xs:element minOccurs="0" ref="RootCertificateRule"/>
+                <xs:element minOccurs="0" ref="SecurityOptionRule"/>
+                <xs:element minOccurs="0" ref="ServiceRule"/>
+                <xs:element minOccurs="0" ref="UserRightRule"/>
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="SqlDatabaseRule"/>
+                    <xs:element ref="SqlLoginRule"/>
+                    <xs:element ref="SqlProtocolRule"/>
+                </xs:sequence>
+                <xs:element minOccurs="0" ref="WebConfigurationPropertyRule"/>
+                <xs:element minOccurs="0" ref="WindowsFeatureRule"/>
+                <xs:element minOccurs="0" ref="SqlScriptQueryRule"/>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="SqlServerConfigurationRule"/>
+                    <xs:sequence>
+                        <xs:element ref="VsphereAcceptanceLevelRule"/>
+                        <xs:element ref="VsphereAdvancedSettingsRule"/>
+                        <xs:element ref="VsphereKernelActiveDumpPartitionRule"/>
+                        <xs:element ref="VsphereNtpSettingsRule"/>
+                        <xs:element ref="VspherePortGroupSecurityRule"/>
+                        <xs:element ref="VsphereServiceRule"/>
+                        <xs:element ref="VsphereSnmpAgentRule"/>
+                        <xs:element ref="VsphereVssSecurityRule"/>
+                    </xs:sequence>
+                </xs:choice>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="AuditPolicyRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="classification" use="required" type="xs:NCName"/>
+            <xs:attribute name="created" use="required"/>
+            <xs:attribute name="customname" use="required"/>
+            <xs:attribute name="description" use="required"/>
+            <xs:attribute name="filename" use="required"/>
+            <xs:attribute name="fullversion" use="required" type="xs:decimal"/>
+            <xs:attribute name="notice" use="required" type="xs:NCName"/>
+            <xs:attribute name="releaseinfo" use="required"/>
+            <xs:attribute name="source" use="required" type="xs:NCName"/>
+            <xs:attribute name="stigid" use="required" type="xs:NCName"/>
+            <xs:attribute name="title" use="required"/>
+            <xs:attribute name="version" use="required" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DnsServerRootHintRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="AuditFlag" type="xs:string"/>
-                    <xs:element name="Ensure" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                    <xs:element name="Subcategory" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="DnsServerRootHintRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DnsServerSettingRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="HostName" type="xs:string"/>
-                    <xs:element name="IpAddress" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="DnsServerSettingRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AccountPolicyRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="PropertyName" type="xs:string"/>
-                    <xs:element name="PropertyValue" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="DocumentRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AuditPolicyRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="IisLoggingRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AuditSettingRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="LogCustomFieldEntry"/>
-                    <xs:element name="LogFlags" type="xs:string"/>
-                    <xs:element name="LogFormat" type="xs:string"/>
-                    <xs:element name="LogPeriod" type="xs:string"/>
-                    <xs:element name="LogTargetW3C" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="ManualRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DocumentRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="MimeTypeRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="FileContentRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="Ensure" type="xs:string"/>
-                    <xs:element name="Extension" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="MimeType" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="PermissionRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="IisLoggingRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="AccessControlEntry"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="Path" type="xs:string"/>
-                    <xs:element name="Force" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="RegistryRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ManualRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="Ensure" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="Key" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                    <xs:element name="ValueData" type="xs:string"/>
-                    <xs:element name="ValueName" type="xs:string"/>
-                    <xs:element name="ValueType" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="SecurityOptionRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MimeTypeRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="OptionName" type="xs:string"/>
-                    <xs:element name="OptionValue" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="ServiceRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="nxFileLineRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="Ensure" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                    <xs:element name="ServiceName" type="xs:string"/>
-                    <xs:element name="ServiceState" type="xs:string"/>
-                    <xs:element name="StartupType" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="SqlScriptQueryRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SslSettingsRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="GetScript" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                    <xs:element name="SetScript" type="xs:string"/>
-                    <xs:element name="TestScript" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="SslSettingsRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="WebAppPoolRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="Value" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="UserRightRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="nxFileRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="Constant" type="xs:string"/>
-                    <xs:element name="DisplayName" type="xs:string"/>
-                    <xs:element name="Force" type="xs:string"/>
-                    <xs:element name="Identity" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="WebAppPoolRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="nxPackageRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="Key" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                    <xs:element name="Value" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="WebConfigurationPropertyRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="nxServiceRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="ConfigSection" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="Key" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                    <xs:element name="Value" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="WindowsFeatureRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PermissionRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="FeatureName" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="InstallState" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="WinEventLogRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RegistryRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="IsEnabled" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="LogName" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="WmiRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RootCertificateRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
-                    <xs:element name="Operator" type="xs:string"/>
-                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
-                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
-                    <xs:element name="Property" type="xs:string"/>
-                    <xs:element name="RawString" type="xs:string"/>
-                    <xs:element name="Value" type="xs:string"/>
-                    <xs:element name="Query" type="xs:string"/>
-                  </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required"/>
-                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
-                  <xs:attribute name="severity" type="xs:string" use="required"/>
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
-                  <xs:attribute name="title" type="xs:string" use="required"/>
-                </xs:complexType>
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="SkipRule" minOccurs="0">
-          <xs:complexType>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SecurityOptionRule">
+        <xs:complexType>
             <xs:sequence>
-              <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
-              </xs:element>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:all>
-      <xs:attribute name="id" type="xs:string" use="required"/>
-      <xs:attribute name="version" type="xs:decimal" use="required"/>
-      <xs:attribute name="created" type="xs:string" use="required"/>
-    <xs:attribute name="classification" type="xs:string" use="optional"/><xs:attribute name="customname" type="xs:string" use="optional"/><xs:attribute name="stigid" type="xs:string" use="optional"/><xs:attribute name="description" type="xs:string" use="optional"/><xs:attribute name="filename" type="xs:string" use="optional"/><xs:attribute name="releaseinfo" type="xs:string" use="optional"/><xs:attribute name="title" type="xs:string" use="optional"/><xs:attribute name="notice" type="xs:string" use="optional"/><xs:attribute name="source" type="xs:string" use="optional"/><xs:attribute name="fullversion" type="xs:string" use="optional"/><xs:attribute name="id" type="xs:string" use="required"/><xs:attribute name="classification" type="xs:string" use="optional"/><xs:attribute name="customname" type="xs:string" use="optional"/><xs:attribute name="stigid" type="xs:string" use="optional"/><xs:attribute name="description" type="xs:string" use="optional"/><xs:attribute name="filename" type="xs:string" use="optional"/><xs:attribute name="releaseinfo" type="xs:string" use="optional"/><xs:attribute name="title" type="xs:string" use="optional"/><xs:attribute name="notice" type="xs:string" use="optional"/><xs:attribute name="source" type="xs:string" use="optional"/><xs:attribute name="fullversion" type="xs:string" use="optional"/><xs:attribute name="id" type="xs:string" use="required"/></xs:complexType>
-  </xs:element>
-  <xs:element name="OrganizationalSettings">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="OrganizationalSetting" maxOccurs="unbounded" minOccurs="0">
-          <xs:complexType>
-            <xs:attribute name="id" type="xs:string" use="required"/>
-            <xs:attribute name="Value" type="xs:string" use="required"/>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-      <xs:attribute name="Version" type="xs:decimal" use="required"/>
-    </xs:complexType>
-  </xs:element>
-<xs:element name="nxFileLineRule"><xs:complexType><xs:sequence/></xs:complexType></xs:element></xs:schema>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ServiceRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UserRightRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SqlDatabaseRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SqlLoginRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SqlProtocolRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="WebConfigurationPropertyRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="WindowsFeatureRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SqlScriptQueryRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SqlServerConfigurationRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VsphereAcceptanceLevelRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VsphereAdvancedSettingsRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VsphereKernelActiveDumpPartitionRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VsphereNtpSettingsRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VspherePortGroupSecurityRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VsphereServiceRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VsphereSnmpAgentRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VsphereVssSecurityRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Rule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="AccessControlEntry"/>
+                    <xs:element ref="AdvancedSettings"/>
+                    <xs:element ref="AllowPromiscuous"/>
+                    <xs:element ref="AllowPromiscuousInherited"/>
+                    <xs:element ref="AuditFlag"/>
+                    <xs:element ref="CertificateName"/>
+                    <xs:element ref="ConfigSection"/>
+                    <xs:element ref="Constant"/>
+                    <xs:element ref="ContainsLine"/>
+                    <xs:element ref="Contents"/>
+                </xs:choice>
+                <xs:element ref="Description"/>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="DesiredValue"/>
+                    <xs:element ref="DisplayName"/>
+                    <xs:element ref="DoesNotContainPattern"/>
+                </xs:choice>
+                <xs:element ref="DuplicateOf"/>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="FilePath"/>
+                    <xs:element ref="ForgedTransmitsInherited"/>
+                </xs:choice>
+                <xs:element minOccurs="0" ref="Ensure"/>
+                <xs:element minOccurs="0" ref="Extension"/>
+                <xs:element minOccurs="0" ref="Force"/>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="Enabled"/>
+                    <xs:element ref="ForgedTransmits"/>
+                    <xs:element ref="GetScript"/>
+                    <xs:element ref="Identity"/>
+                    <xs:sequence>
+                        <xs:element ref="HostName"/>
+                        <xs:element ref="IpAddress"/>
+                    </xs:sequence>
+                </xs:choice>
+                <xs:element ref="IsNullOrEmpty"/>
+                <xs:element minOccurs="0" ref="Key"/>
+                <xs:element minOccurs="0" ref="LegacyId"/>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="Level"/>
+                    <xs:element ref="Location"/>
+                    <xs:element ref="MacChanges"/>
+                    <xs:element ref="MacChangesInherited"/>
+                    <xs:element ref="MimeType"/>
+                    <xs:element ref="NtpServer"/>
+                    <xs:element ref="Operator"/>
+                    <xs:sequence>
+                        <xs:element ref="LogCustomFieldEntry"/>
+                        <xs:element ref="LogFlags"/>
+                        <xs:element ref="LogFormat"/>
+                        <xs:element ref="LogPeriod"/>
+                        <xs:element ref="LogTargetW3C"/>
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element ref="OptionName"/>
+                        <xs:element ref="OptionValue"/>
+                    </xs:sequence>
+                </xs:choice>
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="LoginMustChangePassword"/>
+                    <xs:element ref="LoginPasswordExpirationEnabled"/>
+                    <xs:element ref="LoginPasswordPolicyEnforced"/>
+                    <xs:element ref="LoginType"/>
+                </xs:sequence>
+                <xs:element minOccurs="0" ref="Name"/>
+                <xs:element ref="OrganizationValueRequired"/>
+                <xs:element ref="OrganizationValueTestString"/>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="Path"/>
+                    <xs:element ref="Policy"/>
+                    <xs:element ref="ProtocolName"/>
+                    <xs:sequence>
+                        <xs:element ref="PropertyName"/>
+                        <xs:element ref="PropertyValue"/>
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element ref="Property"/>
+                        <xs:element ref="Query"/>
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element ref="PolicyName"/>
+                        <xs:element ref="PolicyValue"/>
+                    </xs:sequence>
+                </xs:choice>
+                <xs:element ref="RawString"/>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="Running"/>
+                    <xs:element ref="State"/>
+                    <xs:element ref="Subcategory"/>
+                    <xs:element ref="Thumbprint"/>
+                    <xs:element ref="Value"/>
+                    <xs:sequence>
+                        <xs:element ref="ValueData"/>
+                        <xs:element ref="ValueName"/>
+                        <xs:element ref="ValueType"/>
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element ref="ServiceName"/>
+                        <xs:element ref="ServiceState"/>
+                        <xs:element ref="StartupType"/>
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element ref="SetScript"/>
+                        <xs:element ref="TestScript"/>
+                        <xs:element ref="Variable"/>
+                        <xs:element ref="VariableValue"/>
+                    </xs:sequence>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="conversionstatus" use="required" type="xs:NCName"/>
+            <xs:attribute name="dscresource" use="required" type="xs:NCName"/>
+            <xs:attribute name="id" use="required" type="xs:NCName"/>
+            <xs:attribute name="severity" use="required" type="xs:NCName"/>
+            <xs:attribute name="title" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AccessControlEntry">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Entry"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AdvancedSettings" type="xs:string"/>
+    <xs:element name="AllowPromiscuous" type="xs:string"/>
+    <xs:element name="AllowPromiscuousInherited" type="xs:string"/>
+    <xs:element name="AuditFlag" type="xs:NCName"/>
+    <xs:element name="CertificateName" type="xs:string"/>
+    <xs:element name="ConfigSection" type="xs:string"/>
+    <xs:element name="Constant" type="xs:NCName"/>
+    <xs:element name="ContainsLine" type="xs:string"/>
+    <xs:element name="Contents" type="xs:string"/>
+    <xs:element name="Description" type="xs:string"/>
+    <xs:element name="DesiredValue" type="xs:string"/>
+    <xs:element name="DisplayName" type="xs:string"/>
+    <xs:element name="DoesNotContainPattern" type="xs:string"/>
+    <xs:element name="DuplicateOf" type="xs:string"/>
+    <xs:element name="FilePath" type="xs:string"/>
+    <xs:element name="ForgedTransmitsInherited" type="xs:string"/>
+    <xs:element name="Ensure" type="xs:string"/>
+    <xs:element name="Extension" type="xs:NMTOKEN"/>
+    <xs:element name="Force" type="xs:NCName"/>
+    <xs:element name="Enabled" type="xs:string"/>
+    <xs:element name="ForgedTransmits" type="xs:string"/>
+    <xs:element name="GetScript" type="xs:string"/>
+    <xs:element name="Identity" type="xs:string"/>
+    <xs:element name="HostName" type="xs:string"/>
+    <xs:element name="IpAddress" type="xs:string"/>
+    <xs:element name="IsNullOrEmpty" type="xs:NCName"/>
+    <xs:element name="Key" type="xs:string"/>
+    <xs:element name="LegacyId" type="xs:string"/>
+    <xs:element name="Level" type="xs:NCName"/>
+    <xs:element name="Location">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="MacChanges" type="xs:string"/>
+    <xs:element name="MacChangesInherited" type="xs:string"/>
+    <xs:element name="MimeType" type="xs:string"/>
+    <xs:element name="NtpServer">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="Operator" type="xs:NMTOKEN"/>
+    <xs:element name="LogCustomFieldEntry">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="Entry"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="LogFlags" type="xs:string"/>
+    <xs:element name="LogFormat" type="xs:string"/>
+    <xs:element name="LogPeriod">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="LogTargetW3C" type="xs:string"/>
+    <xs:element name="OptionName" type="xs:string"/>
+    <xs:element name="OptionValue" type="xs:string"/>
+    <xs:element name="LoginMustChangePassword" type="xs:NCName"/>
+    <xs:element name="LoginPasswordExpirationEnabled" type="xs:NCName"/>
+    <xs:element name="LoginPasswordPolicyEnforced" type="xs:NCName"/>
+    <xs:element name="LoginType" type="xs:NCName"/>
+    <xs:element name="Name" type="xs:string"/>
+    <xs:element name="OrganizationValueRequired" type="xs:NCName"/>
+    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+    <xs:element name="Path" type="xs:string"/>
+    <xs:element name="Policy" type="xs:NCName"/>
+    <xs:element name="ProtocolName" type="xs:NCName"/>
+    <xs:element name="PropertyName" type="xs:NCName"/>
+    <xs:element name="PropertyValue" type="xs:string"/>
+    <xs:element name="Property" type="xs:NCName"/>
+    <xs:element name="Query" type="xs:string"/>
+    <xs:element name="PolicyName" type="xs:string"/>
+    <xs:element name="PolicyValue" type="xs:string"/>
+    <xs:element name="RawString" type="xs:string"/>
+    <xs:element name="Running" type="xs:NCName"/>
+    <xs:element name="State" type="xs:string"/>
+    <xs:element name="Subcategory" type="xs:string"/>
+    <xs:element name="Thumbprint" type="xs:string"/>
+    <xs:element name="Value" type="xs:string"/>
+    <xs:element name="ValueData" type="xs:string"/>
+    <xs:element name="ValueName" type="xs:string"/>
+    <xs:element name="ValueType" type="xs:string"/>
+    <xs:element name="ServiceName" type="xs:string"/>
+    <xs:element name="ServiceState" type="xs:NCName"/>
+    <xs:element name="StartupType" type="xs:string"/>
+    <xs:element name="SetScript" type="xs:string"/>
+    <xs:element name="TestScript" type="xs:string"/>
+    <xs:element name="Variable" type="xs:string"/>
+    <xs:element name="VariableValue">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="Entry">
+        <xs:complexType>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="Type"/>
+                    <xs:element ref="Principal"/>
+                    <xs:element ref="ForcePrincipal"/>
+                    <xs:element ref="Inheritance"/>
+                    <xs:element ref="Rights"/>
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element ref="SourceType"/>
+                    <xs:element ref="SourceName"/>
+                </xs:sequence>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Type">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="Principal" type="xs:string"/>
+    <xs:element name="ForcePrincipal" type="xs:string"/>
+    <xs:element name="Inheritance" type="xs:string"/>
+    <xs:element name="Rights" type="xs:string"/>
+    <xs:element name="SourceType" type="xs:NCName"/>
+    <xs:element name="SourceName" type="xs:NCName"/>
+</xs:schema>
+OrgSettings.xsd:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="OrganizationalSettings">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="OrganizationalSetting"/>
+            </xs:sequence>
+            <xs:attribute name="fullversion" use="required" type="xs:decimal"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OrganizationalSetting">
+        <xs:complexType>
+            <xs:attribute name="AdvancedSettings"/>
+            <xs:attribute name="ContainsLine"/>
+            <xs:attribute name="Contents"/>
+            <xs:attribute name="DoesNotContainPattern"/>
+            <xs:attribute name="Ensure"/>
+            <xs:attribute name="Identity"/>
+            <xs:attribute name="Location"/>
+            <xs:attribute name="LogCustomFieldEntry"/>
+            <xs:attribute name="LogFlags"/>
+            <xs:attribute name="LogFormat"/>
+            <xs:attribute name="LogPeriod"/>
+            <xs:attribute name="LogTargetW3C"/>
+            <xs:attribute name="Name"/>
+            <xs:attribute name="NtpServer"/>
+            <xs:attribute name="OptionValue"/>
+            <xs:attribute name="Path"/>
+            <xs:attribute name="PolicyValue" type="xs:integer"/>
+            <xs:attribute name="ServiceName"/>
+            <xs:attribute name="StartupType"/>
+            <xs:attribute name="Value"/>
+            <xs:attribute name="ValueData"/>
+            <xs:attribute name="VariableValue"/>
+            <xs:attribute name="id" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
