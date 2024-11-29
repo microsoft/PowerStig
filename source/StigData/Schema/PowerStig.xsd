@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xs:element name="DISASTIG">
     <xs:complexType>
       <xs:all>
@@ -9,22 +9,22 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="PolicyName" type="xs:string" />
-                    <xs:element name="PolicyValue" type="xs:string" />
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="PolicyName" type="xs:string"/>
+                    <xs:element name="PolicyValue" type="xs:string"/>
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="AuditPolicyRule" minOccurs="0">
@@ -33,23 +33,23 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="AuditFlag" type="xs:string" />
-                    <xs:element name="Ensure" type="xs:string" />
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
-                    <xs:element name="Subcategory" type="xs:string" />
+                    <xs:element name="AuditFlag" type="xs:string"/>
+                    <xs:element name="Ensure" type="xs:string"/>
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
+                    <xs:element name="Subcategory" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="DnsServerRootHintRule" minOccurs="0">
@@ -58,22 +58,22 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="HostName" type="xs:string" />
-                    <xs:element name="IpAddress" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="HostName" type="xs:string"/>
+                    <xs:element name="IpAddress" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="DnsServerSettingRule" minOccurs="0">
@@ -82,22 +82,22 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="PropertyName" type="xs:string" />
-                    <xs:element name="PropertyValue" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="PropertyName" type="xs:string"/>
+                    <xs:element name="PropertyValue" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="DocumentRule" minOccurs="0">
@@ -106,20 +106,20 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="IisLoggingRule" minOccurs="0">
@@ -128,25 +128,25 @@
               <xs:element name="Rule" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="LogCustomFieldEntry" />
-                    <xs:element name="LogFlags" type="xs:string" />
-                    <xs:element name="LogFormat" type="xs:string" />
-                    <xs:element name="LogPeriod" type="xs:string" />
-                    <xs:element name="LogTargetW3C" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="LogCustomFieldEntry"/>
+                    <xs:element name="LogFlags" type="xs:string"/>
+                    <xs:element name="LogFormat" type="xs:string"/>
+                    <xs:element name="LogPeriod" type="xs:string"/>
+                    <xs:element name="LogTargetW3C" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="ManualRule" minOccurs="0">
@@ -155,20 +155,20 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="MimeTypeRule" minOccurs="0">
@@ -177,23 +177,23 @@
               <xs:element name="Rule" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="Ensure" type="xs:string" />
-                    <xs:element name="Extension" type="xs:string" />
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="MimeType" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="Ensure" type="xs:string"/>
+                    <xs:element name="Extension" type="xs:string"/>
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="MimeType" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="PermissionRule" minOccurs="0">
@@ -202,23 +202,23 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="AccessControlEntry" />
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="Path" type="xs:string" />
-                    <xs:element name="Force" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="AccessControlEntry"/>
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="Path" type="xs:string"/>
+                    <xs:element name="Force" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="RegistryRule" minOccurs="0">
@@ -227,25 +227,25 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="Ensure" type="xs:string" />
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="Key" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
-                    <xs:element name="ValueData" type="xs:string" />
-                    <xs:element name="ValueName" type="xs:string" />
-                    <xs:element name="ValueType" type="xs:string" />
+                    <xs:element name="Ensure" type="xs:string"/>
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="Key" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
+                    <xs:element name="ValueData" type="xs:string"/>
+                    <xs:element name="ValueName" type="xs:string"/>
+                    <xs:element name="ValueType" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="SecurityOptionRule" minOccurs="0">
@@ -254,22 +254,22 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="OptionName" type="xs:string" />
-                    <xs:element name="OptionValue" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="OptionName" type="xs:string"/>
+                    <xs:element name="OptionValue" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="ServiceRule" minOccurs="0">
@@ -278,24 +278,24 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="Ensure" type="xs:string" />
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
-                    <xs:element name="ServiceName" type="xs:string" />
-                    <xs:element name="ServiceState" type="xs:string" />
-                    <xs:element name="StartupType" type="xs:string" />
+                    <xs:element name="Ensure" type="xs:string"/>
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
+                    <xs:element name="ServiceName" type="xs:string"/>
+                    <xs:element name="ServiceState" type="xs:string"/>
+                    <xs:element name="StartupType" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="SqlScriptQueryRule" minOccurs="0">
@@ -305,22 +305,22 @@
                 <xs:complexType>
                   <xs:all>
                     <xs:element name="GetScript" type="xs:string"/>
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
-                    <xs:element name="SetScript" type="xs:string" />
-                    <xs:element name="TestScript" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
+                    <xs:element name="SetScript" type="xs:string"/>
+                    <xs:element name="TestScript" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="SslSettingsRule" minOccurs="0">
@@ -329,21 +329,21 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="Value" type="xs:string" />
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="Value" type="xs:string"/>
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="UserRightRule" minOccurs="0">
@@ -352,24 +352,24 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="Constant" type="xs:string" />
-                    <xs:element name="DisplayName" type="xs:string" />
-                    <xs:element name="Force" type="xs:string" />
-                    <xs:element name="Identity" type="xs:string" />
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="Constant" type="xs:string"/>
+                    <xs:element name="DisplayName" type="xs:string"/>
+                    <xs:element name="Force" type="xs:string"/>
+                    <xs:element name="Identity" type="xs:string"/>
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="WebAppPoolRule" minOccurs="0">
@@ -378,22 +378,22 @@
               <xs:element name="Rule" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="Key" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
-                    <xs:element name="Value" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="Key" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
+                    <xs:element name="Value" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="WebConfigurationPropertyRule" minOccurs="0">
@@ -402,23 +402,23 @@
               <xs:element name="Rule" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="ConfigSection" type="xs:string" />
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="Key" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
-                    <xs:element name="Value" type="xs:string" />
+                    <xs:element name="ConfigSection" type="xs:string"/>
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="Key" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
+                    <xs:element name="Value" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="WindowsFeatureRule" minOccurs="0">
@@ -427,22 +427,22 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="FeatureName" type="xs:string" />
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="InstallState" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="FeatureName" type="xs:string"/>
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="InstallState" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="WinEventLogRule" minOccurs="0">
@@ -451,22 +451,22 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="IsEnabled" type="xs:string" />
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="LogName" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
+                    <xs:element name="IsEnabled" type="xs:string"/>
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="LogName" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="WmiRule" minOccurs="0">
@@ -475,24 +475,24 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="IsNullOrEmpty" type="xs:string" />
-                    <xs:element name="Operator" type="xs:string" />
-                    <xs:element name="OrganizationValueRequired" type="xs:string" />
-                    <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="Property" type="xs:string" />
-                    <xs:element name="RawString" type="xs:string" />
-                    <xs:element name="Value" type="xs:string" />
-                    <xs:element name="Query" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string"/>
+                    <xs:element name="Operator" type="xs:string"/>
+                    <xs:element name="OrganizationValueRequired" type="xs:string"/>
+                    <xs:element name="OrganizationValueTestString" type="xs:string"/>
+                    <xs:element name="Property" type="xs:string"/>
+                    <xs:element name="RawString" type="xs:string"/>
+                    <xs:element name="Value" type="xs:string"/>
+                    <xs:element name="Query" type="xs:string"/>
                   </xs:all>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="dscresource" type="xs:string" use="required" />
-                  <xs:attribute name="severity" type="xs:string" use="required" />
-                  <xs:attribute name="conversionstatus" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attribute name="dscresource" type="xs:string" use="required"/>
+                  <xs:attribute name="severity" type="xs:string" use="required"/>
+                  <xs:attribute name="conversionstatus" type="xs:string" use="required"/>
+                  <xs:attribute name="title" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="dscresourcemodule" type="xs:string" use="required" />
+            <xs:attribute name="dscresourcemodule" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
         <xs:element name="SkipRule" minOccurs="0">
@@ -504,22 +504,22 @@
           </xs:complexType>
         </xs:element>
       </xs:all>
-      <xs:attribute name="id" type="xs:string" use="required" />
-      <xs:attribute name="version" type="xs:decimal" use="required" />
-      <xs:attribute name="created" type="xs:string" use="required" />
-    </xs:complexType>
+      <xs:attribute name="id" type="xs:string" use="required"/>
+      <xs:attribute name="version" type="xs:decimal" use="required"/>
+      <xs:attribute name="created" type="xs:string" use="required"/>
+    <xs:attribute name="classification" type="xs:string" use="optional"/><xs:attribute name="customname" type="xs:string" use="optional"/><xs:attribute name="stigid" type="xs:string" use="optional"/><xs:attribute name="description" type="xs:string" use="optional"/><xs:attribute name="filename" type="xs:string" use="optional"/><xs:attribute name="releaseinfo" type="xs:string" use="optional"/><xs:attribute name="title" type="xs:string" use="optional"/><xs:attribute name="notice" type="xs:string" use="optional"/><xs:attribute name="source" type="xs:string" use="optional"/><xs:attribute name="fullversion" type="xs:string" use="optional"/><xs:attribute name="id" type="xs:string" use="required"/><xs:attribute name="classification" type="xs:string" use="optional"/><xs:attribute name="customname" type="xs:string" use="optional"/><xs:attribute name="stigid" type="xs:string" use="optional"/><xs:attribute name="description" type="xs:string" use="optional"/><xs:attribute name="filename" type="xs:string" use="optional"/><xs:attribute name="releaseinfo" type="xs:string" use="optional"/><xs:attribute name="title" type="xs:string" use="optional"/><xs:attribute name="notice" type="xs:string" use="optional"/><xs:attribute name="source" type="xs:string" use="optional"/><xs:attribute name="fullversion" type="xs:string" use="optional"/><xs:attribute name="id" type="xs:string" use="required"/></xs:complexType>
   </xs:element>
   <xs:element name="OrganizationalSettings">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="OrganizationalSetting" maxOccurs="unbounded" minOccurs="0">
           <xs:complexType>
-            <xs:attribute name="id" type="xs:string" use="required" />
-            <xs:attribute name="Value" type="xs:string" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute name="Value" type="xs:string" use="required"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
-      <xs:attribute name="Version" type="xs:decimal" use="required" />
+      <xs:attribute name="Version" type="xs:decimal" use="required"/>
     </xs:complexType>
   </xs:element>
-</xs:schema>
+<xs:element name="nxFileLineRule"><xs:complexType><xs:sequence/></xs:complexType></xs:element></xs:schema>
