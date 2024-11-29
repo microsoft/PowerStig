@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="OrganizationalSettings">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="OrganizationalSetting"/>
+            </xs:sequence>
+            <xs:attribute name="fullversion" use="required" type="xs:decimal"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OrganizationalSetting">
+        <xs:complexType>
+            <xs:attribute name="AdvancedSettings"/>
+            <xs:attribute name="ContainsLine"/>
+            <xs:attribute name="Contents"/>
+            <xs:attribute name="DoesNotContainPattern"/>
+            <xs:attribute name="Ensure"/>
+            <xs:attribute name="Identity"/>
+            <xs:attribute name="Location"/>
+            <xs:attribute name="LogCustomFieldEntry"/>
+            <xs:attribute name="LogFlags"/>
+            <xs:attribute name="LogFormat"/>
+            <xs:attribute name="LogPeriod"/>
+            <xs:attribute name="LogTargetW3C"/>
+            <xs:attribute name="Name"/>
+            <xs:attribute name="NtpServer"/>
+            <xs:attribute name="OptionValue"/>
+            <xs:attribute name="Path"/>
+            <xs:attribute name="PolicyValue" type="xs:integer"/>
+            <xs:attribute name="ServiceName"/>
+            <xs:attribute name="StartupType"/>
+            <xs:attribute name="Value"/>
+            <xs:attribute name="ValueData"/>
+            <xs:attribute name="VariableValue"/>
+            <xs:attribute name="id" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
