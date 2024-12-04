@@ -1,6 +1,9 @@
 # Versions
 
 ## [Unreleased]
+
+* Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 10 #1387(https://github.com/microsoft/PowerStig/issues/1387)
+
 * Update Powerstig to parse\apply Oracle Linux 8 STIG - Ver 2, Rel 1 [#1380](https://github.com/microsoft/PowerStig/issues/1380)
 
 * Update Powerstig to parse\apply Microsoft Windows Server 2019 STIG - Ver 3, Rel 1 [#1369](https://github.com/microsoft/PowerStig/issues/1369)
