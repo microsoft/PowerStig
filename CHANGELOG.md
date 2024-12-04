@@ -1,6 +1,8 @@
 # Versions
 
 ## [Unreleased]
+* Update Powerstig to parse\apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 2 [#1390](https://github.com/microsoft/PowerStig/issues/1390)
+
 * Update Powerstig to parse\apply Oracle Linux 8 STIG - Ver 2, Rel 1 [#1380](https://github.com/microsoft/PowerStig/issues/1380)
 
 * Update Powerstig to parse\apply Microsoft Windows Server 2019 STIG - Ver 3, Rel 1 [#1369](https://github.com/microsoft/PowerStig/issues/1369)
