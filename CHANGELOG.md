@@ -1,6 +1,8 @@
 # Versions
 
 ## [Unreleased]
+* Update Powerstig to parse\apply U_MS_SQL_Server_2016_Instance_V3R2_Manual_STIG [#1394](https://github.com/microsoft/PowerStig/issues/1394)
+
 * Update Powerstig to parse\apply Oracle Linux 8 STIG - Ver 2, Rel 1 [#1380](https://github.com/microsoft/PowerStig/issues/1380)
 
 * Update Powerstig to parse\apply Microsoft Windows Server 2019 STIG - Ver 3, Rel 1 [#1369](https://github.com/microsoft/PowerStig/issues/1369)
