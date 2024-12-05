@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.9">
+<OrganizationalSettings fullversion="3.2">
   <!-- Ensure 'V-205631' is set to the required legal notice before logon-->
   <OrganizationalSetting id="V-205631" ValueData="You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
