@@ -82,6 +82,8 @@ By using this IS (which includes any device attached to this IS), you consent to
   <OrganizationalSetting id="V-205660" PolicyValue="24" />
   <!-- Ensure ''V-205662'' -ge '14'-->
   <OrganizationalSetting id="V-205662" PolicyValue="14" />
+  <!-- Ensure ''V-205672'' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'-->
+  <OrganizationalSetting id="V-205672" Identity="Enterprise Admins,Domain Admins,Local account and member of Administrators group,Guests" />
   <!-- Ensure ''V-205756'' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'-->
   <OrganizationalSetting id="V-205756" Identity="Administrators" />
   <!-- Ensure ''V-205795'' -ge '15' -or ''V-205795'' -eq '0'-->
