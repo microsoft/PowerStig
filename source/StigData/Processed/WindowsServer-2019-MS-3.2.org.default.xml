@@ -86,6 +86,8 @@ By using this IS (which includes any device attached to this IS), you consent to
   <OrganizationalSetting id="V-205756" Identity="Administrators" />
   <!-- Ensure ''V-205795'' -ge '15' -or ''V-205795'' -eq '0'-->
   <OrganizationalSetting id="V-205795" PolicyValue="15" />
+  <!-- Ensure ''V-205906'' -le '4'-->
+  <OrganizationalSetting id="V-205906" OptionValue="" />
   <!-- Ensure ''V-205909'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-205909" OptionValue="" />
   <!-- Ensure ''V-205910'' -ne 'Guest'-->
