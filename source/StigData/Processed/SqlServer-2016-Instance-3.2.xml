@@ -1,13 +1,13 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V2R12_Manual-xccdf.xml" releaseinfo="Release: 12 Benchmark Date: 24 Apr 2024 3.4.1.22916 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.12" created="5/20/2024">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 24 Oct 2024 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.2" created="12/4/2024">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful Denial of Service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions per user is helpful in reducing these risks. 
+      <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful denial-of-service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions is helpful in reducing these risks.
   
-This requirement addresses concurrent session control for a single account. It does not address concurrent sessions by a single user via multiple system accounts; and it does not deal with the total number of sessions across all accounts. 
+This requirement addresses concurrent session control for a single account. It does not address concurrent sessions by a single user via multiple system accounts.
   
 The capability to limit the number of concurrent sessions per user must be configured in or added to SQL Server (for example, by use of a logon trigger), when this is technically feasible. Note that it is not sufficient to limit sessions via a web server or application server alone, because legitimate users and adversaries can potentially connect to SQL Server by other means. 
   
-The organization will need to define the maximum number of concurrent sessions by account type, by account, or a combination thereof. In deciding on the appropriate number, it is important to consider the work requirements of the various types of users. For example, 2 might be an acceptable limit for general users accessing the database via an application; but 10 might be too few for a database administrator using a database management GUI tool, where each query tab and navigation pane may count as a separate session. 
+The organization will need to define the maximum number of concurrent sessions by account type, by account, or a combination thereof. In deciding on the appropriate number, it is important to consider the work requirements of the various types of users. For example, 2 might be an acceptable limit for general users accessing the database via an application; but 10 might be too few for a database administrator using a database management GUI tool, where each query tab and navigation pane may count as a separate session.
   
 (Sessions may also be referred to as connections or logons, which for the purposes of this requirement are synonyms.)&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -15,9 +15,21 @@ The organization will need to define the maximum number of concurrent sessions b
       <LegacyId>V-79119</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the system documentation to determine whether any limits have been defined. If it does not, assume a limit of 10 for database administrators and 2 for all other users. 
+      <RawString>Review the system documentation to determine whether any concurrent session limits have been defined. If it does not, assume a limit of 10 for database administrators and 2 for all other users. 
  
-If a mechanism other than a logon trigger is used, verify its correct operation by the appropriate means. If it does not work correctly, this is a finding.  
+If a mechanism other than a logon trigger is used, verify its correct operation by the appropriate means. If it does not work correctly, this is a finding.
+
+Due to excessive CPU consumption when utilizing a logon trigger, an alternative method of limiting concurrent sessions is setting the max connection limit within SQL Server to an appropriate value. This serves to block a distributed denial-of-service (DDOS) attack by limiting the attacker's connections while allowing a database administrator to still force a SQL connection.
+
+In SQL Server Management Studio's Object Explorer tree:
+Right-click on the Server Name &gt;&gt; Select Properties &gt;&gt; Select Connections Tab
+
+OR
+
+Run the query:
+EXEC sys.sp_configure N'user connections'
+
+If the max connection limit is set to 0 (unlimited) or does not match the documented value, this is a finding.
  
 Otherwise, determine if a logon trigger exists:  
  
@@ -70,7 +82,7 @@ END as [Authentication Mode]
  
 If the returned value in the "Authentication Mode" column is "Windows Authentication", this is not a finding.  
  
-Mixed mode (both SQL Server authentication and Windows authentication) is in use. If the need for mixed mode has not been documented and approved, this is a finding.  
+Mixed mode (both SQL Server authentication and Windows authentication) is in use. If the need for mixed mode has not been documented and approved by the information system security officer (ISSO)/information system security manager (ISSM), this is a finding.  
  
 From the documentation, obtain the list of accounts authorized to be managed by SQL Server.  
  
@@ -541,11 +553,13 @@ If it is not approved, this is a finding.</RawString>
       <LegacyId>V-79183</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>A linked server allows for access to distributed, heterogeneous queries against OLE DB data sources. After a linked server is created, distributed queries can be run against this server, and queries can join tables from more than one data source. If the linked server is defined as an instance of SQL Server, remote stored procedures can be executed. 
+      <RawString>A linked server allows for access to distributed, heterogeneous queries against OLE DB data sources. After a linked server is created, distributed queries can be run against this server, and queries can join tables from more than one data source. If the linked server is defined as an instance of SQL Server, remote stored procedures can be executed.
  
-To obtain a list of linked servers, execute the following command:  
+To obtain a list of linked servers, execute the following command:
  
-EXEC sp_linkedservers;  
+SELECT name
+FROM sys.servers s 
+WHERE s.is_linked = 1 
  
 Review the system documentation to determine whether the linked servers listed are required and approved. If it is not approved, this is a finding. 
  
@@ -557,7 +571,7 @@ JOIN sys.linked_logins l ON s.server_id = l.server_id
 LEFT JOIN sys.server_principals p ON l.local_principal_id = p.principal_id 
 WHERE s.is_linked = 1 
  
-Review the linked login mapping and check the remote name as it can impersonate sysadmin.  If a login in the list is impersonating sysadmin and system documentation does not require this, it is a finding.</RawString>
+Review the linked login mapping and check the remote name as it can impersonate sysadmin. If a login in the list is impersonating sysadmin and system documentation does not require this, it is a finding.</RawString>
     </Rule>
     <Rule id="V-213962" severity="medium" conversionstatus="pass" title="SRG-APP-000142-DB-000094" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;In order to prevent unauthorized connection of devices, unauthorized transfer of information, or unauthorized tunneling (i.e., embedding of data types within data types), organizations must disable or restrict unused or unnecessary physical and logical ports on information systems. 
@@ -579,17 +593,17 @@ To determine whether SQL Server is configured to use a fixed port or dynamic por
 If these are in conflict with PPSM guidance, and not explained and approved in the system documentation, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213965" severity="medium" conversionstatus="pass" title="SRG-APP-000164-DB-000401" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;OS/enterprise authentication and identification must be used (SRG-APP-000023-DB-000001).  Native DBMS authentication may be used only when circumstances make it unavoidable; and must be documented and AO-approved. 
+      <Description>&lt;VulnDiscussion&gt;OS/enterprise authentication and identification must be used (SRG-APP-000023-DB-000001). Native DBMS authentication may be used only when circumstances make it unavoidable, and must be documented and Authorizing Official (AO)-approved.
  
-The DoD standard for authentication is DoD-approved PKI certificates.  Authentication based on User ID and Password may be used only when it is not possible to employ a PKI certificate, and requires AO approval. 
+The DOD standard for authentication is DOD-approved PKI certificates. Authentication based on User ID and Password may be used only when it is not possible to employ a PKI certificate, and requires AO approval.
  
-In such cases, the DoD standards for password complexity and lifetime must be implemented.  DBMS products that can inherit the rules for these from the operating system or access control program (e.g., Microsoft Active Directory) must be configured to do so.  For other DBMSs, the rules must be enforced using available configuration parameters or custom code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+In such cases, the DOD standards for password complexity and lifetime must be implemented. DBMS products that can inherit the rules for these from the operating system or access control program (e.g., Microsoft Active Directory) must be configured to do so. For other DBMSs, the rules must be enforced using available configuration parameters or custom code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79193</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Execute the following query to determine if Contained Databases are used: 
+      <RawString>Execute the following query to determine if contained databases are used: 
  
 SELECT * FROM sys.databases WHERE containment = 1 
  
@@ -721,6 +735,47 @@ https://aka.ms/sqlservicepermissions
 
 If any additional permissions are granted but not documented as authorized, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-213978" severity="medium" conversionstatus="pass" title="SRG-APP-000267-DB-000163" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;If SQL Server provides too much information in error logs and administrative messages to the screen, this could lead to compromise. The structure and content of error messages need to be carefully considered by the organization and development team. The extent to which the information system is able to identify and handle error conditions is guided by organizational policy and operational requirements. 
+ 
+Some default DBMS error messages can contain information that could aid an attacker in, among others things, identifying the database type, host address, or state of the database. Custom errors may contain sensitive customer information. 
+ 
+It is important that detailed error messages be visible only to those who are authorized to view them; that general users receive only generalized acknowledgment that errors have occurred; and that these generalized messages appear only when relevant to the user's task. For example, a message along the lines of, "An error has occurred. Unable to save your changes. If this problem persists, please contact your help desk." would be relevant. A message such as "Warning: your transaction generated a large number of page splits" would likely not be relevant. "ABGQ is not a valid widget code." would be appropriate; but "The INSERT statement conflicted with the FOREIGN KEY constraint "WidgetTransactionFK". The conflict occurred in database "DB7", table "dbo.WidgetMaster", column 'WidgetCode'" would not, as it reveals too much about the database structure.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79217</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Error messages within applications, custom database code (stored procedures, triggers) must be enforced by guidelines and code reviews practices.  
+
+SQL Server generates certain system events and user-defined events to the SQL Server error log. The SQL Server error log can be viewed using SQL Server Management Studio GUI. All users granted the security admin or sysadmin level of permission are able to view the logs. Review the users returned in the following script: 
+
+USE master 
+GO
+SELECT Name 
+FROM syslogins 
+WHERE (sysadmin = 1 or securityadmin = 1) 
+and hasaccess = 1; 
+
+If any nonauthorized users have access to the SQL Server Error Log located at Program Files\Microsoft SQL Server\MSSQL.n\MSSQL\LOG, this is a finding. 
+
+In addition, the SQL Server Error Log is also located at Program Files\Microsoft SQL Server\MSSQL.n\MSSQL\LOG\. Review the permissions on this folder to ensure that only authorized users are listed.  
+
+If any nonauthorized users have access to the SQL Server Error Log in SQL Server Management Studio, this is a finding.
+
+If vendor documentation does not exist stating that full error messages must be returned, this is a finding.
+
+Otherwise, verify if trace flag 3625 is enabled to mask certain system-level error information returned to nonadministrative users. 
+ 
+Launch SQL Server Configuration Manager &gt;&gt; select SQL Server Services &gt;&gt; select the SQL Server &gt;&gt; right-click and select Properties &gt;&gt; select Startup Parameters tab &gt;&gt; verify -T3625 exists in the dialogue window.
+
+OR
+
+Run the query:
+DBCC TRACESTATUS;
+
+If TraceFlag 3625 does not return with Status = 1, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-213979" severity="medium" conversionstatus="pass" title="SRG-APP-000340-DB-000304" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.  
  
@@ -847,33 +902,31 @@ GO
  
 If any Credentials or SQL Agent Proxy accounts are returned that are not documented and authorized, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-213981" severity="medium" conversionstatus="pass" title="SRG-APP-000356-DB-000314" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without the ability to centrally manage the content captured in the audit records, identification, troubleshooting, and correlation of suspicious behavior would be difficult and could lead to a delayed or incomplete analysis of an ongoing attack. 
+    <Rule id="V-213983" severity="medium" conversionstatus="pass" title="SRG-APP-000357-DB-000316" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;In order to ensure sufficient storage capacity for the audit logs, SQL Server must be able to allocate audit record storage capacity. Although another requirement (SRG-APP-000515-DB-000318) mandates that audit data be off-loaded to a centralized log management system, it remains necessary to provide space on the database server to serve as a buffer against outages and capacity limits of the off-loading mechanism. 
  
-The content captured in audit records must be managed from a central location (necessitating automation). Centralized management of audit records and logs provides for efficiency in maintenance and management of records, as well as the backup and archiving of those records.  
+The task of allocating audit record storage capacity is usually performed during initial installation of SQL Server and is closely associated with the DBA and system administrator roles. The DBA or system administrator will usually coordinate the allocation of physical drive space with the application owner/installer and the application will prompt the installer to provide the capacity information, the physical location of the disk, or both. 
  
-SQL Server may write audit records to database tables, to files in the file system, to other kinds of local repository, or directly to a centralized log management system. Whatever the method used, it must be compatible with off-loading the records to the centralized system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+In determining the capacity requirements, consider such factors as: total number of users; expected number of concurrent users during busy periods; number and type of events being monitored; types and amounts of data being captured; the frequency/speed with which audit records are off-loaded to the central log management system; and any limitations that exist on SQL Server's ability to reuse the space formerly occupied by off-loaded records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79223</LegacyId>
+      <LegacyId>V-79227</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the system documentation for a description of how audit records are off-loaded and how local audit log space is managed.  
- 
-If the SQL Server audit records are not written directly to or systematically transferred to a centralized log management system, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-213982" severity="medium" conversionstatus="pass" title="SRG-APP-000356-DB-000315" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If the configuration of SQL Server's auditing is spread across multiple locations in the database management software, or across multiple commands, only loosely related, it is harder to use and takes longer to reconfigure in response to events. 
+      <RawString>If the database is setup to write audit logs using APPLICATION or SECURITY event logs rather than writing to a file, this is Not Applicable.
 
-SQL Server must provide a unified tool for audit configuration.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79225</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the system documentation for a description of how audit records are off-loaded and how local audit log space is managed.  
+Check the server documentation for the SQL Audit file size configurations. Locate the Audit file path and drive. 
  
-If the SQL Server audit records (to include traces used for audit purposes) are not written directly to or systematically transferred to a centralized log management system, this is a finding.</RawString>
+SELECT max_file_size, max_rollover_files, log_file_path AS "Audit Path"  
+FROM sys.server_file_audits 
+ 
+Calculate the space needed as the maximum file size and number of files from the SQL Audit File properties. 
+ 
+If the calculated product of the "max_file_size" times the "max_rollover_files" exceeds the size of the storage location, this is a finding; 
+
+OR if "max_file_size" is set to "0" (Unlimited), this is a finding;
+
+OR if "max_rollover_files" are set to "0" (None) or "2147483647" (Unlimited), this is a finding.</RawString>
     </Rule>
     <Rule id="V-213986" severity="medium" conversionstatus="pass" title="SRG-APP-000374-DB-000322" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If time stamps are not consistently applied and there is no common time reference, it is difficult to perform forensic analysis. 
@@ -1294,7 +1347,7 @@ For SQLCMD, which cannot be configured not to accept a plain-text password, and 
 
 Request evidence that all users of the tool are trained in the importance of not using the plain-text password option and in how to keep the password hidden; and that they adhere to this practice; if not, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-259739" severity="high" conversionstatus="pass" title="SRG-APP-000456-DB-000400" dscresource="None">
+    <Rule id="V-265870" severity="high" conversionstatus="pass" title="SRG-APP-000456-DB-000400" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Unsupported commercial and database systems should not be used because fixes to newly identified bugs will not be implemented by the vendor. The lack of support can result in potential vulnerabilities.
 
 Systems at unsupported servicing levels or releases will not receive security updates for new vulnerabilities, which leaves them subject to exploitation.
@@ -1519,30 +1572,31 @@ SQL Server passwords sent in clear text format across the network are vulnerable
       <LegacyId>V-79195</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>From a command prompt, open SQL Server Configuration Manager by typing "sqlservermanager13.msc", and pressing "ENTER".
+      <RawString>If you are using "Windows Authentication mode" this requirement can be marked as Not Applicable.
 
-Navigate to SQL Server Configuration Manager &gt;&gt; SQL Server Network Configuration. Right-click on Protocols, where there is a placeholder for the SQL Server instance name, and click on “Properties”. 
+From a command prompt, open SQL Server Configuration Manager by typing "sqlservermanager13.msc", and pressing "Enter".
+
+Navigate to SQL Server Configuration Manager &gt;&gt; SQL Server Network Configuration. Right-click on "Protocols", where there is a placeholder for the SQL Server instance name, and click on “Properties”. 
 
 On the "Flags" tab, if "Force Encryption" is set to “NO", this is a finding.
 
 On the "Flags" tab, if "Force Encryption" is set to "YES", examine the certificate used on the "Certificate" tab.
 
-If it is not a DoD approved certificate, or if no certificate is listed, this is a finding.
+If it is not a DOD approved certificate, or if no certificate is listed, this is a finding.
 
 For clustered instances, the Certificate will NOT be shown in the SQL Server Configuration Manager.
 
-1. From a command prompt navigate to the certificate store where the Full Qualified Domain Name (FQDN) certificate is stored, by typing "certlm.msc", and pressing "ENTER".
+1. From a command prompt navigate to the certificate store where the Full Qualified Domain Name (FQDN) certificate is stored, by typing "certlm.msc", and pressing "Enter".
 
-2. In the left side of the window, expand the "Personal" folder, and click "Certificates"
+2. In the left side of the window, expand the "Personal" folder, and click "Certificates".
 
 3. Verify that the Certificate with the FQDN name is issued by the DOD. Double click the certificate, click the "Details" tab and note the value for the Thumbprint.
 
 4. The value for the "Thumbprint" field should match the value in the registry by running regedit and look at "HKLM\SOFTWARE\Microsoft\Microsoft SQL Server\&lt;instance&gt;\MSSQLServer\SuperSocketNetLib\Certificate".
 
-5. This check needs to be run on each node of the cluster.
+5. Run this on each node of the cluster.
 
-If any nodes have a certificate in use by SQL that is not issued or approved by DoD, this is a finding.
-</RawString>
+If any nodes have a certificate in use by SQL that is not issued or approved by DOD, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213973" severity="medium" conversionstatus="pass" title="SRG-APP-000231-DB-000154" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Backup and recovery of the Service Master Key may be critical to the complete recovery of the database. Creating this backup should be one of the first administrative actions performed on the server. Not having this key can lead to loss of data during recovery.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1575,34 +1629,6 @@ If the procedures or evidence does not exist, this is a finding.
 If the procedures do not indicate that a backup of the Master Key is stored in a secure location that is not on the SQL Server, this is a finding.
 
 If procedures do not indicate access restrictions to the Master Key backup, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-213978" severity="medium" conversionstatus="pass" title="SRG-APP-000267-DB-000163" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If SQL Server provides too much information in error logs and administrative messages to the screen, this could lead to compromise. The structure and content of error messages need to be carefully considered by the organization and development team. The extent to which the information system is able to identify and handle error conditions is guided by organizational policy and operational requirements. 
- 
-Some default DBMS error messages can contain information that could aid an attacker in, among others things, identifying the database type, host address, or state of the database. Custom errors may contain sensitive customer information. 
- 
-It is important that detailed error messages be visible only to those who are authorized to view them; that general users receive only generalized acknowledgment that errors have occurred; and that these generalized messages appear only when relevant to the user's task. For example, a message along the lines of, "An error has occurred. Unable to save your changes. If this problem persists, please contact your help desk." would be relevant. A message such as "Warning: your transaction generated a large number of page splits" would likely not be relevant. "ABGQ is not a valid widget code." would be appropriate; but "The INSERT statement conflicted with the FOREIGN KEY constraint "WidgetTransactionFK". The conflict occurred in database "DB7", table "dbo.WidgetMaster", column 'WidgetCode'" would not, as it reveals too much about the database structure.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79217</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Error messages within applications, custom database code (stored procedures, triggers) must be enforced by guidelines and code reviews practices.  
-
-SQL Server generates certain system events and user-defined events to the SQL Server error log. The SQL Server error log can be viewed using SQL Server Management Studio GUI. All users granted the security admin or sysadmin level of permission are able to view the logs. Review the users returned in the following script: 
-
-USE master 
-GO
-SELECT Name 
-FROM syslogins 
-WHERE (sysadmin = 1 or securityadmin = 1) 
-and hasaccess = 1; 
-
-If any non-authorized users have access to the SQL Server Error Log located at Program Files\Microsoft SQL Server\MSSQL.n\MSSQL\LOG, this is a finding. 
-
-In addition, the SQL Server Error Log is also located at Program Files\Microsoft SQL Server\MSSQL.n\MSSQL\LOG\. Review the permissions on this folder to ensure that only authorized users are listed.  
-
-If any non-authorized users have access to the SQL Server Error Log in SQL Server Management Studio, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213984" severity="medium" conversionstatus="pass" title="SRG-APP-000359-DB-000319" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Organizations are required to use a central log management system, so, under normal conditions, the audit space allocated to SQL Server on its own server will not be an issue. However, space will still be required on the server for SQL Server audit records in transit, and, under abnormal conditions, this could fill up. Since a requirement exists to halt processing upon audit failure, a service outage would result. 
@@ -2696,7 +2722,7 @@ If any of these databases exist, this is a finding.</RawString>
 
 By using Windows Authentication, Windows groups can be created at the domain level, and a login can be created on SQL Server for the entire group. Managing access at the domain level can simplify account administration.
 
-OS/enterprise authentication and identification must be used (SRG-APP-000023-DB-000001). Native SQL Server authentication may be used only when circumstances make it unavoidable and must be documented and AO-approved. 
+OS/enterprise authentication and identification must be used (SRG-APP-000023-DB-000001). Native SQL Server authentication may be used only when circumstances make it unavoidable and must be documented and Authorizing Official (AO)-approved. 
  
 The DOD standard for authentication is DOD-approved PKI certificates. Authentication based on User ID and Password may be used only when it is not possible to employ a PKI certificate and requires AO approval. 
  
@@ -2897,35 +2923,8 @@ If the "storage_type" is "FILE" and "max_rollover_files" is greater than zero, t
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-213983" severity="medium" conversionstatus="pass" title="SRG-APP-000357-DB-000316" dscresource="SqlScriptQuery">
-      <Description>&lt;VulnDiscussion&gt;In order to ensure sufficient storage capacity for the audit logs, SQL Server must be able to allocate audit record storage capacity. Although another requirement (SRG-APP-000515-DB-000318) mandates that audit data be off-loaded to a centralized log management system, it remains necessary to provide space on the database server to serve as a buffer against outages and capacity limits of the off-loading mechanism. 
- 
-The task of allocating audit record storage capacity is usually performed during initial installation of SQL Server and is closely associated with the DBA and system administrator roles. The DBA or system administrator will usually coordinate the allocation of physical drive space with the application owner/installer and the application will prompt the installer to provide the capacity information, the physical location of the disk, or both. 
- 
-In determining the capacity requirements, consider such factors as: total number of users; expected number of concurrent users during busy periods; number and type of events being monitored; types and amounts of data being captured; the frequency/speed with which audit records are off-loaded to the central log management system; and any limitations that exist on SQL Server's ability to reuse the space formerly occupied by off-loaded records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <GetScript>CREATE TABLE #AuditFileSize(Name nvarchar (30), Type_Desc nvarchar (30), Max_RollOver_Files int, Max_File_Size int) INSERT INTO #AuditFileSize (Name, Type_Desc) SELECT Name, type_desc FROM sys.server_audits WHERE is_state_enabled = 1IF (SELECT Type_Desc FROM #AuditFileSize) = 'FILE' BEGIN UPDATE #AuditFileSize SET Max_RollOver_Files = (SELECT max_rollover_files FROM sys.server_file_audits), Max_File_Size = (SELECT max_file_size FROM sys.server_file_audits) WHERE Name IS NOT NULL END SELECT * FROM #AuditFileSize DROP TABLE #AuditFileSize</GetScript>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79227</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the database is setup to write audit logs using APPLICATION or SECURITY event logs rather than writing to a file, this is N/A.
-
-Check the server documentation for the SQL Audit file size configurations. Locate the Audit file path and drive. 
- 
-SELECT max_file_size, max_rollover_files, log_file_path AS "Audit Path"  
-FROM sys.server_file_audits 
- 
-Calculate the space needed as the maximum file size and number of files from the SQL Audit File properties. 
- 
-If the calculated product of the "max_file_size" times the "max_rollover_files" exceeds the size of the storage location or if "max_file_size" or "max_rollover_files" are set to "0" (UNLIMITED), this is a finding.</RawString>
-      <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>DECLARE @AuditType nvarchar (30) DECLARE @MaxRollOver int DECLARE @MaxFileSize int SET @AuditType = (SELECT type_desc FROM sys.server_audits WHERE is_state_enabled = 1) SET @MaxRollOver = (SELECT max_rollover_files FROM sys.server_file_audits) SET @MaxFileSize = (SELECT max_file_size FROM sys.server_file_audits) IF @AuditType IN ('APPLICATION LOG','SECURITY LOG') BEGIN PRINT 'Audit is configured for application log or security log.' RETURN END ELSE IF @AuditType = 'FILE' AND @MaxRollOver &lt;= 0 OR @MaxFileSize &lt;= 0 BEGIN RAISERROR ('Audit is max rollover files or max file size is configured incorrectly.',16,1) END ELSE IF @AuditType = 'FILE' AND @MaxRollOver = 2147483647 BEGIN RAISERROR ('Audit max file size is configured for unlimited.',16,1) END ELSE IF @AuditType IS NULL BEGIN RAISERROR ('Audit is not configured',16,1) END ELSE PRINT 'File audit is configured correctly.' </TestScript>
-      <Variable />
-      <VariableValue />
-    </Rule>
     <Rule id="V-213989" severity="medium" conversionstatus="pass" title="SRG-APP-000381-DB-000361" dscresource="SqlScriptQuery">
-      <Description>&lt;VulnDiscussion&gt;Without auditing the enforcement of access restrictions against changes to configuration, it would be difficult to identify attempted attacks and an audit trail would not be available for forensic investigation for after-the-fact actions.  
+      <Description>&lt;VulnDiscussion&gt;Without auditing the enforcement of access restrictions against changes to configuration, it would be difficult to identify attempted attacks and an audit trail would not be available for forensic investigation for after-the-fact actions.
  
 Enforcement actions are the methods or mechanisms used to prevent unauthorized changes to configuration settings. Enforcement action methods may be as simple as denying access to a file based on the application of file permissions (access restriction). Audit items may consist of lists of actions blocked by access restrictions or changes identified after the fact.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -3448,7 +3447,7 @@ Satisfies: SRG-APP-000502-DB-000348&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-79285</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the system documentation to determine if SQL Server is required to audit when data classifications are successfully andn unsuccessfully deleted.
+      <RawString>Review the system documentation to determine if SQL Server is required to audit when data classifications are successfully and unsuccessfully deleted.
  
 If this is not required, this is not a finding.
  
