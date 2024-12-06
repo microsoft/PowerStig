@@ -38,7 +38,7 @@ By using this IS (which includes any device attached to this IS), you consent to
   <OrganizationalSetting id="V-205650.a" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-205650.b" Location="" />
- <!-- Ensure ''V-205703'' -le '600' -and ''V-205703'' -ne '0'-->
+  <!-- Ensure ''V-205703'' -le '600' -and ''V-205703'' -ne '0'-->
   <OrganizationalSetting id="V-205703" PolicyValue="600" />
   <!-- Ensure ''V-205704'' -le '10' -and ''V-205704'' -ne '0'-->
   <OrganizationalSetting id="V-205704" PolicyValue="10" />
