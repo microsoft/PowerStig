@@ -7,7 +7,7 @@
 * Updated Powerstig.xsd schema file [#1386](https://github.com/microsoft/PowerStig/issues/1386)
 * Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 10 [#1387](https://github.com/microsoft/PowerStig/issues/1387)
 * Update Powerstig to parse/apply Microsoft Edge STIG - Ver 2, Rel 2 [#1389](https://github.com/microsoft/PowerStig/issues/1389)
-* Update Powerstig to parse\apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 2 [#1390](https://github.com/microsoft/PowerStig/issues/1390)
+* Update Powerstig to parse/apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 2 [#1390](https://github.com/microsoft/PowerStig/issues/1390)
 * Update Powerstig to parse\apply Microsoft Windows Server 2016 STIG - Ver 2, Rel 9 [#1391](https://github.com/microsoft/PowerStig/issues/1391)
 * Update Powerstig to parse\apply Microsoft Windows 11 STIG - Ver 2, Rel 2 [#1393](https://github.com/microsoft/PowerStig/issues/1393)
 * Update Powerstig to parse\apply U_MS_SQL_Server_2016_Instance_V3R2_Manual_STIG [#1394](https://github.com/microsoft/PowerStig/issues/1394)
