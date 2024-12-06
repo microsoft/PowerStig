@@ -2,7 +2,17 @@
 
 ## [Unreleased]
 
+## [4.24.0] - 2024-12-06
+
+* Update Powerstig to parse\apply Microsoft Windows 11 STIG - Ver 2, Rel 2 [#1393](https://github.com/microsoft/PowerStig/issues/1393)
 * Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 10 [#1387](https://github.com/microsoft/PowerStig/issues/1387)
+
+## [4.23.0] - 2024-05-31
+
+* Update Powerstig to parse\apply Microsoft Windows 10 STIG - Ver 3, Rel 2 [#1342](https://github.com/microsoft/PowerStig/issues/1342)
+
+
+## [4.22.0] - 2024-05-31
 
 * Update Powerstig to parse\apply Oracle Linux 8 STIG - Ver 2, Rel 1 [#1380](https://github.com/microsoft/PowerStig/issues/1380)
 
