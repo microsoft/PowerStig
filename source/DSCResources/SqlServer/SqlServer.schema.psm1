@@ -89,7 +89,10 @@ configuration SqlServer
         [Parameter()]
         [ValidateSet('CAT_I', 'CAT_II', 'CAT_III')]
         [string[]]
-        $SkipRuleSeverity
+        $SkipRuleSeverity,
+
+        [Parameter(Mandatory = $true)]
+        [PSCredential]$SQLPermCredential
     )
 
     ##### BEGIN DO NOT MODIFY #####
@@ -97,15 +100,17 @@ configuration SqlServer
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 15.1.1
+    Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 17.0.0
     . "$resourcePath\SqlServer.ScriptQuery.ps1"
     . "$resourcePath\SqlServer.SqlLogin.ps1"
     . "$resourcePath\SqlServer.SqlProtocol.ps1"
     . "$resourcePath\SqlServer.SqlDatabase.ps1"
     . "$resourcePath\SqlServer.SQLConfiguration.ps1"
+    . "$resourcePath\SqlServer.SqlPermission.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.10.0.0
     . "$resourcePath\Windows.SecurityOption.ps1"
+    . "$resourcePath\SqlServer.UserRightsAssignment.ps1"
 
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.3
     . "$resourcePath\Windows.AccessControl.ps1"

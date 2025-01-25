@@ -38,7 +38,11 @@ configuration SqlServer_config
 
         [Parameter()]
         [object]
-        $OrgSettings
+        $OrgSettings,
+
+        [Parameter()]
+        [PSCredential]
+        $SQLPermCredential
 
     )
 
@@ -46,10 +50,15 @@ configuration SqlServer_config
 
     Node localhost
     {
+        $sqlPermUser = 'PlaceHolderUser'
+        $sqlPermPass = ConvertTo-SecureString "PlaceholderPassword" -AsPlainText -Force
+        $sqlPermCredential = New-Object System.Management.Automation.PSCredential ($sqlPermUser, $sqlPermPass)
+        
         $psboundParams = $PSBoundParameters
         $psboundParams.SqlVersion = $psboundParams['TechnologyVersion']
         $psboundParams.SqlRole = $psboundParams['TechnologyRole']
         $psboundParams.ServerInstance = 'TestServer'
+        $psboundParams.SqlPermCredential = $sqlPermCredential
         $psboundParams.Remove('TechnologyRole')
         $psboundParams.Remove('ConfigurationData')
         $psboundParams.Remove('TechnologyVersion')

@@ -158,16 +158,21 @@ class UserRightRuleConvert : UserRightRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if
-        (
-            $CheckContent -Match 'gpedit\.msc' -and
-            $CheckContent -Match 'User Rights Assignment' -and
-            $CheckContent -NotMatch 'unresolved SIDs' -and
-            $CheckContent -NotMatch 'SQL Server'
-        )
+        if ($CheckContent -Match 'SQL service SID has been granted "Perform volume maintenance tasks"')
         {
             return $true
         }
+            elseif
+            (
+                $CheckContent -Match 'gpedit\.msc' -and
+                $CheckContent -Match 'User Rights Assignment' -and
+                $CheckContent -NotMatch 'unresolved SIDs' -and
+                $CheckContent -NotMatch 'SQL Server'
+            )
+                {
+                    return $true
+                }
+
         return $false
     }
 

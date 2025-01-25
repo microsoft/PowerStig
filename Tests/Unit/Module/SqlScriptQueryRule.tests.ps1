@@ -44,6 +44,8 @@ try
                 Extended Events.  If Extended Events are in use, and cover all the required audit events listed above, this is not a finding.'
                 FixText = 'This will not be used for this type of rule.'
                 EventId = '(14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178)'
+                QueryId = '2'
+                Encrypt = 'Optional'
             }
             Permission = @{
                 GetScript = "SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any endpoint' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc <> 'SERVER_ROLE' ORDER BY who.name;"
@@ -121,6 +123,8 @@ try
                 USE master
                 REVOKE ALTER ANY ENDPOINT TO <'account name'>
                 GO"
+                QueryId = '2'
+                Encrypt = 'Optional'
             }
             SysAdminAccount = @{
                 GetScript = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
@@ -137,6 +141,8 @@ try
                 USE master;
                 GO
                 ALTER LOGIN [sa] WITH NAME = <new name> GO"
+                QueryId = '2'
+                Encrypt = 'Optional'
             }
             Audit = @{
                 GetScript = "IF Not Exists (SELECT name AS 'Audit Name', status_desc AS 'Audit Status', audit_file_path AS 'Current Audit File' FROM sys.dm_server_audit_status WHERE status_desc = 'STARTED') Select 'Doest exist'"
@@ -201,6 +207,8 @@ try
                 SERVER_STATE_CHANGE_GROUP
                 TRACE_CHANGE_GROUP
                 See the supplemental file `"SQL 2016 Audit.sql`". "
+                QueryId = '1'
+                Encrypt = 'Optional'
             }
             PlainSQL = @{
                 GetScript = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
@@ -211,6 +219,8 @@ try
                 If the `"AdventureWorks`" database is present, this is a finding."
                 FixText = "Remove the publicly available `"AdventureWorks`" database from SQL Server by running the following query:
                 DROP DATABASE AdventureWorks"
+                QueryId = '2'
+                Encrypt = 'Optional'
             }
             SaAccountRename = @{
                 GetScript    = "SELECT name FROM sys.server_principals WHERE TYPE = 'S' and name not like '%##%'"
@@ -222,6 +232,8 @@ try
                 FixText      = "Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins &gt;&gt; click 'sa' account name.
                 Hit &lt;F2&gt; while the name is highlighted in order to edit the name.
                 Rename the 'sa' account."
+                QueryId = '2'
+                Encrypt = 'Optional'
             }
             TraceFileLimit = @{
                 GetScript    = "SELECT * FROM ::fn_trace_getinfo(NULL)"
@@ -233,6 +245,8 @@ try
                 If auditing will outgrow the space reserved for logging before being overwritten, this is a finding."
                 FixText      = "Configure the maximum number of audit log files that are to be generated, staying within the number of logs the system was sized to support.
                 Update the max_files parameter of the audits to ensure the correct number of files is defined."
+                QueryId = '2'
+                Encrypt = 'Optional'
             }
             ShutdownOnError = @{
                 GetScript    = "SELECT * FROM ::fn_trace_getinfo(NULL)"
@@ -262,6 +276,8 @@ try
                 FixText      = "If a trace does not exist, create a trace specification that complies with requirements.
                 If a trace exists, but is not set to SHUTDOWN_ON_ERROR, modify the SQL Server audit setting to immediately shutdown the database in the event of an audit failure by setting property 1 to a value of 4 or 6 for the audit.
                 (See the SQL Server Help page for sys.sp_trace_create for implementation details.)"
+                QueryId = '2'
+                Encrypt = 'Optional'
             }
             ViewAnyDatabase = @{
                 GetScript    = "SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'View any database' AND who.type_desc = 'SERVER_ROLE' ORDER BY who.name"
@@ -340,6 +356,8 @@ try
                 "
                 FixText      = "Remove the `"View any database`" permission access from the role that is not authorized by executing the following query:
                 REVOKE View any database TO &lt;'role name'&gt;"
+                QueryId = '2'
+                Encrypt = 'Optional'
             }
             ChangeDatabaseOwner= @{
                 GetScript    = "select suser_sname(owner_sid) AS 'Owner' from sys.databases where name = `$(Database)"
@@ -358,6 +376,8 @@ try
                 Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Databases &gt;&gt; right click &lt;'database name'&gt; &gt;&gt; Properties &gt;&gt; Files.
                 Select new database `"Owner`":
                 Navigate to click on […] &gt;&gt; Select new Database Owner &gt;&gt; Browse… &gt;&gt; click on box to indicate account &gt;&gt; &lt;'OK'&gt; &gt;&gt; &lt;'OK'&gt; &gt;&gt; &lt;'OK'&gt;"
+                QueryId = '2'
+                Encrypt = 'Optional'
             }
             AuditShutDownOnError = @{
                 GetScript    = 'SELECT on_failure_desc FROM sys.server_audits'
@@ -393,6 +413,8 @@ try
                 GO 
                 ALTER SERVER AUDIT [AuditNameHere] WITH (STATE = ON); 
                 GO  '
+                QueryId = '2'
+                Encrypt = 'Optional'
             }
             AuditFileSize = @{
                 GetScript    = 'CREATE TABLE #AuditFileSize (Name nvarchar (30),Type_Desc nvarchar (30),Max_RollOver_Files int) INSERT INTO #AuditFileSize (Name, Type_Desc) SELECT Name, type_desc FROM sys.server_audits WHERE is_state_enabled = 1 IF (SELECT Type_Desc FROM #AuditFileSize) = ''FILE'' BEGIN UPDATE #AuditFileSize SET Max_RollOver_Files = (SELECT max_rollover_files FROM sys.server_file_audits) WHERE Name IS NOT NULL END SELECT * FROM #AuditFileSize DROP TABLE #AuditFileSize'
@@ -424,6 +446,8 @@ try
                 GO 
                 ALTER SERVER AUDIT [AuditName] WITH (STATE = ON); 
                 GO  '
+                QueryId = '2'
+                Encrypt = 'Optional'
             }
         }
         #endregion
@@ -435,6 +459,8 @@ try
                 $ruleType = Get-SqlRuleType -CheckContent ($sqlScriptQueryRule.$($rule).CheckContent)
                 $checkContent = Format-RuleText -RuleText $sqlScriptQueryRule.$($ruleType).CheckContent
                 $fixText = Format-RuleText -RuleText $sqlScriptQueryRule.$($ruleType).FixText
+                $queryId = Get-SqlScriptQueryId -CheckContent $sqlScriptQueryRule.$($ruleType).QueryId
+                $encrypt = Get-EncryptOption -CheckContent $sqlScriptQueryRule.$($ruleType).Encrypt
 
                 Context "'$ruleType' Get-SqlRuleType" {
                     It "Should return $($rule)" {
@@ -466,6 +492,28 @@ try
                         $checkContent = Split-TestStrings -CheckContent $sqlScriptQueryRule.$($ruleType).CheckContent
                         $result = & Get-$($ruleType)SetScript -FixText $fixText -CheckContent $checkContent
                         $result | Should be $setScript
+                    }
+                }
+
+                Context 'Sql Query Id' {
+                    It 'Should return a query id'{
+                        $result = Get-SqlScriptQueryId -CheckContent $sqlScriptQueryRule.$($ruleType).CheckContent
+                        if ($rule -eq 'Audit') {
+                            $queryId = '1'
+                            $queryId | Should be '1'
+                        }
+                            else {
+                                $result | Should not be '1'
+                            }
+                    }
+                }
+
+                Context 'Encrypt Option' {
+                    $encrypt = $sqlScriptQueryRule.$($ruleType).Encrypt
+
+                    It 'Should return a encrypt option'{
+                        $result = Get-EncryptOption -CheckContent $sqlScriptQueryRule.$($ruleType).Encrypt
+                        $result | Should be $encrypt
                     }
                 }
             }

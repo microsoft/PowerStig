@@ -44,7 +44,7 @@
         @{ModuleName = 'GPRegistryPolicyDsc'; ModuleVersion = '1.3.1'},
         @{ModuleName = 'PSDscResources'; ModuleVersion = '2.12.0.0'},
         @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.10.0.0'},
-        @{ModuleName = 'SqlServerDsc'; ModuleVersion = '15.1.1'},
+        @{ModuleName = 'SqlServerDsc'; ModuleVersion = '17.0.0'},
         @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '2.2.0'},
         @{ModuleName = 'xDnsServer'; ModuleVersion = '1.16.0.0'},
         @{ModuleName = 'xWebAdministration'; ModuleVersion = '3.2.0'},

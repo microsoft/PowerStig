@@ -6,31 +6,24 @@ using module .\..\Rule\Rule.psm1
 
 <#
     .SYNOPSIS
-        An Account Policy Rule object
+        SQL Server Permission rule
     .DESCRIPTION
-        The SqlScriptQueryRule class is used to maange the Account Policy Settings.
-    .PARAMETER GetScript
-        The Get script content
-    .PARAMETER TestScript
-        The test script content
-    .PARAMETER SetScript
-        The set script content
+        The SqlPermissionRule class is used to manage SQL permissions
+    .PARAMETER Name
+        The login name in SQL
+    .PARAMETER Permission
+        The permission to grant or revoke
 #>
-class SqlScriptQueryRule : Rule
+class SqlPermissionRule : Rule
 {
-    [string] $GetScript
-    [string] $TestScript
-    [string] $SetScript <#(ExceptionValue)#>
-    [string[]] $Variable
-    [String[]] $VariableValue
-    [string] $QueryId
-    [string] $Encrypt
+    [string] $Name
+    [array] $Permission <#(ExceptionValue)#>
 
     <#
         .SYNOPSIS
             Default constructor to support the AsRule cast method
     #>
-    SqlScriptQueryRule ()
+    SqlPermissionRule ()
     {
     }
 
@@ -40,7 +33,7 @@ class SqlScriptQueryRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    SqlScriptQueryRule ([xml.xmlelement] $Rule) : base ($Rule)
+    SqlPermissionRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -52,7 +45,7 @@ class SqlScriptQueryRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    SqlScriptQueryRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
+    SqlPermissionRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

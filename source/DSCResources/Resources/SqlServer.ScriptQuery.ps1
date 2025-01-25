@@ -33,6 +33,8 @@ foreach ($instance in $ServerInstance)
                     TestQuery      = $rule.TestScript
                     SetQuery       = $rule.SetScript
                     Variable       = Format-SqlScriptVariable -Database $db -Variable $($rule.Variable) -VariableValue $($rule.VariableValue)
+                    Id             = $rule.QueryId
+                    Encrypt        = $rule.Encrypt
                 }
             }
         }
@@ -51,6 +53,8 @@ foreach ($instance in $ServerInstance)
                     TestQuery      = $rule.TestScript
                     SetQuery       = $rule.SetScript
                     Variable       = Format-SqlScriptVariable -Variable $($rule.Variable) -VariableValue $($rule.VariableValue)
+                    Id             = $rule.QueryId
+                    Encrypt        = $rule.Encrypt
                 }
                 continue
             }
@@ -62,6 +66,8 @@ foreach ($instance in $ServerInstance)
                 GetQuery       = $rule.GetScript
                 TestQuery      = $rule.TestScript
                 SetQuery       = $rule.SetScript
+                Id             = $rule.QueryId
+                Encrypt        = $rule.Encrypt
             }
         }
     }

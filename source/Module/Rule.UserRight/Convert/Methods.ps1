@@ -154,6 +154,10 @@ function Get-UserRightIdentity
 
         [void] $return.Add("NULL")
     }
+    elseif ($CheckContent -Match 'SQL service SID has been granted "Perform volume maintenance tasks"')
+    {
+        [void] $return.Add("NT SERVICE\MSSQLSERVER")
+    }
 
     $return
 }
