@@ -32,7 +32,15 @@ function Get-OptionName
         {$PSItem -Match "EXEC sp_configure 'filestream access level'"}
         {
             $optionName = "filestream access level"
-        }       
+        }
+        {$PSItem -Match "EXEC sys.sp_configure N'user connections'"}
+        {
+            $optionName = "user connections"
+        }
+        {$PSItem -Match "use of CLR assemblies"}
+        {
+            $optionName = "clr enabled"
+        }
     }
 
     return $optionName
@@ -63,6 +71,10 @@ function Set-OptionValue
         {$PSItem -Match "WHERE name = 'common criteria compliance enabled'"}
         {
             $optionValue = "1"
+        }
+        {$PSItem -Match "EXEC sys.sp_configure N'user connections'"}
+        {
+            $optionValue = "3000"
         }
         default
         {

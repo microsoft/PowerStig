@@ -205,6 +205,44 @@ try
                 If the value of "config_value" is "0", this is not a finding. 
                 
                 If the value of "config_value" is "1", review the system documentation to determine whether the use of "Replication Xps" is required and authorized. If it is not authorized, this is a finding.'
+            },
+            @{
+                OptionName                  = 'user connections'
+                OptionValue                 = '3000'
+                OrganizationValueRequired = $false
+                CheckContent                = 'Review the system documentation to determine whether any concurrent session limits have been defined. If it does not, assume a limit of 10 for database administrators and 2 for all other users. 
+ 
+                If a mechanism other than a logon trigger is used, verify its correct operation by the appropriate means. If it does not work correctly, this is a finding.
+
+                Due to excessive CPU consumption when utilizing a logon trigger, an alternative method of limiting concurrent sessions is setting the max connection limit within SQL Server to an appropriate value. This serves to block a distributed denial-of-service (DDOS) attack by limiting the attacker''s connections while allowing a database administrator to still force a SQL connection.
+
+                In SQL Server Management Studio''s Object Explorer tree:
+                Right-click on the Server Name >> Select Properties >> Select Connections Tab
+
+                OR
+
+                Run the query:
+                EXEC sys.sp_configure N''user connections''
+
+                If the max connection limit is set to 0 (unlimited) or does not match the documented value, this is a finding.
+                
+                Otherwise, determine if a logon trigger exists:  
+                
+                In SQL Server Management Studio''s Object Explorer tree:  
+                Expand [SQL Server Instance] >> Server Objects >> Triggers  
+                
+                OR 
+                
+                Run the query:  
+                SELECT name FROM master.sys.server_triggers;  
+                
+                If no triggers are listed, this is a finding.  
+                
+                If triggers are listed, identify the trigger(s) limiting the number of concurrent sessions per user. If none are found, this is a finding. If they are present but disabled, this is a finding.  
+                
+                Examine the trigger source code for logical correctness and for compliance with the documented limit(s). If errors or variances exist, this is a finding.
+                
+                Verify that the system does execute the trigger(s) each time a user session is established. If it does not operate correctly for all types of user, this is a finding.'
             }
         )
         #endregion

@@ -58,5 +58,6 @@ data dscResourceModule
         SqlLoginRule                         = SqlServerDsc
         SqlProtocolRule                      = SqlServerDsc
         SqlDatabaseRule                      = SqlServerDsc
+        SqlPermissionRule                    = SqlServerDsc
 '@
 }

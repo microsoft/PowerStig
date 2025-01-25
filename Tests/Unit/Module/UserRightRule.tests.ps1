@@ -221,6 +221,26 @@ try
                 The requirement must be documented with the ISSO.
 
                 The application account must meet requirements for application account passwords, such as length (WN16-00-000060) and required frequency of changes (WN16-00-000070).'
+            },
+            @{
+                DisplayName                 = 'Perform volume maintenance tasks'
+                Constant                    = 'SeManageVolumePrivilege'
+                Identity                    = 'NT SERVICE\MSSQLSERVER'
+                Force                       = 'false'
+                OrganizationValueRequired   = $false
+                CheckContent                = 'Review system configuration to determine whether IFI support has been enabled (by default in SQL Server 2016).
+
+                Start >> Control Panel >> System and Security >> Administrative Tools >> Local Security Policy >> Local Policies >> User Rights Assignment >> Perform volume maintenance tasks
+
+                The default SQL service account for a default instance is NT SERVICE\MSSQLSERVER or for a named instance is NT SERVICE\MSSQL$InstanceName.
+
+                If the SQL service account or SQL service SID has been granted "Perform volume maintenance tasks" Local Rights Assignment, this means that Instant File Initialization (IFI) is enabled.
+
+                Review the system documentation to determine if Instant File Initialization (IFI) is required.
+
+                If IFI is enabled but not documented as required, this is a finding.
+
+                If IFI is not enabled, this is not a finding.'
             }
         )
         #endregion

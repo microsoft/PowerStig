@@ -42,6 +42,7 @@ using module .\..\..\Rule.SqlServerConfiguration\Convert\SqlServerConfigurationR
 using module .\..\..\Rule.SqlLogin\Convert\SqlLoginRule.Convert.psm1
 using module .\..\..\Rule.SqlProtocol\Convert\SqlProtocolRule.Convert.psm1
 using module .\..\..\Rule.SqlDatabase\Convert\SqlDatabaseRule.Convert.psm1
+using module .\..\..\Rule.SqlPermission\Convert\SqlPermissionRule.Convert.psm1
 
 # Header
 
@@ -242,6 +243,12 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.AddRange(
                     [SplitFactory]::XccdfRule($Rule, 'SqlDatabaseRuleConvert')
+                )
+            }
+            {[SqlPermissionRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SqlPermissionRuleConvert]::new($Rule).AsRule()
                 )
             }
             {[UserRightRuleConvert]::Match($PSItem)}

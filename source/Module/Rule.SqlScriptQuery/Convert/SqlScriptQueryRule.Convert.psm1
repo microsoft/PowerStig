@@ -47,6 +47,8 @@ class SqlScriptQueryRuleConvert : SqlScriptQueryRule
         $this.SetTestScript($ruleType)
         $this.SetSetScript($ruleType, $fixText)
         $this.SetVariable($ruleType)
+        $this.SetQueryId($ruleType)
+        $this.SetEncrypt($ruleType)
         if ($null -ne $this.Variable)
         {
             $this.SetOrganizationValueTestString($ruleType)
@@ -143,6 +145,42 @@ class SqlScriptQueryRuleConvert : SqlScriptQueryRule
 
     <#
         .SYNOPSIS
+            Creates a unique ID for the SqlScriptQuery resource.
+        .DESCRIPTION
+            Gets the id string to be used in the SqlScriptQuery resource
+        .PARAMETER RuleType
+            The type of rule to get the variable string for.
+    #>
+    [void] SetQueryId ([string] $RuleType)
+    {
+        $thisId = Get-SqlScriptQueryId -CheckContent $this.SplitCheckContent
+
+        if (-not $this.SetStatus($thisId))
+        {
+            $this.set_QueryId($thisId)
+        }
+    }
+
+    <#
+        .SYNOPSIS
+            Sets the encrypt option for the SqlScriptQuery resource.
+        .DESCRIPTION
+            Gets the encrypt string to be used in the SqlScriptQuery resource
+        .PARAMETER RuleType
+            The type of rule to get the variable string for.
+    #>
+    [void] SetEncrypt ([string] $RuleType)
+    {
+        $thisId = Get-EncryptOption -CheckContent $this.SplitCheckContent
+
+        if (-not $this.SetStatus($thisId))
+        {
+            $this.set_Encrypt($thisId)
+        }
+    }
+
+    <#
+        .SYNOPSIS
             Extracts the rule type from the check-content and sets the value
         .DESCRIPTION
             Gets the rule type from the xccdf content and sets the value
@@ -218,7 +256,7 @@ class SqlScriptQueryRuleConvert : SqlScriptQueryRule
                 $CheckContent -Match "SCHEMA_OBJECT_CHANGE_GROUP" -or #V-79267,79269,79279,79281
                 $CheckContent -Match "SUCCESSFUL_LOGIN_GROUP" -or #V-79287,79297
                 $CheckContent -Match "FAILED_LOGIN_GROUP" -or #V-79289
-                $CheckContent -Match "d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP'" -or #V-213995,213938,213939,213997,214005,214006,214011,214012,214019,214020
+                $CheckContent -Match "d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP'" -or #V-213995,213998,213939,213997,214005,214006,214011,214012,214019,214020
                 $CheckContent -Match "status_desc = 'STARTED'" -or #V-79141
                 $CheckContent -Match "SHUTDOWN SERVER INSTANCE" -or #V-213942
                 $CheckContent -Match """max_rollover_files"" is greater than zero" -or #V-213943

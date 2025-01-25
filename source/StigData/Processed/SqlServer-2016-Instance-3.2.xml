@@ -1,54 +1,5 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 24 Oct 2024 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.2" created="12/4/2024">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 24 Oct 2024 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.2" created="1/13/2025">
   <DocumentRule dscresourcemodule="None">
-    <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful denial-of-service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions is helpful in reducing these risks.
-  
-This requirement addresses concurrent session control for a single account. It does not address concurrent sessions by a single user via multiple system accounts.
-  
-The capability to limit the number of concurrent sessions per user must be configured in or added to SQL Server (for example, by use of a logon trigger), when this is technically feasible. Note that it is not sufficient to limit sessions via a web server or application server alone, because legitimate users and adversaries can potentially connect to SQL Server by other means. 
-  
-The organization will need to define the maximum number of concurrent sessions by account type, by account, or a combination thereof. In deciding on the appropriate number, it is important to consider the work requirements of the various types of users. For example, 2 might be an acceptable limit for general users accessing the database via an application; but 10 might be too few for a database administrator using a database management GUI tool, where each query tab and navigation pane may count as a separate session.
-  
-(Sessions may also be referred to as connections or logons, which for the purposes of this requirement are synonyms.)&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79119</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the system documentation to determine whether any concurrent session limits have been defined. If it does not, assume a limit of 10 for database administrators and 2 for all other users. 
- 
-If a mechanism other than a logon trigger is used, verify its correct operation by the appropriate means. If it does not work correctly, this is a finding.
-
-Due to excessive CPU consumption when utilizing a logon trigger, an alternative method of limiting concurrent sessions is setting the max connection limit within SQL Server to an appropriate value. This serves to block a distributed denial-of-service (DDOS) attack by limiting the attacker's connections while allowing a database administrator to still force a SQL connection.
-
-In SQL Server Management Studio's Object Explorer tree:
-Right-click on the Server Name &gt;&gt; Select Properties &gt;&gt; Select Connections Tab
-
-OR
-
-Run the query:
-EXEC sys.sp_configure N'user connections'
-
-If the max connection limit is set to 0 (unlimited) or does not match the documented value, this is a finding.
- 
-Otherwise, determine if a logon trigger exists:  
- 
-In SQL Server Management Studio's Object Explorer tree:  
-Expand [SQL Server Instance] &gt;&gt; Server Objects &gt;&gt; Triggers  
- 
-OR 
- 
-Run the query:  
-SELECT name FROM master.sys.server_triggers;  
- 
-If no triggers are listed, this is a finding.  
- 
-If triggers are listed, identify the trigger(s) limiting the number of concurrent sessions per user. If none are found, this is a finding. If they are present but disabled, this is a finding.  
- 
-Examine the trigger source code for logical correctness and for compliance with the documented limit(s). If errors or variances exist, this is a finding.
- 
-Verify that the system does execute the trigger(s) each time a user session is established. If it does not operate correctly for all types of user, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-213930" severity="high" conversionstatus="pass" title="SRG-APP-000023-DB-000001" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Enterprise environments make account management for applications and databases challenging and complex. A manual process for account management functions adds the risk of a potential oversight or other error. Managing accounts for the same person in multiple places is inefficient and prone to problems with consistency and synchronization. 
  
@@ -677,29 +628,6 @@ For each user database where encryption is required, verify that encryption is i
  
 Verify that there are physical security measures, operating system access control lists and organizational controls appropriate to the sensitivity level of the data in the database(s). If not, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-213976" severity="medium" conversionstatus="pass" title="SRG-APP-000243-DB-000373" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The purpose of this control is to prevent information, including encrypted representations of information, produced by the actions of a prior user/role (or the actions of a process acting on behalf of a prior user/role) from being available to any current user/role (or current process) that obtains access to a shared system resource (e.g., registers, main memory, secondary storage) after the resource has been released back to the information system. Control of information in shared resources is also referred to as object reuse.
-
-When Instant File Initialization (IFI) is in use, the deleted disk content is overwritten only as new data is written to the files. For this reason, the deleted content might be accessed by an unauthorized principal until some other data writes on that specific area of the data file.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79213</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review system configuration to determine whether IFI support has been enabled (by default in SQL Server 2016).
-
-Start &gt;&gt; Control Panel &gt;&gt; System and Security &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; Perform volume maintenance tasks
-
-The default SQL service account for a default instance is NT SERVICE\MSSQLSERVER or for a named instance is NT SERVICE\MSSQL$InstanceName.
-
-If the SQL service account or SQL service SID has been granted "Perform volume maintenance tasks" Local Rights Assignment, this means that Instant File Initialization (IFI) is enabled.
-
-Review the system documentation to determine if Instant File Initialization (IFI) is required.
-
-If IFI is enabled but not documented as required, this is a finding.
-
-If IFI is not enabled, this is not a finding.</RawString>
-    </Rule>
     <Rule id="V-213977" severity="medium" conversionstatus="pass" title="SRG-APP-000243-DB-000374" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;SQL Server must prevent unauthorized and unintended information transfer via shared system resources. Permitting only SQL Server processes and authorized, administrative users to have access to the files where the database resides helps ensure that those files are not shared inappropriately and are not open to backdoor access and manipulation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1035,25 +963,6 @@ Verify that the protocols are enabled for the instance.
  
 If any ports or protocols are used that are not specifically approved in the server documentation, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-213991" severity="medium" conversionstatus="pass" title="SRG-APP-000431-DB-000388" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Database management systems can maintain separate execution domains for each executing process by assigning each process a separate address space.  
- 
-Each process has a distinct address space so that communication between processes is controlled through the security functions, and one process cannot modify the executing code of another process.  
- 
-Maintaining separate execution domains for executing processes can be achieved, for example, by implementing separate address spaces.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79243</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the server documentation to determine whether use of CLR assemblies is required. Run the following query to determine whether CLR is enabled for the instance: 
- 
-SELECT name, value, value_in_use 
-FROM sys.configurations 
-WHERE name = 'clr enabled' 
- 
-If "value_in_use" is a "1" and CLR is not required, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-213992" severity="medium" conversionstatus="pass" title="SRG-APP-000431-DB-000388" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management systems can maintain separate execution domains for each executing process by assigning each process a separate address space. Each process has a distinct address space so that communication between processes is controlled through the security functions, and one process cannot modify the executing code of another process. Maintaining separate execution domains for executing processes can be achieved, for example, by implementing separate address spaces.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1382,43 +1291,6 @@ If the installed version or any of the software components are not supported by 
     </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
-    <Rule id="V-213934" severity="medium" conversionstatus="pass" title="SRG-APP-000080-DB-000063" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message.  
- 
-Non-repudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database. 
- 
-In designing a database, the organization must define the types of data and the user actions that must be protected from repudiation. The implementation must then include building audit features into the application data tables and configuring the DBMS's audit tools to capture the necessary audit trail. Design and implementation also must ensure that applications pass individual user identification to the DBMS, even where the application connects to the DBMS with a standard, shared account. 
- 
-Any user with enough access to the server can execute a task that will be run as NT AUTHORITY\SYSTEM either using task scheduler or other tools. At this point, NT AUTHORITY\SYSTEM essentially becomes a shared account because the operating system and SQL Server are unable to determine who created the process. 
- 
-Prior to SQL Server 2012, NT AUTHORITY\SYSTEM was a member of the sysadmin role by default. This allowed jobs/tasks to be executed in SQL Server without the approval or knowledge of the DBA because it looked like operating system activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79129</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Execute the following queries. The first query checks for Clustering and Availability Groups being provisioned in the Database Engine. The second query lists permissions granted to the Local System account.
-
-SELECT
-    SERVERPROPERTY('IsClustered') AS [IsClustered],
-    SERVERPROPERTY('IsHadrEnabled') AS [IsHadrEnabled]
-
-EXECUTE AS LOGIN = 'NT AUTHORITY\SYSTEM'
-
-SELECT * FROM fn_my_permissions(NULL, 'server')
-
-REVERT
-
-GO
-
- 
-If IsClustered returns 1, IsHadrEnabled returns 0, and any permissions have been granted to the Local System account beyond "CONNECT SQL", "VIEW SERVER STATE", and "VIEW ANY DATABASE", this is a finding.
- 
-If IsHadrEnabled returns 1 and any permissions have been granted to the Local System account beyond "CONNECT SQL", "CREATE AVAILABILITY GROUP", "ALTER ANY AVAILABILITY GROUP", "VIEW SERVER STATE", and "VIEW ANY DATABASE", this is a finding.
- 
-If both IsClustered and IsHadrEnabled return 0 and any permissions have been granted to the Local System account beyond "CONNECT SQL" and "VIEW ANY DATABASE", this is a finding.
-</RawString>
-    </Rule>
     <Rule id="V-213935" severity="medium" conversionstatus="pass" title="SRG-APP-000080-DB-000063" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message.  
  
@@ -2764,6 +2636,47 @@ Navigate to Start &gt;&gt; All Programs &gt;&gt; Administrative Tools &gt;&gt; L
 Ensure the DISA Windows Password Policy is set on the SQL Server member server. If any are not, this is a finding.</RawString>
     </Rule>
   </SqlLoginRule>
+  <SqlPermissionRule dscresourcemodule="SqlServerDsc">
+    <Rule id="V-213934" severity="medium" conversionstatus="pass" title="SRG-APP-000080-DB-000063" dscresource="SqlPermission">
+      <Description>&lt;VulnDiscussion&gt;Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message.  
+ 
+Non-repudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database. 
+ 
+In designing a database, the organization must define the types of data and the user actions that must be protected from repudiation. The implementation must then include building audit features into the application data tables and configuring the DBMS's audit tools to capture the necessary audit trail. Design and implementation also must ensure that applications pass individual user identification to the DBMS, even where the application connects to the DBMS with a standard, shared account. 
+ 
+Any user with enough access to the server can execute a task that will be run as NT AUTHORITY\SYSTEM either using task scheduler or other tools. At this point, NT AUTHORITY\SYSTEM essentially becomes a shared account because the operating system and SQL Server are unable to determine who created the process. 
+ 
+Prior to SQL Server 2012, NT AUTHORITY\SYSTEM was a member of the sysadmin role by default. This allowed jobs/tasks to be executed in SQL Server without the approval or knowledge of the DBA because it looked like operating system activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79129</LegacyId>
+      <Name>NT AUTHORITY\SYSTEM</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Permission>CONNECTSQL,VIEWANYDATABASE</Permission>
+      <RawString>Execute the following queries. The first query checks for Clustering and Availability Groups being provisioned in the Database Engine. The second query lists permissions granted to the Local System account.
+
+SELECT
+    SERVERPROPERTY('IsClustered') AS [IsClustered],
+    SERVERPROPERTY('IsHadrEnabled') AS [IsHadrEnabled]
+
+EXECUTE AS LOGIN = 'NT AUTHORITY\SYSTEM'
+
+SELECT * FROM fn_my_permissions(NULL, 'server')
+
+REVERT
+
+GO
+
+ 
+If IsClustered returns 1, IsHadrEnabled returns 0, and any permissions have been granted to the Local System account beyond "CONNECT SQL", "VIEW SERVER STATE", and "VIEW ANY DATABASE", this is a finding.
+ 
+If IsHadrEnabled returns 1 and any permissions have been granted to the Local System account beyond "CONNECT SQL", "CREATE AVAILABILITY GROUP", "ALTER ANY AVAILABILITY GROUP", "VIEW SERVER STATE", and "VIEW ANY DATABASE", this is a finding.
+ 
+If both IsClustered and IsHadrEnabled return 0 and any permissions have been granted to the Local System account beyond "CONNECT SQL" and "VIEW ANY DATABASE", this is a finding.
+</RawString>
+    </Rule>
+  </SqlPermissionRule>
   <SqlProtocolRule dscresourcemodule="SqlServerDsc">
     <Rule id="V-213961" severity="medium" conversionstatus="pass" title="SRG-APP-000142-DB-000094" dscresource="SqlProtocol">
       <Description>&lt;VulnDiscussion&gt;In order to prevent unauthorized connection of devices, unauthorized transfer of information, or unauthorized tunneling (i.e., embedding of data types within data types), organizations must disable or restrict unused or unnecessary protocols on information systems. 
@@ -2797,11 +2710,13 @@ To aid in diagnosis, it is necessary to keep track of failed attempts in additio
 
 Satisfies: SRG-APP-000091-DB-000066&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79139</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit the retrieval of privilege/permission/role membership information. 
  
 If SQL Server is not required to audit the retrieval of privilege/permission/role membership information, this is not a finding. 
@@ -2835,11 +2750,13 @@ If the SCHEMA_OBJECT_ACCESS_GROUP is not returned in an active audit, this is a 
     <Rule id="V-213940" severity="medium" conversionstatus="pass" title="SRG-APP-000092-DB-000208" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Session auditing is for use when a user's activities are under investigation. To be sure of capturing all activity during those periods when session auditing is in use, it needs to be in operation for the whole time SQL Server is running.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>IF Not Exists (SELECT name AS 'Audit Name', status_desc AS 'Audit Status', audit_file_path AS 'Current Audit File' FROM sys.dm_server_audit_status WHERE status_desc = 'STARTED') Select 'Doest exist'</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79141</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>ac6ac2ec-c99a-4b24-8f20-afbe958d6035</QueryId>
       <RawString>When Audits are enabled, they start up when the instance starts. 
 https://msdn.microsoft.com/en-us/library/cc280386.aspx#Anchor_2 
  
@@ -2866,11 +2783,13 @@ When the need for system availability does not outweigh the need for a complete 
  
 Systems where audit trail completeness is paramount will most likely be at a lower MAC level than MAC I; the final determination is the prerogative of the application owner, subject to Authorizing Official concurrence. In any case, sufficient auditing resources must be allocated to avoid a shutdown in all but the most extreme situations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT on_failure_desc FROM sys.server_audits</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79147</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>0164cc29-e1a3-4cf7-a4ea-fa426fad629c</QueryId>
       <RawString>If the system documentation indicates that availability takes precedence over audit trail completeness, this is not applicable (NA).  
  
 If SQL Server Audit is in use, review the defined server audits by running the statement:  
@@ -2896,11 +2815,13 @@ When availability is an overriding concern, approved actions in response to an a
  
 Systems where availability is paramount will most likely be MAC I; the final determination is the prerogative of the application owner, subject to Authorizing Official concurrence. In any case, sufficient auditing resources must be allocated to avoid audit data loss in all but the most extreme situations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>CREATE TABLE #AuditFileSize (Name nvarchar (30),Type_Desc nvarchar (30),Max_RollOver_Files int) INSERT INTO #AuditFileSize (Name, Type_Desc) SELECT Name, type_desc FROM sys.server_audits WHERE is_state_enabled = 1 IF (SELECT Type_Desc FROM #AuditFileSize) = 'FILE' BEGIN UPDATE #AuditFileSize SET Max_RollOver_Files = (SELECT max_rollover_files FROM sys.server_file_audits) WHERE Name IS NOT NULL END SELECT * FROM #AuditFileSize DROP TABLE #AuditFileSize</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79149</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>0b494fe5-c458-4827-96aa-f5bfabcf62c7</QueryId>
       <RawString>If the system documentation indicates that availability does not take precedence over audit trail completeness, this is not applicable (NA). 
 
 Execute the following query:
@@ -2928,11 +2849,13 @@ If the "storage_type" is "FILE" and "max_rollover_files" is greater than zero, t
  
 Enforcement actions are the methods or mechanisms used to prevent unauthorized changes to configuration settings. Enforcement action methods may be as simple as denying access to a file based on the application of file permissions (access restriction). Audit items may consist of lists of actions blocked by access restrictions or changes identified after the fact.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_ACCESS_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79239</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured to capture denied actions and started by executing the following query:
 
 SELECT name AS 'Audit Name',
@@ -3035,11 +2958,13 @@ To aid in diagnosis, it is necessary to keep track of failed attempts in additio
 
 Satisfies: SRG-APP-000492-DB-000332, SRG-APP-000492-DB-000333&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-213939</DuplicateOf>
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79251</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit the retrieval of when security objects are accessed.
 
 If this is not required, this is not a finding. 
@@ -3081,11 +3006,13 @@ To aid in diagnosis, it is necessary to keep track of failed attempts in additio
 
 Satisfies: SRG-APP-000494-DB-000344&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-213939</DuplicateOf>
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79257</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit when data classifications are both successfully and unsuccessfully retrieved. 
  
 If this is not required, this is not a finding. 
@@ -3127,11 +3054,13 @@ To aid in diagnosis, it is necessary to keep track of failed attempts in additio
 
 Satisfies: SRG-APP-000495-DB-000326&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79261</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Check that SQL Server Audit is being used for the STIG compliant audit.
 
 Determine if an audit is configured and started by executing the following query:
@@ -3192,11 +3121,13 @@ To aid in diagnosis, it is necessary to keep track of failed attempts in additio
 
 Satisfies: SRG-APP-000495-DB-000328&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-214000</DuplicateOf>
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79265</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Check that SQL Server Audit is being used for the STIG compliant audit.
 
 Determine if an audit is configured and started by executing the following query:
@@ -3255,11 +3186,13 @@ To aid in diagnosis, it is necessary to keep track of failed attempts in additio
 
 Satisfies: SRG-APP-000496-DB-000334&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79269</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query: 
  
 SELECT name AS 'Audit Name', 
@@ -3295,11 +3228,13 @@ For detailed information on categorizing information, refer to FIPS Publication 
 
 Satisfies: SRG-APP-000498-DB-000346&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-213939</DuplicateOf>
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79273</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit when data classifications are successfully and unsuccessfully modified. 
  
 If this is not required, this is not a finding.
@@ -3339,11 +3274,13 @@ In an SQL environment, deleting permissions is typically done via the REVOKE or 
  
 To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-214000</DuplicateOf>
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79277</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Check that SQL Server Audit is being used for the STIG compliant audit. 
 Determine if an audit is configured and started by executing the following query. If no records are returned, this is a finding. 
 
@@ -3402,11 +3339,13 @@ To aid in diagnosis, it is necessary to keep track of failed attempts in additio
 
 Satisfies: SRG-APP-000501-DB-000336&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-214004</DuplicateOf>
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79281</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query:
  
 SELECT name AS 'Audit Name', 
@@ -3442,11 +3381,13 @@ For detailed information on categorizing information, refer to FIPS Publication 
 
 Satisfies: SRG-APP-000502-DB-000348&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-213939</DuplicateOf>
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79285</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit when data classifications are successfully and unsuccessfully deleted.
  
 If this is not required, this is not a finding.
@@ -3484,11 +3425,13 @@ If the "SCHEMA_OBJECT_ACCESS_GROUP" is not returned in an active audit, this is 
 
 Satisfies: SRG-APP-000503-DB-000350&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SUCCESSFUL_LOGIN_GROUP'),('FAILED_LOGIN_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79289</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query: 
  
 SELECT name AS 'Audit Name', 
@@ -3553,11 +3496,13 @@ Depending on the capabilities of SQL Server and the design of the database and a
  
 Note that it is particularly important to audit, and tightly control, any action that weakens the implementation of this requirement itself, since the objective is to have a complete audit trail of all administrative activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP'),('USER_CHANGE_PASSWORD_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79291</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query:  
 
 SELECT name AS 'Audit Name', 
@@ -3632,11 +3577,13 @@ Note that it is particularly important to audit, and tightly control, any action
  
 To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('LOGOUT_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP'),('USER_CHANGE_PASSWORD_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79293</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query.  
 
 SELECT name AS 'Audit Name', 
@@ -3734,11 +3681,13 @@ If the identified groups are not returned, this is a finding.
  
 Disconnection may be initiated by the user or forced by the system (as in a timeout) or result from a system or network failure. To the greatest extent possible, all disconnections must be logged.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-214016</DuplicateOf>
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('LOGOUT_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP'),('USER_CHANGE_PASSWORD_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79295</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query:  
 
 SELECT name AS 'Audit Name', 
@@ -3838,11 +3787,13 @@ Concurrent connections by the same user from multiple workstations may be valid 
  
 (If the fact of multiple, concurrent logons by a given user can be reliably reconstructed from the log entries for other events (logons/connections; voluntary and involuntary disconnections), then it is not mandatory to create additional log entries specifically for this.)&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SUCCESSFUL_LOGIN_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79297</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query. 
  
 SELECT name AS 'Audit Name', 
@@ -3890,11 +3841,13 @@ To aid in diagnosis, it is necessary to keep track of failed attempts in additio
 
 Satisfies: SRG-APP-000507-DB-000356&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-213939</DuplicateOf>
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79301</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit when successful and unsuccessful accesses to objects occur. 
  
 If this is not required, this is not a finding. 
@@ -3934,11 +3887,13 @@ This [sa] default account is administrative and could lead to catastrophic conse
 
 Some applications that run on SQL Server require the [sa] account to be enabled for the application to function properly. These applications that require the [sa] account to be enabled are usually legacy systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled &lt;&gt; 1;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79317</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>d8906905-3a21-4bf0-8f2e-82a7a6db43a0</QueryId>
       <RawString>Check SQL Server settings to determine if the [sa] (system administrator) account has been disabled by executing the following query:
 
 USE master;
@@ -3961,11 +3916,13 @@ If the "is_disabled" column is not set to "1", this is a finding.</RawString>
 
 Since the SQL Server [sa] is administrative in nature, the compromise of a default account can have catastrophic consequences, including the complete loss of control over SQL Server. Since SQL Server needs for this account to exist and it should not be removed, one way to mitigate this risk is to change the [sa] account name.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT name FROM sys.server_principals WHERE TYPE = 'S' and name not like '%##%'</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79319</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is populated with a non-default SA account name</OrganizationValueTestString>
+      <QueryId>132a303d-8756-45bf-b3c9-b95e511c0122</QueryId>
       <RawString>Verify the SQL Server default [sa] (system administrator) account name has been changed by executing the following query: 
 
 USE master; 
@@ -3983,6 +3940,58 @@ If the login account name "SA" or "sa" appears in the query output, this is a fi
     </Rule>
   </SqlScriptQueryRule>
   <SqlServerConfigurationRule dscresourcemodule="SqlServerDsc">
+    <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful denial-of-service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions is helpful in reducing these risks.
+  
+This requirement addresses concurrent session control for a single account. It does not address concurrent sessions by a single user via multiple system accounts.
+  
+The capability to limit the number of concurrent sessions per user must be configured in or added to SQL Server (for example, by use of a logon trigger), when this is technically feasible. Note that it is not sufficient to limit sessions via a web server or application server alone, because legitimate users and adversaries can potentially connect to SQL Server by other means. 
+  
+The organization will need to define the maximum number of concurrent sessions by account type, by account, or a combination thereof. In deciding on the appropriate number, it is important to consider the work requirements of the various types of users. For example, 2 might be an acceptable limit for general users accessing the database via an application; but 10 might be too few for a database administrator using a database management GUI tool, where each query tab and navigation pane may count as a separate session.
+  
+(Sessions may also be referred to as connections or logons, which for the purposes of this requirement are synonyms.)&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79119</LegacyId>
+      <OptionName>user connections</OptionName>
+      <OptionValue>3000</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the system documentation to determine whether any concurrent session limits have been defined. If it does not, assume a limit of 10 for database administrators and 2 for all other users. 
+ 
+If a mechanism other than a logon trigger is used, verify its correct operation by the appropriate means. If it does not work correctly, this is a finding.
+
+Due to excessive CPU consumption when utilizing a logon trigger, an alternative method of limiting concurrent sessions is setting the max connection limit within SQL Server to an appropriate value. This serves to block a distributed denial-of-service (DDOS) attack by limiting the attacker's connections while allowing a database administrator to still force a SQL connection.
+
+In SQL Server Management Studio's Object Explorer tree:
+Right-click on the Server Name &gt;&gt; Select Properties &gt;&gt; Select Connections Tab
+
+OR
+
+Run the query:
+EXEC sys.sp_configure N'user connections'
+
+If the max connection limit is set to 0 (unlimited) or does not match the documented value, this is a finding.
+ 
+Otherwise, determine if a logon trigger exists:  
+ 
+In SQL Server Management Studio's Object Explorer tree:  
+Expand [SQL Server Instance] &gt;&gt; Server Objects &gt;&gt; Triggers  
+ 
+OR 
+ 
+Run the query:  
+SELECT name FROM master.sys.server_triggers;  
+ 
+If no triggers are listed, this is a finding.  
+ 
+If triggers are listed, identify the trigger(s) limiting the number of concurrent sessions per user. If none are found, this is a finding. If they are present but disabled, this is a finding.  
+ 
+Examine the trigger source code for logical correctness and for compliance with the documented limit(s). If errors or variances exist, this is a finding.
+ 
+Verify that the system does execute the trigger(s) each time a user session is established. If it does not operate correctly for all types of user, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-213957" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="SqlServerConfiguration">
       <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).  
  
@@ -4079,6 +4088,28 @@ If "value_in_use" is set to "0" this is a finding.
 
 NOTE: Enabling this feature may impact performance on highly active SQL Server instances. If an exception justifying setting SQL Server Residual Information Protection (RIP) to disabled (value_in_use set to "0") has been documented and approved, then this may be downgraded to a CAT III finding.
 </RawString>
+    </Rule>
+    <Rule id="V-213991" severity="medium" conversionstatus="pass" title="SRG-APP-000431-DB-000388" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;Database management systems can maintain separate execution domains for each executing process by assigning each process a separate address space.  
+ 
+Each process has a distinct address space so that communication between processes is controlled through the security functions, and one process cannot modify the executing code of another process.  
+ 
+Maintaining separate execution domains for executing processes can be achieved, for example, by implementing separate address spaces.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf>V-213958</DuplicateOf>
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79243</LegacyId>
+      <OptionName>clr enabled</OptionName>
+      <OptionValue>0</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the server documentation to determine whether use of CLR assemblies is required. Run the following query to determine whether CLR is enabled for the instance: 
+ 
+SELECT name, value, value_in_use 
+FROM sys.configurations 
+WHERE name = 'clr enabled' 
+ 
+If "value_in_use" is a "1" and CLR is not required, this is a finding.</RawString>
     </Rule>
     <Rule id="V-214034" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000093" dscresource="SqlServerConfiguration">
       <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
@@ -4336,4 +4367,33 @@ If the value of "config_value" is "0", this is not a finding.
 If the value of "config_value" is "1", review the system documentation to determine whether the use of "Replication Xps" is required and authorized. If it is not authorized, this is a finding.</RawString>
     </Rule>
   </SqlServerConfigurationRule>
+  <UserRightRule dscresourcemodule="SecurityPolicyDsc">
+    <Rule id="V-213976" severity="medium" conversionstatus="pass" title="SRG-APP-000243-DB-000373" dscresource="UserRightsAssignment">
+      <Constant>SeManageVolumePrivilege</Constant>
+      <Description>&lt;VulnDiscussion&gt;The purpose of this control is to prevent information, including encrypted representations of information, produced by the actions of a prior user/role (or the actions of a process acting on behalf of a prior user/role) from being available to any current user/role (or current process) that obtains access to a shared system resource (e.g., registers, main memory, secondary storage) after the resource has been released back to the information system. Control of information in shared resources is also referred to as object reuse.
+
+When Instant File Initialization (IFI) is in use, the deleted disk content is overwritten only as new data is written to the files. For this reason, the deleted content might be accessed by an unauthorized principal until some other data writes on that specific area of the data file.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DisplayName>Perform volume maintenance tasks</DisplayName>
+      <DuplicateOf />
+      <Force>False</Force>
+      <Identity>NT SERVICE\MSSQLSERVER</Identity>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-79213</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review system configuration to determine whether IFI support has been enabled (by default in SQL Server 2016).
+
+Start &gt;&gt; Control Panel &gt;&gt; System and Security &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; Perform volume maintenance tasks
+
+The default SQL service account for a default instance is NT SERVICE\MSSQLSERVER or for a named instance is NT SERVICE\MSSQL$InstanceName.
+
+If the SQL service account or SQL service SID has been granted "Perform volume maintenance tasks" Local Rights Assignment, this means that Instant File Initialization (IFI) is enabled.
+
+Review the system documentation to determine if Instant File Initialization (IFI) is required.
+
+If IFI is enabled but not documented as required, this is a finding.
+
+If IFI is not enabled, this is not a finding.</RawString>
+    </Rule>
+  </UserRightRule>
 </DISASTIG>
