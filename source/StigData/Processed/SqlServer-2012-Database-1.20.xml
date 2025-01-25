@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_Database_2012" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Database_STIG_V1R20_Manual-xccdf.xml" releaseinfo="Release: 20 Benchmark Date: 16 Jan 2020" title="Microsoft SQL Server Database 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.20" created="8/12/2021">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_Database_2012" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Database_STIG_V1R20_Manual-xccdf.xml" releaseinfo="Release: 20 Benchmark Date: 16 Jan 2020" title="Microsoft SQL Server Database 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.20" created="1/25/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-41389" severity="medium" conversionstatus="pass" title="SRG-APP-000006-DB-000183" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Security attributes are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.
@@ -679,35 +679,6 @@ ELSE
 
 For each user database, ensure that encryption is in effect.  If not, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-41422" severity="medium" conversionstatus="pass" title="SRG-APP-000245-DB-000132" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Application management includes the ability to control the number of users and user sessions utilizing an application. Limiting the number of allowed users, and sessions per user, is helpful in limiting risks related to DoS attacks.
-
-This requirement addresses concurrent session control for a single information system account and does not address concurrent sessions by a single user via multiple system accounts.
-
-This requirement may be met via the application or by utilizing information system session control provided by a web server with specialized session management capabilities. If it has been specified that this requirement will be handled by the application, the capability to limit the maximum number of concurrent single user sessions must be designed and built into the application.
-
-The organization will need to define the maximum number of concurrent sessions for SQL Server accounts by account type, by account, or a combination thereof and SQL Server shall enforce this requirement.
-
-Unlimited concurrent connections to SQL Server could allow a successful DoS attack by exhausting connection resources.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Check SQL Server settings for the number of concurrent Check SQL Server settings for the number of concurrent sessions by running the following script:
-
-USE MASTER
-GO
-
-EXEC sys.sp_configure N'show advanced options', N'1'  RECONFIGURE WITH OVERRIDE
-GO
-EXEC sys.sp_configure N'user connections'
-EXEC sys.sp_configure N'show advanced options', N'0'  RECONFIGURE WITH OVERRIDE
-GO
-
-If SQL Server settings for concurrent sessions is not lower than or equal to the organization-defined maximum number of sessions, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-41424" severity="medium" conversionstatus="pass" title="SRG-APP-000251-DB-000160" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Invalid user input occurs when a user inserts data or characters into an application’s data entry fields and the application is unprepared to process that data. This results in unanticipated application behavior potentially leading to an application or information system compromise. Invalid user input is one of the primary methods employed when attempting to compromise an application.
 
@@ -789,12 +760,14 @@ Organizations define which application components shall provide auditable events
 
 The DBMS must provide auditing for the list of events defined by the organization or risk negatively impacting forensic investigations into malicious behavior in the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>ad84a943-b941-47a4-838e-6a23de506645</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -833,12 +806,14 @@ Use the following query to obtain a list of all event IDs, and their meaning:
 
 Within the database, object ownership implies full privileges to the owned object, including the privilege to assign access to the owned objects to other subjects. Unmanaged or uncontrolled ownership of databases can lead to unauthorized granting of privileges and database alterations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>select suser_sname(owner_sid) AS 'Owner' from sys.databases where name = $(Database)</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is a database owner</OrganizationValueTestString>
+      <QueryId>f9871c5a-e9a7-48cb-bb92-51223c39eaab</QueryId>
       <RawString>Review system documentation to identify SQL Server accounts authorized to own database objects.
 
 If the SQL Server database ownership list does not exist or needs to be updated, this is a finding.
@@ -855,4 +830,38 @@ SELECT name AS 'Database name'
       <VariableValue />
     </Rule>
   </SqlScriptQueryRule>
+  <SqlServerConfigurationRule dscresourcemodule="SqlServerDsc">
+    <Rule id="V-41422" severity="medium" conversionstatus="pass" title="SRG-APP-000245-DB-000132" dscresource="SqlServerConfiguration">
+      <Description>&lt;VulnDiscussion&gt;Application management includes the ability to control the number of users and user sessions utilizing an application. Limiting the number of allowed users, and sessions per user, is helpful in limiting risks related to DoS attacks.
+
+This requirement addresses concurrent session control for a single information system account and does not address concurrent sessions by a single user via multiple system accounts.
+
+This requirement may be met via the application or by utilizing information system session control provided by a web server with specialized session management capabilities. If it has been specified that this requirement will be handled by the application, the capability to limit the maximum number of concurrent single user sessions must be designed and built into the application.
+
+The organization will need to define the maximum number of concurrent sessions for SQL Server accounts by account type, by account, or a combination thereof and SQL Server shall enforce this requirement.
+
+Unlimited concurrent connections to SQL Server could allow a successful DoS attack by exhausting connection resources.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OptionName>user connections</OptionName>
+      <OptionValue>3000</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check SQL Server settings for the number of concurrent Check SQL Server settings for the number of concurrent sessions by running the following script:
+
+USE MASTER
+GO
+
+EXEC sys.sp_configure N'show advanced options', N'1'  RECONFIGURE WITH OVERRIDE
+GO
+EXEC sys.sp_configure N'user connections'
+EXEC sys.sp_configure N'show advanced options', N'0'  RECONFIGURE WITH OVERRIDE
+GO
+
+If SQL Server settings for concurrent sessions is not lower than or equal to the organization-defined maximum number of sessions, this is a finding.</RawString>
+    </Rule>
+  </SqlServerConfigurationRule>
 </DISASTIG>

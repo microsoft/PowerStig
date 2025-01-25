@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 24 Oct 2024 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.2" created="1/13/2025">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 24 Oct 2024 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.2" created="1/25/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213930" severity="high" conversionstatus="pass" title="SRG-APP-000023-DB-000001" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Enterprise environments make account management for applications and databases challenging and complex. A manual process for account management functions adds the risk of a potential oversight or other error. Managing accounts for the same person in multiple places is inefficient and prone to problems with consistency and synchronization. 
@@ -2756,7 +2756,7 @@ If the SCHEMA_OBJECT_ACCESS_GROUP is not returned in an active audit, this is a 
       <LegacyId>V-79141</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>ac6ac2ec-c99a-4b24-8f20-afbe958d6035</QueryId>
+      <QueryId>e584f481-89f4-4684-9ac8-55752c442b20</QueryId>
       <RawString>When Audits are enabled, they start up when the instance starts. 
 https://msdn.microsoft.com/en-us/library/cc280386.aspx#Anchor_2 
  
@@ -2789,7 +2789,7 @@ Systems where audit trail completeness is paramount will most likely be at a low
       <LegacyId>V-79147</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>0164cc29-e1a3-4cf7-a4ea-fa426fad629c</QueryId>
+      <QueryId>b6f0e282-08c0-4979-ae4e-0528a54cedbf</QueryId>
       <RawString>If the system documentation indicates that availability takes precedence over audit trail completeness, this is not applicable (NA).  
  
 If SQL Server Audit is in use, review the defined server audits by running the statement:  
@@ -2821,7 +2821,7 @@ Systems where availability is paramount will most likely be MAC I; the final det
       <LegacyId>V-79149</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>0b494fe5-c458-4827-96aa-f5bfabcf62c7</QueryId>
+      <QueryId>9b6dcb73-ee68-405c-b9f6-85aa08358741</QueryId>
       <RawString>If the system documentation indicates that availability does not take precedence over audit trail completeness, this is not applicable (NA). 
 
 Execute the following query:
@@ -3893,7 +3893,7 @@ Some applications that run on SQL Server require the [sa] account to be enabled 
       <LegacyId>V-79317</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>d8906905-3a21-4bf0-8f2e-82a7a6db43a0</QueryId>
+      <QueryId>ab3dd085-dd76-40de-a8c8-756debf6477a</QueryId>
       <RawString>Check SQL Server settings to determine if the [sa] (system administrator) account has been disabled by executing the following query:
 
 USE master;
@@ -3922,7 +3922,7 @@ Since the SQL Server [sa] is administrative in nature, the compromise of a defau
       <LegacyId>V-79319</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is populated with a non-default SA account name</OrganizationValueTestString>
-      <QueryId>132a303d-8756-45bf-b3c9-b95e511c0122</QueryId>
+      <QueryId>d7e16b34-e203-4ac3-a8ee-50d117994b64</QueryId>
       <RawString>Verify the SQL Server default [sa] (system administrator) account name has been changed by executing the following query: 
 
 USE master; 

@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_Instance_2012" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_Instance_2012_V1R20_Manual-xccdf.xml" releaseinfo="Release: 20 Benchmark Date: 16 Jan 2020" title="Microsoft SQL Server Instance 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.20" created="8/12/2021">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_Instance_2012" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_Instance_2012_V1R20_Manual-xccdf.xml" releaseinfo="Release: 20 Benchmark Date: 16 Jan 2020" title="Microsoft SQL Server Instance 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.20" created="1/25/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-40907" severity="high" conversionstatus="pass" title="SRG-APP-000264-DB-000136" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), VPN, or IPSEC tunnel.
@@ -4923,12 +4923,14 @@ If the 'sa' default account is not disabled, an attacker might be able to gain a
 
 Some applications that run on SQL Server require the 'sa' account to be enabled in order for the application to function properly. These applications that require the 'sa' account to be enabled are usually legacy systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled &lt;&gt; 1;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>be1574a4-0271-433e-96d3-15db78b8d9ec</QueryId>
       <RawString>Check SQL Server settings to determine if the 'sa' (sysadmin) account has been disabled by executing the following query:
 
 USE MASTER
@@ -4956,12 +4958,14 @@ Applications must adhere to the principles of least functionality by providing o
 
 Demonstration and sample database objects and applications present publicly known attack points for malicious users. These demonstration and sample objects are meant to provide simple examples of coding specific functions and are not developed to prevent vulnerabilities from being introduced to the SQL Server and the OS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT name from sysdatabases where name like 'AdventureWorks%';</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>9c8c28b1-76db-4be6-b518-447b8850e736</QueryId>
       <RawString>Check SQL Server for the existence of the publicly available "AdventureWorks" database by performing the following query:
 
 SELECT name from sysdatabases where name like 'AdventureWorks%';
@@ -4981,12 +4985,14 @@ Applications must adhere to the principles of least functionality by providing o
 
 Demonstration and sample database objects and applications present publicly known attack points for malicious users. These demonstration and sample objects are meant to provide simple examples of coding specific functions and are not developed to prevent vulnerabilities from being introduced to the SQL Server and the OS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT name from sysdatabases where name like 'Northwind%';</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>8234e249-86cb-424f-af08-183466261a24</QueryId>
       <RawString>Check SQL Server for the existence of the publicly available "NorthWind" database by performing the following query:
 
 SELECT name from sysdatabases where name like 'Northwind%';
@@ -5002,12 +5008,14 @@ If the "Northwind" database is present, this is a finding.</RawString>
 
 Detection of suspicious activity, including access attempts and successful access from unexpected places, during unexpected times, or other unusual indicators, can support decisions to apply countermeasures to deter an attack. Without detection, malicious activity may proceed without hindrance. In SQL Server's case, this is a combination of the standard audit trace, as well as the operating system logs. Only the SQL Server logs are validated for this check, as the other part is dependent upon the operating system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>8e471d88-e84e-4377-a321-b339b82d3723</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5050,12 +5058,14 @@ A failure of SQL Server auditing will result in either the database continuing t
 
 Note that trace file rollover does not count as an audit failure, provided that the system is also configured to shut down when it runs out of space.  Trace file rollover can be a useful technique for breaking the log into manageable pieces, for archiving, or for transfer to a log management system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT * FROM ::fn_trace_getinfo(NULL)</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is the path to the trace file</OrganizationValueTestString>
+      <QueryId>207ef8db-7b41-4b3b-bfa5-9858fc1051ce</QueryId>
       <RawString>From the query prompt:
 
 SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5097,12 +5107,14 @@ If SQL Server audit logs that are being generated exceed the amount of space res
 
 After the initial setup of SQL Server audit log configuration, it is best to check the available space frequently until the maximum number of files has been reached. Checking the available space can help determine the balance of online audit data with space required.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT * FROM ::fn_trace_getinfo(NULL)</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is the trace file limit</OrganizationValueTestString>
+      <QueryId>b3003ec3-a52a-4c93-b031-b9e350189b6c</QueryId>
       <RawString>Check the SQL Server audit setting on the maximum number of files of the trace used for the auditing requirement.
 
 Select * from sys.traces. Determine the audit being used to fulfill the overall auditing requirement. Examine the max_files and max_size parameters. SQL will overwrite the oldest files when the max_files parameter has been exceeded. Care must be taken to ensure that this does not happen, or data will be lost.
@@ -5115,19 +5127,21 @@ If auditing will outgrow the space reserved for logging before being overwritten
       <Variable>TraceFilePath={0} MaxRollOverFileCount={1} MaxTraceFileSize={2}</Variable>
       <VariableValue />
     </Rule>
-    <Rule id="V-41027" severity="medium" conversionstatus="pass" title="SRG-APP-000101-DB-000044" dscresource="None">
+    <Rule id="V-41027" severity="medium" conversionstatus="pass" title="SRG-APP-000101-DB-000044" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;SQL Server auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.
 
 SQL Server does have a means available to add organizationally defined additional, more detailed information in the audit event records. These events may be identified by type, location, or subject. An example of more detailed information the organization may require in audit records could be the name of the application where the request is coming from.
 
 Some organizations may determine that more detailed information is required for specific database event types. If this information is not available, it could negatively impact forensic investigations into user actions or other malicious events.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>f839091b-34e8-4afd-b645-4da20dece020</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5161,17 +5175,19 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41028" severity="medium" conversionstatus="pass" title="SRG-APP-000100-DB-000201" dscresource="None">
+    <Rule id="V-41028" severity="medium" conversionstatus="pass" title="SRG-APP-000100-DB-000201" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.
 
 Database software is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know exactly who performed a given action. If user identification information is not recorded and stored with the audit record, the record itself is of very limited use.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>88279497-448c-4f7a-a734-fb7e8ccdb995</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5205,7 +5221,7 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41029" severity="medium" conversionstatus="pass" title="SRG-APP-000099-DB-000043" dscresource="None">
+    <Rule id="V-41029" severity="medium" conversionstatus="pass" title="SRG-APP-000099-DB-000043" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes, but is not limited to:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.
 
 SQL Server is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know the outcome of attempted actions. This requires specific information regarding the outcome of the action or event that the audit record is referring to. If outcome status information is not recorded and stored with the audit record, the record itself is of very limited use.
@@ -5213,13 +5229,15 @@ SQL Server is capable of a range of actions on data stored within the database. 
 Success and failure indicators ascertain the outcome of a particular event. As such, they also provide a means to measure the impact of an event and help authorized personnel to determine the appropriate response. Without knowing the outcome of audit events, it is very difficult to accurately recreate the series of events during forensic analysis.
 
 If auditing is enabled, SQL Server does capture the outcome status-specific information in all audit records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>7ede4cd0-41f0-4546-8dee-248dbb634904</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5253,19 +5271,21 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41030" severity="medium" conversionstatus="pass" title="SRG-APP-000098-DB-000042" dscresource="None">
+    <Rule id="V-41030" severity="medium" conversionstatus="pass" title="SRG-APP-000098-DB-000042" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes, but is not limited to:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.
 
 SQL Server is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know exactly who performed what actions. This requires specific information regarding the source of the event an audit record is referring to. If the source of the event information is not recorded and stored with the audit record, the record itself is of very limited use.
 
 The source of the event can be a user account and sometimes a system account when timed jobs are run. Without information establishing the source of activity, the value of audit records from a forensics perspective is questionable. If auditing is enabled, SQL Server does capture the source of the event-specific information in all audit records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>2b1f43cf-2879-4cd6-a9f0-a3b102bf37ea</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5299,19 +5319,21 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41031" severity="medium" conversionstatus="pass" title="SRG-APP-000097-DB-000041" dscresource="None">
+    <Rule id="V-41031" severity="medium" conversionstatus="pass" title="SRG-APP-000097-DB-000041" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes, but is not limited to:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.
 
 SQL Server is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know exactly where actions were performed. This requires specific information regarding the event location an audit record is referring to. If event location information is not recorded and stored with the audit record, the record itself is of very limited use.
 
 An event location can be a database instance, table, column, row, etc. Without sufficient information establishing where the audit events occurred, investigation into the cause of events is severely hindered. If auditing is enabled, SQL Server does capture the event location-specific information in all audit records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>52ebe050-1e5e-4d88-9091-1578e21dc8c1</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5345,19 +5367,21 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41032" severity="medium" conversionstatus="pass" title="SRG-APP-000096-DB-000040" dscresource="None">
+    <Rule id="V-41032" severity="medium" conversionstatus="pass" title="SRG-APP-000096-DB-000040" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes, but is not limited to:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.
 
 SQL Server is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know exactly when actions were performed. This requires specific information regarding the date and time an audit record is referring to. If date and time information is not recorded and stored with the audit record, the record itself is of very limited use.
 
 If auditing is enabled, SQL Server does capture the date and time-specific information in all audit records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>75527cdc-90e0-44de-bbbc-847adef308f8</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5391,19 +5415,21 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41033" severity="medium" conversionstatus="pass" title="SRG-APP-000095-DB-000039" dscresource="None">
+    <Rule id="V-41033" severity="medium" conversionstatus="pass" title="SRG-APP-000095-DB-000039" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes, but is not limited to:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.
 
 SQL Server is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know exactly what actions were performed. This requires specific information regarding the event type an audit record is referring to. If event type information is not recorded and stored with the audit record, the record itself is of very limited use.
 
 If auditing is enabled, SQL Server does capture the event type-specific information in all audit records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>b60b9af5-deb9-4801-b851-29955a4a7119</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5437,7 +5463,7 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41035" severity="medium" conversionstatus="pass" title="SRG-APP-000091-DB-000066" dscresource="None">
+    <Rule id="V-41035" severity="medium" conversionstatus="pass" title="SRG-APP-000091-DB-000066" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Audit records can be generated from various components within the information system, such as network interfaces, hard disks, modems, etc. From an application perspective, certain specific application functionalities may be audited, as well.
 
 The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records (i.e., auditable events, time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked).
@@ -5445,13 +5471,15 @@ The list of audited events is the set of events for which audits are to be gener
 Organizations may define the organizational personnel accountable for determining which application components shall provide auditable events.
 
 Auditing provides accountability for changes made to the SQL Server configuration or its objects and data. It provides a means to discover suspicious activity and unauthorized changes. Without auditing, a compromise may go undetected and without a means to determine accountability.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>b4e19557-8118-454f-ab70-1c8019086e50</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5490,12 +5518,14 @@ Use the following query to obtain a list of all event IDs, and their meaning:
 
 Since the SQL Server 'sa' is administrative in nature, the compromise of a default account can have catastrophic consequences, including the complete loss of control over SQL Server. Since SQL Server needs for this account to exist and it should not be removed, one way to mitigate this risk is to change the 'sa' account name.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT name FROM sys.server_principals WHERE TYPE = 'S' and name not like '%##%'</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is populated with a non-default SA account name</OrganizationValueTestString>
+      <QueryId>eb5c24d3-d1ee-4429-a3d4-3b6c7a695c5d</QueryId>
       <RawString>Verify the SQL Server default 'sa' account name has been changed.
 
 Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins.
@@ -5506,15 +5536,17 @@ If SQL Server default 'sa' account name is in the 'Logins' list, this is a findi
       <Variable>saAccountName={0}</Variable>
       <VariableValue />
     </Rule>
-    <Rule id="V-41042" severity="medium" conversionstatus="pass" title="SRG-APP-000063-DB-000018" dscresource="None">
+    <Rule id="V-41042" severity="medium" conversionstatus="pass" title="SRG-APP-000063-DB-000018" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;This is intended to limit exposure, by making it possible to trace any unauthorized access to other data or functionality by a privileged user account or role that has permissions on security functions or security-relevant information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>7bb3e334-1cd5-4175-9b73-0a90011de1d7</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
 
@@ -5563,12 +5595,14 @@ SQL Server's 'Alter any endpoint' permission is a high server-level privilege th
 
 Note that this does not apply to logins with names of the form '##MS...##'. These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any endpoint' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>77979aee-d103-4652-ac3b-c164f4cdfdb8</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any endpoint' by running the following query:
 
 SELECT
@@ -5660,12 +5694,14 @@ SQL Server's 'Alter any database' permission is a high server-level privilege th
 
 Note that this does not apply to logins with names of the form '##MS...##'. These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any database' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>fd5e7612-c2c5-4a7a-a0cd-2737f788f401</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any database' by running the following query:
 
 SELECT
@@ -5757,12 +5793,14 @@ SQL Server's 'Alter any credential' permission is a high server-level privilege 
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any credential' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>823ad648-2072-4681-8811-04c630bb8eb0</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any credential' by running the following query:
 
 SELECT
@@ -5854,12 +5892,14 @@ SQL Server's 'Alter any connection' permission is a high server-level privilege 
 
 Note that this does not apply to logins with names of the form '##MS...##'. These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any connection' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>5a6fc62e-91e9-4d1f-805c-abd2764faa19</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any connection' by running the following query:
 
 SELECT
@@ -5951,12 +5991,14 @@ SQL Server's 'Alter server state' permission is a high server-level privilege th
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter server state' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>535eed74-1819-4455-9b92-4bca3f124b71</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter server state' by running the following query:
 
 SELECT
@@ -6048,12 +6090,14 @@ SQL Server's 'Alter any event notification' permission is a high server-level pr
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any event notification' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>10830a1a-3a1a-49cd-b55f-e998fac6c545</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any event notification' by running the following query:
 
 SELECT
@@ -6145,12 +6189,14 @@ Additionally, the permission must not be denied to a role, because that could di
 
 The fix for this vulnerability specifies the use of REVOKE.  Be aware that revoking a permission that is currently denied to a role or user does not necessarily disable the permission.  If the user or role can inherent the permission from another role, revoking the denied permission from the user or the first role can effectively enable the inherited permission.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'View any database' AND who.type_desc = 'SERVER_ROLE' ORDER BY who.name</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is a user that can view any database</OrganizationValueTestString>
+      <QueryId>650e190b-ae2a-4f50-8c46-afb6f1c3a0ea</QueryId>
       <RawString>Obtain the list of roles that are authorized for the SQL Server 'View any database' permission and what 'Grant', 'Grant With', and/or 'Deny' privilege is authorized. Obtain the list of roles with that permission by running the following query:
 
 SELECT
@@ -6240,12 +6286,14 @@ SQL Server's 'Alter any server audit' permission is a high server-level privileg
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any server audit' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>fba1cfc5-9049-450b-b52b-875aa1e4b55c</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any server audit' by running the following query:
 
 SELECT
@@ -6337,12 +6385,14 @@ SQL Server's 'Authenticate Server' permission is a high server-level privilege t
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'AUTHENTICATE SERVER' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>4cd33c6b-654d-4873-be04-0df065fe9a39</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Authenticate Server' by running the following query:
 
 SELECT
@@ -6434,12 +6484,14 @@ SQL Server's 'Administer bulk operations' permission is a high server-level priv
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Administer bulk operations' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>671c076e-da5b-415c-9550-6cd5393a09e5</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Administer bulk operations' by running the following query:
 
 SELECT
@@ -6531,12 +6583,14 @@ SQL Server's 'Create endpoint' permission is a high server-level privilege that 
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Create endpoint' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>d5a41190-2dd9-4855-9aba-e07c2ce984a4</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create endpoint' by running the following query:
 
 SELECT
@@ -6628,12 +6682,14 @@ SQL Server's 'Create DDL event notification' permission is a high server-level p
 
 Note that this does not apply to logins with names of the form '##MS...##'. These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Create DDL Event Notification' AND who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>255c2494-63e2-4567-87a1-9eb449d7f0f3</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create DDL Event Notification' by running the following query:
 
 SELECT
@@ -6726,12 +6782,14 @@ SQL Server's 'Create availability group' permission is a high server-level privi
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.
 &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Create availability group' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>b884906f-11a7-4823-8596-1a91219ab698</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create availability group' by running the following query:
 
 SELECT
@@ -6823,12 +6881,14 @@ SQL Server's 'Create any database' permission is a high server-level privilege t
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Create any database' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>8f853219-58c0-4508-a84d-477cab9241bd</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create any database' by running the following query:
 
 SELECT
@@ -6920,12 +6980,14 @@ SQL Server's 'Control server' permission is a high server-level privilege that m
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Control server' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>7bbe8111-a526-4eaa-a39e-36e1d09345e4</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Control server' by running the following query:
 
 SELECT
@@ -7017,12 +7079,14 @@ SQL Server's 'Alter any linked server' permission is a high server-level privile
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any linked server' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>f8b430eb-5dff-411a-99de-debc2c4bf4da</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any linked server' by running the following query:
 
 SELECT
@@ -7114,12 +7178,14 @@ SQL Server's 'Alter any event session' permission is a high server-level privile
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any event session' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>643ff9a1-378f-49ee-8345-ac95b470ae41</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any event session' by running the following query:
 
 SELECT
@@ -7211,12 +7277,14 @@ SQL Server's 'Alter trace' permission is a high server-level privilege that must
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter trace' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1bfd1e0e-29f9-448a-8e1c-7a1394b0af7b</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter trace' by running the following query:
 
 SELECT
@@ -7308,12 +7376,14 @@ SQL Server's 'Alter Settings' permission is a high server-level privilege that m
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter Settings' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>052d5d0a-6c24-4a8c-852e-ff71055f0498</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter Settings' by running the following query:
 
 SELECT
@@ -7405,12 +7475,14 @@ SQL Server's 'Create trace event notification' permission is a high server-level
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Create trace event notification' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>bb2f3a65-4c65-45d2-aeba-bb59b5ac8211</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create trace event notification' by running the following query:
 
 SELECT
@@ -7502,12 +7574,14 @@ SQL Server's 'Alter resources' permission is a high server-level privilege that 
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter resources' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>6c7b8860-0e25-4784-b2b2-1965a4cfb856</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter resources' by running the following query:
 
 SELECT
@@ -7599,12 +7673,14 @@ SQL Server's 'External access assembly' permission is a high server-level privil
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'External access assembly' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>b898d3fa-c297-4d0d-aa31-f2300ea46f80</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'External access assembly' by running the following query:
 
 SELECT
@@ -7696,12 +7772,14 @@ SQL Server's 'Alter any login' permission is a high server-level privilege that 
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any login' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>d9488108-d54f-4d2e-8625-d112b4bee1ca</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any login' by running the following query:
 
 SELECT
@@ -7793,12 +7871,14 @@ SQL Server's 'Shutdown' permission is a high server-level privilege that must on
 
 Note that this does not apply to logins with names of the form '##MS...##'. These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Shutdown' AND who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>7d91c684-64b9-4fde-ac8f-b3301c9daa71</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Shutdown' by running the following query:
 
 SELECT
@@ -7890,12 +7970,14 @@ SQL Server's 'Unsafe assembly' permission is a high server-level privilege that 
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Unsafe assembly' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1dbdd207-2284-41d6-8183-8ddec0e7fcd6</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Unsafe assembly' by running the following query:
 
 SELECT
@@ -7987,12 +8069,14 @@ SQL Server's 'Create server role' permission is a high server-level privilege th
 
 Note that this does not apply to logins with names of the form '##MS...##'. These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Create server role' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>6410e541-34ff-4511-88b2-f293b3cbd157</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create server role' by running the following query:
 
 SELECT
@@ -8084,12 +8168,14 @@ SQL Server's 'View server state' permission is a high server-level privilege tha
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'View server state' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>7f11e147-637b-4295-a256-a41918a2cef6</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'View server state' by running the following query:
 
 SELECT
@@ -8181,12 +8267,14 @@ SQL Server's 'Alter any server role' permission is a high server-level privilege
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any server role' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>0ef1b99c-dfb5-4b63-8237-120f1f2fab99</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any server role' by running the following query:
 
 SELECT
@@ -8278,12 +8366,14 @@ SQL Server's 'View any definition' permission is a high server-level privilege t
 
 Note that this does not apply to logins with names of the form '##MS...##'.  These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'View any definition' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>975dd2db-c599-4bf4-805a-22cc1582e1a6</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'View any definition' by running the following query:
 
 SELECT
@@ -8364,19 +8454,21 @@ GO</RawString>
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41305" severity="medium" conversionstatus="pass" title="SRG-APP-000292-DB-000138" dscresource="None">
+    <Rule id="V-41305" severity="medium" conversionstatus="pass" title="SRG-APP-000292-DB-000138" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Once an attacker establishes initial access to a system, they often attempt to create a persistent method of re-establishing access. One way to accomplish this is for the attacker to modify an existing account for later use.
 
 Notification of account creation is one method and best practice for mitigating this risk. A comprehensive account management process will ensure an audit trail which documents the creation of application user accounts and notifies administrators and/or application owners exist. Such a process greatly reduces the risk that accounts will be surreptitiously created and provides logging that can be used for forensic purposes.
 
 To address the multitude of policy based access requirements, many application developers choose to integrate their applications with enterprise level authentication/access mechanisms that meet or exceed access control policy requirements. Such integration allows the application developer to off-load those access control functions and focus on core application features and functionality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>8a266cff-cf75-47b6-9be2-6ff9b3a8166a</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -8410,7 +8502,7 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41306" severity="medium" conversionstatus="pass" title="SRG-APP-000027-DB-000186" dscresource="None">
+    <Rule id="V-41306" severity="medium" conversionstatus="pass" title="SRG-APP-000027-DB-000186" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Once an attacker establishes initial access to a system, they often attempt to create a persistent method of re-establishing access. One way to accomplish this is for the attacker to simply modify an existing account.
 
 Auditing of account modification is one method and best practice for mitigating this risk. A comprehensive application account management process ensures an audit trail automatically documents the modification of application user accounts and, as required, notifies administrators, application owners, and/or appropriate individuals. Applications must provide this capability directly, leverage complimentary technology providing this capability, or a combination thereof.
@@ -8418,13 +8510,15 @@ Auditing of account modification is one method and best practice for mitigating 
 Automated account-auditing processes greatly reduce the risk that accounts will be surreptitiously modified, and provides logging that can be used for forensic purposes.
 
 To address the multitude of policy based access requirements, many application developers choose to integrate their applications with enterprise-level authentication/access mechanisms meeting or exceeding access control policy requirements.  Such integration allows the application developer to off-load those access control functions and focus on core application features and functionality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>a16fda1c-c635-4b15-bb7d-811a8ca4cfc5</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -8458,20 +8552,22 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41307" severity="medium" conversionstatus="pass" title="SRG-APP-000019-DB-000197" dscresource="None">
+    <Rule id="V-41307" severity="medium" conversionstatus="pass" title="SRG-APP-000019-DB-000197" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
 
 Remote network and system access is accomplished by leveraging common communication protocols to establish a remote connection. These connections will typically originate over either the public Internet or the Public Switched Telephone Network (PSTN). Neither of these internetworking mechanisms is private or secure, and they do not by default restrict access to networked resources once connectivity is established.
 
 Numerous best practices are employed to protect remote connections, such as utilizing encryption to protect data sessions and firewalls to restrict and control network connectivity. In addition to these protections, auditing must also be utilized in order to track system activity, assist in diagnosing system issues, and provide evidence needed for forensic investigations post security incident.
 &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>edd3fc71-5469-41c5-9e2d-a2253f81278c</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -8516,12 +8612,14 @@ SQL Server's 'View Any Database' permission is a high server-level privilege tha
 
 Note that this does not apply to logins with names of the form '##MS...##'. These accounts are internal-use system principals provisioned by the DBMS, and required by it for specific purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Encrypt>Optional</Encrypt>
       <GetScript>SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'View Any Database' AND who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>6427ee83-a5b2-4d56-a6af-92677953b4ef</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'View Any Database' by running the following query:
 
 SELECT

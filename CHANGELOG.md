@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Updated Powerstig to use SqlServerDsc module version 17.0.0 and added additional coverage [#1414](https://github.com/microsoft/PowerStig/issues/1414)
 
 ## [4.24.0] - 2024-12-06
 
