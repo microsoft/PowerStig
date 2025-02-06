@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse\apply Oracle Linux 8 STIG - Ver 2, Rel 3 [#1421](https://github.com/microsoft/PowerStig/issues/1386)
+
 ## [4.24.0] - 2024-12-06
 
 * Updated Powerstig.xsd schema file [#1386](https://github.com/microsoft/PowerStig/issues/1386)
