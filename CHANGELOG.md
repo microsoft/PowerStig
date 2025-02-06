@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse\apply U_MS_SQL_Server_2016_Instance_STIG_V3R3 [#1419](https://github.com/microsoft/PowerStig/issues/1419)
+
 ## [4.24.0] - 2024-12-06
 
 * Updated Powerstig.xsd schema file [#1386](https://github.com/microsoft/PowerStig/issues/1386)
