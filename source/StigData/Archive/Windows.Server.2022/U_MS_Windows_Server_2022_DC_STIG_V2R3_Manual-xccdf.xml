@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type='text/xsl' href='STIG_unclass.xsl'?>
 <Benchmark xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd" id="MS_Windows_Server_2022_DC_STIG" xml:lang="en" xmlns="http://checklists.nist.gov/xccdf/1.1">
-  <status date="2024-06-14">accepted</status>
+  <status date="2024-11-25">accepted</status>
   <title>Microsoft Windows Server 2022 Security Technical Implementation Guide</title>
   <description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</description>
   <notice id="terms-of-use" xml:lang="en" />
@@ -11,7 +11,7 @@
     <dc:publisher>DISA</dc:publisher>
     <dc:source>STIG.DOD.MIL</dc:source>
   </reference>
-  <plain-text id="release-info">Release: 1 Benchmark Date: 24 Jul 2024</plain-text>
+  <plain-text id="release-info">Release: 3 Benchmark Date: 30 Jan 2025</plain-text>
   <plain-text id="generator">3.5</plain-text>
   <plain-text id="conventionsVersion">1.10.0</plain-text>
   <version>2</version>
@@ -2536,7 +2536,7 @@ If users with administrative privileges do not have separate accounts for admini
   <Group id="V-254239">
     <title>SRG-OS-000076-GPOS-00044</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254239r1000150_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254239r1038967_rule" weight="10.0" severity="medium">
       <version>WN22-00-000020</version>
       <title>Windows Server 2022 passwords for the built-in Administrator account must be changed at least every 60 days.</title>
       <description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the password. The built-in Administrator account is not generally used and its password may not be changed as frequently as necessary. Changing the password for the built-in Administrator account on a regular basis will limit its exposure.
@@ -2550,13 +2550,15 @@ Windows LAPS must be used to change the built-in Administrator account password.
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004066</ident>
+      <ident system="http://cyber.mil/cci">CCI-000199</ident>
+      <ident system="http://cyber.mil/cci">CCI-000199</ident>
       <fixtext fixref="F-57675r951094_fix">Change the enabled local Administrator account password at least every 60 days. Windows LAPS must be used to change the built-in Administrator account password. Domain-joined systems can configure this to occur more frequently. LAPS will change the password every 30 days by default. 
 
 More information is available at:
 https://techcommunity.microsoft.com/t5/windows-it-pro-blog/by-popular-demand-windows-laps-available-now/ba-p/3788747
 https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview#windows-laps-supported-platforms-and-azure-ad-laps-preview-status</fixtext>
       <fix id="F-57675r951094_fix" />
-      <check system="C-57724r951093_chk">
+      <check system="C-57724r1016386_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
         <check-content>If there are no enabled local Administrator accounts, this is Not Applicable.
 
@@ -2573,8 +2575,6 @@ If the "PasswordLastSet" date is greater than "60" days old for the local Admini
 Verify LAPS is configured and operational. 
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Set to enabled. Password Complexity, large letters + small letters + numbers + special, Password Length 14, Password Age 60. If not configured as shown, this is a finding. 
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Name of administrator Account to manage &gt;&gt; Set to enabled &gt;&gt; Administrator account name is populated. If it is not, this is a finding. 
 
 Verify LAPS Operational logs &gt;&gt; Event Viewer &gt;&gt; Applications and Services Logs &gt;&gt; Microsoft &gt;&gt; Windows &gt;&gt; LAPS &gt;&gt; Operational. Verify LAPS policy process is completing. If it is not, this is a finding.</check-content>
       </check>
@@ -2648,7 +2648,7 @@ If users with accounts in the Backup Operators group do not have separate accoun
   <Group id="V-254242">
     <title>SRG-OS-000078-GPOS-00046</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254242r1000151_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254242r1016472_rule" weight="10.0" severity="medium">
       <version>WN22-00-000050</version>
       <title>Windows Server 2022 manually managed application account passwords must be at least 14 characters in length.</title>
       <description>&lt;VulnDiscussion&gt;Application/service account passwords must be of sufficient length to prevent being easily cracked. Application/service accounts that are manually managed must have passwords at least 14 characters in length.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -2660,6 +2660,8 @@ If users with accounts in the Backup Operators group do not have separate accoun
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004066</ident>
+      <ident system="http://cyber.mil/cci">CCI-000205</ident>
+      <ident system="http://cyber.mil/cci">CCI-000205</ident>
       <fixtext fixref="F-57678r951097_fix">Establish a policy that requires application/service account passwords that are manually managed to be at least 14 characters in length. Ensure the policy is enforced.</fixtext>
       <fix id="F-57678r951097_fix" />
       <check system="C-57727r951096_chk">
@@ -3411,7 +3413,7 @@ The default is for the "Everyone" group to be given "Print" permission.
   <Group id="V-254256">
     <title>SRG-OS-000118-GPOS-00060</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254256r1000152_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254256r1016473_rule" weight="10.0" severity="medium">
       <version>WN22-00-000190</version>
       <title>Windows Server 2022 outdated or unused accounts must be removed or disabled.</title>
       <description>&lt;VulnDiscussion&gt;Outdated or unused accounts provide penetration points that may go undetected. Inactive accounts must be deleted if no longer necessary or, if still required, disabled until needed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -3423,6 +3425,8 @@ The default is for the "Everyone" group to be given "Print" permission.
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-003627</ident>
+      <ident system="http://cyber.mil/cci">CCI-000795</ident>
+      <ident system="http://cyber.mil/cci">CCI-000795</ident>
       <fixtext fixref="F-57692r848583_fix">Regularly review accounts to determine if they are still active. Remove or disable accounts that have not been used in the last 35 days.</fixtext>
       <fix id="F-57692r848583_fix" />
       <check system="C-57741r848582_chk">
@@ -3512,7 +3516,7 @@ If any enabled user accounts are returned with a "PasswordRequired" status of "F
   <Group id="V-254258">
     <title>SRG-OS-000076-GPOS-00044</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254258r1000153_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254258r1038967_rule" weight="10.0" severity="medium">
       <version>WN22-00-000210</version>
       <title>Windows Server 2022 passwords must be configured to expire.</title>
       <description>&lt;VulnDiscussion&gt;Passwords that do not expire or are reused increase the exposure of a password with greater probability of being discovered or cracked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -3524,6 +3528,8 @@ If any enabled user accounts are returned with a "PasswordRequired" status of "F
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004066</ident>
+      <ident system="http://cyber.mil/cci">CCI-000199</ident>
+      <ident system="http://cyber.mil/cci">CCI-000199</ident>
       <fixtext fixref="F-57694r997807_fix">Configure all enabled user account passwords to expire.
 
 Uncheck "Password never expires" for all enabled user accounts in Active Directory Users and Computers for domain accounts and Users in Computer Management for member servers and standalone or nondomain-joined systems. Document any exceptions with the  information system security officer (ISSO).</fixtext>
@@ -4412,7 +4418,7 @@ If the site includes any system areas such as root of the drive, Program Files, 
   <Group id="V-254281">
     <title>SRG-OS-000355-GPOS-00143</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254281r1000155_rule" weight="10.0" severity="low">
+    <Rule id="SV-254281r1038944_rule" weight="10.0" severity="low">
       <version>WN22-00-000440</version>
       <title>The Windows Server 2022 time service must synchronize with an appropriate DOD time source.</title>
       <description>&lt;VulnDiscussion&gt;The Windows Time Service controls time synchronization settings. Time synchronization is essential for authentication and auditing purposes. If the Windows Time Service is used, it must synchronize with a secure, authorized time source. Domain-joined systems are automatically configured to synchronize with domain controllers. If an NTP server is configured, it must synchronize with a secure, authorized time source.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -4424,6 +4430,8 @@ If the site includes any system areas such as root of the drive, Program Files, 
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004923</ident>
+      <ident system="http://cyber.mil/cci">CCI-001891</ident>
+      <ident system="http://cyber.mil/cci">CCI-001891</ident>
       <fixtext fixref="F-57717r921939_fix">Configure the system to synchronize time with an appropriate DOD time source.
 
 Domain-joined systems use NT5DS to synchronize time from other systems in the domain by default.
@@ -7133,7 +7141,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</check-content>
   <Group id="V-254365">
     <title>SRG-OS-000373-GPOS-00156</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254365r1000162_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254365r1050789_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000340</version>
       <title>Windows Server 2022 must not save passwords in the Remote Desktop Client.</title>
       <description>&lt;VulnDiscussion&gt;Saving passwords in the Remote Desktop Client could allow an unauthorized user to establish a remote desktop session to another system. The system must be configured to prevent users from saving passwords in the Remote Desktop Client.
@@ -7147,6 +7155,8 @@ Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157&lt;/VulnDiscussion
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004895</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
       <fixtext fixref="F-57801r848910_fix">Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Remote Desktop Services &gt;&gt; Remote Desktop Connection Client &gt;&gt; Do not allow passwords to be saved to "Enabled".</fixtext>
       <fix id="F-57801r848910_fix" />
       <check system="C-57850r848909_chk">
@@ -7197,7 +7207,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254367">
     <title>SRG-OS-000373-GPOS-00156</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254367r1000163_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254367r1050789_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000360</version>
       <title>Windows Server 2022 Remote Desktop Services must always prompt a client for passwords upon connection.</title>
       <description>&lt;VulnDiscussion&gt;This setting controls the ability of users to supply passwords automatically as part of their remote desktop connection. Disabling this setting would allow anyone to use the stored credentials in a connection item to connect to the terminal server.
@@ -7211,6 +7221,8 @@ Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157&lt;/VulnDiscussion
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004895</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
       <fixtext fixref="F-57803r848916_fix">Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Remote Desktop Services &gt;&gt; Remote Desktop Session Host &gt;&gt; Security &gt;&gt; Always prompt for password upon connection to "Enabled".</fixtext>
       <fix id="F-57803r848916_fix" />
       <check system="C-57852r848915_chk">
@@ -7399,7 +7411,7 @@ Value: 0x00000000 (0)</check-content>
   <Group id="V-254373">
     <title>SRG-OS-000362-GPOS-00149</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254373r1000164_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254373r1016483_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000420</version>
       <title>Windows Server 2022 must prevent users from changing installation options.</title>
       <description>&lt;VulnDiscussion&gt;Installation options for applications are typically controlled by administrators. This setting prevents users from changing installation options that may bypass security features.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -7411,6 +7423,8 @@ Value: 0x00000000 (0)</check-content>
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-003980</ident>
+      <ident system="http://cyber.mil/cci">CCI-001812</ident>
+      <ident system="http://cyber.mil/cci">CCI-001812</ident>
       <fixtext fixref="F-57809r848934_fix">Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Windows Installer &gt;&gt; Allow user control over installs to "Disabled".</fixtext>
       <fix id="F-57809r848934_fix" />
       <check system="C-57858r848933_chk">
@@ -7430,7 +7444,7 @@ Value: 0x00000000 (0)</check-content>
   <Group id="V-254374">
     <title>SRG-OS-000362-GPOS-00149</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254374r1000165_rule" weight="10.0" severity="high">
+    <Rule id="SV-254374r1016484_rule" weight="10.0" severity="high">
       <version>WN22-CC-000430</version>
       <title>Windows Server 2022 must disable the Windows Installer Always install with elevated privileges option.</title>
       <description>&lt;VulnDiscussion&gt;Standard user accounts must not be granted elevated privileges. Enabling Windows Installer to elevate privileges when installing applications can allow malicious persons and applications to gain full control of a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -7442,6 +7456,8 @@ Value: 0x00000000 (0)</check-content>
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-003980</ident>
+      <ident system="http://cyber.mil/cci">CCI-001812</ident>
+      <ident system="http://cyber.mil/cci">CCI-001812</ident>
       <fixtext fixref="F-57810r848937_fix">Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Windows Installer &gt;&gt; Always install with elevated privileges to "Disabled".</fixtext>
       <fix id="F-57810r848937_fix" />
       <check system="C-57859r848936_chk">
@@ -7725,7 +7741,7 @@ Value: 0x00000000 (0)</check-content>
   <Group id="V-254383">
     <title>SRG-OS-000373-GPOS-00156</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254383r1000166_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254383r1050789_rule" weight="10.0" severity="medium">
       <version>WN22-CC-000520</version>
       <title>Windows Server 2022 Windows Remote Management (WinRM) service must not store RunAs credentials.</title>
       <description>&lt;VulnDiscussion&gt;Storage of administrative credentials could allow unauthorized access. Disallowing the storage of RunAs credentials for Windows Remote Management will prevent them from being used with plug-ins.
@@ -7739,6 +7755,8 @@ Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157&lt;/VulnDiscussion
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004895</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
       <fixtext fixref="F-57819r848964_fix">Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Windows Remote Management (WinRM) &gt;&gt; WinRM Service &gt;&gt; Disallow WinRM from storing RunAs credentials to "Enabled".</fixtext>
       <fix id="F-57819r848964_fix" />
       <check system="C-57868r848963_chk">
@@ -7830,7 +7848,7 @@ If the built-in Administrator account or other required administrative accounts 
   <Group id="V-254386">
     <title>SRG-OS-000112-GPOS-00057</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254386r1000167_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254386r1016486_rule" weight="10.0" severity="medium">
       <version>WN22-DC-000020</version>
       <title>Windows Server 2022 Kerberos user logon restrictions must be enforced.</title>
       <description>&lt;VulnDiscussion&gt;This policy setting determines whether the Kerberos Key Distribution Center (KDC) validates every request for a session ticket against the user rights policy of the target computer. The policy is enabled by default, which is the most secure setting for validating that access to target resources is not circumvented.
@@ -7844,6 +7862,8 @@ Satisfies: SRG-OS-000112-GPOS-00057, SRG-OS-000113-GPOS-00058&lt;/VulnDiscussion
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-001941</ident>
+      <ident system="http://cyber.mil/cci">CCI-001942</ident>
+      <ident system="http://cyber.mil/cci">CCI-001942</ident>
       <fixtext fixref="F-57822r848973_fix">Configure the policy value in the Default Domain Policy for Computer Configuration &gt;&gt; Policies &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Kerberos Policy &gt;&gt; Enforce user logon restrictions to "Enabled".</fixtext>
       <fix id="F-57822r848973_fix" />
       <check system="C-57871r848972_chk">
@@ -7869,7 +7889,7 @@ If the "Enforce user logon restrictions" is not set to "Enabled", this is a find
   <Group id="V-254387">
     <title>SRG-OS-000112-GPOS-00057</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254387r1000168_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254387r1016487_rule" weight="10.0" severity="medium">
       <version>WN22-DC-000030</version>
       <title>Windows Server 2022 Kerberos service ticket maximum lifetime must be limited to 600 minutes or less.</title>
       <description>&lt;VulnDiscussion&gt;This setting determines the maximum amount of time (in minutes) that a granted session ticket can be used to access a particular service. Session tickets are used only to authenticate new connections with servers. Ongoing operations are not interrupted if the session ticket used to authenticate the connection expires during the connection.
@@ -7883,6 +7903,8 @@ Satisfies: SRG-OS-000112-GPOS-00057, SRG-OS-000113-GPOS-00058&lt;/VulnDiscussion
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-001941</ident>
+      <ident system="http://cyber.mil/cci">CCI-001942</ident>
+      <ident system="http://cyber.mil/cci">CCI-001942</ident>
       <fixtext fixref="F-57823r848976_fix">Configure the policy value in the Default Domain Policy for Computer Configuration &gt;&gt; Policies &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Kerberos Policy &gt;&gt; Maximum lifetime for service ticket to a maximum of "600" minutes, but not "0", which equates to "Ticket doesn't expire".</fixtext>
       <fix id="F-57823r848976_fix" />
       <check system="C-57872r848975_chk">
@@ -7908,7 +7930,7 @@ If the value for "Maximum lifetime for service ticket" is "0" or greater than "6
   <Group id="V-254388">
     <title>SRG-OS-000112-GPOS-00057</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254388r1000169_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254388r1016488_rule" weight="10.0" severity="medium">
       <version>WN22-DC-000040</version>
       <title>Windows Server 2022 Kerberos user ticket lifetime must be limited to 10 hours or less.</title>
       <description>&lt;VulnDiscussion&gt;In Kerberos, there are two types of tickets: Ticket Granting Tickets (TGTs) and Service Tickets. Kerberos tickets have a limited lifetime so the time an attacker has to implement an attack is limited. This policy controls how long TGTs can be renewed. With Kerberos, the user's initial authentication to the domain controller results in a TGT, which is then used to request Service Tickets to resources. Upon startup, each computer gets a TGT before requesting a service ticket to the domain controller and any other computers it needs to access. For services that start up under a specified user account, users must always get a TGT first and then get Service Tickets to all computers and services accessed.
@@ -7922,6 +7944,8 @@ Satisfies: SRG-OS-000112-GPOS-00057, SRG-OS-000113-GPOS-00058&lt;/VulnDiscussion
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-001941</ident>
+      <ident system="http://cyber.mil/cci">CCI-001942</ident>
+      <ident system="http://cyber.mil/cci">CCI-001942</ident>
       <fixtext fixref="F-57824r848979_fix">Configure the policy value in the Default Domain Policy for Computer Configuration &gt;&gt; Policies &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Kerberos Policy &gt;&gt; Maximum lifetime for user ticket to a maximum of "10" hours but not "0", which equates to "Ticket doesn't expire".</fixtext>
       <fix id="F-57824r848979_fix" />
       <check system="C-57873r848978_chk">
@@ -7947,7 +7971,7 @@ If the value for "Maximum lifetime for user ticket" is "0" or greater than "10" 
   <Group id="V-254389">
     <title>SRG-OS-000112-GPOS-00057</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254389r1000170_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254389r1016489_rule" weight="10.0" severity="medium">
       <version>WN22-DC-000050</version>
       <title>Windows Server 2022 Kerberos policy user ticket renewal maximum lifetime must be limited to seven days or less.</title>
       <description>&lt;VulnDiscussion&gt;This setting determines the period of time (in days) during which a user's Ticket Granting Ticket (TGT) may be renewed. This security configuration limits the amount of time an attacker has to crack the TGT and gain access.
@@ -7961,6 +7985,8 @@ Satisfies: SRG-OS-000112-GPOS-00057, SRG-OS-000113-GPOS-00058&lt;/VulnDiscussion
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-001941</ident>
+      <ident system="http://cyber.mil/cci">CCI-001942</ident>
+      <ident system="http://cyber.mil/cci">CCI-001942</ident>
       <fixtext fixref="F-57825r848982_fix">Configure the policy value in the Default Domain Policy for Computer Configuration &gt;&gt; Policies &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Kerberos Policy &gt;&gt; Maximum lifetime for user ticket renewal to a maximum of "7" days or less.</fixtext>
       <fix id="F-57825r848982_fix" />
       <check system="C-57874r848981_chk">
@@ -7986,7 +8012,7 @@ If the "Maximum lifetime for user ticket renewal" is greater than "7" days, this
   <Group id="V-254390">
     <title>SRG-OS-000112-GPOS-00057</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254390r1000171_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254390r1016490_rule" weight="10.0" severity="medium">
       <version>WN22-DC-000060</version>
       <title>Windows Server 2022 computer clock synchronization tolerance must be limited to five minutes or less.</title>
       <description>&lt;VulnDiscussion&gt;This setting determines the maximum time difference (in minutes) that Kerberos will tolerate between the time on a client's clock and the time on a server's clock while still considering the two clocks synchronous. To prevent replay attacks, Kerberos uses timestamps as part of its protocol definition. For timestamps to work properly, the clocks of the client and the server need to be in sync as much as possible.
@@ -8000,6 +8026,8 @@ Satisfies: SRG-OS-000112-GPOS-00057, SRG-OS-000113-GPOS-00058&lt;/VulnDiscussion
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-001941</ident>
+      <ident system="http://cyber.mil/cci">CCI-001942</ident>
+      <ident system="http://cyber.mil/cci">CCI-001942</ident>
       <fixtext fixref="F-57826r848985_fix">Configure the policy value in the Default Domain Policy for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Kerberos Policy &gt;&gt; Maximum tolerance for computer clock synchronization to a maximum of "5" minutes or less.</fixtext>
       <fix id="F-57826r848985_fix" />
       <check system="C-57875r848984_chk">
@@ -9655,7 +9683,7 @@ If the mappings are to certificates issued by a CA authorized by the Component's
   <Group id="V-254415">
     <title>SRG-OS-000105-GPOS-00052</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254415r1000172_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254415r1016491_rule" weight="10.0" severity="medium">
       <version>WN22-DC-000310</version>
       <title>Windows Server 2022 Active Directory user accounts, including administrators, must be configured to require the use of a Common Access Card (CAC), Personal Identity Verification (PIV)-compliant hardware token, or Alternate Logon Token (ALT) for user authentication.</title>
       <description>&lt;VulnDiscussion&gt;Smart cards such as the CAC support a two-factor authentication technique. This provides a higher level of trust in the asserted identity than use of the username and password for authentication.
@@ -9670,6 +9698,12 @@ Satisfies: SRG-OS-000105-GPOS-00052, SRG-OS-000106-GPOS-00053, SRG-OS-000107-GPO
       </reference>
       <ident system="http://cyber.mil/cci">CCI-000756</ident>
       <ident system="http://cyber.mil/cci">CCI-000776</ident>
+      <ident system="http://cyber.mil/cci">CCI-000767</ident>
+      <ident system="http://cyber.mil/cci">CCI-000768</ident>
+      <ident system="http://cyber.mil/cci">CCI-001948</ident>
+      <ident system="http://cyber.mil/cci">CCI-000767</ident>
+      <ident system="http://cyber.mil/cci">CCI-000768</ident>
+      <ident system="http://cyber.mil/cci">CCI-001948</ident>
       <ident system="http://cyber.mil/cci">CCI-000767</ident>
       <ident system="http://cyber.mil/cci">CCI-000768</ident>
       <ident system="http://cyber.mil/cci">CCI-001948</ident>
@@ -10987,7 +11021,7 @@ Value: 0x7ffffff8 (2147483640)</check-content>
   <Group id="V-254474">
     <title>SRG-OS-000073-GPOS-00041</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254474r1000173_rule" weight="10.0" severity="high">
+    <Rule id="SV-254474r1016492_rule" weight="10.0" severity="high">
       <version>WN22-SO-000300</version>
       <title>Windows Server 2022 must be configured to prevent the storage of the LAN Manager hash of passwords.</title>
       <description>&lt;VulnDiscussion&gt;The LAN Manager hash uses a weak encryption algorithm and there are several tools available that use this hash to retrieve account passwords. This setting controls whether a LAN Manager hash of the password is stored in the SAM the next time the password is changed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -10999,6 +11033,8 @@ Value: 0x7ffffff8 (2147483640)</check-content>
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004062</ident>
+      <ident system="http://cyber.mil/cci">CCI-000196</ident>
+      <ident system="http://cyber.mil/cci">CCI-000196</ident>
       <fixtext fixref="F-57910r849237_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; Network security: Do not store LAN Manager hash value on next password change to "Enabled".</fixtext>
       <fix id="F-57910r849237_fix" />
       <check system="C-57959r849236_chk">
@@ -11179,7 +11215,7 @@ Value:  0x00000002 (2)</check-content>
   <Group id="V-254480">
     <title>SRG-OS-000478-GPOS-00223</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254480r959006_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254480r1050599_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000360</version>
       <title>Windows Server 2022 must be configured to use FIPS-compliant algorithms for encryption, hashing, and signing.</title>
       <description>&lt;VulnDiscussion&gt;This setting ensures the system uses algorithms that are FIPS-compliant for encryption, hashing, and signing. FIPS-compliant algorithms meet specific standards established by the U.S. Government and must be the algorithms used for all OS encryption functions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -11193,9 +11229,9 @@ Value:  0x00000002 (2)</check-content>
       <ident system="http://cyber.mil/cci">CCI-002450</ident>
       <fixtext fixref="F-57916r849255_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; System cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing to "Enabled".</fixtext>
       <fix id="F-57916r849255_fix" />
-      <check system="C-57965r849254_chk">
+      <check system="C-57965r1050598_chk">
         <check-content-ref href="Microsoft_Windows_Server_2022_STIG.xml" name="M" />
-        <check-content>If the following registry value does not exist or is not configured as specified, this is a finding:
+        <check-content>This is NA if the host is running SharePoint.                                                                               If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy\
@@ -11243,7 +11279,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254482">
     <title>SRG-OS-000373-GPOS-00156</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254482r1000174_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254482r1050789_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000380</version>
       <title>Windows Server 2022 User Account Control (UAC) approval mode for the built-in Administrator must be enabled.</title>
       <description>&lt;VulnDiscussion&gt;UAC is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures the built-in Administrator account so that it runs in Admin Approval Mode.
@@ -11257,6 +11293,8 @@ Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157&lt;/VulnDiscussion
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004895</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
       <fixtext fixref="F-57918r849261_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; User Account Control: Admin Approval Mode for the Built-in Administrator account to "Enabled".</fixtext>
       <fix id="F-57918r849261_fix" />
       <check system="C-57967r849260_chk">
@@ -11347,7 +11385,7 @@ Value: 0x00000002 (2) (Prompt for consent on the secure desktop)
   <Group id="V-254485">
     <title>SRG-OS-000373-GPOS-00156</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254485r1000175_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254485r1050789_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000410</version>
       <title>Windows Server 2022 User Account Control (UAC) must automatically deny standard user requests for elevation.</title>
       <description>&lt;VulnDiscussion&gt;UAC is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting controls the behavior of elevation when requested by a standard user account.
@@ -11361,6 +11399,8 @@ Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157&lt;/VulnDiscussion
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004895</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
       <fixtext fixref="F-57921r849270_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; User Account Control: Behavior of the elevation prompt for standard users to "Automatically deny elevation requests".</fixtext>
       <fix id="F-57921r849270_fix" />
       <check system="C-57970r849269_chk">
@@ -11448,7 +11488,7 @@ Value: 0x00000001 (1)</check-content>
   <Group id="V-254488">
     <title>SRG-OS-000373-GPOS-00156</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254488r1000176_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254488r1050789_rule" weight="10.0" severity="medium">
       <version>WN22-SO-000440</version>
       <title>Windows Server 2022 User Account Control (UAC) must run all administrators in Admin Approval Mode, enabling UAC.</title>
       <description>&lt;VulnDiscussion&gt;UAC is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting enables UAC.
@@ -11462,6 +11502,8 @@ Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157&lt;/VulnDiscussion
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004895</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
+      <ident system="http://cyber.mil/cci">CCI-002038</ident>
       <fixtext fixref="F-57924r849279_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; User Account Control: Run all administrators in Admin Approval Mode to "Enabled".</fixtext>
       <fix id="F-57924r849279_fix" />
       <check system="C-57973r849278_chk">
@@ -11713,7 +11755,7 @@ If the value for "Enforce password history" is less than "24" passwords remember
   <Group id="V-254289">
     <title>SRG-OS-000076-GPOS-00044</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254289r1000157_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254289r1038967_rule" weight="10.0" severity="medium">
       <version>WN22-AC-000050</version>
       <title>Windows Server 2022 maximum password age must be configured to 60 days or less.</title>
       <description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the passwords. Scheduled changing of passwords hinders the ability of unauthorized system users to crack passwords and gain access to a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -11725,6 +11767,8 @@ If the value for "Enforce password history" is less than "24" passwords remember
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004066</ident>
+      <ident system="http://cyber.mil/cci">CCI-000199</ident>
+      <ident system="http://cyber.mil/cci">CCI-000199</ident>
       <fixtext fixref="F-57725r848682_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy &gt;&gt; Maximum password age to "60" days or less (excluding "0", which is unacceptable).</fixtext>
       <fix id="F-57725r848682_fix" />
       <check system="C-57774r848681_chk">
@@ -11746,7 +11790,7 @@ If the value is set to "0" (never expires), this is a finding.
   <Group id="V-254290">
     <title>SRG-OS-000075-GPOS-00043</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254290r1000158_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254290r1016477_rule" weight="10.0" severity="medium">
       <version>WN22-AC-000060</version>
       <title>Windows Server 2022 minimum password age must be configured to at least one day.</title>
       <description>&lt;VulnDiscussion&gt;Permitting passwords to be changed in immediate succession within the same day allows users to cycle passwords through their history database. This enables users to effectively negate the purpose of mandating periodic password changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -11758,6 +11802,8 @@ If the value is set to "0" (never expires), this is a finding.
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004066</ident>
+      <ident system="http://cyber.mil/cci">CCI-000198</ident>
+      <ident system="http://cyber.mil/cci">CCI-000198</ident>
       <fixtext fixref="F-57726r848685_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy &gt;&gt; Minimum password age to at least "1" day.</fixtext>
       <fix id="F-57726r848685_fix" />
       <check system="C-57775r848684_chk">
@@ -11777,7 +11823,7 @@ If the value for the "Minimum password age" is set to "0" days ("Password can be
   <Group id="V-254291">
     <title>SRG-OS-000078-GPOS-00046</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254291r1000159_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254291r1016478_rule" weight="10.0" severity="medium">
       <version>WN22-AC-000070</version>
       <title>Windows Server 2022 minimum password length must be configured to 14 characters.</title>
       <description>&lt;VulnDiscussion&gt;Information systems not protected with strong password schemes (including passwords of minimum length) provide the opportunity for anyone to crack the password, thus gaining access to the system and compromising the device, information, or the local network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -11789,6 +11835,8 @@ If the value for the "Minimum password age" is set to "0" days ("Password can be
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004066</ident>
+      <ident system="http://cyber.mil/cci">CCI-000205</ident>
+      <ident system="http://cyber.mil/cci">CCI-000205</ident>
       <fixtext fixref="F-57727r848688_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy &gt;&gt; "Minimum password length" to "14" characters.</fixtext>
       <fix id="F-57727r848688_fix" />
       <check system="C-57776r848687_chk">
@@ -11808,7 +11856,7 @@ If the value for the "Minimum password length," is less than "14" characters, th
   <Group id="V-254292">
     <title>SRG-OS-000069-GPOS-00037</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254292r1000160_rule" weight="10.0" severity="medium">
+    <Rule id="SV-254292r1016479_rule" weight="10.0" severity="medium">
       <version>WN22-AC-000080</version>
       <title>Windows Server 2022 must have the built-in Windows password complexity policy enabled.</title>
       <description>&lt;VulnDiscussion&gt;The use of complex passwords increases their strength against attack. The built-in Windows password complexity policy requires passwords to contain at least three of the four types of characters (numbers, uppercase and lowercase letters, and special characters) and prevents the inclusion of user names or parts of user names.
@@ -11822,6 +11870,14 @@ Satisfies: SRG-OS-000069-GPOS-00037, SRG-OS-000070-GPOS-00038, SRG-OS-000071-GPO
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004066</ident>
+      <ident system="http://cyber.mil/cci">CCI-000192</ident>
+      <ident system="http://cyber.mil/cci">CCI-000193</ident>
+      <ident system="http://cyber.mil/cci">CCI-000194</ident>
+      <ident system="http://cyber.mil/cci">CCI-001619</ident>
+      <ident system="http://cyber.mil/cci">CCI-000192</ident>
+      <ident system="http://cyber.mil/cci">CCI-000193</ident>
+      <ident system="http://cyber.mil/cci">CCI-000194</ident>
+      <ident system="http://cyber.mil/cci">CCI-001619</ident>
       <fixtext fixref="F-57728r848691_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy &gt;&gt; Password must meet complexity requirements to "Enabled".</fixtext>
       <fix id="F-57728r848691_fix" />
       <check system="C-57777r848690_chk">
@@ -11841,7 +11897,7 @@ If the value for "Password must meet complexity requirements" is not set to "Ena
   <Group id="V-254293">
     <title>SRG-OS-000073-GPOS-00041</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-254293r1000161_rule" weight="10.0" severity="high">
+    <Rule id="SV-254293r1016480_rule" weight="10.0" severity="high">
       <version>WN22-AC-000090</version>
       <title>Windows Server 2022 reversible password encryption must be disabled.</title>
       <description>&lt;VulnDiscussion&gt;Storing passwords using reversible encryption is essentially the same as storing clear-text versions of the passwords, which are easily compromised. For this reason, this policy must never be enabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -11853,6 +11909,8 @@ If the value for "Password must meet complexity requirements" is not set to "Ena
         <dc:identifier>5485</dc:identifier>
       </reference>
       <ident system="http://cyber.mil/cci">CCI-004062</ident>
+      <ident system="http://cyber.mil/cci">CCI-000196</ident>
+      <ident system="http://cyber.mil/cci">CCI-000196</ident>
       <fixtext fixref="F-57729r848694_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy &gt;&gt; Store passwords using reversible encryption to "Disabled".</fixtext>
       <fix id="F-57729r848694_fix" />
       <check system="C-57778r848693_chk">
