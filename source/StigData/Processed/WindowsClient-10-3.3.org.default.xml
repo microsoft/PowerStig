@@ -6,7 +6,6 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="3.3">
-<OrganizationalSettings fullversion="3.2">
   <!-- Ensure ValueData is set to 0x00000006 (6) or greater -->
   <OrganizationalSetting id="V-220704" ValueData="" />
   <!-- Ensure ''V-220739'' -ge '15' -or ''V-220739'' -eq '0'-->
