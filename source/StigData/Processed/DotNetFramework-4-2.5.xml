@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_DotNet_Framework_4-0_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 30 Jan 2025 3.5 1.10.0" title="Microsoft DotNet Framework 4.0 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="2/19/2025">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_DotNet_Framework_4-0_STIG_V2R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 30 Jan 2025 3.5 1.10.0" title="Microsoft DotNet Framework 4.0 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.5" created="2/18/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-225227" severity="medium" conversionstatus="pass" title="SRG-APP-000120" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A successful disaster recovery plan requires that CAS policy and CAS policy configuration files are identified and included in systems disaster backup and recovery events. Documentation regarding the location of system and application specific CAS policy configuration files and the frequency in which backups occur is required. If these files are not identified and the information is not documented, there is the potential that critical application configuration files may not be included in disaster recovery events which could lead to an availability risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -302,20 +302,14 @@ Failure to apply applicable versions of STIG guidance can result in the loss of 
       <LegacyId>V-30937</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The infrastructure to enable Code Access Security (CAS) exists only in .NET Framework 2.x - 4.x.
+      <RawString>Open Windows explorer and search for all *.exe.config files.  This requirement does not apply to the caspol.exe assembly or other assemblies provided with the Windows OS or the Windows Secure Host Baseline (SHB).
 
-The requirement is Not Applicable (NA) for .NET Framework &gt; 4.x.
-
-(Note: The infrastructure is deprecated and is not receiving servicing or security fixes.)
-
-Open Windows explorer and search for all *.exe.config files. This requirement does not apply to the caspol.exe assembly or other assemblies provided with the Windows OS or the Windows Secure Host Baseline (SHB).
-
-To find relevant files, run the FINDSTR command from an elevated (admin) command prompt: 
+To find relevant files, you can run the FINDSTR command from an elevated (admin) command prompt: 
 FINDSTR /i /s "NetFx40_LegacySecurityPolicy" c:\*.exe.config 
-
 This command will search all ."exe.config" files on the c: drive partition for the "LegacySecurityPolicy" setting. Repeat the command for each drive partition on the system.
 
-If the .NET application configuration file uses the legacy policy element, and .NET STIG guidance that covers these legacy versions has not been applied, this is a finding.
+
+If the .NET application configuration file utilizes the legacy policy element and .NET STIG guidance that covers these legacy versions has not been applied, this is a finding.
 </RawString>
     </Rule>
     <Rule id="V-225233" severity="medium" conversionstatus="pass" title="SRG-APP-000431" dscresource="None">
