@@ -302,14 +302,20 @@ Failure to apply applicable versions of STIG guidance can result in the loss of 
       <LegacyId>V-30937</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open Windows explorer and search for all *.exe.config files.  This requirement does not apply to the caspol.exe assembly or other assemblies provided with the Windows OS or the Windows Secure Host Baseline (SHB).
+      <RawString>The infrastructure to enable Code Access Security (CAS) exists only in .NET Framework 2.x - 4.x.
 
-To find relevant files, you can run the FINDSTR command from an elevated (admin) command prompt: 
+The requirement is Not Applicable (NA) for .NET Framework &gt; 4.x.
+
+(Note: The infrastructure is deprecated and is not receiving servicing or security fixes.)
+
+Open Windows explorer and search for all *.exe.config files. This requirement does not apply to the caspol.exe assembly or other assemblies provided with the Windows OS or the Windows Secure Host Baseline (SHB).
+
+To find relevant files, run the FINDSTR command from an elevated (admin) command prompt: 
 FINDSTR /i /s "NetFx40_LegacySecurityPolicy" c:\*.exe.config 
+
 This command will search all ."exe.config" files on the c: drive partition for the "LegacySecurityPolicy" setting. Repeat the command for each drive partition on the system.
 
-
-If the .NET application configuration file utilizes the legacy policy element and .NET STIG guidance that covers these legacy versions has not been applied, this is a finding.
+If the .NET application configuration file uses the legacy policy element, and .NET STIG guidance that covers these legacy versions has not been applied, this is a finding.
 </RawString>
     </Rule>
     <Rule id="V-225233" severity="medium" conversionstatus="pass" title="SRG-APP-000431" dscresource="None">
