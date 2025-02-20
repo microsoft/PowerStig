@@ -3,7 +3,7 @@
 ## [Unreleased]
 
 *Update Powerstig to parse\apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 5 [#1416](https://github.com/microsoft/PowerStig/issues/1416)
-*Update Powerstig to parse\apply Red Hat Linux 9 STIG - Ver 2, Rel 3 [#1431](https://github.com/microsoft/PowerStig/issues/1431)
+*Update Powerstig to parse\apply Red Hat Linux 9 STIG - Ver 2, Rel 3  [#1431](https://github.com/microsoft/PowerStig/issues/1431)
 
 ## [4.24.0] - 2024-12-06
 
