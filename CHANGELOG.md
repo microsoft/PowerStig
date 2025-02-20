@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Update Powerstig to parse/apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 5 [#1422](https://github.com/microsoft/PowerStig/issues/1422)
 
 ## [4.24.0] - 2024-12-06
 
