@@ -291,33 +291,6 @@ If the "enforceFIPSPolicy" element exists and is set to "false", and the IAO has
 
 </RawString>
     </Rule>
-    <Rule id="V-225232" severity="low" conversionstatus="pass" title="SRG-APP-000516" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;CAS policy is .NET runtime version-specific.  In .NET Framework version 4, CAS policy is disabled by default however; it can be re-enabled by using the NetFx40_LegacySecurityPolicy setting on a per application basis. Caspol.exe is provided by Microsoft to set security policy on .Net applications prior to version 4.0. This requirement does not apply to the caspol.exe assembly or other assemblies provided with the Windows OS or the Windows Secure Host Baseline (SHB).
-
-When invoking the NetFx40_LegacySecurityPolicy setting in .NET 4, earlier versions of the .NET Framework CAS policy will become active therefore previous .NET STIG guidance that applies to the reactivated versions must also be applied. 
-
-Failure to apply applicable versions of STIG guidance can result in the loss of system confidentiality, integrity or availability.  &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-30937</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>The infrastructure to enable Code Access Security (CAS) exists only in .NET Framework 2.x - 4.x.
-
-The requirement is Not Applicable (NA) for .NET Framework &gt; 4.x.
-
-(Note: The infrastructure is deprecated and is not receiving servicing or security fixes.)
-
-Open Windows explorer and search for all *.exe.config files. This requirement does not apply to the caspol.exe assembly or other assemblies provided with the Windows OS or the Windows Secure Host Baseline (SHB).
-
-To find relevant files, run the FINDSTR command from an elevated (admin) command prompt: 
-FINDSTR /i /s "NetFx40_LegacySecurityPolicy" c:\*.exe.config 
-
-This command will search all ."exe.config" files on the c: drive partition for the "LegacySecurityPolicy" setting. Repeat the command for each drive partition on the system.
-
-If the .NET application configuration file uses the legacy policy element, and .NET STIG guidance that covers these legacy versions has not been applied, this is a finding.
-</RawString>
-    </Rule>
     <Rule id="V-225233" severity="medium" conversionstatus="pass" title="SRG-APP-000431" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;In the .NET Framework version 3.5 and earlier versions, if an application assembly loaded code/objects from a remote location, that assembly would run partially trusted with a permissions grant set that depended on the zone in which it was loaded. For example, if an assembly was loaded from a web site, it was loaded into the Internet zone and granted the Internet permission set. In other words, it was executed in an Internet sandbox.
 
