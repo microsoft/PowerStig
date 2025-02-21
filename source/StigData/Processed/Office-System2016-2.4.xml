@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Office_System_2016" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Microsoft_Office_System_2016_STIG_V2R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 27 Jan 2022 3.2.2.36079 1.10.0" title="Microsoft Office System 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.2" created="2/25/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Office_System_2016" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Office_System_2016_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 30 Jan 2025 3.5 1.10.0" title="Microsoft Office System 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="2/6/2025">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-238024" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls whether the Help Improve Proofing Tools feature sends usage data to Microsoft. The Help Improve Proofing Tools feature collects data about use of the Proofing Tools, such as additions to the custom dictionary, and sends it to Microsoft. After about six months, the feature stops sending data to Microsoft and deletes the data collection file from the user's computer. If you enable this policy setting, this feature is enabled if users choose to participate in the Customer Experience Improvement Program (CEIP). If your organization has policies that govern the use of external resources such as the CEIP, allowing the use of the Help Improve Proofing Tools feature might cause them to violate these policies. If you disable this policy setting, the Help Improve Proofing Tools feature does not collect proofing tool usage information and transmit it to Microsoft. If you do not configure this policy setting, the behavior is the equivalent of setting the policy to "Enabled".&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -178,7 +178,7 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\microsoft\vba\security
 
-If the value for "LoadControlsInForms" does not exist or if the value for "LoadControlsInForms" is REG_DWORD=1, this is not a finding.</RawString>
+If the value for "LoadControlsInForms3" does not exist or if the value for "LoadControlsInForms" is REG_DWORD=1, this is not a finding.</RawString>
       <ValueData />
       <ValueName>**del.loadcontrolsinforms</ValueName>
       <ValueType>String</ValueType>
@@ -199,7 +199,7 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\microsoft\vba\security
 
-If the value for "LoadControlsInForms" does not exist or if the value for "LoadControlsInForms" is REG_DWORD=1, this is not a finding.</RawString>
+If the value for "LoadControlsInForms3" does not exist or if the value for "LoadControlsInForms" is REG_DWORD=1, this is not a finding.</RawString>
       <ValueData />
       <ValueName>loadcontrolsinforms</ValueName>
       <ValueType>String</ValueType>
@@ -374,13 +374,13 @@ Criteria: If the value disableprogrammaticaccess is REG_DWORD = 1, this is not a
       <LegacyId>V-70893</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 -&gt; Privacy -&gt; Trust Center -&gt; "Allow including screenshot with Office Feedback" is set to "Disabled".
+      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2016 &gt;&gt; Privacy &gt;&gt; Trust Center &gt;&gt; "Allow users to include screenshots and attachments when they submit feedback to Microsoft" is set to "Disabled".
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: 
+Use the Windows Registry Editor to navigate to the following key: 
 
 HKCU\software\policies\Microsoft\office\16.0\common\feedback
 
-Criteria: If the value includescreenshot is REG_DWORD = 0, this is not a finding.</RawString>
+If the value "includescreenshot" is "REG_DWORD = 0", this is not a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>includescreenshot</ValueName>
       <ValueType>Dword</ValueType>
@@ -406,7 +406,7 @@ Criteria: If the value requireserververification is REG_DWORD = 1, this is not a
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-238042" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy setting configures Office Telemetry Agent to disguise, or obfuscate, certain file properties that are reported in telemetry data. If you enable this policy setting, Office Telemetry Agent obfuscates the file name, file path, and title of Office documents before uploading telemetry data to the shared folder. If you disable or do not configure this policy setting, Office Telemetry Agent uploads telemetry data that shows the full file name, file path, and title of all Office documents.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;This policy setting configures Office Telemetry Agent to disguise, or obfuscate, certain file properties that are reported in telemetry data. If this policy setting is enabled, Office Telemetry Agent obfuscates the file name, file path, and title of Office documents before uploading telemetry data to the shared folder. If this policy setting is disabled or not configured, Office Telemetry Agent uploads telemetry data that shows the full file name, file path, and title of all Office documents.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -414,13 +414,13 @@ Criteria: If the value requireserververification is REG_DWORD = 1, this is not a
       <LegacyId>V-70897</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2016 -&gt; Telemetry Dashboard -&gt; "Turn on privacy setting in Office Telemetry Agent" is set to "Enabled".
+      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Office 2016 &gt;&gt; Telemetry Dashboard &gt;&gt; "Turn on privacy setting in Office Telemetry Agent" is set to "Enabled".
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: 
+Use the Windows Registry Editor to navigate to the following key: 
 
 HKCU\software\policies\Microsoft\office\16.0\osm
 
-Criteria: If the value enablefileobfuscation is REG_DWORD = 1, this is not a finding.</RawString>
+If the value "enablefileobfuscation" is "REG_DWORD = 1", this is not a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>enablefileobfuscation</ValueName>
       <ValueType>Dword</ValueType>

@@ -1,0 +1,19 @@
+<!--
+    The organizational settings file is used to define the local organizations
+    preferred setting within an allowed range of the STIG.
+
+    Each setting in this file is linked by STIG ID and the valid range is in an
+    associated comment.
+-->
+<OrganizationalSettings fullversion="2.3">
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "maxpoll" option is set to a number greater than 16 or the line is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-257945.a" ContainsLine="" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "INACTIVE" is set to "-1", a value greater than "35", or is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-258049" ContainsLine="" DoesNotContainPattern=""/>
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "fail_interval" option is not set to "900" or less (but not "0"), the line is commented out, or the line is missing, this is a finding." -->
+  <OrganizationalSetting id="V-258056" ContainsLine="" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "TMOUT" is not set to "600" or less in a script located in the "/etc/'profile.d/ directory, is missing or is commented out, this is a finding." -->
+  <OrganizationalSetting id="V-258068" ContainsLine="" DoesNotContainPattern="" />
+  <!-- Ensure the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the value of the "action_mail_acct" keyword is not set to "root" and/or other accounts for security personnel, the "action_mail_acct" keyword is missing, or the retuned line is commented out, ask the SA to indicate how they and the ISSO are notified of an audit process failure. If there is no evidence of the proper personnel being notified of an audit processing failure, this is a finding." -->
+  <OrganizationalSetting id="V-258163" ContainsLine="" DoesNotContainPattern="" />
+</OrganizationalSettings>
