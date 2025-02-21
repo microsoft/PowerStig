@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.1">
+<OrganizationalSettings fullversion="2.3">
   <!-- Ensure ServiceName/StartupType is populated with correct AntiVirus service information-->
   <OrganizationalSetting id="V-254248" ServiceName="" StartupType="" />
   <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->

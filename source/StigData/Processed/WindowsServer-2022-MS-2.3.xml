@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_MS_STIG_V1R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 09 Nov 2023 3.4.1.22916 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.4" created="12/22/2023">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_MS_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 30 Jan 2025 3.5 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="2/6/2025">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-254285" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -61,7 +61,7 @@ If the "Reset account lockout counter after" value is less than "15" minutes, th
 </RawString>
     </Rule>
     <Rule id="V-254288" severity="medium" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="AccountPolicy">
-      <Description>&lt;VulnDiscussion&gt;A system is more vulnerable to unauthorized access when system users recycle the same password several times without being required to change to a unique password on a regularly scheduled basis. This enables users to effectively negate the purpose of mandating periodic password changes. The default value is "24" for Windows domain systems. DoD has decided this is the appropriate value for all Windows systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;A system is more vulnerable to unauthorized access when system users recycle the same password several times without being required to change to a unique password on a regularly scheduled basis. This enables users to effectively negate the purpose of mandating periodic password changes. The default value is "24" for Windows domain systems. DOD has decided this is the appropriate value for all Windows systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
@@ -1259,7 +1259,7 @@ The PowerShell command "Get-WindowsFeature" will list all roles and features wit
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify DoD-approved ESS software is installed and properly operating. Ask the site Information System Security Manager (ISSM) for documentation of the ESS software installation and configuration.
+      <RawString>Verify DOD-approved ESS software is installed and properly operating. Ask the site information system security manager (ISSM) for documentation of the ESS software installation and configuration.
 
 If the ISSM is not able to provide a documented configuration for an installed ESS or if the ESS software is not properly maintained or used, this is a finding.
 
@@ -1293,7 +1293,7 @@ Windows LAPS must be used to change the built-in Administrator account password.
 
 Review the password last set date for the enabled local Administrator account.
 
-On the local domain-joined workstation:
+On the stand alone or domain-joined workstation:
 
 Open "PowerShell".
 
@@ -1304,8 +1304,6 @@ If the "PasswordLastSet" date is greater than "60" days old for the local Admini
 Verify LAPS is configured and operational. 
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Set to enabled. Password Complexity, large letters + small letters + numbers + special, Password Length 14, Password Age 60. If not configured as shown, this is a finding. 
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Name of administrator Account to manage &gt;&gt; Set to enabled &gt;&gt; Administrator account name is populated. If it is not, this is a finding. 
 
 Verify LAPS Operational logs &gt;&gt; Event Viewer &gt;&gt; Applications and Services Logs &gt;&gt; Microsoft &gt;&gt; Windows &gt;&gt; LAPS &gt;&gt; Operational. Verify LAPS policy process is completing. If it is not, this is a finding.</RawString>
     </Rule>
@@ -1346,7 +1344,7 @@ Verify users with accounts in the Backup Operators group have a separate user ac
 If users with accounts in the Backup Operators group do not have separate accounts for backup functions and standard user functions, this is a finding.</RawString>
     </Rule>
     <Rule id="V-254242" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Application/service account passwords must be of sufficient length to prevent being easily cracked. Application/service accounts that are manually managed must have passwords at least 15 characters in length.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Application/service account passwords must be of sufficient length to prevent being easily cracked. Application/service accounts that are manually managed must have passwords at least 14 characters in length.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
@@ -1355,7 +1353,7 @@ If users with accounts in the Backup Operators group do not have separate accoun
       <OrganizationValueTestString />
       <RawString>Determine if manually managed application/service accounts exist. If none exist, this is NA.
 
-Verify the organization has a policy to ensure passwords for manually managed application/service accounts are at least 15 characters in length.
+Verify the organization has a policy to ensure passwords for manually managed application/service accounts are at least 14 characters in length.
 
 If such a policy does not exist or has not been implemented, this is a finding.</RawString>
     </Rule>
@@ -1573,7 +1571,7 @@ Select the "Security" tab.
 
 If the permissions have not been configured to restrict permissions to the specific groups or accounts that require access, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-254262" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
+    <Rule id="V-254262" severity="high" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;This requirement addresses protection of user-generated data as well as operating system-specific configuration data. Organizations may choose to employ different mechanisms to achieve confidentiality and integrity protections, as appropriate, in accordance with the security category and/or classification of the information.
 
 Selection of a cryptographic mechanism is based on the need to protect the integrity of organizational information. The strength of the mechanism is commensurate with the security category and/or classification of the information. Organizations have the flexibility to either encrypt all information on storage devices (i.e., full disk encryption) or encrypt specific data structures (e.g., files, records, or fields).
@@ -2520,7 +2518,7 @@ If the defaults have not been changed, these are not a finding.
           </Type>
           <Principal>CREATOR OWNER</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>Subkeys Only</Inheritance>
+          <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
         <Entry>
@@ -2529,15 +2527,6 @@ If the defaults have not been changed, these are not a finding.
           <Principal>ALL APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>This Key and Subkeys</Inheritance>
-          <Rights>ReadKey</Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Server Operators</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
           <Rights>ReadKey</Rights>
         </Entry>
         <Entry>
@@ -2571,9 +2560,8 @@ Principal - Access - Applies to
 Users - Read - This key and subkeys
 Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - Subkeys
+CREATOR OWNER - Full Control - This key and Subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Server Operators - Read - This Key and subkeys (Domain controllers only)
 Other examples under the noted keys may also be sampled. There may be some instances where nonprivileged groups have greater than Read permission.
 Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2022 to the following SID. This is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
@@ -2803,7 +2791,9 @@ Satisfies: SRG-OS-000257-GPOS-00098, SRG-OS-000258-GPOS-00099&lt;/VulnDiscussion
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <Path>%windir%\SYSTEM32\eventvwr.exe</Path>
-      <RawString>Navigate to "%SystemRoot%\System32".
+      <RawString>This is not applicable for Windows Core Edition.
+
+Navigate to "%SystemRoot%\System32".
 
 View the permissions on "Eventvwr.exe".
 
@@ -5125,7 +5115,7 @@ Value:  0x00000002 (2)</RawString>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>This is NA if the host is running SharePoint.                                                                               If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy\
