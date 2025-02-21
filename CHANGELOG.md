@@ -7,6 +7,9 @@
 
 * Update Powerstig to parse\apply U_MS_Windows_Server_2022_STIG_V2R3 [#1403](https://github.com/microsoft/PowerStig/issues/1413)
 
+* Update Powerstig to parse\apply Microsoft Office 365 ProPlus STIG - Ver 3, Rel 2 #1417 [#1417](https://github.com/microsoft/PowerStig/issues/1417)
+
+
 ## [4.24.0] - 2024-12-06
 
 * Updated Powerstig.xsd schema file [#1386](https://github.com/microsoft/PowerStig/issues/1386)
