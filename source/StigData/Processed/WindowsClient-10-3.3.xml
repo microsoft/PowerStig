@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 24 Jul 2024 3.5 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="7/19/2024">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V3R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 30 Jan 2025 3.5 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.3" created="2/6/2025">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-220739" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1000,7 +1000,7 @@ Policy Change  &gt;&gt; MPSSVC Rule-Level Policy Change - Failure
 New versions with feature updates are planned to be released on a semiannual basis with an estimated support timeframe of 18 to 30 months depending on the release. Support for previously released versions has been extended for Enterprise editions.
 
 A separate servicing branch intended for special-purpose systems is the Long-Term Servicing Channel (LTSC, formerly Branch - LTSB), which will receive security updates for 10 years but excludes feature updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DesiredValue>10.0.19044</DesiredValue>
+      <DesiredValue>10.0.19045</DesiredValue>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-63349</LegacyId>
@@ -1013,7 +1013,7 @@ A separate servicing branch intended for special-purpose systems is the Long-Ter
 
 If the "About Windows" dialog box does not display the following or greater, this is a finding:
 
-"Microsoft Windows Version 21H2 (OS Build 19044.x)"
+"Microsoft Windows Version 22H2 (OS Build 19045.x)"
 
 Note: Microsoft has extended support for previous versions, providing critical and important updates for Windows 10 Enterprise.
 
@@ -1328,23 +1328,25 @@ https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defe
       <LegacyId>V-63351</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify an anti-virus solution is installed on the system and in use. The anti-virus solution may be bundled with an approved Endpoint Security Solution.
+      <RawString>Verify an antivirus solution is installed on the system and in use. The antivirus solution may be bundled with an approved Endpoint Security Solution.
 
 Verify if Windows Defender is in use or enabled:
 
 Open "PowerShell".
 
-Enter “get-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayName”
+Enter "get-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayName"
 
 Verify third-party antivirus is in use or enabled:
 
 Open "PowerShell".
 
-Enter “get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayName”
+Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayName"
 
-Enter “get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayName”
-
-If there is no anti-virus solution installed on the system, this is a finding.</RawString>
+Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayName"
+                                      
+Enter "get-service | where {$_.DisplayName -Like "*trellix*"} | Select Status,DisplayName" 
+                                                           
+If there is no antivirus solution installed on the system, this is a finding.</RawString>
     </Rule>
     <Rule id="V-220709" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Allowing other operating systems to run on a secure system may allow security to be circumvented.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1630,7 +1632,8 @@ Valid to: Sunday, December 30, 2029</RawString>
 Windows LAPS must be used to change the built-in Administrator account password.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-99555</LegacyId>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If there are no enabled local Administrator accounts, this is Not Applicable.
@@ -1648,8 +1651,6 @@ If the "PasswordLastSet" date is greater than "60" days old for the local Admini
 Verify LAPS is configured and operational. 
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Set to enabled. Password Complexity, large letters + small letters + numbers + special, Password Length 14, Password Age 60. If not configured as shown, this is a finding. 
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Name of administrator Account to manage &gt;&gt; Set to enabled &gt;&gt; Administrator account name is populated. If it is not, this is a finding. 
 
 Verify LAPS Operational logs &gt;&gt; Event Viewer &gt;&gt; Applications and Services Logs &gt;&gt; Microsoft &gt;&gt; Windows &gt;&gt; LAPS &gt;&gt; Operational. Verify LAPS policy process is completing. If it is not, this is a finding.</RawString>
     </Rule>
@@ -1701,6 +1702,36 @@ If the key contains v4tov4\tcp\ or is populated v4tov4\tcp\, this is a finding.
 Run "netsh interface portproxy show all". 
 
 If the command displays any results, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-268315" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following local computer policy is not configured as specified, this is a finding:
+User Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Windows Copilot &gt;&gt; "Turn off Windows Copilot" to "Enabled".</RawString>
+    </Rule>
+    <Rule id="V-268319" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without Windows 10 systems being managed, devices could be rogue and become targets of an attacker.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the Windows 10 system is receiving policy from either Group Policy or an MDM with the following steps:
+
+From a command line or PowerShell:
+
+gpresult /R
+OS Configuration: Member Workstation
+
+If the system is not being managed by GPO, ask the administrator to indicate which MDM is managing the device.
+
+If the Window 10 system is not receiving policy from either Group Policy or an MDM, this is a finding.</RawString>
     </Rule>
   </ManualRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
@@ -3019,13 +3050,14 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>AllowProtectedCreds</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220811.a" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Virtualization Based Security (VBS) provides the platform for the additional security features, Credential Guard and Virtualization based protection of code integrity.  Secure Boot is the minimum security level with DMA protection providing additional memory protection.  DMA Protection requires a CPU that supports input/output memory management unit (IOMMU).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+    <Rule id="V-220811.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Virtualization Based Security (VBS) provides the platform for the additional security features, Credential Guard and Virtualization based protection of code integrity. Secure Boot is the minimum security level with DMA protection providing additional memory protection.  DMA Protection requires a CPU that supports input/output memory management unit (IOMMU).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
-      <LegacyId>V-63595.a</LegacyId>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Registry Hive: HKEY_LOCAL_MACHINE
@@ -3037,13 +3069,14 @@ Value: 1</RawString>
       <ValueName>EnableVirtualizationBasedSecurity</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-220811.b" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Virtualization Based Security (VBS) provides the platform for the additional security features, Credential Guard and Virtualization based protection of code integrity.  Secure Boot is the minimum security level with DMA protection providing additional memory protection.  DMA Protection requires a CPU that supports input/output memory management unit (IOMMU).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+    <Rule id="V-220811.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Virtualization Based Security (VBS) provides the platform for the additional security features, Credential Guard and Virtualization based protection of code integrity. Secure Boot is the minimum security level with DMA protection providing additional memory protection.  DMA Protection requires a CPU that supports input/output memory management unit (IOMMU).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
-      <LegacyId>V-63595.b</LegacyId>
+      <LegacyId>
+      </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match '1|3'</OrganizationValueTestString>
       <RawString>Registry Hive: HKEY_LOCAL_MACHINE
@@ -4342,46 +4375,6 @@ Value Type: REG_DWORD
 Value: 1</RawString>
       <ValueData>1</ValueData>
       <ValueName>EnableScriptBlockLogging</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-220861.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;A known vulnerability in Windows 10 could allow the execution of malicious code by either opening a compromised document or viewing it in the Windows Preview pane.
-
-Organizations must disable the Windows Preview pane and Windows Detail pane.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
-      <LegacyId>V-102617.a</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_CURRENT_USER
-Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
-Value Type: REG_DWORD
-Value Name: NoPreviewPane
-Value: 1</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>NoPreviewPane</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-220861.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;A known vulnerability in Windows 10 could allow the execution of malicious code by either opening a compromised document or viewing it in the Windows Preview pane.
-
-Organizations must disable the Windows Preview pane and Windows Detail pane.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
-      <LegacyId>V-102617.b</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_CURRENT_USER
-Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
-Value Type: REG_DWORD
-Value Name: NoReadingPane
-Value: 1</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>NoReadingPane</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-220862" severity="high" conversionstatus="pass" title="SRG-OS-000125-GPOS-00065" dscresource="RegistryPolicyFile">
@@ -6615,42 +6608,6 @@ Administrators</RawString>
     </Rule>
   </UserRightRule>
   <WindowsFeatureRule dscresourcemodule="PSDscResources">
-    <Rule id="V-220718.a" severity="high" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsOptionalFeature">
-      <Description>&lt;VulnDiscussion&gt;Installation of Internet Information System (IIS) may allow unauthorized internet services to be hosted.  Websites must only be hosted on servers that have been designed for that purpose and can be adequately secured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Absent</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-63377.a</LegacyId>
-      <Name>IIS-HostableWebCore</Name>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>IIS is not installed by default.  Verify it has not been installed on the system.
-
-Run "Programs and Features".
-Select "Turn Windows features on or off".
-
-If the entries for "Internet Information Services" or "Internet Information Services Hostable Web Core" are selected, this is a finding.
-
-If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO.  In addition, any applicable requirements from the IIS STIG must be addressed.</RawString>
-    </Rule>
-    <Rule id="V-220718.b" severity="high" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsOptionalFeature">
-      <Description>&lt;VulnDiscussion&gt;Installation of Internet Information System (IIS) may allow unauthorized internet services to be hosted.  Websites must only be hosted on servers that have been designed for that purpose and can be adequately secured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Absent</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-63377.b</LegacyId>
-      <Name>IIS-WebServer</Name>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>IIS is not installed by default.  Verify it has not been installed on the system.
-
-Run "Programs and Features".
-Select "Turn Windows features on or off".
-
-If the entries for "Internet Information Services" or "Internet Information Services Hostable Web Core" are selected, this is a finding.
-
-If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO.  In addition, any applicable requirements from the IIS STIG must be addressed.</RawString>
-    </Rule>
     <Rule id="V-220719" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;Some protocols and services do not support required security features, such as encrypting passwords or traffic.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6710,62 +6667,6 @@ If the "telnet" application exists, this is a finding.</RawString>
 Navigate to the Windows\System32 directory.
 
 If the "TFTP" application exists, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-220728.a" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsOptionalFeature">
-      <Description>&lt;VulnDiscussion&gt;Windows PowerShell 5.0 added advanced logging features which can provide additional detail when malware has been run on a system.  Disabling the Windows PowerShell 2.0 mitigates against a downgrade attack that evades the Windows PowerShell 5.0 script block logging feature.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Absent</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-70637.a</LegacyId>
-      <Name>MicrosoftWindowsPowerShellV2</Name>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter the following:
-Get-WindowsOptionalFeature -Online | Where FeatureName -like *PowerShellv2*
-
-If either of the following have a "State" of "Enabled", this is a finding.
-
-FeatureName : MicrosoftWindowsPowerShellV2
-State : Enabled
-FeatureName : MicrosoftWindowsPowerShellV2Root
-State : Enabled
-
-Alternately:
-Search for "Features".
-
-Select "Turn Windows features on or off".
-
-If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 Engine" is selected or not) is selected, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-220728.b" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsOptionalFeature">
-      <Description>&lt;VulnDiscussion&gt;Windows PowerShell 5.0 added advanced logging features which can provide additional detail when malware has been run on a system.  Disabling the Windows PowerShell 2.0 mitigates against a downgrade attack that evades the Windows PowerShell 5.0 script block logging feature.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Absent</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-70637.b</LegacyId>
-      <Name>MicrosoftWindowsPowerShellV2Root</Name>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter the following:
-Get-WindowsOptionalFeature -Online | Where FeatureName -like *PowerShellv2*
-
-If either of the following have a "State" of "Enabled", this is a finding.
-
-FeatureName : MicrosoftWindowsPowerShellV2
-State : Enabled
-FeatureName : MicrosoftWindowsPowerShellV2Root
-State : Enabled
-
-Alternately:
-Search for "Features".
-
-Select "Turn Windows features on or off".
-
-If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 Engine" is selected or not) is selected, this is a finding.</RawString>
     </Rule>
     <Rule id="V-220729" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;SMBv1 is a legacy protocol that uses the MD5 algorithm as part of SMB. MD5 is known to be vulnerable to a number of attacks such as collision and preimage attacks as well as not being FIPS compliant.

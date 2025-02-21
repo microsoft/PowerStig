@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="3.1">
+<OrganizationalSettings fullversion="3.3">
   <!-- Ensure ValueData is set to 0x00000006 (6) or greater -->
   <OrganizationalSetting id="V-220704" ValueData="" />
   <!-- Ensure ''V-220739'' -ge '15' -or ''V-220739'' -eq '0'-->
@@ -92,4 +92,4 @@ By using this IS (which includes any device attached to this IS), you consent to
   <OrganizationalSetting id="V-220955" ValueData="2" />
   <!-- Ensure ''V-252903'' -match '1|2'-->
   <OrganizationalSetting id="V-252903" ValueData="1" />
-</OrganizationalSettings>
+  </OrganizationalSettings>
