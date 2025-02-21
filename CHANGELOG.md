@@ -14,6 +14,8 @@
 
 * Update Powerstig to parse\apply Microsoft Windows 10 STIG - Ver 3, Rel 3 [#1420](https://github.com/microsoft/PowerStig/issues/1420)
 
+* Update Powerstig to parse\apply Oracle Linux 8 STIG - Ver 2, Rel 3 [#1421](https://github.com/microsoft/PowerStig/issues/1386)
+
 ## [4.24.0] - 2024-12-06
 
 * Updated Powerstig.xsd schema file [#1386](https://github.com/microsoft/PowerStig/issues/1386)
