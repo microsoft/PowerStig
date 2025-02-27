@@ -15,7 +15,7 @@ If the IIS 10.0 web server is hosting an application, have the SA provide suppor
 
 If the IIS 10.0 web server is not hosting an application, this is Not Applicable.
 
-If the IIS web server is performing user management for hosted applications, this is a finding.
+If the IIS web server is performing user management for hosted applications, or
 
 If the IIS 10.0 web server is hosting an application and the SA cannot provide supporting documentation on how the application's user management is accomplished outside of the IIS 10.0 web server, this is a finding.</RawString>
     </Rule>
@@ -55,7 +55,7 @@ Verify with the system administrator or the ISSO that all privileged accounts ar
 
 Verify with the system administrator or the ISSO that all non-administrator access to shell scripts and operating system functions are mission essential and documented.
 
-If undocumented privileged accounts are found, this is a finding.
+If undocumented privileged accounts are found, or
 
 If undocumented non-administrator access to shell scripts and operating system functions are found, this is a finding.
 
@@ -300,7 +300,7 @@ If the IIS 10.0 web server is running SMTP relay services, have the SA provide s
 
 If the IIS web server is not running SMTP relay services, this is Not Applicable.
 
-If the IIS web server running SMTP relay services without TLS enabled, this is a finding.
+If the IIS web server running SMTP relay services without TLS enabled, or
 
 If the IIS web server running SMTP relay services is not configured to only allow a specific IP address, from the same network as the relay, this is a finding.</RawString>
     </Rule>
@@ -605,7 +605,7 @@ Individual productivity tools have no legitimate place or use on an enterprise p
 
 Determine if any features installed are no longer necessary for operation.
 
-If any utility programs, features, or modules are installed which are not necessary for operation, this is a finding.
+If any utility programs, features, or modules are installed which are not necessary for operation,or
 
 If any unnecessary Operating System features are installed, this is a finding.</RawString>
     </Rule>
