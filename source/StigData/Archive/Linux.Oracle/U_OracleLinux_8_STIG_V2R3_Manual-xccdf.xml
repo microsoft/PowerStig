@@ -626,7 +626,10 @@ Verify that all world-writable directories have the sticky bit set by running th
 
 $ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
 
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a finding.</check-content></check></Rule></Group><Group id="V-248552"><title>SRG-OS-000126-GPOS-00066</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248552r986329_rule" weight="10.0" severity="medium"><version>OL08-00-010200</version><title>OL 8 must be configured so that all network connections associated with SSH traffic terminate after becoming unresponsive.</title><description>&lt;VulnDiscussion&gt;Terminating an unresponsive SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
+If any of the returned directories are world-writable and do not have the sticky bit set, this is a finding.</check-content></check></Rule></Group>
+
+
+<Group id="V-248552"><title>SRG-OS-000126-GPOS-00066</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248552r986329_rule" weight="10.0" severity="medium"><version>OL08-00-010200</version><title>OL 8 must be configured so that all network connections associated with SSH traffic terminate after becoming unresponsive.</title><description>&lt;VulnDiscussion&gt;Terminating an unresponsive SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
 
 Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the unresponsive session and releases the resources associated with that session. 
  
@@ -650,9 +653,14 @@ $ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r'
 
 ClientAliveCountMax 1
 
-If "ClientAliveCountMax" does not exist, does not have a product value of "1" in "/etc/ssh/sshd_config", or is commented out, this is a finding.
+If does not exist does not have a product value of "1" in "/etc/ssh/sshd_config", or is commented out, or
 
-If conflicting results are returned, this is a finding.</check-content></check></Rule></Group><Group id="V-248553"><title>SRG-OS-000126-GPOS-00066</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248553r986330_rule" weight="10.0" severity="medium"><version>OL08-00-010201</version><title>OL 8 must be configured so that all network connections associated with SSH traffic are terminated after 10 minutes of becoming unresponsive.</title><description>&lt;VulnDiscussion&gt;Terminating an unresponsive SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
+If conflicting results are returned, this is a finding.</check-content></check></Rule></Group>
+
+
+
+
+<Group id="V-248553"><title>SRG-OS-000126-GPOS-00066</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248553r986330_rule" weight="10.0" severity="medium"><version>OL08-00-010201</version><title>OL 8 must be configured so that all network connections associated with SSH traffic are terminated after 10 minutes of becoming unresponsive.</title><description>&lt;VulnDiscussion&gt;Terminating an unresponsive SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
 
 Terminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level and deallocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the unresponsive session and releases the resources associated with that session.
  
@@ -676,7 +684,7 @@ $ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r'
 
 ClientAliveInterval 600
 
-If "ClientAliveInterval" does not exist, does not have a product value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding.
+If "ClientAliveInterval" does not exist, does not have a product value of "600" or less in "/etc/ssh/sshd_config", or is commented out, or
 
 If conflicting results are returned, this is a finding.</check-content></check></Rule></Group><Group id="V-248554"><title>SRG-OS-000206-GPOS-00084</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248554r958566_rule" weight="10.0" severity="medium"><version>OL08-00-010210</version><title>The OL 8 "/var/log/messages" file must have mode 0640 or less permissive.</title><description>&lt;VulnDiscussion&gt;Only authorized personnel should be aware of errors and the details of the errors. Error messages are an indicator of an organization's operational state or can identify the OL 8 system or platform. Additionally, Personally Identifiable Information (PII) and operational information must not be revealed through error messages to unauthorized personnel or their designated representatives. 
  
@@ -1661,7 +1669,7 @@ $ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r'
 
 StrictModes yes
 
-If "StrictModes" is set to "no" or is missing, or if the returned line is commented out, this is a finding. 
+If "StrictModes" is set to "no" or is missing, or if the returned line is commented out, or
 
 If conflicting results are returned, this is a finding.</check-content></check></Rule></Group><Group id="V-248605"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248605r991589_rule" weight="10.0" severity="medium"><version>OL08-00-010520</version><title>The OL 8 SSH daemon must not allow authentication using known host's authentication.</title><description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Oracle Linux 8</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Oracle Linux 8</dc:subject><dc:identifier>5416</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-51993r779380_fix">Configure the SSH daemon to not allow authentication using known host’s authentication. 
  
@@ -1677,7 +1685,7 @@ $ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r'
 
 IgnoreUserKnownHosts yes
 
-If the value is returned as "no", the returned line is commented out, or no output is returned, this is a finding.
+If the value is returned as "no", the returned line is commented out, or no output is returned, or
 
 If conflicting results are returned, this is a finding.</check-content></check></Rule></Group><Group id="V-248606"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248606r991589_rule" weight="10.0" severity="medium"><version>OL08-00-010521</version><title>The OL 8 SSH daemon must not allow Kerberos authentication, except to fulfill documented and validated mission requirements.</title><description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Oracle Linux 8</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Oracle Linux 8</dc:subject><dc:identifier>5416</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-51994r779383_fix">Configure the SSH daemon to not allow Kerberos authentication. 
  
@@ -1693,7 +1701,7 @@ $ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r'
 
 KerberosAuthentication no
 
-If the value is returned as "yes", the returned line is commented out, or no output is returned or has not been documented with the information system security officer (ISSO), this is a finding.
+If the value is returned as "yes", the returned line is commented out, or no output is returned or has not been documented with the information system security officer (ISSO),  or
 
 If conflicting results are returned, this is a finding.</check-content></check></Rule></Group><Group id="V-248607"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248607r991589_rule" weight="10.0" severity="medium"><version>OL08-00-010522</version><title>The OL 8 SSH daemon must not allow GSSAPI authentication, except to fulfill documented and validated mission requirements.</title><description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Oracle Linux 8</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Oracle Linux 8</dc:subject><dc:identifier>5416</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-51995r779386_fix">Configure the SSH daemon to not allow GSSAPI authentication.
 
@@ -1709,7 +1717,7 @@ $ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r'
 
 GSSAPIAuthentication no
 
-If the value is returned as "yes", the returned line is commented out, or no output is returned or has not been documented with the information system security officer (ISSO), this is a finding.
+If the value is returned as "yes", the returned line is commented out, or no output is returned or has not been documented with the information system security officer (ISSO),  or
 
 If conflicting results are returned, this is a finding.</check-content></check></Rule></Group><Group id="V-248608"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248608r991589_rule" weight="10.0" severity="low"><version>OL08-00-010540</version><title>OL 8 must use a separate file system for "/var".</title><description>&lt;VulnDiscussion&gt;The use of separate file systems for different paths can protect the system from failures resulting from a file system becoming full or failing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Oracle Linux 8</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Oracle Linux 8</dc:subject><dc:identifier>5416</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-51996r779389_fix">Migrate the "/var" path onto a separate file system.</fixtext><fix id="F-51996r779389_fix" /><check system="C-52042r902792_chk"><check-content-ref href="Oracle_Linux_8_STIG.xml" name="M" /><check-content>Verify that a separate file system has been created for "/var" with the following command: 
  
@@ -1765,7 +1773,7 @@ $ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r'
 
 PermitRootLogin no
 
-If the "PermitRootLogin" keyword is set to "yes", is missing, or is commented out, this is a finding.
+If the "PermitRootLogin" keyword is set to "yes", is missing, or is commented out,  or
 
 If conflicting results are returned, this is a finding.</check-content></check></Rule></Group><Group id="V-248615"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248615r991589_rule" weight="10.0" severity="medium"><version>OL08-00-010561</version><title>OL 8 must have the rsyslog service enabled and active.</title><description>&lt;VulnDiscussion&gt;Configuring OL 8 to implement organization-wide security implementation guides and security checklists ensures compliance with federal standards and establishes a common security baseline across the DoD that reflects the most restrictive security posture consistent with operational requirements. 
  
@@ -2239,7 +2247,7 @@ $ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r'
 
 PermitUserEnvironment no
 
-If "PermitUserEnvironment" is set to "yes", is missing completely, or is commented out, this is a finding.
+If "PermitUserEnvironment" is set to "yes", is missing completely, or is commented out,  or
 
 If conflicting results are returned, this is a finding.</check-content></check></Rule></Group><Group id="V-248651"><title>SRG-OS-000002-GPOS-00002</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248651r958364_rule" weight="10.0" severity="medium"><version>OL08-00-020000</version><title>OL 8 temporary user accounts must be provisioned with an expiration time of 72 hours or less.</title><description>&lt;VulnDiscussion&gt;If temporary user accounts remain active when no longer needed or for an excessive period, these accounts may be used to gain unauthorized access. To mitigate this risk, automated termination of all temporary accounts must be set upon account creation. 
  
@@ -3610,7 +3618,7 @@ $ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r'
 
 PrintLastLog yes
 
-If the "PrintLastLog" keyword is set to "no", is missing, or is commented out, this is a finding.
+If the "PrintLastLog" keyword is set to "no", is missing, or is commented out, or
 
 If conflicting results are returned, this is a finding.</check-content></check></Rule></Group><Group id="V-248719"><title>SRG-OS-000480-GPOS-00228</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248719r991590_rule" weight="10.0" severity="medium"><version>OL08-00-020351</version><title>OL 8 default permissions must be defined in such a way that all authenticated users can read and modify only their own files.</title><description>&lt;VulnDiscussion&gt;Setting the most restrictive default permissions ensures that when new accounts are created, they do not have unnecessary access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Oracle Linux 8</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Oracle Linux 8</dc:subject><dc:identifier>5416</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-52107r779722_fix">Configure OL 8 to define the default permissions for all authenticated users in such a way that the user can read and modify only their own files. 
  
@@ -6351,7 +6359,7 @@ $ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r'
 
 RekeyLimit 1G 1h
 
-If "RekeyLimit" does not have a maximum data amount and maximum time defined or is missing or commented out, this is a finding.
+If "RekeyLimit" does not have a maximum data amount and maximum time defined or is missing or commented out,  or
 
 If conflicting results are returned, this is a finding.</check-content></check></Rule></Group><Group id="V-248869"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248869r991589_rule" weight="10.0" severity="high"><version>OL08-00-040170</version><title>The x86 Ctrl-Alt-Delete key sequence must be disabled on OL 8.</title><description>&lt;VulnDiscussion&gt;A locally logged-on user, who presses Ctrl-Alt-Delete when at the console, can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of system availability due to unintentional reboot. In a graphical user environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Oracle Linux 8</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Oracle Linux 8</dc:subject><dc:identifier>5416</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-52257r833245_fix">Configure the system to disable the Ctrl-Alt-Delete sequence for the command line with the following commands: 
  
@@ -7352,7 +7360,7 @@ $ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r'
 
 X11UseLocalhost yes
 
-If the "X11UseLocalhost" keyword is set to "no", is missing, or is commented out, this is a finding.
+If the "X11UseLocalhost" keyword is set to "no", is missing, or is commented out, or
 
 If conflicting results are returned, this is a finding.</check-content></check></Rule></Group><Group id="V-248902"><title>SRG-OS-000480-GPOS-00227</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-248902r991589_rule" weight="10.0" severity="medium"><version>OL08-00-040350</version><title>If the Trivial File Transfer Protocol (TFTP) server is required, the OL 8 TFTP daemon must be configured to operate in secure mode.</title><description>&lt;VulnDiscussion&gt;Restricting TFTP to a specific directory prevents remote users from copying, transferring, or overwriting system files.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Oracle Linux 8</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Oracle Linux 8</dc:subject><dc:identifier>5416</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-52290r780271_fix">Configure the TFTP daemon to operate in secure mode by adding the following line to "/etc/xinetd.d/tftp" (or modify the line to have the required value): 
  

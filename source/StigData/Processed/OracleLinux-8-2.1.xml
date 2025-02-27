@@ -1,5 +1,41 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="OracleLinux_8_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_OracleLinux_8_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 24 Jul 2024 3.5 1.10.0" title="Oracle Linux 8 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="2/6/2025">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="OracleLinux_8_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_OracleLinux_8_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 24 Jul 2024 3.5 1.10.0" title="Oracle Linux 8 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="2/26/2025">
   <DocumentRule dscresourcemodule="None">
+    <Rule id="V-248606" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH daemon does not allow Kerberos authentication with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*kerberosauthentication'
+
+KerberosAuthentication no
+
+If the value is returned as "yes", the returned line is commented out, or no output is returned or has not been documented with the information system security officer (ISSO), or
+
+If conflicting results are returned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248607" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH daemon does not allow GSSAPI authentication with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*gssapiauthentication'
+
+GSSAPIAuthentication no
+
+If the value is returned as "yes", the returned line is commented out, or no output is returned or has not been documented with the information system security officer (ISSO), or.
+
+If conflicting results are returned, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-248900" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The security risk of using X11 forwarding is that the client's X11 display server may be exposed to attack when the SSH client requests forwarding. A System Administrator may have a stance in which they want to protect clients that may expose themselves to attack by unwittingly requesting X11 forwarding, which can warrant a "no" setting. 
  
@@ -587,49 +623,65 @@ There may be shared resources with configurable protections (e.g., files in stor
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that all world-writable directories have the sticky bit setVerify that all world-writable directories have the sticky bit setVerify that all world-writable directories have the sticky bit set.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a finding.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a findingVerify that all world-writable directories have the sticky bit set.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a finding.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a findingVerify that all world-writable directories have the sticky bit setVerify that all world-writable directories have the sticky bit set.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a finding.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a findingVerify that all world-writable directories have the sticky bit set.
+      <RawString>Verify that all world-writable directories have the sticky bit set.
 
 Verify that all world-writable directories have the sticky bit set by running the following command:
 
 $ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
 
 If any of the returned directories are world-writable and do not have the sticky bit set, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248552" severity="medium" conversionstatus="pass" title="SRG-OS-000126-GPOS-00066" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Terminating an unresponsive SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
+
+Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the unresponsive session and releases the resources associated with that session. 
+ 
+OL 8 uses "/etc/ssh/sshd_config" for configurations of OpenSSH. Within the "sshd_config", the product of the values of "ClientAliveInterval" and "ClientAliveCountMax" is used to establish the inactivity threshold. The "ClientAliveInterval" is a timeout interval in seconds after which if no data has been received from the client, sshd will send a message through the encrypted channel to request a response from the client. The "ClientAliveCountMax" is the number of client alive messages that may be sent without sshd receiving any messages back from the client. If this threshold is met, sshd will disconnect the client. For more information on these settings and others, refer to the sshd_config man pages.
+
+Satisfies: SRG-OS-000126-GPOS-00066, SRG-OS-000163-GPOS-00072, SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH server automatically terminates a user session after the SSH client has become unresponsive.
+
+Check that the "ClientAliveCountMax" is set to "1" by running the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*clientalivecountmax'
+
+ClientAliveCountMax 1
+
+If "ClientAliveCountMax" does not exist, does not have a product value of "1" in "/etc/ssh/sshd_config", or is commented out,  or
+
+If conflicting results are returned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248553" severity="medium" conversionstatus="pass" title="SRG-OS-000126-GPOS-00066" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Terminating an unresponsive SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
+
+Terminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level and deallocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the unresponsive session and releases the resources associated with that session.
+ 
+OL 8 uses "/etc/ssh/sshd_config" for configurations of OpenSSH. Within the "sshd_config", the product of the values of "ClientAliveInterval" and "ClientAliveCountMax" is used to establish the inactivity threshold. The "ClientAliveInterval" is a timeout interval in seconds after which if no data has been received from the client, sshd will send a message through the encrypted channel to request a response from the client. The "ClientAliveCountMax" is the number of client alive messages that may be sent without sshd receiving any messages back from the client. If this threshold is met, sshd will disconnect the client. For more information on these settings and others, refer to the sshd_config man pages.
+
+Satisfies: SRG-OS-000126-GPOS-00066, SRG-OS-000163-GPOS-00072, SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH server automatically terminates a user session after the SSH client has been unresponsive for 10 minutes.
+
+Check that the "ClientAliveInterval" variable is set to a value of "600" or less by running the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*clientaliveinterval'
+
+ClientAliveInterval 600
+
+If "ClientAliveInterval" does not exist, does not have a product value of "600" or less in "/etc/ssh/sshd_config", or is commented out,  or
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248554" severity="medium" conversionstatus="pass" title="SRG-OS-000206-GPOS-00084" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Only authorized personnel should be aware of errors and the details of the errors. Error messages are an indicator of an organization's operational state or can identify the OL 8 system or platform. Additionally, Personally Identifiable Information (PII) and operational information must not be revealed through error messages to unauthorized personnel or their designated representatives. 
@@ -1441,39 +1493,43 @@ Note: SSH public key files may be found in other directories on the system depen
      -rw-r----- 1 root wheel 582 Nov 28 06:43 ssh_host_key 
      -rw-r----- 1 root wheel 887 Nov 28 06:43 ssh_host_rsa_key 
  
-If any private host key file has a mode more permissive than "0640", this is a findingVerify the SSH private host key files have mode "0640" or less permissive with the following command: 
- 
-     $ sudo ls -alL /etc/ssh/ssh_host*key 
- 
-     -rw-r----- 1 root wheel 668 Nov 28 06:43 ssh_host_dsa_key 
-     -rw-r----- 1 root wheel 582 Nov 28 06:43 ssh_host_key 
-     -rw-r----- 1 root wheel 887 Nov 28 06:43 ssh_host_rsa_key 
- 
-If any private host key file has a mode more permissive than "0640", this is a findingVerify the SSH private host key files have mode "0640" or less permissive with the following command: 
- 
-     $ sudo ls -alL /etc/ssh/ssh_host*key 
- 
-     -rw-r----- 1 root wheel 668 Nov 28 06:43 ssh_host_dsa_key 
-     -rw-r----- 1 root wheel 582 Nov 28 06:43 ssh_host_key 
-     -rw-r----- 1 root wheel 887 Nov 28 06:43 ssh_host_rsa_key 
- 
-If any private host key file has a mode more permissive than "0640", this is a findingVerify the SSH private host key files have mode "0640" or less permissive with the following command: 
- 
-     $ sudo ls -alL /etc/ssh/ssh_host*key 
- 
-     -rw-r----- 1 root wheel 668 Nov 28 06:43 ssh_host_dsa_key 
-     -rw-r----- 1 root wheel 582 Nov 28 06:43 ssh_host_key 
-     -rw-r----- 1 root wheel 887 Nov 28 06:43 ssh_host_rsa_key 
- 
-If any private host key file has a mode more permissive than "0640", this is a findingVerify the SSH private host key files have mode "0640" or less permissive with the following command: 
- 
-     $ sudo ls -alL /etc/ssh/ssh_host*key 
- 
-     -rw-r----- 1 root wheel 668 Nov 28 06:43 ssh_host_dsa_key 
-     -rw-r----- 1 root wheel 582 Nov 28 06:43 ssh_host_key 
-     -rw-r----- 1 root wheel 887 Nov 28 06:43 ssh_host_rsa_key 
- 
 If any private host key file has a mode more permissive than "0640", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248603" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;If other users have access to modify user-specific SSH configuration files, they may be able to log on to the system as another user.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH daemon performs strict mode checking of home directory configuration files with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*strictmodes'
+
+StrictModes yes
+
+If "StrictModes" is set to "no" or is missing, or if the returned line is commented out, or 
+
+If conflicting results are returned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248605" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH daemon does not allow authentication using known host’s authentication with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*ignoreuserknownhosts'
+
+IgnoreUserKnownHosts yes
+
+If the value is returned as "no", the returned line is commented out, or no output is returned, or
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248608" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The use of separate file systems for different paths can protect the system from failures resulting from a file system becoming full or failing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1555,47 +1611,7 @@ If a separate entry for the file system/partition "/tmp" does not exist, this is
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that a separate file system has been created for "/var/tmp"Verify that a separate file system has been created for "/var/tmp".
-
-Check that a file system has been created for "/var/tmp" with the following command:
-
-     $ sudo grep /var/tmp /etc/fstab
-
-     /dev/mapper/...   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
-
-If a separate entry for "/var/tmp" is not in use, this is a finding.
-
-Check that a file system has been created for "/var/tmp" with the following command:
-
-     $ sudo grep /var/tmp /etc/fstab
-
-     /dev/mapper/Verify that a separate file system has been created for "/var/tmp".
-
-Check that a file system has been created for "/var/tmp" with the following command:
-
-     $ sudo grep /var/tmp /etc/fstab
-
-     /dev/mapper/...   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
-
-If a separate entry for "/var/tmp" is not in use, this is a finding.Verify that a separate file system has been created for "/var/tmp".
-
-Check that a file system has been created for "/var/tmp" with the following command:
-
-     $ sudo grep /var/tmp /etc/fstab
-
-     /dev/mapper/...   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
-
-If a separate entry for "/var/tmp" is not in use, this is a finding.Verify that a separate file system has been created for "/var/tmp".
-
-Check that a file system has been created for "/var/tmp" with the following command:
-
-     $ sudo grep /var/tmp /etc/fstab
-
-     /dev/mapper/...   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
-
-If a separate entry for "/var/tmp" is not in use, this is a finding.   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
-
-If a separate entry for "/var/tmp" is not in use, this is a findingVerify that a separate file system has been created for "/var/tmp".
+      <RawString>Verify that a separate file system has been created for "/var/tmp".
 
 Check that a file system has been created for "/var/tmp" with the following command:
 
@@ -1604,6 +1620,24 @@ Check that a file system has been created for "/var/tmp" with the following comm
      /dev/mapper/...   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
 
 If a separate entry for "/var/tmp" is not in use, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248613" severity="medium" conversionstatus="pass" title="SRG-OS-000109-GPOS-00056" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Although the communications channel may be encrypted, an additional layer of security is gained by extending the policy of not logging on directly as root. In addition, logging on with a user-specific account provides individual accountability of actions performed on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify remote access using SSH prevents users from logging on directly as "root" with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*permitrootlogin'
+
+PermitRootLogin no
+
+If the "PermitRootLogin" keyword is set to "yes", is missing, or is commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248615" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Configuring OL 8 to implement organization-wide security implementation guides and security checklists ensures compliance with federal standards and establishes a common security baseline across the DoD that reflects the most restrictive security posture consistent with operational requirements. 
@@ -2175,6 +2209,24 @@ Note: The partition of "/home" is used in the example.
      /dev/mapper/...   /home   xfs   defaults,noexec,nosuid,nodev 0 0
  
 If a separate entry for the file system that contains the nonprivileged interactive users' home directories does not exist, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248650" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;SSH environment options potentially allow users to bypass access restriction in some configurations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that unattended or automatic login via SSH is disabled with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*permituserenvironment'
+
+PermitUserEnvironment no
+
+If "PermitUserEnvironment" is set to "yes", is missing completely, or is commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248651" severity="medium" conversionstatus="pass" title="SRG-OS-000002-GPOS-00002" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If temporary user accounts remain active when no longer needed or for an excessive period, these accounts may be used to gain unauthorized access. To mitigate this risk, automated termination of all temporary accounts must be set upon account creation. 
@@ -3297,6 +3349,24 @@ If output is produced, this is a finding.</RawString>
 $ sudo grep -i nullok /etc/pam.d/password-auth
 
 If output is produced, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248718" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Providing users with feedback on when account accesses via SSH last occurred facilitates user recognition and reporting of unauthorized account use.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify SSH provides users with feedback on when account accesses last occurred with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*printlastlog'
+
+PrintLastLog yes
+
+If the "PrintLastLog" keyword is set to "no", is missing, or is commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248719" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00228" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Setting the most restrictive default permissions ensures that when new accounts are created, they do not have unnecessary access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -4769,61 +4839,6 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188, SRG-OS-000425-GPO
  
 $ sudo systemctl status sshd 
  
-sshdVerify SSH is loaded and active with the following command: 
- 
-$ sudo systemctl status sshd 
- 
-sshd.service - OpenSSH server daemon 
-Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled) 
-Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
-Main PID: 1348 (sshd) 
-CGroup: /system.slice/sshd.service 
-1053 /usr/sbin/sshd -D 
- 
-If "sshd" does not show a status of "active" and "running", this is a finding.service - OpenSSH server daemon 
-Loaded: loaded (/usr/lib/systemd/system/sshdVerify SSH is loaded and active with the following command: 
- 
-$ sudo systemctl status sshd 
- 
-sshd.service - OpenSSH server daemon 
-Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled) 
-Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
-Main PID: 1348 (sshd) 
-CGroup: /system.slice/sshd.service 
-1053 /usr/sbin/sshd -D 
- 
-If "sshd" does not show a status of "active" and "running", this is a finding.service; enabled) 
-Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
-Main PID: 1348 (sshd) 
-CGroup: /systemVerify SSH is loaded and active with the following command: 
- 
-$ sudo systemctl status sshd 
- 
-sshd.service - OpenSSH server daemon 
-Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled) 
-Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
-Main PID: 1348 (sshd) 
-CGroup: /system.slice/sshd.service 
-1053 /usr/sbin/sshd -D 
- 
-If "sshd" does not show a status of "active" and "running", this is a finding.slice/sshdVerify SSH is loaded and active with the following command: 
- 
-$ sudo systemctl status sshd 
- 
-sshd.service - OpenSSH server daemon 
-Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled) 
-Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
-Main PID: 1348 (sshd) 
-CGroup: /system.slice/sshd.service 
-1053 /usr/sbin/sshd -D 
- 
-If "sshd" does not show a status of "active" and "running", this is a finding.service 
-1053 /usr/sbin/sshd -D 
- 
-If "sshd" does not show a status of "active" and "running", this is a findingVerify SSH is loaded and active with the following command: 
- 
-$ sudo systemctl status sshd 
- 
 sshd.service - OpenSSH server daemon 
 Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled) 
 Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
@@ -4832,6 +4847,26 @@ CGroup: /system.slice/sshd.service
 1053 /usr/sbin/sshd -D 
  
 If "sshd" does not show a status of "active" and "running", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248868" severity="medium" conversionstatus="pass" title="SRG-OS-000033-GPOS-00014" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore cannot be relied on to provide confidentiality or integrity, and DOD data may be compromised. 
+ 
+Session key regeneration limits the chances of a session key becoming compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH server is configured to force frequent session key renegotiation with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*rekeylimit'
+
+RekeyLimit 1G 1h
+
+If "RekeyLimit" does not have a maximum data amount and maximum time defined or is missing or commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248869" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A locally logged-on user, who presses Ctrl-Alt-Delete when at the console, can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of system availability due to unintentional reboot. In a graphical user environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -5725,6 +5760,26 @@ Check for the status with the following command:
 $ sudo ip link | grep -i promisc 
  
 If network interfaces are found on the system in promiscuous mode and their use has not been approved by the ISSO and documented, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248901" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When X11 forwarding is enabled, there may be additional exposure to the server and client displays if the sshd proxy display is configured to listen on the wildcard address. By default, sshd binds the forwarding server to the loopback address and sets the hostname part of the DISPLAY environment variable to localhost. This prevents remote hosts from connecting to the proxy display.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the OL 8 SSH daemon prevents remote hosts from connecting to the proxy display.
+
+Check the SSH "X11UseLocalhost" setting with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*x11uselocalhost'
+
+X11UseLocalhost yes
+
+If the "X11UseLocalhost" keyword is set to "no", is missing, or is commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248903" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The FTP service provides an unencrypted remote access that does not provide for the confidentiality and integrity of user passwords or the remote session. If a privileged user were to log on using this service, the privileged user password could be compromised. SSH or other encrypted file transfer methods must be used in place of this service.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
