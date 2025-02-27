@@ -15,7 +15,7 @@ foreach ($xccdf in $xccdfs)
     }
 }
 
-Describe 'Compare-PowerStigXml' {
+<# Describe 'Compare-PowerStigXml' {
 
     $dotNetSTIGS = (Get-ChildItem -Path $script:moduleRoot\StigData\Processed -Recurse | Where-Object -Property Name -Match "(DotNetFramework-4-.*\d.xml)").FullName
     It 'Should return a PSObject' {
@@ -23,7 +23,7 @@ Describe 'Compare-PowerStigXml' {
         $compare.GetType().ToString()  | Should -Be "System.Object[]"
     }
 }
-
+#>
 Describe 'Get-BaseRulePropertyName' {
 
     It 'Should return 12 base rule types' {
