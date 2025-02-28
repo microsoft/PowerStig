@@ -149,4 +149,4 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@hinderjd](https://github.com/hinderjd) (James Hinders)
 * [@ruandersMSFT](https://github.com/ruandersMSFT) (Russell Anderson)
 * [@MrAutomater](https://github.com/MrAutomater) (Jerry Martin )
-* [@mrasmussen72](https://github.com/mrasmussen72) (Michael Rasmussen)
+* [@mrasmussenGIT](https://github.com/mrasmussenGIT) (Michael Rasmussen)
