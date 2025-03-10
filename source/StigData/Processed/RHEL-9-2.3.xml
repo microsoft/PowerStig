@@ -6073,13 +6073,13 @@ The list of audited events is the set of events for which audits are to be gener
 
 DOD has defined the list of events for which RHEL 9 will provide an audit record generation capability as the following:
 
-1) Successful and unsuccessful attempts to access, modify, or delete privileges, security objects, security levels, or categories of information (e.g., classification levels);
+1. Successful and unsuccessful attempts to access, modify, or delete privileges, security objects, security levels, or categories of information (e.g., classification levels);
 
-2) Access actions, such as successful and unsuccessful logon attempts, privileged activities or other system-level access, starting and ending time for user access to the system, concurrent logons from different workstations, successful and unsuccessful accesses to objects, all program initiations, and all direct access to the information system;
+2. Access actions, such as successful and unsuccessful logon attempts, privileged activities or other system-level access, starting and ending time for user access to the system, concurrent logons from different workstations, successful and unsuccessful accesses to objects, all program initiations, and all direct access to the information system;
 
-3) All account creations, modifications, disabling, and terminations; and 
+3. All account creations, modifications, disabling, and terminations; and 
 
-4) All kernel module load, unload, and restart actions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+4. All kernel module load, unload, and restart actions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*AuditBackend\s*=\s*LinuxAudit</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/usbguard/usbguard-daemon.conf</FilePath>
@@ -6105,7 +6105,7 @@ If the system is virtual machine with no virtual or physical USB peripherals att
 Satisfies: SRG-OS-000095-GPOS-00049, SRG-OS-000300-GPOS-00118&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*install\s*bluetooth\s*/bin/false</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/bin/false</FilePath>
+      <FilePath>/etc/modprobe.d/bluetooth.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -6124,7 +6124,7 @@ If the command does not return any output, or the lines are commented out, and u
 Satisfies: SRG-OS-000095-GPOS-00049, SRG-OS-000300-GPOS-00118&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*blacklist\s*bluetooth</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/modprobe.d/</FilePath>
+      <FilePath>/etc/modprobe.d/bluetooth.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -6235,7 +6235,7 @@ If the "unlock_time" option is not set to "0" or the line is missing or commente
       <Description>&lt;VulnDiscussion&gt;Having lockouts persist across reboots ensures that account is only unlocked by an administrator. If the lockouts did not persist across reboots, an attacker could simply reboot the system to continue brute force attacks against the accounts on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*dir\s*=\s*/var/log/faillock</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/var/log/faillock</FilePath>
+      <FilePath>/etc/security/faillock.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -6454,7 +6454,7 @@ If "timestamp_timeout" is set to a negative number, is commented out, or no resu
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised. RHEL 9 utilizes "pwquality" as a mechanism to enforce password complexity. Note that to require special characters without degrading the "minlen" value, the credit value must be expressed as a negative number in "/etc/security/pwquality.conf".&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>^#\s*ocredit.*$|^ocredit\s*=\s*(?!-1)\w*$</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/security/pwquality.conf.d/</FilePath>
+      <FilePath>/etc/security/pwquality.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -6496,7 +6496,7 @@ If "ENCRYPT_METHOD" does not have a value of "SHA512", or the line is commented 
 Satisfies: SRG-OS-000375-GPOS-00160, SRG-OS-000105-GPOS-00052&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*pam_cert_auth\s*=\s*True</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/sssd/conf.d/</FilePath>
+      <FilePath>/etc/sssd/sssd.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -6517,7 +6517,7 @@ If "pam_cert_auth" is not set to "True", the line is commented out, or the line 
       <Description>&lt;VulnDiscussion&gt;If cached authentication information is out-of-date, the validity of the authentication information may be questionable.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*cache_credentials\s*=\s*true</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/sssd/conf.d/</FilePath>
+      <FilePath>/etc/sssd/sssd.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -6536,7 +6536,7 @@ If "offline_credentials_expiration" is not set to a value of "1", this is a find
       <Description>&lt;VulnDiscussion&gt;If cached authentication information is out-of-date, the validity of the authentication information may be questionable.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*If\s*"cache_credentials"\s*is\s*set\s*to\s*"false"\s*or\s*missing\s*from\s*the\s*configuration\s*file,\s*this\s*is\s*not\s*a\s*finding\s*and\s*no\s*further\s*checks\s*are\s*required.</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/sssd/conf.d/</FilePath>
+      <FilePath>/etc/sssd/sssd.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -6555,7 +6555,7 @@ If "offline_credentials_expiration" is not set to a value of "1", this is a find
       <Description>&lt;VulnDiscussion&gt;If cached authentication information is out-of-date, the validity of the authentication information may be questionable.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*If\s*"cache_credentials"\s*is\s*set\s*to\s*"true",\s*check\s*that\s*SSSD\s*prohibits\s*the\s*use\s*of\s*cached\s*authentications\s*after\s*one\s*day\s*with\s*the\s*following\s*command:</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/sssd/conf.d/</FilePath>
+      <FilePath>/etc/sssd/sssd.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -6574,7 +6574,7 @@ If "offline_credentials_expiration" is not set to a value of "1", this is a find
       <Description>&lt;VulnDiscussion&gt;If cached authentication information is out-of-date, the validity of the authentication information may be questionable.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*offline_credentials_expiration\s*=\s*1</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/sssd/conf.d/</FilePath>
+      <FilePath>/etc/sssd/sssd.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -6589,7 +6589,7 @@ If "offline_credentials_expiration" is not set to a value of "1", this is a find
 </RawString>
     </Rule>
     <Rule id="V-258136" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
-      <ContainsLine>All=p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux</ContainsLine>
+      <ContainsLine>All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;RHEL 9 installation media ships with an optional file integrity tool called Advanced Intrusion Detection Environment (AIDE). AIDE is highly configurable at install time. This requirement assumes the "aide.conf" file is under the "/etc" directory.
 
 File integrity tools use cryptographic hashes for verifying file contents and directories have not been altered. These hashes must be FIPS 140-3-approved cryptographic hashes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -6605,7 +6605,7 @@ File integrity tools use cryptographic hashes for verifying file contents and di
 
 $ sudo grep sha512 /etc/aide.conf 
 
-All=p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
+All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
 
 If the "sha512" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or another file integrity tool is not using FIPS 140-3-approved cryptographic hashes for validating file contents and directories, this is a finding.</RawString>
     </Rule>
@@ -6630,7 +6630,7 @@ All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
 
 If the "acl" rule is not being used on all uncommented selection lines in the "/etc/aide.conf" file, or ACLs are not being checked by another file integrity tool, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-258139" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+    <Rule id="V-258139" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
       <ContainsLine>All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;RHEL 9 installation media ships with an optional file integrity tool called Advanced Intrusion Detection Environment (AIDE). AIDE is highly configurable at install time. This requirement assumes the "aide.conf" file is under the "/etc" directory.
 
@@ -7084,7 +7084,7 @@ The structure and content of error messages must be carefully considered by the 
 Satisfies: SRG-OS-000057-GPOS-00027, SRG-OS-000058-GPOS-00028, SRG-OS-000059-GPOS-00029, SRG-OS-000206-GPOS-00084&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*$\s*sudo\s*find\s*/var/log/audit/\s*-type\s*f\s*-exec\s*stat\s*-c\s*'%a\s*%n'\s*{}\s*\;</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/var/log/audit/</FilePath>
+      <FilePath>/var/log/audit/audit.log</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
