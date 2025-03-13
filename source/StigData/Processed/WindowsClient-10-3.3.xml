@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V3R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 30 Jan 2025 3.5 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.3" created="2/6/2025">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V3R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 30 Jan 2025 3.5 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.3" created="3/13/2025">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-220739" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -6608,6 +6608,42 @@ Administrators</RawString>
     </Rule>
   </UserRightRule>
   <WindowsFeatureRule dscresourcemodule="PSDscResources">
+    <Rule id="V-220718.a" severity="high" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsOptionalFeature">
+      <Description>&lt;VulnDiscussion&gt;Installation of Internet Information System (IIS) may allow unauthorized internet services to be hosted.  Websites must only be hosted on servers that have been designed for that purpose and can be adequately secured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-63377.a</LegacyId>
+      <Name>IIS-HostableWebCore</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>IIS is not installed by default.  Verify it has not been installed on the system.
+
+Run "Programs and Features".
+Select "Turn Windows features on or off".
+
+If the entries for "Internet Information Services" or "Internet Information Services Hostable Web Core" are selected, this is a finding.
+
+If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO.  In addition, any applicable requirements from the IIS STIG must be addressed.</RawString>
+    </Rule>
+    <Rule id="V-220718.b" severity="high" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsOptionalFeature">
+      <Description>&lt;VulnDiscussion&gt;Installation of Internet Information System (IIS) may allow unauthorized internet services to be hosted.  Websites must only be hosted on servers that have been designed for that purpose and can be adequately secured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-63377.b</LegacyId>
+      <Name>IIS-WebServer</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>IIS is not installed by default.  Verify it has not been installed on the system.
+
+Run "Programs and Features".
+Select "Turn Windows features on or off".
+
+If the entries for "Internet Information Services" or "Internet Information Services Hostable Web Core" are selected, this is a finding.
+
+If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO.  In addition, any applicable requirements from the IIS STIG must be addressed.</RawString>
+    </Rule>
     <Rule id="V-220719" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;Some protocols and services do not support required security features, such as encrypting passwords or traffic.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6667,6 +6703,62 @@ If the "telnet" application exists, this is a finding.</RawString>
 Navigate to the Windows\System32 directory.
 
 If the "TFTP" application exists, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-220728.a" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsOptionalFeature">
+      <Description>&lt;VulnDiscussion&gt;Windows PowerShell 5.0 added advanced logging features which can provide additional detail when malware has been run on a system.  Disabling the Windows PowerShell 2.0 mitigates against a downgrade attack that evades the Windows PowerShell 5.0 script block logging feature.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-70637.a</LegacyId>
+      <Name>MicrosoftWindowsPowerShellV2</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter the following:
+Get-WindowsOptionalFeature -Online | Where FeatureName -like *PowerShellv2*
+
+If either of the following have a "State" of "Enabled", this is a finding.
+
+FeatureName : MicrosoftWindowsPowerShellV2
+State : Enabled
+FeatureName : MicrosoftWindowsPowerShellV2Root
+State : Enabled
+
+Alternately:
+Search for "Features".
+
+Select "Turn Windows features on or off".
+
+If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 Engine" is selected or not) is selected, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-220728.b" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsOptionalFeature">
+      <Description>&lt;VulnDiscussion&gt;Windows PowerShell 5.0 added advanced logging features which can provide additional detail when malware has been run on a system.  Disabling the Windows PowerShell 2.0 mitigates against a downgrade attack that evades the Windows PowerShell 5.0 script block logging feature.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-70637.b</LegacyId>
+      <Name>MicrosoftWindowsPowerShellV2Root</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter the following:
+Get-WindowsOptionalFeature -Online | Where FeatureName -like *PowerShellv2*
+
+If either of the following have a "State" of "Enabled", this is a finding.
+
+FeatureName : MicrosoftWindowsPowerShellV2
+State : Enabled
+FeatureName : MicrosoftWindowsPowerShellV2Root
+State : Enabled
+
+Alternately:
+Search for "Features".
+
+Select "Turn Windows features on or off".
+
+If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 Engine" is selected or not) is selected, this is a finding.</RawString>
     </Rule>
     <Rule id="V-220729" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;SMBv1 is a legacy protocol that uses the MD5 algorithm as part of SMB. MD5 is known to be vulnerable to a number of attacks such as collision and preimage attacks as well as not being FIPS compliant.
