@@ -241,7 +241,7 @@ Check that the current GRUB 2 configuration has page poisoning enabled  with the
 
 $ sudo grubby --info=ALL | grep args | grep -v 'page_poison=1'
 
-If any output is returned, this is a finding.
+If any output is returned, or
 
 Check that page poisoning is enabled by default to persist in kernel updates with the following command: 
 
@@ -267,7 +267,7 @@ Check that the current GRUB 2 configuration has poisoning of SLUB/SLAB objects e
 
 $ sudo grubby --info=ALL | grep args | grep -v 'slub_debug=P' 
 
-If any output is returned, this is a finding.
+If any output is returned, or
 
 Check that poisoning of SLUB/SLAB objects is enabled by default to persist in kernel updates: 
 
@@ -626,7 +626,7 @@ $ sysctl kernel.yama.ptrace_scope
 
 kernel.yama.ptrace_scope = 1
 
-If the returned line does not have a value of "1", or a line is not returned, this is a finding.
+If the returned line does not have a value of "1", or a line is not returned, or
 
 Check that the configuration files are present to enable this kernel parameter.
 
@@ -696,7 +696,7 @@ $ sudo sysctl user.max_user_namespaces
 
 user.max_user_namespaces = 0
 
-If the returned line does not have a value of "0", or a line is not returned, this is a finding.
+If the returned line does not have a value of "0", or a line is not returned, or
 
 Check that the configuration files are present to enable this kernel parameter.
 
@@ -2538,7 +2538,7 @@ $ sudo sysctl net.ipv4.conf.default.send_redirects
 
 net.ipv4.conf.default.send_redirects=0
 
-If the returned line does not have a value of "0", or a line is not returned, this is a finding.
+If the returned line does not have a value of "0", or a line is not returned, or
 
 Check that the configuration files are present to enable this network parameter.
 
@@ -2562,7 +2562,7 @@ $ sudo sysctl net.ipv4.conf.all.forwarding
 
 net.ipv4.conf.all.forwarding = 0
 
-If the IPv4 forwarding value is not "0" and is not documented with the information system security officer (ISSO) as an operational requirement, this is a finding.
+If the IPv4 forwarding value is not "0" and is not documented with the information system security officer (ISSO) as an operational requirement, or
 
 Check that the configuration files are present to enable this network parameter.
 
