@@ -761,7 +761,7 @@ If any nonauthorized users have access to the SQL Server Error Log located at Pr
 
 In addition, the SQL Server Error Log is also located at Program Files\Microsoft SQL Server\MSSQL.n\MSSQL\LOG\. Review the permissions on this folder to ensure that only authorized users are listed.  
 
-If any nonauthorized users have access to the SQL Server Error Log in SQL Server Management Studio or if documentation does not exist stating that full error messages must be returned, this is a finding.
+If any nonauthorized users have access to the SQL Server Error Log in SQL Server Management Studio or if vendor documentation does not exist stating that full error messages must be returned, this is a finding.
 
 Otherwise, verify if trace flag 3625 is enabled to mask certain system-level error information returned to nonadministrative users. 
  
