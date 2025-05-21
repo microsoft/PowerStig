@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V3R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 15 Nov 2024 3.5 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.2" created="12/1/2024">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_10_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V3R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="Microsoft Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.4" created="5/21/2025">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-220739" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1000,7 +1000,7 @@ Policy Change  &gt;&gt; MPSSVC Rule-Level Policy Change - Failure
 New versions with feature updates are planned to be released on a semiannual basis with an estimated support timeframe of 18 to 30 months depending on the release. Support for previously released versions has been extended for Enterprise editions.
 
 A separate servicing branch intended for special-purpose systems is the Long-Term Servicing Channel (LTSC, formerly Branch - LTSB), which will receive security updates for 10 years but excludes feature updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DesiredValue>10.0.19044</DesiredValue>
+      <DesiredValue>10.0.19045</DesiredValue>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-63349</LegacyId>
@@ -1013,7 +1013,7 @@ A separate servicing branch intended for special-purpose systems is the Long-Ter
 
 If the "About Windows" dialog box does not display the following or greater, this is a finding:
 
-"Microsoft Windows Version 21H2 (OS Build 19044.x)"
+"Microsoft Windows Version 22H2 (OS Build 19045.x)"
 
 Note: Microsoft has extended support for previous versions, providing critical and important updates for Windows 10 Enterprise.
 
@@ -1731,7 +1731,9 @@ OS Configuration: Member Workstation
 
 If the system is not being managed by GPO, ask the administrator to indicate which MDM is managing the device.
 
-If the Window 10 system is not receiving policy from either Group Policy or an MDM, this is a finding.</RawString>
+If the Window 10 system is not receiving policy from either Group Policy or an MDM, this is a finding.
+          
+This is NA for standalone, nondomain joined systems.</RawString>
     </Rule>
   </ManualRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
@@ -1790,7 +1792,7 @@ If the Window 10 system is not receiving policy from either Group Policy or an M
 If the default file system permissions are maintained and the referenced option is set to "Disabled", this is not a finding.
 Verify the default permissions for the sample directories below. Nonprivileged groups such as Users or Authenticated Users must not have greater than Read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
 Viewing in File Explorer:
-Select the "Security" tab and the "Advanced" button.
+Select the "Security" tab and then select "Advanced".
 C:\
 Type - "Allow" for all
 Inherited from - "None" for all
@@ -1890,7 +1892,7 @@ Alternately use icacls.
 If the default file system permissions are maintained and the referenced option is set to "Disabled", this is not a finding.
 Verify the default permissions for the sample directories below. Nonprivileged groups such as Users or Authenticated Users must not have greater than Read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
 Viewing in File Explorer:
-Select the "Security" tab and the "Advanced" button.
+Select the "Security" tab and then select "Advanced".
 \Program Files
 Type - "Allow" for all
 Inherited from - "None" for all
@@ -1994,7 +1996,7 @@ Alternately use icacls.
 If the default file system permissions are maintained and the referenced option is set to "Disabled", this is not a finding.
 Verify the default permissions for the sample directories below. Nonprivileged groups such as Users or Authenticated Users must not have greater than Read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
 Viewing in File Explorer:
-Select the "Security" tab and the "Advanced" button.
+Select the "Security" tab and then select "Advanced".
 \Windows
 Type - "Allow" for all
 Inherited from - "None" for all
@@ -5107,7 +5109,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-220933" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;The Windows Security Account Manager (SAM) stores users' passwords.  Restricting remote rpc connections to the SAM to Administrators helps protect those credentials.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;The Windows SAM stores users' passwords. Restricting remote rpc connections to the SAM to Administrators helps protect those credentials.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5125,7 +5127,11 @@ Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 Value Name: RestrictRemoteSAM
 
 Value Type: REG_SZ
-Value: O:BAG:BAD:(A;;RC;;;BA)</RawString>
+Value: O:BAG:BAD:(A;;RC;;;BA)                                                   
+
+If a domain application account such as for a management tool requires this user right, this is not a finding.
+Vendor documentation must support the requirement for having the user right.
+The requirement must be documented with the ISSO.</RawString>
       <ValueData>O:BAG:BAD:(A;;RC;;;BA)</ValueData>
       <ValueName>RestrictRemoteSAM</ValueName>
       <ValueType>String</ValueType>
@@ -5754,61 +5760,29 @@ Thumbprint: 49CBE933151872E17C8EAE7F0ABA97FB610F6477
 Valid to: Wednesday, November 16, 2024</RawString>
       <Thumbprint>49CBE933151872E17C8EAE7F0ABA97FB610F6477</Thumbprint>
     </Rule>
-    <Rule id="V-220906" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
-      <CertificateName>US DoD CCEB Interoperability Root CA 2</CertificateName>
-      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+    <Rule id="V-220906.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>US DOD CCEB Interoperability Root CA 2</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-63589</LegacyId>
+      <LegacyId>V-63589.a</LegacyId>
       <Location />
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>location for US DoD CCEB Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
-      <RawString>Verify the US DoD CCEB Interoperability Root CA cross-certificate is installed on unclassified systems as an Untrusted Certificate.
-
-Run "PowerShell" as an administrator.
-
-Execute the following command:
-
-Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
-
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding. 
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
-NotAfter: 7/18/2025 9:56:22 AM
-
-Alternately, use the Certificates MMC snap-in:
-
-Run "MMC".
-
-Select "File", "Add/Remove Snap-in".
-
-Select "Certificates", click "Add".
-
-Select "Computer account", click "Next".
-
-Select "Local computer: (the computer this console is running on)", click "Finish".
-
-Click "OK".
-
-Expand "Certificates" and navigate to Untrusted Certificates &gt;&gt; Certificates.
-
-For each certificate with "US DoD CCEB Interoperability Root CA …" under "Issued By":
-
-Right-click on the certificate and select "Open".
-
-Select the "Details" tab.
-
-Scroll to the bottom and select "Thumbprint".
-
-If the certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
-NotAfter: 7/18/2025 9:56:22 AM</RawString>
+      <OrganizationValueTestString>location for US DOD CCEB Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
+      <RawString>US DOD CCEB Interoperability Root CA 2,9B74964506C7ED9138070D08D5F8B969866560C8</RawString>
       <Thumbprint>9B74964506C7ED9138070D08D5F8B969866560C8</Thumbprint>
+    </Rule>
+    <Rule id="V-220906.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName>US DOD CCEB Interoperability Root CA 2</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-63589.b</LegacyId>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for US DOD CCEB Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
+      <RawString>US DOD CCEB Interoperability Root CA 2,D471CA32F7A692CE6CBB6196BD3377FE4DBCD106</RawString>
+      <Thumbprint>D471CA32F7A692CE6CBB6196BD3377FE4DBCD106</Thumbprint>
     </Rule>
   </RootCertificateRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
