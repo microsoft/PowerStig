@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 24 Oct 2024 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.2" created="12/4/2024">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.4" created="5/21/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful denial-of-service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions is helpful in reducing these risks.
@@ -761,20 +761,19 @@ If any nonauthorized users have access to the SQL Server Error Log located at Pr
 
 In addition, the SQL Server Error Log is also located at Program Files\Microsoft SQL Server\MSSQL.n\MSSQL\LOG\. Review the permissions on this folder to ensure that only authorized users are listed.  
 
-If any nonauthorized users have access to the SQL Server Error Log in SQL Server Management Studio, this is a finding.
-
-If vendor documentation does not exist stating that full error messages must be returned, this is a finding.
+If any nonauthorized users have access to the SQL Server Error Log in SQL Server Management Studio or if documentation does not exist stating that full error messages must be returned, this is a finding.
 
 Otherwise, verify if trace flag 3625 is enabled to mask certain system-level error information returned to nonadministrative users. 
  
-Launch SQL Server Configuration Manager &gt;&gt; select SQL Server Services &gt;&gt; select the SQL Server &gt;&gt; right-click and select Properties &gt;&gt; select Startup Parameters tab &gt;&gt; verify -T3625 exists in the dialogue window.
+Launch SQL Server Configuration Manager: 
+Select SQL Server Services &gt;&gt; SQL Server. Select the SQL Server, then right-click and select "Properties". Select "Startup Parameters" tab and verify -T3625 exists in the dialogue window.
 
 OR
 
 Run the query:
 DBCC TRACESTATUS;
 
-If TraceFlag 3625 does not return with Status = 1, this is a finding.</RawString>
+If TraceFlag 3625 does not return with Status = 1 and if documentation does not exist stating that full error messages must be returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213979" severity="medium" conversionstatus="pass" title="SRG-APP-000340-DB-000304" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.  
@@ -1560,9 +1559,9 @@ If individuals are not individually authenticated before using the shared accoun
 If accounts are determined to be shared, determine if they are directly accessible to end users. If so, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213966" severity="high" conversionstatus="pass" title="SRG-APP-000172-DB-000075" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The DoD standard for authentication is DoD-approved PKI certificates. 
+      <Description>&lt;VulnDiscussion&gt;The DOD standard for authentication is DOD-approved PKI certificates. 
  
-Authentication based on User ID and Password may be used only when it is not possible to employ a PKI certificate, and requires AO approval. 
+Authentication based on User ID and Password may be used only when it is not possible to employ a PKI certificate and requires AO approval. 
  
 In such cases, passwords need to be protected at all times, and encryption is the standard method for protecting passwords during transmission. 
  
@@ -1572,11 +1571,17 @@ SQL Server passwords sent in clear text format across the network are vulnerable
       <LegacyId>V-79195</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If you are using "Windows Authentication mode" this requirement can be marked as Not Applicable.
+      <RawString>1. Launch SSMS and connect to the SQL Server to be reviewed.
 
-From a command prompt, open SQL Server Configuration Manager by typing "sqlservermanager13.msc", and pressing "Enter".
+2. Right-click the instance and select "Properties".
 
-Navigate to SQL Server Configuration Manager &gt;&gt; SQL Server Network Configuration. Right-click on "Protocols", where there is a placeholder for the SQL Server instance name, and click on “Properties”. 
+3. Navigate to the "Security" tab.
+
+If the value for "Server authentication" is "Windows Authentication mode", this requirement is Not Applicable.
+
+From a command prompt, open SQL Server Configuration Manager by typing "sqlservermanager13.msc" and pressing "Enter".
+
+Navigate to SQL Server Configuration Manager &gt;&gt; SQL Server Network Configuration. Right-click on "Protocols", where there is a placeholder for the SQL Server instance name, and click on "Properties". 
 
 On the "Flags" tab, if "Force Encryption" is set to “NO", this is a finding.
 
@@ -1586,13 +1591,13 @@ If it is not a DOD approved certificate, or if no certificate is listed, this is
 
 For clustered instances, the Certificate will NOT be shown in the SQL Server Configuration Manager.
 
-1. From a command prompt navigate to the certificate store where the Full Qualified Domain Name (FQDN) certificate is stored, by typing "certlm.msc", and pressing "Enter".
+1. From a command prompt, navigate to the certificate store where the Full Qualified Domain Name (FQDN) certificate is stored by typing "certlm.msc" and pressing "Enter".
 
 2. In the left side of the window, expand the "Personal" folder, and click "Certificates".
 
-3. Verify that the Certificate with the FQDN name is issued by the DOD. Double click the certificate, click the "Details" tab and note the value for the Thumbprint.
+3. Verify that the Certificate with the FQDN name is issued by the DOD. Double-click the certificate, click the "Details" tab, and note the value for the Thumbprint.
 
-4. The value for the "Thumbprint" field should match the value in the registry by running regedit and look at "HKLM\SOFTWARE\Microsoft\Microsoft SQL Server\&lt;instance&gt;\MSSQLServer\SuperSocketNetLib\Certificate".
+4. Verify the value for the "Thumbprint" field matches the value in the registry by running regedit and looking at "HKLM\SOFTWARE\Microsoft\Microsoft SQL Server\&lt;instance&gt;\MSSQLServer\SuperSocketNetLib\Certificate".
 
 5. Run this on each node of the cluster.
 
