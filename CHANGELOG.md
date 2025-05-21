@@ -4,7 +4,7 @@
 * Update Powerstig to parse/apply Oracle Linux 8 STIG - Ver 2, Rel 3 [#1437](https://github.com/microsoft/PowerStig/issues/1437)
 
 
-* Update Powerstig to parse\apply Microsoft SQL Server 2016 STIG - Ver 3, Rel 4 [#1447](https://github.com/microsoft/PowerStig/issues/1447)
+* Update Powerstig to parse/apply Microsoft SQL Server 2016 STIG - Ver 3, Rel 4 [#1447](https://github.com/microsoft/PowerStig/issues/1447)
 
 
 ## [4.25.0] - 2025-02-20
