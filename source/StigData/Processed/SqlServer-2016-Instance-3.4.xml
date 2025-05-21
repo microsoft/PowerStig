@@ -1559,7 +1559,7 @@ If individuals are not individually authenticated before using the shared accoun
 If accounts are determined to be shared, determine if they are directly accessible to end users. If so, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213966" severity="high" conversionstatus="pass" title="SRG-APP-000172-DB-000075" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The DOD standard for authentication is DOD-approved PKI certificates. 
+      <Description>&lt;VulnDiscussion&gt;The DoD standard for authentication is DoD-approved PKI certificates. 
  
 Authentication based on User ID and Password may be used only when it is not possible to employ a PKI certificate and requires AO approval. 
  
