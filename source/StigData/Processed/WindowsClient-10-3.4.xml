@@ -1731,7 +1731,7 @@ OS Configuration: Member Workstation
 
 If the system is not being managed by GPO, ask the administrator to indicate which MDM is managing the device.
 
-If the Window 10 system is not receiving policy from either Group Policy or an MDM, this is a finding.
+If the Windows 10 system is not receiving policy from either Group Policy or an MDM, this is a finding.
           
 This is NA for standalone, nondomain joined systems.</RawString>
     </Rule>
