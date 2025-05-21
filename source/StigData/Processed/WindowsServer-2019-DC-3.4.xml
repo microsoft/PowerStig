@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2019_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2019_DC_STIG_V3R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 15 Nov 2024 3.5 1.10.0" title="Microsoft Windows Server 2019 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.2" created="12/6/2024">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2019_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2019_DC_STIG_V3R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="Microsoft Windows Server 2019 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.4" created="5/21/2025">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-205702" severity="medium" conversionstatus="pass" title="SRG-OS-000112-GPOS-00057" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This policy setting determines whether the Kerberos Key Distribution Center (KDC) validates every request for a session ticket against the user rights policy of the target computer. The policy is enabled by default, which is the most secure setting for validating that access to target resources is not circumvented.
@@ -1503,7 +1503,7 @@ Select the Group Policy object item in the left pane.
 
 Select the "Delegation" tab in the right pane.
 
-Select the "Advanced" button.
+Select "Advanced".
 
 Select each Group or user name.
 
@@ -1515,7 +1515,7 @@ Other access permissions that allow the objects to be updated are considered fin
 
 The default permissions noted below satisfy this requirement. 
 
-The permissions shown are at the summary level. More detailed permissions can be viewed by selecting the next "Advanced" button, the desired Permission entry, and the "Edit" button.
+The permissions shown are at the summary level. To view more detailed permissions, select the next "Advanced" button, the desired Permission entry, and then click "Edit".
 
 Authenticated Users - Read, Apply group policy, Special permissions
 
@@ -1527,9 +1527,7 @@ CREATOR OWNER - Special permissions
 SYSTEM - Read, Write, Create all child objects, Delete all child objects, Special permissions
 Domain Admins - Read, Write, Create all child objects, Delete all child objects, Special permissions
 Enterprise Admins - Read, Write, Create all child objects, Delete all child objects, Special permissions
-ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
-
-The Domain Admins and Enterprise Admins will not have the "Delete all child objects" permission on the two default Group Policy objects: Default Domain Policy and Default Domain Controllers Policy. They will have this permission on organization created Group Policy objects.</RawString>
+ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions</RawString>
     </Rule>
     <Rule id="V-205743" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;When directory service database objects do not have appropriate access control permissions, it may be possible for malicious users to create, read, update, or delete the objects and degrade or destroy the integrity of the data. When the directory service is used for identification, authentication, or authorization functions, a compromise of the database objects could lead to a compromise of all systems that rely on the directory service.
@@ -2853,6 +2851,24 @@ Enter "Get-ADUser krbtgt -Property PasswordLastSet".
 
 If the "PasswordLastSet" date is more than 180 days old, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-271429" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Weak mappings give rise to security vulnerabilities and demand hardening measures. Certificate names must be correctly mapped to the intended user account in Active Directory. A lack of strong name-based mappings allows certain weak certificate mappings, such as Issuer/Subject AltSecID and User Principal Names (UPN) mappings, to be treated as strong mappings.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This applies to domain controllers. This is not applicable for member servers.
+
+Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Template &gt;&gt; System &gt;&gt; KDC &gt;&gt; Allow name-based strong mappings for certificates.
+
+If "Allow name-based strong mappings for certificates" is not "Enabled", this is a finding.</RawString>
+    </Rule>
     <Rule id="V-205855" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Accounts or groups given rights on a system may show up as unresolved SIDs for various reasons including deletion of the accounts or groups.  If the account or group objects are reanimated, there is a potential they may still have rights no longer intended.  Valid domain accounts or groups may also show up as unresolved SIDs if a connection to the domain cannot be established for some reason.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -3645,7 +3661,7 @@ Inherited from - "None" for all
 Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
-Server Operators – Read – This Key and subkeys    (Domain controllers only)
+Server Operators â€“ Read â€“ This Key and subkeys    (Domain controllers only)
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2019 to the following SID, this is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
@@ -3726,7 +3742,7 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Server Operators – Read – This Key and subkeys    (Domain controllers only)
+Server Operators â€“ Read â€“ This Key and subkeys    (Domain controllers only)
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2019 to the following SID, this is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
@@ -3807,7 +3823,7 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Server Operators – Read – This Key and subkeys    (Domain controllers only)
+Server Operators â€“ Read â€“ This Key and subkeys    (Domain controllers only)
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2019 to the following SID, this is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
@@ -6254,6 +6270,30 @@ Value: 1</RawString>
       <ValueName>EnableTranscripting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
+    <Rule id="V-271428" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Active Directory domain services elevation of privilege vulnerability could allow a user rights to the system, such as administrative and other high-level capabilities.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Kdc</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
+      <RawString>This applies to domain controllers. This is not applicable for member servers.
+
+If the following registry value does not exist or is not configured as specified, this is a finding:
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: SYSTEM\CurrentControlSet\Services\Kdc
+ 
+Value Name: StrongCertificateBindingEnforcement
+ 
+Value Type: REG_DWORD
+Value: 0x00000001 (1) or 0x00000002 (2)</RawString>
+      <ValueData />
+      <ValueName>StrongCertificateBindingEnforcement</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
   </RegistryRule>
   <RootCertificateRule dscresourcemodule="CertificateDsc">
     <Rule id="V-205648.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
@@ -6515,15 +6555,15 @@ Verify if Windows Defender is in use or enabled:
 
 Open "PowerShell".
 
-Enter “get-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayName”
+Enter â€œget-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayNameâ€
 
 Verify if third-party anti-virus is in use or enabled:
 
 Open "PowerShell".
 
-Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayName”
+Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayNameâ€
 
-Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayName”
+Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayNameâ€
 </RawString>
       <ServiceName>
       </ServiceName>
