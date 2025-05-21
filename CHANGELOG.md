@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 * Update Powerstig to parse/apply Oracle Linux 8 STIG - Ver 2, Rel 3 [#1437](https://github.com/microsoft/PowerStig/issues/1437)
+* Update Powerstig to parse/apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 4 [#1451](https://github.com/microsoft/PowerStig/issues/1451)
 
 ## [4.25.0] - 2025-02-20
 * Update Powerstig to parse/apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 5 [#1422](https://github.com/microsoft/PowerStig/issues/1422)
