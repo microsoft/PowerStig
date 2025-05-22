@@ -59,7 +59,9 @@
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-220905" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-220906" Location="" />
+  <OrganizationalSetting id="V-220906.a" Location="" />
+  <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-220906.b" Location="" />
   <!-- Ensure ''V-220911'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-220911" OptionValue="" />
   <!-- Ensure ''V-220912'' -ne 'Guest'-->
