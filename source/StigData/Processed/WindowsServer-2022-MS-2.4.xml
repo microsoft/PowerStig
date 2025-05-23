@@ -1141,7 +1141,7 @@ Select "Disk Management" under "Storage".
 For each local volume, if the file system does not indicate "NTFS", this is a finding.
 
 "ReFS" (resilient file system) is also acceptable and is not a finding.
-CSV ( Cluster Shared Volumes) is not a finding.
+CSV (Cluster Shared Volumes) is not a finding.
 
 This does not apply to system partitions such the Recovery and EFI System Partition.</RawString>
     </Rule>
