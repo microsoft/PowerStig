@@ -1308,7 +1308,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Admin
 
 Verify LAPS Operational logs &gt;&gt; Event Viewer &gt;&gt; Applications and Services Logs &gt;&gt; Microsoft &gt;&gt; Windows &gt;&gt; LAPS &gt;&gt; Operational. Verify LAPS policy process is completing. If it is not, this is a finding.
 
-If the server is not a member of a domain this not applicable.</RawString>
+If the server is not a member of a domain, this is not applicable.</RawString>
     </Rule>
     <Rule id="V-254240" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Using applications that access the internet or have potential internet sources using administrative privileges exposes a system to compromise. If a flaw in an application is exploited while running as a privileged user, the entire system could be compromised. Web browsers and email are common attack vectors for introducing malicious code and must not be run with an administrative account.
