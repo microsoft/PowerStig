@@ -804,7 +804,7 @@ By default, the World Wide Web (WWW) service establishes an overlapped recycle, 
       <Key>idleTimeout</Key>
       <LegacyId>V-100245</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:20:00' -and [TimeSpan]{0} -gt [TimeSpan]'00:00:00'</OrganizationValueTestString>
+      <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:20:01' -and [TimeSpan]{0} -gt [TimeSpan]'00:00:00'</OrganizationValueTestString>
       <RawString>If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
