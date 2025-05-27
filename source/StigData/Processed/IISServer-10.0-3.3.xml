@@ -641,29 +641,6 @@ Expand the roles node, right-click “Print Services”, and then select “Remo
 
 If the Internet Printing option is enabled, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-218818" severity="medium" conversionstatus="pass" title="SRG-APP-000383-WSR-000175" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The use of IPP on an IIS web server allows client access to shared printers. This privileged access could allow remote code execution by increasing the web servers attack surface. Additionally, since IPP does not support SSL, it is considered a risk and will not be deployed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100171</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the Print Services role and the Internet Printing role are not installed, this check is Not Applicable.
-
-Navigate to the following directory:
-
-%windir%\web\printers
-
-If this folder exists, this is a finding.
-
-Determine whether Internet Printing is enabled:
-
-Click “Start”, click “Administrative Tools”, and then click “Server Manager”.
-
-Expand the roles node, right-click “Print Services”, and then select “Remove Roles Services”.
-
-If the Internet Printing option is enabled, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-218823" severity="high" conversionstatus="pass" title="SRG-APP-000516-WSR-000079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;During installation of the web server software, accounts are created for the web server to operate properly. The accounts installed can have either no password installed or a default password, which will be known and documented by the vendor and the user community.
 
