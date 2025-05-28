@@ -1,5 +1,41 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="OracleLinux_8_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_OracleLinux_8_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 24 Jul 2024 3.5 1.10.0" title="Oracle Linux 8 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="2/6/2025">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Oracle_Linux_8_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_OracleLinux_8_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="Oracle Linux 8 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="5/27/2025">
   <DocumentRule dscresourcemodule="None">
+    <Rule id="V-248606" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH daemon does not allow Kerberos authentication with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*kerberosauthentication'
+
+KerberosAuthentication no
+
+If the value is returned as "yes", the returned line is commented out, or no output is returned or has not been documented with the information system security officer (ISSO), or
+
+If conflicting results are returned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248607" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH daemon does not allow GSSAPI authentication with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*gssapiauthentication'
+
+GSSAPIAuthentication no
+
+If the value is returned as "yes", the returned line is commented out, or no output is returned or has not been documented with the information system security officer (ISSO), or
+
+If conflicting results are returned, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-248900" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The security risk of using X11 forwarding is that the client's X11 display server may be exposed to attack when the SSH client requests forwarding. A System Administrator may have a stance in which they want to protect clients that may expose themselves to attack by unwittingly requesting X11 forwarding, which can warrant a "no" setting. 
  
@@ -124,7 +160,7 @@ Typical update frequency may be overridden by Information Assurance Vulnerabilit
  
 If the operating system is not in compliance with the Information Assurance Vulnerability Management (IAVM) process, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-248525" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
+    <Rule id="V-248525" severity="high" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;OL 8 systems handling data requiring "data-at-rest" protections must employ cryptographic mechanisms to prevent unauthorized disclosure and modification of the information at rest. 
  
 Selection of a cryptographic mechanism is based on the need to protect the integrity of organizational information. The strength of the mechanism is commensurate with the security category and/or classification of the information. Organizations have the flexibility to either encrypt all information on storage devices (i.e., full disk encryption) or encrypt specific data structures (e.g., files, records, or fields).
@@ -587,49 +623,65 @@ There may be shared resources with configurable protections (e.g., files in stor
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that all world-writable directories have the sticky bit setVerify that all world-writable directories have the sticky bit setVerify that all world-writable directories have the sticky bit set.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a finding.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a findingVerify that all world-writable directories have the sticky bit set.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a finding.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a findingVerify that all world-writable directories have the sticky bit setVerify that all world-writable directories have the sticky bit set.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a finding.
-
-Verify that all world-writable directories have the sticky bit set by running the following command:
-
-$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
-
-If any of the returned directories are world-writable and do not have the sticky bit set, this is a findingVerify that all world-writable directories have the sticky bit set.
+      <RawString>Verify that all world-writable directories have the sticky bit set.
 
 Verify that all world-writable directories have the sticky bit set by running the following command:
 
 $ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
 
 If any of the returned directories are world-writable and do not have the sticky bit set, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248552" severity="medium" conversionstatus="pass" title="SRG-OS-000126-GPOS-00066" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Terminating an unresponsive SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
+
+Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the unresponsive session and releases the resources associated with that session. 
+ 
+OL 8 uses "/etc/ssh/sshd_config" for configurations of OpenSSH. Within the "sshd_config", the product of the values of "ClientAliveInterval" and "ClientAliveCountMax" is used to establish the inactivity threshold. The "ClientAliveInterval" is a timeout interval in seconds after which if no data has been received from the client, sshd will send a message through the encrypted channel to request a response from the client. The "ClientAliveCountMax" is the number of client alive messages that may be sent without sshd receiving any messages back from the client. If this threshold is met, sshd will disconnect the client. For more information on these settings and others, refer to the sshd_config man pages.
+
+Satisfies: SRG-OS-000126-GPOS-00066, SRG-OS-000163-GPOS-00072, SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH server automatically terminates a user session after the SSH client has become unresponsive.
+
+Check that the "ClientAliveCountMax" is set to "1" by running the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*clientalivecountmax'
+
+ClientAliveCountMax 1
+
+If "ClientAliveCountMax" does not exist, does not have a product value of "1" in "/etc/ssh/sshd_config", or is commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248553" severity="medium" conversionstatus="pass" title="SRG-OS-000126-GPOS-00066" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Terminating an unresponsive SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
+
+Terminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level and deallocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the unresponsive session and releases the resources associated with that session.
+ 
+OL 8 uses "/etc/ssh/sshd_config" for configurations of OpenSSH. Within the "sshd_config", the product of the values of "ClientAliveInterval" and "ClientAliveCountMax" is used to establish the inactivity threshold. The "ClientAliveInterval" is a timeout interval in seconds after which if no data has been received from the client, sshd will send a message through the encrypted channel to request a response from the client. The "ClientAliveCountMax" is the number of client alive messages that may be sent without sshd receiving any messages back from the client. If this threshold is met, sshd will disconnect the client. For more information on these settings and others, refer to the sshd_config man pages.
+
+Satisfies: SRG-OS-000126-GPOS-00066, SRG-OS-000163-GPOS-00072, SRG-OS-000279-GPOS-00109&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH server automatically terminates a user session after the SSH client has been unresponsive for 10 minutes.
+
+Check that the "ClientAliveInterval" variable is set to a value of "600" or less by running the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*clientaliveinterval'
+
+ClientAliveInterval 600
+
+If "ClientAliveInterval" does not exist, does not have a product value of "600" or less in "/etc/ssh/sshd_config", or is commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248554" severity="medium" conversionstatus="pass" title="SRG-OS-000206-GPOS-00084" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Only authorized personnel should be aware of errors and the details of the errors. Error messages are an indicator of an organization's operational state or can identify the OL 8 system or platform. Additionally, Personally Identifiable Information (PII) and operational information must not be revealed through error messages to unauthorized personnel or their designated representatives. 
@@ -860,7 +912,7 @@ If any system-wide shared library file is returned, this is a finding.</RawStrin
     <Rule id="V-248573" severity="medium" conversionstatus="pass" title="SRG-OS-000363-GPOS-00150" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Unauthorized changes to the baseline configuration could make the system vulnerable to various attacks or allow unauthorized access to the operating system. Changes to operating system configurations can have unintended side effects, some of which may be relevant to security.
 
-Detecting such changes and providing an automated response can help avoid unintended, negative consequences that could ultimately affect the security state of the operating system. The operating system's Information System Security Manager (ISSM)/Information System Security Officer (ISSO) and SAs must be notified via email and/or monitoring system trap when there is an unauthorized modification of a configuration item.
+Detecting such changes and providing an automated response can help avoid unintended, negative consequences that could ultimately affect the security state of the operating system. The operating system's information system security manager (ISSM)/information system security officer (ISSO) and SAs must be notified via email and/or monitoring system trap when there is an unauthorized modification of a configuration item.
 
 Notifications provided by information systems include messages to local computer consoles and/or hardware indications, such as lights.
 
@@ -881,19 +933,21 @@ Check that OL 8 routinely executes a file integrity scan for changes to the syst
 
 Check the cron directories for scripts controlling the execution and notification of results of the file integrity application. For example, if AIDE is installed on the system, use the following commands:
 
-     $ sudo ls -al /etc/cron.* | grep aide
+To search for an aide script:
 
-     -rwxr-xr-x 1 root root 29 Nov 22 2015 aide
+$ sudo ls -al /etc/cron.* | grep aide
+-rwxr-xr-x 1 root root 29 Nov 22 2015 aide
 
-     $ sudo grep aide /etc/crontab /var/spool/cron/root
+To search for scheduled cron jobs:
 
-     /etc/crontab: 30 04 * * * /root/aide
-     /var/spool/cron/root: 30 04 * * * /root/aide
+$ sudo grep -r aide /etc/cron*
+/etc/cron.d/aide:0 0 * * * root /usr/sbin/aide --check | /bin/mail -s "$HOSTNAME - Daily AIDE integrity check run" root@example_server_name.mil
 
-     $ sudo more /etc/cron.daily/aide
+Check the contents of script files:
 
-     #!/bin/bash 
-     /usr/sbin/aide --check | /bin/mail -s "$HOSTNAME - Daily AIDE integrity check run" root@example_server_name.mil
+$ sudo more /etc/cron.d/aide
+#!/bin/bash
+/usr/sbin/aide --check | /bin/mail -s "$HOSTNAME - Daily AIDE integrity check run" root@example_server_name.mil
 
 If the file integrity application does not exist, a script file controlling the execution of the file integrity application does not exist, or the file integrity application does not notify designated personnel of changes, this is a finding.</RawString>
     </Rule>
@@ -1288,16 +1342,13 @@ If "flags" does not contain the "nx" flag, this is a finding.</RawString>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Determine the default kernel: 
-$ sudo grubby --default-kernel
+      <RawString>Verify OL 8 is configured to enable mitigations with the following command:
 
-/boot/vmlinuz-5.4.17-2011.1.2.el8uek.x86_64
+$ grubby --info=/boot/vmlinuz-$(uname -r) | grep mitigations
 
-Using the default kernel, verify that Meltdown mitigations are not disabled:
+If the "mitigations" parameter is set to "off" (mitigations=off), this is a finding.
 
-$ sudo grubby --info=&lt;path-to-default-kernel&gt; | grep mitigations
-
-If the "mitigations" parameter is set to "off", this is a finding.</RawString>
+Note: The default behavior of the kernel is to enable mitigations for vulnerabilities like Meltdown and Spectre based on hardware and system requirements. Therefore, if the "mitigation" parameter is not present or if it is set to on this is not a finding.</RawString>
     </Rule>
     <Rule id="V-248594" severity="medium" conversionstatus="pass" title="SRG-OS-000433-GPOS-00193" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Some adversaries launch attacks with the intent of executing code in non-executable regions of memory or in memory locations that are prohibited. Security safeguards employed to protect memory include, for example, data execution prevention and address space layout randomization. Data execution prevention safeguards can be either hardware-enforced or software-enforced, with hardware providing the greater strength of mechanism. 
@@ -1441,39 +1492,43 @@ Note: SSH public key files may be found in other directories on the system depen
      -rw-r----- 1 root wheel 582 Nov 28 06:43 ssh_host_key 
      -rw-r----- 1 root wheel 887 Nov 28 06:43 ssh_host_rsa_key 
  
-If any private host key file has a mode more permissive than "0640", this is a findingVerify the SSH private host key files have mode "0640" or less permissive with the following command: 
- 
-     $ sudo ls -alL /etc/ssh/ssh_host*key 
- 
-     -rw-r----- 1 root wheel 668 Nov 28 06:43 ssh_host_dsa_key 
-     -rw-r----- 1 root wheel 582 Nov 28 06:43 ssh_host_key 
-     -rw-r----- 1 root wheel 887 Nov 28 06:43 ssh_host_rsa_key 
- 
-If any private host key file has a mode more permissive than "0640", this is a findingVerify the SSH private host key files have mode "0640" or less permissive with the following command: 
- 
-     $ sudo ls -alL /etc/ssh/ssh_host*key 
- 
-     -rw-r----- 1 root wheel 668 Nov 28 06:43 ssh_host_dsa_key 
-     -rw-r----- 1 root wheel 582 Nov 28 06:43 ssh_host_key 
-     -rw-r----- 1 root wheel 887 Nov 28 06:43 ssh_host_rsa_key 
- 
-If any private host key file has a mode more permissive than "0640", this is a findingVerify the SSH private host key files have mode "0640" or less permissive with the following command: 
- 
-     $ sudo ls -alL /etc/ssh/ssh_host*key 
- 
-     -rw-r----- 1 root wheel 668 Nov 28 06:43 ssh_host_dsa_key 
-     -rw-r----- 1 root wheel 582 Nov 28 06:43 ssh_host_key 
-     -rw-r----- 1 root wheel 887 Nov 28 06:43 ssh_host_rsa_key 
- 
-If any private host key file has a mode more permissive than "0640", this is a findingVerify the SSH private host key files have mode "0640" or less permissive with the following command: 
- 
-     $ sudo ls -alL /etc/ssh/ssh_host*key 
- 
-     -rw-r----- 1 root wheel 668 Nov 28 06:43 ssh_host_dsa_key 
-     -rw-r----- 1 root wheel 582 Nov 28 06:43 ssh_host_key 
-     -rw-r----- 1 root wheel 887 Nov 28 06:43 ssh_host_rsa_key 
- 
 If any private host key file has a mode more permissive than "0640", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248603" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;If other users have access to modify user-specific SSH configuration files, they may be able to log on to the system as another user.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH daemon performs strict mode checking of home directory configuration files with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*strictmodes'
+
+StrictModes yes
+
+If "StrictModes" is set to "no" or is missing, or if the returned line is commented out, or 
+
+If conflicting results are returned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248605" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH daemon does not allow authentication using known host’s authentication with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*ignoreuserknownhosts'
+
+IgnoreUserKnownHosts yes
+
+If the value is returned as "no", the returned line is commented out, or no output is returned, or 
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248608" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The use of separate file systems for different paths can protect the system from failures resulting from a file system becoming full or failing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1555,47 +1610,7 @@ If a separate entry for the file system/partition "/tmp" does not exist, this is
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that a separate file system has been created for "/var/tmp"Verify that a separate file system has been created for "/var/tmp".
-
-Check that a file system has been created for "/var/tmp" with the following command:
-
-     $ sudo grep /var/tmp /etc/fstab
-
-     /dev/mapper/...   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
-
-If a separate entry for "/var/tmp" is not in use, this is a finding.
-
-Check that a file system has been created for "/var/tmp" with the following command:
-
-     $ sudo grep /var/tmp /etc/fstab
-
-     /dev/mapper/Verify that a separate file system has been created for "/var/tmp".
-
-Check that a file system has been created for "/var/tmp" with the following command:
-
-     $ sudo grep /var/tmp /etc/fstab
-
-     /dev/mapper/...   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
-
-If a separate entry for "/var/tmp" is not in use, this is a finding.Verify that a separate file system has been created for "/var/tmp".
-
-Check that a file system has been created for "/var/tmp" with the following command:
-
-     $ sudo grep /var/tmp /etc/fstab
-
-     /dev/mapper/...   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
-
-If a separate entry for "/var/tmp" is not in use, this is a finding.Verify that a separate file system has been created for "/var/tmp".
-
-Check that a file system has been created for "/var/tmp" with the following command:
-
-     $ sudo grep /var/tmp /etc/fstab
-
-     /dev/mapper/...   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
-
-If a separate entry for "/var/tmp" is not in use, this is a finding.   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
-
-If a separate entry for "/var/tmp" is not in use, this is a findingVerify that a separate file system has been created for "/var/tmp".
+      <RawString>Verify that a separate file system has been created for "/var/tmp".
 
 Check that a file system has been created for "/var/tmp" with the following command:
 
@@ -1604,6 +1619,24 @@ Check that a file system has been created for "/var/tmp" with the following comm
      /dev/mapper/...   /var/tmp   xfs   defaults,nodev,noexec,nosuid 0 0
 
 If a separate entry for "/var/tmp" is not in use, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248613" severity="medium" conversionstatus="pass" title="SRG-OS-000109-GPOS-00056" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Although the communications channel may be encrypted, an additional layer of security is gained by extending the policy of not logging on directly as root. In addition, logging on with a user-specific account provides individual accountability of actions performed on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify remote access using SSH prevents users from logging on directly as "root" with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*permitrootlogin'
+
+PermitRootLogin no
+
+If the "PermitRootLogin" keyword is set to "yes", is missing, or is commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248615" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Configuring OL 8 to implement organization-wide security implementation guides and security checklists ensures compliance with federal standards and establishes a common security baseline across the DoD that reflects the most restrictive security posture consistent with operational requirements. 
@@ -2176,6 +2209,24 @@ Note: The partition of "/home" is used in the example.
  
 If a separate entry for the file system that contains the nonprivileged interactive users' home directories does not exist, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-248650" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;SSH environment options potentially allow users to bypass access restriction in some configurations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that unattended or automatic login via SSH is disabled with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*permituserenvironment'
+
+PermitUserEnvironment no
+
+If "PermitUserEnvironment" is set to "yes", is missing completely, or is commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-248651" severity="medium" conversionstatus="pass" title="SRG-OS-000002-GPOS-00002" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If temporary user accounts remain active when no longer needed or for an excessive period, these accounts may be used to gain unauthorized access. To mitigate this risk, automated termination of all temporary accounts must be set upon account creation. 
  
@@ -2554,71 +2605,6 @@ $ sudo gsettings get org.gnome.login-screen disable-user-list
 true
 
 If the setting is "false", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-248674" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not want to log out because of the temporary nature of the absence.
-
-The session lock is implemented at the point where session activity can be determined. Rather than be forced to wait for a period of time to expire before the user session can be locked, OL 8 needs to provide users with the ability to manually invoke a session lock so users can secure their session if it is necessary to temporarily vacate the immediate physical vicinity.
-
-Tmux is a terminal multiplexer that enables a number of terminals to be created, accessed, and controlled from a single screen.
-
-Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify OL 8 has the "tmux" package installed, by running the following command:
-
-$ sudo yum list installed tmux
-
-tmux.x86.64                     2.7-1.el8                         @repository
-
-If "tmux" is not installed, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-248675" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not want to log out because of the temporary nature of the absence.
-
-The session lock is implemented at the point where session activity can be determined. Rather than be forced to wait for a period of time to expire before the user session can be locked, OL 8 needs to provide users with the ability to manually invoke a session lock so users can secure their session if it is necessary to temporarily vacate the immediate physical vicinity.
-
-Tmux is a terminal multiplexer that enables a number of terminals to be created, accessed, and controlled from a single screen.
-
-Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system enables the user to manually initiate a session lock with the following command:
-
-     $ sudo grep -Ei 'lock-command|lock-session' /etc/tmux.conf
-
-     set -g lock-command vlock
-     bind X lock-session
-
-If the "lock-command" is not set and "lock-session" is not bound to a specific keyboard key in the global settings, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-248677" severity="low" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not want to log out because of the temporary nature of the absence.
-
-The session lock is implemented at the point where session activity can be determined. Rather than be forced to wait for a period of time to expire before the user session can be locked, OL 8 needs to provide users with the ability to manually invoke a session lock so users can secure their session if it is necessary to temporarily vacate the immediate physical vicinity.
-
-Tmux is a terminal multiplexer that enables a number of terminals to be created, accessed, and controlled from a single screen.
-
-Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system prevents users from disabling the tmux terminal multiplexer with the following command:
-
-$ sudo grep -i tmux /etc/shells
-
-If any output is produced, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248680" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, operating systems must be able to identify when a user's session has idled and take action to initiate the session lock. 
@@ -3297,6 +3283,24 @@ If output is produced, this is a finding.</RawString>
 $ sudo grep -i nullok /etc/pam.d/password-auth
 
 If output is produced, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248718" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Providing users with feedback on when account accesses via SSH last occurred facilitates user recognition and reporting of unauthorized account use.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify SSH provides users with feedback on when account accesses last occurred with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*printlastlog'
+
+PrintLastLog yes
+
+If the "PrintLastLog" keyword is set to "no", is missing, or is commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248719" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00228" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Setting the most restrictive default permissions ensures that when new accounts are created, they do not have unnecessary access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3995,9 +3999,9 @@ If there is no evidence that the audit logs are being offloaded to another syste
     <Rule id="V-248817" severity="medium" conversionstatus="pass" title="SRG-OS-000342-GPOS-00133" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration. 
  
-Offloading is a common process in information systems with limited audit storage capacity. 
+Off-loading is a common process in information systems with limited audit storage capacity. 
  
-OL 8 installation media provides "rsyslogd". This is a system utility providing support for message logging. Support for both internet and UNIX domain sockets enables this utility to support both local and remote logging. Coupling this utility with "gnutls" (which is a secure communications library implementing the SSL, TLS and DTLS protocols) provides a method to securely encrypt and offload auditing. 
+OL 8 installation media provides "rsyslogd". This is a system utility providing support for message logging. Support for both internet and Unix domain sockets enables this utility to support both local and remote logging. Coupling this utility with "gnutls" (which is a secure communications library implementing the SSL, TLS and DTLS protocols) provides a method to securely encrypt and offload auditing. 
  
 "Rsyslog" supported authentication modes include the following: 
 anon - anonymous authentication 
@@ -4018,8 +4022,10 @@ $ sudo grep -i '$ActionSendStreamDriverAuthMode' /etc/rsyslog.conf /etc/rsyslog.
  
 /etc/rsyslog.conf:$ActionSendStreamDriverAuthMode x509/name 
  
-If the value of the "$ActionSendStreamDriverAuthMode" option is not set to "x509/name" or the line is commented out, ask the System Administrator to indicate how the audit logs are offloaded to a different system or media.  
+If the value of the "$ActionSendStreamDriverAuthMode" option is not set to "x509/name" or the line is commented out, ask the system administrator to indicate how the audit logs are offloaded to a different system or media.  
  
+If the variable name "StreamDriverAuthMode" is present in an omfwd statement block, this is not a finding. However, if the "StreamDriverAuthMode" variable is in a module block, this is a finding.
+
 If there is no evidence that the transfer of the audit logs being offloaded to another system or media is encrypted, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248818" severity="medium" conversionstatus="pass" title="SRG-OS-000343-GPOS-00134" dscresource="None">
@@ -4769,61 +4775,6 @@ Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000424-GPOS-00188, SRG-OS-000425-GPO
  
 $ sudo systemctl status sshd 
  
-sshdVerify SSH is loaded and active with the following command: 
- 
-$ sudo systemctl status sshd 
- 
-sshd.service - OpenSSH server daemon 
-Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled) 
-Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
-Main PID: 1348 (sshd) 
-CGroup: /system.slice/sshd.service 
-1053 /usr/sbin/sshd -D 
- 
-If "sshd" does not show a status of "active" and "running", this is a finding.service - OpenSSH server daemon 
-Loaded: loaded (/usr/lib/systemd/system/sshdVerify SSH is loaded and active with the following command: 
- 
-$ sudo systemctl status sshd 
- 
-sshd.service - OpenSSH server daemon 
-Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled) 
-Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
-Main PID: 1348 (sshd) 
-CGroup: /system.slice/sshd.service 
-1053 /usr/sbin/sshd -D 
- 
-If "sshd" does not show a status of "active" and "running", this is a finding.service; enabled) 
-Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
-Main PID: 1348 (sshd) 
-CGroup: /systemVerify SSH is loaded and active with the following command: 
- 
-$ sudo systemctl status sshd 
- 
-sshd.service - OpenSSH server daemon 
-Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled) 
-Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
-Main PID: 1348 (sshd) 
-CGroup: /system.slice/sshd.service 
-1053 /usr/sbin/sshd -D 
- 
-If "sshd" does not show a status of "active" and "running", this is a finding.slice/sshdVerify SSH is loaded and active with the following command: 
- 
-$ sudo systemctl status sshd 
- 
-sshd.service - OpenSSH server daemon 
-Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled) 
-Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
-Main PID: 1348 (sshd) 
-CGroup: /system.slice/sshd.service 
-1053 /usr/sbin/sshd -D 
- 
-If "sshd" does not show a status of "active" and "running", this is a finding.service 
-1053 /usr/sbin/sshd -D 
- 
-If "sshd" does not show a status of "active" and "running", this is a findingVerify SSH is loaded and active with the following command: 
- 
-$ sudo systemctl status sshd 
- 
 sshd.service - OpenSSH server daemon 
 Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled) 
 Active: active (running) since Tue 2015-11-17 15:17:22 EST; 4 weeks 0 days ago 
@@ -4832,6 +4783,26 @@ CGroup: /system.slice/sshd.service
 1053 /usr/sbin/sshd -D 
  
 If "sshd" does not show a status of "active" and "running", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248868" severity="medium" conversionstatus="pass" title="SRG-OS-000033-GPOS-00014" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore cannot be relied on to provide confidentiality or integrity, and DOD data may be compromised. 
+ 
+Session key regeneration limits the chances of a session key becoming compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the SSH server is configured to force frequent session key renegotiation with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*rekeylimit'
+
+RekeyLimit 1G 1h
+
+If "RekeyLimit" does not have a maximum data amount and maximum time defined or is missing or commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248869" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A locally logged-on user, who presses Ctrl-Alt-Delete when at the console, can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of system availability due to unintentional reboot. In a graphical user environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -5726,6 +5697,26 @@ $ sudo ip link | grep -i promisc
  
 If network interfaces are found on the system in promiscuous mode and their use has not been approved by the ISSO and documented, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-248901" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When X11 forwarding is enabled, there may be additional exposure to the server and client displays if the sshd proxy display is configured to listen on the wildcard address. By default, sshd binds the forwarding server to the loopback address and sets the hostname part of the DISPLAY environment variable to localhost. This prevents remote hosts from connecting to the proxy display.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the OL 8 SSH daemon prevents remote hosts from connecting to the proxy display.
+
+Check the SSH "X11UseLocalhost" setting with the following command:
+
+$ sudo /usr/sbin/sshd -dd 2&gt;&amp;1 | awk '/filename/ {print $4}' | tr -d '\r' | tr '\n' ' ' | xargs sudo grep -iH '^\s*x11uselocalhost'
+
+X11UseLocalhost yes
+
+If the "X11UseLocalhost" keyword is set to "no", is missing, or is commented out, or
+
+If conflicting results are returned, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-248903" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The FTP service provides an unencrypted remote access that does not provide for the confidentiality and integrity of user passwords or the remote session. If a privileged user were to log on using this service, the privileged user password could be compromised. SSH or other encrypted file transfer methods must be used in place of this service.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -5743,7 +5734,7 @@ vsftpd-3.0.3.el8.x86_64.rpm
 If an FTP server is installed and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248904" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Verify the operating system is configured to disable non-essential capabilities. The most secure way of ensuring a non-essential capability is disabled is to not have the capability installed. 
+      <Description>&lt;VulnDiscussion&gt;Verify the operating system is configured to disable nonessential capabilities. The most secure way of ensuring a nonessential capability is disabled is to not have the capability installed. 
  
 When an application uses Generic Security Services API (GSSAPI), typically it will have direct access to its security credentials, and all cryptographic operations are performed in the application's process. This is undesirable, but "gssproxy" can help in almost all use cases. It provides privilege separation to applications using the GSSAPI: The gssproxy daemon runs on the system, holds the application's credentials, and performs operations on behalf of the application.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -5752,7 +5743,9 @@ When an application uses Generic Security Services API (GSSAPI), typically it wi
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Determine if the "gssproxy" package is installed with the following command: 
+      <RawString>Note: For Oracle Linux systems, if there is an operational need for gssproxy to be installed, this requirement is Not Applicable.
+
+Determine if the "gssproxy" package is installed with the following command: 
  
 $ sudo yum list installed gssproxy 
  
@@ -6109,10 +6102,10 @@ Check to see if FIPS mode is enabled with the following command:
      $ fips-mode-setup --check
      FIPS mode is enabled
 
-If FIPS mode is "enabled", check to see if the kernel boot parameter is configured for FIPS mode with the following command:
+If FIPS mode is "enabled", check if the kernel boot parameter is configured for FIPS mode with the following command:
 
      $ sudo grub2-editenv list | grep fips
-     kernelopts=root=/dev/mapper/ol-root ro resume=/dev/mapper/ol-swap rd.lvm.lv=ol/root rd.lvm.lv=ol/swap rhgb quiet fips=1 boot=UUID=25856928-386b-4205-9a0e-a2953ae2712d audit=1 audit_backlog_limit=8192 pti=on random.trust_cpu=on slub_debug=P page_poison=1
+     kernelopts=...fips=1
 
 If the kernel boot parameter is configured to use FIPS mode, check to see if the system is in FIPS mode with the following command:
 
@@ -6176,11 +6169,11 @@ ENCRYPT_METHOD SHA512
 If "ENCRYPT_METHOD" does not equal SHA512 or greater, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248535" severity="medium" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="nxFileLine">
-      <ContainsLine>If only one of "SHA_CRYPT_MIN_ROUNDS" or "SHA_CRYPT_MAX_ROUNDS" is set, and this value is below "5000", this is a finding.</ContainsLine>
+      <ContainsLine>If only one of "SHA_CRYPT_MIN_ROUNDS" or "SHA_CRYPT_MAX_ROUNDS" is set, and this value is below "100000", this is a finding.</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;The system must use a strong hashing algorithm to store the password. The system must use a sufficient number of hashing rounds to ensure the required level of entropy. 
  
 Passwords need to be protected at all times, and encryption is the standard method for protecting passwords. If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*If\s*only\s*one\s*of\s*"SHA_CRYPT_MIN_ROUNDS"\s*or\s*"SHA_CRYPT_MAX_ROUNDS"\s*is\s*set,\s*and\s*this\s*value\s*is\s*below\s*"5000",\s*this\s*is\s*a\s*finding.</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*If\s*only\s*one\s*of\s*"SHA_CRYPT_MIN_ROUNDS"\s*or\s*"SHA_CRYPT_MAX_ROUNDS"\s*is\s*set,\s*and\s*this\s*value\s*is\s*below\s*"100000",\s*this\s*is\s*a\s*finding.</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/login.defs</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6192,9 +6185,9 @@ Passwords need to be protected at all times, and encryption is the standard meth
 
      $ sudo grep -E "^SHA_CRYPT_" /etc/login.defs
 
-If only one of "SHA_CRYPT_MIN_ROUNDS" or "SHA_CRYPT_MAX_ROUNDS" is set, and this value is below "5000", this is a finding.
+If only one of "SHA_CRYPT_MIN_ROUNDS" or "SHA_CRYPT_MAX_ROUNDS" is set, and this value is below "100000", this is a finding.
 
-If both "SHA_CRYPT_MIN_ROUNDS" and "SHA_CRYPT_MAX_ROUNDS" are set, and the value for either is below "5000", this is a finding.</RawString>
+If both "SHA_CRYPT_MIN_ROUNDS" and "SHA_CRYPT_MAX_ROUNDS" are set, and the value for either is below "100000", this is a finding.</RawString>
     </Rule>
     <Rule id="V-248538.a" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="nxFileLine">
       <ContainsLine>set superusers="[someuniqueUserNamehere]"</ContainsLine>
@@ -6435,11 +6428,11 @@ If the "SSH_USE_STRONG_RNG" line does not equal "32" or is commented out or miss
       <ContainsLine>.include /etc/crypto-policies/back-ends/opensslcnf.config</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without cryptographic integrity protections, information can be altered by unauthorized users without detection. 
  
-Remote access (e.g., RDP) is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless. 
+Remote access (e.g., RDP) is access to DOD nonpublic information systems by an authorized user (or an information system) communicating through an external, nonorganization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless. 
  
 Cryptographic mechanisms used for protecting the integrity of information include, for example, signed hash functions using asymmetric cryptography, enabling distribution of the public key to verify the hash information while maintaining the confidentiality of the secret key used to generate the hash. 
  
-OL 8 incorporates system-wide crypto policies by default. The employed algorithms can be viewed in the "/etc/crypto-policies/back-ends/openssl.config" file.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+OL 8 incorporates systemwide crypto policies by default. The employed algorithms can be viewed in the "/etc/crypto-policies/back-ends/openssl.config" file.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DoesNotContainPattern>#\s*.include\s*/etc/crypto-policies/back-ends/opensslcnf.config</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/crypto-policies/back-ends/opensslcnf.config</FilePath>
@@ -6450,7 +6443,7 @@ OL 8 incorporates system-wide crypto policies by default. The employed algorithm
       <OrganizationValueTestString />
       <RawString>Verify the OpenSSL library is configured to use only ciphers employing FIPS 140-2-approved algorithms:
 
-Verify that system-wide crypto policies are in effect:
+Verify that systemwide crypto policies are in effect:
 
 $ sudo grep -i opensslcnf.config /etc/pki/tls/openssl.cnf
 
@@ -6458,13 +6451,13 @@ $ sudo grep -i opensslcnf.config /etc/pki/tls/openssl.cnf
 
 If the "opensslcnf.config" is not defined in the "/etc/pki/tls/openssl.cnf" file, this is a finding.
 
-Verify which system-wide crypto policy is in use:
+Verify which systemwide crypto policy is in use:
 
-$ sudo update-crypto-policies --show
+$ sudo fips-mode-setup --check
 
-FIPS
+FIPS mode is enabled.
 
-If the system-wide crypto policy is set to anything other than "FIPS", this is a finding.</RawString>
+If the systemwide crypto policy is set to anything other than "FIPS", this is a finding.</RawString>
     </Rule>
     <Rule id="V-248565.a" severity="medium" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="nxFileLine">
       <ContainsLine>MinProtocol = TLSv1.2</ContainsLine>
@@ -6680,13 +6673,19 @@ GRUB_CMDLINE_LINUX="vsyscall=none"
 If "vsyscall" is not set to "none", is missing or commented out and is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248592" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="nxFileLine">
-      <ContainsLine>GRUB_CMDLINE_LINUX="slub_debug=P"</ContainsLine>
+      <ContainsLine>GRUB_CMDLINE_LINUX="... init_on_free=1"</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Some adversaries launch attacks with the intent of executing code in nonexecutable regions of memory or in memory locations that are prohibited. Security safeguards employed to protect memory include, for example, data execution prevention and address space layout randomization. Data execution prevention safeguards can be either hardware-enforced or software-enforced with hardware providing the greater strength of mechanism.
 
 Poisoning writes an arbitrary value to freed pages, so any modification or reference to that page after being freed or before being initialized will be detected and prevented. This prevents many types of use-after-free vulnerabilities at little performance cost. Also prevents leak of data and detection of corrupted memory.
 
-SLAB objects are blocks of physically contiguous memory. SLUB is the unqueued SLAB allocator.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*GRUB_CMDLINE_LINUX\s*=\s*"slub_debug\s*=\s*P"</DoesNotContainPattern>
+init_on_free is a Linux kernel boot parameter that enhances security by initializing memory regions when they are freed, preventing data leakage. This process ensures that stale data in freed memory cannot be accessed by malicious programs.
+
+SLUB canaries add a randomized value (canary) at the end of SLUB-allocated objects to detect memory corruption caused by buffer overflows or underflows. Redzoning adds padding (red zones) around SLUB-allocated objects to detect overflows or underflows by triggering a fault when adjacent memory is accessed. SLUB canaries are often more efficient and provide stronger detection against buffer overflows compared to redzoning. SLUB canaries are supported in hardened Linux kernels like the ones provided by Linux-hardened.
+
+SLAB objects are blocks of physically contiguous memory. SLUB is the unqueued SLAB allocator.
+
+Satisfies: SRG-OS-000433-GPOS-00192, SRG-OS-000134-GPOS-00068&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>#\s*GRUB_CMDLINE_LINUX\s*=\s*"...\s*init_on_free\s*=\s*1"</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/default/grub</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6694,23 +6693,13 @@ SLAB objects are blocks of physically contiguous memory. SLUB is the unqueued SL
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that GRUB 2 is configured to enable poisoning of SLUB/SLAB objects to mitigate use-after-free vulnerabilities with the following commands:
+      <RawString>Verify GRUB2 is configured to mitigate use-after-free vulnerabilities by employing memory poisoning.
 
-Check that the current GRUB 2 configuration has poisoning of SLUB/SLAB objects enabled:
+Inspect the "GRUB_CMDLINE_LINUX" entry of /etc/default/grub as follows:
+$ sudo grep -i grub_cmdline_linux /etc/default/grub
+GRUB_CMDLINE_LINUX="... init_on_free=1"
 
-$ sudo grub2-editenv list | grep slub_debug
-
-kernelopts=root=/dev/mapper/ol-root ro crashkernel=auto resume=/dev/mapper/ol-swap rd.lvm.lv=ol/root rd.lvm.lv=ol/swap rhgb quiet fips=1 slub_debug=P page_poison=1 vsyscall=none audit=1 audit_backlog_limit=8192 boot=UUID=8d171156-cd61-421c-ba41-1c021ac29e82
-
-If "slub_debug" does not contain "P" or is missing, this is a finding.
-
-Check that poisoning of SLUB/SLAB objects is enabled by default to persist in kernel updates: 
-
-$ sudo grep slub_debug /etc/default/grub
-
-GRUB_CMDLINE_LINUX="slub_debug=P"
-
-If "slub_debug" does not contain "P", is missing, or is commented out, this is a finding.</RawString>
+If "init_on_free=1" is missing or commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248595" severity="low" conversionstatus="pass" title="SRG-OS-000437-GPOS-00194" dscresource="nxFileLine">
       <ContainsLine>clean_requirements_on_remove=True</ContainsLine>
@@ -7524,145 +7513,6 @@ unconfined_u:object_r:faillog_t:s0 /var/log/faillock
 If the security context type of the non-default tally directory is not "faillog_t", this is a finding.
 </RawString>
     </Rule>
-    <Rule id="V-248676.a" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="nxFileLine">
-      <ContainsLine>Review the tmux script by using the following example:</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Tmux is a terminal multiplexer that enables a number of terminals to be created, accessed, and controlled from a single screen.
-
-Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*Review\s*the\s*tmux\s*script\s*by\s*using\s*the\s*following\s*example:</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/profile.d/tmux.sh</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system shell initialization file is configured to start each shell with the tmux terminal multiplexer with the following commands:
-Determine if tmux is currently running:
-$ sudo ps all | grep tmux | grep -v grep
-If the command does not produce output, this is a finding.
-Determine the location of the tmux script:
-$ sudo grep tmux /etc/profile.d/*
-/etc/profile.d/tmux.sh:  case "$name" in (sshd|login) tmux ;; esac
-Review the tmux script by using the following example:
-If "tmux" is not configured as the example above, is commented out or missing, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248676.b" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="nxFileLine">
-      <ContainsLine>if [ "$PS1" ]; then</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Tmux is a terminal multiplexer that enables a number of terminals to be created, accessed, and controlled from a single screen.
-
-Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*if\s*[\s*"$PS1"\s*];\s*then</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/profile.d/tmux.sh</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system shell initialization file is configured to start each shell with the tmux terminal multiplexer with the following commands:
-Determine if tmux is currently running:
-$ sudo ps all | grep tmux | grep -v grep
-If the command does not produce output, this is a finding.
-Determine the location of the tmux script:
-$ sudo cat /etc/profile.d/tmux.sh
-if [ "$PS1" ]; then
-If "tmux" is not configured as the example above, is commented out or missing, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248676.c" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="nxFileLine">
-      <ContainsLine>parent=$(ps -o ppid= -p $$)</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Tmux is a terminal multiplexer that enables a number of terminals to be created, accessed, and controlled from a single screen.
-
-Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*parent\s*=\s*$(ps\s*-o\s*ppid\s*=\s*-p\s*$$)</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/profile.d/tmux.sh</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system shell initialization file is configured to start each shell with the tmux terminal multiplexer with the following commands:
-Determine if tmux is currently running:
-$ sudo ps all | grep tmux | grep -v grep
-If the command does not produce output, this is a finding.
-Determine the location of the tmux script:
-$ sudo cat /etc/profile.d/tmux.sh
-parent=$(ps -o ppid= -p $$)
-If "tmux" is not configured as the example above, is commented out or missing, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248676.d" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="nxFileLine">
-      <ContainsLine>name=$(ps -o comm= -p $parent)</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Tmux is a terminal multiplexer that enables a number of terminals to be created, accessed, and controlled from a single screen.
-
-Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*name\s*=\s*$(ps\s*-o\s*comm\s*=\s*-p\s*$parent)</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/profile.d/tmux.sh</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system shell initialization file is configured to start each shell with the tmux terminal multiplexer with the following commands:
-Determine if tmux is currently running:
-$ sudo ps all | grep tmux | grep -v grep
-If the command does not produce output, this is a finding.
-Determine the location of the tmux script:
-$ sudo cat /etc/profile.d/tmux.sh
-name=$(ps -o comm= -p $parent)
-If "tmux" is not configured as the example above, is commented out or missing, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248676.e" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="nxFileLine">
-      <ContainsLine>case "$name" in (sshd|login) tmux ;; esac</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Tmux is a terminal multiplexer that enables a number of terminals to be created, accessed, and controlled from a single screen.
-
-Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*case\s*"$name"\s*in\s*(sshd|login)\s*tmux\s*;;\s*esac</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/profile.d/tmux.sh</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system shell initialization file is configured to start each shell with the tmux terminal multiplexer with the following commands:
-Determine if tmux is currently running:
-$ sudo ps all | grep tmux | grep -v grep
-If the command does not produce output, this is a finding.
-Determine the location of the tmux script:
-$ sudo cat /etc/profile.d/tmux.sh
-case "$name" in (sshd|login) tmux ;; esac
-If "tmux" is not configured as the example above, is commented out or missing, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248676.f" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="nxFileLine">
-      <ContainsLine>fi</ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Tmux is a terminal multiplexer that enables a number of terminals to be created, accessed, and controlled from a single screen.
-
-Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*fi</DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/profile.d/tmux.sh</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system shell initialization file is configured to start each shell with the tmux terminal multiplexer with the following commands:
-Determine if tmux is currently running:
-$ sudo ps all | grep tmux | grep -v grep
-If the command does not produce output, this is a finding.
-Determine the location of the tmux script:
-$ sudo cat /etc/profile.d/tmux.sh
-fi
-If "tmux" is not configured as the example above, is commented out or missing, this is a finding.
-</RawString>
-    </Rule>
     <Rule id="V-248678" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="nxFileLine">
       <ContainsLine>Binary file /usr/bin/vlock matches</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not want to log out because of the temporary nature of the absence. 
@@ -7716,33 +7566,6 @@ $ sudo grep -r removal-action /etc/dconf/db/*
 /etc/dconf/db/distro.d/20-authselect:removal-action='lock-screen'
 
 If the "removal-action='lock-screen'" setting is missing or commented out from the "dconf" database files, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-248681" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
-
-Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.
-
-Satisfies: SRG-OS-000029-GPOS-00010, SRG-OS-000031-GPOS-00012&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/tmux.conf</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "lock-after-time" is not set to "900" or less in the global tmux configuration file to enforce session lock after inactivity, this is a finding." </OrganizationValueTestString>
-      <RawString>Verify the operating system initiates a session lock after 15 minutes of inactivity.
-
-Check the value of the system inactivity timeout with the following command:
-
-$ sudo grep -i lock-after-time /etc/tmux.conf
-
-set -g lock-after-time 900
-
-If "lock-after-time" is not set to "900" or less in the global tmux configuration file to enforce session lock after inactivity, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248686" severity="medium" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="nxFileLine">
       <ContainsLine>password requisite pam_pwquality.so</ContainsLine>
@@ -9083,7 +8906,7 @@ Note: The "-k" allows for specifying an arbitrary identifier, and the string aft
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 The "rename" system call will rename the specified files by replacing the first occurrence of expression in their name by replacement.
-The "unlink" system call deletes a name from the filesystem.  If that name was the last link to a file and no processes have the file open, the file is deleted and the space it was using is made available for reuse.
+The "unlink" system call deletes a name from the filesystem. If that name was the last link to a file and no processes have the file open, the file is deleted and the space it was using is made available for reuse.
 The "rmdir" system call removes empty directories.
 The "renameat" system call renames a file, moving it between directories, if required.
 The "unlinkat" system call operates in exactly the same way as either "unlink" or "rmdir" except for the differences described in the manual page.
@@ -9114,7 +8937,7 @@ Note: The "-k" allows for specifying an arbitrary identifier, and the string aft
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 The "rename" system call will rename the specified files by replacing the first occurrence of expression in their name by replacement.
-The "unlink" system call deletes a name from the filesystem.  If that name was the last link to a file and no processes have the file open, the file is deleted and the space it was using is made available for reuse.
+The "unlink" system call deletes a name from the filesystem. If that name was the last link to a file and no processes have the file open, the file is deleted and the space it was using is made available for reuse.
 The "rmdir" system call removes empty directories.
 The "renameat" system call renames a file, moving it between directories, if required.
 The "unlinkat" system call operates in exactly the same way as either "unlink" or "rmdir" except for the differences described in the manual page.

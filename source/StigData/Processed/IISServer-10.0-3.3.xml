@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V2R10_Manual-xccdf.xml" releaseinfo="Release: 10 Benchmark Date: 25 Oct 2023 3.4.1.22916 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.10" created="11/20/2023">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V3R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.3" created="5/27/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218792" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000015" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;User management and authentication can be an essential part of any application hosted by the web server. Along with authenticating users, the user management function must perform several other tasks enterprise-wide, such as password complexity, locking users after a configurable number of failed logons, and management of temporary and emergency accounts.
@@ -181,7 +181,7 @@ The following accounts may have Full control privileges:
 TrustedInstaller
 Web Managers
 Web Manager designees
-CREATOR OWNER: Full Control, Subfolders and files only
+CREATOR OWNER
 
 The following accounts may have read and execute, or read permissions:
 
@@ -223,34 +223,6 @@ Virtual Machine Additions
 Review the installed programs, if any programs are installed other than those listed above, this is a finding.
 
 Note: If additional software is needed and has supporting documentation signed by the ISSO, this is not a finding.</RawString>
-    </Rule>
-    <Rule id="V-218819" severity="medium" conversionstatus="pass" title="SRG-APP-000435-WSR-000148" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A Denial of Service (DoS) can occur when the web server is overwhelmed and can no longer respond to additional requests. A web server not properly tuned may become overwhelmed and cause a DoS condition even with expected traffic from users. To avoid a DoS, the web server must be tuned to handle the expected traffic for the hosted applications.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100173</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the IIS 10.0 web server is not hosting any applications, this is Not Applicable.
-
-If the IIS 10.0 web server is hosting applications, consult with the System Administrator to determine risk analysis performed when the application was written and deployed to the IIS 10.0 web server.
-
-Obtain documentation on the configuration.
-
-Verify, at a minimum, the following tuning settings in the registry.
-
-Access the IIS 10.0 web server registry.
-
-Verify the following keys are present and configured. The required setting depends upon the requirements of the application. 
-
-Recommended settings are not provided as these settings must be explicitly configured to show a conscientious tuning has been made.
-
-Navigate to HKLM\SYSTEM\CurrentControlSet\Services\HTTP\Parameters\
-"URIEnableCache"
-"UriMaxUriBytes"
-"UriScavengerPeriod"
-
-If explicit settings are not configured for "URIEnableCache", "UriMaxUriBytes" and "UriScavengerPeriod", this is a finding.</RawString>
     </Rule>
     <Rule id="V-218822" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;TLS is a required transmission protocol for a web server hosting controlled information. The use of TLS provides confidentiality of data in transit between the web server and client. FIPS 140-2-approved TLS versions must be enabled and non-FIPS-approved SSL versions must be disabled.
@@ -311,49 +283,16 @@ If the IIS web server running SMTP relay services is not configured to only allo
       <LegacyId>V-41854</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
+      <RawString>Note: If ASP.NET is not installed, this is Not Applicable.
 
+Open the IIS 10.0 Manager.
 Under the "Connections" pane on the left side of the management console, select the IIS 10.0 web server.
-
 Click the HTTP Response Headers button.
-
 Click to select the “X-Powered-By” HTTP Header.
-
 If “X-Powered-By” has not been removed, this is a finding.</RawString>
     </Rule>
   </DocumentRule>
   <IisLoggingRule dscresourcemodule="xWebAdministration">
-    <Rule id="V-218785" severity="medium" conversionstatus="pass" title="SRG-APP-000092-WSR-000055" dscresource="xWebAdministration">
-      <Description>&lt;VulnDiscussion&gt;Log files are a critical component to the successful management of an IS used within the DoD. By generating log files with useful information, web administrators can leverage them in the event of a disaster, malicious attack, or other site specific needs.
-
-Ascertaining the correct order of the events that occurred is important during forensic analysis. Events that appear harmless by themselves might be flagged as a potential threat when properly viewed in sequence. By also establishing the event date and time, an event can be properly viewed with an enterprise tool to fully see a possible threat in its entirety.
-
-Without sufficient information establishing when the log event occurred, investigation into the cause of event is severely hindered. Log record content that may be necessary to satisfy the requirement of this control includes, but is not limited to, time stamps, source and destination IP addresses, user/process identifiers, event descriptions, application-specific events, success/fail indications, file names involved, access control, or flow control rules invoked.
-
-Satisfies: SRG-APP-000092-WSR-000055, SRG-APP-000093-WSR-000053, SRG-APP-000095-WSR-000056, SRG-APP-000096-WSR-000057, SRG-APP-000097-WSR-000058, SRG-APP-000097-WSR-000059&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100105</LegacyId>
-      <LogCustomFieldEntry />
-      <LogFlags>
-      </LogFlags>
-      <LogFormat />
-      <LogPeriod />
-      <LogTargetW3C />
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' LogFlags must contain at a minimum Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer'</OrganizationValueTestString>
-      <RawString>Open the IIS 10.0 Manager.
-
-Click the IIS 10.0 web server name.
-
-Click the "Logging" icon.
-
-Under Format select "W3C".
-
-Click "Select Fields", verify at a minimum the following fields are checked: Date, Time, Client IP Address, User Name, Method, URI Query, Protocol Status, and Referrer.
-
-If not, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-218786" severity="medium" conversionstatus="pass" title="SRG-APP-000092-WSR-000055" dscresource="xIISLogging">
       <Description>&lt;VulnDiscussion&gt;Internet Information Services (IIS) on Windows Server 2012 provides basic logging capabilities. However, because IIS takes some time to flush logs to disk, administrators do not have access to logging information in real-time. In addition, text-based log files can be difficult and time-consuming to process.
 
@@ -370,12 +309,11 @@ Satisfies: SRG-APP-000092-WSR-000055, SRG-APP-000108-WSR-000166, SRG-APP-000358-
       <LogTargetW3C>File,ETW</LogTargetW3C>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
+      <RawString>Note: If the server is hosting WSUS, this is Not Applicable.
 
+Open the IIS 10.0 Manager.
 Click the IIS 10.0 server name.
-
 Click the "Logging" icon.
-
 Under Log Event Destination, verify the "Both log file and ETW event" radio button is selected.
 
 If the "Both log file and ETW event" radio button is not selected, this is a finding.</RawString>
@@ -487,7 +425,7 @@ If the log entries in the log file(s) reflect the IP address of the proxy server
 If provisions have been made to log the client IP via another field (i.e., utilizing X-Forwarded-For), this is not a finding.</RawString>
     </Rule>
     <Rule id="V-218790" severity="medium" conversionstatus="pass" title="SRG-APP-000120-WSR-000070" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A major tool in exploring the website use, attempted use, unusual conditions, and problems are the access and error logs. In the event of a security incident, these logs can provide the System Administrator (SA) and the web manager with valuable information. Failure to protect log files could enable an attacker to modify the log file data or falsify events to mask an attacker's activity.
+      <Description>&lt;VulnDiscussion&gt;A major tool in exploring the website use, attempted use, unusual conditions, and problems are the access and error logs. In the event of a security incident, these logs can provide the system administrator (SA) and the web manager with valuable information. Failure to protect log files could enable an attacker to modify the log file data or falsify events to mask an attacker's activity.
 
 Satisfies: SRG-APP-000120-WSR-000070, SRG-APP-000118-WSR-000068, SRG-APP-000118-WSR-000069&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -496,16 +434,26 @@ Satisfies: SRG-APP-000120-WSR-000070, SRG-APP-000118-WSR-000068, SRG-APP-000118-
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>This check does not apply to service account IDs utilized by automated services necessary to process, manage, and store log files.
+
 Open the IIS 10.0 Manager.
+
 Click the IIS 10.0 web server name.
+
 Click the "Logging" icon.
+
 Click "Browse" and navigate to the directory where the log files are stored.
+
 Right-click the log file directory to review.
+
 Click "Properties".
+
 Click the "Security" tab.
+
 Verify log file access is restricted as follows. Otherwise, this is a finding.
-SYSTEM - Full Control
-Administrators - Full Control</RawString>
+SYSTEM - Full Control, This folder, subfolders and files
+Administrators - Full Control, This folder, subfolders and files
+
+Note:  A "Web Administrators", etc., type group that is an approved group of administrators is also allowed, and must be given "Full Control, This folder, subfolders and files" permissions.</RawString>
     </Rule>
     <Rule id="V-218791" severity="medium" conversionstatus="pass" title="SRG-APP-000125-WSR-000071" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Protection of log data includes ensuring log data is not accidentally lost or deleted. Backing up log records to an unrelated system, or onto separate media than the system on which the web server is running, helps to ensure the log records will be retained in the event of a catastrophic system failure.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -608,23 +556,6 @@ Determine if any features installed are no longer necessary for operation.
 If any utility programs, features, or modules are installed which are not necessary for operation, this is a finding.
 
 If any unnecessary Operating System features are installed, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-218800" severity="medium" conversionstatus="pass" title="SRG-APP-000175-WSR-000095" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;This check verifies the server certificate is actually a DoD-issued certificate used by the organization being reviewed. This is used to verify the authenticity of the website to the user. If the certificate is not issued by the DoD or if the certificate has expired, then there is no assurance the use of the certificate is valid, and therefore; the entire purpose of using a certificate is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100135</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
-
-Click the IIS 10.0 web server name.
-
-Double-click the "Server Certificate" icon.
-
-Double-click each certificate and verify the certificate path is to a DoD root CA.
-
-If the “Issued By” field of the PKI certificate being used by the IIS 10.0 server/site does not indicate the issuing Certificate Authority (CA) is part of the DoD PKI or an approved ECA, this is a finding.</RawString>
     </Rule>
     <Rule id="V-218801" severity="medium" conversionstatus="pass" title="SRG-APP-000206-WSR-000128" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Mobile code in hosted applications allows the developer to add functionality and displays to hosted applications that are fluid, as opposed to a static web page. The data presentation becomes more appealing to the user, is easier to analyze, and is less complicated to navigate through the hosted application and data.
@@ -745,13 +676,11 @@ Note: If the Server is hosting Microsoft SharePoint, this is Not Applicable.
 Note: If the server is hosting WSUS, this is Not Applicable.
 Note: If the server is hosting Exchange, this is Not Applicable.
 Note: If the server is public facing, this is Not Applicable.
+Note: If the website is behind a load balancer or proxy server, this is Not Applicable.
 
 Open the IIS 10.0 Manager.
-
 Click the IIS 10.0 web server name.
-
 Double-click the ".NET Authorization Rules" icon.
-
 Ensure "All Users" is set to "Allow", and "Anonymous Users" is set to "Deny", otherwise this is a finding.
 If any other rules are present, this is a finding.</RawString>
     </Rule>
@@ -969,8 +898,8 @@ Verify the permissions for the following users; if the permissions are less rest
 System: Full control
 Administrators: Full control
 TrustedInstaller: Full control
-ALL APPLICATION PACKAGES (built-in security group): Read and execute
-ALL RESTRICTED APPLICATION PACKAGES (built-in security group): Read and execute
+ALL APPLICATION PACKAGES (built-in security group): Read and execute, This folder, subfolders and files
+ALL RESTRICTED APPLICATION PACKAGES (built-in security group): Read and execute, This folder, subfolders and files
 Users: Read and execute, list folder contents
 CREATOR OWNER: Full Control, Subfolders and files only</RawString>
     </Rule>
@@ -998,13 +927,14 @@ Verify a REG_DWORD value of "1" for "Enabled".
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
 Verify a REG_DWORD value of "1" for "DisabledByDefault".
 Verify a REG_DWORD value of "0" for "Enabled".
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+
+SSL 3.0 is disabled by default in newer Operating Systems. If SSL 3.0 has a registry DWORD enabled with a value of 1, this is a finding. If this key is not present, this is not a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1031,13 +961,14 @@ Verify a REG_DWORD value of "1" for "Enabled".
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
 Verify a REG_DWORD value of "1" for "DisabledByDefault".
 Verify a REG_DWORD value of "0" for "Enabled".
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+
+SSL 3.0 is disabled by default in newer Operating Systems. If SSL 3.0 has a registry DWORD enabled with a value of 1, this is a finding. If this key is not present, this is not a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1064,13 +995,14 @@ Verify a REG_DWORD value of "1" for "Enabled".
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
 Verify a REG_DWORD value of "1" for "DisabledByDefault".
 Verify a REG_DWORD value of "0" for "Enabled".
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+
+SSL 3.0 is disabled by default in newer Operating Systems. If SSL 3.0 has a registry DWORD enabled with a value of 1, this is a finding. If this key is not present, this is not a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1097,13 +1029,14 @@ Verify a REG_DWORD value of "1" for "Enabled".
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
 Verify a REG_DWORD value of "1" for "DisabledByDefault".
 Verify a REG_DWORD value of "0" for "Enabled".
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+
+SSL 3.0 is disabled by default in newer Operating Systems. If SSL 3.0 has a registry DWORD enabled with a value of 1, this is a finding. If this key is not present, this is not a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1130,13 +1063,14 @@ Verify a REG_DWORD value of "1" for "Enabled".
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
 Verify a REG_DWORD value of "1" for "DisabledByDefault".
 Verify a REG_DWORD value of "0" for "Enabled".
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+
+SSL 3.0 is disabled by default in newer Operating Systems. If SSL 3.0 has a registry DWORD enabled with a value of 1, this is a finding. If this key is not present, this is not a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1163,13 +1097,14 @@ Verify a REG_DWORD value of "1" for "Enabled".
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
 Verify a REG_DWORD value of "1" for "DisabledByDefault".
 Verify a REG_DWORD value of "0" for "Enabled".
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+
+SSL 3.0 is disabled by default in newer Operating Systems. If SSL 3.0 has a registry DWORD enabled with a value of 1, this is a finding. If this key is not present, this is not a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>Enabled</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1196,13 +1131,14 @@ Verify a REG_DWORD value of "1" for "Enabled".
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
 Verify a REG_DWORD value of "1" for "DisabledByDefault".
 Verify a REG_DWORD value of "0" for "Enabled".
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+
+SSL 3.0 is disabled by default in newer Operating Systems. If SSL 3.0 has a registry DWORD enabled with a value of 1, this is a finding. If this key is not present, this is not a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>Enabled</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1229,13 +1165,14 @@ Verify a REG_DWORD value of "1" for "Enabled".
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
 Verify a REG_DWORD value of "1" for "DisabledByDefault".
 Verify a REG_DWORD value of "0" for "Enabled".
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+
+SSL 3.0 is disabled by default in newer Operating Systems. If SSL 3.0 has a registry DWORD enabled with a value of 1, this is a finding. If this key is not present, this is not a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>Enabled</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1262,13 +1199,14 @@ Verify a REG_DWORD value of "1" for "Enabled".
 Navigate to:
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
 Verify a REG_DWORD value of "1" for "DisabledByDefault".
 Verify a REG_DWORD value of "0" for "Enabled".
 
-If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.
+
+SSL 3.0 is disabled by default in newer Operating Systems. If SSL 3.0 has a registry DWORD enabled with a value of 1, this is a finding. If this key is not present, this is not a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>Enabled</ValueName>
       <ValueType>DWORD</ValueType>
@@ -1282,14 +1220,13 @@ If any of the respective registry paths do not exist or are configured with the 
       <LegacyId>V-41854</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open Registry Editor.
+      <RawString>Note: If the server is hosting WSUS, this is Not Applicable.
 
-Navigate to “HKLM\System\CurrentControlSet\Services\HTTP\Parameters”
+Open Registry Editor.
+Navigate to "HKLM\System\CurrentControlSet\Services\HTTP\Parameters"
+Verify "DisableServerHeader” is set to "2".
 
-Verify “DisableServerHeader” is set to “1”.
-
-If REG_DWORD DisableServerHeader is not set to 1, this is a finding.
-
+If REG_DWORD DisableServerHeader is not set to 2, this is a finding.
 If the System Administrator can show that Server Version information has been removed via other means, such as using a rewrite outbound rule, this is not a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>DisableServerHeader</ValueName>
@@ -1312,14 +1249,15 @@ Satisfies: SRG-APP-000223-WSR-000011, SRG-APP-000220-WSR-000201&lt;/VulnDiscussi
       <LegacyId>V-100143</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
+      <RawString>Note: If ASP.NET is not installed, this is Not Applicable.
+
+Open the IIS 10.0 Manager.
 Click the IIS 10.0 web server name.
 Under "ASP.Net", double-click the "Session State" icon.
 Under "Cookie Settings", verify the "Mode" has "Use Cookies" selected from the drop-down list.
 If the "Cookie Settings" "Mode" is not set to "Use Cookies", this is a finding.
 
 Alternative method:
-
 Click the site name.
 Select "Configuration Editor" under the "Management" section.
 From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
@@ -1353,7 +1291,9 @@ Verify the "cookieless" is set to "UseCookies".</RawString>
       <LegacyId>V-100149.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
+      <RawString>Note: If ASP.NET is not installed, this is Not Applicable.
+Note: If the IIS 10.0 web server is hosting Exchange, this is Not Applicable.
+Open the IIS 10.0 Manager.
 Click the IIS 10.0 web server name.
 Double-click the "Machine Key" icon in the website Home Pane.
 If "HMACSHA256" or stronger encryption is not selected for the Validation method and/or "Auto" is not selected for the Encryption method, this is a finding.
@@ -1370,7 +1310,9 @@ Verify "HMACSHA256"</RawString>
       <LegacyId>V-100149.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
+      <RawString>Note: If ASP.NET is not installed, this is Not Applicable.
+Note: If the IIS 10.0 web server is hosting Exchange, this is Not Applicable.
+Open the IIS 10.0 Manager.
 Click the IIS 10.0 web server name.
 Double-click the "Machine Key" icon in the website Home Pane.
 If "HMACSHA256" or stronger encryption is not selected for the Validation method and/or "Auto" is not selected for the Encryption method, this is a finding.
@@ -1407,12 +1349,11 @@ If “Directory Browsing” is not disabled, this is a finding.</RawString>
       <LegacyId>V-100155</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
+      <RawString>Note: If the server is hosting WSUS, this is Not Applicable.
 
+Open the IIS 10.0 Manager.
 Click the IIS 10.0 web server name.
-
 Double-click the "Error Pages" icon.
-
 Click any error message, and then click "Edit Feature Setting" from the "Actions" Pane. This will apply to all error messages.
 
 If the feature setting is not set to "Detailed errors for local requests and custom error pages for remote requests", or "Custom error pages"  this is a finding.</RawString>

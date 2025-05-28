@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type='text/xsl' href='STIG_unclass.xsl'?><Benchmark xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd" id="MOZ_Firefox_STIG" xml:lang="en" xmlns="http://checklists.nist.gov/xccdf/1.1"><status date="2025-02-11">accepted</status><title>Mozilla Firefox Security Technical Implementation Guide</title><description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</description><notice id="terms-of-use" xml:lang="en"></notice><front-matter xml:lang="en"></front-matter><rear-matter xml:lang="en"></rear-matter><reference href="https://cyber.mil"><dc:publisher>DISA</dc:publisher><dc:source>STIG.DOD.MIL</dc:source></reference><plain-text id="release-info">Release: 6 Benchmark Date: 02 Apr 2025</plain-text><plain-text id="generator">3.5</plain-text><plain-text id="conventionsVersion">1.10.0</plain-text><version>6</version><Profile id="MAC-1_Classified"><title>I - Mission Critical Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-251545" selected="true" /><select idref="V-251546" selected="true" /><select idref="V-251547" selected="true" /><select idref="V-251548" selected="true" /><select idref="V-251549" selected="true" /><select idref="V-251550" selected="true" /><select idref="V-251551" selected="true" /><select idref="V-251552" selected="true" /><select idref="V-251553" selected="true" /><select idref="V-251554" selected="true" /><select idref="V-251555" selected="true" /><select idref="V-251557" selected="true" /><select idref="V-251558" selected="true" /><select idref="V-251559" selected="true" /><select idref="V-251560" selected="true" /><select idref="V-251562" selected="true" /><select idref="V-251563" selected="true" /><select idref="V-251564" selected="true" /><select idref="V-251565" selected="true" /><select idref="V-251566" selected="true" /><select idref="V-251567" selected="true" /><select idref="V-251568" selected="true" /><select idref="V-251569" selected="true" /><select idref="V-251570" selected="true" /><select idref="V-251571" selected="true" /><select idref="V-251572" selected="true" /><select idref="V-251573" selected="true" /><select idref="V-251577" selected="true" /><select idref="V-251578" selected="true" /><select idref="V-251580" selected="true" /><select idref="V-251581" selected="true" /><select idref="V-252881" selected="true" /><select idref="V-252908" selected="true" /><select idref="V-252909" selected="true" /></Profile><Profile id="MAC-1_Public"><title>I - Mission Critical Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-251545" selected="true" /><select idref="V-251546" selected="true" /><select idref="V-251547" selected="true" /><select idref="V-251548" selected="true" /><select idref="V-251549" selected="true" /><select idref="V-251550" selected="true" /><select idref="V-251551" selected="true" /><select idref="V-251552" selected="true" /><select idref="V-251553" selected="true" /><select idref="V-251554" selected="true" /><select idref="V-251555" selected="true" /><select idref="V-251557" selected="true" /><select idref="V-251558" selected="true" /><select idref="V-251559" selected="true" /><select idref="V-251560" selected="true" /><select idref="V-251562" selected="true" /><select idref="V-251563" selected="true" /><select idref="V-251564" selected="true" /><select idref="V-251565" selected="true" /><select idref="V-251566" selected="true" /><select idref="V-251567" selected="true" /><select idref="V-251568" selected="true" /><select idref="V-251569" selected="true" /><select idref="V-251570" selected="true" /><select idref="V-251571" selected="true" /><select idref="V-251572" selected="true" /><select idref="V-251573" selected="true" /><select idref="V-251577" selected="true" /><select idref="V-251578" selected="true" /><select idref="V-251580" selected="true" /><select idref="V-251581" selected="true" /><select idref="V-252881" selected="true" /><select idref="V-252908" selected="true" /><select idref="V-252909" selected="true" /></Profile><Profile id="MAC-1_Sensitive"><title>I - Mission Critical Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-251545" selected="true" /><select idref="V-251546" selected="true" /><select idref="V-251547" selected="true" /><select idref="V-251548" selected="true" /><select idref="V-251549" selected="true" /><select idref="V-251550" selected="true" /><select idref="V-251551" selected="true" /><select idref="V-251552" selected="true" /><select idref="V-251553" selected="true" /><select idref="V-251554" selected="true" /><select idref="V-251555" selected="true" /><select idref="V-251557" selected="true" /><select idref="V-251558" selected="true" /><select idref="V-251559" selected="true" /><select idref="V-251560" selected="true" /><select idref="V-251562" selected="true" /><select idref="V-251563" selected="true" /><select idref="V-251564" selected="true" /><select idref="V-251565" selected="true" /><select idref="V-251566" selected="true" /><select idref="V-251567" selected="true" /><select idref="V-251568" selected="true" /><select idref="V-251569" selected="true" /><select idref="V-251570" selected="true" /><select idref="V-251571" selected="true" /><select idref="V-251572" selected="true" /><select idref="V-251573" selected="true" /><select idref="V-251577" selected="true" /><select idref="V-251578" selected="true" /><select idref="V-251580" selected="true" /><select idref="V-251581" selected="true" /><select idref="V-252881" selected="true" /><select idref="V-252908" selected="true" /><select idref="V-252909" selected="true" /></Profile><Profile id="MAC-2_Classified"><title>II - Mission Support Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-251545" selected="true" /><select idref="V-251546" selected="true" /><select idref="V-251547" selected="true" /><select idref="V-251548" selected="true" /><select idref="V-251549" selected="true" /><select idref="V-251550" selected="true" /><select idref="V-251551" selected="true" /><select idref="V-251552" selected="true" /><select idref="V-251553" selected="true" /><select idref="V-251554" selected="true" /><select idref="V-251555" selected="true" /><select idref="V-251557" selected="true" /><select idref="V-251558" selected="true" /><select idref="V-251559" selected="true" /><select idref="V-251560" selected="true" /><select idref="V-251562" selected="true" /><select idref="V-251563" selected="true" /><select idref="V-251564" selected="true" /><select idref="V-251565" selected="true" /><select idref="V-251566" selected="true" /><select idref="V-251567" selected="true" /><select idref="V-251568" selected="true" /><select idref="V-251569" selected="true" /><select idref="V-251570" selected="true" /><select idref="V-251571" selected="true" /><select idref="V-251572" selected="true" /><select idref="V-251573" selected="true" /><select idref="V-251577" selected="true" /><select idref="V-251578" selected="true" /><select idref="V-251580" selected="true" /><select idref="V-251581" selected="true" /><select idref="V-252881" selected="true" /><select idref="V-252908" selected="true" /><select idref="V-252909" selected="true" /></Profile><Profile id="MAC-2_Public"><title>II - Mission Support Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-251545" selected="true" /><select idref="V-251546" selected="true" /><select idref="V-251547" selected="true" /><select idref="V-251548" selected="true" /><select idref="V-251549" selected="true" /><select idref="V-251550" selected="true" /><select idref="V-251551" selected="true" /><select idref="V-251552" selected="true" /><select idref="V-251553" selected="true" /><select idref="V-251554" selected="true" /><select idref="V-251555" selected="true" /><select idref="V-251557" selected="true" /><select idref="V-251558" selected="true" /><select idref="V-251559" selected="true" /><select idref="V-251560" selected="true" /><select idref="V-251562" selected="true" /><select idref="V-251563" selected="true" /><select idref="V-251564" selected="true" /><select idref="V-251565" selected="true" /><select idref="V-251566" selected="true" /><select idref="V-251567" selected="true" /><select idref="V-251568" selected="true" /><select idref="V-251569" selected="true" /><select idref="V-251570" selected="true" /><select idref="V-251571" selected="true" /><select idref="V-251572" selected="true" /><select idref="V-251573" selected="true" /><select idref="V-251577" selected="true" /><select idref="V-251578" selected="true" /><select idref="V-251580" selected="true" /><select idref="V-251581" selected="true" /><select idref="V-252881" selected="true" /><select idref="V-252908" selected="true" /><select idref="V-252909" selected="true" /></Profile><Profile id="MAC-2_Sensitive"><title>II - Mission Support Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-251545" selected="true" /><select idref="V-251546" selected="true" /><select idref="V-251547" selected="true" /><select idref="V-251548" selected="true" /><select idref="V-251549" selected="true" /><select idref="V-251550" selected="true" /><select idref="V-251551" selected="true" /><select idref="V-251552" selected="true" /><select idref="V-251553" selected="true" /><select idref="V-251554" selected="true" /><select idref="V-251555" selected="true" /><select idref="V-251557" selected="true" /><select idref="V-251558" selected="true" /><select idref="V-251559" selected="true" /><select idref="V-251560" selected="true" /><select idref="V-251562" selected="true" /><select idref="V-251563" selected="true" /><select idref="V-251564" selected="true" /><select idref="V-251565" selected="true" /><select idref="V-251566" selected="true" /><select idref="V-251567" selected="true" /><select idref="V-251568" selected="true" /><select idref="V-251569" selected="true" /><select idref="V-251570" selected="true" /><select idref="V-251571" selected="true" /><select idref="V-251572" selected="true" /><select idref="V-251573" selected="true" /><select idref="V-251577" selected="true" /><select idref="V-251578" selected="true" /><select idref="V-251580" selected="true" /><select idref="V-251581" selected="true" /><select idref="V-252881" selected="true" /><select idref="V-252908" selected="true" /><select idref="V-252909" selected="true" /></Profile><Profile id="MAC-3_Classified"><title>III - Administrative Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-251545" selected="true" /><select idref="V-251546" selected="true" /><select idref="V-251547" selected="true" /><select idref="V-251548" selected="true" /><select idref="V-251549" selected="true" /><select idref="V-251550" selected="true" /><select idref="V-251551" selected="true" /><select idref="V-251552" selected="true" /><select idref="V-251553" selected="true" /><select idref="V-251554" selected="true" /><select idref="V-251555" selected="true" /><select idref="V-251557" selected="true" /><select idref="V-251558" selected="true" /><select idref="V-251559" selected="true" /><select idref="V-251560" selected="true" /><select idref="V-251562" selected="true" /><select idref="V-251563" selected="true" /><select idref="V-251564" selected="true" /><select idref="V-251565" selected="true" /><select idref="V-251566" selected="true" /><select idref="V-251567" selected="true" /><select idref="V-251568" selected="true" /><select idref="V-251569" selected="true" /><select idref="V-251570" selected="true" /><select idref="V-251571" selected="true" /><select idref="V-251572" selected="true" /><select idref="V-251573" selected="true" /><select idref="V-251577" selected="true" /><select idref="V-251578" selected="true" /><select idref="V-251580" selected="true" /><select idref="V-251581" selected="true" /><select idref="V-252881" selected="true" /><select idref="V-252908" selected="true" /><select idref="V-252909" selected="true" /></Profile><Profile id="MAC-3_Public"><title>III - Administrative Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-251545" selected="true" /><select idref="V-251546" selected="true" /><select idref="V-251547" selected="true" /><select idref="V-251548" selected="true" /><select idref="V-251549" selected="true" /><select idref="V-251550" selected="true" /><select idref="V-251551" selected="true" /><select idref="V-251552" selected="true" /><select idref="V-251553" selected="true" /><select idref="V-251554" selected="true" /><select idref="V-251555" selected="true" /><select idref="V-251557" selected="true" /><select idref="V-251558" selected="true" /><select idref="V-251559" selected="true" /><select idref="V-251560" selected="true" /><select idref="V-251562" selected="true" /><select idref="V-251563" selected="true" /><select idref="V-251564" selected="true" /><select idref="V-251565" selected="true" /><select idref="V-251566" selected="true" /><select idref="V-251567" selected="true" /><select idref="V-251568" selected="true" /><select idref="V-251569" selected="true" /><select idref="V-251570" selected="true" /><select idref="V-251571" selected="true" /><select idref="V-251572" selected="true" /><select idref="V-251573" selected="true" /><select idref="V-251577" selected="true" /><select idref="V-251578" selected="true" /><select idref="V-251580" selected="true" /><select idref="V-251581" selected="true" /><select idref="V-252881" selected="true" /><select idref="V-252908" selected="true" /><select idref="V-252909" selected="true" /></Profile><Profile id="MAC-3_Sensitive"><title>III - Administrative Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-251545" selected="true" /><select idref="V-251546" selected="true" /><select idref="V-251547" selected="true" /><select idref="V-251548" selected="true" /><select idref="V-251549" selected="true" /><select idref="V-251550" selected="true" /><select idref="V-251551" selected="true" /><select idref="V-251552" selected="true" /><select idref="V-251553" selected="true" /><select idref="V-251554" selected="true" /><select idref="V-251555" selected="true" /><select idref="V-251557" selected="true" /><select idref="V-251558" selected="true" /><select idref="V-251559" selected="true" /><select idref="V-251560" selected="true" /><select idref="V-251562" selected="true" /><select idref="V-251563" selected="true" /><select idref="V-251564" selected="true" /><select idref="V-251565" selected="true" /><select idref="V-251566" selected="true" /><select idref="V-251567" selected="true" /><select idref="V-251568" selected="true" /><select idref="V-251569" selected="true" /><select idref="V-251570" selected="true" /><select idref="V-251571" selected="true" /><select idref="V-251572" selected="true" /><select idref="V-251573" selected="true" /><select idref="V-251577" selected="true" /><select idref="V-251578" selected="true" /><select idref="V-251580" selected="true" /><select idref="V-251581" selected="true" /><select idref="V-252881" selected="true" /><select idref="V-252908" selected="true" /><select idref="V-252909" selected="true" /></Profile><Group id="V-251545"><title>SRG-APP-000456</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251545r961683_rule" weight="10.0" severity="high"><version>FFOX-00-000001</version><title>The installed version of Firefox must be supported.</title><description>&lt;VulnDiscussion&gt;Using versions of an application that are not supported by the vendor is not permitted. Vendors respond to security flaws with updates and patches. These updates are not available for unsupported versions, which can leave the application vulnerable to attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-002605</ident><fixtext fixref="F-54934r807106_fix">Upgrade the version of the browser to an approved version by obtaining software from the vendor or other trusted source.</fixtext><fix id="F-54934r807106_fix" /><check system="C-54980r807105_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Run Firefox. Click the ellipsis button &gt;&gt; Help &gt;&gt; About Firefox, and view the version number.
+
+If the Firefox version is not a supported version, this is a finding.</check-content></check></Rule></Group><Group id="V-251546"><title>SRG-APP-000560</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251546r961869_rule" weight="10.0" severity="high"><version>FFOX-00-000002</version><title>Firefox must be configured to allow only TLS 1.2 or above.</title><description>&lt;VulnDiscussion&gt;Use of versions prior to TLS 1.2 are not permitted. SSL 2.0 and SSL 3.0 contain a number of security flaws. These versions must be disabled in compliance with the Network Infrastructure and Secure Remote Computing STIGs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001453</ident><fixtext fixref="F-54935r820744_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\
+Policy Name: Minimum SSL version enabled
+Policy State: Enabled
+Policy Value: TLS 1.2   (or TLS 1.3)
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;SSLVersionMin&lt;/key&gt;
+&lt;string&gt;tls1.2&lt;/string&gt;   (or &lt;string&gt;tls1.3&lt;/string&gt;)
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"SSLVersionMin": "tls1.2"   or ("SSLVersionMin": "tls1.3")</fixtext><fix id="F-54935r820744_fix" /><check system="C-54981r820743_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser window. 
+
+If "SSLVersionMin" is not displayed under Policy Name or the Policy Value is not "tls1.2" or "tls1.3", this is a finding.</check-content></check></Rule></Group><Group id="V-251547"><title>SRG-APP-000177</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251547r1067550_rule" weight="10.0" severity="medium"><version>FFOX-00-000003</version><title>Firefox must be configured to ask which certificate to present to a website when a certificate is required.</title><description>&lt;VulnDiscussion&gt;When a website asks for a certificate for user authentication, Firefox must be configured to have the user choose which certificate to present. Websites within DOD require user authentication for access, which increases security for DOD information. Access will be denied to the user if certificate management is not configured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000187</ident><fixtext fixref="F-54936r807112_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\
+Policy Name: Preferences
+Policy State: Enabled
+Policy Value:
+{
+  "security.default_personal_cert": {
+    "Value": "Ask Every Time",
+    "Status": "locked"
+  }
+}
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;Preferences&lt;/key&gt;
+&lt;dict&gt;
+  &lt;key&gt;security.default_personal_cert&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Value&lt;/key&gt;
+    &lt;string&gt;Ask Every Time&lt;/string&gt;
+    &lt;key&gt;Status&lt;/key&gt;
+    &lt;string&gt;locked&lt;/string&gt;
+  &lt;/dict&gt;
+&lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"Preferences": {
+  "security.default_personal_cert": {
+    "Value": "Ask Every Time",
+    "Status": "locked"
+  }
+}</fixtext><fix id="F-54936r807112_fix" /><check system="C-54982r1067549_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "Preferences" is not displayed under Policy Name and the Policy Value does not include "security.default_personal_cert" with a value of "Ask Every Time" and status of "locked", this is a finding.</check-content></check></Rule></Group><Group id="V-251548"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251548r1067552_rule" weight="10.0" severity="medium"><version>FFOX-00-000004</version><title>Firefox must be configured to not automatically check for updated versions of installed search plugins.</title><description>&lt;VulnDiscussion&gt;Updates must be controlled and installed from authorized and trusted servers. This setting overrides a number of other settings that may direct the application to access external URLs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54937r807115_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\
+Policy Name: Preferences
+Policy State: Enabled
+Policy Value:
+{
+  "browser.search.update": {
+    "Value": false,
+    "Status": "locked"
+  }
+}
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;Preferences&lt;/key&gt;
+&lt;dict&gt;
+  &lt;key&gt;browser.search.update&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Value&lt;/key&gt;
+    &lt;false/&gt;
+    &lt;key&gt;Status&lt;/key&gt;
+    &lt;string&gt;locked&lt;/string&gt;
+  &lt;/dict&gt;
+&lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"Preferences": {
+  "browser.search.update": {
+    "Value": false,
+    "Status": "locked"
+  }
+}</fixtext><fix id="F-54937r807115_fix" /><check system="C-54983r1067551_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "Preferences" is not displayed under Policy Name or the Policy Value does not include "browser.search.update" with a value of  "false" and status of "locked", this is a finding.</check-content></check></Rule></Group><Group id="V-251549"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251549r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000005</version><title>Firefox must be configured to not automatically update installed add-ons and plugins.</title><description>&lt;VulnDiscussion&gt;Set this to false to disable checking for updated versions of the Extensions/Themes. Automatic updates from untrusted sites puts the enclave at risk of attack and may override security settings.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54938r807118_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\Extensions
+Policy Name: Extension Update
+Policy State: Disabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;ExtensionUpdate&lt;/key&gt;
+&lt;false/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"ExtensionUpdate": false</fixtext><fix id="F-54938r807118_fix" /><check system="C-54984r807117_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser window.
+
+If "ExtensionUpdate" is not displayed under Policy Name or the Policy Value is not "false", this is a finding.</check-content></check></Rule></Group><Group id="V-251550"><title>SRG-APP-000278</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251550r961194_rule" weight="10.0" severity="medium"><version>FFOX-00-000006</version><title>Firefox must be configured to not automatically execute or download MIME types that are not authorized for auto-download.</title><description>&lt;VulnDiscussion&gt;Some files can be downloaded or execute without user interaction. This setting ensures these files are not downloaded and executed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001242</ident><fixtext fixref="F-54939r807121_fix">Remove any unauthorized extensions from the auto-download list.</fixtext><fix id="F-54939r807121_fix" /><check system="C-54985r832304_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:preferences" in the browser address bar. 
+
+Type "Applications" in the Find bar in the upper-right corner. 
+
+Determine if any of the following file extensions are listed: HTA, JSE, JS, MOCHA, SHS, VBE, VBS, SCT, WSC, FDF, XFDF, LSL, LSO, LSS, IQY, RQY, DOS, BAT, PS, EPS, WCH, WCM, WB1, WB3, WCH, WCM, AD.
+
+If the entry exists and the "Action" is "Save File" or "Always Ask", this is not a finding.
+ 
+If an extension exists and the entry in the Action column is associated with an application that does/can execute the code, this is a finding.</check-content></check></Rule></Group><Group id="V-251551"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251551r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000007</version><title>Firefox must be configured to disable form fill assistance.</title><description>&lt;VulnDiscussion&gt;To protect privacy and sensitive data, Firefox provides the ability to configure the program so that data entered into forms is not saved. This mitigates the risk of a website gleaning private information from prefilled information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54940r807124_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox
+Policy Name: Disable Form History
+Policy State: Enabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;DisableFormHistory&lt;/key&gt;
+&lt;true/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"DisableFormHistory": true</fixtext><fix id="F-54940r807124_fix" /><check system="C-54986r807123_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser window. 
+
+If "DisableFormHistory" is not displayed under Policy Name or the Policy Value is not "true", this is a finding.</check-content></check></Rule></Group><Group id="V-251552"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251552r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000008</version><title>Firefox must be configured to not use a password store with or without a master password.</title><description>&lt;VulnDiscussion&gt;Firefox can be set to store passwords for sites visited by the user. These individual passwords are stored in a file and can be protected by a master password. Autofill of the password can then be enabled when the site is visited. This feature could also be used to autofill the certificate PIN, which could lead to compromise of DoD information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54941r822410_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox
+Policy Name: PasswordManager
+Policy State: Disabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;PasswordManagerEnabled&lt;/key&gt;
+&lt;false/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"PasswordManagerEnabled": false</fixtext><fix id="F-54941r822410_fix" /><check system="C-54987r807126_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser window. 
+
+If "PasswordManagerEnabled" is not displayed under Policy Name or the Policy Value is not "false", this is a finding.</check-content></check></Rule></Group><Group id="V-251553"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251553r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000009</version><title>Firefox must be configured to block pop-up windows.</title><description>&lt;VulnDiscussion&gt;Pop-up windows may be used to launch an attack within a new browser window with altered settings. This setting blocks pop-up windows created while the page is loading.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54942r862957_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\Popups
+Policy Name: Block pop-ups from websites
+Policy State: Enabled
+
+Policy Name: Do not allow preferences to be changed
+Policy State: Enabled
+
+Optional:
+Policy Name: Allowed Sites
+Policy State: Enabled
+Click "Show..." and enter a list of websites to be allowlisted.
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;PopupBlocking&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Allow&lt;/key&gt;
+    &lt;array&gt;
+      &lt;string&gt;http://example.mil&lt;/string&gt;
+      &lt;string&gt;http://example.gov&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;Default&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;Locked&lt;/key&gt;
+    &lt;true/&gt;
+  &lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"PopupBlocking": {
+      "Allow": ["http://example.mil/",
+                "http://example.gov/"],
+      "Default": true,
+      "Locked": true}</fixtext><fix id="F-54942r862957_fix" /><check system="C-54988r820748_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar.
+
+If "PopupBlocking" is not displayed under Policy Name or the Policy Value is not "Default" "true", this is a finding.
+If "PopupBlocking" is not displayed under Policy Name or the Policy Value is not "Locked" "true", this is a finding.
+
+"PopupBlocking" "Enabled" may be used to specify an allowlist of sites where pop-ups are desired, this is optional.</check-content></check></Rule></Group><Group id="V-251554"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251554r1067554_rule" weight="10.0" severity="medium"><version>FFOX-00-000010</version><title>Firefox must be configured to prevent JavaScript from moving or resizing windows.</title><description>&lt;VulnDiscussion&gt;JavaScript can make changes to the browser's appearance. This activity can help disguise an attack taking place in a minimized background window. Configure the browser setting to prevent scripts on visited websites from moving and resizing browser windows.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54943r807133_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\
+Policy Name: Preferences
+Policy State: Enabled
+Policy Value:
+{
+  "dom.disable_window_move_resize": {
+    "Value": true,
+    "Status": "locked"
+  }
+}
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;Preferences&lt;/key&gt;
+&lt;dict&gt;
+  &lt;key&gt;dom.disable_window_move_resize&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Value&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;Status&lt;/key&gt;
+    &lt;string&gt;locked&lt;/string&gt;
+  &lt;/dict&gt;
+&lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"Preferences": {
+  "dom.disable_window_move_resize": {
+    "Value": true,
+    "Status": "locked"
+  }
+}</fixtext><fix id="F-54943r807133_fix" /><check system="C-54989r1067553_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "Preferences" is not displayed under Policy Name or the Policy Value does not include "dom.disable_window_move_resize" with a value of  "true" and status of "locked", this is a finding.</check-content></check></Rule></Group><Group id="V-251555"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251555r1067556_rule" weight="10.0" severity="medium"><version>FFOX-00-000011</version><title>Firefox must be configured to prevent JavaScript from raising or lowering windows.</title><description>&lt;VulnDiscussion&gt;JavaScript can raise and lower browser windows to cause improper input. Configure the browser setting to prevent scripts on visited websites from raising and lowering browser windows.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54944r807136_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\
+Policy Name: Preferences
+Policy State: Enabled
+Policy Value:
+{
+  "dom.disable_window_flip": {
+    "Value": true,
+    "Status": "locked"
+  }
+}
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;Preferences&lt;/key&gt;
+&lt;dict&gt;
+  &lt;key&gt;dom.disable_window_flip&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Value&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;Status&lt;/key&gt;
+    &lt;string&gt;locked&lt;/string&gt;
+  &lt;/dict&gt;
+&lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"Preferences": {
+  "dom.disable_window_flip": {
+    "Value": true,
+    "Status": "locked"
+  }
+}</fixtext><fix id="F-54944r807136_fix" /><check system="C-54990r1067555_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "Preferences" is not displayed under Policy Name or the Policy Value does not include "dom.disable_window_flip" with a value of "true" and status of "locked", this is a finding.</check-content></check></Rule></Group><Group id="V-251557"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251557r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000013</version><title>Firefox must be configured to disable the installation of extensions.</title><description>&lt;VulnDiscussion&gt;A browser extension is a program that has been installed into the browser to add functionality. Where a plug-in interacts only with a web page and usually a third-party external application (e.g., Flash, Adobe Reader), an extension interacts with the browser program itself. Extensions are not embedded in web pages and must be downloaded and installed in order to work. Extensions allow browsers to avoid restrictions that apply to web pages. 
+
+For example, an extension can be written to combine data from multiple domains and present it when a certain page is accessed, which can be considered cross-site scripting. If a browser is configured to allow unrestricted use of extensions, plug-ins can be loaded and installed from malicious sources and used on the browser.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54946r820751_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\Addons
+Policy Name: Allow add-on installs from websites
+Policy State: Disabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;InstallAddonsPermission&lt;/key&gt;
+&lt;false/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"InstallAddonsPermission": {
+      "Default": false
+}</fixtext><fix id="F-54946r820751_fix" /><check system="C-54992r807141_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "InstallAddonsPermission" is not displayed under Policy Name or the Policy Value is not "Default" "false", this is a finding.</check-content></check></Rule></Group><Group id="V-251558"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251558r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000014</version><title>Background submission of information to Mozilla must be disabled.</title><description>&lt;VulnDiscussion&gt;Firefox by default sends information about Firefox to Mozilla servers. There should be no background submission of technical and other information from DoD computers to Mozilla with portions posted publicly.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54947r807145_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox
+Policy Name: Disable Telemetry
+Policy State: Enabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;DisableTelemetry&lt;/key&gt;
+&lt;true/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"DisableTelemetry": true</fixtext><fix id="F-54947r807145_fix" /><check system="C-54993r807144_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser window. 
+
+If "DisableTelemetry" is not displayed under Policy Name or the Policy Value is not "true", this is a finding.</check-content></check></Rule></Group><Group id="V-251559"><title>SRG-APP-000266</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251559r961167_rule" weight="10.0" severity="low"><version>FFOX-00-000015</version><title>Firefox development tools must be disabled.</title><description>&lt;VulnDiscussion&gt;Information needed by an attacker to begin looking for possible vulnerabilities in a web browser includes any information about the web browser and plug-ins or modules being used. When debugging or trace information is enabled in a production web browser, information about the web browser, such as web browser type, version, patches installed, plug-ins and modules installed, type of code being used by the hosted application, and any back ends being used for data storage may be displayed. Because this information may be placed in logs and general messages during normal operation of the web browser, an attacker does not have to cause an error condition to gain this information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001312</ident><fixtext fixref="F-54948r807148_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox
+Policy Name: Disable Developer Tools
+Policy State: Enabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;DisableDeveloperTools&lt;/key&gt;
+&lt;true/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"DisableDeveloperTools": true</fixtext><fix id="F-54948r807148_fix" /><check system="C-54994r807147_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser window. 
+
+If "DisableDeveloperTools" is not displayed under Policy Name or the Policy Value is not "true", this is a finding.</check-content></check></Rule></Group><Group id="V-251560"><title>SRG-APP-000175</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251560r1067559_rule" weight="10.0" severity="medium"><version>FFOX-00-000016</version><title>Firefox must have the DOD root certificates installed.</title><description>&lt;VulnDiscussion&gt;The DOD root certificates will ensure that the trust chain is established for server certificates issued from the DOD Certificate Authority (CA).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000185</ident><fixtext fixref="F-54949r1067558_fix">Install the DOD root certificates. Other AO-approved certificates may also be used. Certificates designed for SIPRNet may be used as appropriate.
+
+On Windows, import certificates from the operating system by using Certificates &gt;&gt; Import Enterprise Roots (Certificates) via policy or Group Policy Object (GPO).</fixtext><fix id="F-54949r1067558_fix" /><check system="C-54995r1067557_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:preferences#privacy" in the browser window. 
+
+Scroll down to the bottom and select "View Certificates...".
+
+In the Certificate Manager window, select the "Authorities" tab.
+
+Scroll through the Certificate Name list to the U.S. Government heading. Look for the entries for DOD Root CA 3, DOD Root CA 4, and DOD Root CA 5.
+
+If there are entries for DOD Root CA 3, DOD Root CA 4, and DOD Root CA 5, select them individually.
+
+Click "View".
+
+Verify the issuer name is "US Government".
+
+If there are no entries for the appropriate DOD root certificates, this is a finding. If other AO-approved certificates are used, this is not a finding. If SIPRNet-specific certificates are used, this is not a finding.
+
+Note: In a Windows environment, use of policy setting "security.enterprise_roots.enabled=true" will point Firefox to the Windows Trusted Root Certification Authority Store. This is not a finding. It can also be set via the policy Certificates &gt;&gt; ImportEnterpriseRoots, which can be verified via "about:policies".</check-content></check></Rule></Group><Group id="V-251562"><title>SRG-APP-000326</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251562r987660_rule" weight="10.0" severity="medium"><version>FFOX-00-000018</version><title>Firefox must prevent the user from quickly deleting data.</title><description>&lt;VulnDiscussion&gt;There should not be an option for a user to "forget" work they have done. This is required to meet non-repudiation controls.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-002355</ident><fixtext fixref="F-54951r807157_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox
+Policy Name: Disable Forget Button
+Policy State: Enabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;DisableForgetButton&lt;/key&gt;
+&lt;true/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"DisableForgetButton": true</fixtext><fix id="F-54951r807157_fix" /><check system="C-54997r807156_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "DisableForgetButton" is not displayed under Policy Name or the Policy Value is not "true", this is a finding.</check-content></check></Rule></Group><Group id="V-251563"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251563r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000019</version><title>Firefox private browsing must be disabled.</title><description>&lt;VulnDiscussion&gt;Private browsing allows the user to browse the internet without recording their browsing history/activity. From a forensics perspective, this is unacceptable. Best practice requires that browser history is retained.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54952r807160_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox
+Policy Name: Disable Private Browsing
+Policy State: Enabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;DisablePrivateBrowsing&lt;/key&gt;
+&lt;true/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"DisablePrivateBrowsing": true</fixtext><fix id="F-54952r807160_fix" /><check system="C-54998r807159_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser window. 
+
+If "DisablePrivateBrowsing" is not displayed under Policy Name or the Policy Value is not "true", this is a finding.</check-content></check></Rule></Group><Group id="V-251564"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251564r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000020</version><title>Firefox search suggestions must be disabled.</title><description>&lt;VulnDiscussion&gt;Search suggestions must be disabled as this could lead to searches being conducted that were never intended to be made.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54953r807163_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\Search
+Policy Name: Search Suggestions
+Policy State: Disabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;SearchSuggestEnabled&lt;/key&gt;
+&lt;false/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"SearchSuggestEnabled": false</fixtext><fix id="F-54953r807163_fix" /><check system="C-54999r807162_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser window.
+
+If "SearchSuggestEnabled" is not displayed under Policy Name or the Policy Value is not "false", this is a finding.</check-content></check></Rule></Group><Group id="V-251565"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251565r960963_rule" weight="10.0" severity="low"><version>FFOX-00-000021</version><title>Firefox autoplay must be disabled.</title><description>&lt;VulnDiscussion&gt;Autoplay allows the user to control whether videos can play automatically (without user consent) with audio content. The user must be able to select content that is run within the browser window.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54954r807166_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\Permissions\Autoplay
+Policy Name: Default autoplay level
+Policy State: Enabled
+Policy Value: Block Audio and Video
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;Permissions&lt;/key&gt;
+&lt;dict&gt;
+  &lt;key&gt;Autoplay&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;string&gt;block-audio-video&lt;/string&gt;
+  &lt;/dict&gt;
+&lt;/dict&gt;
+ 
+Linux "policies.json" file:
+Add the following in the policies section:
+"Permissions": {
+  "Autoplay": {
+    "Default": "block-audio-video"
+  }
+}</fixtext><fix id="F-54954r807166_fix" /><check system="C-55000r832306_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "Permissions" is not displayed under Policy Name or the Policy Value is not "Autoplay" with a value of "Default" and "Block-audio-video", this is a finding.</check-content></check></Rule></Group><Group id="V-251566"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251566r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000022</version><title>Firefox network prediction must be disabled.</title><description>&lt;VulnDiscussion&gt;If network prediction is enabled, requests to URLs are made without user consent. The browser should always make a direct DNS request without prefetching occurring.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54955r807169_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox
+Policy Name: Network Prediction
+Policy State: Disabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;NetworkPrediction&lt;/key&gt;
+&lt;false/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"NetworkPrediction": false</fixtext><fix id="F-54955r807169_fix" /><check system="C-55001r807168_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser window. 
+
+If "NetworkPrediction" is not displayed under Policy Name or the Policy Value is not "false", this is a finding.</check-content></check></Rule></Group><Group id="V-251567"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251567r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000023</version><title>Firefox fingerprinting protection must be enabled.</title><description>&lt;VulnDiscussion&gt;The Content Blocking/Tracking Protection feature stops Firefox from loading content from malicious sites. The content might be a script or an image, for example. If a site is on one of the tracker lists that Firefox is set to use, the fingerprinting script (or other tracking script/image) will not be loaded from that site.
+
+Fingerprinting scripts collect information about browser and device configuration, such as operating system, screen resolution, and other settings. By compiling these pieces of data, fingerprinters create a unique profile that can be used to track the user around the web.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54956r807172_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\Tracking Protection
+Policy Name: Fingerprinting
+Policy State: Enabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;EnableTrackingProtection&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Fingerprinting&lt;/key&gt;
+ &lt;true/&gt;
+  &lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"EnableTrackingProtection": {
+  "Fingerprinting": true
+}</fixtext><fix id="F-54956r807172_fix" /><check system="C-55002r807171_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "EnableTrackingProtection" is not displayed under Policy Name or the Policy Value is not "Fingerprinting"  with a value of "true", this is a finding.</check-content></check></Rule></Group><Group id="V-251568"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251568r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000024</version><title>Firefox cryptomining protection must be enabled.</title><description>&lt;VulnDiscussion&gt;The Content Blocking/Tracking Protection feature stops Firefox from loading content from malicious sites. The content might be a script or an image, for example. If a site is on one of the tracker lists that Firefox is set to use, the fingerprinting script (or other tracking script/image) will not be loaded from that site.
+
+Cryptomining scripts use a computer's central processing unit to invisibly mine cryptocurrency.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54957r807175_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\Tracking Protection
+Policy Name: Cryptomining
+Policy State: Enabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;EnableTrackingProtection&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Cryptomining&lt;/key&gt;
+ &lt;true/&gt;
+  &lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"EnableTrackingProtection": {
+  "Cryptomining": true
+}</fixtext><fix id="F-54957r807175_fix" /><check system="C-55003r807174_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "EnableTrackingProtection" is not displayed under Policy Name or the Policy Value is not "Cryptomining" with a value of "true", this is a finding.</check-content></check></Rule></Group><Group id="V-251569"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251569r1067561_rule" weight="10.0" severity="medium"><version>FFOX-00-000025</version><title>Firefox Enhanced Tracking Protection must be enabled.</title><description>&lt;VulnDiscussion&gt;Tracking generally refers to content, cookies, or scripts that can collect browsing data across multiple sites.
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
+
+Applications are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+Examples of nonessential capabilities include but are not limited to advertising software or browser plug-ins that are not related to requirements or provide a wide array of functionality not required for every mission but that cannot be disabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54958r807178_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\
+Policy Name: Preferences
+Policy State: Enabled
+Policy Value:
+{
+  "browser.contentblocking.category": {
+    "Value": "strict",
+    "Status": "locked"
+  }
+}
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;Preferences&lt;/key&gt;
+&lt;dict&gt;
+  &lt;key&gt;browser.contentblocking.category&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Value&lt;/key&gt;
+    &lt;string&gt;strict&lt;/string&gt;
+    &lt;key&gt;Status&lt;/key&gt;
+    &lt;string&gt;locked&lt;/string&gt;
+  &lt;/dict&gt;
+&lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"Preferences": {
+  "browser.contentblocking.category": {
+    "Value": "strict",
+    "Status": "locked"
+  }
+}</fixtext><fix id="F-54958r807178_fix" /><check system="C-55004r1067560_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "Preferences" is not displayed under Policy Name or the Policy Value does not include "browser.contentblocking.category" with a value of  "strict" and status of "locked", this is a finding.</check-content></check></Rule></Group><Group id="V-251570"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251570r1067563_rule" weight="10.0" severity="medium"><version>FFOX-00-000026</version><title>Firefox extension recommendations must be disabled.</title><description>&lt;VulnDiscussion&gt;The Recommended Extensions program makes it easier for users to discover extensions that have been reviewed for security, functionality, and user experience. Allowed extensions are to be centrally managed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54959r820758_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\
+Policy Name: Preferences
+Policy State: Enabled
+Policy Value:
+{
+  "extensions.htmlaboutaddons.recommendations.enabled": {
+    "Value": false,
+    "Status": "locked"
+  }
+}
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;Preferences&lt;/key&gt;
+&lt;dict&gt;
+  &lt;key&gt;extensions.htmlaboutaddons.recommendations.enabled&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Value&lt;/key&gt;
+    &lt;false/&gt;
+    &lt;key&gt;Status&lt;/key&gt;
+    &lt;string&gt;locked&lt;/string&gt;
+  &lt;/dict&gt;
+&lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"Preferences": {
+"extensions.htmlaboutaddons.recommendations.enabled": {
+"Value": false,
+"Status": "locked"
+},</fixtext><fix id="F-54959r820758_fix" /><check system="C-55005r1067562_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "Preferences" is not displayed under Policy Name and the Policy Value does not include "extensions.htmlaboutaddons.recommendations.enabled" with a value of  "false" and status of "locked", this is a finding.</check-content></check></Rule></Group><Group id="V-251571"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251571r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000027</version><title>Firefox deprecated ciphers must be disabled.</title><description>&lt;VulnDiscussion&gt;A weak cipher is defined as an encryption/decryption algorithm that uses a key of insufficient length. Using an insufficient length for a key in an encryption/decryption algorithm opens up the possibility (or probability) that the encryption scheme could be broken.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54960r820761_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\Disabled Ciphers
+Policy Name: TLS_RSA_WITH_3DES_EDE_CBC_SHA
+Policy State: Enabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;DisabledCiphers&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;TLS_RSA_WITH_3DES_EDE_CBC_SHA&lt;/key&gt;
+    &lt;true/&gt;
+  &lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"DisabledCiphers": {
+  "TLS_RSA_WITH_3DES_EDE_CBC_SHA": true
+}</fixtext><fix id="F-54960r820761_fix" /><check system="C-55006r820760_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar.
+
+If "DisabledCiphers" is not displayed under Policy Name or the Policy Value is not "TLS_RSA_WITH_3DES_EDE_CBC_SHA" with a value of  "true", this is a finding.</check-content></check></Rule></Group><Group id="V-251572"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251572r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000028</version><title>Firefox must not recommend extensions as the user is using the browser.</title><description>&lt;VulnDiscussion&gt;The Recommended Extensions program recommends extensions to users as they surf the web.
+
+The user must not be encouraged to install extensions from the websites they visit. Allowed extensions are to be centrally managed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54961r807187_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\User Messaging
+Policy Name: Extension Recommendations
+Policy State: Disabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;UserMessaging&lt;/key&gt;
+&lt;dict&gt;
+  &lt;key&gt;ExtensionRecommendations&lt;/key&gt;
+  &lt;false/&gt;
+&lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"UserMessaging": {
+  "ExtensionRecommendations": false
+}</fixtext><fix id="F-54961r807187_fix" /><check system="C-55007r807186_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "UserMessaging" is not displayed under Policy Name or the Policy Value is not "ExtensionRecommendations" with a value of "false", this is a finding.</check-content></check></Rule></Group><Group id="V-251573"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251573r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000029</version><title>The Firefox New Tab page must not show Top Sites, Sponsored Top Sites, Pocket Recommendations, Sponsored Pocket Stories, Searches, Highlights, or Snippets.</title><description>&lt;VulnDiscussion&gt;The New Tab page by default shows a list of built-in top sites, as well as the top sites the user has visited.
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
+
+Applications are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+Examples of non-essential capabilities include but are not limited to advertising software or browser plug-ins that are not related to requirements or provide a wide array of functionality not required for every mission but that cannot be disabled.
+
+The new tab page must not actively show user activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54962r822780_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox
+Policy Name: Customize Firefox Home
+Policy State: Enabled
+Policy Value: Uncheck "Search"
+Policy Value: Uncheck "Top Sites"
+Policy Value: Uncheck "Sponsored Top Sites"
+Policy Value: Uncheck "Recommended by Pocket"
+Policy Value: Uncheck "Sponsored Pocket Stories"
+Policy Value: Uncheck "Download History"
+Policy Value: Uncheck "Snippets"
+Policy Value: Check "Do not allow settings to be changed"
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;FirefoxHome&lt;/key&gt;
+&lt;dict&gt;
+&lt;key&gt;Search&lt;/key&gt;
+  &lt;false/&gt;
+&lt;key&gt;TopSites&lt;/key&gt;
+  &lt;false/&gt;
+&lt;key&gt;SponsoredTopSites&lt;/key&gt;
+  &lt;false/&gt;
+&lt;key&gt;Pocket&lt;/key&gt;
+  &lt;false/&gt;
+&lt;key&gt;SponsoredPocket&lt;/key&gt;
+  &lt;false/&gt;
+&lt;key&gt;Highlights&lt;/key&gt;
+  &lt;false/&gt;
+&lt;key&gt;Snippets&lt;/key&gt;
+  &lt;false/&gt;
+&lt;key&gt;Locked&lt;/key&gt;
+  &lt;true/&gt;
+&lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"FirefoxHome": {
+  "Search": false,
+  "TopSites": false,
+  "SponsoredTopSites": false,
+  "Pocket": false,
+  "SponsoredPocket": false,
+  "Highlights": false,
+  "Snippets": false,
+  "locked": true
+}</fixtext><fix id="F-54962r822780_fix" /><check system="C-55008r822779_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "FirefoxHome" is not displayed under Policy Name or the Policy Value does not have "Search" with a value of "false", this is a finding.
+If "FirefoxHome" is not displayed under Policy Name or the Policy Value does not have "TopSites" with a value of "false", this is a finding.
+If "FirefoxHome" is not displayed under Policy Name or the Policy Value does not have "SponsoredTopSites" with a value of "false", this is a finding.
+If "FirefoxHome" is not displayed under Policy Name or the Policy Value does not have "Pocket" with a value of "false", this is a finding.
+If "FirefoxHome" is not displayed under Policy Name or the Policy Value does not have "SponsoredPocket" with a value of "false", this is a finding.
+If "FirefoxHome" is not displayed under Policy Name or the Policy Value does not have "Highlights" with a value of "false", this is a finding.
+If "FirefoxHome" is not displayed under Policy Name or the Policy Value does not have "Snippets" with a value of "false", this is a finding.
+If "FirefoxHome" is not displayed under Policy Name or the Policy Value does not have "Locked" with a value of "true", this is a finding.</check-content></check></Rule></Group><Group id="V-251577"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251577r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000033</version><title>Firefox must be configured so that DNS over HTTPS is disabled.</title><description>&lt;VulnDiscussion&gt;DNS over HTTPS has generally not been adopted in the DoD. DNS is tightly controlled.
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
+
+Applications are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+Examples of non-essential capabilities include, but are not limited to, advertising software or browser plug-ins not related to requirements or providing a wide array of functionality not required for every mission, but cannot be disabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54966r807202_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\DNS Over HTTPS
+Policy Name: Enabled
+Policy State: Disabled
+
+macOS "plist" file:
+&lt;key&gt;DNSOverHTTPS&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Enabled&lt;/key&gt;
+    &lt;false/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"DNSOverHTTPS": {"Enabled": false}</fixtext><fix id="F-54966r807202_fix" /><check system="C-55012r807201_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "DNSOverHTTPS" is not displayed under Policy Name or the Policy Value does not have "Enabled" with a value of "false", this is a finding.</check-content></check></Rule></Group><Group id="V-251578"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251578r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000034</version><title>Firefox accounts must be disabled.</title><description>&lt;VulnDiscussion&gt;Disable Firefox Accounts integration (Sync). 
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
+
+Applications are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+Examples of non-essential capabilities include but are not limited to advertising software or browser plug-ins that are not related to requirements or provide a wide array of functionality not required for every mission but that cannot be disabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54967r807205_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\
+Policy Name: Disable Firefox Accounts
+Policy State: Enabled
+
+macOS "plist" file:
+&lt;key&gt;DisableFirefoxAccounts&lt;/key&gt;
+  &lt;true/&gt; 
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"DisableFirefoxAccounts": true</fixtext><fix id="F-54967r807205_fix" /><check system="C-55013r807204_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "DisableFirefoxAccounts" is not displayed under Policy Name or the Policy Value is not "true", this is a finding.</check-content></check></Rule></Group><Group id="V-251580"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251580r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000036</version><title>Firefox feedback reporting must be disabled.</title><description>&lt;VulnDiscussion&gt;Disable the menus for reporting sites (Submit Feedback, Report Deceptive Site). 
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
+
+Applications are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+Examples of non-essential capabilities include but are not limited to advertising software or browser plug-ins that are not related to requirements or provide a wide array of functionality not required for every mission but that cannot be disabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54969r807211_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\
+Policy Name: Disable Feedback Commands
+Policy State: Enabled
+
+macOS "plist" file:
+&lt;key&gt;DisableFeedbackCommands&lt;/key&gt;
+  &lt;true/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"DisableFeedbackCommands": true</fixtext><fix id="F-54969r807211_fix" /><check system="C-55015r807210_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "DisableFeedbackCommands" is not displayed under Policy Name or the Policy Value is not "true", this is a finding.</check-content></check></Rule></Group><Group id="V-251581"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-251581r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000037</version><title>Firefox encrypted media extensions must be disabled.</title><description>&lt;VulnDiscussion&gt;Enable or disable Encrypted Media Extensions and optionally lock it.
+
+If "Enabled" is set to "false", Firefox does not download encrypted media extensions (such as Widevine) unless the user consents to installing them.
+
+If "Locked" is set to "true" and "Enabled" is set to "false", Firefox will not download encrypted media extensions (such as Widevine) or ask the user to install them.
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
+
+Applications are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). 
+
+Examples of non-essential capabilities include but are not limited to advertising software or browser plug-ins that are not related to requirements or provide a wide array of functionality not required for every mission but that cannot be disabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-54970r807214_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\Encrypted Media Extensions
+Policy Name: Enable Encrypted Media Extensions
+Policy State: Disabled
+Policy Name: Lock Encrypted Media Extensions
+Policy State: Enabled
+
+macOS "plist" file:
+&lt;key&gt;EncryptedMediaExtensions&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Enabled&lt;/key&gt;
+    &lt;false/&gt;
+    &lt;key&gt;Locked&lt;/key&gt;
+    &lt;true/&gt; 
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"EncryptedMediaExtensions": {
+  "Enabled": false,
+  "Locked": true
+}</fixtext><fix id="F-54970r807214_fix" /><check system="C-55016r807213_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "EncryptedMediaExtensions" is not displayed under Policy Name or the Policy Value does not have "Enabled" set to "false" or the Policy Value does not have "Locked" set to "true", this is a finding.</check-content></check></Rule></Group><Group id="V-252881"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-252881r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000017</version><title>Firefox must be configured to not delete data upon shutdown.</title><description>&lt;VulnDiscussion&gt;For diagnostic purposes, data must remain behind when the browser is closed. This is required to meet non-repudiation controls.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-56287r820756_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox\Clear data when browser is closed
+Policy Name: Cache, Cookies, Download History, Form &amp; Search History, Browsing History, Active Logins, Site Preferences, Offline Website Data
+Policy State: Disabled
+Policy Name: Locked
+Policy State: Enabled
+
+macOS "plist" file:
+Add the following:
+&lt;key&gt;SanitizeOnShutdown&lt;/key&gt;
+&lt;dict&gt;
+  &lt;key&gt;Cache&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;Cookies&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;Downloads&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;FormData&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;History&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;Sessions&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;SiteSettings&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;OfflineApps&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;Locked&lt;/key&gt;
+  &lt;true/&gt;
+&lt;/dict&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"SanitizeOnShutdown": {
+  "Cache": false,
+  "Cookies": false,
+  "Downloads": false,
+  "FormData": false,
+  "History": false,
+  "Sessions": false,
+  "SiteSettings": false,
+  "OfflineApps": false,
+  "Locked": true 
+}</fixtext><fix id="F-56287r820756_fix" /><check system="C-56337r820755_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "SanitizeOnShutdown" is not displayed under Policy Name or the Policy Value does not have {"Cache":false,"Cookies":false,"Downloads":false,"FormData":false,"Sessions":false,"History":false,"OfflineApps":false,"SiteSettings":false,"Locked":true}, this is a finding.</check-content></check></Rule></Group><Group id="V-252908"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-252908r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000038</version><title>Pocket must be disabled.</title><description>&lt;VulnDiscussion&gt;Pocket, previously known as Read It Later, is a social bookmarking service for storing, sharing, and discovering web bookmarks. Data gathering cloud services such as this are generally disabled in the DoD.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-56311r832309_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox
+Policy Name: Disable Pocket
+Policy State: Enabled
+
+macOS "plist" file:
+&lt;key&gt;DisablePocket&lt;/key&gt;
+ &lt;true/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"DisablePocket": true</fixtext><fix id="F-56311r832309_fix" /><check system="C-56361r836394_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "DisablePocket" is not displayed under Policy Name or the Policy Value does not have a value of "true", this is a finding.</check-content></check></Rule></Group><Group id="V-252909"><title>SRG-APP-000141</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-252909r960963_rule" weight="10.0" severity="medium"><version>FFOX-00-000039</version><title>Firefox Studies must be disabled.</title><description>&lt;VulnDiscussion&gt;Studies try out different features and ideas before they are released to all Firefox users. Testing beta software is not in the DoD user's mission.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Mozilla Firefox 2021 VERSION</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Mozilla Firefox 2021 VERSION</dc:subject><dc:identifier>5446</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-56312r832312_fix">Windows group policy:
+1. Open the group policy editor tool with "gpedit.msc".
+2. Navigate to Policy Path: Computer Configuration\Administrative Templates\Mozilla\Firefox
+Policy Name: Disable Firefox Studies
+Policy State: Enabled
+
+macOS "plist" file:
+&lt;key&gt;DisableFirefoxStudies&lt;/key&gt;
+ &lt;true/&gt;
+
+Linux "policies.json" file:
+Add the following in the policies section:
+"DisableFirefoxStudies": true</fixtext><fix id="F-56312r832312_fix" /><check system="C-56362r836407_chk"><check-content-ref href="Mozilla_Firefox_2021_VERSION_STIG.xml" name="M" /><check-content>Type "about:policies" in the browser address bar. 
+
+If "DisableFirefoxStudies" is not displayed under Policy Name or the Policy Value does not have a value of "true", this is a finding.</check-content></check></Rule></Group></Benchmark>

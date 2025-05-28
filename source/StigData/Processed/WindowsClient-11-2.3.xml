@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Windows_11_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_11_STIG_V2R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 24 Jul 2024 3.5 1.10.0" title="Microsoft Windows 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.1" created="7/20/2024">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Windows_11_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_11_STIG_V2R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="Microsoft Windows 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.3" created="5/21/2025">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-253297" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1041,7 +1041,7 @@ Policy Change &gt;&gt; MPSSVC Rule-Level Policy Change - Failure</RawString>
 New versions with feature updates are planned to be released on a semi-annual basis with an estimated support timeframe of 18 to 30 months depending on the release. Support for previously released versions has been extended for Enterprise editions.
 
 A separate servicing branch intended for special purpose systems is the Long-Term Servicing Channel (LTSC, formerly Branch - LTSB) which will receive security updates for 10 years but excludes feature updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DesiredValue>10.0.22000</DesiredValue>
+      <DesiredValue>10.0.22621</DesiredValue>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
@@ -1053,7 +1053,7 @@ A separate servicing branch intended for special purpose systems is the Long-Ter
       <Query>SELECT * FROM Win32_OperatingSystem</Query>
       <RawString>Run "winver.exe".
 
-If the "About Windows" dialog box does not display "Microsoft Windows 11 Version 21H2 (OS Build 22000.348)" or greater, this is a finding.</RawString>
+If the "About Windows" dialog box does not display "Microsoft Windows 11 Version 22H2 (OS Build 22621.380)" or greater, this is a finding.</RawString>
     </Rule>
     <Rule id="V-253265" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="AuditSetting">
       <Description>&lt;VulnDiscussion&gt;The ability to set access permissions and auditing is critical to maintaining the security and proper access controls of a system. To support this, volumes must be formatted using the NTFS file system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1786,8 +1786,6 @@ Verify LAPS is configured and operational.
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Set to enabled. Password Complexity, large letters + small letters + numbers + special, Password Length 14, Password Age 60. If not configured as shown, this is a finding. 
 
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; LAPS &gt;&gt; Password Settings &gt;&gt; Name of administrator Account to manage &gt;&gt; Set to enabled &gt;&gt; Administrator account name is populated. If it is not, this is a finding. 
-
 Verify LAPS Operational logs &gt;&gt; Event Viewer &gt;&gt; Applications and Services Logs &gt;&gt; Microsoft &gt;&gt; Windows &gt;&gt; LAPS &gt;&gt; Operational. Verify LAPS policy process is completing. If it is not, this is a finding.</RawString>
     </Rule>
     <Rule id="V-256893" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
@@ -1838,6 +1836,38 @@ These audit events can assist in understanding how a computer is being used and 
 Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policy &gt;&gt; Detailed Tracking &gt;&gt; Audit Process Creation. 
 
 If "Audit Process Creation" is not set to "Failure", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-268317" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following local computer policy is not configured as specified, this is a finding:
+User Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Windows Copilot &gt;&gt; "Turn off Windows Copilot" to "Enabled”.</RawString>
+    </Rule>
+    <Rule id="V-268318" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without Windows 11 systems being managed, devices could be rogue and become targets of an attacker.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the Windows 11 system is receiving policy from either group Policy or an MDM with the following steps:
+
+From a command line or PowerShell:
+
+gpresult /R
+OS Configuration: Member Workstation
+
+If the system is not being managed by GPO, ask the administrator to indicate which MDM is managing the device.
+
+If the Window 11 system is not receiving policy from either group Policy or an MDM, this is a finding.                      
+
+This is NA for standalone, nondomain joined systems.</RawString>
     </Rule>
   </ManualRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
@@ -1896,7 +1926,6 @@ If "Audit Process Creation" is not set to "Failure", this is a finding.</RawStri
       <RawString>The default file system permissions are adequate when the Security Option "Network access: Let Everyone permissions apply to anonymous users" is set to "Disabled" (WN11-SO-000160).
 If the default file system permissions are maintained and the referenced option is set to "Disabled", this is not a finding.
 Verify the default permissions for the sample directories below. Non-privileged groups such as Users or Authenticated Users must not have greater than read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
-Viewing in File Explorer:
 Select the "Security" tab, and the "Advanced" button.
 C:\
 Type - "Allow" for all
@@ -1997,7 +2026,6 @@ Alternately use icacls.
       <RawString>The default file system permissions are adequate when the Security Option "Network access: Let Everyone permissions apply to anonymous users" is set to "Disabled" (WN11-SO-000160).
 If the default file system permissions are maintained and the referenced option is set to "Disabled", this is not a finding.
 Verify the default permissions for the sample directories below. Non-privileged groups such as Users or Authenticated Users must not have greater than read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
-Viewing in File Explorer:
 Select the "Security" tab, and the "Advanced" button.
 \Program Files
 Type - "Allow" for all
@@ -2102,7 +2130,6 @@ Alternately use icacls.
       <RawString>The default file system permissions are adequate when the Security Option "Network access: Let Everyone permissions apply to anonymous users" is set to "Disabled" (WN11-SO-000160).
 If the default file system permissions are maintained and the referenced option is set to "Disabled", this is not a finding.
 Verify the default permissions for the sample directories below. Non-privileged groups such as Users or Authenticated Users must not have greater than read &amp; execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
-Viewing in File Explorer:
 Select the "Security" tab, and the "Advanced" button.
 \Windows
 Type - "Allow" for all
@@ -5213,7 +5240,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-253457" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;The Windows Security Account Manager (SAM) stores users' passwords. Restricting remote rpc connections to the SAM to Administrators helps protect those credentials.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;The Windows SAM stores users' passwords. Restricting remote rpc connections to the SAM to Administrators helps protect those credentials.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5230,7 +5257,11 @@ Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
 Value Name: RestrictRemoteSAM
 
 Value Type: REG_SZ
-Value: O:BAG:BAD:(A;;RC;;;BA)</RawString>
+Value: O:BAG:BAD:(A;;RC;;;BA)
+
+If a domain application account such as for a management tool requires this user right, this would not be a finding.
+Vendor documentation must support the requirement for having the user right.
+The requirement must be documented with the ISSO.</RawString>
       <ValueData>O:BAG:BAD:(A;;RC;;;BA)</ValueData>
       <ValueName>RestrictRemoteSAM</ValueName>
       <ValueType>String</ValueType>
@@ -5757,30 +5788,43 @@ Value: 0x00000002 (2) (or if the Value Name does not exist)</RawString>
       <Thumbprint>AC06108CA348CC03B53795C64BF84403C1DBD341</Thumbprint>
     </Rule>
     <Rule id="V-253430.a" severity="medium" conversionstatus="pass" title="SRG-OS-000403-GPOS-00182" dscresource="CertificateDSC">
-      <CertificateName>US DoD CCEB Interoperability Root CA 2</CertificateName>
-      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <CertificateName>US DOD CCEB Interoperability Root CA 2</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <Location />
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>location for US DoD CCEB Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
-      <RawString>US DoD CCEB Interoperability Root CA 2,9B74964506C7ED9138070D08D5F8B969866560C8</RawString>
+      <OrganizationValueTestString>location for US DOD CCEB Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
+      <RawString>US DOD CCEB Interoperability Root CA 2,9B74964506C7ED9138070D08D5F8B969866560C8</RawString>
       <Thumbprint>9B74964506C7ED9138070D08D5F8B969866560C8</Thumbprint>
     </Rule>
     <Rule id="V-253430.b" severity="medium" conversionstatus="pass" title="SRG-OS-000403-GPOS-00182" dscresource="CertificateDSC">
-      <CertificateName>US DoD CCEB Interoperability Root CA 2,Thumbprint: 9</CertificateName>
-      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <CertificateName>US DOD CCEB Interoperability Root CA 2,Thumbprint: 9</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <Location />
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>location for US DoD CCEB Interoperability Root CA 2,Thumbprint: 9 certificate is present</OrganizationValueTestString>
-      <RawString>US DoD CCEB Interoperability Root CA 2,Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8</RawString>
+      <OrganizationValueTestString>location for US DOD CCEB Interoperability Root CA 2,Thumbprint: 9 certificate is present</OrganizationValueTestString>
+      <RawString>US DOD CCEB Interoperability Root CA 2,Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8</RawString>
       <Thumbprint>Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8</Thumbprint>
+    </Rule>
+    <Rule id="V-253430.c" severity="medium" conversionstatus="pass" title="SRG-OS-000403-GPOS-00182" dscresource="CertificateDSC">
+      <CertificateName>US DOD CCEB Interoperability Root CA 2</CertificateName>
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <Location />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>location for US DOD CCEB Interoperability Root CA 2 certificate is present</OrganizationValueTestString>
+      <RawString>US DOD CCEB Interoperability Root CA 2,D471CA32F7A692CE6CBB6196BD3377FE4DBCD106</RawString>
+      <Thumbprint>D471CA32F7A692CE6CBB6196BD3377FE4DBCD106</Thumbprint>
     </Rule>
   </RootCertificateRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
