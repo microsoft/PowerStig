@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_Office_365_ProPlus_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Office_365_ProPlus_STIG_V3R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 24 Jul 2024 3.5 1.10.0" title="Microsoft Office 365 ProPlus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.1" created="7/20/2024">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_Office_365_ProPlus_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Office_365_ProPlus_STIG_V3R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="Microsoft Office 365 ProPlus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.3" created="5/21/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-223296" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer add-ons are pieces of code, run in Internet Explorer, to provide additional functionality. Rogue add-ons may contain viruses or other malicious code. Disabling or not configuring this setting could allow malicious code or users to become active on user computers or the network. For example, a malicious user can monitor and then use keystrokes that user's type into Internet Explorer. Even legitimate add-ons may demand resources, compromising the performance of Internet Explorer and the operating systems for user computers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -290,37 +290,9 @@ Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\software\policies\Microsoft\office\16.0\access\security
 
-If the value vbawarnings is REG_DWORD = 3, this is not a finding. A value of REG_DWORD =  4 is also acceptable. If the registry key does not exist or is not configured properly, this is a finding.</RawString>
+If the value vbawarnings is REG_DWORD = 3, this is not a finding. A value of REG_DWORD = 2 or REG_DWORD =  4 is also acceptable. If the registry key does not exist, or is not configured properly, this is a finding.</RawString>
       <ValueData />
       <ValueName>vbawarnings</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-223283" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy setting controls whether trusted locations on the network can be used.
- 
-If you enable this policy setting, users can specify trusted locations on network shares or in other remote locations that are not under their direct control by selecting the "Allow Trusted Locations on my network (not recommended)" check box in the Trusted Locations section of the Trust Center. Content, code, and add-ins are allowed to load from trusted locations with minimal security and without prompting the user for permission.
-
-If you disable or do not configure this policy setting, the selected application ignores any network locations listed in the Trusted Locations section of the Trust Center. Disabling this policy setting does not delete any network locations from the Trusted Locations list. Instead, it forces the selected application to treat the locations as non-trusted and prevents users from adding new network locations to the list.
-
-If you also deploy Trusted Locations via Group Policy, you should verify whether any of them are remote locations. If any of them are remote locations and you do not allow remote locations via this policy setting, those policy keys that point to remote locations will be ignored on client computers.
-
-Disabling this policy setting will cause disruption for users who add network locations to the Trusted Locations list. However, it is not recommended to enable this policy setting (as the "Allow Trusted Locations on my network (not recommended)" check box itself states), so in practice it should be possible to disable this policy setting in most situations without causing significant usability issues for most users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\software\policies\microsoft\office\16.0\access\security\trusted locations</Key>
-      <LegacyId>V-99639</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the policy for Set the User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Access 2016 &gt;&gt; Application Settings &gt;&gt; Security &gt;&gt; Trust Center &gt;&gt; Trusted Locations &gt;&gt; Allow trusted Locations on the network is set to "Disabled".
-
-Use the Windows Registry Editor to navigate to the following key: 
-
-HKCU\software\policies\microsoft\office\16.0\access\security\trusted locations
-
-If the value for allownetworklocations is REG_DWORD = 0, this is not a finding.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>allownetworklocations</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-223284" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -358,10 +330,10 @@ If the value for macroruntimescanscope is REG_DWORD = 2, this is not a finding.
       <ValueName>macroruntimescanscope</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-223285" severity="medium" conversionstatus="pass" title="SRG-APP-000429" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy setting determines whether metadata is encrypted in Office Open XML files that are protected by Information Rights Management (IRM). If you enable this policy setting, Excel, PowerPoint, and Word encrypt metadata stored in rights-managed Office Open XML files and override any configuration changes on users' computers. 
+    <Rule id="V-223285" severity="high" conversionstatus="pass" title="SRG-APP-000429" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting determines whether metadata is encrypted in Office Open XML files that are protected by Information Rights Management (IRM). If this policy setting is enabled, Excel, PowerPoint, and Word encrypt metadata stored in rights-managed Office Open XML files and override any configuration changes on users' computers. 
 
-If you disable this policy setting, Office 2016 applications cannot encrypt metadata in rights-managed Office Open XML files, which can reduce security. If you do not configure this policy setting, when Information Rights Management (IRM) is used to restrict access to an Office Open XML document, any metadata associated with the document is not encrypted.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+If this policy setting is disabled, Office 2016 applications cannot encrypt metadata in rights-managed Office Open XML files, which can reduce security. If this policy setting is not configured when Information Rights Management (IRM) is used to restrict access to an Office Open XML document, any metadata associated with the document is not encrypted.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
