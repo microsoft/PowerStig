@@ -8068,7 +8068,7 @@ If results are returned from more than one file location, this is a finding.
 
 If "timestamp_timeout" is set to a negative number, is commented out, or no results are returned, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-271725" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="">
+    <Rule id="V-271725" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="none">
       <ContainsLine />
       <Description>&lt;VulnDiscussion&gt;Without reauthentication, users may access resources or perform tasks for which they do not have authorization.
 
@@ -8261,7 +8261,7 @@ If the "--loginuid-immutable" option is not returned in the "/etc/audit/audit.ru
     </Rule>
   </nxFileLineRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
-    <Rule id="V-271778" severity="medium" conversionstatus="fail" title="SRG-OS-000480-GPOS-00227" dscresource="">
+    <Rule id="V-271778" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <AccessControlEntry />
       <Description>&lt;VulnDiscussion&gt;Service configuration files enable or disable features of their respective services that if configured incorrectly can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the correct group to prevent unauthorized changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -8279,7 +8279,7 @@ rw-------. 1 root root 3669 Feb 22 11:34 /etc/ssh/sshd_config
 
 If the "/etc/ssh/sshd_config" permissions are not "0600", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-271827" severity="medium" conversionstatus="fail" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+    <Rule id="V-271827" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <AccessControlEntry />
       <Description>&lt;VulnDiscussion&gt;Service configuration files enable or disable features of their respective services that if configured incorrectly can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the correct access rights to prevent unauthorized changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-271778</DuplicateOf>
@@ -8301,7 +8301,7 @@ $ find /etc/cron* -type d | xargs stat -c "%a %n"
 
 If any cron configuration directory is more permissive than "700", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-271830" severity="medium" conversionstatus="fail" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+    <Rule id="V-271830" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <AccessControlEntry />
       <Description>&lt;VulnDiscussion&gt;Service configuration files enable or disable features of their respective services that if configured incorrectly can lead to insecure and vulnerable configurations; therefore, service configuration files must have the correct access rights to prevent unauthorized changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-271778</DuplicateOf>
