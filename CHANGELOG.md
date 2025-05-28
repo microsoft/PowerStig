@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ## [4.26.0] - 2025-05-28
+* Update Powerstig to parse/apply Oracle Linux 9 STIG - Ver 1, Rel 1 [#1455](https://github.com/microsoft/PowerStig/issues/1455)
 * Update Powerstig to parse/apply Microsoft Windows 11 STIG - Ver 2, Rel 3 [#1449](https://github.com/microsoft/PowerStig/issues/1449)
 * Update Powerstig to parse/apply Microsoft DotNet Framework 4.0 STIG - Ver 2, Rel 6 [#1444](https://github.com/microsoft/PowerStig/issues/1444)
 * Update Powerstig to parse/apply Microsoft SQL Server 2016 STIG - Ver 3, Rel 4 [#1447](https://github.com/microsoft/PowerStig/issues/1447)
