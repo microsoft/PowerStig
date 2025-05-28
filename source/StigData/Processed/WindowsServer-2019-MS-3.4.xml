@@ -5450,15 +5450,15 @@ Verify if Windows Defender is in use or enabled:
 
 Open "PowerShell".
 
-Enter â€œget-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayNameâ€
+Enter â€œget-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayName
 
 Verify if third-party anti-virus is in use or enabled:
 
 Open "PowerShell".
 
-Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayNameâ€
+Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayName
 
-Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayNameâ€
+Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayName
 </RawString>
       <ServiceName>
       </ServiceName>
