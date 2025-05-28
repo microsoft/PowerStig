@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="3.2">
+<OrganizationalSettings fullversion="3.4">
   <!-- Ensure ValueData is set to 0x00000006 (6) or greater -->
   <OrganizationalSetting id="V-220704" ValueData="" />
   <!-- Ensure ''V-220739'' -ge '15' -or ''V-220739'' -eq '0'-->
@@ -59,7 +59,9 @@
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-220905" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-220906" Location="" />
+  <OrganizationalSetting id="V-220906.a" Location="" />
+  <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-220906.b" Location="" />
   <!-- Ensure ''V-220911'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-220911" OptionValue="" />
   <!-- Ensure ''V-220912'' -ne 'Guest'-->
@@ -92,4 +94,4 @@ By using this IS (which includes any device attached to this IS), you consent to
   <OrganizationalSetting id="V-220955" ValueData="2" />
   <!-- Ensure ''V-252903'' -match '1|2'-->
   <OrganizationalSetting id="V-252903" ValueData="1" />
-</OrganizationalSettings>
+  </OrganizationalSettings>
