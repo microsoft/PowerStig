@@ -2555,7 +2555,7 @@ Inherited from - "None" for all
 Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
-Server Operators â€“ Read â€“ This Key and subkeys    (Domain controllers only)
+Server Operators - Read - This Key and subkeys    (Domain controllers only)
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in Windows Server 2019 to the following SID, this is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681

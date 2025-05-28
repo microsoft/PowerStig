@@ -5,6 +5,8 @@
 
 ## [4.26.0] - 2025-05-28
 * Update Powerstig to parse/apply Microsoft Windows Server 2019 STIG - Ver 3, Rel 4 [#1450](https://github.com/microsoft/PowerStig/issues/1450)
+* Update Powerstig to parse\apply Microsoft DotNet Framework 4.0 STIG - Ver 2, Rel 6 [#1444](https://github.com/microsoft/PowerStig/issues/1444)
+* Update Powerstig to parse/apply Microsoft SQL Server 2016 STIG - Ver 3, Rel 4 [#1447](https://github.com/microsoft/PowerStig/issues/1447)
 
 ## [4.25.0] - 2025-02-20
 * Update Powerstig to parse/apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 5 [#1422](https://github.com/microsoft/PowerStig/issues/1422)
