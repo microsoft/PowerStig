@@ -3,14 +3,17 @@
 ## [Unreleased]
 
 ## [4.26.0] - 2025-05-28
+* Update Powerstig to parse/apply Oracle Linux 8 STIG - Ver 2, Rel 4 [#1454](https://github.com/microsoft/PowerStig/issues/1454)
+* Update Powerstig to parse/apply Mozilla Firefox STIG - Ver 6, Rel 6 [#1453](https://github.com/microsoft/PowerStig/issues/1453)
+* Update Powerstig to parse/apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 4 [#1451](https://github.com/microsoft/PowerStig/issues/1451)
+* Update Powerstig to parse/apply Microsoft DotNet Framework 4.0 STIG - Ver 2, Rel 6 [#1444](https://github.com/microsoft/PowerStig/issues/1444)
 * Update Powerstig to parse/apply Oracle Linux 9 STIG - Ver 1, Rel 1 [#1455](https://github.com/microsoft/PowerStig/issues/1455)
 * Update Powerstig to parse/apply Microsoft Windows 11 STIG - Ver 2, Rel 3 [#1449](https://github.com/microsoft/PowerStig/issues/1449)
 * Update Powerstig to parse/apply Microsoft DotNet Framework 4.0 STIG - Ver 2, Rel 6 [#1444](https://github.com/microsoft/PowerStig/issues/1444)
 * Update Powerstig to parse/apply Microsoft SQL Server 2016 STIG - Ver 3, Rel 4 [#1447](https://github.com/microsoft/PowerStig/issues/1447)
 * Update Powerstig to parse/apply Microsoft Office 365 ProPlus STIG - Ver 3, Rel 3 [#1446](https://github.com/microsoft/PowerStig/issues/1446)
 * Update Powerstig to parse/apply Mozilla Firefox STIG - Ver 6, Rel 6 [#1453](https://github.com/microsoft/PowerStig/issues/1453)
-* Update Powerstig to parse/apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 4 [#1451](https://github.com/microsoft/PowerStig/issues/1451)
-* Update Powerstig to parse/apply Microsoft SQL Server 2016 STIG - Ver 3, Rel 4 [#1447](https://github.com/microsoft/PowerStig/issues/1447)
+
 
 ## [4.25.0] - 2025-02-20
 * Update Powerstig to parse/apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 5 [#1422](https://github.com/microsoft/PowerStig/issues/1422)
