@@ -11,15 +11,15 @@ Describe 'Backup-StigSettings' {
     Mock Invoke-DscResource -MockWith { return $get }
 
     It 'Should not throw WindowsServer' {
-        {Backup-StigSettings -StigName "WindowsServer-2019-MS-3.2.xml"} | Should -not -Throw
+        {Backup-StigSettings -StigName "WindowsServer-2019-MS-3.4.xml"} | Should -not -Throw
     }
 
     It 'Should not throw WindowsClient' {
-        {Backup-StigSettings -StigName "WindowsClient-10-3.2.xml"} | Should -not -Throw
+        {Backup-StigSettings -StigName "WindowsClient-10-3.4.xml"} | Should -not -Throw
     }
 
     It 'Should not throw Sql Server 2016' {
-        {Backup-StigSettings -StigName "SqlServer-2016-Instance-3.2.xml"} | Should -not -Throw
+        {Backup-StigSettings -StigName "SqlServer-2016-Instance-3.4.xml"} | Should -not -Throw
     }
 
     It 'Should return string with valid STIGs' {
@@ -41,15 +41,15 @@ Describe 'Restore-StigSettings' {
     Mock -CommandName Invoke-DscResource -MockWith {return $get}
 
     It 'Should not throw for Server' {
-        {Restore-StigSettings -StigName "WindowsServer-2019-MS-3.2.xml" -Confirm:$false} | Should -Not -Throw
+        {Restore-StigSettings -StigName "WindowsServer-2019-MS-3.4.xml" -Confirm:$false} | Should -Not -Throw
     }
 
     It 'Should not throw for Client' {
-        {Restore-StigSettings -StigName "WindowsClient-10-3.2.xml" -Confirm:$false} | Should -Not -Throw
+        {Restore-StigSettings -StigName "WindowsClient-10-3.4.xml" -Confirm:$false} | Should -Not -Throw
     }
 
     It 'Should not throw for Sql Server 2016' {
-        {Restore-StigSettings -StigName "SqlServer-2016-Instance-3.2.xml" -Confirm:$false} | Should -Not -Throw
+        {Restore-StigSettings -StigName "SqlServer-2016-Instance-3.4.xml" -Confirm:$false} | Should -Not -Throw
     }
 
 }
