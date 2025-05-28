@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_DotNet_Framework_4-0_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 24 Apr 2024 3.4.1.22916 1.10.0" title="Microsoft DotNet Framework 4.0 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="5/20/2024">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_DotNet_Framework_4-0_STIG_V2R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="Microsoft DotNet Framework 4.0 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.6" created="5/21/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-225227" severity="medium" conversionstatus="pass" title="SRG-APP-000120" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A successful disaster recovery plan requires that CAS policy and CAS policy configuration files are identified and included in systems disaster backup and recovery events. Documentation regarding the location of system and application specific CAS policy configuration files and the frequency in which backups occur is required. If these files are not identified and the information is not documented, there is the potential that critical application configuration files may not be included in disaster recovery events which could lead to an availability risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -415,9 +415,11 @@ In order to assign protections to .Net 4.0 applications, the applications must f
 
 Ask the system administrator to provide documentation that identifies:
 
-- Each .Net 4.0 application they run on the system.
+- Each .Net 4.0 application run on the system.
 - The .Net runtime host that invokes the application. 
 - The security measures employed to control application access to system resources or user access to application.
+
+For additional insight run: tasklist /fi "modules eq mscoree.dll"
 
 If all .Net applications, runtime hosts and security protections have been documented or if there are no .Net 4.0 applications existing on the system, this is not a finding.
 
@@ -426,7 +428,6 @@ If there is no documentation that identifies the existence of .NET 4.0 applicati
 If the runtime hosts have not been identified, this is a finding.
 
 If the security protections have not been identified, this is a finding.
-
 </RawString>
     </Rule>
     <Rule id="V-225237" severity="medium" conversionstatus="pass" title="SRG-APP-000219" dscresource="None">
@@ -628,17 +629,24 @@ If application versions installed on the system do not match approval documentat
       <LegacyId>V-81495.a</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Use regedit to review the following Windows registry keys:
+      <RawString>In older Windows systems (Windows Server 2012 or earlier), TLS 1.2 must be enabled systemwide by setting "SchUseStrongCrypto".
 
+SystemDefaultTlsVersions is a configuration switch in .NET Framework (starting from 4.6) that allows the application to use the default TLS version supported by the underlying Windows operating system instead of hardcoding a specific TLS version (like TLS 1.2).
+
+Check Registry:
+Use regedit to review the following Windows registry keys:
 For 32-bit systems: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319\
 
 For 64 bit systems:
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319\
 HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319\
 
-If the “SchUseStrongCrypto” value name does not exist, or is not a REG_DWORD type set to “1”, this is a finding.
+1. If the "SchUseStrongCrypto" value name does not exist, or is not a REG_DWORD type set to "1", this is a finding.
 
-</RawString>
+2. For .NET Framework &gt;4.6, use the default TLS version supported by the underlying Windows operating system.
+If the "SystemDefaultTlsVersions" value name does not exist, or is not a REG_DWORD type set to "1", this is a finding.
+
+Note: The SchUseStrongCrypto setting allows .NET to use TLS 1.1 and TLS 1.2. The SystemDefaultTlsVersions setting allows .NET to use the OS configuration.</RawString>
       <ValueData>1</ValueData>
       <ValueName>SchUseStrongCrypto</ValueName>
       <ValueType>DWORD</ValueType>
@@ -652,17 +660,24 @@ If the “SchUseStrongCrypto” value name does not exist, or is not a REG_DWORD
       <LegacyId>V-81495.b</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Use regedit to review the following Windows registry keys:
+      <RawString>In older Windows systems (Windows Server 2012 or earlier), TLS 1.2 must be enabled systemwide by setting "SchUseStrongCrypto".
 
+SystemDefaultTlsVersions is a configuration switch in .NET Framework (starting from 4.6) that allows the application to use the default TLS version supported by the underlying Windows operating system instead of hardcoding a specific TLS version (like TLS 1.2).
+
+Check Registry:
+Use regedit to review the following Windows registry keys:
 For 32-bit systems: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319\
 
 For 64 bit systems:
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319\
 HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319\
 
-If the “SchUseStrongCrypto” value name does not exist, or is not a REG_DWORD type set to “1”, this is a finding.
+1. If the "SchUseStrongCrypto" value name does not exist, or is not a REG_DWORD type set to "1", this is a finding.
 
-</RawString>
+2. For .NET Framework &gt;4.6, use the default TLS version supported by the underlying Windows operating system.
+If the "SystemDefaultTlsVersions" value name does not exist, or is not a REG_DWORD type set to "1", this is a finding.
+
+Note: The SchUseStrongCrypto setting allows .NET to use TLS 1.1 and TLS 1.2. The SystemDefaultTlsVersions setting allows .NET to use the OS configuration.</RawString>
       <ValueData>1</ValueData>
       <ValueName>SchUseStrongCrypto</ValueName>
       <ValueType>DWORD</ValueType>
