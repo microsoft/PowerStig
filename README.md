@@ -123,6 +123,9 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Contributors
 
+* [@MrAutomater](https://github.com/MrAutomater) (Jerry Martin )
+* [@mrasmussen72](https://github.com/mrasmussen72) (Michael Rasmussen)
+* [@hinderjd](https://github.com/hinderjd) (James Hinders)
 * [@addavenp1](https://github.com/addavenp1) (Adam Davenport)
 * [@ALichtenberg](https://github.com/ALichtenberg) (Adam Lichtenberg)
 * [@athaynes](https://github.com/athaynes) (Adam Haynes)
@@ -146,7 +149,4 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@winthrop28](https://github.com/winthrop28) (Drew Taylor)
 * [@mikedzikowski](https://github.com/mikedzikowski) (Mike Dzikowski)
 * [@pgc1a](https://github.com/pgc1a) (Tony Griffith)
-* [@hinderjd](https://github.com/hinderjd) (James Hinders)
 * [@ruandersMSFT](https://github.com/ruandersMSFT) (Russell Anderson)
-* [@MrAutomater](https://github.com/MrAutomater) (Jerry Martin )
-* [@mrasmussen72](https://github.com/mrasmussen72) (Michael Rasmussen)
