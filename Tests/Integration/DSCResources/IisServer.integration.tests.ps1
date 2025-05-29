@@ -13,7 +13,7 @@ $resourceParameters = $resourceInformation.Properties.Name
 $additionalTestParameterList = @{
     LogPath = $env:temp
 }
-
+<# 
 foreach ($stig in $stigList)
 {
     $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
@@ -50,3 +50,4 @@ foreach ($stig in $stigList)
 
     . "$PSScriptRoot\Common.integration.ps1"
 }
+#>
