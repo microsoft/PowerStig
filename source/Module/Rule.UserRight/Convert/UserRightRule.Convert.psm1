@@ -3,10 +3,9 @@
 using module .\..\..\Common\Common.psm1
 using module .\..\UserRightRule.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$exclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
-foreach ($supportFile in $supportFileList)
-{
+foreach ($supportFile in $supportFileList) {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
@@ -21,14 +20,12 @@ foreach ($supportFile in $supportFileList)
         user right rule, it is passed to the UserRightRule class for parsing
         and validation.
 #>
-class UserRightRuleConvert : UserRightRule
-{
+class UserRightRuleConvert : UserRightRule {
     <#
         .SYNOPSIS
             Empty constructor for SplitFactory
     #>
-    UserRightRuleConvert ()
-    {
+    UserRightRuleConvert () {
     }
 
     <#
@@ -37,15 +34,13 @@ class UserRightRuleConvert : UserRightRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    UserRightRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
-    {
+    UserRightRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true) {
         $this.SetDisplayName()
         $this.SetConstant()
         $this.SetIdentity()
         $this.SetForce()
         $this.SetDuplicateRule()
-        if (Test-ExistingRule -RuleCollection $global:stigSettings -NewRule $this)
-        {
+        if (Test-ExistingRule -RuleCollection $global:stigSettings -NewRule $this) {
             $this.set_id((Get-AvailableId -Id $this.Id))
         }
         $this.SetDscResource()
@@ -60,12 +55,10 @@ class UserRightRuleConvert : UserRightRule
             Gets the display name from the xccdf content and sets the value. If
             the name that is returned is not valid, the parser status is set to fail.
     #>
-    [void] SetDisplayName ()
-    {
+    [void] SetDisplayName () {
         $thisDisplayName = Get-UserRightDisplayName -CheckContent $this.SplitCheckContent
 
-        if (-not $this.SetStatus($thisDisplayName))
-        {
+        if (-not $this.SetStatus($thisDisplayName)) {
             $this.set_DisplayName($thisDisplayName)
         }
     }
@@ -78,12 +71,10 @@ class UserRightRuleConvert : UserRightRule
             value. If the constant that is returned is not valid, the parser
             status is set to fail.
     #>
-    [void] SetConstant ()
-    {
+    [void] SetConstant () {
         $thisConstant = Get-UserRightConstant -UserRightDisplayName $this.DisplayName
 
-        if (-not $this.SetStatus($thisConstant))
-        {
+        if (-not $this.SetStatus($thisConstant)) {
             $this.set_Constant($thisConstant)
         }
     }
@@ -96,32 +87,31 @@ class UserRightRuleConvert : UserRightRule
             value. If the identity that is returned is not valid, the parser
             status is set to fail.
     #>
-    [void] SetIdentity ()
-    {
+    [void] SetIdentity () {
         $thisIdentity = Get-UserRightIdentity -CheckContent $this.SplitCheckContent
         $return = $true
-        if ([String]::IsNullOrEmpty($thisIdentity))
-        {
+        if ([String]::IsNullOrEmpty($thisIdentity)) {
             $return = $false
         }
-        elseif ($thisIdentity -ne 'NULL')
-        {
-            if ($thisIdentity -join "," -match "{Hyper-V}")
-            {
+        elseif ($thisIdentity -ne 'NULL') {
+            if ($thisIdentity -join "," -match "{Hyper-V}") {
                 $this.SetOrganizationValueRequired()
                 $HyperVIdentity = $thisIdentity -join "," -replace "{Hyper-V}", "NT Virtual Machine\\Virtual Machines"
-                $NoHyperVIdentity = $thisIdentity.Where( {$PSItem -ne "{Hyper-V}"}) -join ","
+                $NoHyperVIdentity = $thisIdentity.Where( { $PSItem -ne "{Hyper-V}" }) -join ","
                 $this.set_OrganizationValueTestString("'{0}' -match '^($HyperVIdentity|$NoHyperVIdentity)$'")
             }
-            elseif ($thisIdentity -contains "(Local account and member of Administrators group|Local account)")
-            {
+            elseif ($thisIdentity -contains "(Local account and member of Administrators group|Local account)") {
                 $this.SetOrganizationValueRequired()
                 $this.set_OrganizationValueTestString("'{0}' -match '$($thisIdentity -join ",")'")
             }
         }
+        else {
+            # DISA specifies 'NULL', meaning there should not be any identities assigned to the user right
+            $this.SetIsNullOrEmpty()
+            $this.Identity = ""
+        }
 
-        if ($this.OrganizationValueRequired -eq $false)
-        {
+        if ($this.OrganizationValueRequired -eq $false -and $thisIdentity -ne 'NULL') {
             $this.Identity = $thisIdentity -Join ","
         }
     }
@@ -132,40 +122,32 @@ class UserRightRuleConvert : UserRightRule
         .DESCRIPTION
             Gets the force flag from the xccdf content and sets the value
     #>
-    [void] SetForce ()
-    {
-        if (Test-SetForceFlag -CheckContent $this.SplitCheckContent)
-        {
+    [void] SetForce () {
+        if (Test-SetForceFlag -CheckContent $this.SplitCheckContent) {
             $this.set_Force($true)
         }
-        else
-        {
+        else {
             $this.set_Force($false)
         }
     }
 
-    hidden [void] SetDscResource ()
-    {
-        if ($null -eq $this.DuplicateOf)
-        {
+    hidden [void] SetDscResource () {
+        if ($null -eq $this.DuplicateOf) {
             $this.DscResource = 'UserRightsAssignment'
         }
-        else
-        {
+        else {
             $this.DscResource = 'None'
         }
     }
 
-    static [bool] Match ([string] $CheckContent)
-    {
+    static [bool] Match ([string] $CheckContent) {
         if
         (
             $CheckContent -Match 'gpedit\.msc' -and
             $CheckContent -Match 'User Rights Assignment' -and
             $CheckContent -NotMatch 'unresolved SIDs' -and
             $CheckContent -NotMatch 'SQL Server'
-        )
-        {
+        ) {
             return $true
         }
         return $false
@@ -180,10 +162,8 @@ class UserRightRuleConvert : UserRightRule
             The rule text from the check-content element in the xccdf
     #>
     <#{TODO}#> # HasMultipleRules is implemented inconsistently.
-    static [bool] HasMultipleRules ([string] $CheckContent)
-    {
-        if (Test-MultipleUserRightsAssignment -CheckContent ([UserRightRule]::SplitCheckContent($CheckContent)))
-        {
+    static [bool] HasMultipleRules ([string] $CheckContent) {
+        if (Test-MultipleUserRightsAssignment -CheckContent ([UserRightRule]::SplitCheckContent($CheckContent))) {
             return $true
         }
 
@@ -203,8 +183,7 @@ class UserRightRuleConvert : UserRightRule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitMultipleRules ([string] $CheckContent)
-    {
+    static [string[]] SplitMultipleRules ([string] $CheckContent) {
         return (Split-MultipleUserRightsAssignment -CheckContent ([UserRightRule]::SplitCheckContent($CheckContent)))
     }
 
