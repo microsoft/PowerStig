@@ -18,7 +18,8 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Force
         A flag that replaces the identities vs append
 #>
-class UserRightRule : Rule {
+class UserRightRule : Rule
+{
     [ValidateNotNullOrEmpty()] [string] $DisplayName
     [ValidateNotNullOrEmpty()] [string] $Constant
     [string] $Identity <#(ExceptionValue)#>
@@ -28,7 +29,8 @@ class UserRightRule : Rule {
         .SYNOPSIS
             Default constructor to support the AsRule cast method
     #>
-    UserRightRule () {
+    UserRightRule ()
+    {
     }
 
     <#
@@ -37,7 +39,8 @@ class UserRightRule : Rule {
         .PARAMETER Rule
             The STIG rule to load
     #>
-    UserRightRule ([xml.xmlelement] $Rule) : base ($Rule) {
+    UserRightRule ([xml.xmlelement] $Rule) : base ($Rule)
+    {
     }
 
     <#
@@ -48,14 +51,16 @@ class UserRightRule : Rule {
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    UserRightRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert) {
+    UserRightRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
+    {
     }
 
     <#
         .SYNOPSIS
             Creates class specifc help content
     #>
-    [PSObject] GetExceptionHelp() {
+    [PSObject] GetExceptionHelp()
+    {
         return @{
             Value = "Administrators"
             Notes = $null
