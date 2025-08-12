@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', '*.md', '*.psm1', 'data.*.ps1')
+$exclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt', '*.md', '*.psm1', 'data.*.ps1')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Recurse -File -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
@@ -102,7 +102,7 @@ class Rule : ICloneable
     Rule ([xml.xmlelement] $Rule, [switch] $Convert)
     {
         $this.Id = $Rule.Id
-        $this.LegacyId = ($rule.Rule.ident | Where-Object -FilterScript {$PSItem.'#text' -match "^V-.*"}).'#text'
+        $this.LegacyId = ($rule.Rule.ident | Where-Object -FilterScript { $PSItem.'#text' -match "^V-.*" }).'#text'
         $this.Title = $Rule.Title
         $this.Severity = $Rule.rule.severity
         $this.Description = $Rule.rule.description
@@ -160,7 +160,7 @@ class Rule : ICloneable
         $exceptionPropertyTag = '\s+(?:\[\w+(?:\[\s*\])?\])\s\$(?<ExceptionValue>\w+)\s+<#\(ExceptionValue\)#>'
         $exceptionProperty = [regex]::Matches(
             (Get-Content -path $baseclassPath -raw), $exceptionPropertyTag
-        ).Groups.Where( {$_.Name -eq 'ExceptionValue'}).Value
+        ).Groups.Where( { $_.Name -eq 'ExceptionValue' }).Value
 
         return $exceptionProperty
     }
@@ -228,7 +228,7 @@ class Rule : ICloneable
         $val = Test-DuplicateRule -ReferenceObject $global:stigSettings -DifferenceObject $this
         if ($val)
         {
-           $this.DuplicateOf = $val
+            $this.DuplicateOf = $val
         }
     }
 
@@ -244,7 +244,7 @@ class Rule : ICloneable
     {
         if ( [String]::IsNullOrEmpty( $Value ) )
         {
-            $this.conversionstatus = [status]::fail
+            $this.ConversionStatus = [status]::fail
             return $true
         }
         else
@@ -267,7 +267,7 @@ class Rule : ICloneable
     {
         if ( [String]::IsNullOrEmpty( $Value ) -and -not $AllowNullOrEmpty )
         {
-            $this.conversionstatus = [status]::fail
+            $this.ConversionStatus = [status]::fail
             return $true
         }
         else
@@ -383,7 +383,7 @@ class Rule : ICloneable
     #>
     hidden [void] SetLegacyId ([xml.xmlelement] $Rule)
     {
-        $this.LegacyId = ($Rule.rule.ident | Where-Object -FilterScript {$PSItem.'#text' -match "^V-.*"}).'#text'
+        $this.LegacyId = ($Rule.rule.ident | Where-Object -FilterScript { $PSItem.'#text' -match "^V-.*" }).'#text'
         if ($Rule.id -match '^V-.*\.[a-z]$' -and [string]::IsNullOrEmpty($this.LegacyId) -eq $false)
         {
             $this.LegacyId = '{0}.{1}' -f $this.LegacyId, $Rule.id.Split('.')[1]
