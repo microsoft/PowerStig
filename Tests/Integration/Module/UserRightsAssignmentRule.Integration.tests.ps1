@@ -6,12 +6,13 @@ try
 {
     $rulesToTest = @(
         @{
-            displayName  = 'Act as part of the operating system'
-            constant     = 'SeTcbPrivilege'
-            Identity     = 'NULL'
+            displayName                 = 'Act as part of the operating system'
+            constant                    = 'SeTcbPrivilege'
+            Identity                    = ''
             organizationValueRequired   = $false
             organizationValueTestString = $null
-            CheckContent = 'Verify the effective setting in Local Group Policy Editor.
+            isNullOrEmpty               = $true
+            CheckContent                = 'Verify the effective setting in Local Group Policy Editor.
             Run "gpedit.msc".
 
             Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
@@ -19,12 +20,13 @@ try
             If any accounts or groups (to include administrators), are granted the "{0}" user right, this is a finding.'
         }
         @{
-            displayName  = 'Take ownership of files or other objects'
-            constant     = 'SeTakeOwnershipPrivilege'
-            Identity     = 'Administrators'
-            organizationValueRequired = $false
+            displayName                 = 'Take ownership of files or other objects'
+            constant                    = 'SeTakeOwnershipPrivilege'
+            Identity                    = 'Administrators'
+            organizationValueRequired   = $false
             organizationValueTestString = $null
-            CheckContent = 'Verify the effective setting in Local Group Policy Editor.
+            isNullOrEmpty               = $false
+            CheckContent                = 'Verify the effective setting in Local Group Policy Editor.
             Run "gpedit.msc".
 
             Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -34,12 +36,13 @@ try
             Administrators'
         }
         @{
-            displayName = 'Deny access to this computer from the network'
-            constant    = 'SeDenyNetworkLogonRight'
-            Identity    = $null
-            organizationValueRequired = $true
+            displayName                 = 'Deny access to this computer from the network'
+            constant                    = 'SeDenyNetworkLogonRight'
+            Identity                    = $null
+            organizationValueRequired   = $true
             organizationValueTestString = "'{0}' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'"
-            CheckContent = 'Verify the effective setting in Local Group Policy Editor.
+            isNullOrEmpty               = $false
+            CheckContent                = 'Verify the effective setting in Local Group Policy Editor.
             Run "gpedit.msc".
 
             Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment.
@@ -60,12 +63,13 @@ try
             Microsoft Security Advisory Patch 2871997 adds the new security groups to Windows Server 2012.'
         }
         @{
-            displayName  = 'Deny access to this computer from the network'
-            constant     = 'SeDenyNetworkLogonRight'
-            Identity     = 'Enterprise Admins,Domain Admins,Local account,Guests'
-            organizationValueRequired = $false
+            displayName                 = 'Deny access to this computer from the network'
+            constant                    = 'SeDenyNetworkLogonRight'
+            Identity                    = 'Enterprise Admins,Domain Admins,Local account,Guests'
+            organizationValueRequired   = $false
             organizationValueTestString = $null
-            CheckContent = 'Verify the effective setting in Local Group Policy Editor.
+            isNullOrEmpty               = $false
+            CheckContent                = 'Verify the effective setting in Local Group Policy Editor.
             Run "gpedit.msc".
 
             Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment.
@@ -118,7 +122,10 @@ try
                 $rule.DscResource | Should Be 'UserRightsAssignment'
             }
             It 'Should Set the status to pass' {
-                $rule.conversionstatus | Should Be 'pass'
+                $rule.ConversionStatus | Should Be 'pass'
+            }
+            It 'Should IsNullOrEmpty match the expected value' {
+                $rule.IsNullOrEmpty | Should Be $testRule.isNullOrEmpty
             }
         }
     }
