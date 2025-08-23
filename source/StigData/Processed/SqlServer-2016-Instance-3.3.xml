@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 30 Jan 2025 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.3" created="2/6/2025">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 30 Jan 2025 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.3" created="8/23/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful denial-of-service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions is helpful in reducing these risks.
@@ -2808,6 +2808,7 @@ Satisfies: SRG-APP-000091-DB-000066&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-79139</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit the retrieval of privilege/permission/role membership information. 
  
 If SQL Server is not required to audit the retrieval of privilege/permission/role membership information, this is not a finding. 
@@ -2846,6 +2847,7 @@ If the SCHEMA_OBJECT_ACCESS_GROUP is not returned in an active audit, this is a 
       <LegacyId>V-79141</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>aa67d65b-aa2a-4904-9dae-9c5e33bccfd5</QueryId>
       <RawString>When Audits are enabled, they start up when the instance starts. 
 https://msdn.microsoft.com/en-us/library/cc280386.aspx#Anchor_2 
  
@@ -2877,6 +2879,7 @@ Systems where audit trail completeness is paramount will most likely be at a low
       <LegacyId>V-79147</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>709a37ed-4ba9-4dfd-b700-1278b1bcc16c</QueryId>
       <RawString>If the system documentation indicates that availability takes precedence over audit trail completeness, this is not applicable (NA).  
  
 If SQL Server Audit is in use, review the defined server audits by running the statement:  
@@ -2907,6 +2910,7 @@ Systems where availability is paramount will most likely be MAC I; the final det
       <LegacyId>V-79149</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>68d7c225-9dca-46b2-bd17-acf0ffa59e33</QueryId>
       <RawString>If the system documentation indicates that availability does not take precedence over audit trail completeness, this is not applicable (NA). 
 
 Execute the following query:
@@ -2939,6 +2943,7 @@ Enforcement actions are the methods or mechanisms used to prevent unauthorized c
       <LegacyId>V-79239</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured to capture denied actions and started by executing the following query:
 
 SELECT name AS 'Audit Name',
@@ -3046,6 +3051,7 @@ Satisfies: SRG-APP-000492-DB-000332, SRG-APP-000492-DB-000333&lt;/VulnDiscussion
       <LegacyId>V-79251</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit the retrieval of when security objects are accessed.
 
 If this is not required, this is not a finding. 
@@ -3092,6 +3098,7 @@ Satisfies: SRG-APP-000494-DB-000344&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-79257</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit when data classifications are both successfully and unsuccessfully retrieved. 
  
 If this is not required, this is not a finding. 
@@ -3138,6 +3145,7 @@ Satisfies: SRG-APP-000495-DB-000326&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-79261</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Check that SQL Server Audit is being used for the STIG compliant audit.
 
 Determine if an audit is configured and started by executing the following query:
@@ -3203,6 +3211,7 @@ Satisfies: SRG-APP-000495-DB-000328&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-79265</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Check that SQL Server Audit is being used for the STIG compliant audit.
 
 Determine if an audit is configured and started by executing the following query:
@@ -3266,6 +3275,7 @@ Satisfies: SRG-APP-000496-DB-000334&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-79269</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query: 
  
 SELECT name AS 'Audit Name', 
@@ -3306,6 +3316,7 @@ Satisfies: SRG-APP-000498-DB-000346&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-79273</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit when data classifications are successfully and unsuccessfully modified. 
  
 If this is not required, this is not a finding.
@@ -3350,6 +3361,7 @@ To aid in diagnosis, it is necessary to keep track of failed attempts in additio
       <LegacyId>V-79277</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Check that SQL Server Audit is being used for the STIG compliant audit. 
 Determine if an audit is configured and started by executing the following query. If no records are returned, this is a finding. 
 
@@ -3413,6 +3425,7 @@ Satisfies: SRG-APP-000501-DB-000336&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-79281</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query:
  
 SELECT name AS 'Audit Name', 
@@ -3453,6 +3466,7 @@ Satisfies: SRG-APP-000502-DB-000348&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-79285</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit when data classifications are successfully and unsuccessfully deleted.
  
 If this is not required, this is not a finding.
@@ -3495,6 +3509,7 @@ Satisfies: SRG-APP-000503-DB-000350&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-79289</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query: 
  
 SELECT name AS 'Audit Name', 
@@ -3564,6 +3579,7 @@ Note that it is particularly important to audit, and tightly control, any action
       <LegacyId>V-79291</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query:  
 
 SELECT name AS 'Audit Name', 
@@ -3643,6 +3659,7 @@ To aid in diagnosis, it is necessary to keep track of failed attempts in additio
       <LegacyId>V-79293</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query.  
 
 SELECT name AS 'Audit Name', 
@@ -3745,6 +3762,7 @@ Disconnection may be initiated by the user or forced by the system (as in a time
       <LegacyId>V-79295</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query:  
 
 SELECT name AS 'Audit Name', 
@@ -3849,6 +3867,7 @@ Concurrent connections by the same user from multiple workstations may be valid 
       <LegacyId>V-79297</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Determine if an audit is configured and started by executing the following query. 
  
 SELECT name AS 'Audit Name', 
@@ -3901,6 +3920,7 @@ Satisfies: SRG-APP-000507-DB-000356&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;
       <LegacyId>V-79301</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit when successful and unsuccessful accesses to objects occur. 
  
 If this is not required, this is not a finding. 
@@ -3945,6 +3965,7 @@ Some applications that run on SQL Server require the [sa] account to be enabled 
       <LegacyId>V-79317</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>bc7553cb-8f2e-48b4-a3e6-13c51ae48734</QueryId>
       <RawString>Check SQL Server settings to determine if the [sa] (system administrator) account has been disabled by executing the following query:
 
 USE master;
@@ -3972,6 +3993,7 @@ Since the SQL Server [sa] is administrative in nature, the compromise of a defau
       <LegacyId>V-79319</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is populated with a non-default SA account name</OrganizationValueTestString>
+      <QueryId>a7b52c00-d683-4780-953f-9717cfb3ca59</QueryId>
       <RawString>Verify the SQL Server default [sa] (system administrator) account name has been changed by executing the following query: 
 
 USE master; 

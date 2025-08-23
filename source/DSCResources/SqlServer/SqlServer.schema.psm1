@@ -21,6 +21,8 @@ using module ..\..\PowerStig.psm1
     .PARAMETER Database
         The Name of the database that you would like to be applied to. This parameter is only used
         for the SQL Database STIG.
+    .PARAMETER Encrypt
+        The Encrypt parameter is used to specify if the connection to the SQL instance should be encrypted.
     .PARAMETER Exception
         A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
         the target node. The title of STIG settings are tagged with the text 'Exception' to identify
@@ -37,6 +39,9 @@ using module ..\..\PowerStig.psm1
     .PARAMETER SkipRuleType
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
+    .NOTES
+        Encrypt parameter does not fully support strict mode yet. This is due to a limitation in the SqlServerDsc module
+        as of version 17.1.0.
 #>
 configuration SqlServer
 {
@@ -65,6 +70,11 @@ configuration SqlServer
         [ValidateNotNullOrEmpty()]
         [string[]]
         $Database,
+
+        [Parameter()]
+        [ValidateSet('Strict', 'Optional', 'Mandatory')]
+        [string]
+        $Encrypt = 'Optional',
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
@@ -97,7 +107,7 @@ configuration SqlServer
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType, $SkipRuleSeverity)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 15.1.1
+    Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 17.1.0
     . "$resourcePath\SqlServer.ScriptQuery.ps1"
     . "$resourcePath\SqlServer.SqlLogin.ps1"
     . "$resourcePath\SqlServer.SqlProtocol.ps1"

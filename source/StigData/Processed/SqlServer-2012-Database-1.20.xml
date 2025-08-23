@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_Database_2012" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Database_STIG_V1R20_Manual-xccdf.xml" releaseinfo="Release: 20 Benchmark Date: 16 Jan 2020" title="Microsoft SQL Server Database 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.20" created="8/12/2021">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_Database_2012" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Database_STIG_V1R20_Manual-xccdf.xml" releaseinfo="Release: 20 Benchmark Date: 16 Jan 2020" title="Microsoft SQL Server Database 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.20" created="8/23/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-41389" severity="medium" conversionstatus="pass" title="SRG-APP-000006-DB-000183" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Security attributes are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.
@@ -795,6 +795,7 @@ The DBMS must provide auditing for the list of events defined by the organizatio
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>997c034d-5f51-43ee-a4ab-15abc3230d2f</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -839,6 +840,7 @@ Within the database, object ownership implies full privileges to the owned objec
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is a database owner</OrganizationValueTestString>
+      <QueryId>1a675b3e-cafe-487f-9e87-153bd8e44abf</QueryId>
       <RawString>Review system documentation to identify SQL Server accounts authorized to own database objects.
 
 If the SQL Server database ownership list does not exist or needs to be updated, this is a finding.

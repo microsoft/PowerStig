@@ -47,6 +47,7 @@ class SqlScriptQueryRuleConvert : SqlScriptQueryRule
         $this.SetTestScript($ruleType)
         $this.SetSetScript($ruleType, $fixText)
         $this.SetVariable($ruleType)
+        $this.SetQueryId($ruleType)
         if ($null -ne $this.Variable)
         {
             $this.SetOrganizationValueTestString($ruleType)
@@ -141,6 +142,24 @@ class SqlScriptQueryRuleConvert : SqlScriptQueryRule
         }
     }
 
+    <#
+        .SYNOPSIS
+            Creates a unique ID for the SqlScriptQuery resource.
+        .DESCRIPTION
+            Gets the id string to be used in the SqlScriptQuery resource
+        .PARAMETER RuleType
+            The type of rule to get the variable string for.
+    #>
+    [void] SetQueryId ([string] $RuleType)
+    {
+        $thisId = Get-SqlScriptQueryId -CheckContent $this.SplitCheckContent
+
+        if (-not $this.SetStatus($thisId))
+        {
+            $this.set_QueryId($thisId)
+        }
+    }
+    
     <#
         .SYNOPSIS
             Extracts the rule type from the check-content and sets the value
