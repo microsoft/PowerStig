@@ -1,6 +1,7 @@
 # Versions
 
 ## [Unreleased]
+* Upgrade SqlServerDsc from 15.1.1 to 17.1.0 [#1476](https://github.com/microsoft/PowerStig/issues/1476)
 
 ## [4.26.0] - 2025-05-28
 
