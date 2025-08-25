@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Oracle_Linux_8_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_OracleLinux_8_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="Oracle Linux 8 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="5/27/2025">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="OracleLinux_8_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_OracleLinux_8_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="Oracle Linux 8 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="6/26/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-248606" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2241,7 +2241,95 @@ To address access requirements, many OL 8 operating systems may be integrated wi
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that temporary accounts have been provisioned with an expiration date of 72 hours. 
+      <RawString>Verify that temporary accounts have been provisioned with an expiration date of 72 hoursVerify that temporary accounts have been provisioned with an expiration date of 72 hours. 
+ 
+For every existing temporary account, run the following command to obtain its account expiration information. 
+ 
+$ sudo chage -l system_account_name 
+ 
+Verify each of these accounts has an expiration date set within 72 hours. 
+ 
+If any temporary accounts have no expiration date set or do not expire within 72 hours, this is a finding. 
+ 
+For every existing temporary account, run the following command to obtain its account expiration informationVerify that temporary accounts have been provisioned with an expiration date of 72 hours. 
+ 
+For every existing temporary account, run the following command to obtain its account expiration information. 
+ 
+$ sudo chage -l system_account_name 
+ 
+Verify each of these accounts has an expiration date set within 72 hours. 
+ 
+If any temporary accounts have no expiration date set or do not expire within 72 hours, this is a finding. 
+ 
+$ sudo chage -l system_account_name 
+ 
+Verify each of these accounts has an expiration date set within 72 hoursVerify that temporary accounts have been provisioned with an expiration date of 72 hours. 
+ 
+For every existing temporary account, run the following command to obtain its account expiration information. 
+ 
+$ sudo chage -l system_account_name 
+ 
+Verify each of these accounts has an expiration date set within 72 hours. 
+ 
+If any temporary accounts have no expiration date set or do not expire within 72 hours, this is a finding. 
+ 
+If any temporary accounts have no expiration date set or do not expire within 72 hours, this is a findingVerify that temporary accounts have been provisioned with an expiration date of 72 hours. 
+ 
+For every existing temporary account, run the following command to obtain its account expiration information. 
+ 
+$ sudo chage -l system_account_name 
+ 
+Verify each of these accounts has an expiration date set within 72 hours. 
+ 
+If any temporary accounts have no expiration date set or do not expire within 72 hours, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-248651" severity="medium" conversionstatus="pass" title="SRG-OS-000002-GPOS-00002" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;If temporary user accounts remain active when no longer needed or for an excessive period, these accounts may be used to gain unauthorized access. To mitigate this risk, automated termination of all temporary accounts must be set upon account creation. 
+ 
+Temporary accounts are established as part of normal account activation procedures when there is a need for short-term accounts without the demand for immediacy in account activation. 
+ 
+If temporary accounts are used, OL 8 must be configured to automatically terminate these types of accounts after a DoD-defined time period of 72 hours. 
+ 
+To address access requirements, many OL 8 operating systems may be integrated with enterprise-level authentication/access mechanisms that meet or exceed access control policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that temporary accounts have been provisioned with an expiration date of 72 hoursVerify that temporary accounts have been provisioned with an expiration date of 72 hours. 
+ 
+For every existing temporary account, run the following command to obtain its account expiration information. 
+ 
+$ sudo chage -l system_account_name 
+ 
+Verify each of these accounts has an expiration date set within 72 hours. 
+ 
+If any temporary accounts have no expiration date set or do not expire within 72 hours, this is a finding. 
+ 
+For every existing temporary account, run the following command to obtain its account expiration informationVerify that temporary accounts have been provisioned with an expiration date of 72 hours. 
+ 
+For every existing temporary account, run the following command to obtain its account expiration information. 
+ 
+$ sudo chage -l system_account_name 
+ 
+Verify each of these accounts has an expiration date set within 72 hours. 
+ 
+If any temporary accounts have no expiration date set or do not expire within 72 hours, this is a finding. 
+ 
+$ sudo chage -l system_account_name 
+ 
+Verify each of these accounts has an expiration date set within 72 hoursVerify that temporary accounts have been provisioned with an expiration date of 72 hours. 
+ 
+For every existing temporary account, run the following command to obtain its account expiration information. 
+ 
+$ sudo chage -l system_account_name 
+ 
+Verify each of these accounts has an expiration date set within 72 hours. 
+ 
+If any temporary accounts have no expiration date set or do not expire within 72 hours, this is a finding. 
+ 
+If any temporary accounts have no expiration date set or do not expire within 72 hours, this is a findingVerify that temporary accounts have been provisioned with an expiration date of 72 hours. 
  
 For every existing temporary account, run the following command to obtain its account expiration information. 
  
@@ -2277,7 +2365,7 @@ auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 
 auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0 
 account required pam_faillock.so 
  
-If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, this is a finding. 
+If the "fail_interval" option is not set to "900" or more on the "preauth" lines with the "pam_faillock.so" module or is missing from this line, or. 
  
 $ sudo grep pam_faillock.so /etc/pam.d/system-auth 
  
@@ -2313,7 +2401,7 @@ auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 
 auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0 
 account required pam_faillock.so 
  
-If the "unlock_time" option is not set to "0" on the "preauth" and "authfail" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding. 
+If the "unlock_time" option is not set to "0" on the "preauth" and "authfail" lines with the "pam_faillock.so" module or is missing from these lines, or. 
  
 $ sudo grep pam_faillock.so /etc/pam.d/system-auth 
  
@@ -2349,7 +2437,7 @@ auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 
 auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0 
 account required pam_faillock.so 
  
-If the "dir" option is not set to a non-default documented tally log directory on the "preauth" and "authfail" lines with the "pam_faillock.so" module or is missing from these lines, this is a finding. 
+If the "dir" option is not set to a non-default documented tally log directory on the "preauth" and "authfail" lines with the "pam_faillock.so" module or is missing from these lines, or. 
  
 $ sudo grep pam_faillock.so /etc/pam.d/system-auth 
  
@@ -2385,7 +2473,7 @@ auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 
 auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0 
 account required pam_faillock.so 
  
-If the "silent" option is missing from the "preauth" line with the "pam_faillock.so" module, this is a finding. 
+If the "silent" option is missing from the "preauth" line with the "pam_faillock.so" module, or. 
  
 $ sudo grep pam_faillock.so /etc/pam.d/system-auth 
  
@@ -2421,7 +2509,7 @@ auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 
 auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0 
 account required pam_faillock.so 
  
-If the "audit" option is missing from the "preauth" line with the "pam_faillock.so" module, this is a finding. 
+If the "audit" option is missing from the "preauth" line with the "pam_faillock.so" module, or. 
  
 $ sudo grep pam_faillock.so /etc/pam.d/system-auth 
  
@@ -2457,7 +2545,7 @@ auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 
 auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0 
 account required pam_faillock.so 
  
-If the "even_deny_root" option is missing from the "preauth" line with the "pam_faillock.so" module, this is a finding. 
+If the "even_deny_root" option is missing from the "preauth" line with the "pam_faillock.so" module, or. 
  
 $ sudo grep pam_faillock.so /etc/pam.d/system-auth 
  
@@ -6169,11 +6257,11 @@ ENCRYPT_METHOD SHA512
 If "ENCRYPT_METHOD" does not equal SHA512 or greater, this is a finding.</RawString>
     </Rule>
     <Rule id="V-248535" severity="medium" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="nxFileLine">
-      <ContainsLine>If only one of "SHA_CRYPT_MIN_ROUNDS" or "SHA_CRYPT_MAX_ROUNDS" is set, and this value is below "100000", this is a finding.</ContainsLine>
+      <ContainsLine>If only one of "SHA_CRYPT_MIN_ROUNDS" or "SHA_CRYPT_MAX_ROUNDS" is set, and this value is below "100000", or.</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;The system must use a strong hashing algorithm to store the password. The system must use a sufficient number of hashing rounds to ensure the required level of entropy. 
  
 Passwords need to be protected at all times, and encryption is the standard method for protecting passwords. If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>#\s*If\s*only\s*one\s*of\s*"SHA_CRYPT_MIN_ROUNDS"\s*or\s*"SHA_CRYPT_MAX_ROUNDS"\s*is\s*set,\s*and\s*this\s*value\s*is\s*below\s*"100000",\s*this\s*is\s*a\s*finding.</DoesNotContainPattern>
+      <DoesNotContainPattern>#\s*If\s*only\s*one\s*of\s*"SHA_CRYPT_MIN_ROUNDS"\s*or\s*"SHA_CRYPT_MAX_ROUNDS"\s*is\s*set,\s*and\s*this\s*value\s*is\s*below\s*"100000",\s*or.</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/login.defs</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6185,7 +6273,7 @@ Passwords need to be protected at all times, and encryption is the standard meth
 
      $ sudo grep -E "^SHA_CRYPT_" /etc/login.defs
 
-If only one of "SHA_CRYPT_MIN_ROUNDS" or "SHA_CRYPT_MAX_ROUNDS" is set, and this value is below "100000", this is a finding.
+If only one of "SHA_CRYPT_MIN_ROUNDS" or "SHA_CRYPT_MAX_ROUNDS" is set, and this value is below "100000", or.
 
 If both "SHA_CRYPT_MIN_ROUNDS" and "SHA_CRYPT_MAX_ROUNDS" are set, and the value for either is below "100000", this is a finding.</RawString>
     </Rule>
@@ -6921,177 +7009,6 @@ $ sudo grep -i automaticloginenable /etc/gdm/custom.conf
 AutomaticLoginEnable=false 
  
 If the value of "AutomaticLoginEnable" is not set to "false", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-248652.a" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/password-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." </OrganizationValueTestString>
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/password-auth
-auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 even_deny_root fail_interval=900 unlock_time=0
-If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding.
-If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
-If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248652.b" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/password-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." </OrganizationValueTestString>
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/password-auth
-auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0
-If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding.
-If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
-If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248652.c" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/password-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." </OrganizationValueTestString>
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/password-auth
-account required pam_faillock.so
-If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding.
-If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
-If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248652.d" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." </OrganizationValueTestString>
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/system-auth
-auth required pam_faillock.so preauth dir=/var/log/faillock silent audit deny=3 even_deny_root fail_interval=900 unlock_time=0
-If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding.
-If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248652.e" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." </OrganizationValueTestString>
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/system-auth
-auth required pam_faillock.so authfail dir=/var/log/faillock unlock_time=0
-If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding.
-If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-248652.f" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account. 
- 
-OL 8 can use the "pam_faillock.so" for this purpose. Note that manual changes to the listed files may be overwritten by the "authselect" program. 
- 
-From "Pam_Faillock" man pages: Note that the default directory that "pam_faillock" uses is usually cleared on system boot so the access will be reenabled after system reboot. If that is undesirable, a different tally directory must be set with the "dir" option.
-
-Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern>
-      </DoesNotContainPattern>
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/system-auth</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding." </OrganizationValueTestString>
-      <RawString>Verify the system locks an account after three unsuccessful logon attempts with the following commands.
-Note: If the System Administrator demonstrates the use of an approved centralized account management method that locks an account after three unsuccessful logon attempts within a period of 15 minutes, this requirement is not applicable.
-Note: This check applies to OL versions 8.0 and 8.1. If the system is OL version 8.2 or newer, this check is not applicable.
-$ sudo grep pam_faillock.so /etc/pam.d/system-auth
-account required pam_faillock.so
-If the "deny" option is not set to "3" or less (but not "0") on the "preauth" line with the "pam_faillock.so" module or is missing from this line, this is a finding.
-If any line referencing the "pam_faillock.so" module is commented out, this is a finding.
-</RawString>
     </Rule>
     <Rule id="V-248653" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="nxFileLine">
       <ContainsLine>
