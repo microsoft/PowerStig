@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 25 Oct 2023 3.4.1.22916 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.9" created="11/20/2023">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R12_Manual-xccdf.xml" releaseinfo="Release: 12 Benchmark Date: 02 Jul 2025 3.5 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.12" created="8/26/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218744" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.
@@ -144,7 +144,9 @@ The ISSM will ensure web servers are configured to use only authorized PPS in ac
       <LegacyId>V-100253</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the website to determine if HTTP and HTTPs (e.g., 80 and 443) are used in accordance with those ports and services registered and approved for use by the DoD PPSM. Any variation in PPS will be documented, registered, and approved by the PPSM.
+      <RawString>Note: If the server is providing OCSP, and not otherwise hosting any content, this requirement is not applicable.
+
+Review the website to determine if HTTP and HTTPs (e.g., 80 and 443) are used in accordance with those ports and services registered and approved for use by the DOD PPSM. Any variation in PPS will be documented, registered, and approved by the PPSM.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
@@ -174,7 +176,9 @@ Satisfies: SRG-APP-000092-WSR-000055, SRG-APP-000108-WSR-000166&lt;/VulnDiscussi
       <LogTargetW3C>File,ETW</LogTargetW3C>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If this server is hosting WSUS, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
 
@@ -214,7 +218,9 @@ Without sufficient information establishing the success or failure of the logged
       <LogTargetW3C />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If this server is hosting WSUS, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Select the website being reviewed.
 
@@ -257,7 +263,9 @@ Log record content that may be necessary to satisfy the requirement of this cont
       <LogTargetW3C />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If this server is hosting WSUS, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Access the IIS 10.0 web server IIS 10.0 Manager.
 
@@ -369,7 +377,11 @@ If the IUSR account or any account noted above used for anonymous access is a me
       <LegacyId>V-100225</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If this server is hosting WSUS, this requirement is not applicable.
+Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is not applicable.
+Note: If this server is hosting the SharePoint Web Services site, this requirement is not applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
 
@@ -379,18 +391,19 @@ Click the "Advanced Settings" from the "Actions" pane.
 
 Review the Physical Path.
 
-If the Path is on the same partition as the OS, this is a finding.
-
-Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.</RawString>
+If the Path is on the same partition as the OS, this is a finding.</RawString>
     </Rule>
     <Rule id="V-218767" severity="medium" conversionstatus="pass" title="SRG-APP-000427-WSR-000186" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The use of a DoD PKI certificate ensures clients the private website they are connecting to is legitimate, and is an essential part of the DoD defense-in-depth strategy.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;The use of a DOD PKI certificate ensures clients the private website they are connecting to is legitimate, and is an essential part of the DOD defense-in-depth strategy.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-100255</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If the server being reviewed is hosting WSUS, this is not applicable.
+Note: If the server is providing OCSP, and not otherwise hosting any content, this requirement is not applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
 
@@ -404,7 +417,7 @@ Click "Edit".
 
 Click "View" and then review and verify the certificate path.
 
-If the list of CAs in the trust hierarchy does not lead to the DoD PKI Root CA, DoD-approved external certificate authority (ECA), or DoD-approved external partner, this is a finding.
+If the list of CAs in the trust hierarchy does not lead to the DOD PKI Root CA, DOD-approved external certificate authority (ECA), or DOD-approved external partner, this is a finding.
 
 If HTTPS is not an available type under site bindings, this is a finding.
 
@@ -446,7 +459,9 @@ Right-click the IIS 10.0 web site name and select "Explore".
 
 Search for the listed script extensions. Each script type must be in its unique designated folder.
 
-If scripts are not segregated from web content and in their own unique folders, this is a finding.</RawString>
+If scripts are not segregated from web content and in their own unique folders, this is a finding.
+
+If the website does not utilize CGI, this finding is Not Applicable.</RawString>
     </Rule>
     <Rule id="V-218780" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000087" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;CGI is a programming standard for interfacing external applications with information servers, such as HTTP or web servers. CGI, represented by all upper case letters, should not be confused with the .cgi file extension. The .cgi file extension does represent a CGI script, but CGI scripts may be written in a number of programming languages (e.g., PERL, C, PHP, and JavaScript), each having their own unique file extension.
@@ -490,9 +505,7 @@ If the permissions are less restrictive than listed above, this is a finding.</R
       <LegacyId>V-100283</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Determine whether scripts are used on the web server for the subject website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, .asp, and .aspx. The scope of this requirement is to analyze only within the web server content directories, not the entire underlying operating system.
-
-If the website does not utilize CGI, this finding is Not Applicable.
+      <RawString>If the website does not utilize CGI, this finding is Not Applicable.
 
 Open the IIS 10.0 Manager.
 
@@ -511,7 +524,8 @@ If files with these extensions are found, this is a finding.</RawString>
       <LegacyId>V-100285</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: This requirement is only applicable for private DoD websites.
+      <RawString>Note: This requirement is only applicable for private DOD websites.
+Note: If the server being reviewed is hosting WSUS, this is not applicable.
 
 If a banner is required, the following banner page must be in place: 
 
@@ -555,13 +569,15 @@ A shell is a program that serves as the basic interface between the user and the
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 Open the IIS 10.0 Manager.
 Click on the IIS 10.0 site.
 Under IIS, double-click the “MIME Types” icon.
 From the "Group by:" drop-down list, select "Content Type".
 From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
 If any OS shell MIME types are configured, this is a finding.
+Note:  For a WSUS deployment, .exe extensions may remain.
 .exe</RawString>
     </Rule>
     <Rule id="V-218743.b" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
@@ -578,13 +594,15 @@ A shell is a program that serves as the basic interface between the user and the
       <MimeType>application/x-msdownload</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 Open the IIS 10.0 Manager.
 Click on the IIS 10.0 site.
 Under IIS, double-click the “MIME Types” icon.
 From the "Group by:" drop-down list, select "Content Type".
 From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
 If any OS shell MIME types are configured, this is a finding.
+Note:  For a WSUS deployment, .exe extensions may remain.
 .dll</RawString>
     </Rule>
     <Rule id="V-218743.c" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
@@ -601,13 +619,15 @@ A shell is a program that serves as the basic interface between the user and the
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 Open the IIS 10.0 Manager.
 Click on the IIS 10.0 site.
 Under IIS, double-click the “MIME Types” icon.
 From the "Group by:" drop-down list, select "Content Type".
 From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
 If any OS shell MIME types are configured, this is a finding.
+Note:  For a WSUS deployment, .exe extensions may remain.
 .com</RawString>
     </Rule>
     <Rule id="V-218743.d" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
@@ -624,13 +644,15 @@ A shell is a program that serves as the basic interface between the user and the
       <MimeType>application/x-bat</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 Open the IIS 10.0 Manager.
 Click on the IIS 10.0 site.
 Under IIS, double-click the “MIME Types” icon.
 From the "Group by:" drop-down list, select "Content Type".
 From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
 If any OS shell MIME types are configured, this is a finding.
+Note:  For a WSUS deployment, .exe extensions may remain.
 .bat</RawString>
     </Rule>
     <Rule id="V-218743.e" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
@@ -647,13 +669,15 @@ A shell is a program that serves as the basic interface between the user and the
       <MimeType>application/x-csh</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 Open the IIS 10.0 Manager.
 Click on the IIS 10.0 site.
 Under IIS, double-click the “MIME Types” icon.
 From the "Group by:" drop-down list, select "Content Type".
 From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
 If any OS shell MIME types are configured, this is a finding.
+Note:  For a WSUS deployment, .exe extensions may remain.
 .csh</RawString>
     </Rule>
   </MimeTypeRule>
@@ -670,7 +694,7 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <RawString>Note: If the server being reviewed is a public IIS 10.0 web server, this is Not Applicable.
 Note: If the server is hosting SharePoint, this is Not Applicable.
 Note: If the server is hosting WSUS, this is Not Applicable.
-Note: If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 10.0 server, and the IIS 10.0 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server.
+Note: If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 10.0 server, and the IIS 10.0 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server and is Not Applicable in this STIG.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
@@ -695,6 +719,8 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
 Note: If the server being reviewed is a public IIS 10.0 web server not requiring authentication, this is Not Applicable.
 Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
 Note: If the server being reviewed is hosting WSUS, this is Not Applicable.
+Note: If the server being reviewed is hosting Simple Certificate Enrollment Services (SCEP), this is Not Applicable.
+Note: If the server being reviewed is hosting Network Device Enrollment Services (NDES), this is Not Applicable.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
@@ -718,10 +744,13 @@ Satisfies: SRG-APP-000172-WSR-000104, SRG-APP-000224-WSR-000135, SRG-APP-000427-
       <LegacyId>V-100219</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: If the server being reviewed is a public IIS 10.0 web server, this is Not Applicable.
-Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
-Note: If the server being reviewed is hosting WSUS, this is Not Applicable.
-Note: If certificate handling is performed at the Proxy/Load Balancer, this is Not Applicable.
+      <RawString>Note: If the server being reviewed is a public IIS 10.0 web server, this is not applicable.
+Note: If the server being reviewed is hosting SharePoint, this is not applicable.
+Note: If the server being reviewed is hosting WSUS, this is not applicable.
+Note: If certificate handling is performed at the Proxy/Load Balancer, this is not applicable.
+Note: If the server being reviewed is hosting Simple Certificate Enrollment Services (SCEP), this is not applicable.
+Note: If the server being reviewed is hosting Network Device Enrollment Services (NDES), this is not applicable.
+Note: If the server is providing OCSP, and not otherwise hosting any content, this requirement is not applicable.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
@@ -734,7 +763,7 @@ Verify the "Clients Certificate Required" check box is selected.
 If the "Clients Certificate Required" check box is not selected, this is a finding.</RawString>
       <Value>SslRequireCert</Value>
     </Rule>
-    <Rule id="V-218768" severity="medium" conversionstatus="pass" title="SRG-APP-000429-WSR-000113" dscresource="xSslSettings">
+    <Rule id="V-218768" severity="high" conversionstatus="pass" title="SRG-APP-000429-WSR-000113" dscresource="xSslSettings">
       <Description>&lt;VulnDiscussion&gt;TLS encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
 NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -743,10 +772,13 @@ NIST SP 800-52 specifies the preferred configurations for government systems.&lt
       <LegacyId>V-100257</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 10.0 server, and the IIS 10.0 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server. In this case, this requirement is Not Applicable.
-Note: If this is a public-facing web server, this requirement is Not Applicable.
-Note: If this server is hosting WSUS, this requirement is Not Applicable.
-Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+      <RawString>Note: If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 10.0 server, and the IIS 10.0 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server. In this case, this requirement is not applicable.
+Note: If this is a public-facing web server, this requirement is not applicable.
+Note: If this server is hosting WSUS, this requirement is not applicable.
+Note: If the server being reviewed is hosting SharePoint, this is not applicable.
+Note: If the server being reviewed is hosting Simple Certificate Enrollment Services (SCEP), this is not applicable.
+Note: If the server being reviewed is hosting Network Device Enrollment Services (NDES), this is not applicable.
+Note: If the server is providing OCSP, and not otherwise hosting any content, this requirement is not applicable.
 
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
@@ -807,8 +839,8 @@ If the "Idle Time-out" is set to "0", this is a finding.</RawString>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -ne 0</OrganizationValueTestString>
       <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
-
-If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+Note: If this server is hosting WSUS, this requirement is Not Applicable.
+Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
 
 Open the IIS 10.0 Manager.
 
@@ -836,6 +868,7 @@ If the system must require "Request Limit" to be set to "0", it is documented an
       <OrganizationValueTestString>'{0}' 'Value must contain Time and Schedule but can contain Requests, Memory, IsapiUnhealthy, OnDemand, ConfigChange, PrivateMemory'</OrganizationValueTestString>
       <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
 Note: If the IIS Application Pool is hosting Microsoft Exchange and not otherwise hosting any content, this is Not Applicable.
+Note: If this server is hosting WSUS, this requirement is Not Applicable.
 
 Open the IIS 10.0 Manager.
 
@@ -925,7 +958,9 @@ ASP.NET provides a session state, which is available as the HttpSessionState cla
       <LegacyId>V-100191</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If ASP.NET is not installed, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
 
@@ -967,7 +1002,9 @@ When using the URI mode for cookie settings under session state, IIS will reject
       <LegacyId>V-100193</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If ASP.NET is not installed, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 Open the IIS 10.0 Manager.
 Click the site name.
 Under the "ASP.NET" section, select "Session State".
@@ -996,7 +1033,9 @@ The session ID generator must be a FIPS 140-2-approved generator.&lt;/VulnDiscus
       <LegacyId>V-100223</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If ASP.NET is not installed, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
 
@@ -1151,6 +1190,8 @@ If the "Allow double escaping" check box is checked, this is a finding.</RawStri
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
 
+Note: If the server being reviewed is hosting Network Device Enrollment Services (NDES), this is Not Applicable.
+
 Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
@@ -1201,7 +1242,9 @@ If "Directory Browsing" is not "Disabled", this is a finding.</RawString>
       <LegacyId>V-100241</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+      <RawString>Note: If this server is hosting WSUS, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
 
 Open the IIS 10.0 Manager.
 
@@ -1323,27 +1366,4 @@ Verify the "compressionEnabled" is set to "False".</RawString>
       <Value>False</Value>
     </Rule>
   </WebConfigurationPropertyRule>
-  <WindowsFeatureRule dscresourcemodule="PSDscResources">
-    <Rule id="V-218746" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000085" dscresource="WindowsFeature">
-      <Description>&lt;VulnDiscussion&gt;A web server can be installed with functionality that by its nature is not secure. Web Distributed Authoring (WebDAV) is an extension to the HTTP protocol that, when developed, was meant to allow users to create, change, and move documents on a server, typically a web server or web share. Allowing this functionality, development, and deployment is much easier for web authors.
-
-WebDAV is not widely used and has serious security concerns because it may allow clients to modify unauthorized files on the web server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Absent</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100213</LegacyId>
-      <Name>Web-DAV-Publishing</Name>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 10.0 web server:
-
-Open the IIS 10.0 Manager.
-
-Select the IIS 10.0 website.
-
-Review the features listed under the "IIS" section.
-
-If the "WebDAV Authoring Rules" icon exists, this is a finding.</RawString>
-    </Rule>
-  </WindowsFeatureRule>
 </DISASTIG>
