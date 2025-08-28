@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse/apply Microsoft SQL Server 2016 STIG - Ver 3, Rel 5 [#1489](https://github.com/microsoft/PowerStig/issues/1489)
+
 ## [4.26.0] - 2025-05-28
 
 * Update Powerstig to parse/apply Microsoft DotNet Framework 4.0 STIG - Ver 2, Rel 6 [#1444](https://github.com/microsoft/PowerStig/issues/1444)
