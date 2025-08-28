@@ -2595,7 +2595,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Admin
 
 Verify LAPS Operational logs &gt;&gt; Event Viewer &gt;&gt; Applications and Services Logs &gt;&gt; Microsoft &gt;&gt; Windows &gt;&gt; LAPS &gt;&gt; Operational. Verify LAPS policy process is completing. If it is not, this is a finding.
 
-If the server is not a member of a domain this not applicable.</check-content>
+If the server is not a member of a domain this is not applicable.</check-content>
       </check>
     </Rule>
   </Group>
