@@ -2,7 +2,14 @@
 
 ## [Unreleased]
 
+## [4.27.0] - 2025-09-05
+
 * Update Powerstig to parse/apply Microsoft IIS 10.0 STIG - Ver 25, Rel 07 [#1485](https://github.com/microsoft/PowerStig/issues/1485)
+* Update Powerstig to parse/apply Microsoft Windows 11 STIG - Ver 2, Rel 4 [#1487](https://github.com/microsoft/PowerStig/issues/1487)
+* Update Powerstig to parse/apply Microsoft SQL Server 2016 STIG - Ver 3, Rel 5 [#1489](https://github.com/microsoft/PowerStig/issues/1489)
+* Update Powerstig to parse/apply Microsoft SQL Server 2022 STIG - Ver 1, Rel 1 [#1491](https://github.com/microsoft/PowerStig/issues/1491)
+* Update Powerstig to parse/apply Microsoft Windows Server 2019 STIG - Ver 3, Rel 5 [#1493](https://github.com/microsoft/PowerStig/issues/1493)
+* Update Powerstig to parse/apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 5 [#1495](https://github.com/microsoft/PowerStig/issues/1495)
 
 ## [4.26.0] - 2025-05-28
 

@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 30 Jan 2025 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.3" created="2/6/2025">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 02 Jul 2025 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.5" created="8/28/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful denial-of-service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions is helpful in reducing these risks.
@@ -761,20 +761,19 @@ If any nonauthorized users have access to the SQL Server Error Log located at Pr
 
 In addition, the SQL Server Error Log is also located at Program Files\Microsoft SQL Server\MSSQL.n\MSSQL\LOG\. Review the permissions on this folder to ensure that only authorized users are listed.  
 
-If any nonauthorized users have access to the SQL Server Error Log in SQL Server Management Studio, this is a finding.
-
-If vendor documentation does not exist stating that full error messages must be returned, this is a finding.
+If any nonauthorized users have access to the SQL Server Error Log in SQL Server Management Studio or if documentation does not exist stating that full error messages must be returned, this is a finding.
 
 Otherwise, verify if trace flag 3625 is enabled to mask certain system-level error information returned to nonadministrative users. 
  
-Launch SQL Server Configuration Manager &gt;&gt; select SQL Server Services &gt;&gt; select the SQL Server &gt;&gt; right-click and select Properties &gt;&gt; select Startup Parameters tab &gt;&gt; verify -T3625 exists in the dialogue window.
+Launch SQL Server Configuration Manager: 
+Select SQL Server Services &gt;&gt; SQL Server. Select the SQL Server, then right-click and select "Properties". Select "Startup Parameters" tab and verify -T3625 exists in the dialogue window.
 
 OR
 
 Run the query:
 DBCC TRACESTATUS;
 
-If TraceFlag 3625 does not return with Status = 1, this is a finding.</RawString>
+If TraceFlag 3625 does not return with Status = 1 and if documentation does not exist stating that full error messages must be returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213979" severity="medium" conversionstatus="pass" title="SRG-APP-000340-DB-000304" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Preventing non-privileged users from executing privileged functions mitigates the risk that unauthorized individuals or processes may gain unnecessary access to information or privileges.  
@@ -2757,7 +2756,7 @@ Review SQL Server to ensure logons are created with respect to the complexity se
 SELECT [name], is_expiration_checked, is_policy_checked
 FROM sys.sql_logins
 
-Review any accounts returned by the query other than the disabled SA account, ##MS_PolicyTsqlExecutionLogin##, and ##MS_PolicyEventProcessingLogin##.
+Review any accounts returned by the query other than the disabled SA account, ##MS_PolicyTsqlExecutionLogin##, ##MS_PolicyEventProcessingLogin##, ##MS_SSISServerCleanupJobLogin##, and other internal accounts that start with ##MS.
 
 If any account does not have both "is_expiration_checked" and "is_policy_checked" equal to “1”, this is a finding.
 
