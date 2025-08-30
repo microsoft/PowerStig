@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 24 Jan 2024 3.4.1.22916 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.9" created="2/6/2024">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Google_Chrome_Current_Windows" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_Google_Chrome_STIG_V2R11_Manual-xccdf.xml" releaseinfo="Release: 11 Benchmark Date: 02 Jul 2025 3.5 1.10.0" title="Google Chrome Current Windows Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.11" created="8/25/2025">
   <ManualRule dscresourcemodule="None">
     <Rule id="V-221584" severity="medium" conversionstatus="pass" title="SRG-APP-000456" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Google Chrome is being continually updated by the vendor in order to address identified security vulnerabilities. Running an older version of the browser can introduce security vulnerabilities to the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -107,7 +107,7 @@ Windows method:
       <ValueName>1</ValueName>
       <ValueType>MultiString</ValueType>
     </Rule>
-    <Rule id="V-221563" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+    <Rule id="V-221563" severity="low" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The allowlist should only contain organizationally approved extensions. This is to prevent a user from accidently allowlisitng a malicious extension. This policy allows you to specify which extensions are not subject to the blacklist. A blacklist value of ‘*’ means all extensions are blacklisted and users can only install extensions listed in the allowlist. By default, no extensions are allowlisted. If all extensions have been blacklisted by policy, then the allowlist policy can be used to allow specific extensions to be installed. Administrators should determine which extensions should be allowed to be installed by their users. If no extensions are allowlisted, then no extensions can be installed when combined with blacklisting all extensions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -531,13 +531,18 @@ Windows method:
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221588" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Configure the type of downloads that Google Chrome will completely block, without letting users override the security decision. If you set this policy, Google Chrome will prevent certain types of downloads, and will not let user bypass the security warnings. When the "Block dangerous downloads" option is chosen, all downloads are allowed, except for those that carry SafeBrowsing warnings. When the "Block potentially dangerous downloads" option is chosen, all downloads allowed, except for those that carry SafeBrowsing warnings of potentially dangerous downloads. When the "Block all downloads" option is chosen, all downloads are blocked.  When this policy is not set, (or the "No special restrictions" option is chosen), the downloads will go through the usual security restrictions based on SafeBrowsing analysis results.
+      <Description>&lt;VulnDiscussion&gt;Setting the policy means users cannot bypass download security decisions. There are many types of download warnings within Chrome, which roughly break down into these categories:
+- Malicious, as flagged by the Safe Browsing server.
+- Uncommon or unwanted, as flagged by the Safe Browsing server.
+- A dangerous file type (e.g., all SWF downloads and many EXE downloads).
 
-Note that these restrictions apply to downloads triggered from web page content, as well as the 'download link...' context menu option. These restrictions do not apply to the save / download of the currently displayed page, nor does it apply to saving as PDF from the printing options. See https://developers.google.com/safe-browsing for more info on SafeBrowsing. 
-0 = No special restrictions
-1 = Block dangerous downloads
-2 = Block potentially dangerous downloads
-3 = Block all downloads&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Setting the policy blocks different subsets of these, depending on its value:
+
+0 = No special restrictions. Default.
+1 = Block malicious downloads and dangerous file types.
+2 = Block malicious downloads, uncommon or unwanted downloads, and dangerous file types.
+3 = Block all downloads.
+4 = Block malicious downloads. Recommended.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -545,15 +550,16 @@ Note that these restrictions apply to downloads triggered from web page content,
       <LegacyId>V-79931</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -eq '1|2'</OrganizationValueTestString>
-      <RawString>If the system is on the SIPRNet, this requirement is NA.
+      <RawString>If the system is on the SIPRNet, this requirement is Not Applicable.
+
 Universal method:
-1. In the omnibox (address bar) type chrome:// policy
-2. If "DownloadRestrictions" is not displayed under the "Policy Name" column or it is not set to "1" or "2" under the "Policy Value" column, then this is a finding.
+1. In the omnibox (address bar) type "chrome:// policy".
+2. If "DownloadRestrictions" is not displayed under the "Policy Name" column or it is set to "0", this is a finding.
 
 Windows method:
-1. Start regedit
-2. Navigate to HKLM\Software\Policies\Google\Chrome\
-3. If the "DownloadRestrictions" value name does not exist or its value data is not set to "1" or "2", then this is a finding.</RawString>
+1. Start "regedit".
+2. Navigate to "HKLM\Software\Policies\Google\Chrome\".
+3. If the "DownloadRestrictions" value name does not exist or its value data is set to "0", this is a finding.</RawString>
       <ValueData />
       <ValueName>DownloadRestrictions</ValueName>
       <ValueType>Dword</ValueType>
@@ -603,51 +609,6 @@ Windows method:
  3. If the "DefaultWebUsbGuardSetting" value name does not exist or its value data is not set to "2", this is a finding.</RawString>
       <ValueData>2</ValueData>
       <ValueName>DefaultWebUsbGuardSetting</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-221592" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;If set to "False", prevents Chrome Cleanup from scanning the system for unwanted software and performing cleanups. Manually triggering Chrome Cleanup from chrome://settings/cleanup is disabled.
-If set to "True" or unset, Chrome Cleanup periodically scans the system for unwanted software and should any be found, will ask the user if they wish to remove it. Manually triggering Chrome Cleanup from chrome://settings is enabled.
-This policy is available only on Windows instances that are joined to a Microsoft Active Directory domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
-      <LegacyId>V-81591</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Universal method: 
- 1. In the omnibox (address bar) type chrome://policy
- 2. If "ChromeCleanupEnabled" is not displayed under the "Policy Name" column or it is not set to "False", this is a finding.
-Windows method:
- 1. Start regedit.
- 2. Navigate to HKLM\Software\Policies\Google\Chrome\
- 3. If the "ChromeCleanupEnabled" value name does not exist or its value data is not set to "0", this is a finding.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>ChromeCleanupEnabled</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-221593" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;If unset, should Chrome Cleanup detect unwanted software, it may report metadata about the scan to Google in accordance with policy set by “SafeBrowsingExtendedReportingEnabled”. Chrome Cleanup will then ask the user if they wish to clean up the unwanted software. The user can choose to share results of the cleanup with Google to assist with future unwanted software detection. These results contain file metadata and registry keys as described by the Chrome Privacy Whitepaper.
-If set to “false”, should Chrome Cleanup detect unwanted software, it will not report metadata about the scan to Google, overriding any policy set by “SafeBrowsingExtendedReportingEnabled”. Chrome Cleanup will ask the user if they wish to clean up the unwanted software. Results of the cleanup will not be reported to Google and the user will not have the option to do so.
-If set to “true”, should Chrome Cleanup detect unwanted software, it may report metadata about the scan to Google in accordance with policy set by “SafeBrowsingExtendedReportingEnabled”. Chrome Cleanup will ask the user if they wish to clean up the unwanted software. Results of the cleanup will be reported to Google and the user will not have the option to prevent it.
-This policy is available only on Windows instances that are joined to a Microsoft Active Directory domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome</Key>
-      <LegacyId>V-81593</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Universal method: 
- 1. In the omnibox (address bar) type chrome://policy
- 2. If "ChromeCleanupReportingEnabled" is not displayed under the "Policy Name" column or it is not set to "False", this is a finding.
-Windows method:
- 1. Start regedit
- 2. Navigate to HKLM\Software\Policies\Google\Chrome\
- 3. If the "ChromeCleanupReportingEnabled" value name does not exist or its value data is not set to "0", this is a finding.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>ChromeCleanupReportingEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-221594" severity="medium" conversionstatus="pass" title="SRG-APP-000141" dscresource="RegistryPolicyFile">
@@ -953,6 +914,177 @@ Windows method:
       <ValueData />
       <ValueName>CookiesSessionOnlyForUrls</ValueName>
       <ValueType />
+    </Rule>
+    <Rule id="V-275780" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Create Themes with AI lets users create custom themes/wallpapers by preselecting from a list of options.
+
+0 = Allow the feature to be used, while allowing Google to use relevant data to improve its AI models. Relevant data may include prompts, inputs, outputs, source materials, and written feedback, depending on the feature. It may also be reviewed by humans to improve AI models. 0 is the default value, except when noted below.
+
+1 = Allow the feature to be used, but does not allow Google to improve models using users' content (including prompts, inputs, outputs, source materials, and written feedback). 1 is the default value for Enterprise users managed by Google Admin console and for Education accounts managed by Google Workspace.
+
+2 = Do not allow the feature.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\"</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Universal method:
+1. In the omnibox (address bar) type "chrome:// policy".
+2. If "CreateThemesSettings" is not displayed under the "Policy Name" column or it is not set to "2" under the "Policy Value" column, this is a finding.
+
+Windows method:
+1. Start "regedit".
+2. Navigate to "HKLM\Software\Policies\Google\Chrome\".
+3. If the "CreateThemesSettings" value name does not exist or its value data is not set to "2", this is a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>CreateThemesSettings</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-275781" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;These features in Google Chrome's DevTools employ generative AI models to provide additional debugging information. To use these features, Google Chrome collects data such as error messages, stack traces, code snippets, and network requests and sends them to a server owned by Google, which runs a generative AI model. Response body or authentication and cookie headers in network requests are not included in the data sent to the server.
+
+0 = Allow the feature to be used, while allowing Google to use relevant data to improve its AI models. Relevant data may include prompts, inputs, outputs, source materials, and written feedback, depending on the feature. It may also be reviewed by humans to improve AI models. 0 is the default value, except when noted below.
+
+1 = Allow the feature to be used, but does not allow Google to improve models using users' content (including prompts, inputs, outputs, source materials, and written feedback). 1 is the default value for Enterprise users managed by Google Admin console and for Education accounts managed by Google Workspace.
+
+2 = Do not allow the feature.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\"</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Universal method:
+1. In the omnibox (address bar) type "chrome:// policy".
+2. If "DevToolsGenAiSettings" is not displayed under the "Policy Name" column or it is not set to "2" under the "Policy Value" column, this is a finding.
+
+Windows method:
+1. Start "regedit".
+2. Navigate to "HKLM\Software\Policies\Google\Chrome\".
+3. If the "DevToolsGenAiSettings" value name does not exist or its value data is not set to "2", this is a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>DevToolsGenAiSettings</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-275782" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Configure how Google Chrome downloads the foundational GenAI model and uses it for inference locally.
+
+When the policy is set to Allowed (0) or not set, the model is downloaded automatically, and used for inference.
+
+When the policy is set to Disabled (1), the model will not be downloaded.
+
+Model downloading can also be disabled by ComponentUpdatesEnabled.
+
+0 = Downloads model automatically
+1 = Do not download model&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\"</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Universal method:
+1. In the omnibox (address bar) type "chrome:// policy".
+2. If "GenAILocalFoundationalModelSettings" is not displayed under the "Policy Name" column or it is not set to "1" under the "Policy Value" column, this is a finding.
+
+Windows method:
+1. Start "regedit".
+2. Navigate to "HKLM\Software\Policies\Google\Chrome\".
+3. If the "GenAILocalFoundationalModelSettings" value name does not exist or its value data is not set to "1", this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>GenAILocalFoundationalModelSettings</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-275783" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Help Me Write is an AI-based writing assistant for short-form content on the web. Suggested content is based on prompts entered by the user and the content of the web page.
+
+0 = Allow the feature to be used, while allowing Google to use relevant data to improve its AI models. Relevant data may include prompts, inputs, outputs, source materials, and written feedback, depending on the feature. It may also be reviewed by humans to improve AI models. 0 is the default value, except when noted below.
+
+1 = Allow the feature to be used, but does not allow Google to improve models using users' content (including prompts, inputs, outputs, source materials, and written feedback). 1 is the default value for Enterprise users managed by Google Admin console and for Education accounts managed by Google Workspace.
+
+2 = Do not allow the feature.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\"</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Universal method:
+1. In the omnibox (address bar) type "chrome:// policy".
+2. If "HelpMeWriteSettings" is not displayed under the "Policy Name" column or it is not set to "2" under the "Policy Value" column, this is a finding.
+
+Windows method:
+1. Start "regedit".
+2. Navigate to "HKLM\Software\Policies\Google\Chrome\".
+3. If the "HelpMeWriteSettings" value name does not exist or its value data is not set to "2", this is a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>HelpMeWriteSettings</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-275784" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;AI History Search is a feature that allows users to search their browsing history and receive generated answers based on page contents and not just the page title and URL.
+
+0 = Allow the feature to be used, while allowing Google to use relevant data to improve its AI models. Relevant data may include prompts, inputs, outputs, source materials, and written feedback, depending on the feature. It may also be reviewed by humans to improve AI models. 0 is the default value, except when noted below.
+
+1 = Allow the feature to be used, but does not allow Google to improve models using users' content (including prompts, inputs, outputs, source materials, and written feedback). 1 is the default value for Enterprise users managed by Google Admin console and for Education accounts managed by Google Workspace.
+
+2 = Do not allow the feature.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\"</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Universal method:
+1. In the omnibox (address bar) type "chrome:// policy".
+2. If "HistorySearchSettings" is not displayed under the "Policy Name" column or it is not set to "2" under the "Policy Value" column, this is a finding.
+
+Windows method:
+1. Start "regedit".
+2. Navigate to "HKLM\Software\Policies\Google\Chrome\".
+3. If the "HistorySearchSettings" value name does not exist or its value data is not set to "2", this is a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>HistorySearchSettings</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-275785" severity="medium" conversionstatus="pass" title="SRG-APP-000089" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Tab Compare is an AI-powered tool for comparing information across a user's tabs. For example, the feature can be offered to the user when multiple tabs with products in a similar category are open.
+
+0 = Allow the feature to be used, while allowing Google to use relevant data to improve its AI models. Relevant data may include prompts, inputs, outputs, source materials, and written feedback, depending on the feature. It may also be reviewed by humans to improve AI models. 0 is the default value, except when noted below.
+
+1 = Allow the feature to be used, but does not allow Google to improve models using users' content (including prompts, inputs, outputs, source materials, and written feedback). 1 is the default value for Enterprise users managed by Google Admin console and for Education accounts managed by Google Workspace.
+
+2 = Do not allow the feature.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\"</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Universal method:
+1. In the omnibox (address bar) type "chrome:// policy".
+2. If "TabCompareSettings" is not displayed under the "Policy Name" column or it is not set to "2" under the "Policy Value" column, this is a finding.
+
+Windows method:
+1. Start "regedit".
+2. Navigate to "HKLM\Software\Policies\Google\Chrome\".
+3. If the "TabCompareSettings" value name does not exist or its value data is not set to "2", this is a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>TabCompareSettings</ValueName>
+      <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
 </DISASTIG>

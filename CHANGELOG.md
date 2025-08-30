@@ -5,6 +5,7 @@
 
 ## [4.27.0] - 2025-09-05
 
+* Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 11 [#1478](https://github.com/microsoft/PowerStig/issues/1478)
 * Update Powerstig to parse/apply Microsoft DotNet Framework 4.0 STIG - Ver 2, Rel 7 [#1481](https://github.com/microsoft/PowerStig/issues/1481)
 * Update Powerstig to parse/apply Microsoft Edge STIG - Ver 2, Rel 3 [#1483](https://github.com/microsoft/PowerStig/issues/1483)
 * Update Powerstig to parse/apply Microsoft IIS 10.0 STIG - Ver 25, Rel 07 [#1485](https://github.com/microsoft/PowerStig/issues/1485)
