@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.3">
+<OrganizationalSettings fullversion="2.5">
   <!-- Ensure ServiceName/StartupType is populated with correct AntiVirus service information-->
   <OrganizationalSetting id="V-254248" ServiceName="" StartupType="" />
   <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->
@@ -40,8 +40,6 @@
   <OrganizationalSetting id="V-254442.d" Location="" />
   <!-- Ensure location for DoD Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-254443" Location="" />
-  <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
-  <OrganizationalSetting id="V-254444" Location="" />
   <!-- Ensure ''V-254454'' -le '30' -and ''V-254454'' -gt '0'-->
   <OrganizationalSetting id="V-254454" ValueData="30" />
   <!-- Ensure ''V-254456'' -le '900' -and ''V-254456'' -gt '0'-->
@@ -66,6 +64,8 @@ By using this IS (which includes any device attached to this IS), you consent to
   <OrganizationalSetting id="V-254459" ValueData="1" />
   <!-- Ensure ''V-254484'' -match '1|2'-->
   <OrganizationalSetting id="V-254484" ValueData="1" />
+  <!-- Ensure ''V-271426'' -match '1|2'-->
+  <OrganizationalSetting id="V-271426" ValueData="1" />
   <!-- Ensure ''V-254285'' -ge '15' -or ''V-254285'' -eq '0'-->
   <OrganizationalSetting id="V-254285" PolicyValue="15" />
   <!-- Ensure ''V-254286'' -le '3' -and ''V-254286'' -ne '0'-->
@@ -79,7 +79,7 @@ By using this IS (which includes any device attached to this IS), you consent to
   <!-- Ensure ''V-254290'' -ne '0'-->
   <OrganizationalSetting id="V-254290" PolicyValue="1" />
   <!-- Ensure ''V-254291'' -ge '14'-->
-  <OrganizationalSetting id="V-254291" PolicyValue="14" />
+  <OrganizationalSetting id="V-254291" PolicyValue="14 " />
   <!-- Ensure ''V-254447'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-254447" OptionValue="" />
   <!-- Ensure ''V-254448'' -ne 'Guest'-->
