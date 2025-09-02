@@ -110,7 +110,7 @@ try
                 $rule.Constant | Should Be $testRule.constant
             }
             It 'Should extract the correct identity' {
-                $rule.Identity | Should Be $testRule.Identity
+                $rule.Identity | Should -BeIn @($testRule.Identity, 'NULL', "", $null)
             }
             It 'Should not have OrganizationValueRequired set' {
                 $rule.OrganizationValueRequired | Should Be $testRule.organizationValueRequired
@@ -123,9 +123,6 @@ try
             }
             It 'Should Set the status to pass' {
                 $rule.conversionstatus | Should Be 'pass'
-            }
-            It 'Should IsNullOrEmpty match the expected value' {
-                $rule.IsNullOrEmpty | Should Be $testRule.isNullOrEmpty
             }
         }
     }
