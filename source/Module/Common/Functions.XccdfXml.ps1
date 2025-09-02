@@ -208,7 +208,15 @@ function Get-StigRuleList
             }
             else
             {
-                $rules = [ConvertFactory]::Rule($stigRule)
+                try 
+                {
+                    write-host "Converting $($stigRule.Id)"
+                    $rules = [ConvertFactory]::Rule($stigRule) 
+                }
+                catch 
+                {
+                    Write-Host "Conversion for $($stigRule.Id) failed.  Error: $($_.Exception.Message)"
+                }
 
                 foreach ($rule in $rules)
                 {
