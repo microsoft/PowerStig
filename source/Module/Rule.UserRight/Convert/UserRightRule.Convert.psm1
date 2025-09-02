@@ -3,7 +3,7 @@
 using module .\..\..\Common\Common.psm1
 using module .\..\UserRightRule.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$exclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
@@ -110,7 +110,7 @@ class UserRightRuleConvert : UserRightRule
             {
                 $this.SetOrganizationValueRequired()
                 $HyperVIdentity = $thisIdentity -join "," -replace "{Hyper-V}", "NT Virtual Machine\\Virtual Machines"
-                $NoHyperVIdentity = $thisIdentity.Where( {$PSItem -ne "{Hyper-V}"}) -join ","
+                $NoHyperVIdentity = $thisIdentity.Where( { $PSItem -ne "{Hyper-V}" }) -join ","
                 $this.set_OrganizationValueTestString("'{0}' -match '^($HyperVIdentity|$NoHyperVIdentity)$'")
             }
             elseif ($thisIdentity -contains "(Local account and member of Administrators group|Local account)")
@@ -119,8 +119,14 @@ class UserRightRuleConvert : UserRightRule
                 $this.set_OrganizationValueTestString("'{0}' -match '$($thisIdentity -join ",")'")
             }
         }
+        else 
+        {
+            # DISA specifies 'NULL', meaning there should not be any identities assigned to the user right
+            $this.SetIsNullOrEmpty()
+            $this.Identity = ""
+        }
 
-        if ($this.OrganizationValueRequired -eq $false)
+        if ($this.OrganizationValueRequired -eq $false -and $thisIdentity -ne 'NULL')
         {
             $this.Identity = $thisIdentity -Join ","
         }
