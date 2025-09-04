@@ -127,6 +127,7 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@MRasmussenGIT](https://github.com/MRasmussenGIT) (Michael Rasmussen)
 * [@hinderjd](https://github.com/hinderjd) (James Hinders)
 * [@addavenp1](https://github.com/addavenp1) (Adam Davenport)
+* [@SvenAelterman](https://github.com/SvenAelterman) (Sven Aelterman)
 * [@ALichtenberg](https://github.com/ALichtenberg) (Adam Lichtenberg)
 * [@athaynes](https://github.com/athaynes) (Adam Haynes)
 * [@bcwilhite](https://github.com/bcwilhite) (Brian Wilhite)
