@@ -1,5 +1,6 @@
 # Editors
-.vscode/
+.vscode/**
+!.vscode/settings.json
 .vs/
 
 # local preference scripts/utilities
@@ -8,7 +9,7 @@
 # Build output folder
 output/
 
-# Dynamic test folder where class inport code is stored
+# Dynamic test folder where class import code is stored
 .DynamicClassImport/
 
 # RequiredModules.psd1 is created by the build script and should be git ignored

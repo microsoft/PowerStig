@@ -22,7 +22,7 @@ class UserRightRule : Rule
 {
     [ValidateNotNullOrEmpty()] [string] $DisplayName
     [ValidateNotNullOrEmpty()] [string] $Constant
-    [ValidateNotNullOrEmpty()] [string] $Identity <#(ExceptionValue)#>
+    [string] $Identity <#(ExceptionValue)#>
     [string] $Force = $false
 
     <#
