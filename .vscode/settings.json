@@ -1,0 +1,27 @@
+{
+  // PowerShell formatting settings
+  "powershell.codeFormatting.openBraceOnSameLine": false,
+  "powershell.codeFormatting.newLineAfterOpenBrace": true,
+  //"powershell.codeFormatting.newLineBeforeCloseBrace": true,
+  "powershell.codeFormatting.whitespaceBeforeOpenBrace": true,
+  "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
+  "powershell.codeFormatting.whitespaceAroundOperator": true,
+  "powershell.codeFormatting.whitespaceAfterSeparator": true,
+  "powershell.codeFormatting.ignoreOneLineBlock": true,
+  "powershell.codeFormatting.alignPropertyValuePairs": true,
+  "powershell.codeFormatting.useConstantStrings": false,
+  "powershell.codeFormatting.useCorrectCasing": false,
+
+  // Explicitly set the formatter for PowerShell files
+  "[powershell]": {
+    "editor.defaultFormatter": "ms-vscode.powershell",
+    "editor.formatOnSave": true
+  },
+
+  // File associations
+  "files.associations": {
+    "*.ps1": "powershell",
+    "*.psm1": "powershell",
+    "*.psd1": "powershell"
+  }
+}

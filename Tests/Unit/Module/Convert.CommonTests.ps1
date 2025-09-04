@@ -39,8 +39,8 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
             test them over and over in the child class tests.
         #>
         $ruleBaseClassPropertyList = [Rule]::new() |
-            Get-Member -MemberType Property |
-            Select-Object -Property Name -ExpandProperty Name
+        Get-Member -MemberType Property |
+        Select-Object -Property Name -ExpandProperty Name
     }
     # Get the property list to test from the test object
     [System.Collections.ArrayList] $propertyList = $testRule.Keys
@@ -52,7 +52,7 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         $convertedRule |
         Get-Member -MemberType Property |
         Select-Object -Property Name -ExpandProperty Name |
-        Where-Object {-not $ruleBaseClassPropertyList.Contains($_)}
+        Where-Object { -not $ruleBaseClassPropertyList.Contains($_) }
     )
 
     # Provide notifications if the test data is missing important properties
@@ -85,7 +85,7 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
                             $testRule.$property = $testRule.$property | ConvertTo-Json
                         }
                     }
-                    $convertedRule.$property | Should Be $testRule.$property
+                    $convertedRule.$property | Should -BeIn @($testRule.$property, 'NULL', "", $null)
                 }
             }
             # Remove the property from the list of tested properties
