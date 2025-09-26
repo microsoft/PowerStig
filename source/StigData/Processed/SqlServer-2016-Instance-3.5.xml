@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 02 Jul 2025 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.5" created="8/28/2025">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 02 Jul 2025 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.5" created="9/26/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful denial-of-service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions is helpful in reducing these risks.
@@ -2846,7 +2846,7 @@ If the SCHEMA_OBJECT_ACCESS_GROUP is not returned in an active audit, this is a 
       <LegacyId>V-79141</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>aa67d65b-aa2a-4904-9dae-9c5e33bccfd5</QueryId>
+      <QueryId>39b790bc-331c-4d3b-b8a3-e4e3ee8d6452</QueryId>
       <RawString>When Audits are enabled, they start up when the instance starts. 
 https://msdn.microsoft.com/en-us/library/cc280386.aspx#Anchor_2 
  
@@ -2878,7 +2878,7 @@ Systems where audit trail completeness is paramount will most likely be at a low
       <LegacyId>V-79147</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>709a37ed-4ba9-4dfd-b700-1278b1bcc16c</QueryId>
+      <QueryId>2ff4a621-0c00-4324-ade3-eec20f4f7daa</QueryId>
       <RawString>If the system documentation indicates that availability takes precedence over audit trail completeness, this is not applicable (NA).  
  
 If SQL Server Audit is in use, review the defined server audits by running the statement:  
@@ -2909,7 +2909,7 @@ Systems where availability is paramount will most likely be MAC I; the final det
       <LegacyId>V-79149</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>68d7c225-9dca-46b2-bd17-acf0ffa59e33</QueryId>
+      <QueryId>dca41cec-ba31-4a25-bd95-d9b1df2c981d</QueryId>
       <RawString>If the system documentation indicates that availability does not take precedence over audit trail completeness, this is not applicable (NA). 
 
 Execute the following query:
@@ -3964,7 +3964,7 @@ Some applications that run on SQL Server require the [sa] account to be enabled 
       <LegacyId>V-79317</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>bc7553cb-8f2e-48b4-a3e6-13c51ae48734</QueryId>
+      <QueryId>c560177d-76a2-4d8f-a89a-754c42eaa682</QueryId>
       <RawString>Check SQL Server settings to determine if the [sa] (system administrator) account has been disabled by executing the following query:
 
 USE master;
@@ -3992,7 +3992,7 @@ Since the SQL Server [sa] is administrative in nature, the compromise of a defau
       <LegacyId>V-79319</LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is populated with a non-default SA account name</OrganizationValueTestString>
-      <QueryId>a7b52c00-d683-4780-953f-9717cfb3ca59</QueryId>
+      <QueryId>17f2104d-da79-489c-ac6f-a89161a6f362</QueryId>
       <RawString>Verify the SQL Server default [sa] (system administrator) account name has been changed by executing the following query: 
 
 USE master; 

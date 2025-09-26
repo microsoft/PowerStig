@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2022_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2022_Instance_STIG_V1R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 27 May 2025 3.5 1.10.0" title="Microsoft SQL Server 2022 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="8/28/2025">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2022_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2022_Instance_STIG_V1R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 27 May 2025 3.5 1.10.0" title="Microsoft SQL Server 2022 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="9/26/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-271263" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions using a DBMS. Unlimited concurrent connections to the DBMS could allow a successful denial-of-service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions per user is helpful in reducing these risks.
@@ -2297,6 +2297,7 @@ Satisfies: SRG-APP-000091-DB-000325, SRG-APP-000091-DB-000066, SRG-APP-000492-DB
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the system documentation to determine if SQL Server is required to audit when the following events occur:
 
 - Attempts to retrieve privilege/permission/role membership information.
@@ -2341,6 +2342,7 @@ If the SCHEMA_OBJECT_ACCESS_GROUP is not returned in an active audit, this is a 
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>dd61f162-5071-4ba1-8b4f-76672e4bba89</QueryId>
       <RawString>When audits are enabled, they start up when the instance starts. Refer to https://msdn.microsoft.com/en-us/library/cc280386.aspx#Anchor_2 
  
 Check if an audit is configured and enabled by executing the following query: 
@@ -2382,6 +2384,7 @@ Satisfies: SRG-APP-000381-DB-000361, SRG-APP-000495-DB-000326, SRG-APP-000495-DB
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the SQL configuration to verify that audit records are produced when denied actions occur.
 
 To determine if an audit is configured, execute the following script:
@@ -2487,6 +2490,7 @@ Satisfies: SRG-APP-000496-DB-000334, SRG-APP-000496-DB-000335, SRG-APP-000501-DB
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the SQL configuration to verify that audit records are produced when denied actions occur.
 
 To determine if an audit is configured, execute the following script:
@@ -2530,6 +2534,7 @@ Satisfies: SRG-APP-000503-DB-000350, SRG-APP-000503-DB-000351, SRG-APP-000506-DB
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1</QueryId>
       <RawString>Review the SQL configuration to verify that audit records are produced when denied actions occur.
 
 To determine if an audit is configured, execute the following script:
@@ -2586,6 +2591,7 @@ Some applications that run on SQL Server require the [sa] account to be enabled 
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>0f1b5449-dff7-441b-8c1f-70be2c7a2656</QueryId>
       <RawString>Check SQL Server settings to determine if the [sa] (system administrator) account has been disabled by executing the following query: 
 USE master;
 GO
@@ -2613,6 +2619,7 @@ Since the SQL Server [sa] is administrative in nature, the compromise of a defau
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>a1dadc26-7d5c-4994-891e-03efc993e26f</QueryId>
       <RawString>Verify the SQL Server default [sa] (system administrator) account name has been changed by executing the following query:
 USE master; 
 GO 

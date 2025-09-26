@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_Instance_2012" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_Instance_2012_V1R20_Manual-xccdf.xml" releaseinfo="Release: 20 Benchmark Date: 16 Jan 2020" title="Microsoft SQL Server Instance 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.20" created="8/23/2025">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_Instance_2012" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_Instance_2012_V1R20_Manual-xccdf.xml" releaseinfo="Release: 20 Benchmark Date: 16 Jan 2020" title="Microsoft SQL Server Instance 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.20" created="9/26/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-40907" severity="high" conversionstatus="pass" title="SRG-APP-000264-DB-000136" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), VPN, or IPSEC tunnel.
@@ -4929,7 +4929,7 @@ Some applications that run on SQL Server require the 'sa' account to be enabled 
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>18bb8f8b-1e5d-4da9-b18a-ca2ca5ab2f00</QueryId>
+      <QueryId>b9b38c01-8b1d-46f4-9e81-b05ae40e0362</QueryId>
       <RawString>Check SQL Server settings to determine if the 'sa' (sysadmin) account has been disabled by executing the following query:
 
 USE MASTER
@@ -4963,7 +4963,7 @@ Demonstration and sample database objects and applications present publicly know
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>b2579ca1-fbe1-4799-802f-5d9f02ba44de</QueryId>
+      <QueryId>7ad02e73-dba0-42a7-b917-eedd3c371b6b</QueryId>
       <RawString>Check SQL Server for the existence of the publicly available "AdventureWorks" database by performing the following query:
 
 SELECT name from sysdatabases where name like 'AdventureWorks%';
@@ -4989,7 +4989,7 @@ Demonstration and sample database objects and applications present publicly know
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>4e2f03cc-fb1a-45a4-baaa-92ca06b304ff</QueryId>
+      <QueryId>af392ad1-5757-4d83-a947-e0fa23e613d3</QueryId>
       <RawString>Check SQL Server for the existence of the publicly available "NorthWind" database by performing the following query:
 
 SELECT name from sysdatabases where name like 'Northwind%';
@@ -5011,7 +5011,7 @@ Detection of suspicious activity, including access attempts and successful acces
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>683f3145-a7ff-46a4-8839-042d5e03ee82</QueryId>
+      <QueryId>59f285c6-a011-47b8-a7a7-215d792dfd93</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5060,7 +5060,7 @@ Note that trace file rollover does not count as an audit failure, provided that 
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is the path to the trace file</OrganizationValueTestString>
-      <QueryId>3622a024-d24c-4d02-a9ad-37224f55dccc</QueryId>
+      <QueryId>92f2f6d7-abe4-459b-8b1b-9e5a68156271</QueryId>
       <RawString>From the query prompt:
 
 SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5108,7 +5108,7 @@ After the initial setup of SQL Server audit log configuration, it is best to che
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is the trace file limit</OrganizationValueTestString>
-      <QueryId>813a8856-dd0f-4ec0-901a-fdb828d50255</QueryId>
+      <QueryId>27c6e939-70e2-408a-83d2-260147717f52</QueryId>
       <RawString>Check the SQL Server audit setting on the maximum number of files of the trace used for the auditing requirement.
 
 Select * from sys.traces. Determine the audit being used to fulfill the overall auditing requirement. Examine the max_files and max_size parameters. SQL will overwrite the oldest files when the max_files parameter has been exceeded. Care must be taken to ensure that this does not happen, or data will be lost.
@@ -5134,7 +5134,7 @@ Some organizations may determine that more detailed information is required for 
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>595de426-b0f6-4d22-8a45-7f5142931136</QueryId>
+      <QueryId>feea7718-853d-4f9c-88ba-3c7f90efa26b</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5179,7 +5179,7 @@ Database software is capable of a range of actions on data stored within the dat
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>df0381fb-7e72-4dda-a07a-0b7c7127d928</QueryId>
+      <QueryId>78b12083-9e9f-4edb-9cad-1c40cc17e042</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5228,7 +5228,7 @@ If auditing is enabled, SQL Server does capture the outcome status-specific info
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>3d282c8d-f771-4aa5-9788-447d7dfda641</QueryId>
+      <QueryId>067dc003-c192-4226-b0e5-777b2e43f0f3</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5275,7 +5275,7 @@ The source of the event can be a user account and sometimes a system account whe
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>7cd71d55-f4ac-405d-8194-ea09c4277db1</QueryId>
+      <QueryId>18494457-144c-42ba-83b3-df8342f3de9a</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5322,7 +5322,7 @@ An event location can be a database instance, table, column, row, etc. Without s
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>1519bb3c-d427-4d35-9dcf-88d0ecd9d339</QueryId>
+      <QueryId>9f0926e7-c3a6-4276-828b-98f11db6a5a0</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5369,7 +5369,7 @@ If auditing is enabled, SQL Server does capture the date and time-specific infor
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>1bba013b-9772-493b-8b4b-e2c2f3318d4e</QueryId>
+      <QueryId>ab260c20-1c8c-456f-b8ef-cdf82d143344</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5416,7 +5416,7 @@ If auditing is enabled, SQL Server does capture the event type-specific informat
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>e460400a-4c45-4933-8577-3ffb2a92036d</QueryId>
+      <QueryId>a4f81f28-2d60-4ed0-8bf8-0baf6af84696</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5465,7 +5465,7 @@ Auditing provides accountability for changes made to the SQL Server configuratio
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>f2b122cf-1e8f-4bb3-be9d-3fc7274a59a1</QueryId>
+      <QueryId>64d6235c-eb35-4fa3-9b5b-d36538b24bf2</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5510,7 +5510,7 @@ Since the SQL Server 'sa' is administrative in nature, the compromise of a defau
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is populated with a non-default SA account name</OrganizationValueTestString>
-      <QueryId>b1c7ccab-4a83-49f0-95e5-ee53e672aef3</QueryId>
+      <QueryId>3e5783c2-e602-45dd-bac6-1cc6c45b3f93</QueryId>
       <RawString>Verify the SQL Server default 'sa' account name has been changed.
 
 Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins.
@@ -5530,7 +5530,7 @@ If SQL Server default 'sa' account name is in the 'Logins' list, this is a findi
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>e63f70d7-3b69-4d60-bbb2-e3ea8c6873ae</QueryId>
+      <QueryId>31fd616f-36ee-4ed2-b4fe-d849635fa6b2</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
 
@@ -5585,7 +5585,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>0867fab9-c929-46d0-82c0-afff5bfc5ce8</QueryId>
+      <QueryId>57ce0555-8423-4679-95cc-27be7cd3845d</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any endpoint' by running the following query:
 
 SELECT
@@ -5683,7 +5683,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>5e600191-d7de-435b-bfa8-2260e55680a5</QueryId>
+      <QueryId>0be052aa-da47-410f-b588-dec06f844cab</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any database' by running the following query:
 
 SELECT
@@ -5781,7 +5781,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>4d807725-ebc4-46e7-b7d8-7ed7f2b6d2fb</QueryId>
+      <QueryId>00b83386-bbd6-4b55-847a-0e23a784731f</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any credential' by running the following query:
 
 SELECT
@@ -5879,7 +5879,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>3bde76c0-0a92-4dd4-b0de-1d2d330af58e</QueryId>
+      <QueryId>41a9ccc5-f937-4333-8921-0aeb6eaa5be2</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any connection' by running the following query:
 
 SELECT
@@ -5977,7 +5977,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>d404bc8a-090d-42c9-871b-eda7d70348c7</QueryId>
+      <QueryId>189cd72a-495f-4815-95e7-4f0fab6c133e</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter server state' by running the following query:
 
 SELECT
@@ -6075,7 +6075,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>e14c6984-6772-4588-8dd2-944ad3365545</QueryId>
+      <QueryId>67553070-b3c0-4c79-a5b6-8ee41de2ef44</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any event notification' by running the following query:
 
 SELECT
@@ -6173,7 +6173,7 @@ The fix for this vulnerability specifies the use of REVOKE.  Be aware that revok
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is a user that can view any database</OrganizationValueTestString>
-      <QueryId>e5f7c20f-0541-48f9-ab28-8184ea32a88a</QueryId>
+      <QueryId>7bd7b9a7-68e8-4162-9f6c-beff4fbe2f24</QueryId>
       <RawString>Obtain the list of roles that are authorized for the SQL Server 'View any database' permission and what 'Grant', 'Grant With', and/or 'Deny' privilege is authorized. Obtain the list of roles with that permission by running the following query:
 
 SELECT
@@ -6269,7 +6269,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>79025981-6f64-41d0-9506-2f4ce62ab016</QueryId>
+      <QueryId>1654213e-8973-4ccb-bd32-7a131cdaa9aa</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any server audit' by running the following query:
 
 SELECT
@@ -6367,7 +6367,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>6e6a1df4-51bc-4dd2-9bd9-4f53af754488</QueryId>
+      <QueryId>89887d00-c318-4730-891b-d436fae39744</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Authenticate Server' by running the following query:
 
 SELECT
@@ -6465,7 +6465,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>4637e7ec-2c7e-4492-a9c8-4b5d6094c86d</QueryId>
+      <QueryId>ce01b7ea-6ce6-4679-a3f1-e8e7c4d59a92</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Administer bulk operations' by running the following query:
 
 SELECT
@@ -6563,7 +6563,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>e0e9ffd1-86f7-4c94-98d8-08f529f8133f</QueryId>
+      <QueryId>68e1ba58-b291-4fcb-8eac-719eef8373c3</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create endpoint' by running the following query:
 
 SELECT
@@ -6661,7 +6661,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>d8ac7a53-af2e-4487-93fd-296e8ad3953b</QueryId>
+      <QueryId>b328bee5-d076-4bb6-992b-199ef62551f4</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create DDL Event Notification' by running the following query:
 
 SELECT
@@ -6760,7 +6760,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>b7b30f96-5b93-404a-b32a-1ac89fcf8672</QueryId>
+      <QueryId>5ff9fdb5-0038-4972-a08e-befdd6f07dd3</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create availability group' by running the following query:
 
 SELECT
@@ -6858,7 +6858,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>b24a2d39-225d-4d33-a5a4-e3be06dd2205</QueryId>
+      <QueryId>d921ace7-db5a-4e52-a7a3-84d0539269e6</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create any database' by running the following query:
 
 SELECT
@@ -6956,7 +6956,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>bfbd5c1e-2355-4ce2-97b5-3ecf14cfeab5</QueryId>
+      <QueryId>f9b17edd-96b8-448d-8261-89df937d7ce5</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Control server' by running the following query:
 
 SELECT
@@ -7054,7 +7054,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>2c3c186e-422e-4c35-bfe1-98a9ad6ffd94</QueryId>
+      <QueryId>6c7456b6-4627-4635-9355-f5a9e6d446ca</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any linked server' by running the following query:
 
 SELECT
@@ -7152,7 +7152,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>f443d4e8-a3e5-4ec5-adab-44b22e51620f</QueryId>
+      <QueryId>5f972885-bf21-4818-be87-fc4972a8a805</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any event session' by running the following query:
 
 SELECT
@@ -7250,7 +7250,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>19f1565e-3b4c-4dbd-9fc2-d0d06c1ba7db</QueryId>
+      <QueryId>24c4d8f5-9e30-4da8-887b-9f1c5252f893</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter trace' by running the following query:
 
 SELECT
@@ -7348,7 +7348,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>06179de8-9e6b-45e6-bf2c-55d08e486e4d</QueryId>
+      <QueryId>7c5fdbab-c1d2-4b53-bc4e-ecfaa82df947</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter Settings' by running the following query:
 
 SELECT
@@ -7446,7 +7446,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>bc86b3c9-6cda-4377-90ba-3f999042944d</QueryId>
+      <QueryId>81d5d11c-293a-496b-9be3-a0a174049659</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create trace event notification' by running the following query:
 
 SELECT
@@ -7544,7 +7544,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>cc501322-ce85-449b-9494-a2818e0e08fb</QueryId>
+      <QueryId>9b2f5001-7fdc-43a6-a761-4ab745472ea9</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter resources' by running the following query:
 
 SELECT
@@ -7642,7 +7642,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>ecf597db-42f2-4455-8651-b81e4815119f</QueryId>
+      <QueryId>296df99e-7d37-466a-9f0c-3044d00e4efb</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'External access assembly' by running the following query:
 
 SELECT
@@ -7740,7 +7740,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>9140e542-c06a-49a7-a5d2-476276b0d31b</QueryId>
+      <QueryId>7dcfdbaf-365f-479e-86b4-0d115f18355b</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any login' by running the following query:
 
 SELECT
@@ -7838,7 +7838,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>c62df6e6-b69f-4eb4-b708-693adb5591e3</QueryId>
+      <QueryId>e53bfbf7-35f8-4120-a970-b54fcf6915ad</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Shutdown' by running the following query:
 
 SELECT
@@ -7936,7 +7936,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>b3789a4b-3964-4cc1-9ee4-d36751277779</QueryId>
+      <QueryId>5b8a3ada-4346-4e6a-84f1-89edfafcbb36</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Unsafe assembly' by running the following query:
 
 SELECT
@@ -8034,7 +8034,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>e8e3b031-5e2a-4430-86e0-4a98c72789aa</QueryId>
+      <QueryId>355338d1-4468-4c7f-b518-47f0aa281eb9</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create server role' by running the following query:
 
 SELECT
@@ -8132,7 +8132,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>9a797551-bc76-4473-b3d2-b9e37d02ae16</QueryId>
+      <QueryId>7bbca216-ad68-4f79-bbdc-4b22f73020fa</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'View server state' by running the following query:
 
 SELECT
@@ -8230,7 +8230,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>d2b3edbd-2f78-492f-ad9c-40a8c5b8e07b</QueryId>
+      <QueryId>bccdf694-2a71-46e9-9b62-ab8810f95b69</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any server role' by running the following query:
 
 SELECT
@@ -8328,7 +8328,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>e06b067f-bd60-462e-9766-a43ff7f2c73b</QueryId>
+      <QueryId>c99c1450-0be5-451a-9434-f3415ce192fc</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'View any definition' by running the following query:
 
 SELECT
@@ -8422,7 +8422,7 @@ To address the multitude of policy based access requirements, many application d
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>900ce343-1e07-44ca-863e-a034c6d8e9c7</QueryId>
+      <QueryId>e5225504-a7be-4745-82ef-2168ff392816</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -8471,7 +8471,7 @@ To address the multitude of policy based access requirements, many application d
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>b32c1c99-d8b0-47c0-89c0-34435f84bc60</QueryId>
+      <QueryId>27e863ff-c656-4c37-8538-f2bd8e774f43</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -8519,7 +8519,7 @@ Numerous best practices are employed to protect remote connections, such as util
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>1df33274-7fb8-4f02-9497-6db8f94d7d0c</QueryId>
+      <QueryId>7684c047-ec82-43b6-94a7-c5507a58fea7</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -8570,7 +8570,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <QueryId>508f6d24-bdfd-4cb4-8219-ea15a8692210</QueryId>
+      <QueryId>e928304e-ba79-4f65-9b76-7dbb54b4f6f8</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'View Any Database' by running the following query:
 
 SELECT
