@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 6: [#1506](https://github.com/microsoft/PowerStig/issues/1506)
 
 ## [4.27.0] - 2025-09-05
 
