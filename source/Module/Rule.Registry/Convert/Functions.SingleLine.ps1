@@ -460,7 +460,7 @@ function Get-RegistryValueNameFromSLStig
         if (-not [String]::IsNullOrEmpty($result))
         {
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $result"
-            return $result
+            return $result.Split(' ')[0]
         }
         else
         {
