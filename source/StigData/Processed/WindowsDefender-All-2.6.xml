@@ -1270,7 +1270,7 @@ Criteria: If the value "HideExclusionsFromLocalUsers" is REG_DWORD = 1, this is 
 
 If the value is 0, this is a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>HideExclusionsFromLocalUsers</ValueName>
+      <ValueName>HideExclusionsFromLocalAdmins</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-278659" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="RegistryPolicyFile">

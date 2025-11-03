@@ -9,3 +9,4 @@ V-213428::Procedure: Access Add Roles and Features Wizard >> Features::blank5
 V-213428::Criteria: If “Windows Defender Features (Installed) is selected, this is a finding.::blank6
 V-213452::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Signature Updates'; ValueName = 'ASSignatureDue'; ValueType = 'Dword'; ValueData = $null; OrganizationValueTestString = "{0} -ge '1' -and {0} -le '7'"}
 V-213453::*::HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Key = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Signature Updates'; ValueName = 'AVSignatureDue'; ValueType = 'Dword'; ValueData = $null; OrganizationValueTestString = "{0} -ge '1' -and {0} -le '7'"}
+V-278658::HideExclusionsFromLocalUsers::HideExclusionsFromLocalAdmins
