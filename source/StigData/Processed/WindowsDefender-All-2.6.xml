@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Defender_Antivirus" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Defender_Antivirus_STIG_V2R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 24 Sep 2025 3.5.1 1.10.0" title="Microsoft Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.6" created="10/30/2025">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Defender_Antivirus" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V2R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 24 Sep 2025 3.5.1 1.10.0" title="Microsoft Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.6" created="11/3/2025">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-213426" severity="high" conversionstatus="pass" title="SRG-APP-000279" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;After enabling this feature, PUA protection blocking takes effect on endpoint clients after the next signature update or computer restart. Signature updates take place daily under typical circumstances. PUA will be blocked and automatically quarantined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -582,8 +582,8 @@ If this setting is enabled, a scheduled scan will run at the frequency specified
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Scan</Key>
       <LegacyId>V-75237</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -ge '0' -and {0} -le '7'</OrganizationValueTestString>
       <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Scan &gt;&gt; "Specify the day of the week to run a scheduled scan" is set to "Enabled" and anything other than "Never" is selected in the drop-down box.
   
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
@@ -592,7 +592,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Scan
 Criteria: If the value "ScheduleDay" is REG_DWORD = 0x8, this is a finding.
 
 Values of 0x0 through 0x7 are acceptable and not a finding.</RawString>
-      <ValueData>0x8</ValueData>
+      <ValueData />
       <ValueName>ScheduleDay</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -624,8 +624,8 @@ If this setting is enabled, spyware definitions will be considered out of date a
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Signature Updates</Key>
       <LegacyId>V-75241</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -ge '1' -and {0} -le '7'</OrganizationValueTestString>
       <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Security Intelligence Updates &gt;&gt; "Define the number of days before spyware security intelligence considered out of date" is set to "Enabled" and "7" or less is selected in the drop-down box (excluding "0", which is unacceptable).
 
 If third-party antispyware is installed and up to date, the Windows Defender AV spyware age requirement will be NA.
@@ -640,7 +640,7 @@ A value of 1 - 6 is also acceptable and not a finding.
 A value of 0 is a finding.
 
 A value higher than 7 is a finding.</RawString>
-      <ValueData>7</ValueData>
+      <ValueData />
       <ValueName>ASSignatureDue</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -653,8 +653,8 @@ If this setting is enabled, virus definitions will be considered out of date aft
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Signature Updates</Key>
       <LegacyId>V-75243</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -ge '1' -and {0} -le '7'</OrganizationValueTestString>
       <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt;Security Intelligence Updates &gt;&gt; "Define the number of days before virus security intelligence considered out of date" is set to "Enabled" and "7" or less is selected in the drop-down box (excluding "0", which is unacceptable).
 
 If third-party antivirus protection is installed and up to date, the Windows Defender Antivirus age requirement is NA.
@@ -669,7 +669,7 @@ A value of 1 - 6 is also acceptable and not a finding.
 A value of 0 is a finding.
 
 A value higher than 7 is a finding.</RawString>
-      <ValueData>7</ValueData>
+      <ValueData />
       <ValueName>AVSignatureDue</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
