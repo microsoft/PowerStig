@@ -202,7 +202,7 @@ If this setting is enabled, you will join Microsoft MAPS with the membership spe
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Spynet</Key>
       <LegacyId>V-75167</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>This is applicable to unclassified systems. For other systems, this is Not Applicable.
 
@@ -212,7 +212,7 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\Policies\Microsoft\Windows Defender\Spynet
 
 Criteria: If the value "SpynetReporting" is REG_DWORD = 1, or REG_DWORD = 2, this is not a finding.</RawString>
-      <ValueData />
+      <ValueData>2</ValueData>
       <ValueName>SpynetReporting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
