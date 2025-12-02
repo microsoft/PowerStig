@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Update PowerStig to parse/apply Microsoft IIS 10.0 Server STIG - Ver 3, Rel 5 [#1508](https://github.com/microsoft/PowerStig/issues/1508)
+
 
 ## [4.27.0] - 2025-09-05
 
