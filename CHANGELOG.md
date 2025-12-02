@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-* Update Powerstig to parse/apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 5 [#1515](https://github.com/microsoft/PowerStig/issues/1515)
+* Update Powerstig to parse/apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 6 [#1515](https://github.com/microsoft/PowerStig/issues/1515)
 
 ## [4.27.0] - 2025-09-05
 
