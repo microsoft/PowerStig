@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Defender_Antivirus" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V2R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 24 Sep 2025 3.5.1 1.10.0" title="Microsoft Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.6" created="12/2/2025">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Defender_Antivirus" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V2R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 24 Sep 2025 3.5.1 1.10.0" title="Microsoft Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.6" created="12/3/2025">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-213426" severity="high" conversionstatus="pass" title="SRG-APP-000279" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;After enabling this feature, PUA protection blocking takes effect on endpoint clients after the next signature update or computer restart. Signature updates take place daily under typical circumstances. PUA will be blocked and automatically quarantined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -202,7 +202,7 @@ If this setting is enabled, you will join Microsoft MAPS with the membership spe
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Spynet</Key>
       <LegacyId>V-75167</LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>This is applicable to unclassified systems. For other systems, this is Not Applicable.
 
@@ -212,7 +212,7 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\Policies\Microsoft\Windows Defender\Spynet
 
 Criteria: If the value "SpynetReporting" is REG_DWORD = 1, or REG_DWORD = 2, this is not a finding.</RawString>
-      <ValueData />
+      <ValueData>2</ValueData>
       <ValueName>SpynetReporting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -1270,7 +1270,7 @@ Criteria: If the value "HideExclusionsFromLocalUsers" is REG_DWORD = 1, this is 
 
 If the value is 0, this is a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>HideExclusionsFromLocalUsers</ValueName>
+      <ValueName>HideExclusionsFromLocalAdmins</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-278659" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="RegistryPolicyFile">
