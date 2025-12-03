@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse/apply Microsoft Office 365 ProPlus STIG - Ver 3, Rel 4 [#1510](https://github.com/microsoft/PowerStig/issues/1510)
 
 ## [4.27.0] - 2025-09-05
 
