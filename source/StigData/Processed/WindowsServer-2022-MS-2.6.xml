@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_MS_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="5/21/2025">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_MS_STIG_V2R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 01 Oct 2025 3.5.1 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.6" created="12/2/2025">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-254285" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1141,7 +1141,7 @@ Select "Disk Management" under "Storage".
 For each local volume, if the file system does not indicate "NTFS", this is a finding.
 
 "ReFS" (resilient file system) is also acceptable and is not a finding.
-CSV (Cluster Shared Volumes) is not a finding.
+CSV ( Cluster Shared Volumes) is not a finding.
 
 This does not apply to system partitions such the Recovery and EFI System Partition.</RawString>
     </Rule>
@@ -1308,7 +1308,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Admin
 
 Verify LAPS Operational logs &gt;&gt; Event Viewer &gt;&gt; Applications and Services Logs &gt;&gt; Microsoft &gt;&gt; Windows &gt;&gt; LAPS &gt;&gt; Operational. Verify LAPS policy process is completing. If it is not, this is a finding.
 
-If the server is not a member of a domain, this is not applicable.</RawString>
+If the server is not a member of a domain this not applicable.</RawString>
     </Rule>
     <Rule id="V-254240" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Using applications that access the internet or have potential internet sources using administrative privileges exposes a system to compromise. If a flaw in an application is exploited while running as a privileged user, the entire system could be compromised. Web browsers and email are common attack vectors for introducing malicious code and must not be run with an administrative account.
@@ -1835,6 +1835,118 @@ Standard user accounts must not be members of the local Administrator group.
 If accounts that do not have responsibility for administration of the system are members of the local Administrators group, this is a finding.
 
 If the built-in Administrator account or other required administrative accounts are found on the system, this is not a finding.</RawString>
+    </Rule>
+    <Rule id="V-278942" severity="medium" conversionstatus="pass" title="SRG-OS-000062-GPOS-00031" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. Credential validation records events related to validation tests on credentials for a user account logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Audit File System auditing has been enabled: 
+
+Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Object Access &gt;&gt; Audit File System. 
+
+If "Audit File System" is not set to "Failure", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-278943" severity="medium" conversionstatus="pass" title="SRG-OS-000062-GPOS-00031" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. Credential validation records events related to validation tests on credentials for a user account logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Audit File System auditing has been enabled: 
+
+Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Object Access &gt;&gt; Audit File System. 
+
+If "Audit File System" is not set to "Success", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-278944" severity="medium" conversionstatus="pass" title="SRG-OS-000062-GPOS-00031" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. Credential validation records events related to validation tests on credentials for a user account logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Audit Handle Manipulation auditing has been enabled: 
+
+Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Object Access &gt;&gt; Audit Handle Manipulation. 
+
+If "Audit Handle Manipulation" is not set to "Failure", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-278945" severity="medium" conversionstatus="pass" title="SRG-OS-000062-GPOS-00031" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. Credential validation records events related to validation tests on credentials for a user account logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Audit Handle Manipulation auditing has been enabled: 
+
+Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Object Access &gt;&gt; Audit Handle Manipulation. 
+
+If "Audit Handle Manipulation" is not set to "Success", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-278946" severity="medium" conversionstatus="pass" title="SRG-OS-000062-GPOS-00031" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. Credential validation records events related to validation tests on credentials for a user account logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Audit Registry auditing has been enabled: 
+
+Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Object Access &gt;&gt; Audit Registry. 
+
+If "Audit Registry" is not set to "Failure", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-278947" severity="medium" conversionstatus="pass" title="SRG-OS-000062-GPOS-00031" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. Credential validation records events related to validation tests on credentials for a user account logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Audit Registry auditing has been enabled: 
+
+Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Object Access &gt;&gt; Audit Registry. 
+
+If "Audit Registry" is not set to "Success", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-278948" severity="medium" conversionstatus="pass" title="SRG-OS-000062-GPOS-00031" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. Credential validation records events related to validation tests on credentials for a user account logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Audit Sensitive Privilege Use auditing has been enabled: 
+
+Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Privilege Use &gt;&gt; Audit Sensitive Privilege Use. 
+
+If "Audit Sensitive Privilege Use" is not set to "Success", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-278949" severity="medium" conversionstatus="pass" title="SRG-OS-000062-GPOS-00031" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. Credential validation records events related to validation tests on credentials for a user account logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that Audit Sensitive Privilege Use auditing has been enabled: 
+
+Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Privilege Use &gt;&gt; Audit Sensitive Privilege Use. 
+
+If "Audit Sensitive Privilege Use" is not set to "Failure", this is a finding.</RawString>
     </Rule>
     <Rule id="V-254282" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Accounts or groups given rights on a system may show up as unresolved SIDs for various reasons including deletion of the accounts or groups. If the account or group objects are reanimated, there is a potential they may still have rights no longer intended. Valid domain accounts or groups may also show up as unresolved SIDs if a connection to the domain cannot be established.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3189,7 +3301,9 @@ Possible values for this setting are:
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>This is not applicable for Domain Controllers.
+
+If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}\
@@ -5513,7 +5627,7 @@ Thumbprint: A8C27332CCB4CA49554CE55D34062A7DD2850C02
 Valid to: Wednesday, November 16, 2024</RawString>
       <Thumbprint>49CBE933151872E17C8EAE7F0ABA97FB610F6477</Thumbprint>
     </Rule>
-    <Rule id="V-254444" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+    <Rule id="V-254444.a" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
       <CertificateName />
       <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
 
@@ -5526,6 +5640,21 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>U,9B74964506C7ED9138070D08D5F8B969866560C8</RawString>
+      <Thumbprint />
+    </Rule>
+    <Rule id="V-254444.b" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+      <CertificateName />
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <Location />
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>S,D471CA32F7A692CE6CBB6196BD3377FE4DBCD106</RawString>
       <Thumbprint />
     </Rule>
   </RootCertificateRule>
@@ -5892,8 +6021,9 @@ The "Enable computer and user accounts to be trusted for delegation" user right 
       <DisplayName>Enable computer and user accounts to be trusted for delegation</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Identity>
+      </Identity>
+      <IsNullOrEmpty>True</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -5918,8 +6048,9 @@ Accounts with the "Access Credential Manager as a trusted caller" user right may
       <DisplayName>Access Credential Manager as a trusted caller</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Identity>
+      </Identity>
+      <IsNullOrEmpty>True</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -5942,8 +6073,9 @@ Accounts with the "Act as part of the operating system" user right can assume th
       <DisplayName>Act as part of the operating system</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Identity>
+      </Identity>
+      <IsNullOrEmpty>True</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6044,8 +6176,9 @@ The "Create a token object" user right allows a process to create an access toke
       <DisplayName>Create a token object</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Identity>
+      </Identity>
+      <IsNullOrEmpty>True</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6097,8 +6230,9 @@ Accounts with the "Create permanent shared objects" user right could expose sens
       <DisplayName>Create permanent shared objects</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Identity>
+      </Identity>
+      <IsNullOrEmpty>True</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6309,8 +6443,9 @@ Satisfies: SRG-OS-000324-GPOS-00125, SRG-OS-000433-GPOS-00193&lt;/VulnDiscussion
       <DisplayName>Lock pages in memory</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>NULL</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Identity>
+      </Identity>
+      <IsNullOrEmpty>True</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
