@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse/apply Microsoft Windows Server 2019 STIG - Ver 3, Rel 6 [#1514](https://github.com/microsoft/PowerStig/issues/1514)
 
 ## [4.28.0] - 2025-12-5
 
