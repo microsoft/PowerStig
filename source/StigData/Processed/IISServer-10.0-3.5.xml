@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V3R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.3" created="5/27/2025">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Server_STIG_V3R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 01 Oct 2025 3.5.1 1.10.0" title="Microsoft IIS 10.0 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.5" created="12/2/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218792" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000015" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;User management and authentication can be an essential part of any application hosted by the web server. Along with authenticating users, the user management function must perform several other tasks enterprise-wide, such as password complexity, locking users after a configurable number of failed logons, and management of temporary and emergency accounts.
@@ -244,7 +244,10 @@ If the TLS version is not TLS 1.2 or higher, according to NIST SP 800-52, or if 
       <LegacyId>V-100189</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Access the IIS 10.0 Web Server.
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+Note: If the server is providing OCSP, and not otherwise hosting any content, this requirement is not applicable.
+
+Access the IIS 10.0 Web Server.
 Open IIS Manager.
 Click the IIS 10.0 web server name.
 Open on Configuration Editor under Management.
@@ -255,7 +258,7 @@ If includeSubDomains is not set to True, this is a finding.
 If max-age is not set to a value greater than 0, this is a finding.
 If redirectHttpToHttps is not True, this is a finding.
 
-If the website is behind a load balancer or proxy server, and HSTS enablement is handled there, this is Not Applicable.
+If the website is behind a load balancer or proxy server, and HSTS enablement is handled there, this is not applicable.
 
 If the version of Windows Server does not natively support HSTS, this is not a finding.</RawString>
     </Rule>
@@ -391,39 +394,6 @@ If any of the above fields are not selected, this is a finding.</RawString>
     </Rule>
   </IisLoggingRule>
   <ManualRule dscresourcemodule="None">
-    <Rule id="V-218787" severity="medium" conversionstatus="pass" title="SRG-APP-000098-WSR-000060" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Web server logging capability is critical for accurate forensic analysis. Without sufficient and accurate information, a correct replay of the events cannot be determined.
-
-Ascertaining the correct source (e.g., source IP), of the events is important during forensic analysis. Correctly determining the source of events will add information to the overall reconstruction of the loggable event. By determining the source of the event correctly, analysis of the enterprise can be undertaken to determine if events tied to the source occurred in other areas within the enterprise.
-
-A web server behind a load balancer or proxy server, when not configured correctly, will record the load balancer or proxy server as the source of every loggable event. When looking at the information forensically, this information is not helpful in the investigation of events. The web server must record with each event the client source of the event.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-100109</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Interview the System Administrator to review the configuration of the IIS 10.0 architecture and determine if inbound web traffic is passed through a proxy.
-
-If the IIS 10.0 web server is receiving inbound web traffic through a proxy, the audit logs must be reviewed to determine if correct source information is being passed through by the proxy server.
-
-Follow this procedure for web server and each website:
-
-Open the IIS 10.0 Manager.
-
-Click the IIS 10.0 web server name.
-
-Click the "Logging" icon.
-
-Click on "View log files" under the "Actions" pane.
-
-When the log file is displayed, review source IP information in log entries and verify the entries do not reflect the IP address of the proxy server.
-
-If the website is not behind a load balancer or proxy server, this is Not Applicable.
-
-If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.
-
-If provisions have been made to log the client IP via another field (i.e., utilizing X-Forwarded-For), this is not a finding.</RawString>
-    </Rule>
     <Rule id="V-218790" severity="medium" conversionstatus="pass" title="SRG-APP-000120-WSR-000070" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A major tool in exploring the website use, attempted use, unusual conditions, and problems are the access and error logs. In the event of a security incident, these logs can provide the system administrator (SA) and the web manager with valuable information. Failure to protect log files could enable an attacker to modify the log file data or falsify events to mask an attacker's activity.
 
@@ -641,6 +611,29 @@ Expand the roles node, right-click “Print Services”, and then select “Remo
 
 If the Internet Printing option is enabled, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-218819" severity="medium" conversionstatus="pass" title="SRG-APP-000435-WSR-000148" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;A Denial of Service (DoS) can occur when the web server is overwhelmed and can no longer respond to additional requests. A web server not properly tuned may become overwhelmed and cause a DoS condition even with expected traffic from users. To avoid a DoS, the web server must be tuned to handle the expected traffic for the hosted applications.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100173</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the IIS 10.0 web server is not hosting any applications, this is Not Applicable.
+
+If the IIS 10.0 web server is hosting applications, consult with the system administrator to determine risk analysis performed when the application was written and deployed to the IIS 10.0 web server.
+
+Obtain documentation on the configuration.
+Verify, at a minimum, the following tuning settings in the registry.
+Access the IIS 10.0 web server registry.
+Verify the following keys are present and configured. The required setting depends upon the requirements of the application. 
+Recommended settings are not provided as these settings must be explicitly configured to show a conscientious tuning has been made.
+Navigate to HKLM\SYSTEM\CurrentControlSet\Services\HTTP\Parameters\
+REG_DWORD "URIEnableCache"
+REG_DWORD "UriMaxUriBytes"
+REG_DWORD "UriScavengerPeriod"
+
+If explicit settings are not configured for "URIEnableCache", "UriMaxUriBytes" and "UriScavengerPeriod", this is a finding.</RawString>
+    </Rule>
     <Rule id="V-218823" severity="high" conversionstatus="pass" title="SRG-APP-000516-WSR-000079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;During installation of the web server software, accounts are created for the web server to operate properly. The accounts installed can have either no password installed or a default password, which will be known and documented by the vendor and the user community.
 
@@ -706,6 +699,23 @@ Review the results and verify the value is greater than zero for the "maxconnect
 
 If the maxconnections parameter is set to zero, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-268325" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000015" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Security scans show Request Smuggling vulnerability on IIS server.
+
+The vulnerability allows a remote attacker to perform HTTP request smuggling attack.
+
+The vulnerability exists due to the way that HTTP proxies (front-end) and web servers (back-end) that do not strictly adhere to RFC standards handle sequences of HTTP requests received from multiple sources. A remote attacker can send a specially crafted request to a targeted IIS Server, perform HTTP request smuggling attack and modify responses or retrieve information from another user's HTTP session.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>V-100119</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open Registry Editor.
+Navigate to "HKLM\System\CurrentControlSet\Services\HTTP\Parameters"
+Verify "DisableRequestSmuggling” is set to "1".
+
+If REG_DWORD DisableRequestSmuggling is not set to 1, this is a finding.</RawString>
+    </Rule>
   </ManualRule>
   <MimeTypeRule dscresourcemodule="xWebAdministration">
     <Rule id="V-218798.a" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
@@ -722,7 +732,8 @@ A shell is a program that serves as the basic interface between the user and the
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+Open the IIS 10.0 Manager.
 Click the IIS 10.0 web server name.
 Under IIS, double-click the "MIME Types" icon.
 From the "Group by:" drop-down list, select "Content Type".
@@ -744,7 +755,8 @@ A shell is a program that serves as the basic interface between the user and the
       <MimeType>application/x-msdownload</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+Open the IIS 10.0 Manager.
 Click the IIS 10.0 web server name.
 Under IIS, double-click the "MIME Types" icon.
 From the "Group by:" drop-down list, select "Content Type".
@@ -766,7 +778,8 @@ A shell is a program that serves as the basic interface between the user and the
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+Open the IIS 10.0 Manager.
 Click the IIS 10.0 web server name.
 Under IIS, double-click the "MIME Types" icon.
 From the "Group by:" drop-down list, select "Content Type".
@@ -788,7 +801,8 @@ A shell is a program that serves as the basic interface between the user and the
       <MimeType>application/x-bat</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+Open the IIS 10.0 Manager.
 Click the IIS 10.0 web server name.
 Under IIS, double-click the "MIME Types" icon.
 From the "Group by:" drop-down list, select "Content Type".
@@ -810,7 +824,8 @@ A shell is a program that serves as the basic interface between the user and the
       <MimeType>application/x-csh</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 10.0 Manager.
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+Open the IIS 10.0 Manager.
 Click the IIS 10.0 web server name.
 Under IIS, double-click the "MIME Types" icon.
 From the "Group by:" drop-down list, select "Content Type".
@@ -1209,27 +1224,6 @@ If any of the respective registry paths do not exist or are configured with the 
 SSL 3.0 is disabled by default in newer Operating Systems. If SSL 3.0 has a registry DWORD enabled with a value of 1, this is a finding. If this key is not present, this is not a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>Enabled</ValueName>
-      <ValueType>DWORD</ValueType>
-    </Rule>
-    <Rule id="V-241788" severity="low" conversionstatus="pass" title="SRG-APP-000266-WSR-000159" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;HTTP Response Headers contain information that could enable an attacker to gain access to an information system. Failure to prevent the sending of certain HTTP Response Header information to remote requesters exposes internal configuration information to potential attackers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HTTP\Parameters</Key>
-      <LegacyId>V-41854</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: If the server is hosting WSUS, this is Not Applicable.
-
-Open Registry Editor.
-Navigate to "HKLM\System\CurrentControlSet\Services\HTTP\Parameters"
-Verify "DisableServerHeader” is set to "2".
-
-If REG_DWORD DisableServerHeader is not set to 2, this is a finding.
-If the System Administrator can show that Server Version information has been removed via other means, such as using a rewrite outbound rule, this is not a finding.</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>DisableServerHeader</ValueName>
       <ValueType>DWORD</ValueType>
     </Rule>
   </RegistryRule>
