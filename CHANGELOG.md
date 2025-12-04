@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update Powerstig to parse/apply Microsoft SQL Server 2022 STIG - Ver 1, Rel 2 [#1511](https://github.com/microsoft/PowerStig/issues/1511)
 
 ## [4.27.0] - 2025-09-05
 
