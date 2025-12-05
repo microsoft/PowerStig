@@ -3,6 +3,18 @@
 ## [Unreleased]
 
 
+## [4.28.0] - 2025-12-5
+
+* Update PowerStig to parse/apply Microsoft IIS 10.0 Server STIG - Ver 3, Rel 5 [#1508](https://github.com/microsoft/PowerStig/issues/1508)
+* Update PowerStig to parse/apply Microsoft IIS 10.0 Site STIG - Ver 2, Rel 13 [#1509](https://github.com/microsoft/PowerStig/issues/1509)
+* Update Powerstig to parse/apply Microsoft Office 365 ProPlus STIG - Ver 3, Rel 4 [#1510](https://github.com/microsoft/PowerStig/issues/1510)
+* Update Powerstig to parse/apply Microsoft SQL Server 2022 STIG - Ver 1, Rel 2 [#1511](https://github.com/microsoft/PowerStig/issues/1511)
+* Update Powerstig to parse/apply Microsoft Windows 10 STIG - Ver 3, Rel 5 [#1512](https://github.com/microsoft/PowerStig/issues/1512)
+* Update Powerstig to parse/apply Microsoft Windows 11 STIG - Ver 2, Rel 5 [#1513](https://github.com/microsoft/PowerStig/issues/1513)
+* Update Powerstig to parse/apply Microsoft Windows Server 2019 STIG - Ver 3, Rel 6 [#1514](https://github.com/microsoft/PowerStig/issues/1514)
+* Update Powerstig to parse/apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 6 [#1515](https://github.com/microsoft/PowerStig/issues/1515)
+* Update Powerstig to parse/apply Microsoft Windows Defender Antivirus STIG - Ver 2, Rel 6 [#1516](https://github.com/microsoft/PowerStig/issues/1516)
+
 ## [4.27.0] - 2025-09-05
 
 * Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 11 [#1478](https://github.com/microsoft/PowerStig/issues/1478)
