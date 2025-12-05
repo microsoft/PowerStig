@@ -6,7 +6,7 @@
     RootModule           = 'PowerStig.psm1'
 
     # Version number of this module.
-    ModuleVersion        = '4.27.0'
+    ModuleVersion        = '4.29.0'
 
     # ID used to uniquely identify this module
     GUID                 = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -119,16 +119,8 @@
             Prerelease   = ''
 
             # ReleaseNotes of this module
-            ReleaseNotes = '## ## [4.27.0] - 2025-09-05
-                * Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 11 [#1478](https://github.com/microsoft/PowerStig/issues/1478)
-                * Update Powerstig to parse/apply Microsoft DotNet Framework 4.0 STIG - Ver 2, Rel 7 [#1481](https://github.com/microsoft/PowerStig/issues/1481)
-                * Update Powerstig to parse/apply Microsoft Edge STIG - Ver 2, Rel 3 [#1483](https://github.com/microsoft/PowerStig/issues/1483)
-                * Update Powerstig to parse/apply Microsoft IIS 10.0 STIG - Ver 25, Rel 07 [#1485](https://github.com/microsoft/PowerStig/issues/1485)
-                * Update Powerstig to parse/apply Microsoft Windows 11 STIG - Ver 2, Rel 4 [#1487](https://github.com/microsoft/PowerStig/issues/1487)
-                * Update Powerstig to parse/apply Microsoft SQL Server 2016 STIG - Ver 3, Rel 5 [#1489](https://github.com/microsoft/PowerStig/issues/1489)
-                * Update Powerstig to parse/apply Microsoft SQL Server 2022 STIG - Ver 1, Rel 1 [#1491](https://github.com/microsoft/PowerStig/issues/1491)
-                * Update Powerstig to parse/apply Microsoft Windows Server 2019 STIG - Ver 3, Rel 5 [#1493](https://github.com/microsoft/PowerStig/issues/1493)
-                * Update Powerstig to parse/apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 5 [#1495](https://github.com/microsoft/PowerStig/issues/1495)'
+            ReleaseNotes = '## ## [4.29.0] - 2026-04-01
+                * '
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }
