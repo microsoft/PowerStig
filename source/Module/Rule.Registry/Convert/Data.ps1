@@ -17,7 +17,7 @@ data regularExpression
 
         # The registry hive is not provided in a consistant format, so the search pattern needs
         # To account for optional character ranges
-        registryHive = (Registry)?\\s?Hive\\s?:\\s*?(HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)
+        registryHive = (Registry)?\\s?Hive\\s?:\\s*?(HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER|HKLM|HKCU)
 
         #registryPath      = ((Registry)?\\s*(Path|SubKey)\\s*:\\s*|^\\\\SOFTWARE)(\\\\)?\\w+(\\\\)\\w+(\\\\)?
 
