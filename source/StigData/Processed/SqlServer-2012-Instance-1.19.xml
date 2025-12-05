@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2012_STIG" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Instance_STIG_V1R19_Manual-xccdf.xml" releaseinfo="Release: 19 Benchmark Date: 26 Jul 2019" title="Microsoft SQL Server 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.19" created="8/12/2021">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2012_STIG" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Instance_STIG_V1R19_Manual-xccdf.xml" releaseinfo="Release: 19 Benchmark Date: 26 Jul 2019" title="Microsoft SQL Server 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.19" created="9/26/2025">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-40907" severity="high" conversionstatus="pass" title="SRG-APP-000264-DB-000136" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), VPN, or IPSEC tunnel. 
@@ -4929,6 +4929,7 @@ Some applications that run on SQL Server require the 'sa' account to be enabled 
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>4f982e9f-9e6d-4219-b19f-24de8035e099</QueryId>
       <RawString>Check SQL Server settings to determine if the 'sa' (sysadmin) account has been disabled by executing the following query:
 
 USE MASTER
@@ -4962,6 +4963,7 @@ Demonstration and sample database objects and applications present publicly know
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>d3c17933-935d-4197-8012-86e6f64ebf9d</QueryId>
       <RawString>Check SQL Server for the existence of the publicly available "AdventureWorks" database by performing the following query:
 
 SELECT name from sysdatabases where name like 'AdventureWorks%';
@@ -4987,6 +4989,7 @@ Demonstration and sample database objects and applications present publicly know
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>d89232d5-38d9-46df-a7dc-6b95261a4c30</QueryId>
       <RawString>Check SQL Server for the existence of the publicly available "NorthWind" database by performing the following query:
 
 SELECT name from sysdatabases where name like 'Northwind%';
@@ -5008,6 +5011,7 @@ Detection of suspicious activity, including access attempts and successful acces
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>ffb69915-0a39-4232-aaa6-7fc759436ae7</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5056,6 +5060,7 @@ Note that trace file rollover does not count as an audit failure, provided that 
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is the path to the trace file</OrganizationValueTestString>
+      <QueryId>da113a7d-9751-4cb0-9795-3eeaddf6a848</QueryId>
       <RawString>From the query prompt:
 
 SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5103,6 +5108,7 @@ After the initial setup of SQL Server audit log configuration, it is best to che
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is the trace file limit</OrganizationValueTestString>
+      <QueryId>361f8bcc-d286-4319-b0c7-1888352baad0</QueryId>
       <RawString>Check the SQL Server audit setting on the maximum number of files of the trace used for the auditing requirement. 
 
 Select * from sys.traces. Determine the audit being used to fulfill the overall auditing requirement. Examine the max_files and max_size parameters. SQL will overwrite the oldest files when the max_files parameter has been exceeded. Care must be taken to ensure that this does not happen, or data will be lost. 
@@ -5115,19 +5121,20 @@ If auditing will outgrow the space reserved for logging before being overwritten
       <Variable>TraceFilePath={0} MaxRollOverFileCount={1} MaxTraceFileSize={2}</Variable>
       <VariableValue />
     </Rule>
-    <Rule id="V-41027" severity="medium" conversionstatus="pass" title="SRG-APP-000101-DB-000044" dscresource="None">
+    <Rule id="V-41027" severity="medium" conversionstatus="pass" title="SRG-APP-000101-DB-000044" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;SQL Server auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.
 
 SQL Server does have a means available to add organizationally defined additional, more detailed information in the audit event records. These events may be identified by type, location, or subject. An example of more detailed information the organization may require in audit records could be the name of the application where the request is coming from.
 
 Some organizations may determine that more detailed information is required for specific database event types. If this information is not available, it could negatively impact forensic investigations into user actions or other malicious events.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>6f1056e6-f7e9-44a5-8d7e-8598aacdbe09</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5161,17 +5168,18 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41028" severity="medium" conversionstatus="pass" title="SRG-APP-000100-DB-000201" dscresource="None">
+    <Rule id="V-41028" severity="medium" conversionstatus="pass" title="SRG-APP-000100-DB-000201" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked. 
 
 Database software is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know exactly who performed a given action. If user identification information is not recorded and stored with the audit record, the record itself is of very limited use.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>2924bbbf-5140-446c-9922-3b4e2a586324</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5205,7 +5213,7 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41029" severity="medium" conversionstatus="pass" title="SRG-APP-000099-DB-000043" dscresource="None">
+    <Rule id="V-41029" severity="medium" conversionstatus="pass" title="SRG-APP-000099-DB-000043" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes, but is not limited to:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked. 
 
 SQL Server is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know the outcome of attempted actions. This requires specific information regarding the outcome of the action or event that the audit record is referring to. If outcome status information is not recorded and stored with the audit record, the record itself is of very limited use.
@@ -5213,13 +5221,14 @@ SQL Server is capable of a range of actions on data stored within the database. 
 Success and failure indicators ascertain the outcome of a particular event. As such, they also provide a means to measure the impact of an event and help authorized personnel to determine the appropriate response. Without knowing the outcome of audit events, it is very difficult to accurately recreate the series of events during forensic analysis.
 
 If auditing is enabled, SQL Server does capture the outcome status-specific information in all audit records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>48c2ddad-966a-4092-981c-488abec2af51</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5253,19 +5262,20 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41030" severity="medium" conversionstatus="pass" title="SRG-APP-000098-DB-000042" dscresource="None">
+    <Rule id="V-41030" severity="medium" conversionstatus="pass" title="SRG-APP-000098-DB-000042" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes, but is not limited to:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked. 
 
 SQL Server is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know exactly who performed what actions. This requires specific information regarding the source of the event an audit record is referring to. If the source of the event information is not recorded and stored with the audit record, the record itself is of very limited use.
 
 The source of the event can be a user account and sometimes a system account when timed jobs are run. Without information establishing the source of activity, the value of audit records from a forensics perspective is questionable. If auditing is enabled, SQL Server does capture the source of the event-specific information in all audit records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>63eb1dc7-973f-4e9e-b044-066dfb231c05</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5299,19 +5309,20 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41031" severity="medium" conversionstatus="pass" title="SRG-APP-000097-DB-000041" dscresource="None">
+    <Rule id="V-41031" severity="medium" conversionstatus="pass" title="SRG-APP-000097-DB-000041" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes, but is not limited to:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked. 
 
 SQL Server is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know exactly where actions were performed. This requires specific information regarding the event location an audit record is referring to. If event location information is not recorded and stored with the audit record, the record itself is of very limited use.
 
 An event location can be a database instance, table, column, row, etc. Without sufficient information establishing where the audit events occurred, investigation into the cause of events is severely hindered. If auditing is enabled, SQL Server does capture the event location-specific information in all audit records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>399243aa-fc0b-4cc1-a5b2-f832749168f2</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5345,19 +5356,20 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41032" severity="medium" conversionstatus="pass" title="SRG-APP-000096-DB-000040" dscresource="None">
+    <Rule id="V-41032" severity="medium" conversionstatus="pass" title="SRG-APP-000096-DB-000040" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes, but is not limited to:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked. 
 
 SQL Server is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know exactly when actions were performed. This requires specific information regarding the date and time an audit record is referring to. If date and time information is not recorded and stored with the audit record, the record itself is of very limited use.
 
 If auditing is enabled, SQL Server does capture the date and time-specific information in all audit records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>413cd559-01f3-46bc-9f5a-dddfbe10d33f</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5391,19 +5403,20 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41033" severity="medium" conversionstatus="pass" title="SRG-APP-000095-DB-000039" dscresource="None">
+    <Rule id="V-41033" severity="medium" conversionstatus="pass" title="SRG-APP-000095-DB-000039" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Information system auditing capability is critical for accurate forensic analysis. Audit record content which may be necessary to satisfy the requirement of this control includes, but is not limited to:  time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked. 
 
 SQL Server is capable of a range of actions on data stored within the database. It is important, for accurate forensic analysis, to know exactly what actions were performed. This requires specific information regarding the event type an audit record is referring to. If event type information is not recorded and stored with the audit record, the record itself is of very limited use.
 
 If auditing is enabled, SQL Server does capture the event type-specific information in all audit records.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1e2461a2-c431-4666-8871-e16c522ef9d0</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5437,7 +5450,7 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41035" severity="medium" conversionstatus="pass" title="SRG-APP-000091-DB-000066" dscresource="None">
+    <Rule id="V-41035" severity="medium" conversionstatus="pass" title="SRG-APP-000091-DB-000066" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Audit records can be generated from various components within the information system, such as network interfaces, hard disks, modems, etc. From an application perspective, certain specific application functionalities may be audited, as well.
 
 The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records (i.e., auditable events, time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked).
@@ -5445,13 +5458,14 @@ The list of audited events is the set of events for which audits are to be gener
 Organizations may define the organizational personnel accountable for determining which application components shall provide auditable events.
 
 Auditing provides accountability for changes made to the SQL Server configuration or its objects and data. It provides a means to discover suspicious activity and unauthorized changes. Without auditing, a compromise may go undetected and without a means to determine accountability.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>9f393b55-2a1d-490d-838a-868163a83903</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -5496,6 +5510,7 @@ Since the SQL Server 'sa' is administrative in nature, the compromise of a defau
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is populated with a non-default SA account name</OrganizationValueTestString>
+      <QueryId>a18e424b-2c21-4e3b-8aac-b0b326a2b0d3</QueryId>
       <RawString>Verify the SQL Server default 'sa' account name has been changed.
 
 Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins.
@@ -5506,15 +5521,16 @@ If SQL Server default 'sa' account name is in the 'Logins' list, this is a findi
       <Variable>saAccountName={0}</Variable>
       <VariableValue />
     </Rule>
-    <Rule id="V-41042" severity="medium" conversionstatus="pass" title="SRG-APP-000063-DB-000018" dscresource="None">
+    <Rule id="V-41042" severity="medium" conversionstatus="pass" title="SRG-APP-000063-DB-000018" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;This is intended to limit exposure, by making it possible to trace any unauthorized access to other data or functionality by a privileged user account or role that has permissions on security functions or security-relevant information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>60f4014f-8484-475e-bdcd-ba8eb872ef9b</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
 
@@ -5569,6 +5585,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>055e42cb-0b7c-434d-9d8b-d8a4d0509418</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any endpoint' by running the following query:
 
 SELECT 
@@ -5666,6 +5683,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>a39a6c5a-ab86-4f11-9bd6-d80d8ef0c44a</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any database' by running the following query:
 
 SELECT 
@@ -5763,6 +5781,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>0ad3fbb9-91a9-45ad-987c-233947c8e3d8</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any credential' by running the following query:
 
 SELECT 
@@ -5860,6 +5879,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>8c495943-ab0f-4a49-b239-334f10a256f8</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any connection' by running the following query:
 
 SELECT 
@@ -5957,6 +5977,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>5f5bcf65-6c64-4a4c-b64f-94aaaf271356</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter server state' by running the following query:
 
 SELECT 
@@ -6054,6 +6075,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1ad66084-ee1e-4e2e-8db8-7ef3aa91b0c5</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any event notification' by running the following query:
 
 SELECT 
@@ -6151,6 +6173,7 @@ The fix for this vulnerability specifies the use of REVOKE.  Be aware that revok
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} is a user that can view any database</OrganizationValueTestString>
+      <QueryId>9d5be458-9fcf-4119-9007-35dc0108c02c</QueryId>
       <RawString>Obtain the list of roles that are authorized for the SQL Server 'View any database' permission and what 'Grant', 'Grant With', and/or 'Deny' privilege is authorized. Obtain the list of roles with that permission by running the following query:
 
 SELECT 
@@ -6246,6 +6269,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>3f7835e6-0663-4175-aeb7-562f62d50af9</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any server audit' by running the following query:
 
 SELECT 
@@ -6343,6 +6367,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>e99f369e-adb5-42a6-a974-0a528eb4d112</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Authenticate Server' by running the following query:
 
 SELECT 
@@ -6440,6 +6465,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>9e7b30f0-3e0d-43f6-8b45-1242d40dee54</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Administer bulk operations' by running the following query:
 
 SELECT 
@@ -6537,6 +6563,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>4c2244f9-7a97-4e2b-95f1-8b3816e39d49</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create endpoint' by running the following query:
 
 SELECT 
@@ -6634,6 +6661,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>8938041e-3b27-498e-93d4-ee075b26d182</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create DDL Event Notification' by running the following query:
 
 SELECT
@@ -6732,6 +6760,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>aafcf669-c1c4-41b9-b96d-8aae24e39c6c</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create availability group' by running the following query:
 
 SELECT 
@@ -6829,6 +6858,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>3c04c622-4b14-4c63-93a2-26c719c4aecb</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create any database' by running the following query:
 
 SELECT 
@@ -6926,6 +6956,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>c6197714-1d46-4d5b-8fe4-6e96256255f2</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Control server' by running the following query:
 
 SELECT 
@@ -7023,6 +7054,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>388e1600-fb48-45d0-808c-d8a7799dee93</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any linked server' by running the following query:
 
 SELECT 
@@ -7120,6 +7152,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>131216c7-300f-4031-8922-4394e1780101</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any event session' by running the following query:
 
 SELECT 
@@ -7217,6 +7250,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>b8871972-7268-4b9b-b837-bdadd1273892</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter trace' by running the following query:
 
 SELECT 
@@ -7314,6 +7348,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>b31cf183-f8ac-416a-a2c8-875fd05b8024</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter Settings' by running the following query:
 
 SELECT 
@@ -7411,6 +7446,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>d200d9bc-a987-49a7-9e1d-de8abc9edff9</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create trace event notification' by running the following query:
 
 SELECT 
@@ -7508,6 +7544,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>970c16fb-7a98-4040-ae93-393a6e624879</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter resources' by running the following query:
 
 SELECT 
@@ -7605,6 +7642,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>402c13c8-d77c-406a-a854-1f621efde0ba</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'External access assembly' by running the following query:
 
 SELECT 
@@ -7702,6 +7740,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>d4786177-9049-40b4-9cbb-d9811784ad97</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any login' by running the following query:
 
 SELECT 
@@ -7799,6 +7838,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>ecc78282-3c51-4c55-bc68-18a47ef50461</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Shutdown' by running the following query:
 
 SELECT 
@@ -7896,6 +7936,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>a480e8b4-82b0-4cb5-8405-3341f1174073</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Unsafe assembly' by running the following query:
 
 SELECT 
@@ -7993,6 +8034,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>62dbde06-7fef-4a99-90cc-0af782dc210f</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Create server role' by running the following query:
 
 SELECT 
@@ -8090,6 +8132,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>bce557c8-d6a4-488d-8d5a-85215e22be07</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'View server state' by running the following query:
 
 SELECT 
@@ -8187,6 +8230,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>fe766e91-f27d-4c44-a56b-8af166b0daf7</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'Alter any server role' by running the following query:
 
 SELECT 
@@ -8284,6 +8328,7 @@ Note that this does not apply to logins with names of the form '##MS...##'.  The
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>1f9c4ac3-c8d7-4a57-a2fc-c67169aa0197</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'View any definition' by running the following query:
 
 SELECT 
@@ -8364,19 +8409,20 @@ GO</RawString>
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41305" severity="medium" conversionstatus="pass" title="SRG-APP-000292-DB-000138" dscresource="None">
+    <Rule id="V-41305" severity="medium" conversionstatus="pass" title="SRG-APP-000292-DB-000138" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Once an attacker establishes initial access to a system, they often attempt to create a persistent method of re-establishing access. One way to accomplish this is for the attacker to modify an existing account for later use.
 
 Notification of account creation is one method and best practice for mitigating this risk. A comprehensive account management process will ensure an audit trail which documents the creation of application user accounts and notifies administrators and/or application owners exist. Such a process greatly reduces the risk that accounts will be surreptitiously created and provides logging that can be used for forensic purposes.
 
 To address the multitude of policy based access requirements, many application developers choose to integrate their applications with enterprise level authentication/access mechanisms that meet or exceed access control policy requirements. Such integration allows the application developer to off-load those access control functions and focus on core application features and functionality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>8dc27e2e-5cab-4ca4-ac72-09b61d3f3abd</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -8410,7 +8456,7 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41306" severity="medium" conversionstatus="pass" title="SRG-APP-000027-DB-000186" dscresource="None">
+    <Rule id="V-41306" severity="medium" conversionstatus="pass" title="SRG-APP-000027-DB-000186" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Once an attacker establishes initial access to a system, they often attempt to create a persistent method of re-establishing access. One way to accomplish this is for the attacker to simply modify an existing account. 
 
 Auditing of account modification is one method and best practice for mitigating this risk. A comprehensive application account management process ensures an audit trail automatically documents the modification of application user accounts and, as required, notifies administrators, application owners, and/or appropriate individuals. Applications must provide this capability directly, leverage complimentary technology providing this capability, or a combination thereof.
@@ -8418,13 +8464,14 @@ Auditing of account modification is one method and best practice for mitigating 
 Automated account-auditing processes greatly reduce the risk that accounts will be surreptitiously modified, and provides logging that can be used for forensic purposes.  
 
 To address the multitude of policy based access requirements, many application developers choose to integrate their applications with enterprise-level authentication/access mechanisms meeting or exceeding access control policy requirements.  Such integration allows the application developer to off-load those access control functions and focus on core application features and functionality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>f6ed09e4-5fa4-4e5f-97f3-c2bfa0fb8efb</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -8458,20 +8505,21 @@ Use the following query to obtain a list of all event IDs, and their meaning:
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-41307" severity="medium" conversionstatus="pass" title="SRG-APP-000019-DB-000197" dscresource="None">
+    <Rule id="V-41307" severity="medium" conversionstatus="pass" title="SRG-APP-000019-DB-000197" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;Remote access is any access to an organizational information system by a user (or an information system) communicating through an external, non-organization-controlled network (e.g., the Internet). Examples of remote access methods include dial-up, broadband, and wireless.
 
 Remote network and system access is accomplished by leveraging common communication protocols to establish a remote connection. These connections will typically originate over either the public Internet or the Public Switched Telephone Network (PSTN). Neither of these internetworking mechanisms is private or secure, and they do not by default restrict access to networked resources once connectivity is established.
 
 Numerous best practices are employed to protect remote connections, such as utilizing encryption to protect data sessions and firewalls to restrict and control network connectivity. In addition to these protections, auditing must also be utilized in order to track system activity, assist in diagnosing system issues, and provide evidence needed for forensic investigations post security incident.
 &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-41021</DuplicateOf>
+      <DuplicateOf />
       <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>cc0ca451-1780-4ecf-98ba-a2fc16bf85f5</QueryId>
       <RawString>Check to see that all required events are being audited.
 From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
@@ -8522,6 +8570,7 @@ Note that this does not apply to logins with names of the form '##MS...##'. Thes
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <QueryId>156d2340-bd5c-4381-b7bb-41519ede432c</QueryId>
       <RawString>Obtain the list of accounts that have direct access to the server-level permission 'View Any Database' by running the following query:
 
 SELECT

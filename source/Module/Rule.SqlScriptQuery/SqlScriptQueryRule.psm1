@@ -23,6 +23,7 @@ class SqlScriptQueryRule : Rule
     [string] $SetScript <#(ExceptionValue)#>
     [string[]] $Variable
     [String[]] $VariableValue
+    [string] $QueryId
 
     <#
         .SYNOPSIS

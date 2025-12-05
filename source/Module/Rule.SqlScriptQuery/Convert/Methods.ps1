@@ -2225,4 +2225,35 @@ function Get-SqlScriptQueryOrganizationValueTestString
     }
 }
 
+<#
+    .SYNOPSIS
+        Creates a unique ID for the SqlScriptQuery resource.
+    .Notes
+        Required as of version SqlServerDsc 17.0.0.
+#>
+function Get-SqlScriptQueryId
+{   
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $collection = Get-AuditEvents -CheckContent $CheckContent
+    if ($collection)
+    {
+        $queryId = '1'
+    }
+        else
+        {
+            $queryId = New-Guid
+        }
+    
+    return $queryId
+}
+
 #endregion Helper Functions
