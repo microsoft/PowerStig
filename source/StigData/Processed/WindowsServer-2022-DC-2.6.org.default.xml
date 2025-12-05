@@ -79,7 +79,7 @@ By using this IS (which includes any device attached to this IS), you consent to
   <!-- Ensure ''V-254290'' -ne '0'-->
   <OrganizationalSetting id="V-254290" PolicyValue="1" />
   <!-- Ensure ''V-254291'' -ge '14'-->
-  <OrganizationalSetting id="V-254291" PolicyValue="14 " />
+  <OrganizationalSetting id="V-254291" PolicyValue="14" />
   <!-- Ensure ''V-254447'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-254447" OptionValue="" />
   <!-- Ensure ''V-254448'' -ne 'Guest'-->
