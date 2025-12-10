@@ -5,6 +5,7 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 
 $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
 . $configFile
+Test-DscConfiguration -Path "$($script:DSCCompositeResourceName)_config"
 
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 $resourceInformation = $global:getDscResource | Where-Object -FilterScript {$PSItem.Name -eq $script:DSCCompositeResourceName}
@@ -21,11 +22,11 @@ foreach ($stig in $stigList)
     {
         $ruleType = "RegistryRule"
     }
-    else 
+    else
     {
         $ruleType = "FileContentRule"
     }
-    
+
     $skipRule = Get-Random -InputObject $powerstigXml.$ruleType.Rule.id
     $skipRuleType = $null
     $expectedSkipRuleTypeCount = 0 + $blankSkipRuleId.Count
