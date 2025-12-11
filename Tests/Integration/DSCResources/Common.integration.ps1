@@ -31,7 +31,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
     }
 
     It 'Should compile a useable MOF' {
-        { Test-DscConfiguration -Path "$TestDrive\localhost.mof" } | Should -Not -Throw
+        { Test-DscConfiguration -Path "$TestDrive\$technologyConfig" } | Should -Not -Throw
     }
 
     $ruleNames = (Get-Member -InputObject $powerstigXml |
