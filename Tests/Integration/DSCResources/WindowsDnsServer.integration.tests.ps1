@@ -5,7 +5,6 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 
 $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
 . $configFile
-Test-DscConfiguration -Path "$($script:DSCCompositeResourceName)_config"
 
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 $resourceInformation = $global:getDscResource | Where-Object -FilterScript {$PSItem.Name -eq $script:DSCCompositeResourceName}
