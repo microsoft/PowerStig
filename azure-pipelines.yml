@@ -135,6 +135,7 @@ stages:
 
           - powershell: |
               winrm quickconfig -quiet
+              Set-WsManInstance -ResourceURI winrm/config -ValueSet @{ MaxEnvelopeSizekb = 8192 }
             displayName: Configure WinRM
 
           - task: PowerShell@2
