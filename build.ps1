@@ -33,7 +33,7 @@ param
     # You can override the value for PSDepend in the Build.psd1 build manifest
     # This defaults to $OutputDirectory/modules (by default: ./output/modules)
     [Parameter()]
-    $RequiredModulesDirectory = $(Join-Path 'output' 'RequiredModules'),
+    $RequiredModulesDirectory = 'RequiredModules',
 
     [Parameter()]
     [object[]]
@@ -228,28 +228,25 @@ Begin
     # Set up a mini virtual environment...
     PSDependOptions             = @{
         AddToPath  = $true
-        Target     = 'output\RequiredModules'
-        Parameters = @{
-
-        }
+        Target     = 'RequiredModules'
+        Parameters = @{}
     }
 
-    InvokeBuild                     = 'latest'
-    PSScriptAnalyzer                = 'latest'
-    Pester                          = '4.10.1'
-    Plaster                         = 'latest'
-    ModuleBuilder                   = '1.0.0'
-    ChangelogManagement             = 'latest'
-    Sampler                         = '0.104.0'
-    xDSCResourceDesigner            = 'latest'
-    PSPKI                           = 'latest'
-    MarkdownLinkCheck               = 'latest'
-    'DscResource.Test'              = '0.13.1'
-    'DscResource.AnalyzerRules'     = 'latest'
-    'powershell-yaml'               = 'latest'
-    'Vmware.VsphereDSC'             = '2.1.0.58'
+    InvokeBuild                 = 'latest'
+    PSScriptAnalyzer            = 'latest'
+    Pester                      = '4.10.1'
+    Plaster                     = 'latest'
+    ModuleBuilder               = '1.0.0'
+    ChangelogManagement         = 'latest'
+    Sampler                     = '0.104.0'
+    xDSCResourceDesigner        = 'latest'
+    PSPKI                       = 'latest'
+    MarkdownLinkCheck           = 'latest'
+    'DscResource.Test'          = '0.13.1'
+    'DscResource.AnalyzerRules' = 'latest'
+    'powershell-yaml'           = 'latest'
+    'Vmware.VsphereDSC'         = '2.1.0.58'
     # The modules below are dynamically inserted from the Begin block of .\build.ps1
-
 '@
 
     $stringBuilder = New-Object -TypeName System.Text.StringBuilder -ArgumentList $requiredModulesContent
