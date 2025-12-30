@@ -8,7 +8,8 @@
 param
 (
     [Parameter(Position = 0)]
-    [string[]]$Tasks = '.',
+    [string[]]
+    $Tasks = '.',
 
     [Parameter()]
     [String]
@@ -262,21 +263,27 @@ Begin
     Set-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath 'RequiredModules.psd1') -Value $stringBuilder.ToString() -Encoding UTF8
 
     # Find build config if not specified
-    if (-not $BuildConfig) {
+    if (-not $BuildConfig)
+    {
         $config = Get-ChildItem -Path "$PSScriptRoot\*" -Include 'build.y*ml', 'build.psd1', 'build.json*' -ErrorAction:Ignore
-        if (-not $config -or ($config -is [array] -and $config.Length -le 0)) {
+        if (-not $config -or ($config -is [array] -and $config.Length -le 0))
+        {
             throw "No build configuration found. Specify path via -BuildConfig"
         }
-        elseif ($config -is [array]) {
-            if ($config.Length -gt 1) {
+        elseif ($config -is [array])
+        {
+            if ($config.Length -gt 1)
+            {
                 throw "More than one build configuration found. Specify which one to use via -BuildConfig"
             }
             $BuildConfig = $config[0]
         }
-        else {
+        else
+        {
             $BuildConfig = $config
         }
     }
+
     # Bootstrapping the environment before using Invoke-Build as task runner
 
     if ($MyInvocation.ScriptName -notLike '*Invoke-Build.ps1')
