@@ -2,6 +2,21 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to create Checklist V3 file format
+
+New Feature Request:
+**Is your feature request related to a problem? Please describe.**
+The checklist files generated are in the V2 format, but I need the files generated in the V3 format.
+
+**Describe the solution you'd like**
+I want a new function, e.g., New-STIGChecklistV3, that generates a checklist file in the V3 format.
+
+**Describe alternatives you've considered**
+An alternate option would be a function that converts a V2 Checklist file to the V3 format, instead of generating the V3 file directly.
+
+**Additional context**
+The V3 format schema can be found in the Cyber.mil document library.
+
 
 ## [4.28.0] - 2025-12-5
 
@@ -87,7 +102,7 @@
 * Update Powerstig to parse/apply Microsoft Office System 2016 STIG - Ver 2, Rel 3 [#1352](https://github.com/microsoft/PowerStig/issues/1352)
 * Update Powerstig to parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 12 [#1351](https://github.com/microsoft/PowerStig/issues/1351)
 * Update Powerstig to parse/apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 4 [#1349](https://github.com/microsoft/PowerStig/issues/1349)
-* Update Powerstig to parse/apply U_MS_SQL_Server_2016_Instance_V2R12 [#1348](https://github.com/microsoft/PowerStig/issues/1348) 
+* Update Powerstig to parse/apply U_MS_SQL_Server_2016_Instance_V2R12 [#1348](https://github.com/microsoft/PowerStig/issues/1348)
 * Update Powerstig to parse/apply Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 14 [#1347](https://github.com/microsoft/PowerStig/issues/1347)
 
 ## [4.21.0] - 2024-03-01
