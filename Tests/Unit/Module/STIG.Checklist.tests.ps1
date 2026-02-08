@@ -130,3 +130,67 @@ Describe 'Get-StigXccdfFileName' {
         $getStigXccdfFileNameResult | Should -Be 'U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml'
     }
 }
+
+Describe 'New-StigCheckListV3' {
+
+    configuration ExampleV3
+    {
+        param
+        (
+            [parameter()]
+            [string]
+            $NodeName = "localhost"
+        )
+
+        Import-DscResource -ModuleName PowerStig
+
+        Node $NodeName
+        {
+            WindowsServer BaseLine
+            {
+                OsVersion   = "2019"
+                OsRole      = "MS"
+                SkipRuleType = "AccountPolicyRule","AuditPolicyRule","AuditSettingRule","DocumentRule","ManualRule","PermissionRule","SecurityOptionRule","UserRightRule","WindowsFeatureRule","ProcessMitigationRule","RegistryRule"
+            }
+        }
+    }
+    ExampleV3 -OutputPath $TestDrive
+
+    $mofTestV3 = '{0}{1}' -f $TestDrive.fullname,"\localhost.mof"
+
+    # Test parameter validity -OutputPath
+    It 'Should throw if an invalid path is provided' {
+        {New-StigCheckListV3 -MofFile 'test' -XccdfPath 'test' -OutputPath 'c:\asdf'} | Should -Throw
+    }
+
+    It 'Should throw if the full path to a .cklb file is not provided' {
+        {New-StigCheckListV3 -MofFile 'test' -XccdfPath 'test' -OutputPath 'c:\test\test.ck'} | Should -Throw
+    }
+
+    # Test parameter -ManualCheckFile
+    It 'Should throw if the full path to a ManualChecklistEntriesFile is not valid' {
+        {New-StigCheckListV3 -MofFile 'test' -XccdfPath 'test' -ManualChecklistEntriesFile 'broken' -OutputPath 'c:\test\test.cklb'} | Should -Throw
+    }
+
+    # Test invalid parameter combinations
+    It 'Should throw if an invalid combination of parameters for assessment is provided' {
+        {New-StigCheckListV3 -MofFile 'test' -DscResults 'test' -XccdfPath 'test' -OutputPath 'C:\test'} | Should -Throw
+    }
+
+    It 'Should throw if an invalid combination of parameters for Xccdf validation is provided' {
+        {New-StigCheckListV3 -DscResult 'foo' -MofFile 'bar' -OutputPath 'C:\Test'} | Should -Throw
+    }
+
+    It 'Should throw if input for Verifier is not string' {
+        {New-StigCheckListV3 -MofFile 'test' -XccdfPath 'test' -OutputPath 'c:\test\test.cklb' -Verifier 1234} | Should -Throw
+    }
+
+    It 'Generate a V3 checklist given correct parameters' {
+
+        {
+            $outputPath = Join-Path $TestDrive -ChildPath ChecklistV3.cklb
+            $xccdfPath = ((Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object -Property Name -Match "Server_2019_MS")[1]).FullName
+            New-StigCheckListV3 -ReferenceConfiguration $mofTestV3 -XccdfPath $xccdfPath -OutputPath $outputPath -Verifier "PowerSTIG V3 Test"
+        } | Should -Not -Throw
+    }
+}

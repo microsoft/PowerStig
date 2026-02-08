@@ -15,6 +15,7 @@ Export-ModuleMember -Function @(
     'Get-DomainName',
     'Get-Stig',
     'New-StigCheckList',
+    'New-StigCheckListV3',
     'Get-StigRuleList',
     'Get-StigVersionNumber',
     'Get-PowerStigFilelist',

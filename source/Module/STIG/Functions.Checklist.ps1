@@ -506,6 +506,499 @@ function New-StigCheckList
 
 <#
     .SYNOPSIS
+        Automatically creates a STIG Viewer 3 checklist (.cklb) from DSC results or a compiled MOF for a single endpoint.
+        The function will test based upon the passed in STIG file or files (XccdfPath) parameter.
+        Manual entries in the checklist can be injected from a ManualChecklistEntriesFile file.
+
+    .DESCRIPTION
+        Creates a V3 format STIG checklist in JSON format (.cklb) for use with STIG Viewer 3.
+        This is the next generation format that replaces the V2 XML (.ckl) format.
+
+    .PARAMETER ReferenceConfiguration
+        A MOF that was compiled with a PowerStig composite.
+        This parameter supports an alias of 'MofFile'
+
+    .PARAMETER DscResults
+        The results of Test-DscConfiguration or DSC report server output for a node.
+
+    .PARAMETER XccdfPath
+        The path to a DISA STIG .xccdf file. PowerSTIG includes the supported files in the /PowerShell/StigData/Archive folder.
+
+    .PARAMETER OutputPath
+        The location where the checklist .cklb file will be created. Must include the filename with .cklb on the end.
+
+    .PARAMETER ManualChecklistEntriesFile
+        Location of a .xml file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
+
+    .PARAMETER Verifier
+        Name/identifier of the person or process that verified the checklist results.
+
+    .EXAMPLE
+        Generate a V3 checklist for single STIG using a .MOF file:
+
+        $ReferenceConfiguration = 'C:\contoso.local.mof'
+        $xccdfPath = 'C:\SQL Server\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
+        $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_mof.cklb'
+        New-StigCheckListV3 -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath
+
+    .EXAMPLE
+        Generate a V3 checklist using DSC results:
+
+        $audit = Test-DscConfiguration -ComputerName localhost -ReferenceConfiguration 'C:\localhost.mof'
+        $xccdfPath = 'C:\U_MS_SQL_Server_2016_Instance_STIG_V1R7_Manual-xccdf.xml'
+        $outputPath = 'C:\SqlServerInstance_2016_V1R7_STIG_config_dscresults.cklb'
+        New-StigCheckListV3 -DscResult $audit -XccdfPath $xccdfPath -OutputPath $outputPath -Verifier "PowerSTIG Automated Check"
+#>
+function New-StigCheckListV3
+{
+    [CmdletBinding()]
+    [OutputType([System.IO.FileInfo])]
+    param
+    (
+        [Parameter(Mandatory = $true, ParameterSetName = 'mof')]
+        [Alias('MofFile')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript(
+        {
+            if (Test-Path -Path $_ -PathType Leaf)
+            {
+                return $true
+            }
+            else
+            {
+                throw "$($_) is not a valid path to a reference configuration (.mof) file. Provide a full valid path and filename."
+            }
+        }
+        )]
+        [String]
+        $ReferenceConfiguration,
+
+        [Parameter(Mandatory = $true, ParameterSetName = 'dsc')]
+        [PSObject]
+        $DscResults,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript(
+        {
+            foreach ($filename in $_)
+            {
+                if (Test-Path -Path $filename -PathType Leaf)
+                {
+                    return $true
+                }
+                else
+                {
+                    throw "$($filename) is not a valid path to a DISA STIG .xccdf file. Provide a full valid path and filename."
+                }
+            }
+        }
+        )]
+        [String[]]
+        $XccdfPath,
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript(
+        {
+            if (Test-Path -Path $_ -PathType Leaf)
+            {
+                return $true
+            }
+            else
+            {
+                throw "$($_) is not a valid path to a Manual Checklist Entries File. Provide a full valid path and filename."
+            }
+        }
+        )]
+        [String]
+        $ManualChecklistEntriesFile,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript(
+        {
+            if (Test-Path -Path $_.DirectoryName -PathType Container)
+            {
+                return $true
+            }
+            else
+            {
+                throw "$($_) is not a valid directory. Please provide a valid directory."
+            }
+            if ($_.Extension -ne '.cklb')
+            {
+                throw "$($_.FullName) is not a valid V3 checklist extension. Please provide a full valid path ending in .cklb"
+            }
+            else
+            {
+                return $true
+            }
+        }
+        )]
+        [System.IO.FileInfo]
+        $OutputPath,
+
+        [Parameter()]
+        [String]
+        $Verifier
+    )
+
+    # Process manual check data if provided
+    if ($PSBoundParameters.ContainsKey('ManualChecklistEntriesFile'))
+    {
+        $manualCheckData = ConvertTo-ManualCheckListHashTable -Path $ManualChecklistEntriesFile -XccdfPath $XccdfPath
+    }
+
+    # Get target node information from MOF or DSC results
+    if ($PSCmdlet.ParameterSetName -eq 'mof')
+    {
+        $mofString = Get-Content -Path $ReferenceConfiguration -Raw
+        $targetNode = Get-TargetNodeFromMof -MofString $mofString
+    }
+    elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
+    {
+        if ($null -eq $DscResults)
+        {
+            throw 'Passed in $DscResults parameter is null. Please provide a valid result using Test-DscConfiguration.'
+        }
+        $targetNode = $DscResults.PSComputerName
+    }
+
+    # V3 status mapping - uses lowercase with underscores
+    $statusMapV3 = @{
+        NotReviewed   = 'not_reviewed'
+        Open          = 'open'
+        NotAFinding   = 'not_a_finding'
+        NotApplicable = 'not_applicable'
+    }
+
+    # Determine target node type and populate appropriate fields
+    $targetNodeType = Get-TargetNodeType -TargetNode $targetNode
+    $Hostname = ''
+    $HostnameIPAddress = ''
+    $HostnameMACAddress = ''
+    $HostnameFQDN = ''
+
+    switch ($targetNodeType)
+    {
+        "MACAddress"
+        {
+            $HostnameMACAddress = $targetNode
+            break
+        }
+        "IPv4Address"
+        {
+            $HostnameIPAddress = $targetNode
+            break
+        }
+        "IPv6Address"
+        {
+            $HostnameIPAddress = $targetNode
+            break
+        }
+        "FQDN"
+        {
+            $HostnameFQDN = $targetNode
+            break
+        }
+        default
+        {
+            $Hostname = $targetNode
+        }
+    }
+
+    # Build the V3 checklist structure
+    $checklistV3 = [PSCustomObject]@{
+        title        = Split-Path -Path $OutputPath -Leaf
+        cklb_version = '1.0'
+        id           = (New-Guid).Guid
+        target_data  = [PSCustomObject]@{
+            target_type      = 'Computing'
+            host_name        = $Hostname
+            ip_address       = $HostnameIPAddress
+            mac_address      = $HostnameMACAddress
+            fqdn             = $HostnameFQDN
+            comments         = ''
+            role             = 'None'
+            is_web_database  = $false
+            technology_area  = ''
+            web_db_site      = ''
+            web_db_instance  = ''
+        }
+        stigs        = @()
+    }
+
+    # Process each STIG file
+    foreach ($xccdfPathItem in $XccdfPath)
+    {
+        # Get STIG benchmark content
+        $xccdfBenchmarkContent = Get-StigXccdfBenchmarkContent -Path $xccdfPathItem
+
+        # Parse STIG filename for lookups
+        $stigPathFileName = $XccdfPathItem.Split('\')
+        $stigFileName = $stigPathFileName[$stigPathFileName.Length - 1]
+
+        # Get processed XML for duplicate rule detection
+        [XML] $xccdfBenchmark = Get-Content -Path $xccdfPathItem -Encoding UTF8
+        $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark -Path $xccdfPathItem
+        $processedFileName = $fileList.Settings.FullName
+        [XML] $processed = Get-Content -Path $processedFileName
+
+        # Get all vulnerabilities from the STIG
+        $vulnerabilities = Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent
+
+        # Create display name by abbreviating common terms
+        $displayName = $xccdfBenchmarkContent.title -replace 'Security Technical Implementation Guide', 'STIG'
+
+        # Generate STIG UUID
+        $stigUuid = (New-Guid).Guid
+
+        # Build STIG object for V3
+        $stigV3 = [PSCustomObject]@{
+            stig_name            = $xccdfBenchmarkContent.title
+            display_name         = $displayName
+            stig_id              = $xccdfBenchmarkContent.id
+            release_info         = $xccdfBenchmarkContent.'plain-text'.InnerText
+            uuid                 = $stigUuid
+            reference_identifier = $null
+            size                 = $vulnerabilities.Count
+            rules                = @()
+        }
+
+        # Process each vulnerability as a rule
+        foreach ($vulnerability in $vulnerabilities)
+        {
+            # Initialize rule variables
+            $vid = $null
+            $ruleId = $null
+            $groupId = $null
+            $severity = 'unknown'
+            $status = $statusMapV3['NotReviewed']
+            $findingDetails = $null
+            $comments = $null
+
+            # Extract rule properties from vulnerability data
+            $ruleProperties = @{
+                uuid                       = (New-Guid).Guid
+                stig_uuid                  = $stigUuid
+                group_id                   = ''
+                group_id_src               = ''
+                rule_id                    = ''
+                rule_id_src                = ''
+                target_key                 = $null
+                stig_ref                   = $null
+                weight                     = ''
+                classification             = 'Unclass'
+                severity                   = 'unknown'
+                rule_version               = ''
+                rule_title                 = ''
+                fix_text                   = ''
+                reference_identifier       = $null
+                group_title                = ''
+                false_positives            = ''
+                false_negatives            = ''
+                discussion                 = ''
+                check_content              = ''
+                documentable               = ''
+                mitigations                = ''
+                potential_impacts          = ''
+                third_party_tools          = ''
+                mitigation_control         = ''
+                responsibility             = ''
+                security_override_guidance = ''
+                ia_controls                = ''
+                check_content_ref          = $null
+                legacy_ids                 = @()
+                ccis                       = @()
+                status                     = 'not_reviewed'
+                comments                   = ''
+                finding_details            = ''
+            }
+
+            # Map vulnerability attributes to V3 rule properties
+            foreach ($attribute in $vulnerability)
+            {
+                switch ($attribute.Name)
+                {
+                    'Vuln_Num'
+                    {
+                        $vid = $attribute.Value
+                        $ruleProperties.group_id = $attribute.Value
+                        $ruleProperties.group_id_src = $attribute.Value
+                    }
+                    'Rule_ID'
+                    {
+                        $ruleId = $attribute.Value
+                        $ruleProperties.rule_id = $attribute.Value
+                        $ruleProperties.rule_id_src = $attribute.Value
+                    }
+                    'Severity'
+                    {
+                        # V3 requires lowercase severity
+                        $ruleProperties.severity = $attribute.Value.ToLower()
+                    }
+                    'Group_Title' { $ruleProperties.group_title = $attribute.Value }
+                    'Rule_Ver' { $ruleProperties.rule_version = $attribute.Value }
+                    'Rule_Title' { $ruleProperties.rule_title = $attribute.Value }
+                    'Vuln_Discuss' { $ruleProperties.discussion = $attribute.Value }
+                    'IA_Controls' { $ruleProperties.ia_controls = $attribute.Value }
+                    'Check_Content' { $ruleProperties.check_content = $attribute.Value }
+                    'Fix_Text' { $ruleProperties.fix_text = $attribute.Value }
+                    'False_Positives' { $ruleProperties.false_positives = $attribute.Value }
+                    'False_Negatives' { $ruleProperties.false_negatives = $attribute.Value }
+                    'Documentable' { $ruleProperties.documentable = $attribute.Value }
+                    'Mitigations' { $ruleProperties.mitigations = $attribute.Value }
+                    'Potential_Impact' { $ruleProperties.potential_impacts = $attribute.Value }
+                    'Third_Party_Tools' { $ruleProperties.third_party_tools = $attribute.Value }
+                    'Mitigation_Control' { $ruleProperties.mitigation_control = $attribute.Value }
+                    'Responsibility' { $ruleProperties.responsibility = $attribute.Value }
+                    'Security_Override_Guidance' { $ruleProperties.security_override_guidance = $attribute.Value }
+                    'Weight' { $ruleProperties.weight = $attribute.Value }
+                    'Class' { $ruleProperties.classification = $attribute.Value }
+                    'STIGRef' { $ruleProperties.stig_ref = $attribute.Value }
+                    'TargetKey' { $ruleProperties.target_key = $attribute.Value }
+                    'CCI_REF'
+                    {
+                        # CCIs are an array in V3
+                        if ($null -eq $ruleProperties.ccis)
+                        {
+                            $ruleProperties.ccis = @()
+                        }
+                        $ruleProperties.ccis += $attribute.Value
+                    }
+                }
+            }
+
+            # Determine rule status based on MOF or DSC results
+            if ($PSCmdlet.ParameterSetName -eq 'mof')
+            {
+                $setting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $vid
+                $manualCheck = $manualCheckData | Where-Object -FilterScript { $_.STIG -eq $stigFileName -and $_.ID -eq $vid }
+
+                if ($setting)
+                {
+                    $ruleProperties.status = $statusMapV3['Open']
+                    $ruleProperties.comments = "To be addressed by PowerStig MOF via $setting"
+                    $ruleProperties.finding_details = Get-FindingDetails -Setting $setting
+                }
+                elseif ($manualCheck)
+                {
+                    $ruleProperties.status = $statusMapV3["$($manualCheck.Status)"]
+                    $ruleProperties.finding_details = $manualCheck.Details
+                    $ruleProperties.comments = $manualCheck.Comments
+                }
+                else
+                {
+                    $ruleProperties.status = $statusMapV3['NotReviewed']
+                }
+            }
+            elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
+            {
+                $manualCheck = $manualCheckData | Where-Object -FilterScript { $_.STIG -eq $stigFileName -and $_.ID -eq $vid }
+
+                if ($manualCheck)
+                {
+                    $ruleProperties.status = $statusMapV3["$($manualCheck.Status)"]
+                    $ruleProperties.finding_details = $manualCheck.Details
+                    $ruleProperties.comments = $manualCheck.Comments
+                }
+                else
+                {
+                    $setting = Get-SettingsFromResult -DscResults $DscResults -Id $vid
+
+                    if ($setting)
+                    {
+                        if ($setting.InDesiredState -eq $true)
+                        {
+                            $ruleProperties.status = $statusMapV3['NotAFinding']
+                            if ($PSBoundParameters.ContainsKey('Verifier'))
+                            {
+                                $ruleProperties.comments = "Addressed by PowerStig MOF via {0} and verified by {1}" -f $setting, $Verifier
+                            }
+                            else
+                            {
+                                $ruleProperties.comments = "Addressed by PowerStig MOF via $setting"
+                            }
+                            $ruleProperties.finding_details = Get-FindingDetails -Setting $setting
+                        }
+                        elseif ($setting.InDesiredState -eq $false)
+                        {
+                            $ruleProperties.status = $statusMapV3['Open']
+                            $ruleProperties.comments = "Configuration attempted by PowerStig MOF via $setting, but not currently set."
+                            $ruleProperties.finding_details = Get-FindingDetails -Setting $setting
+                        }
+                        else
+                        {
+                            $ruleProperties.status = $statusMapV3['Open']
+                        }
+                    }
+                    else
+                    {
+                        $ruleProperties.status = $statusMapV3['NotReviewed']
+                    }
+                }
+            }
+
+            # Handle duplicate rules
+            $convertedRule = $processed.SelectSingleNode("//Rule[@id='$vid']")
+            if ($convertedRule.DuplicateOf)
+            {
+                if ($PSCmdlet.ParameterSetName -eq 'mof')
+                {
+                    $originalSetting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $convertedRule.DuplicateOf
+                    if ($originalSetting)
+                    {
+                        $ruleProperties.status = $statusMapV3['Open']
+                        $ruleProperties.finding_details = 'See {0} for Finding Details.' -f $convertedRule.DuplicateOf
+                        $ruleProperties.comments = 'Managed via PowerStigDsc - this rule is a duplicate of {0}' -f $convertedRule.DuplicateOf
+                    }
+                }
+                elseif ($PSCmdlet.ParameterSetName -eq 'dsc')
+                {
+                    $originalSetting = Get-SettingsFromResult -DscResults $DscResults -Id $convertedRule.DuplicateOf
+                    if ($originalSetting.InDesiredState -eq 'True')
+                    {
+                        $ruleProperties.status = $statusMapV3['NotAFinding']
+                        $ruleProperties.finding_details = 'See {0} for Finding Details.' -f $convertedRule.DuplicateOf
+                        $ruleProperties.comments = 'Managed via PowerStigDsc - this rule is a duplicate of {0}' -f $convertedRule.DuplicateOf
+                    }
+                    else
+                    {
+                        $ruleProperties.status = $statusMapV3['Open']
+                        $ruleProperties.finding_details = 'See {0} for Finding Details.' -f $convertedRule.DuplicateOf
+                        $ruleProperties.comments = 'Managed via PowerStigDsc - this rule is a duplicate of {0}' -f $convertedRule.DuplicateOf
+                    }
+                }
+            }
+
+            # Add rule to STIG
+            $stigV3.rules += [PSCustomObject]$ruleProperties
+        }
+
+        # Set reference_identifier from first rule if available
+        if ($stigV3.rules.Count -gt 0 -and $stigV3.rules[0].reference_identifier)
+        {
+            $stigV3.reference_identifier = $stigV3.rules[0].reference_identifier
+        }
+
+        # Add STIG to checklist
+        $checklistV3.stigs += $stigV3
+    }
+
+    # Convert to JSON and save
+    # Depth of 10 ensures all nested structures are properly serialized
+    $jsonOutput = $checklistV3 | ConvertTo-Json -Depth 10 -Compress:$false
+
+    # Save to file with UTF8 encoding (no BOM for JSON compatibility)
+    [System.IO.File]::WriteAllText($OutputPath.FullName, $jsonOutput, [System.Text.UTF8Encoding]::new($false))
+
+    Write-Verbose "V3 Checklist created successfully: $($OutputPath.FullName)"
+    return $OutputPath
+}
+
+<#
+    .SYNOPSIS
         Gets the vulnerability details from the rule description
 #>
 function Get-VulnerabilityList
