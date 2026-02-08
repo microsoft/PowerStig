@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "title": "STIG Viewer 3 Checklist",
-  "description":"A file used for storing STIG Viewer checklists, containing rules with finding statuses, comments, and data about the target system.",
+  "description": "A file used for storing STIG Viewer checklists, containing rules with finding statuses, comments, and data about the target system.",
   "additionalProperties": false,
   "required": [
     "title",
@@ -154,7 +154,7 @@
       }
     },
     "stig_rule": {
-	  "description": "Rules taken from the origin STIG, any fields without descriptions are copied 1:1 from the origin.",
+      "description": "Rules taken from the origin STIG, any fields without descriptions are copied 1:1 from the origin.",
       "additionalProperties": false,
       "properties": {
         "uuid": {
@@ -182,7 +182,7 @@
           "type": "string"
         },
         "target_key": {
-		  "description": "The identifier value from the Reference tag",
+          "description": "The identifier value from the Reference tag",
           "type": [
             "string",
             "null"
@@ -195,15 +195,15 @@
           ]
         },
         "weight": {
-		  "description": "Weight from origin STIG",
+          "description": "Weight from origin STIG",
           "type": "string"
         },
         "classification": {
-		  "description": "Class from origin STIG",
+          "description": "Class from origin STIG",
           "type": "string"
         },
         "severity": {
-		  "description": "Severity from origin STIG",
+          "description": "Severity from origin STIG",
           "type": "string",
           "enum": [
             "unknown",
@@ -213,85 +213,85 @@
           ]
         },
         "rule_version": {
-		  "description": "Rule_Ver from origin STIG",
+          "description": "Rule_Ver from origin STIG",
           "type": "string"
         },
         "rule_title": {
-		  "description": "Rule_Title from origin STIG",
+          "description": "Rule_Title from origin STIG",
           "type": "string"
         },
         "fix_text": {
-		  "description": "FixText from origin STIG",
+          "description": "FixText from origin STIG",
           "type": "string"
         },
         "reference_identifier": {
-		  "description": "The identifier value from the Reference tag",
+          "description": "The identifier value from the Reference tag",
           "type": [
             "string",
             "null"
           ]
         },
         "group_title": {
-		  "description": "Group_Title from origin STIG",
+          "description": "Group_Title from origin STIG",
           "type": "string"
         },
         "false_positives": {
-		  "description": "False_Positives from origin STIG",
+          "description": "False_Positives from origin STIG",
           "type": "string"
         },
         "false_negatives": {
-		  "description": "False_Negatives from origin STIG",
+          "description": "False_Negatives from origin STIG",
           "type": "string"
         },
         "discussion": {
-		  "description": "Discussion from origin STIG",
+          "description": "Discussion from origin STIG",
           "type": "string"
         },
         "check_content": {
-		  "description": "CheckContent from origin",
+          "description": "CheckContent from origin",
           "type": "string"
         },
         "documentable": {
-		  "description": "Documentable from origin STIG",
+          "description": "Documentable from origin STIG",
           "type": "string"
         },
         "mitigations": {
-		  "description": "Mitigations from origin STIG",
+          "description": "Mitigations from origin STIG",
           "type": "string"
         },
         "potential_impacts": {
-		  "description": "Potential_Impacts from origin STIG",
+          "description": "Potential_Impacts from origin STIG",
           "type": "string"
         },
         "third_party_tools": {
-		  "description": "Third_Party_Tools from origin STIG",
+          "description": "Third_Party_Tools from origin STIG",
           "type": "string"
         },
         "mitigation_control": {
-		  "description": "Mitigation_Control from origin STIG",
+          "description": "Mitigation_Control from origin STIG",
           "type": "string"
         },
         "responsibility": {
-		  "description": "Responsibility from origin STIG",
+          "description": "Responsibility from origin STIG",
           "type": "string"
         },
         "security_override_guidance": {
-		  "description": "Security_Override_Guidance from origin STIG",
+          "description": "Security_Override_Guidance from origin STIG",
           "type": "string"
         },
         "ia_controls": {
-		  "description": "IA_Controls from origin STIG",
+          "description": "IA_Controls from origin STIG",
           "type": "string"
         },
         "check_content": {
-		  "description": "Check_Content from origin STIG",
+          "description": "Check_Content from origin STIG",
           "type": [
             "string",
             "null"
           ]
         },
         "check_content_ref": {
-		  "description": "CheckContentRef from origin STIG",
+          "description": "CheckContentRef from origin STIG",
           "type": [
             "object",
             "null"
@@ -306,14 +306,14 @@
           }
         },
         "legacy_ids": {
-		  "description": "LEGACY_ID array from origin STIG",
+          "description": "LEGACY_ID array from origin STIG",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "ccis": {
-		  "description": "CCI_REF array from origin STIG",
+          "description": "CCI_REF array from origin STIG",
           "type": "array",
           "items": {
             "type": "string"
@@ -323,7 +323,7 @@
           "description": "An array showing the hierarchy of the group tree structure",
           "type": "array",
           "items": {
-			"description":"Each level in the group heirarchy is stored, with the earlier entries in the array representing higher levels of the tree",
+            "description": "Each level in the group heirarchy is stored, with the earlier entries in the array representing higher levels of the tree",
             "type": "object",
             "properties": {
               "id": {
@@ -365,7 +365,7 @@
               "additionalProperties": false,
               "properties": {
                 "reason": {
-                  "description":"Justification for overriding the property",
+                  "description": "Justification for overriding the property",
                   "type": "string"
                 }
               },
