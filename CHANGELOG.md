@@ -4,6 +4,8 @@
 
 ## [4.29.0] - 2026-04-01
 
+* Update PowerStig to parse/apply Microsoft Access 2016 STIG - Ver 2, Rel 1 [#1540](https://github.com/microsoft/PowerStig/issues/1540)
+
 ## [4.28.0] - 2025-12-05
 
 * Update PowerStig to parse/apply Microsoft IIS 10.0 Server STIG - Ver 3, Rel 5 [#1508](https://github.com/microsoft/PowerStig/issues/1508)
