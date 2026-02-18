@@ -5,8 +5,8 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.8">
-<!-- Ensure ''V-224866'' -ge '15' -or ''V-224866'' -eq '0'-->
+<OrganizationalSettings fullversion="2.10">
+  <!-- Ensure ''V-224866'' -ge '15' -or ''V-224866'' -eq '0'-->
   <OrganizationalSetting id="V-224866" PolicyValue="15" />
   <!-- Ensure ''V-224867'' -le '3' -and ''V-224867'' -ne '0'-->
   <OrganizationalSetting id="V-224867" PolicyValue="3" />
@@ -50,6 +50,10 @@
   <OrganizationalSetting id="V-224968" PolicyValue="7" />
   <!-- Ensure ''V-224969'' -le '5'-->
   <OrganizationalSetting id="V-224969" PolicyValue="5" />
+  <!-- Ensure ''V-225011'' -le '4'-->
+  <OrganizationalSetting id="V-225011" ValueData="4" />
+  <!-- Ensure ''V-225015'' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests,Review the text file.,S-1-5-root domain-519,S-1-5-domain-512,S-1-5-114  or S-1-5-113,S-1-5-32-546'-->
+  <OrganizationalSetting id="V-225015" Identity="Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests,Review the text file.,S-1-5-root domain-519,S-1-5-domain-512,S-1-5-114  or S-1-5-113,S-1-5-32-546" />
   <!-- Ensure location for DoD Root CA 3 certificate is present-->
   <OrganizationalSetting id="V-225021.a" Location="" />
   <!-- Ensure location for DoD Root CA 4 certificate is present-->
@@ -64,6 +68,10 @@
   <OrganizationalSetting id="V-225022" Location="" />
   <!-- Ensure location for US DoD CCEB Interoperability Root CA 2 certificate is present-->
   <OrganizationalSetting id="V-225023" Location="" />
+  <!-- Ensure ''V-225026'' -ne 'Administrator'-->
+  <OrganizationalSetting id="V-225026" OptionValue="" />
+  <!-- Ensure ''V-225027'' -ne 'Guest'-->
+  <OrganizationalSetting id="V-225027" OptionValue="" />
   <!-- Ensure ''V-225033'' -le '30' -and ''V-225033'' -gt '0'-->
   <OrganizationalSetting id="V-225033" ValueData="30" />
   <!-- Ensure ''V-225035'' -le '900' -and ''V-225035'' -gt '0'-->
@@ -90,8 +98,6 @@ By using this IS (which includes any device attached to this IS), you consent to
   <OrganizationalSetting id="V-225063" ValueData="1" />
   <!-- Ensure ''V-225069'' -match '2|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-225069" ValueData="2" />
-  <!-- Ensure ''V-225026'' -ne 'Administrator'-->
-  <OrganizationalSetting id="V-225026" OptionValue="" />
-  <!-- Ensure ''V-225027'' -ne 'Guest'-->
-  <OrganizationalSetting id="V-225027" OptionValue="" />
+  <!-- Ensure ''V-225078'' -match '^(Administrators,NT Virtual Machine\\Virtual Machines,Review the text file.,S-1-5-32-544,NT Virtual Machine\\Virtual Machines|Administrators,Review the text file.,S-1-5-32-544)$'-->
+  <OrganizationalSetting id="V-225078" Identity="Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests" />
 </OrganizationalSettings>

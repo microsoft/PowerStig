@@ -4,7 +4,40 @@
 
 ## [4.29.0] - 2026-04-01
 
-* Update PowerStig to parse/apply Microsoft Excel 2016 STIG - Ver 2, Rel 2 [#1543](https://github.com/microsoft/PowerStig/issues/1543)
+* Updated PowerStig to parse/apply the following STIGS
+* Sunset-Microsoft Internet Explorer 11 STIG - Ver 2, Rel 6
+* Sunset-Microsoft Access 2016 STIG - Ver 2, Rel 1
+* Sunset-Microsoft Excel 2016 STIG - Ver 2, Rel 2
+* Sunset-Microsoft OneNote 2016 STIG - Ver 2, Rel 1
+* Sunset-Microsoft Outlook 2016 STIG - Ver 2, Rel 4
+* Sunset-Microsoft PowerPoint 2016 STIG - Ver 2, Rel 1
+* Sunset-Microsoft Publisher 2016 STIG - Ver 2, Rel 1
+* Sunset-Microsoft Skype for Business 2016 STIG - Ver 2, Rel 1
+* Sunset-Microsoft Office System 2016 STIG - Ver 2, Rel 5
+* Sunset-Microsoft Word 2016 STIG - Ver 2, Rel 1
+* Sunset-Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 15
+* Sunset-Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 15
+* Sunset-Microsoft Windows 10 STIG - Ver 3, Rel 6
+* Sunset-Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 7
+* Sunset-Microsoft Windows Server 2016 STIG - Ver 2, Rel 10
+* Sunset-Microsoft Windows Server 2016 STIG - Ver 2, Rel 10
+
+* Removed the following Retired STIGs from PowerStig - Please use 4.28.0 if needed.
+* IISServer 8.5
+* IISSite 8.5
+* McAfee 8.8 VirusScan
+* Office Excel2013
+* Office Outlook2013
+* Office PowerPoint2013
+* Office System2013
+* Office Visio2013
+* Office Word2013
+* OracleJRE 8
+* SqlServer 2012 Database
+* SqlServer 2012 Instance
+* Vsphere 6.5
+* WindowsServer 2012R2 DC
+* WindowsServer 2012R2 MS
 
 ## [4.28.0] - 2025-12-05
 
@@ -90,7 +123,7 @@
 * Update Powerstig to parse/apply Microsoft Office System 2016 STIG - Ver 2, Rel 3 [#1352](https://github.com/microsoft/PowerStig/issues/1352)
 * Update Powerstig to parse/apply Microsoft Office 365 ProPlus STIG - Ver 2, Rel 12 [#1351](https://github.com/microsoft/PowerStig/issues/1351)
 * Update Powerstig to parse/apply Microsoft .Net Framework 4.0 STIG - Ver 2, Rel 4 [#1349](https://github.com/microsoft/PowerStig/issues/1349)
-* Update Powerstig to parse/apply U_MS_SQL_Server_2016_Instance_V2R12 [#1348](https://github.com/microsoft/PowerStig/issues/1348) 
+* Update Powerstig to parse/apply U_MS_SQL_Server_2016_Instance_V2R12 [#1348](https://github.com/microsoft/PowerStig/issues/1348)
 * Update Powerstig to parse/apply Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 14 [#1347](https://github.com/microsoft/PowerStig/issues/1347)
 
 ## [4.21.0] - 2024-03-01
