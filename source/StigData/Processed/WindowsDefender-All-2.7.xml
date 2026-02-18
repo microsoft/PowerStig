@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Defender_Antivirus" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V2R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 31 May 2022 3.3.0.27375 1.10.0" title="Microsoft Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.4" created="6/6/2022">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Defender_Antivirus" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 05 Jan 2026 3.5.2 1.10.0" title="Microsoft Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="2/18/2026">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-213426" severity="high" conversionstatus="pass" title="SRG-APP-000279" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;After enabling this feature, PUA protection blocking takes effect on endpoint clients after the next signature update or computer restart. Signature updates take place daily under typical circumstances. PUA will be blocked and automatically quarantined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -204,14 +204,14 @@ If this setting is enabled, you will join Microsoft MAPS with the membership spe
       <LegacyId>V-75167</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This is applicable to unclassified systems. For other systems this is NA.
+      <RawString>This is applicable to unclassified systems. For other systems, this is Not Applicable.
 
 Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; MAPS &gt;&gt; "Join Microsoft MAPS" is set to "Enabled" and "Advanced MAPS" is selected from the drop-down box.
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Spynet
 
-Criteria: If the value "SpynetReporting" is REG_DWORD = 2, this is not a finding.</RawString>
+Criteria: If the value "SpynetReporting" is REG_DWORD = 1, or REG_DWORD = 2, this is not a finding.</RawString>
       <ValueData>2</ValueData>
       <ValueName>SpynetReporting</ValueName>
       <ValueType>Dword</ValueType>
@@ -395,14 +395,12 @@ Any other value, or if the value does not exist, resolves to the default (0). If
       <LegacyId>V-75221</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Real-time Protection &gt;&gt; "Configure monitoring for incoming and outgoing file and program activity" is set to "Disabled" or "Not Configured".
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Real-time Protection &gt;&gt; "Configure monitoring for incoming and outgoing file and program activity" is set to "Enabled" with a policy option value of "bi-directional (full on-access)".
  
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
 
 Criteria: If the value "RealtimeScanDirection" is REG_DWORD = 0, this is not a finding.
-
-If the value does not exist, this is not a finding.
 
 If the value is 1 or 2, this is a finding.</RawString>
       <ValueData>0</ValueData>
@@ -1018,6 +1016,602 @@ Criteria: If the value "1" is REG_SZ = 2 (or 3), this is not a finding.</RawStri
       <ValueData />
       <ValueName>1</ValueName>
       <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-278647" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting prevents Adobe Reader from launching other processes, which can help mitigate security risks associated with malicious PDF files.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Microsoft Defender Exploit Guard &gt;&gt; Attack Surface Reduction &gt;&gt; Configure Attack Surface Reduction rules is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value "7674ba52-37eb-4a4f-a9a1-f0f9a1619a2c" is REG_SZ = 1, this is not a finding.
+
+If the value is other than 1, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>7674ba52-37eb-4a4f-a9a1-f0f9a1619a2c</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-278648" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting helps prevent credential stealing by locking down Local Security Authority Subsystem Service (LSASS). &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Microsoft Defender Exploit Guard &gt;&gt; Attack Surface Reduction &gt;&gt; Configure Attack Surface Reduction rules is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value "9e6c4e1f-7d60-472f-ba1a-a39ef669e4b2" is REG_SZ = 1, this is not a finding.
+
+If the value is other than 1, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>9e6c4e1f-7d60-472f-ba1a-a39ef669e4b2</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-278649" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting helps prevents unsigned or untrusted executable files from running from USB removable drives, including SD cards. Blocked file types include executable files (such as .exe, .dll, or .scr). &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Microsoft Defender Exploit Guard &gt;&gt; Attack Surface Reduction &gt;&gt; Configure Attack Surface Reduction rules is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value "b2b3f03d-6a65-4f7b-a9c7-1c7ef74a9ba4" is REG_SZ = 1, this is not a finding.
+
+If the value is other than 1, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>b2b3f03d-6a65-4f7b-a9c7-1c7ef74a9ba4</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-278650" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting provides an extra layer of protection against ransomware. It uses both client and cloud heuristics to determine whether a file resembles ransomware. 
+This rule doesn't block files that have one or more of the following characteristics:
+
+- The file is found to be unharmful in the Microsoft cloud.
+- The file is a valid signed file.
+-  The file is prevalent enough to not be considered as ransomware.
+- The rule tends to err on the side of caution to prevent ransomware. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Microsoft Defender Exploit Guard &gt;&gt; Attack Surface Reduction &gt;&gt; Configure Attack Surface Reduction rules is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value "c1db55ab-c21a-4637-bb3f-a12568109d35" is REG_SZ = 1, this is not a finding.
+
+If the value is other than 1, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>c1db55ab-c21a-4637-bb3f-a12568109d35</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-278651" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting blocks processes created through PsExec and WMI from running. Both PsExec and WMI can remotely execute code. There is a risk of malware abusing functionality of PsExec and WMI for command and control purposes, or to spread an infection throughout an organization's network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Microsoft Defender Exploit Guard &gt;&gt; Attack Surface Reduction &gt;&gt; Configure Attack Surface Reduction rules is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value "d1e49aac-8f56-4280-b9ba-993a6d77406c" is REG_SZ = 2, this is not a finding.
+
+If the value is other than 2, this is a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>d1e49aac-8f56-4280-b9ba-993a6d77406c</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-278652" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting prevents malware from abusing WMI to attain persistence on a device.
+
+Fileless threats employ various tactics to stay hidden, to avoid being seen in the file system, and to gain periodic execution control. Some threats can abuse the WMI repository and event model to stay hidden.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Microsoft Defender Exploit Guard &gt;&gt; Attack Surface Reduction &gt;&gt; Configure Attack Surface Reduction rules is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value "e6db77e5-3df2-4cf1-b95a-636979351e5b" is REG_SZ = 2, this is not a finding.
+
+If the value is other than 2, this is a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>e6db77e5-3df2-4cf1-b95a-636979351e5b</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-278653" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting blocks executable files, such as .exe, .dll, or .scr, from launching. Thus, launching untrusted or unknown executable files can be risky, as it might not be initially clear if the files are malicious.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Microsoft Defender Exploit Guard &gt;&gt; Attack Surface Reduction &gt;&gt; Configure Attack Surface Reduction rules is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value "01443614-cd74-433a-b99e-2ecdc07bfc25" is REG_SZ = 2, this is not a finding.
+
+If the value is other than 2, this is a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>01443614-cd74-433a-b99e-2ecdc07bfc25</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-278654" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting prevents Outlook from creating child processes while still allowing legitimate Outlook functions. This rule protects against social engineering attacks and prevents exploiting code from abusing vulnerabilities in Outlook. It also protects against Outlook rules and forms exploits that attackers can use when a user's credentials are compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Microsoft Defender Exploit Guard &gt;&gt; Attack Surface Reduction &gt;&gt; Configure Attack Surface Reduction rules is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value "26190899-1602-49e8-8b27-eb1d0a1ce869" is REG_SZ = 1, this is not a finding.
+
+If the value is other than 1, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>26190899-1602-49e8-8b27-eb1d0a1ce869</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-278655" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting prevents an application from writing a vulnerable signed driver to disk. Vulnerable signed drivers can be exploited by local applications that have sufficient privileges to gain access to the kernel. Vulnerable signed drivers enable attackers to disable or circumvent security solutions, eventually leading to system compromise.
+
+The Block abuse of exploited vulnerable signed drivers rule does not block a driver already existing on the system from being loaded.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Microsoft Defender Exploit Guard &gt;&gt; Attack Surface Reduction &gt;&gt; Configure Attack Surface Reduction rules is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value "56a863a9-875e-4185-98a7-b882c64b5ce5" is REG_SZ = 1, this is not a finding.
+
+If the value is other than 1, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>56a863a9-875e-4185-98a7-b882c64b5ce5</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-278656" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting configures how locally defined lists are combined or merged with globally defined lists. This setting applies to exclusion lists, specified remediation lists, and attack surface reduction.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Configure local administrator merge behavior for lists is set to "Enabled". Otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender
+
+Criteria: If the value "DisableLocalAdminMerge" is REG_DWORD = 1, this is not a finding.
+
+If the value is 0, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>DisableLocalAdminMerge</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278658" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Disabled (Default): If this setting is not configured or disabled, local admins can see exclusions in the Windows Security App or via PowerShell.
+
+Enabled: If this setting is enabled, local admins no longer see the exclusion list in Windows Security App or via PowerShell.O13.
+
+Note: Applying this setting will not remove exclusions, it only prevents them from being visible to local admins. This is reflected in?Get-MpPreference.I13.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Control whether or not exclusions are visible to Local Admins is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender
+
+Criteria: If the value "HideExclusionsFromLocalUsers" is REG_DWORD = 1, this is not a finding.
+
+If the value is "0", this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>HideExclusionsFromLocalAdmins</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278659" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;In Microsoft Defender Antivirus, randomize the start time of the scan to any interval from 0 to 23 hours. By default, scheduled tasks begin at a random time within four hours of the time specified in Task Scheduler.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Randomize scheduled task times is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender
+
+Criteria: If the value "RandomizeScheduleTaskTimes" is REG_DWORD = 1, this is not a finding.
+
+If the value is 0, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>RandomizeScheduleTaskTimes</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278660" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;The Family options section contains links to settings and further information for parents of a Windows PC. It is not intended for enterprise or business environments.
+
+This section can be hidden from users of the machine. This option can be useful if you do not want users in the organization to see or have access to this section.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\Family options</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Windows Security &gt;&gt; Family Options &gt;&gt; Hide the Family options area is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\Family options
+
+Criteria: If the value "UILockdown" is REG_DWORD = 1, this is not a finding.
+
+If the value is 0, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>UILockdown</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278661" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy drives the ability to enforce Indicators of Compromise (IoC) by using file hash allow/block indicators.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\MpEngine</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; MpEngine &gt;&gt; Enable file hash computation feature is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\MpEngine
+
+Criteria: If the value "EnableFileHashComputation" is REG_DWORD = 1, this is not a finding.
+
+If the value is 0, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>EnableFileHashComputation</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278662" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;When Microsoft Defender Antivirus finds a suspicious file, it can prevent the file from running while it queries the Microsoft Defender Antivirus cloud service.
+
+The default period that the file is blocked is 10 seconds. Extending the cloud block timeout period can help ensure there is enough time to receive a proper determination from the Microsoft Defender Antivirus cloud service.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\MpEngine</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; MpEngine &gt;&gt; Configure extended cloud check is set to "Enabled" with a Policy Option value of "50"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\MpEngine
+
+Criteria: If the value "MpBafsExtendedTimeout" is REG_DWORD = 50, this is not a finding.
+
+If the value is other than 50, this is a finding.</RawString>
+      <ValueData>50</ValueData>
+      <ValueName>MpBafsExtendedTimeout</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278668" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Always-on protection consists of real-time protection, behavior monitoring, and heuristics to identify malware based on known suspicious and malicious activities. These activities include events, such as processes making unusual changes to existing files, modifying or creating automatic startup registry keys and startup locations (also known as autostart extensibility points, or ASEPs), and other changes to the file system or file structure.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Real-time Protection &gt;&gt; Turn on script scanning is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "DisableScriptScanning" is REG_DWORD = 0, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableScriptScanning</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278669" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Always-on protection consists of real-time protection, behavior monitoring, and heuristics to identify malware based on known suspicious and malicious activities. These activities include events, such as processes making unusual changes to existing files, modifying or creating automatic startup registry keys and startup locations (also known as autostart extensibility points, or ASEPs), and other changes to the file system or file structure.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Real-time Protection &gt;&gt; Configure real-time protection and Security Intelligence Updates during OOBE is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "OobeEnableRtpAndSigUpdate" is REG_DWORD = 1, this is not a finding.
+
+If the value is 0, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>OobeEnableRtpAndSigUpdate</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278672" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Microsoft's Exploit Guard comprises several techniques to defend against phishing attacks and malware. These include controlled folder access, attack surface reduction, and network protection.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\Network Protection</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Microsoft Defender Exploit Guard &gt;&gt; Network Protection &gt;&gt; This settings controls whether Network Protection is allowed to be configured into block or audit mode on Windows Server is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\Network Protection
+
+Criteria: If the value "AllowNetworkProtectionOnWinServer" is REG_DWORD = 1, this is not a finding.
+
+If the value is 0, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>AllowNetworkProtectionOnWinServer</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278674" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;EDR in block mode allows Microsoft Defender Antivirus to take actions on post-breach, behavioral EDR detections. EDR in block mode is integrated with threat and vulnerability management capabilities. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Features</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Features &gt;&gt; Enable EDR in block mode is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Features
+
+Criteria: If the value "PassiveRemediation" is REG_DWORD = 1, this is not a finding.
+
+If the value is 0, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>PassiveRemediation</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278675" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Microsoft Defender Antivirus logs "Dynamic Signature dropped" events when it blocks or removes a file based on a dynamically updated signature, but the signature itself is dropped, meaning it was not fully processed or applied. This can indicate a potential issue with signature updates or the system's ability to handle them.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Reporting</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Reporting &gt;&gt; Configure whether to report Dynamic Signature dropped events is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Reporting
+
+Criteria: If the value "EnableDynamicSignatureDroppedEventReporting" is REG_DWORD = 1, this is not a finding.
+
+If the value is 0, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>EnableDynamicSignatureDroppedEventReporting</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278676" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;In Microsoft Defender Antivirus, when an exclusion for a file or folder is created, it will generally be skipped during both real-time protection and on-demand scans (including quick scans and full scans). However, with newer releases, the option exists to configure quick scans to include files and directories that are otherwise excluded from real-time protection.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Scan</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Scan &gt;&gt; Scan excluded files and directories during quick scans is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Scan
+
+Criteria: If the value "QuickScanIncludeExclusions" is REG_DWORD = 1, this is not a finding.
+
+If the value is 0, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>QuickScanIncludeExclusions</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278677" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;If a site URL has an unknown or uncertain reputation, a toast notification presents the user with the following options:
+
+- Ok: The toast notification is released (removed), and the attempt to access the site is ended.
+
+- Unblock: The user has access to the site for 24 hours, at which point the block is reenabled. The user can continue to use Unblock to access the site until such time that the administrator prohibits (blocks) the site, thus removing the option to Unblock.
+
+- Feedback: The toast notification presents the user with a link to submit a ticket, which the user can use to submit feedback to the administrator in an attempt to justify access to the site.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\NIS</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Network Inspection System &gt;&gt; Convert warn verdict to block is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\NIS
+
+Criteria: If the value "EnableConvertWarnToBlock" is REG_DWORD = 1, this is not a finding.
+
+If the value is 0, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>EnableConvertWarnToBlock</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278678" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Network protection includes performance optimization that allows block mode to asynchronously inspect long-lived connections, which might provide a performance improvement. This optimization can also help with app compatibility problems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\NIS</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Network Inspection System &gt;&gt; Turn on asynchronous inspection is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\NIS
+
+Criteria: If the value "AllowSwitchToAsyncInspection" is REG_DWORD = 1, this is not a finding.
+
+If the value is 0, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>AllowSwitchToAsyncInspection</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278679" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;This policy setting manages whether Microsoft Defender Antivirus scans packed executables. Packed executables are executable files that contain compressed code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Scan</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Scan &gt;&gt; Scan packed executables is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Scan
+
+Criteria: If the value "DisablePackedExeScanning" is REG_DWORD = 0, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisablePackedExeScanning</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278680" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Always-on protection consists of real-time protection, behavior monitoring, and heuristics to identify malware based on known suspicious and malicious activities.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Scan</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; Scan &gt;&gt; Turn on heuristics is set to "Enabled"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Scan
+
+Criteria: If the value "DisableHeuristics" is REG_DWORD = 0, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableHeuristics</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-278863" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Cloud protection in Microsoft Defender Antivirus delivers accurate, real-time, and intelligent protection. Cloud protection should be enabled by default.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\MpEngine</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Microsoft Defender Antivirus &gt;&gt; MpEngine &gt;&gt; Select cloud protection level is set to "Enabled". Verify the policy value for "Select cloud blocking level" is set to "High blocking level"; otherwise, this is a finding.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\MpEngine
+
+Criteria: If the value "MpCloudBlockLevel" is REG_DWORD = 2, this is not a finding.
+
+If the value is other than 2, this is a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>MpCloudBlockLevel</ValueName>
+      <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
 </DISASTIG>

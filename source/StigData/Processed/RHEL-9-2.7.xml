@@ -3555,6 +3555,24 @@ nameserver 192.168.1.3
 
 If fewer than two lines are returned that are not commented out, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-257953" severity="medium" conversionstatus="pass" title="SRG-OS-000046-GPOS-00022" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;It is critical for the appropriate personnel to be aware if a system is at risk of failing to process audit logs as required. Without this notification, the security personnel may be unaware of an impending failure of the audit capability, and system operation may be adversely affected.
+
+Audit processing failures include software/hardware errors, failures in the audit capturing mechanisms, and audit storage capacity being reached or exceeded.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the administrators are notified in the event of an audit processing failure.
+
+Check that the "/etc/aliases" file has a defined value for "root".
+
+$ sudo grep "postmaster:\s*root$" /etc/aliases
+
+If the command does not return a line, or the line is commented out, ask the system administrator to indicate how they and the information systems security officer (ISSO) are notified of an audit process failure. If there is no evidence of the proper personnel being notified of an audit processing failure, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-257954" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Providing the ability for remote users or systems to initiate a secure VPN connection protects information when it is transmitted over a wide area network.
 
@@ -7387,27 +7405,6 @@ $ sudo grep -i server /etc/chrony.conf
 server 0.us.pool.ntp.mil
 If the parameter "server" is not set or is not set to an authoritative DOD time source, this is a finding.
 </RawString>
-    </Rule>
-    <Rule id="V-257953" severity="medium" conversionstatus="fail" title="SRG-OS-000046-GPOS-00022" dscresource="">
-      <ContainsLine />
-      <Description>&lt;VulnDiscussion&gt;It is critical for the appropriate personnel to be aware if a system is at risk of failing to process audit logs as required. Without this notification, the security personnel may be unaware of an impending failure of the audit capability, and system operation may be adversely affected.
-
-Audit processing failures include software/hardware errors, failures in the audit capturing mechanisms, and audit storage capacity being reached or exceeded.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern />
-      <DuplicateOf />
-      <FilePath>/etc/aliases</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the administrators are notified in the event of an audit processing failure.
-
-Check that the "/etc/aliases" file has a defined value for "root".
-
-$ sudo grep "postmaster:\s*root$" /etc/aliases
-
-If the command does not return a line, or the line is commented out, ask the system administrator to indicate how they and the information systems security officer (ISSO) are notified of an audit process failure. If there is no evidence of the proper personnel being notified of an audit processing failure, this is a finding.</RawString>
     </Rule>
     <Rule id="V-257989" severity="medium" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="nxFileLine">
       <ContainsLine>Ciphers aes256-gcm@openssh.com,aes256-ctr,aes128-gcm@openssh.com,aes128-ctr</ContainsLine>

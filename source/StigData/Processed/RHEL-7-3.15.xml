@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R13_Manual-xccdf.xml" releaseinfo="Release: 13 Benchmark Date: 25 Oct 2023 3.4.1.22916 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.13" created="12/11/2023">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="RHEL_7_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_RHEL_7_STIG_V3R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 24 Jul 2024 3.5 1.10.0" title="Red Hat Enterprise Linux 7 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.15" created="2/18/2026">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-204392" severity="high" conversionstatus="pass" title="SRG-OS-000257-GPOS-00098" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.
@@ -709,25 +709,24 @@ Verify the operating system implements cryptography to protect the integrity of 
 
 To determine if LDAP is being used for authentication, use the following command:
 
-# systemctl status sssd.service
-sssd.service - System Security Services Daemon
-Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
-Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
+     # systemctl status sssd.service
+     sssd.service - System Security Services Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
+     Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
 
 If the "sssd.service" is "active", then LDAP is being used. 
 
 Determine the "id_provider" the LDAP is currently using:
 
-# grep -i "id_provider" /etc/sssd/sssd.conf
-
-id_provider = ad
+     # grep -ir id_provider /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     id_provider = ad
 
 If "id_provider" is set to "ad", this is Not Applicable.
 
 Ensure that LDAP is configured to use TLS by using the following command:
 
-# grep -i "start_tls" /etc/sssd/sssd.conf
-ldap_id_use_start_tls = true
+     # grep -ir start_tls /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     ldap_id_use_start_tls = true
 
 If the "ldap_id_use_start_tls" option is not "true", this is a finding.</RawString>
     </Rule>
@@ -746,25 +745,24 @@ Verify the operating system implements cryptography to protect the integrity of 
 
 To determine if LDAP is being used for authentication, use the following command:
 
-# systemctl status sssd.service
-sssd.service - System Security Services Daemon
-Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
-Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
+     # systemctl status sssd.service
+     sssd.service - System Security Services Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
+     Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
 
 If the "sssd.service" is "active", then LDAP is being used. 
 
 Determine the "id_provider" the LDAP is currently using:
 
-# grep -i "id_provider" /etc/sssd/sssd.conf
-
-id_provider = ad
+     # grep -ir id_provider /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     id_provider = ad
 
 If "id_provider" is set to "ad", this is Not Applicable.
 
 Verify the sssd service is configured to require the use of certificates:
 
-# grep -i tls_reqcert /etc/sssd/sssd.conf
-ldap_tls_reqcert = demand
+     # grep -ir tls_reqcert /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     ldap_tls_reqcert = demand
 
 If the "ldap_tls_reqcert" setting is missing, commented out, or does not exist, this is a finding.
 
@@ -1090,13 +1088,11 @@ Privileged functions include, for example, establishing accounts, performing sys
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
-
-Verify the operating system prevents privileged accounts from utilizing SSH.
+      <RawString>Verify the operating system prevents privileged accounts from utilizing SSH.
 Check the SELinux ssh_sysadm_login boolean with the following command:
 
-$ sudo getsebool ssh_sysadm_login
-ssh_sysadm_login --&gt; off
+     $ sudo getsebool ssh_sysadm_login
+     ssh_sysadm_login --&gt; off
 
 If the "ssh_sysadm_login" boolean is not "off" and is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
@@ -1348,9 +1344,7 @@ If the ctrl-alt-del.target is not masked, this is a finding.
 If the ctrl-alt-del.target is active, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204458" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;An operating system release is considered "supported" if the vendor continues to provide security patches for the product. With an unsupported release, it will not be possible to resolve security issues discovered in the system software.
-
-Red Hat offers the Extended Update Support (EUS) Add-On to a Red Hat Enterprise Linux subscription, for a fee, for those customers who wish to standardize on a specific minor release for an extended period. RHEL 7.7 marks the final minor release that EUS will be available, while 7.9 is the final minor release overall.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;An operating system release is considered "supported" if the vendor continues to provide security patches for the product. With an unsupported release, it will not be possible to resolve security issues discovered in the system software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-71997</LegacyId>
@@ -1363,10 +1357,6 @@ Check the version of the operating system with the following command:
 # cat /etc/redhat-release
 
 Red Hat Enterprise Linux Server release 7.9 (Maipo)
-
-Current End of Extended Update Support for RHEL 7.6 is 31 May 2021.
-
-Current End of Extended Update Support for RHEL 7.7 is 30 August 2021.
 
 Current End of Maintenance Support for RHEL 7.9 is 30 June 2024.
 
@@ -2047,26 +2037,24 @@ Verify the operating system implements cryptography to protect the integrity of 
 
 To determine if LDAP is being used for authentication, use the following command:
 
-# systemctl status sssd.service
-sssd.service - System Security Services Daemon
-Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
-Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
+     # systemctl status sssd.service
+     sssd.service - System Security Services Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sssd.service; enabled; vendor preset: disabled)
+     Active: active (running) since Wed 2018-06-27 10:58:11 EST; 1h 50min ago
 
 If the "sssd.service" is "active", then LDAP is being used.
 
 Determine the "id_provider" that the LDAP is currently using:
 
-# grep -i "id_provider" /etc/sssd/sssd.conf
-
-id_provider = ad
+     # grep -ir id_provider /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     id_provider = ad
 
 If "id_provider" is set to "ad", this is Not Applicable.
 
 Check the path to the X.509 certificate for peer authentication with the following command:
 
-# grep -i tls_cacert /etc/sssd/sssd.conf
-
-ldap_tls_cacert = /etc/pki/tls/certs/ca-bundle.crt
+     # grep -ir tls_cacert /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+     ldap_tls_cacert = /etc/pki/tls/certs/ca-bundle.crt
 
 Verify the "ldap_tls_cacert" option points to a file that contains the trusted CA certificate.
 
@@ -2278,18 +2266,15 @@ If there is any output from the command for system files or binaries, this is a 
       <LegacyId>V-92255</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Per OPORD 16-0080, the preferred endpoint security tool is McAfee Endpoint Security for Linux (ENSL) in conjunction with SELinux. 
+      <RawString>Check that the following package has been installed:
 
-Procedure:
-Check that the following package has been installed:
-
-# rpm -qa | grep -i mcafeetp
+     # rpm -qa | grep -i mcafeetp
 
 If the "mcafeetp" package is not installed, this is a finding.
 
 Verify that the daemon is running:
 
-# ps -ef | grep -i mfetpd
+     # ps -ef | grep -i mfetpd
 
 If the daemon is not running, this is a finding.</RawString>
     </Rule>
@@ -3111,9 +3096,8 @@ Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
 
-# grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install usb-storage /bin/true
+     # grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install usb-storage /bin/false
 
 If the command does not return any output, or the line is commented out, and use of USB Storage is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -3121,10 +3105,10 @@ Verify the operating system disables the ability to use USB mass storage devices
 
 Check to see if USB mass storage is disabled with the following command:
 
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
-blacklist usb-storage
+     # grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist usb-storage
 
-If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204449.d" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFileLine">
       <ContainsLine>blacklist usb-storage</ContainsLine>
@@ -3140,9 +3124,8 @@ Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
 
-# grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install usb-storage /bin/true
+     # grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install usb-storage /bin/false
 
 If the command does not return any output, or the line is commented out, and use of USB Storage is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -3150,10 +3133,10 @@ Verify the operating system disables the ability to use USB mass storage devices
 
 Check to see if USB mass storage is disabled with the following command:
 
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
-blacklist usb-storage
+     # grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist usb-storage
 
-If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204450.b" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
       <ContainsLine>install dccp /bin/true</ContainsLine>
@@ -3167,9 +3150,8 @@ If the command does not return any output or the output is not "blacklist usb-st
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
 
-# grep -r dccp /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install dccp /bin/true
+     # grep -r dccp /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install dccp /bin/false
 
 If the command does not return any output, or the line is commented out, and use of DCCP is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -3177,11 +3159,10 @@ Verify the operating system disables the ability to use the DCCP kernel module.
 
 Check to see if the DCCP kernel module is disabled with the following command:
 
-# grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     # grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist dccp
 
-blacklist dccp
-
-If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204450.c" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFileLine">
       <ContainsLine>blacklist dccp</ContainsLine>
@@ -3195,9 +3176,8 @@ If the command does not return any output or the output is not "blacklist dccp",
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
 
-# grep -r dccp /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install dccp /bin/true
+     # grep -r dccp /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install dccp /bin/false
 
 If the command does not return any output, or the line is commented out, and use of DCCP is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -3205,11 +3185,10 @@ Verify the operating system disables the ability to use the DCCP kernel module.
 
 Check to see if the DCCP kernel module is disabled with the following command:
 
-# grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     # grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist dccp
 
-blacklist dccp
-
-If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204452" severity="low" conversionstatus="pass" title="SRG-OS-000437-GPOS-00194" dscresource="nxFileLine">
       <ContainsLine>clean_requirements_on_remove=1</ContainsLine>
@@ -3242,14 +3221,12 @@ This requirement applies to operating systems performing security function verif
       <LegacyId>V-71989</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
-
-Verify the operating system verifies correct operation of all security functions.
+      <RawString>Verify the operating system verifies correct operation of all security functions.
 
 Check if "SELinux" is active and in "Enforcing" mode with the following command:
 
-# getenforce
-Enforcing
+     # getenforce
+     Enforcing
 
 If "SELinux" is not active and not in "Enforcing" mode, this is a finding.</RawString>
     </Rule>
@@ -3265,39 +3242,27 @@ This requirement applies to operating systems performing security function verif
       <LegacyId>V-71991</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Per OPORD 16-0080, the preferred endpoint security tool is Endpoint Security for Linux (ENSL) in conjunction with SELinux.
-
-Verify the operating system verifies correct operation of all security functions.
+      <RawString>Verify the operating system verifies correct operation of all security functions.
 
 Check if "SELinux" is active and is enforcing the targeted policy with the following command:
 
-# sestatus
-
-SELinux status: enabled
-
-SELinuxfs mount: /selinux
-
-SELinux root directory: /etc/selinux
-
-Loaded policy name: targeted
-
-Current mode: enforcing
-
-Mode from config file: enforcing
-
-Policy MLS status: enabled
-
-Policy deny_unknown status: allowed
-
-Max kernel policy version: 28
+     # sestatus
+     SELinux status: enabled
+     SELinuxfs mount: /selinux
+     SELinux root directory: /etc/selinux
+     Loaded policy name: targeted
+     Current mode: enforcing
+     Mode from config file: enforcing
+     Policy MLS status: enabled
+     Policy deny_unknown status: allowed
+     Max kernel policy version: 28
 
 If the "Loaded policy name" is not set to "targeted", this is a finding.
 
 Verify that the /etc/selinux/config file is configured to the "SELINUXTYPE" to "targeted":
 
-# grep -i "selinuxtype" /etc/selinux/config | grep -v '^#'
-
-SELINUXTYPE = targeted
+     # grep -i "selinuxtype" /etc/selinux/config | grep -v '^#'
+     SELINUXTYPE = targeted
 
 If no results are returned or "SELINUXTYPE" is not set to "targeted", this is a finding.</RawString>
     </Rule>
@@ -5762,9 +5727,8 @@ Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
 
-# grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install usb-storage /bin/true
+     # grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install usb-storage /bin/false
 
 If the command does not return any output, or the line is commented out, and use of USB Storage is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -5772,10 +5736,10 @@ Verify the operating system disables the ability to use USB mass storage devices
 
 Check to see if USB mass storage is disabled with the following command:
 
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
-blacklist usb-storage
+     # grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist usb-storage
 
-If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204449.b" severity="medium" conversionstatus="pass" title="SRG-OS-000114-GPOS-00059" dscresource="nxFile">
       <Contents />
@@ -5790,9 +5754,8 @@ Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPO
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the USB Storage kernel module.
 
-# grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install usb-storage /bin/true
+     # grep -r usb-storage /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install usb-storage /bin/false
 
 If the command does not return any output, or the line is commented out, and use of USB Storage is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -5800,10 +5763,10 @@ Verify the operating system disables the ability to use USB mass storage devices
 
 Check to see if USB mass storage is disabled with the following command:
 
-# grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
-blacklist usb-storage
+     # grep usb-storage /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist usb-storage
 
-If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204450.a" severity="medium" conversionstatus="pass" title="SRG-OS-000378-GPOS-00163" dscresource="nxFile">
       <Contents />
@@ -5816,9 +5779,8 @@ If the command does not return any output or the output is not "blacklist usb-st
       <OrganizationValueTestString />
       <RawString>Verify the operating system disables the ability to load the DCCP kernel module.
 
-# grep -r dccp /etc/modprobe.d/* | grep -i "/bin/true" | grep -v "^#"
-
-install dccp /bin/true
+     # grep -r dccp /etc/modprobe.d/* | grep -i "/bin/false" | grep -v "^#"
+     install dccp /bin/false
 
 If the command does not return any output, or the line is commented out, and use of DCCP is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.
 
@@ -5826,11 +5788,10 @@ Verify the operating system disables the ability to use the DCCP kernel module.
 
 Check to see if the DCCP kernel module is disabled with the following command:
 
-# grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     # grep -i dccp /etc/modprobe.d/* | grep -i "blacklist" | grep -v "^#"
+     blacklist dccp
 
-blacklist dccp
-
-If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</RawString>
+If the command does not return any output or the output is not "blacklist dccp", and use of the dccp kernel module is not documented with the ISSO as an operational requirement, this is a finding.</RawString>
     </Rule>
     <Rule id="V-204576" severity="low" conversionstatus="pass" title="SRG-OS-000027-GPOS-00008" dscresource="nxFile">
       <Contents>

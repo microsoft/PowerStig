@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.4">
+<OrganizationalSettings fullversion="2.6">
   <!-- Ensure ValueData is set to 0x00000006 (6) or greater -->
   <OrganizationalSetting id="V-253261" ValueData="" />
   <!-- Ensure ''V-253297'' -ge '15' -or ''V-253297'' -eq '0'-->
@@ -77,7 +77,7 @@
   <!-- Ensure ''V-253444'' -le '900' -and ''V-253444'' -gt '0'-->
   <OrganizationalSetting id="V-253444" ValueData="900" />
   <!-- Ensure 'V-253445' is set to the required legal notice before logon-->
-<OrganizationalSetting id="V-253445" ValueData="You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+  <OrganizationalSetting id="V-253445" ValueData="You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
 By using this IS (which includes any device attached to this IS), you consent to the following conditions:
 

@@ -1,4 +1,4 @@
-<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 02 Apr 2025 3.5 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.4" created="5/21/2025">
+<DISASTIG version="3" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2016_Instance_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2016_Instance_STIG_V3R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 05 Jan 2026 3.5.2 1.10.0" title="MS SQL Server 2016 Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="3.6" created="2/18/2026">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-213929" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management includes the ability to control the number of users and user sessions utilizing SQL Server. Unlimited concurrent connections to SQL Server could allow a successful denial-of-service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions is helpful in reducing these risks.
@@ -196,11 +196,13 @@ If the actual permissions do not match the documented requirements, this is a fi
 Use the supplemental file "Instance permissions assignments to logins and roles.sql."</RawString>
     </Rule>
     <Rule id="V-213933" severity="medium" conversionstatus="pass" title="SRG-APP-000080-DB-000063" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message.  
+      <Description>&lt;VulnDiscussion&gt;Nonrepudiation of actions taken is required to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message.  
  
-Non-repudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database. 
+Nonrepudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database. 
  
-In designing a database, the organization must define the types of data and the user actions that must be protected from repudiation. The implementation must then include building audit features into the application data tables and configuring SQL Server's audit tools to capture the necessary audit trail. Design and implementation also must ensure that applications pass individual user identification to SQL Server, even where the application connects to SQL Server with a standard, shared account.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+In designing a database, the organization must define the types of data and the user actions that must be protected from repudiation. The implementation must then include building audit features into the application data tables and configuring SQL Server's audit tools to capture the necessary audit trail. Design and implementation also must ensure that applications pass individual user identification to SQL Server, even where the application connects to SQL Server with a standard, shared account.
+
+Satisfies: SRG-APP-000080-DB-000063, SRG-APP-000815-DB-000160&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79127</LegacyId>
@@ -208,7 +210,7 @@ In designing a database, the organization must define the types of data and the 
       <OrganizationValueTestString />
       <RawString>Obtain the list of authorized SQL Server accounts in the system documentation.  
  
-Determine if any accounts are shared. A shared account is defined as a username and password that are used by multiple individuals to log into SQL Server. An example of a shared account is the SQL Server installation account. Windows Groups are not shared accounts as the group itself does not have a password. 
+Determine if any accounts are shared. A shared account is defined as a username and password used by multiple individuals to log into SQL Server. An example of a shared account is the SQL Server installation account. Windows Groups are not shared accounts as the group itself does not have a password. 
  
 If accounts are determined to be shared, determine if individuals are first individually authenticated.  
  
@@ -216,9 +218,9 @@ If individuals are not individually authenticated before using the shared accoun
  
 The key is individual accountability. If this can be traced, this is not a finding.  
  
-If accounts are determined to be shared, determine if they are directly accessible to end users. If so, this is a finding.  
+If accounts are shared, determine if they are directly accessible to end users. If so, this is a finding.  
  
-Review contents of audit logs, traces and data tables to confirm that the identity of the individual user performing the action is captured.  
+Review contents of audit logs, traces and data tables to confirm the identity of the individual user performing the action is captured.  
  
 If shared identifiers are found, and not accompanied by individual identifiers, this is a finding.  
  
@@ -573,25 +575,6 @@ WHERE s.is_linked = 1
  
 Review the linked login mapping and check the remote name as it can impersonate sysadmin. If a login in the list is impersonating sysadmin and system documentation does not require this, it is a finding.</RawString>
     </Rule>
-    <Rule id="V-213962" severity="medium" conversionstatus="pass" title="SRG-APP-000142-DB-000094" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;In order to prevent unauthorized connection of devices, unauthorized transfer of information, or unauthorized tunneling (i.e., embedding of data types within data types), organizations must disable or restrict unused or unnecessary physical and logical ports on information systems. 
- 
-Applications are capable of providing a wide variety of functions and services. Some of the functions and services provided by default may not be necessary to support essential organizational operations. Additionally, it is sometimes convenient to provide multiple services from a single component (e.g., email and web services); however, doing so increases risk over limiting the services provided by any one component.  
- 
-To support the requirements and principles of least functionality, the application must support the organizational requirements providing only essential capabilities and limiting the use of ports to only those required, authorized, and approved to conduct official business or to address authorized quality of life issues. 
- 
-SQL Server using ports deemed unsafe is open to attack through those ports. This can allow unauthorized access to the database and through the database to other components of the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79187</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review SQL Server Configuration for the ports used by SQL Server.  
- 
-To determine whether SQL Server is configured to use a fixed port or dynamic ports, in the right-hand pane double-click on the TCP/IP entry, to open the Properties dialog. (The default fixed port is 1433.)  
- 
-If these are in conflict with PPSM guidance, and not explained and approved in the system documentation, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-213965" severity="medium" conversionstatus="pass" title="SRG-APP-000164-DB-000401" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;OS/enterprise authentication and identification must be used (SRG-APP-000023-DB-000001). Native DBMS authentication may be used only when circumstances make it unavoidable, and must be documented and Authorizing Official (AO)-approved.
  
@@ -761,7 +744,7 @@ If any nonauthorized users have access to the SQL Server Error Log located at Pr
 
 In addition, the SQL Server Error Log is also located at Program Files\Microsoft SQL Server\MSSQL.n\MSSQL\LOG\. Review the permissions on this folder to ensure that only authorized users are listed.  
 
-If any nonauthorized users have access to the SQL Server Error Log in SQL Server Management Studio or if vendor documentation does not exist stating that full error messages must be returned, this is a finding.
+If any nonauthorized users have access to the SQL Server Error Log in SQL Server Management Studio or if documentation does not exist stating that full error messages must be returned, this is a finding.
 
 Otherwise, verify if trace flag 3625 is enabled to mask certain system-level error information returned to nonadministrative users. 
  
@@ -1018,21 +1001,6 @@ net localgroup administrators
 Check the server documentation to verify the users returned are authorized.  
  
 If the users are not documented and authorized, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-213990" severity="medium" conversionstatus="pass" title="SRG-APP-000383-DB-000364" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of nonsecure network functions, ports, protocols, and services exposes the system to avoidable threats.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79241</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>SQL Server must only use approved network communication libraries, ports, and protocols. 
- 
-Obtain a list of all approved network libraries, communication ports, and protocols from the server documentation. 
- 
-Verify that the protocols are enabled for the instance. 
- 
-If any ports or protocols are used that are not specifically approved in the server documentation, this is a finding.</RawString>
     </Rule>
     <Rule id="V-213991" severity="medium" conversionstatus="pass" title="SRG-APP-000431-DB-000388" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Database management systems can maintain separate execution domains for each executing process by assigning each process a separate address space.  
@@ -1538,28 +1506,8 @@ Examples:
 
 3) The Operating System directory is "C:\Windows". The SQL RootDirectory is "D:\Program Files\Microsoft Office\MSSQLSERVER\MSSQL". The MSSQLSERVER directory is in the Microsoft Office directory, which indicates Microsoft Office is installed here. This is a finding.</RawString>
     </Rule>
-    <Rule id="V-213963" severity="medium" conversionstatus="pass" title="SRG-APP-000148-DB-000103" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;To assure accountability and prevent unauthenticated access, organizational users must be identified and authenticated to prevent potential misuse and compromise of the system.  
- 
-Organizational users include organizational employees or individuals the organization deems to have equivalent status of employees (e.g., contractors). Organizational users (and any processes acting on behalf of users) must be uniquely identified and authenticated for all accesses, except the following: 
- 
-(i) Accesses explicitly identified and documented by the organization. Organizations document specific user actions that can be performed on the information system without identification or authentication; and  
-(ii) Accesses that occur through authorized use of group authenticators without individual authentication. Organizations may require unique identification of individuals using shared accounts, for detailed accountability of individual activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79189</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review SQL Server users to determine whether shared accounts exist. (This does not include the case where SQL Server has a guest or public account that is providing access to publicly available information.)    
- 
-If accounts are determined to be shared, determine if individuals are first individually authenticated. Where an application connects to SQL Server using a standard, shared account, ensure that it also captures the individual user identification and passes it to SQL Server. 
- 
-If individuals are not individually authenticated before using the shared account (e.g., by the operating system or possibly by an application making calls to the database), this is a finding.  
- 
-If accounts are determined to be shared, determine if they are directly accessible to end users. If so, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-213966" severity="high" conversionstatus="pass" title="SRG-APP-000172-DB-000075" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The DoD standard for authentication is DoD-approved PKI certificates. 
+      <Description>&lt;VulnDiscussion&gt;The DOD standard for authentication is DOD-approved PKI certificates. 
  
 Authentication based on User ID and Password may be used only when it is not possible to employ a PKI certificate and requires AO approval. 
  
@@ -2516,17 +2464,19 @@ For more information, see https://support.microsoft.com/en-us/kb/3141890.</RawSt
     <Rule id="V-213969" severity="high" conversionstatus="pass" title="SRG-APP-000179-DB-000114" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Use of weak or not validated cryptographic algorithms undermines the purposes of utilizing encryption and digital signatures to protect data. Weak algorithms can be easily broken, and not validated cryptographic modules may not implement algorithms correctly. Unapproved cryptographic modules or algorithms should not be relied on for authentication, confidentiality, or integrity. Weak cryptography could allow an attacker to gain access to, and modify data stored in, the database as well as the administration settings of SQL Server. 
  
-Applications, including DBMSs, utilizing cryptography are required to use approved NIST FIPS 140-2 or 140-3 validated cryptographic modules that meet the requirements of applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.   
+Applications, including DBMSs, utilizing cryptography are required to use approved NIST FIPS 140-2/140-3 validated cryptographic modules that meet the requirements of applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.   
  
 NSA Type- (where =1, 2, 3, 4) products are NSA-certified, hardware-based encryption modules.
 
 The standard for validating cryptographic modules will transition to the NIST FIPS 140-3 publication.
 
-FIPS 140-2 modules can remain active for up to five years after validation or until September 21, 2026, when the FIPS 140-2 validations will be moved to the historical list. Even on the historical list, CMVP supports the purchase and use of these modules for existing systems. While Federal Agencies decide when they move to FIPS 140-3 only modules, purchasers are reminded that for several years there may be a limited selection of FIPS 140-3 modules from which to choose. CMVP recommends purchasers consider all modules that appear on the Validated Modules Search Page:
+FIPS 140-2 modules can remain active for up to five years after validation or until September 21, 2026, when the FIPS 140-2 validations will be moved to the historical list. Even on the historical list, CMVP supports the purchase and use of these modules for existing systems. While federal agencies decide when they move to FIPS 140-3 only modules, purchasers are reminded that for several years there may be a limited selection of FIPS 140-3 modules from which to choose. CMVP recommends purchasers consider all modules that appear on the Validated Modules Search Page:
 https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules
 
 More information on the FIPS 140-3 transition can be found here: 
-https://csrc.nist.gov/Projects/fips-140-3-transition-effort/&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+https://csrc.nist.gov/Projects/fips-140-3-transition-effort/
+
+Satisfies: SRG-APP-000179-DB-000114, SRG-APP-000176-DB-000068, SRG-APP-000224-DB-000384, SRG-APP-000514-DB-000381, SRG-APP-000514-DB-000382, SRG-APP-000514-DB-000383&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf>V-213968</DuplicateOf>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79199</LegacyId>
@@ -2534,85 +2484,13 @@ https://csrc.nist.gov/Projects/fips-140-3-transition-effort/&lt;/VulnDiscussion&
       <OptionValue>enabled</OptionValue>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>In Windows, open Administrative Tools &gt;&gt; Local Security Policy. Expand Local Policies &gt;&gt; Security Options. In the right-side pane, find "System cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing".  
+      <RawString>In Windows, open Administrative Tools &gt;&gt; Local Security Policy. 
+Expand Local Policies &gt;&gt; Security Options. 
+In the right-side pane, find "System cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing".  
  
 If, in the "Security Setting" column, the value is "Disabled," this is a finding. 
  
 https://support.microsoft.com/en-us/kb/955720</RawString>
-    </Rule>
-    <Rule id="V-213971" severity="medium" conversionstatus="pass" title="SRG-APP-000224-DB-000384" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;One class of man-in-the-middle, or session hijacking, attack involves the adversary guessing at valid session identifiers based on patterns in identifiers already known. 
- 
-The preferred technique for thwarting guesses at Session IDs is the generation of unique session identifiers using a FIPS 140-2 or FIPS 140-3 approved random number generator. 
- 
-However, it is recognized that available DBMS products do not all implement the preferred technique yet may have other protections against session hijacking. Therefore, other techniques are acceptable, provided they are demonstrated to be effective.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-213968</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79203</LegacyId>
-      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
-      <OptionValue>enabled</OptionValue>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that Windows is configured to require the use of FIPS compliant algorithms. 
- 
-Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing." 
- 
-If the Security Setting for this option is "Disabled", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214022" severity="high" conversionstatus="pass" title="SRG-APP-000514-DB-000381" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. 
- 
-For detailed information, refer to NIST FIPS Publication 140-2 or Publication 140-3, Security Requirements For Cryptographic Modules. Note that the product's cryptographic modules must be validated and certified by NIST as FIPS-compliant.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-213968</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79305</LegacyId>
-      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
-      <OptionValue>enabled</OptionValue>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that Windows is configured to require the use of FIPS compliant algorithms. 
- 
-Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing." 
- 
-If the Security Setting for this option is "Disabled" this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214023" severity="high" conversionstatus="pass" title="SRG-APP-000514-DB-000382" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. 
- 
-For detailed information, refer to NIST FIPS Publication 140-2 or Publication 140-3, Security Requirements For Cryptographic Modules. Note that the product's cryptographic modules must be validated and certified by NIST as FIPS-compliant.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-213968</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79307</LegacyId>
-      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
-      <OptionValue>enabled</OptionValue>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that Windows is configured to require the use of FIPS-compliant algorithms.
-
-Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing."
-
-If  "System Cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing" is not enabled, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-214024" severity="medium" conversionstatus="pass" title="SRG-APP-000514-DB-000383" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. 
- 
-It is the responsibility of the data owner to assess the cryptography requirements in light of applicable federal laws, Executive Orders, directives, policies, regulations, and standards. 
- 
-For detailed information, refer to NIST FIPS Publication 140-2 or Publication 140-3, Security Requirements For Cryptographic Modules. Note that the product's cryptographic modules must be validated and certified by NIST as FIPS-compliant.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-213968</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79309</LegacyId>
-      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
-      <OptionValue>enabled</OptionValue>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the server documentation, if this system does not contain data that must be encrypted, this finding is NA.
-
-Verify that Windows is configured to require the use of FIPS compliant algorithms for the unclassified information that requires it.
-
-Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing."
-
-If  "System Cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing" is not enabled, this is a finding.</RawString>
     </Rule>
   </SecurityOptionRule>
   <SqlDatabaseRule dscresourcemodule="SqlServerDsc">
@@ -2756,7 +2634,7 @@ Review SQL Server to ensure logons are created with respect to the complexity se
 SELECT [name], is_expiration_checked, is_policy_checked
 FROM sys.sql_logins
 
-Review any accounts returned by the query other than the disabled SA account, ##MS_PolicyTsqlExecutionLogin##, and ##MS_PolicyEventProcessingLogin##.
+Review any accounts returned by the query other than the disabled SA account, ##MS_PolicyTsqlExecutionLogin##, ##MS_PolicyEventProcessingLogin##, ##MS_SSISServerCleanupJobLogin##, and other internal accounts that start with ##MS.
 
 If any account does not have both "is_expiration_checked" and "is_policy_checked" equal to “1”, this is a finding.
 
@@ -2771,13 +2649,15 @@ Ensure the DISA Windows Password Policy is set on the SQL Server member server. 
   </SqlLoginRule>
   <SqlProtocolRule dscresourcemodule="SqlServerDsc">
     <Rule id="V-213961" severity="medium" conversionstatus="pass" title="SRG-APP-000142-DB-000094" dscresource="SqlProtocol">
-      <Description>&lt;VulnDiscussion&gt;In order to prevent unauthorized connection of devices, unauthorized transfer of information, or unauthorized tunneling (i.e., embedding of data types within data types), organizations must disable or restrict unused or unnecessary protocols on information systems. 
+      <Description>&lt;VulnDiscussion&gt;To prevent unauthorized connection of devices, unauthorized transfer of information, or unauthorized tunneling (i.e., embedding of data types within data types), organizations must disable or restrict unused or unnecessary protocols on information systems. 
  
 Applications are capable of providing a wide variety of functions and services. Some of the functions and services provided by default may not be necessary to support essential organizational operations. Additionally, it is sometimes convenient to provide multiple services from a single component (e.g., email and web services); however, doing so increases risk over limiting the services provided by any one component.  
  
 To support the requirements and principles of least functionality, the application must support the organizational requirements providing only essential capabilities and limiting the use of protocols to only those required, authorized, and approved to conduct official business or to address authorized quality of life issues. 
  
-SQL Server using protocols deemed unsafe is open to attack through those protocols. This can allow unauthorized access to the database and through the database to other components of the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+SQL Server using protocols deemed unsafe is open to attack through those protocols. This can allow unauthorized access to the database and through the database to other components of the information system.
+
+Satisfies: SRG-APP-000142-DB-000094, SRG-APP-000383-DB-000364&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Enabled>False</Enabled>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2785,7 +2665,7 @@ SQL Server using protocols deemed unsafe is open to attack through those protoco
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <ProtocolName>NamedPipes</ProtocolName>
-      <RawString>To determine the protocol(s) enabled for SQL Server, open SQL Server Configuration Manager. In the left-hand pane, expand SQL Server Network Configuration. Click on the entry for the SQL Server instance under review: "Protocols for ". The right-hand pane displays the protocols enabled for the instance.  
+      <RawString>To determine the protocol(s) enabled for SQL Server, open SQL Server Configuration Manager. In the left-hand pane, expand SQL Server Network Configuration. Click the entry for the SQL Server instance under review: "Protocols for ". The right-hand pane displays the protocols enabled for the instance.  
  
 If Named Pipes is enabled and not specifically required and authorized, this is a finding. 
  
@@ -2800,16 +2680,21 @@ This requirement addresses explicit requests for privilege/permission/role membe
  
 To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.
 
-Satisfies: SRG-APP-000091-DB-000066&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Satisfies: SRG-APP-000091-DB-000325, SRG-APP-000091-DB-000066, SRG-APP-000492-DB-000332, SRG-APP-000492-DB-000333, SRG-APP-000494-DB-000344, SRG-APP-000494-DB-000345, SRG-APP-000498-DB-000346, SRG-APP-000498-DB-000347, SRG-APP-000502-DB-000348, SRG-APP-000502-DB-000349, SRG-APP-000507-DB-000356, SRG-APP-000507-DB-000357&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79139</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the system documentation to determine if SQL Server is required to audit the retrieval of privilege/permission/role membership information. 
- 
-If SQL Server is not required to audit the retrieval of privilege/permission/role membership information, this is not a finding. 
+      <RawString>Review the system documentation to determine if SQL Server is required to audit when the following events occur:
+
+- Attempts to retrieve privilege/permission/role membership information.
+- Security objects are accessed, modified, or deleted.
+- Data classifications (e.g., classification levels/security levels) are accessed, modified, or deleted.
+- Any other specified objects are accessed, modified, or deleted as required by the site.
+
+If SQL Server is not required to audit any of the above, this is not a finding. 
  
 If the documentation does not exist, this is a finding. 
  
@@ -2820,7 +2705,7 @@ status_desc AS 'Audit Status',
 audit_file_path AS 'Current Audit File' 
 FROM sys.dm_server_audit_status 
  
-If the auditing the retrieval of privilege/permission/role membership information is required, execute the following query to verify the SCHEMA_OBJECT_ACCESS_GROUP is included in the server audit specification. 
+If auditing the retrieval of the above information or objects is required, execute the following to verify the SCHEMA_OBJECT_ACCESS_GROUP is included in the server audit specification: 
  
 SELECT a.name AS 'AuditName', 
 s.name AS 'SpecName', 
@@ -2929,11 +2814,25 @@ If the "storage_type" is "FILE" and "max_rollover_files" is greater than zero, t
       <VariableValue />
     </Rule>
     <Rule id="V-213989" severity="medium" conversionstatus="pass" title="SRG-APP-000381-DB-000361" dscresource="SqlScriptQuery">
-      <Description>&lt;VulnDiscussion&gt;Without auditing the enforcement of access restrictions against changes to configuration, it would be difficult to identify attempted attacks and an audit trail would not be available for forensic investigation for after-the-fact actions.
+      <Description>&lt;VulnDiscussion&gt;Without auditing the enforcement of access restrictions against changes to configuration, it would be difficult to identify attempted attacks, and an audit trail would not be available for forensic investigation for after-the-fact actions.
  
-Enforcement actions are the methods or mechanisms used to prevent unauthorized changes to configuration settings. Enforcement action methods may be as simple as denying access to a file based on the application of file permissions (access restriction). Audit items may consist of lists of actions blocked by access restrictions or changes identified after the fact.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Enforcement actions are the methods or mechanisms used to prevent unauthorized changes to configuration settings. Enforcement action methods may be as simple as denying access to a file based on the application of file permissions (access restriction). Audit items may consist of lists of actions blocked by access restrictions or changes identified after the fact.
+
+Changes in the permissions, privileges, and roles granted to users and roles, as well as privileged activity, must be tracked. Without an audit trail, unauthorized elevation or restriction of privileges could go undetected. Elevated privileges give users access to information and functionality that they should not have; restricted privileges wrongly deny access to authorized users.
+ 
+A privileged function in this context is any operation that modifies the structure of the database, its built-in logic, or its security settings. This would include all Data Definition Language (DDL) statements and all security-related statements. In a SQL environment, it encompasses, but is not necessarily limited to, CREATE, ALTER, DROP, GRANT, REVOKE, and DENY. 
+ 
+There may also be Data Manipulation Language (DML) statements that, subject to context, should be regarded as privileged. Possible examples in SQL include TRUNCATE TABLE, SELECT, INSERT, UPDATE, or DELETE (to a security table executed by a user other than a security principal).
+ 
+Depending on the capabilities of SQL Server and the design of the database and associated applications, audit logging may be achieved by means of DBMS auditing features, database triggers, other mechanisms, or a combination of these. 
+ 
+Note that it is particularly important to audit, and tightly control, any action that weakens the implementation of this requirement, since the objective is to have a complete audit trail of all administrative activity.
+ 
+To aid in diagnosis, it is necessary to track failed attempts in addition to the successful ones.
+
+Satisfies: SRG-APP-000381-DB-000361, SRG-APP-000495-DB-000326, SRG-APP-000495-DB-000327, SRG-APP-000495-DB-000328, SRG-APP-000495-DB-000329, SRG-APP-000499-DB-000330, SRG-APP-000499-DB-000331, SRG-APP-000504-DB-000354, SRG-APP-000504-DB-000355&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_ACCESS_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
+      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_ACCESS_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>V-79239</LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2965,7 +2864,6 @@ DATABASE_PRINCIPAL_IMPERSONATION_GROUP,
 DATABASE_ROLE_MEMBER_CHANGE_GROUP,
 DBCC_GROUP,
 LOGIN_CHANGE_PASSWORD_GROUP,
-SCHEMA_OBJECT_CHANGE_GROUP,
 SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP,
 SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP,
 SERVER_OBJECT_CHANGE_GROUP,
@@ -3003,7 +2901,6 @@ AND d.audit_action_name IN (
 'DATABASE_ROLE_MEMBER_CHANGE_GROUP', 
 'DBCC_GROUP',
 'LOGIN_CHANGE_PASSWORD_GROUP',
-'SCHEMA_OBJECT_CHANGE_GROUP',
 'SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP',
 'SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP',
 'SERVER_OBJECT_CHANGE_GROUP',
@@ -3020,106 +2917,7 @@ Order by d.audit_action_name
 
 If the identified groups are not returned, this is a finding.</RawString>
       <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_ACCESS_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-213995" severity="medium" conversionstatus="pass" title="SRG-APP-000492-DB-000332" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Changes to the security configuration must be tracked. 
-
-This requirement applies to situations where security data is retrieved or modified via data manipulation operations, as opposed to via specialized security functionality. 
-
-In an SQL environment, types of access include, but are not necessarily limited to: 
-SELECT 
-INSERT 
-UPDATE 
-DELETE 
-EXECUTE
-
-To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.
-
-Satisfies: SRG-APP-000492-DB-000332, SRG-APP-000492-DB-000333&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-213939</DuplicateOf>
-      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79251</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the system documentation to determine if SQL Server is required to audit the retrieval of when security objects are accessed.
-
-If this is not required, this is not a finding. 
-
-If the documentation does not exist, this is a finding.
-
-Determine if an audit is configured and started by executing the following query.  
-
-SELECT name AS 'Audit Name', 
-status_desc AS 'Audit Status', 
-audit_file_path AS 'Current Audit File' 
-FROM sys.dm_server_audit_status
-
-If no records are returned, this is a finding. 
-
-Execute the following query to verify the SCHEMA_OBJECT_ACCESS_GROUP is included in the server audit specification. 
-
-SELECT a.name AS 'AuditName', 
-s.name AS 'SpecName', 
-d.audit_action_name AS 'ActionName', 
-d.audited_result AS 'Result' 
-FROM sys.server_audit_specifications s 
-JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
-JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
-WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP' 
-
-If the "SCHEMA_OBJECT_ACCESS_GROUP" is not returned in an active audit, this is a finding.</RawString>
-      <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-213998" severity="medium" conversionstatus="pass" title="SRG-APP-000494-DB-000345" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Changes in categorized information must be tracked. Without an audit trail, unauthorized access to protected data could go undetected. 
- 
-For detailed information on categorizing information, refer to FIPS Publication 199, Standards for Security Categorization of Federal Information and Information Systems, and FIPS Publication 200, Minimum Security Requirements for Federal Information and Information Systems.
-
-To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones. 
-
-Satisfies: SRG-APP-000494-DB-000344&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-213939</DuplicateOf>
-      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79257</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the system documentation to determine if SQL Server is required to audit when data classifications are both successfully and unsuccessfully retrieved. 
- 
-If this is not required, this is not a finding. 
- 
-If the documentation does not exist, this is a finding. 
- 
-Determine if an audit is configured and started by executing the following query.  
- 
-SELECT name AS 'Audit Name', 
-  status_desc AS 'Audit Status', 
-  audit_file_path AS 'Current Audit File' 
-FROM sys.dm_server_audit_status 
- 
-If no records are returned, this is a finding. 
- 
-If the auditing the retrieval of privilege/permission/role membership information is required, execute the following query to verify the "SCHEMA_OBJECT_ACCESS_GROUP" is included in the server audit specification. 
- 
-SELECT a.name AS 'AuditName', 
-  s.name AS 'SpecName', 
-  d.audit_action_name AS 'ActionName', 
-  d.audited_result AS 'Result' 
-FROM sys.server_audit_specifications s 
-JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
-JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
-WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP' 
- 
-If the "SCHEMA_OBJECT_ACCESS_GROUP" is not returned in an active audit, this is a finding.</RawString>
-      <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
+      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_ACCESS_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
       <Variable />
       <VariableValue />
     </Rule>
@@ -3258,7 +3056,7 @@ If no records are returned, this is a finding.</RawString>
  
 To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.
 
-Satisfies: SRG-APP-000496-DB-000334&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Satisfies: SRG-APP-000496-DB-000334, SRG-APP-000496-DB-000335, SRG-APP-000501-DB-000336, SRG-APP-000501-DB-000337&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3288,52 +3086,6 @@ WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SCHEMA_OBJECT_CHANGE_GRO
 If the "SCHEMA_OBJECT_CHANGE_GROUP" is not returned in an active audit, this is a finding.</RawString>
       <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
       <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-214006" severity="medium" conversionstatus="pass" title="SRG-APP-000498-DB-000347" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Changes in categories of information must be tracked. Without an audit trail, unauthorized access to protected data could go undetected. 
- 
-To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones. 
- 
-For detailed information on categorizing information, refer to FIPS Publication 199, Standards for Security Categorization of Federal Information and Information Systems, and FIPS Publication 200, Minimum Security Requirements for Federal Information and Information Systems.
-
-Satisfies: SRG-APP-000498-DB-000346&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-213939</DuplicateOf>
-      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79273</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the system documentation to determine if SQL Server is required to audit when data classifications are successfully and unsuccessfully modified. 
- 
-If this is not required, this is not a finding.
- 
-If the documentation does not exist, this is a finding.
- 
-Determine if an audit is configured and started by executing the following query:
- 
-SELECT name AS 'Audit Name', 
-  status_desc AS 'Audit Status', 
-  audit_file_path AS 'Current Audit File' 
-FROM  sys.dm_server_audit_status 
- 
-If no records are returned, this is a finding. 
- 
-If the auditing the retrieval of privilege/permission/role membership information is required, execute the following query to verify the "SCHEMA_OBJECT_ACCESS_GROUP" is included in the server audit specification. 
- 
-SELECT a.name AS 'AuditName', 
-  s.name AS 'SpecName', 
-  d.audit_action_name AS 'ActionName', 
-  d.audited_result AS 'Result' 
-FROM sys.server_audit_specifications s 
-JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
-JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
-WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP' 
- 
-If the "SCHEMA_OBJECT_ACCESS_GROUP" is not returned in an active audit, this is a finding.</RawString>
-      <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
       <Variable />
       <VariableValue />
     </Rule>
@@ -3400,94 +3152,10 @@ https://msdn.microsoft.com/en-us/library/cc280663.aspx</RawString>
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-214010" severity="medium" conversionstatus="pass" title="SRG-APP-000501-DB-000337" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The removal of security objects from the database/DBMS would seriously degrade a system's information assurance posture. If such an action is attempted, it must be logged. 
- 
-To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.
-
-Satisfies: SRG-APP-000501-DB-000336&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-214004</DuplicateOf>
-      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79281</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Determine if an audit is configured and started by executing the following query:
- 
-SELECT name AS 'Audit Name', 
-status_desc AS 'Audit Status', 
-audit_file_path AS 'Current Audit File' 
-FROM sys.dm_server_audit_status 
- 
-If no records are returned, this is a finding.
- 
-Execute the following query to verify the "SCHEMA_OBJECT_CHANGE_GROUP" is included in the server audit specification.
- 
-SELECT a.name AS 'AuditName', 
-s.name AS 'SpecName', 
-d.audit_action_name AS 'ActionName', 
-d.audited_result AS 'Result' 
-FROM sys.server_audit_specifications s 
-JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
-JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
-WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SCHEMA_OBJECT_CHANGE_GROUP' 
- 
-If the "SCHEMA_OBJECT_CHANGE_GROUP" is not returned in an active audit, this is a finding.</RawString>
-      <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_CHANGE_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-214012" severity="medium" conversionstatus="pass" title="SRG-APP-000502-DB-000349" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Changes in categorized information must be tracked. Without an audit trail, unauthorized access to protected data could go undetected. 
- 
-To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones. 
- 
-For detailed information on categorizing information, refer to FIPS Publication 199, Standards for Security Categorization of Federal Information and Information Systems, and FIPS Publication 200, Minimum Security Requirements for Federal Information and Information Systems.
-
-Satisfies: SRG-APP-000502-DB-000348&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-213939</DuplicateOf>
-      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79285</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the system documentation to determine if SQL Server is required to audit when data classifications are successfully and unsuccessfully deleted.
- 
-If this is not required, this is not a finding.
- 
-If the documentation does not exist, this is a finding.
- 
-Determine if an audit is configured and started by executing the following query:
- 
-SELECT name AS 'Audit Name', 
-  status_desc AS 'Audit Status', 
-  audit_file_path AS 'Current Audit File' 
-FROM  sys.dm_server_audit_status 
- 
-If no records are returned, this is a finding.
- 
-If the auditing the retrieval of privilege/permission/role membership information is required, execute the following query to verify the "SCHEMA_OBJECT_ACCESS_GROUP" is included in the server audit specification.
- 
-SELECT a.name AS 'AuditName', 
- s.name AS 'SpecName', 
- d.audit_action_name AS 'ActionName', 
- d.audited_result AS 'Result' 
-FROM sys.server_audit_specifications s 
-JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
-JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
-WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP' 
- 
-If the "SCHEMA_OBJECT_ACCESS_GROUP" is not returned in an active audit, this is a finding.</RawString>
-      <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
-      <Variable />
-      <VariableValue />
-    </Rule>
     <Rule id="V-214014" severity="medium" conversionstatus="pass" title="SRG-APP-000503-DB-000351" dscresource="SqlScriptQuery">
       <Description>&lt;VulnDiscussion&gt;For completeness of forensic analysis, it is necessary to track who/what (a user or other principal) logs on to SQL Server. It is also necessary to track failed attempts to log on to SQL Server. While positive identification may not be possible in a case of failed authentication, as much information as possible about the incident must be captured.
 
-Satisfies: SRG-APP-000503-DB-000350&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Satisfies: SRG-APP-000503-DB-000350, SRG-APP-000503-DB-000351, SRG-APP-000506-DB-000353&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SUCCESSFUL_LOGIN_GROUP'),('FAILED_LOGIN_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3516,419 +3184,15 @@ If both "SUCCESSFUL_LOGIN_GROUP" and "FAILED_LOGIN_GROUP" are returned in an act
  
 If both "SUCCESSFUL_LOGIN_GROUP" and "FAILED_LOGIN_GROUP" are not in the active audit, determine whether "Both failed and successful logins" is enabled.
  
-In SQL Management Studio 
-Right-click on the instance 
-&gt;&gt; Select "Properties" 
-&gt;&gt; Select "Security" on the left hand side 
-&gt;&gt; Check the setting for "Login auditing" 
+In SQL Management Studio: 
+Right-click on the instance. 
+- Select "Properties". 
+- Select "Security" on the left hand side. 
+- Check the setting for "Login auditing". 
  
 If "Both failed and successful logins" is not selected, this is a finding.</RawString>
       <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
       <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SUCCESSFUL_LOGIN_GROUP'),('FAILED_LOGIN_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-214015" severity="medium" conversionstatus="pass" title="SRG-APP-000504-DB-000354" dscresource="SqlScriptQuery">
-      <Description>&lt;VulnDiscussion&gt;Without tracking privileged activity, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.  
- 
-System documentation should include a definition of the functionality considered privileged. 
- 
-A privileged function in this context is any operation that modifies the structure of the database, its built-in logic, or its security settings. This would include all Data Definition Language (DDL) statements and all security-related statements. In an SQL environment, it encompasses, but is not necessarily limited to: 
-CREATE 
-ALTER 
-DROP 
-GRANT 
-REVOKE 
-DENY 
- 
-There may also be Data Manipulation Language (DML) statements that, subject to context, should be regarded as privileged. Possible examples in SQL include: 
- 
-TRUNCATE TABLE; 
-DELETE, or 
-DELETE affecting more than n rows, for some n, or 
-DELETE without a WHERE clause; 
- 
-UPDATE or 
-UPDATE affecting more than n rows, for some n, or 
-UPDATE without a WHERE clause; 
- 
-any SELECT, INSERT, UPDATE, or DELETE to an application-defined security table executed by other than a security principal. 
- 
-Depending on the capabilities of SQL Server and the design of the database and associated applications, audit logging may be achieved by means of DBMS auditing features, database triggers, other mechanisms, or a combination of these. 
- 
-Note that it is particularly important to audit, and tightly control, any action that weakens the implementation of this requirement itself, since the objective is to have a complete audit trail of all administrative activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP'),('USER_CHANGE_PASSWORD_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79291</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Determine if an audit is configured and started by executing the following query:  
-
-SELECT name AS 'Audit Name', 
-status_desc AS 'Audit Status', 
-audit_file_path AS 'Current Audit File' 
-FROM sys.dm_server_audit_status 
-
-If no records are returned, this is a finding. 
-
-Execute the following query to verify the following events are included in the server audit specification: 
-
-APPLICATION_ROLE_CHANGE_PASSWORD_GROUP 
-AUDIT_CHANGE_GROUP 
-BACKUP_RESTORE_GROUP 
-DATABASE_CHANGE_GROUP 
-DATABASE_OBJECT_CHANGE_GROUP 
-DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP 
-DATABASE_OBJECT_PERMISSION_CHANGE_GROUP 
-DATABASE_OPERATION_GROUP 
-DATABASE_OWNERSHIP_CHANGE_GROUP 
-DATABASE_PERMISSION_CHANGE_GROUP 
-DATABASE_PRINCIPAL_CHANGE_GROUP 
-DATABASE_PRINCIPAL_IMPERSONATION_GROUP 
-DATABASE_ROLE_MEMBER_CHANGE_GROUP 
-DBCC_GROUP 
-LOGIN_CHANGE_PASSWORD_GROUP 
-SCHEMA_OBJECT_CHANGE_GROUP 
-SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP 
-SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP 
-SERVER_OBJECT_CHANGE_GROUP 
-SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP 
-SERVER_OBJECT_PERMISSION_CHANGE_GROUP 
-SERVER_OPERATION_GROUP 
-SERVER_PERMISSION_CHANGE_GROUP 
-SERVER_PRINCIPAL_CHANGE_GROUP 
-SERVER_PRINCIPAL_IMPERSONATION_GROUP 
-SERVER_ROLE_MEMBER_CHANGE_GROUP 
-SERVER_STATE_CHANGE_GROUP 
-TRACE_CHANGE_GROUP 
-USER_CHANGE_PASSWORD_GROUP 
-
-SELECT a.name AS 'AuditName', 
-s.name AS 'SpecName', 
-d.audit_action_name AS 'ActionName', 
-d.audited_result AS 'Result' 
-FROM sys.server_audit_specifications s 
-JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
-JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
-WHERE a.is_state_enabled = 1  
-AND d.audit_action_name IN ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP','AUDIT_CHANGE_GROUP','BACKUP_RESTORE_GROUP','DATABASE_CHANGE_GROUP','DATABASE_OBJECT_CHANGE_GROUP','DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP','DATABASE_OBJECT_PERMISSION_CHANGE_GROUP','DATABASE_OPERATION_GROUP','DATABASE_OWNERSHIP_CHANGE_GROUP','DATABASE_PERMISSION_CHANGE_GROUP','DATABASE_PRINCIPAL_CHANGE_GROUP','DATABASE_PRINCIPAL_IMPERSONATION_GROUP','DATABASE_ROLE_MEMBER_CHANGE_GROUP','DBCC_GROUP','LOGIN_CHANGE_PASSWORD_GROUP','SCHEMA_OBJECT_CHANGE_GROUP','SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP','SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP','SERVER_OBJECT_CHANGE_GROUP','SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP','SERVER_OBJECT_PERMISSION_CHANGE_GROUP','SERVER_OPERATION_GROUP','SERVER_PERMISSION_CHANGE_GROUP','SERVER_PRINCIPAL_CHANGE_GROUP','SERVER_PRINCIPAL_IMPERSONATION_GROUP','SERVER_ROLE_MEMBER_CHANGE_GROUP','SERVER_STATE_CHANGE_GROUP','TRACE_CHANGE_GROUP','USER_CHANGE_PASSWORD_GROUP') 
-
-If the identified groups are not returned, this is a finding.</RawString>
-      <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP'),('USER_CHANGE_PASSWORD_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-214016" severity="medium" conversionstatus="pass" title="SRG-APP-000504-DB-000355" dscresource="SqlScriptQuery">
-      <Description>&lt;VulnDiscussion&gt;Without tracking privileged activity, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.  
- 
-System documentation should include a definition of the functionality considered privileged. 
- 
-A privileged function in this context is any operation that modifies the structure of the database, its built-in logic, or its security settings. This would include all Data Definition Language (DDL) statements and all security-related statements. In an SQL environment, it encompasses, but is not necessarily limited to: 
-CREATE 
-ALTER 
-DROP 
-GRANT 
-REVOKE 
-DENY 
- 
-Note that it is particularly important to audit, and tightly control, any action that weakens the implementation of this requirement itself, since the objective is to have a complete audit trail of all administrative activity. 
- 
-To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('LOGOUT_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP'),('USER_CHANGE_PASSWORD_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79293</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Determine if an audit is configured and started by executing the following query.  
-
-SELECT name AS 'Audit Name', 
-status_desc AS 'Audit Status', 
-audit_file_path AS 'Current Audit File' 
-FROM sys.dm_server_audit_status 
-
-If no records are returned, this is a finding. 
-
-Execute the following query to verify the following events are included in the server audit specification: 
-
-APPLICATION_ROLE_CHANGE_PASSWORD_GROUP 
-AUDIT_CHANGE_GROUP 
-BACKUP_RESTORE_GROUP 
-DATABASE_CHANGE_GROUP 
-DATABASE_OBJECT_CHANGE_GROUP 
-DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP 
-DATABASE_OBJECT_PERMISSION_CHANGE_GROUP 
-DATABASE_OPERATION_GROUP 
-DATABASE_OWNERSHIP_CHANGE_GROUP 
-DATABASE_PERMISSION_CHANGE_GROUP 
-DATABASE_PRINCIPAL_CHANGE_GROUP 
-DATABASE_PRINCIPAL_IMPERSONATION_GROUP 
-DATABASE_ROLE_MEMBER_CHANGE_GROUP 
-DBCC_GROUP 
-LOGIN_CHANGE_PASSWORD_GROUP
-LOGOUT_GROUP 
-SCHEMA_OBJECT_CHANGE_GROUP 
-SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP 
-SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP 
-SERVER_OBJECT_CHANGE_GROUP 
-SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP 
-SERVER_OBJECT_PERMISSION_CHANGE_GROUP 
-SERVER_OPERATION_GROUP 
-SERVER_PERMISSION_CHANGE_GROUP 
-SERVER_PRINCIPAL_CHANGE_GROUP 
-SERVER_PRINCIPAL_IMPERSONATION_GROUP 
-SERVER_ROLE_MEMBER_CHANGE_GROUP 
-SERVER_STATE_CHANGE_GROUP 
-TRACE_CHANGE_GROUP 
-USER_CHANGE_PASSWORD_GROUP 
-
-SELECT a.name AS 'AuditName', 
-s.name AS 'SpecName', 
-d.audit_action_name AS 'ActionName', 
-d.audited_result AS 'Result' 
-FROM sys.server_audit_specifications s 
-JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
-JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
-WHERE a.is_state_enabled = 1  
-AND d.audit_action_name IN ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP',
-'AUDIT_CHANGE_GROUP',
-'BACKUP_RESTORE_GROUP',
-'DATABASE_CHANGE_GROUP',
-'DATABASE_OBJECT_CHANGE_GROUP',
-'DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP',
-'DATABASE_OBJECT_PERMISSION_CHANGE_GROUP',
-'DATABASE_OPERATION_GROUP',
-'DATABASE_OWNERSHIP_CHANGE_GROUP',
-'DATABASE_PERMISSION_CHANGE_GROUP',
-'DATABASE_PRINCIPAL_CHANGE_GROUP',
-'DATABASE_PRINCIPAL_IMPERSONATION_GROUP',
-'DATABASE_ROLE_MEMBER_CHANGE_GROUP',
-'DBCC_GROUP',
-'LOGIN_CHANGE_PASSWORD_GROUP',
-'LOGOUT_GROUP',
-'SCHEMA_OBJECT_CHANGE_GROUP',
-'SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP',
-'SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP',
-'SERVER_OBJECT_CHANGE_GROUP',
-'SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP',
-'SERVER_OBJECT_PERMISSION_CHANGE_GROUP',
-'SERVER_OPERATION_GROUP',
-'SERVER_PERMISSION_CHANGE_GROUP',
-'SERVER_PRINCIPAL_CHANGE_GROUP',
-'SERVER_PRINCIPAL_IMPERSONATION_GROUP',
-'SERVER_ROLE_MEMBER_CHANGE_GROUP',
-'SERVER_STATE_CHANGE_GROUP',
-'TRACE_CHANGE_GROUP',
-'USER_CHANGE_PASSWORD_GROUP'
-)
-Order by d.audit_action_name
-
-
-If the identified groups are not returned, this is a finding.
-
-</RawString>
-      <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('LOGOUT_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP'),('USER_CHANGE_PASSWORD_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-214017" severity="medium" conversionstatus="pass" title="SRG-APP-000505-DB-000352" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;For completeness of forensic analysis, it is necessary to know how long a user's (or other principal's) connection to SQL Server lasts. This can be achieved by recording disconnections, in addition to logons/connections, in the audit logs.  
- 
-Disconnection may be initiated by the user or forced by the system (as in a timeout) or result from a system or network failure. To the greatest extent possible, all disconnections must be logged.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-214016</DuplicateOf>
-      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('LOGOUT_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP'),('USER_CHANGE_PASSWORD_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79295</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Determine if an audit is configured and started by executing the following query:  
-
-SELECT name AS 'Audit Name', 
-status_desc AS 'Audit Status', 
-audit_file_path AS 'Current Audit File' 
-FROM sys.dm_server_audit_status 
-
-If no records are returned, this is a finding. 
-
-Execute the following query to verify the following events are included in the server audit specification: 
-
-APPLICATION_ROLE_CHANGE_PASSWORD_GROUP 
-AUDIT_CHANGE_GROUP 
-BACKUP_RESTORE_GROUP 
-DATABASE_CHANGE_GROUP 
-DATABASE_OBJECT_CHANGE_GROUP 
-DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP 
-DATABASE_OBJECT_PERMISSION_CHANGE_GROUP 
-DATABASE_OPERATION_GROUP 
-DATABASE_OWNERSHIP_CHANGE_GROUP 
-DATABASE_PERMISSION_CHANGE_GROUP 
-DATABASE_PRINCIPAL_CHANGE_GROUP 
-DATABASE_PRINCIPAL_IMPERSONATION_GROUP 
-DATABASE_ROLE_MEMBER_CHANGE_GROUP 
-DBCC_GROUP 
-LOGIN_CHANGE_PASSWORD_GROUP
-LOGOUT_GROUP 
-SCHEMA_OBJECT_CHANGE_GROUP 
-SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP 
-SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP 
-SERVER_OBJECT_CHANGE_GROUP 
-SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP 
-SERVER_OBJECT_PERMISSION_CHANGE_GROUP 
-SERVER_OPERATION_GROUP 
-SERVER_PERMISSION_CHANGE_GROUP 
-SERVER_PRINCIPAL_CHANGE_GROUP 
-SERVER_PRINCIPAL_IMPERSONATION_GROUP 
-SERVER_ROLE_MEMBER_CHANGE_GROUP 
-SERVER_STATE_CHANGE_GROUP 
-TRACE_CHANGE_GROUP 
-USER_CHANGE_PASSWORD_GROUP 
-
-SELECT a.name AS 'AuditName', 
-s.name AS 'SpecName', 
-d.audit_action_name AS 'ActionName', 
-d.audited_result AS 'Result' 
-FROM sys.server_audit_specifications s 
-JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
-JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
-WHERE a.is_state_enabled = 1  
-AND d.audit_action_name IN ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP',
-'AUDIT_CHANGE_GROUP',
-'BACKUP_RESTORE_GROUP',
-'DATABASE_CHANGE_GROUP',
-'DATABASE_OBJECT_CHANGE_GROUP',
-'DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP',
-'DATABASE_OBJECT_PERMISSION_CHANGE_GROUP',
-'DATABASE_OPERATION_GROUP',
-'DATABASE_OWNERSHIP_CHANGE_GROUP',
-'DATABASE_PERMISSION_CHANGE_GROUP',
-'DATABASE_PRINCIPAL_CHANGE_GROUP',
-'DATABASE_PRINCIPAL_IMPERSONATION_GROUP',
-'DATABASE_ROLE_MEMBER_CHANGE_GROUP',
-'DBCC_GROUP',
-'LOGIN_CHANGE_PASSWORD_GROUP',
-'LOGOUT_GROUP',
-'SCHEMA_OBJECT_CHANGE_GROUP',
-'SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP',
-'SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP',
-'SERVER_OBJECT_CHANGE_GROUP',
-'SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP',
-'SERVER_OBJECT_PERMISSION_CHANGE_GROUP',
-'SERVER_OPERATION_GROUP',
-'SERVER_PERMISSION_CHANGE_GROUP',
-'SERVER_PRINCIPAL_CHANGE_GROUP',
-'SERVER_PRINCIPAL_IMPERSONATION_GROUP',
-'SERVER_ROLE_MEMBER_CHANGE_GROUP',
-'SERVER_STATE_CHANGE_GROUP',
-'TRACE_CHANGE_GROUP',
-'USER_CHANGE_PASSWORD_GROUP'
-)
-Order by d.audit_action_name
-
-
-If the identified groups are not returned, this is a finding.
-
-</RawString>
-      <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('APPLICATION_ROLE_CHANGE_PASSWORD_GROUP'),('AUDIT_CHANGE_GROUP'),('BACKUP_RESTORE_GROUP'),('DATABASE_CHANGE_GROUP'),('DATABASE_OBJECT_CHANGE_GROUP'),('DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'),('DATABASE_OBJECT_PERMISSION_CHANGE_GROUP'),('DATABASE_OPERATION_GROUP'),('DATABASE_OWNERSHIP_CHANGE_GROUP'),('DATABASE_PERMISSION_CHANGE_GROUP'),('DATABASE_PRINCIPAL_CHANGE_GROUP'),('DATABASE_PRINCIPAL_IMPERSONATION_GROUP'),('DATABASE_ROLE_MEMBER_CHANGE_GROUP'),('DBCC_GROUP'),('LOGIN_CHANGE_PASSWORD_GROUP'),('LOGOUT_GROUP'),('SCHEMA_OBJECT_CHANGE_GROUP'),('SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OBJECT_CHANGE_GROUP'),('SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP'),('SERVER_OBJECT_PERMISSION_CHANGE_GROUP'),('SERVER_OPERATION_GROUP'),('SERVER_PERMISSION_CHANGE_GROUP'),('SERVER_PRINCIPAL_CHANGE_GROUP'),('SERVER_PRINCIPAL_IMPERSONATION_GROUP'),('SERVER_ROLE_MEMBER_CHANGE_GROUP'),('SERVER_STATE_CHANGE_GROUP'),('TRACE_CHANGE_GROUP'),('USER_CHANGE_PASSWORD_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-214018" severity="medium" conversionstatus="pass" title="SRG-APP-000506-DB-000353" dscresource="SqlScriptQuery">
-      <Description>&lt;VulnDiscussion&gt;For completeness of forensic analysis, it is necessary to track who logs on to SQL Server. 
- 
-Concurrent connections by the same user from multiple workstations may be valid use of the system; or such connections may be due to improper circumvention of the requirement to use the CAC for authentication; or they may indicate unauthorized account sharing; or they may be because an account has been compromised. 
- 
-(If the fact of multiple, concurrent logons by a given user can be reliably reconstructed from the log entries for other events (logons/connections; voluntary and involuntary disconnections), then it is not mandatory to create additional log entries specifically for this.)&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SUCCESSFUL_LOGIN_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79297</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Determine if an audit is configured and started by executing the following query. 
- 
-SELECT name AS 'Audit Name', 
-  status_desc AS 'Audit Status', 
-  audit_file_path AS 'Current Audit File' 
-FROM sys.dm_server_audit_status 
- 
-If no records are returned, this is a finding. 
- 
-Execute the following query to verify the "SUCCESSFUL_LOGIN_GROUP" is included in the server audit specification. 
- 
-SELECT a.name AS 'AuditName', 
-s.name AS 'SpecName', 
-d.audit_action_name AS 'ActionName', 
-d.audited_result AS 'Result' 
-FROM sys.server_audit_specifications s 
-JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
-JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
-WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SUCCESSFUL_LOGIN_GROUP' 
- 
-If the "SUCCESSFUL_LOGIN_GROUP" is returned in an active audit, this is not a finding. 
- 
-If "SUCCESSFUL_LOGIN_GROUP" is not in the active audit, determine whether "Both failed and successful logins" is enabled. 
- 
-In SQL Management Studio: 
-Right-click on the instance &gt;&gt; Select "Properties" &gt;&gt; Select "Security" on the left hand side &gt;&gt; Check the setting for "Login auditing" 
- 
-If "Both failed and successful logins" is not selected, this is a finding.</RawString>
-      <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SUCCESSFUL_LOGIN_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-214020" severity="medium" conversionstatus="pass" title="SRG-APP-000507-DB-000357" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without tracking all or selected types of access to all or selected objects (tables, views, procedures, functions, etc.), it would be difficult to establish, correlate, and investigate the events relating to an incident, or identify those responsible for one.  
- 
-In an SQL environment, types of access include, but are not necessarily limited to: 
-SELECT 
-INSERT 
-UPDATE 
-DELETE 
-EXECUTE 
- 
-To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.
-
-Satisfies: SRG-APP-000507-DB-000356&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-213939</DuplicateOf>
-      <GetScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</GetScript>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>V-79301</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the system documentation to determine if SQL Server is required to audit when successful and unsuccessful accesses to objects occur. 
- 
-If this is not required, this is not a finding. 
- 
-If the documentation does not exist, this is a finding. 
- 
-Determine if an audit is configured and started by executing the following query:  
- 
-SELECT name AS 'Audit Name', 
-  status_desc AS 'Audit Status', 
-  audit_file_path AS 'Current Audit File' 
-FROM sys.dm_server_audit_status 
- 
-If no records are returned, this is a finding. 
- 
-If the auditing the retrieval of privilege/permission/role membership information is required, execute the following query to verify the "SCHEMA_OBJECT_ACCESS_GROUP" is included in the server audit specification. 
- 
-SELECT a.name AS 'AuditName', 
- s.name AS 'SpecName', 
- d.audit_action_name AS 'ActionName', 
- d.audited_result AS 'Result' 
-FROM sys.server_audit_specifications s 
-JOIN sys.server_audits a ON s.audit_guid = a.audit_guid 
-JOIN sys.server_audit_specification_details d ON s.server_specification_id = d.server_specification_id 
-WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP' 
- 
-If the "SCHEMA_OBJECT_ACCESS_GROUP" is not returned in an active audit, this is a finding.</RawString>
-      <SetScript>/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = 'STIG_AUDIT_SERVER_SPECIFICATION') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = 'C:\Audits', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = 'STIG_AUDIT') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OBJECT_ACCESS_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SCHEMA_OBJECT_ACCESS_GROUP), ADD (USER_CHANGE_PASSWORD_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON)</SetScript>
-      <TestScript>USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ('SCHEMA_OBJECT_ACCESS_GROUP') /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name) IF @MissingAuditCount = (SELECT count(*) FROM #AuditEvents) SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant &gt; 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1</TestScript>
       <Variable />
       <VariableValue />
     </Rule>
