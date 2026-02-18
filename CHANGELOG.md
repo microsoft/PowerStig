@@ -19,8 +19,8 @@
 * Sunset-Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 15
 * Sunset-Microsoft Windows 10 STIG - Ver 3, Rel 6
 * Sunset-Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 7
-* Sunset-Microsoft Windows Server 2016 STIG - Ver 2, Rel 10
-* Sunset-Microsoft Windows Server 2016 STIG - Ver 2, Rel 10
+* Sunset-Microsoft Windows Server 2016 MS STIG - Ver 2, Rel 10
+* Sunset-Microsoft Windows Server 2016 DC STIG - Ver 2, Rel 10
 
 * Removed the following Retired STIGs from PowerStig - Please use 4.28.0 if needed.
 * IISServer 8.5

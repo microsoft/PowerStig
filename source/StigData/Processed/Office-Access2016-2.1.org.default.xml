@@ -7,7 +7,7 @@
 -->
 <OrganizationalSettings fullversion="2.1">
   <!-- Ensure ''V-238020'' -match '0x0000000c|12'-->
-  <OrganizationalSetting id="V-238020" ValueData="0" />
+  <OrganizationalSetting id="V-238020" ValueData="12" />
   <!-- Ensure ''V-238023'' -match '2|3|4|1'-->
   <OrganizationalSetting id="V-238023" ValueData="1" />
 </OrganizationalSettings>
