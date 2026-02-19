@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_DC_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 05 Jan 2026 3.5.2 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="2/18/2026">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_DC_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 05 Jan 2026 3.5.2 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="2/19/2026">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-254285" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3029,6 +3029,66 @@ Standard user accounts must not be members of the local Administrator group.
 If accounts that do not have responsibility for administration of the system are members of the local Administrators group, this is a finding.
 
 If the built-in Administrator account or other required administrative accounts are found on the system, this is not a finding.</RawString>
+    </Rule>
+    <Rule id="V-254444" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is applicable to unclassified systems. It is NA for others.
+
+Open "PowerShell" as an administrator.
+
+Execute the following command:
+
+Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
+
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding.
+
+Subject: CN=DOD Root CA 3, OU=PKI, OU=DOD, O=U.S. Government, C=US
+Issuer: CN=US DOD CCEB Interoperability Root CA 2, OU=PKI, OU=DOD, O=U.S. Government, C=US
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025 9:56:22 AM
+
+Alternately, use the Certificates MMC snap-in:
+
+Run "MMC".
+
+Select "File", "Add/Remove Snap-in".
+
+Select "Certificates" and click "Add".
+
+Select "Computer account" and click "Next".
+
+Select "Local computer: (the computer this console is running on)" and click "Finish".
+
+Click "OK".
+
+Expand "Certificates" and navigate to Untrusted Certificates &gt;&gt; Certificates.
+
+For each certificate with "US DOD CCEB Interoperability Root CA ..." under "Issued By":
+
+Right-click on the certificate and select "Open".
+
+Select the "Details" tab.
+
+Scroll to the bottom and select "Thumbprint".
+
+If the certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
+
+Issued To: DOD Root CA 3
+Issued By: US DOD CCEB Interoperability Root CA 2
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025
+Issued to: DOD Root CA 6
+Issued By: US DOD CCEB Interoperability Root CA 2
+Thumbprint: D471CA32F7A692CE6CBB6196BD3377FE4DBCD106
+NotAfter: 7/18/2026</RawString>
     </Rule>
     <Rule id="V-271427" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Weak mappings give rise to security vulnerabilities and demand hardening measures. Certificate names must be correctly mapped to the intended user account in Active Directory. A lack of strong name-based mappings allows certain weak certificate mappings, such as Issuer/Subject AltSecID and User Principal Names (UPN) mappings, to be treated as strong mappings.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -7023,36 +7083,6 @@ Issued By: DoD Interoperability Root CA 2
 Thumbprint: A8C27332CCB4CA49554CE55D34062A7DD2850C02
 Valid to: Wednesday, November 16, 2024</RawString>
       <Thumbprint>49CBE933151872E17C8EAE7F0ABA97FB610F6477</Thumbprint>
-    </Rule>
-    <Rule id="V-254444.a" severity="medium" conversionstatus="fail" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
-      <CertificateName />
-      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
-
-Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <Location />
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>U,9B74964506C7ED9138070D08D5F8B969866560C8</RawString>
-      <Thumbprint />
-    </Rule>
-    <Rule id="V-254444.b" severity="medium" conversionstatus="fail" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
-      <CertificateName />
-      <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
-
-Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <Location />
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>S,D471CA32F7A692CE6CBB6196BD3377FE4DBCD106</RawString>
-      <Thumbprint />
     </Rule>
   </RootCertificateRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
