@@ -4,6 +4,8 @@
 
 ## [4.29.0] - 2026-04-01
 
+* This is a bulk add and cleanup update, Retired STIGs are being removed and this will be the last update for Sunset Stigs.
+
 * Updated PowerStig to parse/apply the following STIGS
 * Sunset-Microsoft Internet Explorer 11 STIG - Ver 2, Rel 6
 * Sunset-Microsoft Access 2016 STIG - Ver 2, Rel 1
@@ -21,6 +23,19 @@
 * Sunset-Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 7
 * Sunset-Microsoft Windows Server 2016 MS STIG - Ver 2, Rel 10
 * Sunset-Microsoft Windows Server 2016 DC STIG - Ver 2, Rel 10
+* Mozilla Firefox STIG - Ver 6, Rel 7
+* Microsoft IIS 10.0 STIG
+* Microsoft IIS 10.0 STIG
+* Microsoft Edge STIG - Ver 2, Rel 4
+* Red Hat Enterprise Linux 9 STIG - Ver 2, Rel 7
+* Microsoft SQL Server 2016 STIG
+* Microsoft SQL Server 2022 STIG
+* Microsoft Windows 11 STIG - Ver 2, Rel 6
+* Microsoft Defender Antivirus STIG - Ver 2, Rel 7
+* Microsoft Windows Server 2019 DC STIG - Ver 3, Rel 7
+* Microsoft Windows Server 2019 MS STIG - Ver 3, Rel 7
+* Microsoft Windows Server 2022 DC STIG - Ver 2, Rel 7
+* Microsoft Windows Server 2022 MS STIG - Ver 2, Rel 7
 
 * Removed the following Retired STIGs from PowerStig - Please use 4.28.0 if needed.
 * IISServer 8.5
