@@ -2556,6 +2556,31 @@ $ stat -c "%a %n" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sb
 
 If any of the audit tool files have a mode more permissive than "0755", this is a finding.</RawString>
     </Rule>
+    <Rule id="V-257888" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;If the permissions of cron configuration files or directories are modified from the operating system defaults, it may be possible for individuals to insert unauthorized cron jobs that perform unauthorized actions, including potentially escalating privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run the following command to verify that the owner, group, and mode of cron configuration files and directories match the operating system defaults:
+
+$ rpm --verify cronie crontabs | awk '! ($2 == "c" &amp;&amp; $1 ~ /^.\..\.\.\.\..\./) {print $0}'
+
+If the command returns any output, this is a finding.
+
+If there are findings, run the following command to determine what the permissions are:
+
+$ ls -ld /etc/cron*
+drwxr-xr-x. 2 root root  21 Oct  3  2024 /etc/cron.d
+drwxr-xr-x. 2 root root   6 May  1 09:03 /etc/cron.daily
+-rw-r--r--. 1 root root   0 Oct  3  2024 /etc/cron.deny
+drwxr-xr-x. 2 root root  22 Mar  5 12:49 /etc/cron.hourly
+drwxr-xr-x. 2 root root   6 Mar 23  2022 /etc/cron.monthly
+-rw-r--r--. 1 root root 451 Mar 23  2022 /etc/crontab
+drwxr-xr-x. 2 root root   6 Mar 23  2022 /etc/cron.weekly</RawString>
+    </Rule>
     <Rule id="V-257889" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Local initialization files are used to configure the user's shell environment upon logon. Malicious modification of these files could compromise accounts upon logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -4464,6 +4489,20 @@ root /etc/ssh/sshd_config.d/50-redhat.conf
 
 If the "/etc/ssh/sshd_config" file or "/etc/ssh/sshd_config.d" or any files in the "sshd_config.d" directory do not have an owner of "root", this is a finding.</RawString>
     </Rule>
+    <Rule id="V-257999" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Service configuration files enable or disable features of their respective services, that if configured incorrectly, can lead to insecure and vulnerable configurations. Therefore, service configuration files must have correct permissions (owner, group owner, mode) to prevent unauthorized changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the permissions of the "/etc/ssh/sshd_config" file with the following command:
+
+$ sudo rpm --verify openssh-server | awk '! ($2 == "c" &amp;&amp; $1 ~ /^.\..\.\.\.\..\./) {print $0}'
+
+If the command returns any output, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-258000" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If an unauthorized user obtains the private SSH host key file, the host could be impersonated.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -5969,6 +6008,24 @@ $ sudo awk -F: '$4 &lt; 1 {printf "%s %d\n", $1, $4}' /etc/shadow
 
 If any results are returned that are not associated with a system account, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-258106" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without reauthentication, users may access resources or perform tasks for which they do not have authorization.
+
+When operating systems provide the capability to escalate a functional capability, it is critical that the user reauthenticate.
+
+Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that "/etc/sudoers" has no occurrences of "NOPASSWD" with the following command:
+
+$ sudo grep -iR 'NOPASSWD' /etc/sudoers /etc/sudoers.d/
+
+If any occurrences of "NOPASSWD" are returned from the command and have not been documented with the information system security officer (ISSO) as an organizationally defined administrative group using multifactor authentication (MFA), this is a finding.</RawString>
+    </Rule>
     <Rule id="V-258107" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The shorter the password, the lower the number of possible combinations that need to be tested before the password is compromised.
 
@@ -6116,6 +6173,22 @@ $ grep crypt_style /etc/libuser.conf
 crypt_style = sha512
 
 If the "crypt_style" variable is not set to "sha512", is not in the defaults section, is commented out, or does not exist, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-258118" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without reauthentication, users may access resources or perform tasks for which they do not have authorization. When operating systems provide the capability to escalate a functional capability, it is critical the user reauthenticate.
+
+Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system is not configured to bypass password requirements for privilege escalation with the following command:
+
+$ sudo grep pam_succeed_if /etc/pam.d/sudo 
+
+If any occurrences of "pam_succeed_if" are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-258120" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If an account has an empty password, anyone could log in and run commands with the privileges of that account. Accounts with empty passwords should never be used in operational environments.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -7132,6 +7205,42 @@ MACs hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,h
 
 If the MACs entries in the "openssh.config" file have any hashes other than "hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512", or they are missing or commented out, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-270180" severity="medium" conversionstatus="pass" title="SRG-OS-000368-GPOS-00154" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The organization must identify authorized software programs and permit execution of authorized software. The process used to identify software programs that are authorized to execute on organizational information systems is commonly referred to as allow listing.
+
+Using an allow list provides a configuration management method for allowing the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities. Verification of allow listed software occurs prior to execution or at system startup.
+
+User home directories/folders may contain information of a sensitive nature. Nonprivileged users should coordinate any sharing of information with an SA through shared resources.
+
+RHEL 9 ships with many optional packages. One such package is a file access policy daemon called "fapolicyd". "fapolicyd" is a userspace daemon that determines access rights to files based on attributes of the process and file. It can be used to either block list or allow list processes or file access.
+
+Proceed with caution with enforcing the use of this daemon. Improper configuration may render the system nonfunctional. The "fapolicyd" API is not namespace aware and can cause issues when launching or running containers.
+
+Satisfies: SRG-OS-000368-GPOS-00154, SRG-OS-000370-GPOS-00155, SRG-OS-000480-GPOS-00232&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the RHEL 9 "fapolicyd" employs a deny-all, permit-by-exception policy.
+
+Check that "fapolicyd" is in enforcement mode with the following command:
+
+$ sudo grep permissive /etc/fapolicyd/fapolicyd.conf
+
+permissive = 0
+
+Check that "fapolicyd" employs a deny-all policy on system mounts with the following commands:
+
+$ sudo tail /etc/fapolicyd/compiled.rules
+
+allow exe=/usr/bin/python3.7 : ftype=text/x-python
+deny_audit perm=any pattern=ld_so : all
+deny perm=any all : all
+
+If "fapolicyd" is not running in enforcement mode with a deny-all, permit-by-exception policy, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-272488" severity="medium" conversionstatus="pass" title="SRG-OS-000304-GPOS-00121" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Postfix is a free, open-source mail transfer agent (MTA) that sends and receives emails. It is a server-side application that can be used to set up a local mail server, create a null-client mail relay, use a Postfix server as a destination for multiple domains, or choose an LDAP directory instead of files for lookups. Postfix supports protocols such as LDAP, SMTP AUTH (SASL), and TLS. It uses the Simple Mail Transfer Protocol (SMTP) to transfer emails between servers.
 
@@ -7829,27 +7938,6 @@ auth             required        pam_wheel.so use_uid
 
 If a line for "pam_wheel.so" does not exist, or the line is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-258106" severity="medium" conversionstatus="fail" title="SRG-OS-000373-GPOS-00156" dscresource="">
-      <ContainsLine />
-      <Description>&lt;VulnDiscussion&gt;Without reauthentication, users may access resources or perform tasks for which they do not have authorization.
-
-When operating systems provide the capability to escalate a functional capability, it is critical that the user reauthenticate.
-
-Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern />
-      <DuplicateOf />
-      <FilePath>/etc/sudoers.d/</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that "/etc/sudoers" has no occurrences of "NOPASSWD" with the following command:
-
-$ sudo grep -iR 'NOPASSWD' /etc/sudoers /etc/sudoers.d/
-
-If any occurrences of "NOPASSWD" are returned from the command and have not been documented with the information system security officer (ISSO) as an organizationally defined administrative group using multifactor authentication (MFA), this is a finding.</RawString>
-    </Rule>
     <Rule id="V-258109" severity="medium" conversionstatus="pass" title="SRG-OS-000266-GPOS-00101" dscresource="nxFileLine">
       <ContainsLine>ocredit = -1</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised. RHEL 9 utilizes "pwquality" as a mechanism to enforce password complexity. Note that to require special characters without degrading the "minlen" value, the credit value must be expressed as a negative number in "/etc/security/pwquality.conf".&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -7889,25 +7977,6 @@ This setting ensures user and group account administration utilities are configu
 ENCRYPT_METHOD SHA512
 
 If "ENCRYPT_METHOD" does not have a value of "SHA512", or the line is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-258118" severity="medium" conversionstatus="fail" title="SRG-OS-000373-GPOS-00156" dscresource="">
-      <ContainsLine />
-      <Description>&lt;VulnDiscussion&gt;Without reauthentication, users may access resources or perform tasks for which they do not have authorization. When operating systems provide the capability to escalate a functional capability, it is critical the user reauthenticate.
-
-Satisfies: SRG-OS-000373-GPOS-00156, SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00158&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern />
-      <DuplicateOf />
-      <FilePath>/etc/pam.d/sudo</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system is not configured to bypass password requirements for privilege escalation with the following command:
-
-$ sudo grep pam_succeed_if /etc/pam.d/sudo 
-
-If any occurrences of "pam_succeed_if" are returned, this is a finding.</RawString>
     </Rule>
     <Rule id="V-258122" severity="medium" conversionstatus="pass" title="SRG-OS-000375-GPOS-00160" dscresource="nxFileLine">
       <ContainsLine>pam_cert_auth = True</ContainsLine>
@@ -10299,45 +10368,6 @@ include "/etc/crypto-policies/back-ends/bind.config";'
 
 If BIND is installed and the BIND config file doesn't contain the  include "/etc/crypto-policies/back-ends/bind.config" directive, or the line is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-270180" severity="medium" conversionstatus="fail" title="SRG-OS-000368-GPOS-00154" dscresource="">
-      <ContainsLine />
-      <Description>&lt;VulnDiscussion&gt;The organization must identify authorized software programs and permit execution of authorized software. The process used to identify software programs that are authorized to execute on organizational information systems is commonly referred to as allow listing.
-
-Using an allow list provides a configuration management method for allowing the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities. Verification of allow listed software occurs prior to execution or at system startup.
-
-User home directories/folders may contain information of a sensitive nature. Nonprivileged users should coordinate any sharing of information with an SA through shared resources.
-
-RHEL 9 ships with many optional packages. One such package is a file access policy daemon called "fapolicyd". "fapolicyd" is a userspace daemon that determines access rights to files based on attributes of the process and file. It can be used to either block list or allow list processes or file access.
-
-Proceed with caution with enforcing the use of this daemon. Improper configuration may render the system nonfunctional. The "fapolicyd" API is not namespace aware and can cause issues when launching or running containers.
-
-Satisfies: SRG-OS-000368-GPOS-00154, SRG-OS-000370-GPOS-00155, SRG-OS-000480-GPOS-00232&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern />
-      <DuplicateOf />
-      <FilePath>/etc/fapolicyd/compiled.rules</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the RHEL 9 "fapolicyd" employs a deny-all, permit-by-exception policy.
-
-Check that "fapolicyd" is in enforcement mode with the following command:
-
-$ sudo grep permissive /etc/fapolicyd/fapolicyd.conf
-
-permissive = 0
-
-Check that "fapolicyd" employs a deny-all policy on system mounts with the following commands:
-
-$ sudo tail /etc/fapolicyd/compiled.rules
-
-allow exe=/usr/bin/python3.7 : ftype=text/x-python
-deny_audit perm=any pattern=ld_so : all
-deny perm=any all : all
-
-If "fapolicyd" is not running in enforcement mode with a deny-all, permit-by-exception policy, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-272496" severity="medium" conversionstatus="pass" title="SRG-OS-000445-GPOS-00199" dscresource="nxFileLine">
       <ContainsLine>%{designated_group_or_user_name} ALL=(ALL) TYPE=sysadm_t ROLE=sysadm_r ALL</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Without verification of the security functions, security functions may not operate correctly and the failure may go unnoticed. Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters.
@@ -10399,51 +10429,4 @@ If either of these commands do not return the expected output, or the lines are 
 </RawString>
     </Rule>
   </nxFileLineRule>
-  <PermissionRule dscresourcemodule="AccessControlDsc">
-    <Rule id="V-257888" severity="medium" conversionstatus="fail" title="SRG-OS-000480-GPOS-00227" dscresource="">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;If the permissions of cron configuration files or directories are modified from the operating system defaults, it may be possible for individuals to insert unauthorized cron jobs that perform unauthorized actions, including potentially escalating privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Run the following command to verify that the owner, group, and mode of cron configuration files and directories match the operating system defaults:
-
-$ rpm --verify cronie crontabs | awk '! ($2 == "c" &amp;&amp; $1 ~ /^.\..\.\.\.\..\./) {print $0}'
-
-If the command returns any output, this is a finding.
-
-If there are findings, run the following command to determine what the permissions are:
-
-$ ls -ld /etc/cron*
-drwxr-xr-x. 2 root root  21 Oct  3  2024 /etc/cron.d
-drwxr-xr-x. 2 root root   6 May  1 09:03 /etc/cron.daily
--rw-r--r--. 1 root root   0 Oct  3  2024 /etc/cron.deny
-drwxr-xr-x. 2 root root  22 Mar  5 12:49 /etc/cron.hourly
-drwxr-xr-x. 2 root root   6 Mar 23  2022 /etc/cron.monthly
--rw-r--r--. 1 root root 451 Mar 23  2022 /etc/crontab
-drwxr-xr-x. 2 root root   6 Mar 23  2022 /etc/cron.weekly</RawString>
-    </Rule>
-    <Rule id="V-257999" severity="medium" conversionstatus="fail" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;Service configuration files enable or disable features of their respective services, that if configured incorrectly, can lead to insecure and vulnerable configurations. Therefore, service configuration files must have correct permissions (owner, group owner, mode) to prevent unauthorized changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-257888</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Verify the permissions of the "/etc/ssh/sshd_config" file with the following command:
-
-$ sudo rpm --verify openssh-server | awk '! ($2 == "c" &amp;&amp; $1 ~ /^.\..\.\.\.\..\./) {print $0}'
-
-If the command returns any output, this is a finding.</RawString>
-    </Rule>
-  </PermissionRule>
 </DISASTIG>
