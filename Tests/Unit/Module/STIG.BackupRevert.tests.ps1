@@ -41,15 +41,15 @@ Describe 'Restore-StigSettings' {
     Mock -CommandName Invoke-DscResource -MockWith { return $get }
 
     It 'Should not throw for Server' {
-        { Restore-StigSettings -StigName "WindowsServer-2019-MS-3.4.xml" -Confirm:$false } | Should -Not -Throw
+        { Restore-StigSettings -StigName "WindowsServer-2019-MS-3.7.xml" -Confirm:$false } | Should -Not -Throw
     }
 
     It 'Should not throw for Client' {
-        { Restore-StigSettings -StigName "WindowsClient-10-3.4.xml" -Confirm:$false } | Should -Not -Throw
+        { Restore-StigSettings -StigName "WindowsClient-10-3.6.xml" -Confirm:$false } | Should -Not -Throw
     }
 
     It 'Should not throw for Sql Server 2016' {
-        { Restore-StigSettings -StigName "SqlServer-2016-Instance-3.4.xml" -Confirm:$false } | Should -Not -Throw
+        { Restore-StigSettings -StigName "SqlServer-2016-Instance-3.6.xml" -Confirm:$false } | Should -Not -Throw
     }
 
 }
