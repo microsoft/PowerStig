@@ -1,229 +1,5 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_DC_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 05 Jan 2026 3.5.2 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="2/19/2026">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="MS_Windows_Server_2022_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2022_DC_STIG_V2R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 05 Jan 2026 3.5.2 1.10.0" title="Microsoft Windows Server 2022 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.7" created="2/19/2026">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
-    <Rule id="V-254285" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
-      <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -ge '15' -or '{0}' -eq '0'</OrganizationValueTestString>
-      <PolicyName>Account lockout duration</PolicyName>
-      <PolicyValue />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout Policy.
-
-If the "Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "LockoutDuration" is less than "15" (excluding "0") in the file, this is a finding.
-
-Configuring this to "0", requiring an administrator to unlock the account, is more restrictive and is not a finding.</RawString>
-    </Rule>
-    <Rule id="V-254286" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="AccountPolicy">
-      <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. The higher this value is, the less effective the account lockout feature will be in protecting the local system. The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack while allowing for honest errors made during normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -le '3' -and '{0}' -ne '0'</OrganizationValueTestString>
-      <PolicyName>Account lockout threshold</PolicyName>
-      <PolicyValue />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout Policy.
-
-If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "LockoutBadCount" equals "0" or is greater than "3" in the file, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-254287" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="AccountPolicy">
-      <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that must pass after failed logon attempts before the counter is reset to "0". The smaller this value is, the less effective the account lockout feature will be in protecting the local system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -ge '15'</OrganizationValueTestString>
-      <PolicyName>Reset account lockout counter after</PolicyName>
-      <PolicyValue />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout Policy.
-
-If the "Reset account lockout counter after" value is less than "15" minutes, this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "ResetLockoutCount" is less than "15" in the file, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-254288" severity="medium" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="AccountPolicy">
-      <Description>&lt;VulnDiscussion&gt;A system is more vulnerable to unauthorized access when system users recycle the same password several times without being required to change to a unique password on a regularly scheduled basis. This enables users to effectively negate the purpose of mandating periodic password changes. The default value is "24" for Windows domain systems. DOD has decided this is the appropriate value for all Windows systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -ge '24'</OrganizationValueTestString>
-      <PolicyName>Enforce password history</PolicyName>
-      <PolicyValue />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
-
-If the value for "Enforce password history" is less than "24" passwords remembered, this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "PasswordHistorySize" is less than "24" in the file, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-254289" severity="medium" conversionstatus="pass" title="SRG-OS-000076-GPOS-00044" dscresource="AccountPolicy">
-      <Description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the passwords. Scheduled changing of passwords hinders the ability of unauthorized system users to crack passwords and gain access to a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -le '60' -and '{0}' -ne '0'</OrganizationValueTestString>
-      <PolicyName>Maximum password age</PolicyName>
-      <PolicyValue />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
-
-If the value for the "Maximum password age" is greater than "60" days, this is a finding.
-
-If the value is set to "0" (never expires), this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "MaximumPasswordAge" is greater than "60" or equal to "0" in the file, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-254290" severity="medium" conversionstatus="pass" title="SRG-OS-000075-GPOS-00043" dscresource="AccountPolicy">
-      <Description>&lt;VulnDiscussion&gt;Permitting passwords to be changed in immediate succession within the same day allows users to cycle passwords through their history database. This enables users to effectively negate the purpose of mandating periodic password changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -ne '0'</OrganizationValueTestString>
-      <PolicyName>Minimum password age</PolicyName>
-      <PolicyValue />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
-
-If the value for the "Minimum password age" is set to "0" days ("Password can be changed immediately"), this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "MinimumPasswordAge" equals "0" in the file, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-254291" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="AccountPolicy">
-      <Description>&lt;VulnDiscussion&gt;Information systems not protected with strong password schemes (including passwords of minimum length) provide the opportunity for anyone to crack the password, thus gaining access to the system and compromising the device, information, or the local network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -ge '14'</OrganizationValueTestString>
-      <PolicyName>Minimum password length</PolicyName>
-      <PolicyValue />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
-
-If the value for the "Minimum password length," is less than "14" characters, this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "MinimumPasswordLength" is less than "14" in the file, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-254292" severity="medium" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="AccountPolicy">
-      <Description>&lt;VulnDiscussion&gt;The use of complex passwords increases their strength against attack. The built-in Windows password complexity policy requires passwords to contain at least three of the four types of characters (numbers, uppercase and lowercase letters, and special characters) and prevents the inclusion of user names or parts of user names.
-
-Satisfies: SRG-OS-000069-GPOS-00037, SRG-OS-000070-GPOS-00038, SRG-OS-000071-GPOS-00039, SRG-OS-000266-GPOS-00101&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <PolicyName>Password must meet complexity requirements</PolicyName>
-      <PolicyValue>Enabled</PolicyValue>
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
-
-If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "PasswordComplexity" equals "0" in the file, this is a finding.
-
-Note: If an external password filter is in use that enforces all four character types and requires this setting to be set to "Disabled", this would not be considered a finding. If this setting does not affect the use of an external password filter, it must be enabled for fallback purposes.</RawString>
-    </Rule>
-    <Rule id="V-254293" severity="high" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="AccountPolicy">
-      <Description>&lt;VulnDiscussion&gt;Storing passwords using reversible encryption is essentially the same as storing clear-text versions of the passwords, which are easily compromised. For this reason, this policy must never be enabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <PolicyName>Store passwords using reversible encryption</PolicyName>
-      <PolicyValue>Disabled</PolicyValue>
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
-
-If the value for "Store passwords using reversible encryption" is not set to "Disabled", this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "ClearTextPassword" equals "1" in the file, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-254386" severity="medium" conversionstatus="pass" title="SRG-OS-000112-GPOS-00057" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This policy setting determines whether the Kerberos Key Distribution Center (KDC) validates every request for a session ticket against the user rights policy of the target computer. The policy is enabled by default, which is the most secure setting for validating that access to target resources is not circumvented.
 
@@ -363,6 +139,190 @@ Select "Edit".
 Navigate to Computer Configuration &gt;&gt; Policies &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Kerberos Policy.
 
 If the "Maximum tolerance for computer clock synchronization" is greater than "5" minutes, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-254285" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
+      <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -ge '15' -or '{0}' -eq '0'</OrganizationValueTestString>
+      <PolicyName>Account lockout duration</PolicyName>
+      <PolicyValue />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout Policy.
+
+If the "Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.
+
+</RawString>
+    </Rule>
+    <Rule id="V-254286" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="AccountPolicy">
+      <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. The higher this value is, the less effective the account lockout feature will be in protecting the local system. The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack while allowing for honest errors made during normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -le '3' -and '{0}' -ne '0'</OrganizationValueTestString>
+      <PolicyName>Account lockout threshold</PolicyName>
+      <PolicyValue />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout Policy.
+
+If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.
+
+</RawString>
+    </Rule>
+    <Rule id="V-254287" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="AccountPolicy">
+      <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that must pass after failed logon attempts before the counter is reset to "0". The smaller this value is, the less effective the account lockout feature will be in protecting the local system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -ge '15'</OrganizationValueTestString>
+      <PolicyName>Reset account lockout counter after</PolicyName>
+      <PolicyValue />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout Policy.
+
+If the "Reset account lockout counter after" value is less than "15" minutes, this is a finding.
+
+</RawString>
+    </Rule>
+    <Rule id="V-254288" severity="medium" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="AccountPolicy">
+      <Description>&lt;VulnDiscussion&gt;A system is more vulnerable to unauthorized access when system users recycle the same password several times without being required to change to a unique password on a regularly scheduled basis. This enables users to effectively negate the purpose of mandating periodic password changes. The default value is "24" for Windows domain systems. DOD has decided this is the appropriate value for all Windows systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -ge '24'</OrganizationValueTestString>
+      <PolicyName>Enforce password history</PolicyName>
+      <PolicyValue />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
+
+If the value for "Enforce password history" is less than "24" passwords remembered, this is a finding.
+
+</RawString>
+    </Rule>
+    <Rule id="V-254289" severity="medium" conversionstatus="pass" title="SRG-OS-000076-GPOS-00044" dscresource="AccountPolicy">
+      <Description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the passwords. Scheduled changing of passwords hinders the ability of unauthorized system users to crack passwords and gain access to a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -le '60' -and '{0}' -ne '0'</OrganizationValueTestString>
+      <PolicyName>Maximum password age</PolicyName>
+      <PolicyValue />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
+
+If the value for the "Maximum password age" is greater than "60" days, this is a finding.
+
+If the value is set to "0" (never expires), this is a finding.
+
+</RawString>
+    </Rule>
+    <Rule id="V-254290" severity="medium" conversionstatus="pass" title="SRG-OS-000075-GPOS-00043" dscresource="AccountPolicy">
+      <Description>&lt;VulnDiscussion&gt;Permitting passwords to be changed in immediate succession within the same day allows users to cycle passwords through their history database. This enables users to effectively negate the purpose of mandating periodic password changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -ne '0'</OrganizationValueTestString>
+      <PolicyName>Minimum password age</PolicyName>
+      <PolicyValue />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
+
+If the value for the "Minimum password age" is set to "0" days ("Password can be changed immediately"), this is a finding.
+
+</RawString>
+    </Rule>
+    <Rule id="V-254291" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="AccountPolicy">
+      <Description>&lt;VulnDiscussion&gt;Information systems not protected with strong password schemes (including passwords of minimum length) provide the opportunity for anyone to crack the password, thus gaining access to the system and compromising the device, information, or the local network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -ge '14'</OrganizationValueTestString>
+      <PolicyName>Minimum password length</PolicyName>
+      <PolicyValue />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
+
+If the value for the "Minimum password length," is less than "14" characters, this is a finding.
+
+</RawString>
+    </Rule>
+    <Rule id="V-254292" severity="medium" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="AccountPolicy">
+      <Description>&lt;VulnDiscussion&gt;The use of complex passwords increases their strength against attack. The built-in Windows password complexity policy requires passwords to contain at least three of the four types of characters (numbers, uppercase and lowercase letters, and special characters) and prevents the inclusion of user names or parts of user names.
+
+Satisfies: SRG-OS-000069-GPOS-00037, SRG-OS-000070-GPOS-00038, SRG-OS-000071-GPOS-00039, SRG-OS-000266-GPOS-00101&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <PolicyName>Password must meet complexity requirements</PolicyName>
+      <PolicyValue>Enabled</PolicyValue>
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
+
+If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.
+
+</RawString>
+    </Rule>
+    <Rule id="V-254293" severity="high" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="AccountPolicy">
+      <Description>&lt;VulnDiscussion&gt;Storing passwords using reversible encryption is essentially the same as storing clear-text versions of the passwords, which are easily compromised. For this reason, this policy must never be enabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <PolicyName>Store passwords using reversible encryption</PolicyName>
+      <PolicyValue>Disabled</PolicyValue>
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
+
+If the value for "Store passwords using reversible encryption" is not set to "Disabled", this is a finding.
+
+</RawString>
     </Rule>
   </AccountPolicyRule>
   <AuditPolicyRule dscresourcemodule="AuditPolicyDsc">
@@ -2215,45 +2175,6 @@ Open "PowerShell".
 
 Enter "Get-ADDomain | FT PDCEmulator".</RawString>
     </Rule>
-    <Rule id="V-254282" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Accounts or groups given rights on a system may show up as unresolved SIDs for various reasons including deletion of the accounts or groups. If the account or group objects are reanimated, there is a potential they may still have rights no longer intended. Valid domain accounts or groups may also show up as unresolved SIDs if a connection to the domain cannot be established.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the effective User Rights setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-Review each User Right listed for any unresolved SIDs to determine whether they are valid, such as due to being temporarily disconnected from the domain. (Unresolved SIDs have the format that begins with "*S-1-".)
-
-If any unresolved SIDs exist and are not for currently valid accounts or groups, this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /export /areas USER_RIGHTS /cfg c:\path\UserRights.txt
-
-The results in the file identify user right assignments by SID instead of group name. Review the SIDs for unidentified ones. A list of typical SIDs \ Groups is below, search Microsoft for articles on well known SIDs for others. 
-
-If any unresolved SIDs exist and are not for currently valid accounts or groups, this is a finding.
-
-SID - Group
-S-1-5-11 - Authenticated Users
-S-1-5-113 - Local account
-S-1-5-114 - Local account and member of Administrators group
-S-1-5-19 - Local Service
-S-1-5-20 - Network Service
-S-1-5-32-544 - Administrators
-S-1-5-32-546 - Guests
-S-1-5-6 - Service
-S-1-5-9 - Enterprise Domain Controllers
-S-1-5-domain-512 - Domain Admins
-S-1-5-root domain-519 - Enterprise Admins
-S-1-5-80-3139157870-2983391045-3678747466-658725712-1809340420 - NT Service\WdiServiceHost</RawString>
-    </Rule>
     <Rule id="V-254283" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;UEFI provides additional security features in comparison to legacy BIOS firmware, including Secure Boot. UEFI is required to support additional security features in Windows, including Virtualization Based Security and Credential Guard. Systems with UEFI that are operating in "Legacy BIOS" mode will not support these security features.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2998,38 +2919,6 @@ Enter "Get-ADUser krbtgt -Property PasswordLastSet".
 
 If the "PasswordLastSet" date is more than 180 days old, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-254428" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;An account that does not have Administrator duties must not have Administrator rights. Such rights would allow the account to bypass or modify required security restrictions on that machine and make it vulnerable to attack.
-
-System administrators must log on to systems using only accounts with the minimum level of authority necessary.
-
-For domain-joined member servers, the Domain Admins group must be replaced by a domain member server administrator group (see V-243468 in the Active Directory Domain STIG). Restricting highly privileged accounts from the local Administrators group helps mitigate the risk of privilege escalation resulting from credential theft attacks.
-
-Standard user accounts must not be members of the built-in Administrators group.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
-
-Open "Computer Management".
-
-Navigate to "Groups" under "Local Users and Groups".
-
-Review the local "Administrators" group.
-
-Only administrator groups or accounts responsible for administration of the system may be members of the group.
-
-For domain-joined member servers, the Domain Admins group must be replaced by a domain member server administrator group.
-
-Standard user accounts must not be members of the local Administrator group.
-
-If accounts that do not have responsibility for administration of the system are members of the local Administrators group, this is a finding.
-
-If the built-in Administrator account or other required administrative accounts are found on the system, this is not a finding.</RawString>
-    </Rule>
     <Rule id="V-254444" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
 
@@ -3219,6 +3108,25 @@ If "Audit Sensitive Privilege Use" is not set to "Success", this is a finding.</
 Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Privilege Use &gt;&gt; Audit Sensitive Privilege Use. 
 
 If "Audit Sensitive Privilege Use" is not set to "Failure", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-254282" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Accounts or groups given rights on a system may show up as unresolved SIDs for various reasons including deletion of the accounts or groups. If the account or group objects are reanimated, there is a potential they may still have rights no longer intended. Valid domain accounts or groups may also show up as unresolved SIDs if a connection to the domain cannot be established.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the effective User Rights setting in Local Group Policy Editor.
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
+
+Review each User Right listed for any unresolved SIDs to determine whether they are valid, such as due to being temporarily disconnected from the domain. (Unresolved SIDs have the format that begins with "*S-1-".)
+
+If any unresolved SIDs exist and are not for currently valid accounts or groups, this is a finding.
+
+</RawString>
     </Rule>
   </ManualRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
@@ -5713,179 +5621,6 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>RefusePasswordChange</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-254429" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;A compromised local administrator account can provide means for an attacker to move laterally between domain systems.
-
-With User Account Control enabled, filtering the privileged token for local administrator accounts will prevent the elevated privileges of these accounts from being used over the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to member servers. For domain controllers and standalone or nondomain-joined systems, this is NA.
-
-If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
-
-Value Name:  LocalAccountTokenFilterPolicy
-
-Type:  REG_DWORD
-Value: 0x00000000 (0)
-
-This setting may cause issues with some network scanning tools if local administrative accounts are used remotely. Scans must use domain accounts where possible. If a local administrative account must be used, temporarily enabling the privileged token by configuring the registry value to "1" may be required.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>LocalAccountTokenFilterPolicy</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-254430" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;The username is one part of logon credentials that could be used to gain access to a system. Preventing the enumeration of users limits this information to authorized personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to member servers. For domain controllers and standalone or nondomain-joined systems, this is NA.
-
-If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
-
-Value Name: EnumerateLocalUsers
-
-Type: REG_DWORD
-Value: 0x00000000 (0)</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>EnumerateLocalUsers</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-254431" severity="medium" conversionstatus="pass" title="SRG-OS-000379-GPOS-00164" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Unauthenticated RPC clients may allow anonymous access to sensitive information. Configuring RPC to restrict unauthenticated RPC clients from connecting to the RPC server will prevent anonymous connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Rpc</Key>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone or nondomain-joined systems, it is NA for domain controllers.
-
-If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Policies\Microsoft\Windows NT\Rpc\
-
-Value Name:  RestrictRemoteClients
-
-Type:  REG_DWORD
-Value:  0x00000001 (1)</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>RestrictRemoteClients</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-254432" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;The default Windows configuration caches the last logon credentials for users who log on interactively to a system. This feature is provided for system availability reasons, such as the user's machine being disconnected from the network or domain controllers being unavailable. Even though the credential cache is well protected, if a system is attacked, an unauthorized individual may isolate the password to a domain user account using a password-cracking program and gain access to the domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon</Key>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -le '4'</OrganizationValueTestString>
-      <RawString>This applies to member servers. For domain controllers and standalone or nondomain-joined systems, this is NA.
-
-If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\
-
-Value Name:  CachedLogonsCount
-
-Value Type:  REG_SZ
-Value:  4 (or less)</RawString>
-      <ValueData />
-      <ValueName>CachedLogonsCount</ValueName>
-      <ValueType>String</ValueType>
-    </Rule>
-    <Rule id="V-254433" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;The Windows SAM stores users' passwords. Restricting Remote Procedure Call (RPC) connections to the SAM to Administrators helps protect those credentials.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone or nondomain-joined systems; it is NA for domain controllers.
-
-If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
-
-Value Name: RestrictRemoteSAM
-
-Value Type: REG_SZ
-Value: O:BAG:BAD:(A;;RC;;;BA)</RawString>
-      <ValueData>O:BAG:BAD:(A;;RC;;;BA)</ValueData>
-      <ValueName>RestrictRemoteSAM</ValueName>
-      <ValueType>String</ValueType>
-    </Rule>
-    <Rule id="V-254441" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Credential Guard uses virtualization-based security to protect data that could be used in credential theft attacks if compromised. This authentication information, which was stored in the Local Security Authority (LSA) in previous versions of Windows, is isolated from the rest of operating system and can only be accessed by privileged system software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>For domain controllers and standalone or nondomain-joined systems, this is NA.
-
-Open "PowerShell" with elevated privileges (run as administrator).
-
-Enter the following:
-
-"Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard"
-
-If "SecurityServicesRunning" does not include a value of "1" (e.g., "{1, 2}"), this is a finding.
-
-Alternately:
-
-Run "System Information".
-
-Under "System Summary", verify the following:
-
-If "Device Guard Security Services Running" does not list "Credential Guard", this is a finding.
-
-The policy settings referenced in the Fix section will configure the following registry value. However, due to hardware requirements, the registry value alone does not ensure proper function.
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DeviceGuard\
-
-Value Name: LsaCfgFlags
-Value Type: REG_DWORD
-Value: 0x00000001 (1) (Enabled with UEFI lock)
-
-A Microsoft article on Credential Guard system requirement can be found at the following link:
-
-https://docs.microsoft.com/en-us/windows/security/identity-protection/credential-guard/credential-guard-requirements</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>LsaCfgFlags</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
     <Rule id="V-254446" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;An account without a password can allow unauthorized access to a system as only the username would be required. Password policies must prevent accounts with blank passwords from existing on a system. However, if a local account with a blank password does exist, enabling this setting will prevent network access, limiting the account to local console logon only.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7086,6 +6821,24 @@ Valid to: Wednesday, November 16, 2024</RawString>
     </Rule>
   </RootCertificateRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
+    <Rule id="V-254465" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="SecurityOption">
+      <Description>&lt;VulnDiscussion&gt;Allowing anonymous SID/Name translation can provide sensitive information for accessing a system. Only authorized users must be able to perform such translations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OptionName>Network access: Allow anonymous SID/Name translation</OptionName>
+      <OptionValue>Disabled</OptionValue>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options.
+
+If the value for "Network access: Allow anonymous SID/Name translation" is not set to "Disabled", this is a finding.</RawString>
+    </Rule>
     <Rule id="V-254445" severity="medium" conversionstatus="pass" title="SRG-OS-000121-GPOS-00062" dscresource="SecurityOption">
       <Description>&lt;VulnDiscussion&gt;A system faces an increased vulnerability threat if the built-in guest account is not disabled. This is a known account that exists on all Windows systems and cannot be deleted. This account is initialized during the installation of the operating system with no password assigned.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7104,11 +6857,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If the value for "Accounts: Guest account status" is not set to "Disabled", this is a finding.
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "EnableGuestAccount" equals "1" in the file, this is a finding.</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254447" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="SecurityOption">
       <Description>&lt;VulnDiscussion&gt;The built-in administrator account is a well-known account subject to attack. Renaming this account to an unidentified name improves the protection of this account and the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -7128,11 +6877,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If the value for "Accounts: Rename administrator account" is not set to a value other than "Administrator", this is a finding.
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "NewAdministratorName" is not something other than "Administrator" in the file, this is a finding.</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254448" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="SecurityOption">
       <Description>&lt;VulnDiscussion&gt;The built-in guest account is a well-known user account on all Windows systems and, as initially installed, does not require a password. This can allow access to system resources by unauthorized users. Renaming this account to an unidentified name improves the protection of this account and the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -7152,29 +6897,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If the value for "Accounts: Rename guest account" is not set to a value other than "Guest", this is a finding.
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
-
-If "NewGuestName" is not something other than "Guest" in the file, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-254465" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="SecurityOption">
-      <Description>&lt;VulnDiscussion&gt;Allowing anonymous SID/Name translation can provide sensitive information for accessing a system. Only authorized users must be able to perform such translations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OptionName>Network access: Allow anonymous SID/Name translation</OptionName>
-      <OptionValue>Disabled</OptionValue>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options.
-
-If the value for "Network access: Allow anonymous SID/Name translation" is not set to "Disabled", this is a finding.</RawString>
+</RawString>
     </Rule>
   </SecurityOptionRule>
   <ServiceRule dscresourcemodule="PSDscResources">
@@ -7242,7 +6965,7 @@ Accounts with the "Access this computer from the network" right may access resou
       <DisplayName>Access this computer from the network</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Authenticated Users,Enterprise Domain Controllers,Review the text file.,S-1-5-32-544,S-1-5-11,S-1-5-9</Identity>
+      <Identity>Administrators,Authenticated Users,Enterprise Domain Controllers</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -7262,25 +6985,7 @@ If any accounts or groups other than the following are granted the "Access this 
 - Authenticated Users
 - Enterprise Domain Controllers
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeNetworkLogonRight" user right, this is a finding.
-
-S-1-5-32-544 (Administrators)
-S-1-5-11 (Authenticated Users)
-S-1-5-9 (Enterprise Domain Controllers)
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254419" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeMachineAccountPrivilege</Constant>
@@ -7290,7 +6995,7 @@ Accounts with the "Add workstations to domain" right may add computers to a doma
       <DisplayName>Add workstations to domain</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -7308,15 +7013,7 @@ If any accounts or groups other than the following are granted the "Add workstat
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeMachineAccountPrivilege" user right, this is a finding.
-
-S-1-5-32-544 (Administrators)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254420" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
       <Constant>SeRemoteInteractiveLogonRight</Constant>
@@ -7326,7 +7023,7 @@ Accounts with the "Allow log on through Remote Desktop Services" user right can 
       <DisplayName>Allow log on through Remote Desktop Services</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -7344,15 +7041,7 @@ If any accounts or groups other than the following are granted the "Allow log on
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeRemoteInteractiveLogonRight" user right, this is a finding.
-
-S-1-5-32-544 (Administrators)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254421" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
       <Constant>SeDenyNetworkLogonRight</Constant>
@@ -7364,7 +7053,7 @@ The Guests group must be assigned this right to prevent unauthenticated access.&
       <DisplayName>Deny access to this computer from the network</DisplayName>
       <DuplicateOf />
       <Force>False</Force>
-      <Identity>Guests,Review the text file.,S-1-5-32-546</Identity>
+      <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -7382,15 +7071,7 @@ If the following accounts or groups are not defined for the "Deny access to this
 
 - Guests Group
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If the following SIDs are not defined for the "SeDenyNetworkLogonRight" user right, this is a finding.
-
-S-1-5-32-546 (Guests)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254422" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
       <Constant>SeDenyBatchLogonRight</Constant>
@@ -7402,7 +7083,7 @@ The Guests group must be assigned to prevent unauthenticated access.&lt;/VulnDis
       <DisplayName>Deny log on as a batch job</DisplayName>
       <DuplicateOf />
       <Force>False</Force>
-      <Identity>Guests,Review the text file.,S-1-5-32-546</Identity>
+      <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -7420,15 +7101,7 @@ If the following accounts or groups are not defined for the "Deny log on as a ba
 
 - Guests Group
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If the following SID(s) are not defined for the "SeDenyBatchLogonRight" user right, this is a finding:
-
-S-1-5-32-546 (Guests)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254423" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
       <Constant>SeDenyServiceLogonRight</Constant>
@@ -7457,13 +7130,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If any accounts or groups are defined for the "Deny log on as a service" user right, this is a finding.
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs are granted the "SeDenyServiceLogonRight" user right, this is a finding.</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254424" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
       <Constant>SeDenyInteractiveLogonRight</Constant>
@@ -7475,7 +7142,7 @@ The Guests group must be assigned this right to prevent unauthenticated access.&
       <DisplayName>Deny log on locally</DisplayName>
       <DuplicateOf />
       <Force>False</Force>
-      <Identity>Guests,Review the text file.,S-1-5-32-546</Identity>
+      <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -7493,15 +7160,7 @@ If the following accounts or groups are not defined for the "Deny log on locally
 
 - Guests Group
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If the following SID(s) are not defined for the "SeDenyInteractiveLogonRight" user right, this is a finding:
-
-S-1-5-32-546 (Guests)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254425" severity="medium" conversionstatus="pass" title="SRG-OS-000297-GPOS-00115" dscresource="UserRightsAssignment">
       <Constant>SeDenyRemoteInteractiveLogonRight</Constant>
@@ -7513,7 +7172,7 @@ The Guests group must be assigned this right to prevent unauthenticated access.&
       <DisplayName>Deny log on through Remote Desktop Services</DisplayName>
       <DuplicateOf />
       <Force>False</Force>
-      <Identity>Guests,Review the text file.,S-1-5-32-546</Identity>
+      <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -7531,15 +7190,7 @@ If the following accounts or groups are not defined for the "Deny log on through
 
 - Guests Group
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If the following SID(s) are not defined for the "SeDenyRemoteInteractiveLogonRight" user right, this is a finding.
-
-S-1-5-32-546 (Guests)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254426" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeEnableDelegationPrivilege</Constant>
@@ -7549,7 +7200,7 @@ The "Enable computer and user accounts to be trusted for delegation" user right 
       <DisplayName>Enable computer and user accounts to be trusted for delegation</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -7567,352 +7218,7 @@ If any accounts or groups other than the following are granted the "Enable compu
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeEnableDelegationPrivilege" user right, this is a finding.
-
-S-1-5-32-544 (Administrators)</RawString>
-    </Rule>
-    <Rule id="V-254434" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
-      <Constant>SeNetworkLogonRight</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-Accounts with the "Access this computer from the network" user right may access resources on the system, and this right must be limited to those requiring it.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Access this computer from the network</DisplayName>
-      <DuplicateOf />
-      <Force>True</Force>
-      <Identity>Administrators,Authenticated Users,Review the text file.,S-1-5-32-544,S-1-5-11</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
-
-Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Access this computer from the network" user right, this is a finding:
-
-- Administrators
-- Authenticated Users
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeNetworkLogonRight" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)
-S-1-5-11 (Authenticated Users)
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
-    </Rule>
-    <Rule id="V-254435" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
-      <Constant>SeDenyNetworkLogonRight</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-The "Deny access to this computer from the network" user right defines the accounts that are prevented from logging on from the network.
-
-In an Active Directory Domain, denying logons to the Enterprise Admins and Domain Admins groups on lower-trust systems helps mitigate the risk of privilege escalation from credential theft attacks, which could lead to the compromise of an entire domain.
-
-Local accounts on domain-joined systems must also be assigned this right to decrease the risk of lateral movement resulting from credential theft attacks.
-
-The Guests group must be assigned this right to prevent unauthenticated access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Deny access to this computer from the network</DisplayName>
-      <DuplicateOf />
-      <Force>False</Force>
-      <Identity />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests,Review the text file.,S-1-5-root domain-519,S-1-5-domain-512,S-1-5-114  or S-1-5-113,S-1-5-32-546'</OrganizationValueTestString>
-      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
-
-Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-If the following accounts or groups are not defined for the "Deny access to this computer from the network" user right, this is a finding:
-
-Domain Systems Only:
-- Enterprise Admins group
-- Domain Admins group
-- "Local account and member of Administrators group" or "Local account" (see Note below)
-
-All Systems:
-- Guests group
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If the following SIDs are not defined for the "SeDenyNetworkLogonRight" user right, this is a finding.
-
-Domain Systems Only:
-S-1-5-root domain-519 (Enterprise Admins)
-S-1-5-domain-512 (Domain Admins)
-S-1-5-114 ("Local account and member of Administrators group") or S-1-5-113 ("Local account")
-
-All Systems:
-S-1-5-32-546 (Guests)
-
-Note: These are built-in security groups. "Local account" is more restrictive but may cause issues on servers such as systems that provide failover clustering.</RawString>
-    </Rule>
-    <Rule id="V-254436" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
-      <Constant>SeDenyBatchLogonRight</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-The "Deny log on as a batch job" user right defines accounts that are prevented from logging on to the system as a batch job, such as Task Scheduler.
-
-In an Active Directory Domain, denying logons to the Enterprise Admins and Domain Admins groups on lower-trust systems helps mitigate the risk of privilege escalation from credential theft attacks, which could lead to the compromise of an entire domain.
-
-The Guests group must be assigned to prevent unauthenticated access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Deny log on as a batch job</DisplayName>
-      <DuplicateOf />
-      <Force>False</Force>
-      <Identity>Enterprise Admins,Domain Admins,Guests,Review the text file.,S-1-5-root domain-519,S-1-5-domain-512,S-1-5-32-546</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
-
-Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-If the following accounts or groups are not defined for the "Deny log on as a batch job" user right, this is a finding:
-
-Domain Systems Only:
-- Enterprise Admins Group
-- Domain Admins Group
-
-All Systems:
-- Guests Group
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If the following SIDs are not defined for the "SeDenyBatchLogonRight" user right, this is a finding.
-
-Domain Systems Only:
-S-1-5-root domain-519 (Enterprise Admins)
-S-1-5-domain-512 (Domain Admins)
-
-All Systems:
-S-1-5-32-546 (Guests)</RawString>
-    </Rule>
-    <Rule id="V-254437" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
-      <Constant>SeDenyServiceLogonRight</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-The "Deny log on as a service" user right defines accounts that are denied logon as a service.
-
-In an Active Directory Domain, denying logons to the Enterprise Admins and Domain Admins groups on lower-trust systems helps mitigate the risk of privilege escalation from credential theft attacks, which could lead to the compromise of an entire domain.
-
-Incorrect configurations could prevent services from starting and result in a denial of service.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Deny log on as a service</DisplayName>
-      <DuplicateOf />
-      <Force>True</Force>
-      <Identity>Enterprise Admins,Domain Admins,Review the text file.,S-1-5-root domain-519,S-1-5-domain-512</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to member servers. A separate version applies to domain controllers.
-
-Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-If the following accounts or groups are not defined for the "Deny log on as a service" user right on domain-joined systems, this is a finding:
-
-- Enterprise Admins Group
-- Domain Admins Group
-
-If any accounts or groups are defined for the "Deny log on as a service" user right on nondomain-joined systems, this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If the following SIDs are not defined for the "SeDenyServiceLogonRight" user right on domain-joined systems, this is a finding:
-
-S-1-5-root domain-519 (Enterprise Admins)
-S-1-5-domain-512 (Domain Admins)
-
-If any SIDs are defined for the user right on nondomain-joined systems, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-254438" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
-      <Constant>SeDenyInteractiveLogonRight</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-The "Deny log on locally" user right defines accounts that are prevented from logging on interactively.
-
-In an Active Directory Domain, denying logons to the Enterprise Admins and Domain Admins groups on lower-trust systems helps mitigate the risk of privilege escalation from credential theft attacks, which could lead to the compromise of an entire domain.
-
-The Guests group must be assigned this right to prevent unauthenticated access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Deny log on locally</DisplayName>
-      <DuplicateOf />
-      <Force>False</Force>
-      <Identity>Enterprise Admins,Domain Admins,Guests,Review the text file.,S-1-5-root domain-519,S-1-5-domain-512,S-1-5-32-546</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
-
-Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-If the following accounts or groups are not defined for the "Deny log on locally" user right, this is a finding:
-
-Domain Systems Only:
-- Enterprise Admins Group
-- Domain Admins Group
-
-All Systems:
-- Guests Group
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If the following SIDs are not defined for the "SeDenyInteractiveLogonRight" user right, this is a finding:
-
-Domain Systems Only:
-S-1-5-root domain-519 (Enterprise Admins)
-S-1-5-domain-512 (Domain Admins)
-
-All Systems:
-S-1-5-32-546 (Guests)</RawString>
-    </Rule>
-    <Rule id="V-254439" severity="medium" conversionstatus="pass" title="SRG-OS-000297-GPOS-00115" dscresource="UserRightsAssignment">
-      <Constant>SeDenyRemoteInteractiveLogonRight</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-The "Deny log on through Remote Desktop Services" user right defines the accounts that are prevented from logging on using Remote Desktop Services.
-
-In an Active Directory Domain, denying logons to the Enterprise Admins and Domain Admins groups on lower-trust systems helps mitigate the risk of privilege escalation from credential theft attacks, which could lead to the compromise of an entire domain.
-
-Local accounts on domain-joined systems must also be assigned this right to decrease the risk of lateral movement resulting from credential theft attacks.
-
-The Guests group must be assigned this right to prevent unauthenticated access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Deny log on through Remote Desktop Services</DisplayName>
-      <DuplicateOf />
-      <Force>False</Force>
-      <Identity>Enterprise Admins,Domain Admins,Local account,Guests,Review the text file.,S-1-5-root domain-519,S-1-5-domain-512,S-1-5-113,S-1-5-32-546</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
-
-Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-If the following accounts or groups are not defined for the "Deny log on through Remote Desktop Services" user right, this is a finding:
-
-Domain Systems Only:
-- Enterprise Admins group
-- Domain Admins group
-- Local account (see Note below)
-
-All Systems:
-- Guests group
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If the following SIDs are not defined for the "SeDenyRemoteInteractiveLogonRight" user right, this is a finding.
-
-Domain Systems Only:
-S-1-5-root domain-519 (Enterprise Admins)
-S-1-5-domain-512 (Domain Admins)
-S-1-5-113 ("Local account")
-
-All Systems:
-S-1-5-32-546 (Guests)
-
-Note: "Local account" is referring to the Windows built-in security group.</RawString>
-    </Rule>
-    <Rule id="V-254440" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
-      <Constant>SeEnableDelegationPrivilege</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-The "Enable computer and user accounts to be trusted for delegation" user right allows the "Trusted for Delegation" setting to be changed. This could allow unauthorized users to impersonate other users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Enable computer and user accounts to be trusted for delegation</DisplayName>
-      <DuplicateOf />
-      <Force>True</Force>
-      <Identity>
-      </Identity>
-      <IsNullOrEmpty>True</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to member servers and standalone or nondomain-joined systems. A separate version applies to domain controllers.
-
-Verify the effective setting in Local Group Policy Editor.
-
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-If any accounts or groups are granted the "Enable computer and user accounts to be trusted for delegation" user right, this is a finding.
-
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs are granted the "SeEnableDelegationPrivilege" user right, this is a finding.</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254491" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeTrustedCredManAccessPrivilege</Constant>
@@ -7937,13 +7243,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If any accounts or groups are granted the "Access Credential Manager as a trusted caller" user right, this is a finding.
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs are granted the "SeTrustedCredManAccessPrivilege" user right, this is a finding.</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254492" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeTcbPrivilege</Constant>
@@ -7968,23 +7268,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If any accounts or groups (to include administrators), are granted the "Act as part of the operating system" user right, this is a finding.
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs are granted the "SeTcbPrivilege" user right, this is a finding.
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).
-
-Passwords for accounts with this user right must be protected as highly privileged accounts.</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254493" severity="medium" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="UserRightsAssignment">
       <Constant>SeInteractiveLogonRight</Constant>
@@ -7994,7 +7278,7 @@ Accounts with the "Allow log on locally" user right can log on interactively to 
       <DisplayName>Allow log on locally</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8010,23 +7294,7 @@ If any accounts or groups other than the following are granted the "Allow log on
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeInteractiveLogonRight" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254494" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeBackupPrivilege</Constant>
@@ -8036,7 +7304,7 @@ Accounts with the "Back up files and directories" user right can circumvent file
       <DisplayName>Back up files and directories</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8052,23 +7320,7 @@ If any accounts or groups other than the following are granted the "Back up file
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeBackupPrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254495" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeCreatePagefilePrivilege</Constant>
@@ -8078,7 +7330,7 @@ Accounts with the "Create a pagefile" user right can change the size of a pagefi
       <DisplayName>Create a pagefile</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8094,15 +7346,7 @@ If any accounts or groups other than the following are granted the "Create a pag
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeCreatePagefilePrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254496" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeCreateTokenPrivilege</Constant>
@@ -8127,23 +7371,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If any accounts or groups are granted the "Create a token object" user right, this is a finding.
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs are granted the "SeCreateTokenPrivilege" user right, this is a finding.
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).
-
-Passwords for application accounts with this user right must be protected as highly privileged accounts.</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254497" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeCreateGlobalPrivilege</Constant>
@@ -8153,7 +7381,7 @@ Accounts with the "Create global objects" user right can create objects that are
       <DisplayName>Create global objects</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Service,Local Service,Network Service,Review the text file.,S-1-5-32-544,S-1-5-6,S-1-5-19,S-1-5-20</Identity>
+      <Identity>Administrators,Service,Local Service,Network Service</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8172,26 +7400,7 @@ If any accounts or groups other than the following are granted the "Create globa
 - Local Service
 - Network Service
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeCreateGlobalPrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)
-S-1-5-6 (Service)
-S-1-5-19 (Local Service)
-S-1-5-20 (Network Service)
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254498" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeCreatePermanentPrivilege</Constant>
@@ -8216,13 +7425,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If any accounts or groups are granted the "Create permanent shared objects" user right, this is a finding.
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs are granted the "SeCreatePermanentPrivilege" user right, this is a finding.</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254499" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeCreateSymbolicLinkPrivilege</Constant>
@@ -8237,7 +7440,7 @@ Accounts with the "Create symbolic links" user right can create pointers to othe
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '^(Administrators,NT Virtual Machine\\Virtual Machines,Review the text file.,S-1-5-32-544,NT Virtual Machine\\Virtual Machines|Administrators,Review the text file.,S-1-5-32-544)$'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'</OrganizationValueTestString>
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
 Run "gpedit.msc".
@@ -8248,17 +7451,7 @@ If any accounts or groups other than the following are granted the "Create symbo
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeCreateSymbolicLinkPrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)
-
-Systems that have the Hyper-V role will also have "Virtual Machines" given this user right (this may be displayed as "NT Virtual Machine\Virtual Machines", SID S-1-5-83-0). This is not a finding.</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254500" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeDebugPrivilege</Constant>
@@ -8268,7 +7461,7 @@ Accounts with the "Debug programs" user right can attach a debugger to any proce
       <DisplayName>Debug programs</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544,Passwords for application accounts with this user right must be protected as highly privileged accounts.</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8284,25 +7477,7 @@ If any accounts or groups other than the following are granted the "Debug progra
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeDebugPrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).
-
-Passwords for application accounts with this user right must be protected as highly privileged accounts.</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254501" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeRemoteShutdownPrivilege</Constant>
@@ -8312,7 +7487,7 @@ Accounts with the "Force shutdown from a remote system" user right can remotely 
       <DisplayName>Force shutdown from a remote system</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8328,15 +7503,7 @@ If any accounts or groups other than the following are granted the "Force shutdo
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeRemoteShutdownPrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254502" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeAuditPrivilege</Constant>
@@ -8346,7 +7513,7 @@ The "Generate security audits" user right specifies users and processes that can
       <DisplayName>Generate security audits</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Local Service,Network Service,Review the text file.,S-1-5-19,S-1-5-20</Identity>
+      <Identity>Local Service,Network Service</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8363,24 +7530,7 @@ If any accounts or groups other than the following are granted the "Generate sec
 - Local Service
 - Network Service
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeAuditPrivilege" user right, this is a finding:
-
-S-1-5-19 (Local Service)
-S-1-5-20 (Network Service)
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254503" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeImpersonatePrivilege</Constant>
@@ -8390,7 +7540,7 @@ The "Impersonate a client after authentication" user right allows a program to i
       <DisplayName>Impersonate a client after authentication</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Service,Local Service,Network Service,Review the text file.,S-1-5-32-544,S-1-5-6,S-1-5-19,S-1-5-20</Identity>
+      <Identity>Administrators,Service,Local Service,Network Service</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8409,26 +7559,7 @@ If any accounts or groups other than the following are granted the "Impersonate 
 - Local Service
 - Network Service
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeImpersonatePrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)
-S-1-5-6 (Service)
-S-1-5-19 (Local Service)
-S-1-5-20 (Network Service)
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254504" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeIncreaseBasePriorityPrivilege</Constant>
@@ -8438,7 +7569,7 @@ Accounts with the "Increase scheduling priority" user right can change a schedul
       <DisplayName>Increase scheduling priority</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8454,23 +7585,7 @@ If any accounts or groups other than the following are granted the "Increase sch
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeIncreaseBasePriorityPrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254505" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeLoadDriverPrivilege</Constant>
@@ -8480,7 +7595,7 @@ The "Load and unload device drivers" user right allows a user to load device dri
       <DisplayName>Load and unload device drivers</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8496,15 +7611,7 @@ If any accounts or groups other than the following are granted the "Load and unl
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeLoadDriverPrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254506" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeLockMemoryPrivilege</Constant>
@@ -8531,21 +7638,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If any accounts or groups are granted the "Lock pages in memory" user right, this is a finding.
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs are granted the "SeLockMemoryPrivilege" user right, this is a finding.
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254507" severity="medium" conversionstatus="pass" title="SRG-OS-000057-GPOS-00027" dscresource="UserRightsAssignment">
       <Constant>SeSecurityPrivilege</Constant>
@@ -8557,7 +7650,7 @@ Satisfies: SRG-OS-000057-GPOS-00027, SRG-OS-000058-GPOS-00028, SRG-OS-000059-GPO
       <DisplayName>Manage auditing and security log</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8573,25 +7666,7 @@ If any accounts or groups other than the following are granted the "Manage audit
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeSecurityPrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)
-
-If the organization has an Auditors group, the assignment of this group to the user right would not be a finding.
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254508" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeSystemEnvironmentPrivilege</Constant>
@@ -8601,7 +7676,7 @@ Accounts with the "Modify firmware environment values" user right can change har
       <DisplayName>Modify firmware environment values</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8617,15 +7692,7 @@ If any accounts or groups other than the following are granted the "Modify firmw
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeSystemEnvironmentPrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254509" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeManageVolumePrivilege</Constant>
@@ -8635,7 +7702,7 @@ Accounts with the "Perform volume maintenance tasks" user right can manage volum
       <DisplayName>Perform volume maintenance tasks</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8651,15 +7718,7 @@ If any accounts or groups other than the following are granted the "Perform volu
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeManageVolumePrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254510" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeProfileSingleProcessPrivilege</Constant>
@@ -8669,7 +7728,7 @@ Accounts with the "Profile single process" user right can monitor nonsystem proc
       <DisplayName>Profile single process</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8685,15 +7744,7 @@ If any accounts or groups other than the following are granted the "Profile sing
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeProfileSingleProcessPrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254511" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeRestorePrivilege</Constant>
@@ -8703,7 +7754,7 @@ Accounts with the "Restore files and directories" user right can circumvent file
       <DisplayName>Restore files and directories</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8719,23 +7770,7 @@ If any accounts or groups other than the following are granted the "Restore file
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeRestorePrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
+</RawString>
     </Rule>
     <Rule id="V-254512" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="UserRightsAssignment">
       <Constant>SeTakeOwnershipPrivilege</Constant>
@@ -8745,7 +7780,7 @@ Accounts with the "Take ownership of files or other objects" user right can take
       <DisplayName>Take ownership of files or other objects</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,Review the text file.,S-1-5-32-544</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LegacyId>
       </LegacyId>
@@ -8761,23 +7796,7 @@ If any accounts or groups other than the following are granted the "Take ownersh
 
 - Administrators
 
-For server core installations, run the following command:
-
-Secedit /Export /Areas User_Rights /cfg c:\path\filename.txt
-
-Review the text file.
-
-If any SIDs other than the following are granted the "SeTakeOwnershipPrivilege" user right, this is a finding:
-
-S-1-5-32-544 (Administrators)
-
-If an application requires this user right, this would not be a finding.
-
-Vendor documentation must support the requirement for having the user right.
-
-The requirement must be documented with the Information System Security Officer (ISSO).
-
-The application account must meet requirements for application account passwords, such as length (WN22-00-000050) and required frequency of changes (WN22-00-000060).</RawString>
+</RawString>
     </Rule>
   </UserRightRule>
   <WindowsFeatureRule dscresourcemodule="PSDscResources">

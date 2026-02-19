@@ -19,7 +19,7 @@ Describe 'New-StigCheckList' {
         {
             WindowsServer BaseLine
             {
-                OsVersion    = "2022"
+                OsVersion    = "2019"
                 OsRole       = "MS"
                 SkipRuleType = "AccountPolicyRule", "AuditPolicyRule", "AuditSettingRule", "DocumentRule", "ManualRule", "PermissionRule", "SecurityOptionRule", "UserRightRule", "WindowsFeatureRule", "ProcessMitigationRule", "RegistryRule"
             }
@@ -60,7 +60,7 @@ Describe 'New-StigCheckList' {
 
         {
             $outputPath = Join-Path $Testdrive -ChildPath Checklist.ckl
-            $xccdfPath = ((Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object -Property Name -Match "Server_2022_MS")[1]).FullName
+            $xccdfPath = ((Get-ChildItem -Path $script:moduleRoot\StigData\Archive -Include *xccdf.xml -Recurse | Where-Object -Property Name -Match "Server_2019_MS")[1]).FullName
             New-StigChecklist -ReferenceConfiguration $mofTest -XccdfPath $xccdfPath -OutputPath $outputPath -Verifier "PowerSTIG User 12/17/2020"
         } | Should -Not -Throw
     }
