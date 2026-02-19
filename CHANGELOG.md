@@ -4,7 +4,7 @@
 
 ## [4.29.0] - 2026-04-01
 
-* This is a bulk add and cleanup update, Retired STIGs are being removed and this will be the last update for Sunset Stigs.
+* This is a bulk add and cleanup update, Retired STIGs are being removed and this will be the last update for Sunset Stigs.  
 
 * Updated PowerStig to parse/apply the following STIGS
 * Sunset-Microsoft Internet Explorer 11 STIG - Ver 2, Rel 6
