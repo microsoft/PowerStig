@@ -4,5 +4,4 @@ V-218814::*::HardCodedRule(PermissionRule)@{DscResource = 'NTFSAccessEntry'; Acc
 V-218819::*::.
 V-268325::*::.
 V-218805::Under Time-out (in minutes), verify “20 minutes or less” is selected.::Verify the "Time-out (in minutes)" is set to "20 minutes or less".
-V-241788::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HTTP\Parameters'; ValueData = 1; ValueName = 'DisableServerHeader'; ValueType = 'DWORD'}
 
