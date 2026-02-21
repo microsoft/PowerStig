@@ -12,11 +12,11 @@
   <OrganizationalSetting id="V-218755" Value="" />
   <!-- Ensure [TimeSpan]'V-218762' -le [TimeSpan]'00:20:00' -and [TimeSpan]'V-218762' -gt [TimeSpan]'00:00:00'-->
   <OrganizationalSetting id="V-218762" Value="" />
-  <!-- Ensure 'V-218763' -le '00:15:00'-->
+  <!-- Ensure ''V-218763'' -le '00:15:00'-->
   <OrganizationalSetting id="V-218763" Value="" />
   <!-- Ensure 'V-218772' -ne 0-->
   <OrganizationalSetting id="V-218772" Value="" />
-  <!-- Ensure 'V-218775' 'Value must contain Time and Schedule but can contain Requests, Memory, IsapiUnhealthy, OnDemand, ConfigChange, PrivateMemory'-->
+  <!-- Ensure ''V-218775'' 'Value must contain Time and Schedule but can contain Requests, Memory, IsapiUnhealthy, OnDemand, ConfigChange, PrivateMemory'-->
   <OrganizationalSetting id="V-218775" Value="" />
   <!-- Ensure [TimeSpan]'V-218778' -le [TimeSpan]'00:05:00'-->
   <OrganizationalSetting id="V-218778" Value="" />

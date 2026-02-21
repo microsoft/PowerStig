@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R14_Manual-xccdf.xml" releaseinfo="Release: 14 Benchmark Date: 05 Jan 2026 3.5.2 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.14" created="2/20/2026">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R14_Manual-xccdf.xml" releaseinfo="Release: 14 Benchmark Date: 05 Jan 2026 3.5.2 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.14" created="2/21/2026">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218744" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.
@@ -572,6 +572,26 @@ NOTE: While DoDI 8500.01 does not contain a copy of the banner to be used, it do
 
 If the access-controlled website does not display this banner page before entry, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-278953" severity="medium" conversionstatus="pass" title="SRG-APP-000266-WSR-000159" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;HTTP Response Headers contain information that could enable an attacker to gain access to an information system. Failure to prevent the sending of certain HTTP Response Header information to remote requesters exposes internal configuration information to potential attackers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+
+Open Registry Editor.
+
+Navigate to "HKLM\System\CurrentControlSet\Services\HTTP\Parameters".
+
+Verify "DisableServerHeader” is set to "2".
+
+If REG_DWORD DisableServerHeader is not set to "2", this is a finding.
+
+If the system administrator can show that Server Version information has been removed via other means, such as using a rewrite outbound rule, this is not a finding.</RawString>
+    </Rule>
   </ManualRule>
   <MimeTypeRule dscresourcemodule="xWebAdministration">
     <Rule id="V-218743.a" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
@@ -695,33 +715,6 @@ If any OS shell MIME types are configured, this is a finding.
 .csh</RawString>
     </Rule>
   </MimeTypeRule>
-  <RegistryRule dscresourcemodule="PSDscResources">
-    <Rule id="V-278953" severity="medium" conversionstatus="pass" title="SRG-APP-000266-WSR-000159" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;HTTP Response Headers contain information that could enable an attacker to gain access to an information system. Failure to prevent the sending of certain HTTP Response Header information to remote requesters exposes internal configuration information to potential attackers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\System\CurrentControlSet\Services\HTTP\Parameters</Key>
-      <LegacyId>
-      </LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: If the server is hosting WSUS, this is not applicable.
-
-Open Registry Editor.
-
-Navigate to "HKLM\System\CurrentControlSet\Services\HTTP\Parameters".
-
-Verify "DisableServerHeader” is set to "2".
-
-If REG_DWORD DisableServerHeader is not set to "2", this is a finding.
-
-If the system administrator can show that Server Version information has been removed via other means, such as using a rewrite outbound rule, this is not a finding.</RawString>
-      <ValueData>2</ValueData>
-      <ValueName>DisableServerHeader</ValueName>
-      <ValueType>DWORD</ValueType>
-    </Rule>
-  </RegistryRule>
   <SslSettingsRule dscresourcemodule="xWebAdministration">
     <Rule id="V-218737" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006" dscresource="xSslSettings">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
