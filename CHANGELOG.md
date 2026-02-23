@@ -24,8 +24,8 @@
 * Sunset-Microsoft Windows Server 2016 MS STIG - Ver 2, Rel 10
 * Sunset-Microsoft Windows Server 2016 DC STIG - Ver 2, Rel 10
 * Mozilla Firefox STIG - Ver 6, Rel 7
-* Microsoft IIS 10.0 STIG
-* Microsoft IIS 10.0 STIG
+* Microsoft IIS 10.0 Server STIG
+* Microsoft IIS 10.0 Site STIG
 * Microsoft Edge STIG - Ver 2, Rel 4
 * Red Hat Enterprise Linux 9 STIG - Ver 2, Rel 7
 * Microsoft SQL Server 2016 STIG
