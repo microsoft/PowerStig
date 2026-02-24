@@ -125,6 +125,7 @@ We are especially thankful for those who have contributed pull requests to the c
 
 * [@MrAutomater](https://github.com/MrAutomater) (Jerry Martin )
 * [@MRasmussenGIT](https://github.com/MRasmussenGIT) (Michael Rasmussen)
+* [FrederickGeek8](https://github.com/FrederickGeek8) (Frederick Morlock)
 * [@hinderjd](https://github.com/hinderjd) (James Hinders)
 * [@brianwest](https://github.com/brianwest) (Brian West)
 * [@addavenp1](https://github.com/addavenp1) (Adam Davenport)

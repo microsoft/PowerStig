@@ -6,7 +6,7 @@
     RootModule           = 'PowerStig.psm1'
 
     # Version number of this module.
-    ModuleVersion        = '4.27.0'
+    ModuleVersion        = '4.29.0'
 
     # ID used to uniquely identify this module
     GUID                 = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -119,16 +119,57 @@
             Prerelease   = ''
 
             # ReleaseNotes of this module
-            ReleaseNotes = '## ## [4.27.0] - 2025-09-05
-                * Update PowerSTIG to Parse/Apply Google Chrome STIG - Ver 2, Rel 11 [#1478](https://github.com/microsoft/PowerStig/issues/1478)
-                * Update Powerstig to parse/apply Microsoft DotNet Framework 4.0 STIG - Ver 2, Rel 7 [#1481](https://github.com/microsoft/PowerStig/issues/1481)
-                * Update Powerstig to parse/apply Microsoft Edge STIG - Ver 2, Rel 3 [#1483](https://github.com/microsoft/PowerStig/issues/1483)
-                * Update Powerstig to parse/apply Microsoft IIS 10.0 STIG - Ver 25, Rel 07 [#1485](https://github.com/microsoft/PowerStig/issues/1485)
-                * Update Powerstig to parse/apply Microsoft Windows 11 STIG - Ver 2, Rel 4 [#1487](https://github.com/microsoft/PowerStig/issues/1487)
-                * Update Powerstig to parse/apply Microsoft SQL Server 2016 STIG - Ver 3, Rel 5 [#1489](https://github.com/microsoft/PowerStig/issues/1489)
-                * Update Powerstig to parse/apply Microsoft SQL Server 2022 STIG - Ver 1, Rel 1 [#1491](https://github.com/microsoft/PowerStig/issues/1491)
-                * Update Powerstig to parse/apply Microsoft Windows Server 2019 STIG - Ver 3, Rel 5 [#1493](https://github.com/microsoft/PowerStig/issues/1493)
-                * Update Powerstig to parse/apply Microsoft Windows Server 2022 STIG - Ver 2, Rel 5 [#1495](https://github.com/microsoft/PowerStig/issues/1495)'
+            ReleaseNotes = '## ## [4.29.0] - 2026-04-01
+                *
+                * This is a bulk add and cleanup update, Retired STIGs are being removed and this will be the last update for Sunset Stigs.  
+                * 
+                * Updated PowerStig to parse/apply the following STIGS
+                * Sunset-Microsoft Internet Explorer 11 STIG - Ver 2, Rel 6
+                * Sunset-Microsoft Access 2016 STIG - Ver 2, Rel 1
+                * Sunset-Microsoft Excel 2016 STIG - Ver 2, Rel 2
+                * Sunset-Microsoft OneNote 2016 STIG - Ver 2, Rel 1
+                * Sunset-Microsoft Outlook 2016 STIG - Ver 2, Rel 4
+                * Sunset-Microsoft PowerPoint 2016 STIG - Ver 2, Rel 1
+                * Sunset-Microsoft Publisher 2016 STIG - Ver 2, Rel 1
+                * Sunset-Microsoft Skype for Business 2016 STIG - Ver 2, Rel 1
+                * Sunset-Microsoft Office System 2016 STIG - Ver 2, Rel 5
+                * Sunset-Microsoft Word 2016 STIG - Ver 2, Rel 1
+                * Sunset-Red Hat Enterprise Linux 7 STIG - Ver 3, Rel 15
+                * Sunset-Canonical Ubuntu 18.04 LTS STIG - Ver 2, Rel 15
+                * Sunset-Microsoft Windows 10 STIG - Ver 3, Rel 6
+                * Sunset-Microsoft Windows 2012 Server Domain Name System STIG - Ver 2, Rel 7
+                * Sunset-Microsoft Windows Server 2016 MS STIG - Ver 2, Rel 10
+                * Sunset-Microsoft Windows Server 2016 DC STIG - Ver 2, Rel 10
+                * Mozilla Firefox STIG - Ver 6, Rel 7
+                * Microsoft IIS 10.0 Server STIG
+                * Microsoft IIS 10.0 Site STIG
+                * Microsoft Edge STIG - Ver 2, Rel 4
+                * Red Hat Enterprise Linux 9 STIG - Ver 2, Rel 7
+                * Microsoft SQL Server 2016 STIG
+                * Microsoft SQL Server 2022 STIG
+                * Microsoft Windows 11 STIG - Ver 2, Rel 6
+                * Microsoft Defender Antivirus STIG - Ver 2, Rel 7
+                * Microsoft Windows Server 2019 DC STIG - Ver 3, Rel 7
+                * Microsoft Windows Server 2019 MS STIG - Ver 3, Rel 7
+                * Microsoft Windows Server 2022 DC STIG - Ver 2, Rel 7
+                * Microsoft Windows Server 2022 MS STIG - Ver 2, Rel 7
+                *
+                * Removed the following Retired STIGs from PowerStig - Please use 4.28.0 if needed.
+                * IISServer 8.5
+                * IISSite 8.5
+                * McAfee 8.8 VirusScan
+                * Office Excel2013
+                * Office Outlook2013
+                * Office PowerPoint2013
+                * Office System2013
+                * Office Visio2013
+                * Office Word2013
+                * OracleJRE 8
+                * SqlServer 2012 Database
+                * SqlServer 2012 Instance
+                * Vsphere 6.5
+                * WindowsServer 2012R2 DC
+                * WindowsServer 2012R2 MS '
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }

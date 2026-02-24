@@ -25,7 +25,7 @@ function Backup-StigSettings
     param
     (
         [Parameter()]
-        [ValidateScript({Test-Path -Path $_})]
+        [ValidateScript({ Test-Path -Path $_ })]
         [string]
         $BackupLocation = $ENV:TEMP,
 
@@ -37,19 +37,19 @@ function Backup-StigSettings
 
     $xmlPath = Join-Path -Path $PSScriptRoot -ChildPath '..\..\StigData\Processed'
 
-    $exclusion = @("*.org.default.xml","RHEL*","Ubuntu*","Vsphere*")
+    $exclusion = @("*.org.default.xml", "RHEL*", "Ubuntu*", "Vsphere*")
     $validStigs = Get-ChildItem $xmlPath -Exclude $exclusion
 
     if ($validStigs.Name -notContains $StigName.Trim())
     {
-        $errorArray = $validStigs.Name -join("`n")
+        $errorArray = $validStigs.Name -join ("`n")
         Write-Host "StigName '$($StigName.Trim())' not valid, options are :`n$errorArray"
         break
     }
 
     # Load target powerstig process xml
     $powerSTIGLocation = Join-Path -Path $xmlPath -ChildPath $stigName
-    [xml] $stig =  Get-Content -Path $powerSTIGLocation
+    [xml] $stig = Get-Content -Path $powerSTIGLocation
 
     $ruleList = ""
     foreach ($validStig in $validStigs.FullName)
@@ -70,12 +70,13 @@ function Backup-StigSettings
         {
             Switch ($rule.dscResource)
             {
-                AccountPolicy {
+                AccountPolicy
+                {
                     $get = Invoke-DscResource -ModuleName $dscResourceModule -Name $rule.dscResource -Method get -Property @{
                         Name = $rule.PolicyName
                     }
 
-                    $concatPolicyName = $rule.PolicyName.Replace(" ","_")
+                    $concatPolicyName = $rule.PolicyName.Replace(" ", "_")
                     $hashtable += @{
                         "DscResourceModule" = $dscResourceModule
                         "DscResource"       = $rule.dscResource
@@ -83,9 +84,10 @@ function Backup-StigSettings
                         "PolicyValue"       = $get.$concatPolicyName
                     }
                 }
-                AuditPolicySubcategory {
+                AuditPolicySubcategory
+                {
                     $get = Invoke-DscResource -ModuleName $dscResourceModule -Name $rule.dscResource -Method get -Property @{
-                        Name = $rule.Subcategory
+                        Name      = $rule.Subcategory
                         AuditFlag = 'success'
                     }
 
@@ -97,7 +99,8 @@ function Backup-StigSettings
                         "Ensure"            = $get.Ensure
                     }
                 }
-                AuditSetting {
+                AuditSetting
+                {
                     $get = Invoke-DscResource -ModuleName $dscResourceModule -Name $rule.dscResource -Method get -Property @{
                         Query        = $rule.Query
                         Property     = $rule.Property
@@ -114,7 +117,8 @@ function Backup-StigSettings
                         "Operator"          = $rule.Operator
                     }
                 }
-                ProcessMitigation {
+                ProcessMitigation
+                {
                     $get = Invoke-DscResource -ModuleName $dscResourceModule -Name $rule.dscResource -Method get -Property @{
                         MitigationTarget = $rule.MitigationTarget
                         MitigationType   = $rule.MitigationType
@@ -136,20 +140,21 @@ function Backup-StigSettings
                         "MitigationValue"   = $get.MitigationValue
                     }
                 }
-                Registry {
+                Registry
+                {
                     if ($rule.key -match "HKEY_LOCAL_MACHINE")
                     {
-                        $replace = ($rule.key).replace("HKEY_LOCAL_MACHINE","HKLM:")
+                        $replace = ($rule.key).replace("HKEY_LOCAL_MACHINE", "HKLM:")
                     }
                     else
                     {
-                        $replace = ($rule.key).replace("HKEY_CURRENT_USER","HKCU:")
+                        $replace = ($rule.key).replace("HKEY_CURRENT_USER", "HKCU:")
                     }
 
                     $get = Invoke-DscResource -ModuleName $dscResourceModule -Name $rule.dscResource -Method get -Property @{
-                        Key = $replace
-                        ValueType   = $rule.ValueType
-                        ValueName   = $rule.ValueName
+                        Key       = $replace
+                        ValueType = $rule.ValueType
+                        ValueName = $rule.ValueName
                     }
 
                     $hashtable += @{
@@ -162,15 +167,16 @@ function Backup-StigSettings
                         "Ensure"            = $get.Ensure
                     }
                 }
-                RegistryPolicyFile {
+                RegistryPolicyFile
+                {
                     if ($rule.key -match 'HKEY_CURRENT_USER')
                     {
-                        $replace = ($rule.key).replace("HKEY_CURRENT_USER\","")
+                        $replace = ($rule.key).replace("HKEY_CURRENT_USER\", "")
                         $TargetType = 'UserConfiguration'
                     }
                     else
                     {
-                        $replace = ($rule.key).replace("HKEY_LOCAL_MACHINE\","")
+                        $replace = ($rule.key).replace("HKEY_LOCAL_MACHINE\", "")
                         $TargetType = 'ComputerConfiguration'
                     }
 
@@ -192,8 +198,9 @@ function Backup-StigSettings
                         "Ensure"            = $get.Ensure
                     }
                 }
-                SecurityOption {
-                    $concatOptionName = $rule.OptionName.Replace(" ","_").Replace(":","").Replace("/","_")
+                SecurityOption
+                {
+                    $concatOptionName = $rule.OptionName.Replace(" ", "_").Replace(":", "").Replace("/", "_")
 
                     $get = Invoke-DscResource -ModuleName $dscResourceModule -Name $rule.dscResource -Method get -Property @{
                         Name = $rule.OptionName
@@ -206,7 +213,8 @@ function Backup-StigSettings
                         "OptionValue"       = $get.$concatOptionName
                     }
                 }
-                Service {
+                Service
+                {
                     if ($rule.ServiceName -ne "")
                     {
                         $get = Invoke-DscResource -ModuleName $dscResourceModule -Name $rule.dscResource -Method get -Property @{
@@ -222,8 +230,9 @@ function Backup-StigSettings
                         }
                     }
                 }
-                UserRightsAssignment {
-                    $concatIdentityName = $rule.DisplayName.Replace(" ","_")
+                UserRightsAssignment
+                {
+                    $concatIdentityName = $rule.DisplayName.Replace(" ", "_")
                     $get = Invoke-DscResource -ModuleName $dscResourceModule -Name $rule.dscResource -Method get -Property @{
                         Policy   = $concatIdentityName
                         Identity = @("IdentityName")
@@ -242,7 +251,8 @@ function Backup-StigSettings
                         "Identity"          = $identityString
                     }
                 }
-                WindowsOptionalFeature {
+                WindowsOptionalFeature
+                {
                     $get = Get-WindowsOptionalFeature -FeatureName $rule.Name -Online
 
                     if ($get.State -eq "Disabled")
@@ -261,9 +271,10 @@ function Backup-StigSettings
                         "Ensure"            = $ensure
                     }
                 }
-                xDnsServerSetting {
+                xDnsServerSetting
+                {
                     $get = Invoke-DscResource -ModuleName $dscResourceModule -Name $rule.dscResource -Method get -Property @{
-                        Name   = hostname
+                        Name = hostname
                     }
                     $hashtable += @{
                         "DscResourceModule" = $dscResourceModule
@@ -273,10 +284,11 @@ function Backup-StigSettings
                     }
 
                 }
-                NTFSAccessEntry {
-                        $inputPath = [System.Environment]::ExpandEnvironmentVariables($rule.Path)
-                        $fileSystemItem = Get-Item -Path $inputPath -ErrorAction Stop
-                        $currentAcl = $fileSystemItem.GetAccessControl('Access')
+                NTFSAccessEntry
+                {
+                    $inputPath = [System.Environment]::ExpandEnvironmentVariables($rule.Path)
+                    $fileSystemItem = Get-Item -Path $inputPath -ErrorAction Stop
+                    $currentAcl = $fileSystemItem.GetAccessControl('Access')
 
                     foreach ($entry in $currentAcl.Access)
                     {
@@ -292,7 +304,8 @@ function Backup-StigSettings
                         }
                     }
                 }
-                RegistryAccessEntry {
+                RegistryAccessEntry
+                {
                     $inputPath = [System.Environment]::ExpandEnvironmentVariables($rule.Path)
                     $currentACL = Get-Acl -Path $inputPath
 
@@ -312,8 +325,9 @@ function Backup-StigSettings
                         }
                     }
                 }
-                CertificateDSC {
-                    $certificate = dir cert: -Recurse | Where-Object -FilterScript { $_.Thumbprint -like $rule.Thumbprint }
+                CertificateDSC
+                {
+                    $certificate = Get-ChildItem cert: -Recurse | Where-Object -FilterScript { $_.Thumbprint -like $rule.Thumbprint }
 
                     if ($rule.CertificateName -match "Interoperability")
                     {
@@ -349,42 +363,42 @@ function Backup-StigSettings
     #export results to csv in temp directory
     $path = "{0}\PowerSTIG_backup_{1}_{2}.csv" -f $BackupLocation, $StigName, (Get-Date -f MM_dd_yyyy_hh_mm_ss)
     $hashtable.GetEnumerator() | Select-Object -Property `
-    @{N='DscResourceModule';E={$_.DscResourceModule}},`
-    @{N='DscResource';E={$_.DscResource}},`
-    @{N='Name';E={$_.Name}},`
-    @{N='PolicyValue';E={$_.PolicyValue}},`
-    @{N='AuditFlag';E={$_.AuditFlag}},`
-    @{N='Query';E={$_.Query}},@{N='Property';E={$_.Property}},`
-    @{N='DesiredValue';E={$_.DesiredValue}},`
-    @{N='Operator';E={$_.Operator}}, `
-    @{N='MitigationTarget';E={$_.MitigationTarget}}, `
-    @{N='MitigationType';E={$_.MitigationType}}, `
-    @{N='MitigationName';E={$_.MitigationName}}, `
-    @{N='MitigationValue';E={$_.MitigationValue}}, `
-    @{N='Key';E={$_.Key}}, `
-    @{N='ValueType';E={$_.ValueType}}, `
-    @{N='ValueName';E={$_.ValueName}}, `
-    @{N='ValueData';E={$_.ValueData}}, `
-    @{N='TargetType';E={$_.TargetType}}, `
-    @{N='Ensure';E={$_.Ensure}}, `
-    @{N='OptionValue';E={$_.OptionValue}}, `
-    @{N='StartupType';E={$_.StartupType}}, `
-    @{N='State';E={$_.State}}, `
-    @{N='Policy';E={$_.Policy}}, `
-    @{N='Identity';E={$_.Identity}}, `
-    @{N='AclObject';E={$_.AclObject}}, `
-    @{N='NoRecursion';E={$_.NoRecursion}}, `
-    @{N='EventLogLevel';E={$_.EventLogLevel}}, `
-    @{N='Path';E={$_.Path}}, `
-    @{N='IdentityReference';E={$_.IdentityReference}}, `
-    @{N='IsInherited';E={$_.IsInherited}}, `
-    @{N='AccessControlType';E={$_.AccessControlType}}, `
-    @{N='FileSystemRights';E={$_.FileSystemRights}}, `
-    @{N='RegistryRights';E={$_.RegistryRights}}, `
-    @{N='InheritanceFlags';E={$_.InheritanceFlags}}, `
-    @{N='PropagationFlags';E={$_.PropagationFlags}}, `
-    @{N='Store';E={$_.Store}}, `
-    @{N='Thumbprint';E={$_.Thumbprint}} `
+    @{N = 'DscResourceModule'; E = { $_.DscResourceModule } }, `
+    @{N = 'DscResource'; E = { $_.DscResource } }, `
+    @{N = 'Name'; E = { $_.Name } }, `
+    @{N = 'PolicyValue'; E = { $_.PolicyValue } }, `
+    @{N = 'AuditFlag'; E = { $_.AuditFlag } }, `
+    @{N = 'Query'; E = { $_.Query } }, @{N = 'Property'; E = { $_.Property } }, `
+    @{N = 'DesiredValue'; E = { $_.DesiredValue } }, `
+    @{N = 'Operator'; E = { $_.Operator } }, `
+    @{N = 'MitigationTarget'; E = { $_.MitigationTarget } }, `
+    @{N = 'MitigationType'; E = { $_.MitigationType } }, `
+    @{N = 'MitigationName'; E = { $_.MitigationName } }, `
+    @{N = 'MitigationValue'; E = { $_.MitigationValue } }, `
+    @{N = 'Key'; E = { $_.Key } }, `
+    @{N = 'ValueType'; E = { $_.ValueType } }, `
+    @{N = 'ValueName'; E = { $_.ValueName } }, `
+    @{N = 'ValueData'; E = { $_.ValueData } }, `
+    @{N = 'TargetType'; E = { $_.TargetType } }, `
+    @{N = 'Ensure'; E = { $_.Ensure } }, `
+    @{N = 'OptionValue'; E = { $_.OptionValue } }, `
+    @{N = 'StartupType'; E = { $_.StartupType } }, `
+    @{N = 'State'; E = { $_.State } }, `
+    @{N = 'Policy'; E = { $_.Policy } }, `
+    @{N = 'Identity'; E = { $_.Identity } }, `
+    @{N = 'AclObject'; E = { $_.AclObject } }, `
+    @{N = 'NoRecursion'; E = { $_.NoRecursion } }, `
+    @{N = 'EventLogLevel'; E = { $_.EventLogLevel } }, `
+    @{N = 'Path'; E = { $_.Path } }, `
+    @{N = 'IdentityReference'; E = { $_.IdentityReference } }, `
+    @{N = 'IsInherited'; E = { $_.IsInherited } }, `
+    @{N = 'AccessControlType'; E = { $_.AccessControlType } }, `
+    @{N = 'FileSystemRights'; E = { $_.FileSystemRights } }, `
+    @{N = 'RegistryRights'; E = { $_.RegistryRights } }, `
+    @{N = 'InheritanceFlags'; E = { $_.InheritanceFlags } }, `
+    @{N = 'PropagationFlags'; E = { $_.PropagationFlags } }, `
+    @{N = 'Store'; E = { $_.Store } }, `
+    @{N = 'Thumbprint'; E = { $_.Thumbprint } } `
     | Export-Csv -NoTypeInformation -Path $path
 }
 
@@ -409,11 +423,11 @@ function Backup-StigSettings
 #>
 function Restore-StigSettings
 {
-    [CmdletBinding(SupportsShouldProcess,ConfirmImpact = 'high')]
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'high')]
     param
     (
         [Parameter()]
-        [ValidateScript({Test-Path -Path $_})]
+        [ValidateScript({ Test-Path -Path $_ })]
         [string]
         $BackupLocation = $ENV:TEMP,
 
@@ -423,18 +437,18 @@ function Restore-StigSettings
     )
 
     $xmlPath = Join-Path -Path $PSScriptRoot -ChildPath '..\..\StigData\Processed'
-    $exclusion = @("*.org.default.xml","RHEL*","Ubuntu*","Vsphere*")
+    $exclusion = @("*.org.default.xml", "RHEL*", "Ubuntu*", "Vsphere*")
     $validStigs = Get-ChildItem $xmlPath -Exclude $exclusion
 
     if ($validStigs.Name -notContains $StigName.Trim())
     {
-        $errorArray = $validStigs.Name -join("`n")
+        $errorArray = $validStigs.Name -join ("`n")
         Write-Host "StigName '$($StigName.Trim())' not valid, options are :`n$errorArray"
         break
     }
 
     # Remove DSC Document to revert system state
-    if ($PSCmdlet.ShouldProcess('localhost','Restore-StigSettings'))
+    if ($PSCmdlet.ShouldProcess('localhost', 'Restore-StigSettings'))
     {
         Remove-DscConfigurationDocument -Stage Current -Force
 
@@ -446,7 +460,8 @@ function Restore-StigSettings
         {
             Switch ($rule.dscResource)
             {
-                AccountPolicy {
+                AccountPolicy
+                {
                     if ($rule.PolicyValue -match "^\d+$")
                     {
                         [int] $integer = $rule.PolicyValue
@@ -464,7 +479,8 @@ function Restore-StigSettings
                         } -ErrorAction Ignore
                     }
                 }
-                AuditPolicySubcategory {
+                AuditPolicySubcategory
+                {
                     if ($rule.AuditFlag -eq "No Auditing")
                     {
                         Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
@@ -488,7 +504,8 @@ function Restore-StigSettings
                         }
                     }
                 }
-                AuditSetting {
+                AuditSetting
+                {
                     Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                         Query        = $rule.Query
                         Property     = $rule.Property
@@ -496,7 +513,8 @@ function Restore-StigSettings
                         Operator     = $rule.Operator
                     }
                 }
-                ProcessMitigation {
+                ProcessMitigation
+                {
                     Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                         MitigationTarget = $rule.MitigationTarget
                         MitigationType   = $rule.MitigationType
@@ -504,19 +522,21 @@ function Restore-StigSettings
                         MitigationValue  = $rule.MitigationValue
                     }
                 }
-                Registry {
+                Registry
+                {
                     [string[]] $ValueDataArray = $rule.ValueData
 
                     Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                        Key         = $rule.Key
-                        ValueType   = $rule.ValueType
-                        ValueName   = $rule.ValueName
-                        ValueData   = $ValueDataArray
-                        Ensure      = $rule.Ensure
-                        Force       = $true
+                        Key       = $rule.Key
+                        ValueType = $rule.ValueType
+                        ValueName = $rule.ValueName
+                        ValueData = $ValueDataArray
+                        Ensure    = $rule.Ensure
+                        Force     = $true
                     }
                 }
-                RegistryPolicyFile {
+                RegistryPolicyFile
+                {
                     [string[]] $ValueDataArray = $rule.ValueData
 
                     Invoke-DscResource -ModuleName "GPRegistryPolicyDsc" -Name $rule.dscResource -Method Set -Property @{
@@ -539,28 +559,31 @@ function Restore-StigSettings
                             $replace = '{0}{1}' -f "HKLM:\", $rule.key
                         }
                         Invoke-DscResource -ModuleName $rule.dscResourceModule -Name "Registry" -Method Set -Property @{
-                            Key         = $replace
-                            ValueType   = $rule.ValueType
-                            ValueName   = $rule.ValueName
-                            Ensure      = $rule.Ensure
-                            Force       = $true
+                            Key       = $replace
+                            ValueType = $rule.ValueType
+                            ValueName = $rule.ValueName
+                            Ensure    = $rule.Ensure
+                            Force     = $true
                         }
                     }
                 }
-                SecurityOption {
+                SecurityOption
+                {
                     Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                         Name       = "Name"
                         $rule.Name = $rule.OptionValue
                     }
                 }
-                Service {
+                Service
+                {
                     Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
-                        Name = $rule.Name
+                        Name        = $rule.Name
                         StartupType = $rule.StartupType
-                        State = $rule.State
+                        State       = $rule.State
                     }
                 }
-                UserRightsAssignment {
+                UserRightsAssignment
+                {
                     $IdentityArray = ($rule.Identity).Split(",")
 
                     Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
@@ -569,7 +592,8 @@ function Restore-StigSettings
                         Force    = $true
                     }
                 }
-                WindowsOptionalFeature {
+                WindowsOptionalFeature
+                {
                     Invoke-DscResource -ModuleName $rule.dscResourceModule -Name $rule.dscResource -Method Set -Property @{
                         Name   = $rule.Name
                         Ensure = $rule.Ensure
