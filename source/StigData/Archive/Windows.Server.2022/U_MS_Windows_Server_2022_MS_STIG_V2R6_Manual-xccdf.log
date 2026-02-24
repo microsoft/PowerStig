@@ -13,6 +13,7 @@ V-254443::DoD Root CA 3- DoD Interoperability Root CA 2 - 49CBE933151872E17C8EAE
 V-254443::Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US::Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 V-254443::Thumbprint: A8C27332CCB4CA49554CE55D34062A7DD2850C02::Thumbprint: 49CBE933151872E17C8EAE7F0ABA97FB610F6477
 V-254443::NotAfter: 8/26/2022 9:25:51 AM::NotAfter: 11/16/2024
+V-254444::*::''
 V-254458::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'; ValueName = 'LegalNoticeCaption'; ValueType = 'String'; ValueData = $null; OrganizationValueTestString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"}
 V-254484::0x00000002 (2) (Prompt for consent on the secure desktop)::1 or 2
 V-254490::0x00000002 (2) (or if the Value Name does not exist)::2

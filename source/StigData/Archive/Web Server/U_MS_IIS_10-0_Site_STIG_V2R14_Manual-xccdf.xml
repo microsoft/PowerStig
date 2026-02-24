@@ -1,0 +1,1209 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type='text/xsl' href='STIG_unclass.xsl'?><Benchmark xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd" id="IIS_10-0_Site_STIG" xml:lang="en" xmlns="http://checklists.nist.gov/xccdf/1.1"><status date="2025-11-25">accepted</status><title>Microsoft IIS 10.0 Site Security Technical Implementation Guide</title><description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</description><notice id="terms-of-use" xml:lang="en"></notice><front-matter xml:lang="en"></front-matter><rear-matter xml:lang="en"></rear-matter><reference href="https://cyber.mil"><dc:publisher>DISA</dc:publisher><dc:source>STIG.DOD.MIL</dc:source></reference><plain-text id="release-info">Release: 14 Benchmark Date: 05 Jan 2026</plain-text><plain-text id="generator">3.5.2</plain-text><plain-text id="conventionsVersion">1.10.0</plain-text><version>2</version><Profile id="MAC-1_Classified"><title>I - Mission Critical Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-218736" selected="true" /><select idref="V-218737" selected="true" /><select idref="V-218738" selected="true" /><select idref="V-218739" selected="true" /><select idref="V-218740" selected="true" /><select idref="V-218741" selected="true" /><select idref="V-218742" selected="true" /><select idref="V-218743" selected="true" /><select idref="V-218744" selected="true" /><select idref="V-218745" selected="true" /><select idref="V-218748" selected="true" /><select idref="V-218749" selected="true" /><select idref="V-218750" selected="true" /><select idref="V-218751" selected="true" /><select idref="V-218752" selected="true" /><select idref="V-218753" selected="true" /><select idref="V-218754" selected="true" /><select idref="V-218755" selected="true" /><select idref="V-218756" selected="true" /><select idref="V-218757" selected="true" /><select idref="V-218758" selected="true" /><select idref="V-218759" selected="true" /><select idref="V-218760" selected="true" /><select idref="V-218761" selected="true" /><select idref="V-218762" selected="true" /><select idref="V-218763" selected="true" /><select idref="V-218764" selected="true" /><select idref="V-218765" selected="true" /><select idref="V-218766" selected="true" /><select idref="V-218767" selected="true" /><select idref="V-218768" selected="true" /><select idref="V-218769" selected="true" /><select idref="V-218770" selected="true" /><select idref="V-218771" selected="true" /><select idref="V-218772" selected="true" /><select idref="V-218775" selected="true" /><select idref="V-218777" selected="true" /><select idref="V-218778" selected="true" /><select idref="V-218779" selected="true" /><select idref="V-218780" selected="true" /><select idref="V-218781" selected="true" /><select idref="V-218782" selected="true" /><select idref="V-278953" selected="true" /></Profile><Profile id="MAC-1_Public"><title>I - Mission Critical Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-218736" selected="true" /><select idref="V-218737" selected="true" /><select idref="V-218738" selected="true" /><select idref="V-218739" selected="true" /><select idref="V-218740" selected="true" /><select idref="V-218741" selected="true" /><select idref="V-218742" selected="true" /><select idref="V-218743" selected="true" /><select idref="V-218744" selected="true" /><select idref="V-218745" selected="true" /><select idref="V-218748" selected="true" /><select idref="V-218749" selected="true" /><select idref="V-218750" selected="true" /><select idref="V-218751" selected="true" /><select idref="V-218752" selected="true" /><select idref="V-218753" selected="true" /><select idref="V-218754" selected="true" /><select idref="V-218755" selected="true" /><select idref="V-218756" selected="true" /><select idref="V-218757" selected="true" /><select idref="V-218758" selected="true" /><select idref="V-218759" selected="true" /><select idref="V-218760" selected="true" /><select idref="V-218761" selected="true" /><select idref="V-218762" selected="true" /><select idref="V-218763" selected="true" /><select idref="V-218764" selected="true" /><select idref="V-218765" selected="true" /><select idref="V-218766" selected="true" /><select idref="V-218767" selected="true" /><select idref="V-218768" selected="true" /><select idref="V-218769" selected="true" /><select idref="V-218770" selected="true" /><select idref="V-218771" selected="true" /><select idref="V-218772" selected="true" /><select idref="V-218775" selected="true" /><select idref="V-218777" selected="true" /><select idref="V-218778" selected="true" /><select idref="V-218779" selected="true" /><select idref="V-218780" selected="true" /><select idref="V-218781" selected="true" /><select idref="V-218782" selected="true" /><select idref="V-278953" selected="true" /></Profile><Profile id="MAC-1_Sensitive"><title>I - Mission Critical Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-218736" selected="true" /><select idref="V-218737" selected="true" /><select idref="V-218738" selected="true" /><select idref="V-218739" selected="true" /><select idref="V-218740" selected="true" /><select idref="V-218741" selected="true" /><select idref="V-218742" selected="true" /><select idref="V-218743" selected="true" /><select idref="V-218744" selected="true" /><select idref="V-218745" selected="true" /><select idref="V-218748" selected="true" /><select idref="V-218749" selected="true" /><select idref="V-218750" selected="true" /><select idref="V-218751" selected="true" /><select idref="V-218752" selected="true" /><select idref="V-218753" selected="true" /><select idref="V-218754" selected="true" /><select idref="V-218755" selected="true" /><select idref="V-218756" selected="true" /><select idref="V-218757" selected="true" /><select idref="V-218758" selected="true" /><select idref="V-218759" selected="true" /><select idref="V-218760" selected="true" /><select idref="V-218761" selected="true" /><select idref="V-218762" selected="true" /><select idref="V-218763" selected="true" /><select idref="V-218764" selected="true" /><select idref="V-218765" selected="true" /><select idref="V-218766" selected="true" /><select idref="V-218767" selected="true" /><select idref="V-218768" selected="true" /><select idref="V-218769" selected="true" /><select idref="V-218770" selected="true" /><select idref="V-218771" selected="true" /><select idref="V-218772" selected="true" /><select idref="V-218775" selected="true" /><select idref="V-218777" selected="true" /><select idref="V-218778" selected="true" /><select idref="V-218779" selected="true" /><select idref="V-218780" selected="true" /><select idref="V-218781" selected="true" /><select idref="V-218782" selected="true" /><select idref="V-278953" selected="true" /></Profile><Profile id="MAC-2_Classified"><title>II - Mission Support Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-218736" selected="true" /><select idref="V-218737" selected="true" /><select idref="V-218738" selected="true" /><select idref="V-218739" selected="true" /><select idref="V-218740" selected="true" /><select idref="V-218741" selected="true" /><select idref="V-218742" selected="true" /><select idref="V-218743" selected="true" /><select idref="V-218744" selected="true" /><select idref="V-218745" selected="true" /><select idref="V-218748" selected="true" /><select idref="V-218749" selected="true" /><select idref="V-218750" selected="true" /><select idref="V-218751" selected="true" /><select idref="V-218752" selected="true" /><select idref="V-218753" selected="true" /><select idref="V-218754" selected="true" /><select idref="V-218755" selected="true" /><select idref="V-218756" selected="true" /><select idref="V-218757" selected="true" /><select idref="V-218758" selected="true" /><select idref="V-218759" selected="true" /><select idref="V-218760" selected="true" /><select idref="V-218761" selected="true" /><select idref="V-218762" selected="true" /><select idref="V-218763" selected="true" /><select idref="V-218764" selected="true" /><select idref="V-218765" selected="true" /><select idref="V-218766" selected="true" /><select idref="V-218767" selected="true" /><select idref="V-218768" selected="true" /><select idref="V-218769" selected="true" /><select idref="V-218770" selected="true" /><select idref="V-218771" selected="true" /><select idref="V-218772" selected="true" /><select idref="V-218775" selected="true" /><select idref="V-218777" selected="true" /><select idref="V-218778" selected="true" /><select idref="V-218779" selected="true" /><select idref="V-218780" selected="true" /><select idref="V-218781" selected="true" /><select idref="V-218782" selected="true" /><select idref="V-278953" selected="true" /></Profile><Profile id="MAC-2_Public"><title>II - Mission Support Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-218736" selected="true" /><select idref="V-218737" selected="true" /><select idref="V-218738" selected="true" /><select idref="V-218739" selected="true" /><select idref="V-218740" selected="true" /><select idref="V-218741" selected="true" /><select idref="V-218742" selected="true" /><select idref="V-218743" selected="true" /><select idref="V-218744" selected="true" /><select idref="V-218745" selected="true" /><select idref="V-218748" selected="true" /><select idref="V-218749" selected="true" /><select idref="V-218750" selected="true" /><select idref="V-218751" selected="true" /><select idref="V-218752" selected="true" /><select idref="V-218753" selected="true" /><select idref="V-218754" selected="true" /><select idref="V-218755" selected="true" /><select idref="V-218756" selected="true" /><select idref="V-218757" selected="true" /><select idref="V-218758" selected="true" /><select idref="V-218759" selected="true" /><select idref="V-218760" selected="true" /><select idref="V-218761" selected="true" /><select idref="V-218762" selected="true" /><select idref="V-218763" selected="true" /><select idref="V-218764" selected="true" /><select idref="V-218765" selected="true" /><select idref="V-218766" selected="true" /><select idref="V-218767" selected="true" /><select idref="V-218768" selected="true" /><select idref="V-218769" selected="true" /><select idref="V-218770" selected="true" /><select idref="V-218771" selected="true" /><select idref="V-218772" selected="true" /><select idref="V-218775" selected="true" /><select idref="V-218777" selected="true" /><select idref="V-218778" selected="true" /><select idref="V-218779" selected="true" /><select idref="V-218780" selected="true" /><select idref="V-218781" selected="true" /><select idref="V-218782" selected="true" /><select idref="V-278953" selected="true" /></Profile><Profile id="MAC-2_Sensitive"><title>II - Mission Support Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-218736" selected="true" /><select idref="V-218737" selected="true" /><select idref="V-218738" selected="true" /><select idref="V-218739" selected="true" /><select idref="V-218740" selected="true" /><select idref="V-218741" selected="true" /><select idref="V-218742" selected="true" /><select idref="V-218743" selected="true" /><select idref="V-218744" selected="true" /><select idref="V-218745" selected="true" /><select idref="V-218748" selected="true" /><select idref="V-218749" selected="true" /><select idref="V-218750" selected="true" /><select idref="V-218751" selected="true" /><select idref="V-218752" selected="true" /><select idref="V-218753" selected="true" /><select idref="V-218754" selected="true" /><select idref="V-218755" selected="true" /><select idref="V-218756" selected="true" /><select idref="V-218757" selected="true" /><select idref="V-218758" selected="true" /><select idref="V-218759" selected="true" /><select idref="V-218760" selected="true" /><select idref="V-218761" selected="true" /><select idref="V-218762" selected="true" /><select idref="V-218763" selected="true" /><select idref="V-218764" selected="true" /><select idref="V-218765" selected="true" /><select idref="V-218766" selected="true" /><select idref="V-218767" selected="true" /><select idref="V-218768" selected="true" /><select idref="V-218769" selected="true" /><select idref="V-218770" selected="true" /><select idref="V-218771" selected="true" /><select idref="V-218772" selected="true" /><select idref="V-218775" selected="true" /><select idref="V-218777" selected="true" /><select idref="V-218778" selected="true" /><select idref="V-218779" selected="true" /><select idref="V-218780" selected="true" /><select idref="V-218781" selected="true" /><select idref="V-218782" selected="true" /><select idref="V-278953" selected="true" /></Profile><Profile id="MAC-3_Classified"><title>III - Administrative Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-218736" selected="true" /><select idref="V-218737" selected="true" /><select idref="V-218738" selected="true" /><select idref="V-218739" selected="true" /><select idref="V-218740" selected="true" /><select idref="V-218741" selected="true" /><select idref="V-218742" selected="true" /><select idref="V-218743" selected="true" /><select idref="V-218744" selected="true" /><select idref="V-218745" selected="true" /><select idref="V-218748" selected="true" /><select idref="V-218749" selected="true" /><select idref="V-218750" selected="true" /><select idref="V-218751" selected="true" /><select idref="V-218752" selected="true" /><select idref="V-218753" selected="true" /><select idref="V-218754" selected="true" /><select idref="V-218755" selected="true" /><select idref="V-218756" selected="true" /><select idref="V-218757" selected="true" /><select idref="V-218758" selected="true" /><select idref="V-218759" selected="true" /><select idref="V-218760" selected="true" /><select idref="V-218761" selected="true" /><select idref="V-218762" selected="true" /><select idref="V-218763" selected="true" /><select idref="V-218764" selected="true" /><select idref="V-218765" selected="true" /><select idref="V-218766" selected="true" /><select idref="V-218767" selected="true" /><select idref="V-218768" selected="true" /><select idref="V-218769" selected="true" /><select idref="V-218770" selected="true" /><select idref="V-218771" selected="true" /><select idref="V-218772" selected="true" /><select idref="V-218775" selected="true" /><select idref="V-218777" selected="true" /><select idref="V-218778" selected="true" /><select idref="V-218779" selected="true" /><select idref="V-218780" selected="true" /><select idref="V-218781" selected="true" /><select idref="V-218782" selected="true" /><select idref="V-278953" selected="true" /></Profile><Profile id="MAC-3_Public"><title>III - Administrative Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-218736" selected="true" /><select idref="V-218737" selected="true" /><select idref="V-218738" selected="true" /><select idref="V-218739" selected="true" /><select idref="V-218740" selected="true" /><select idref="V-218741" selected="true" /><select idref="V-218742" selected="true" /><select idref="V-218743" selected="true" /><select idref="V-218744" selected="true" /><select idref="V-218745" selected="true" /><select idref="V-218748" selected="true" /><select idref="V-218749" selected="true" /><select idref="V-218750" selected="true" /><select idref="V-218751" selected="true" /><select idref="V-218752" selected="true" /><select idref="V-218753" selected="true" /><select idref="V-218754" selected="true" /><select idref="V-218755" selected="true" /><select idref="V-218756" selected="true" /><select idref="V-218757" selected="true" /><select idref="V-218758" selected="true" /><select idref="V-218759" selected="true" /><select idref="V-218760" selected="true" /><select idref="V-218761" selected="true" /><select idref="V-218762" selected="true" /><select idref="V-218763" selected="true" /><select idref="V-218764" selected="true" /><select idref="V-218765" selected="true" /><select idref="V-218766" selected="true" /><select idref="V-218767" selected="true" /><select idref="V-218768" selected="true" /><select idref="V-218769" selected="true" /><select idref="V-218770" selected="true" /><select idref="V-218771" selected="true" /><select idref="V-218772" selected="true" /><select idref="V-218775" selected="true" /><select idref="V-218777" selected="true" /><select idref="V-218778" selected="true" /><select idref="V-218779" selected="true" /><select idref="V-218780" selected="true" /><select idref="V-218781" selected="true" /><select idref="V-218782" selected="true" /><select idref="V-278953" selected="true" /></Profile><Profile id="MAC-3_Sensitive"><title>III - Administrative Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-218736" selected="true" /><select idref="V-218737" selected="true" /><select idref="V-218738" selected="true" /><select idref="V-218739" selected="true" /><select idref="V-218740" selected="true" /><select idref="V-218741" selected="true" /><select idref="V-218742" selected="true" /><select idref="V-218743" selected="true" /><select idref="V-218744" selected="true" /><select idref="V-218745" selected="true" /><select idref="V-218748" selected="true" /><select idref="V-218749" selected="true" /><select idref="V-218750" selected="true" /><select idref="V-218751" selected="true" /><select idref="V-218752" selected="true" /><select idref="V-218753" selected="true" /><select idref="V-218754" selected="true" /><select idref="V-218755" selected="true" /><select idref="V-218756" selected="true" /><select idref="V-218757" selected="true" /><select idref="V-218758" selected="true" /><select idref="V-218759" selected="true" /><select idref="V-218760" selected="true" /><select idref="V-218761" selected="true" /><select idref="V-218762" selected="true" /><select idref="V-218763" selected="true" /><select idref="V-218764" selected="true" /><select idref="V-218765" selected="true" /><select idref="V-218766" selected="true" /><select idref="V-218767" selected="true" /><select idref="V-218768" selected="true" /><select idref="V-218769" selected="true" /><select idref="V-218770" selected="true" /><select idref="V-218771" selected="true" /><select idref="V-218772" selected="true" /><select idref="V-218775" selected="true" /><select idref="V-218777" selected="true" /><select idref="V-218778" selected="true" /><select idref="V-218779" selected="true" /><select idref="V-218780" selected="true" /><select idref="V-218781" selected="true" /><select idref="V-218782" selected="true" /><select idref="V-278953" selected="true" /></Profile><Group id="V-218736"><title>SRG-APP-000001-WSR-000002</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218736r1022669_rule" weight="10.0" severity="medium"><version>IIST-SI-000202</version><title>The IIS 10.0 website session state cookie settings must be configured to Use Cookies mode.</title><description>&lt;VulnDiscussion&gt;When the session information is stored on the client, the session ID, along with the user authorization and identity information, is sent along with each client request and is stored in either a cookie, embedded in the uniform resource locator (URL), or placed in a hidden field on the displayed form. Each of these offers advantages and disadvantages. The biggest disadvantage to all three is the hijacking of a session along with all of the user's credentials.
+
+When the user authorization and identity information is stored on the server in a protected and encrypted database, the communication between the client and website will only send the session identifier, and the server can then retrieve user credentials for the session when needed. If, during transmission, the session were to be hijacked, the user's credentials would not be compromised.
+
+ASP.NET provides a session state, which is available as the HttpSessionState class, as a method of storing session-specific information visible only within the session. ASP.NET session state identifies requests from the same browser during a limited time window as a session and provides the ability to persist variable values for the duration of that session.
+
+When using the URI mode for cookie settings under session state, IIS will reject and reissue session IDs that do not have active sessions. Configuring IIS to expire session IDs and regenerate tokens gives a potential attacker less time to capture a cookie and gain access to server content.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109297</ident><ident system="http://cyber.mil/legacy">V-100193</ident><ident system="http://cyber.mil/cci">CCI-000054</ident><fixtext fixref="F-20207r311107_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server: 
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Under the ASP.NET section, select "Session State".
+
+Under "Cookie Settings", select the "Use Cookies" from the "Mode:" drop-down list.
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20207r311107_fix" /><check system="C-20209r1022668_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If ASP.NET is not installed, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+Open the IIS 10.0 Manager.
+Click the site name.
+Under the "ASP.NET" section, select "Session State".
+Under "Cookie Settings", verify the "Use Cookies" mode is selected from the "Mode:" drop-down list.
+If the "Use Cookies" mode is selected, this is not a finding.
+
+Alternative method:
+Click the site name.
+Select "Configuration Editor" under the "Management" section.
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
+Verify the "cookieless" is set to "UseCookies".
+If the "cookieless" is not set to "UseCookies", this is a finding.
+Note: If IIS 10.0 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.</check-content></check></Rule></Group><Group id="V-218737"><title>SRG-APP-000014-WSR-000006</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218737r1022671_rule" weight="10.0" severity="medium"><version>IIST-SI-000203</version><title>A private IIS 10.0 website must only accept Secure Socket Layer (SSL) connections.</title><description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
+
+NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109299</ident><ident system="http://cyber.mil/legacy">V-100195</ident><ident system="http://cyber.mil/cci">CCI-000068</ident><fixtext fixref="F-20208r903108_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Double-click the "SSL Settings" icon.
+
+Select "Require SSL" check box.
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20208r903108_fix" /><check system="C-20210r1022670_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server being reviewed is a public IIS 10.0 web server, this is Not Applicable.
+Note: If the server is hosting SharePoint, this is Not Applicable.
+Note: If the server is hosting WSUS, this is Not Applicable.
+Note: If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 10.0 server, and the IIS 10.0 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server and is Not Applicable in this STIG.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+Click the site name.
+Double-click the "SSL Settings" icon.
+Verify "Require SSL" check box is selected.
+
+If the "Require SSL" check box is not selected, this is a finding.</check-content></check></Rule></Group><Group id="V-218738"><title>SRG-APP-000014-WSR-000006</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218738r1022673_rule" weight="10.0" severity="medium"><version>IIST-SI-000204</version><title>A public IIS 10.0 website must only accept Secure Socket Layer (SSL) connections when authentication is required.</title><description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
+
+NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109301</ident><ident system="http://cyber.mil/legacy">V-100197</ident><ident system="http://cyber.mil/cci">CCI-000068</ident><fixtext fixref="F-20209r505266_fix">Note: If the server being reviewed is a private IIS 10.0 web server, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Double-click the "SSL Settings" icon.
+
+Select "Require SSL" check box.
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20209r505266_fix" /><check system="C-20211r1022672_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server being reviewed is a private IIS 10.0 web server, this is Not Applicable.
+Note: If the server being reviewed is a public IIS 10.0 web server not requiring authentication, this is Not Applicable.
+Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+Note: If the server being reviewed is hosting WSUS, this is Not Applicable.
+Note: If the server being reviewed is hosting Simple Certificate Enrollment Services (SCEP), this is Not Applicable.
+Note: If the server being reviewed is hosting Network Device Enrollment Services (NDES), this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Double-click the "SSL Settings" icon.
+
+Verify "Require SSL" check box is selected.
+
+If the "Require SSL" check box is not selected, this is a finding.</check-content></check></Rule></Group><Group id="V-218739"><title>SRG-APP-000092-WSR-000055</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218739r1022675_rule" weight="10.0" severity="medium"><version>IIST-SI-000206</version><title>Both the log file and Event Tracing for Windows (ETW) for each IIS 10.0 website must be enabled.</title><description>&lt;VulnDiscussion&gt;Internet Information Services (IIS) on Windows Server 2012 provides basic logging capabilities. However, because IIS takes some time to flush logs to disk, administrators do not have access to logging information in real-time. In addition, text-based log files can be difficult and time-consuming to process.
+
+In IIS 10.0, the administrator has the option of sending logging information to Event Tracing for Windows (ETW). This option gives the administrator the ability to use standard query tools, or create custom tools, for viewing real-time logging information in ETW. This provides a significant advantage over parsing text-based log files that are not updated in real time.
+
+Satisfies: SRG-APP-000092-WSR-000055, SRG-APP-000108-WSR-000166&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109303</ident><ident system="http://cyber.mil/legacy">V-100199</ident><ident system="http://cyber.mil/cci">CCI-000139</ident><ident system="http://cyber.mil/cci">CCI-001464</ident><fixtext fixref="F-20210r311116_fix">Note: "Microsoft-IIS-Logging/logs" must be enabled prior to configuring this setting.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Click the "Logging" icon.
+
+Under Log Event Destination, select the "Both log file and ETW event" radio button.
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20210r311116_fix" /><check system="C-20212r1022674_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If this server is hosting WSUS, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Click the "Logging" icon.
+
+Under Log Event Destination, verify the "Both log file and ETW event" radio button is selected.
+
+If the "Both log file and ETW event" radio button is not selected, this is a finding.
+
+Note: "Microsoft-IIS-Logging/logs" must be enabled prior to configuring this setting. More configuration information is available at:
+https://blogs.intelink.gov/blogs/_disairrt/?p=1317</check-content></check></Rule></Group><Group id="V-218740"><title>SRG-APP-000098-WSR-000060</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218740r960900_rule" weight="10.0" severity="medium"><version>IIST-SI-000208</version><title>An IIS 10.0 website behind a load balancer or proxy server must produce log records containing the source client IP, and destination information.</title><description>&lt;VulnDiscussion&gt;Web server logging capability is critical for accurate forensic analysis. Without sufficient and accurate information, a correct replay of the events cannot be determined. 
+
+Ascertaining the correct source (e.g., source IP), of the events is important during forensic analysis. Correctly determining the source of events will add information to the overall reconstruction of the loggable event. By determining the source of the event correctly, analysis of the enterprise can be undertaken to determine if events tied to the source occurred in other areas within the enterprise.
+
+A web server behind a load balancer or proxy server, when not configured correctly, will record the load balancer or proxy server as the source of every loggable event. When looking at the information forensically, this information is not helpful in the investigation of events. The web server must record with each event the client source of the event.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109305</ident><ident system="http://cyber.mil/legacy">V-100201</ident><ident system="http://cyber.mil/cci">CCI-000133</ident><fixtext fixref="F-20211r311119_fix">Access the proxy server through which inbound web traffic is passed and configure settings to pass web traffic to the IIS 10.0 web server transparently.</fixtext><fix id="F-20211r311119_fix" /><check system="C-20213r311118_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Interview the System Administrator to review the configuration of the IIS 10.0 architecture and determine if inbound web traffic is passed through a proxy.
+
+If the IIS 10.0 is receiving inbound web traffic through a proxy, the audit logs must be reviewed to determine if correct source information is being passed through by the proxy server.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Click the "Logging" icon.
+
+Click "View log file".
+
+When log file is displayed, review source IP information in log entries and verify entries do not reflect the IP address of the proxy server.
+
+If the website is not behind a load balancer or proxy server, this is Not Applicable.
+
+If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.
+
+If provisions have been made to log the client IP via another field (i.e., utilizing X-Forwarded-For), this is not a finding.</check-content></check></Rule></Group><Group id="V-218741"><title>SRG-APP-000099-WSR-000061</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218741r1022677_rule" weight="10.0" severity="medium"><version>IIST-SI-000209</version><title>The IIS 10.0 website must produce log records that contain sufficient information to establish the outcome (success or failure) of IIS 10.0 website events.</title><description>&lt;VulnDiscussion&gt;Web server logging capability is critical for accurate forensic analysis. Without sufficient and accurate information, a correct replay of the events cannot be determined.
+
+Ascertaining the success or failure of an event is important during forensic analysis. Correctly determining the outcome will add information to the overall reconstruction of the loggable event. By determining the success or failure of the event correctly, analysis of the enterprise can be undertaken to determine if events tied to the event occurred in other areas within the enterprise.
+
+Without sufficient information establishing the success or failure of the logged event, investigation into the cause of event is severely hindered. The success or failure also provides a means to measure the impact of an event and help authorized personnel to determine the appropriate response. Log record content that may be necessary to satisfy the requirement of this control includes, but is not limited to, time stamps, source and destination IP addresses, user/process identifiers, event descriptions, application-specific events, success/fail indications, file names involved, access control, or flow control rules invoked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109307</ident><ident system="http://cyber.mil/legacy">V-100203</ident><ident system="http://cyber.mil/cci">CCI-000134</ident><fixtext fixref="F-20212r311122_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Select the website being reviewed.
+
+Under "IIS", double-click the "Logging" icon.
+
+Configure the "Format:" under "Log File" to "W3C".
+
+Select "Fields".
+
+Under "Custom Fields", select the following fields:
+
+Request Header &gt;&gt; Connection
+
+Request Header &gt;&gt; Warning
+
+Click "OK".
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20212r311122_fix" /><check system="C-20214r1022676_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If this server is hosting WSUS, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Select the website being reviewed.
+
+Under "IIS", double-click the "Logging" icon.
+
+Verify the "Format:" under "Log File" is configured to "W3C".
+
+Select "Fields".
+
+Under "Custom Fields", verify the following fields are selected:
+
+Request Header &gt;&gt; Connection
+
+Request Header &gt;&gt; Warning
+
+If any of the above fields are not selected, this is a finding.</check-content></check></Rule></Group><Group id="V-218742"><title>SRG-APP-000100-WSR-000064</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218742r1022679_rule" weight="10.0" severity="medium"><version>IIST-SI-000210</version><title>The IIS 10.0 website must produce log records containing sufficient information to establish the identity of any user/subject or process associated with an event.</title><description>&lt;VulnDiscussion&gt;Web server logging capability is critical for accurate forensic analysis. Without sufficient and accurate information, a correct replay of the events cannot be determined.
+
+Determining user accounts, processes running on behalf of the user, and running process identifiers also enable a better understanding of the overall event. User tool identification is also helpful to determine if events are related to overall user access or specific client tools.
+
+Log record content that may be necessary to satisfy the requirement of this control includes: time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109309</ident><ident system="http://cyber.mil/legacy">V-100205</ident><ident system="http://cyber.mil/cci">CCI-001487</ident><fixtext fixref="F-20213r311125_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Access the IIS 10.0 web server IIS 10.0 Manager.
+
+Select the website being reviewed.
+
+Under "IIS", double-click the "Logging" icon.
+
+Configure the "Format:" under "Log File" to "W3C".
+
+Select "Fields".
+
+Under "Standard Fields", select "User Agent", "User Name", and "Referrer".
+
+Under "Custom Fields", select the following fields:
+
+Request Header &gt;&gt; Authorization
+
+Response Header &gt;&gt; Content-Type
+
+Click "OK".
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20213r311125_fix" /><check system="C-20215r1022678_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If this server is hosting WSUS, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Access the IIS 10.0 web server IIS 10.0 Manager.
+
+Under "IIS", double-click the "Logging" icon.
+
+Verify the "Format:" under "Log File" is configured to "W3C".
+
+Select "Fields".
+
+Under "Standard Fields", verify "User Agent", "User Name", and "Referrer" are selected.
+
+Under "Custom Fields", verify the following fields have been configured: 
+
+Request Header &gt;&gt; Authorization
+
+Response Header &gt;&gt; Content-Type
+
+If any of the above fields are not selected, this is a finding.</check-content></check></Rule></Group><Group id="V-218743"><title>SRG-APP-000141-WSR-000081</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218743r1156522_rule" weight="10.0" severity="medium"><version>IIST-SI-000214</version><title>The IIS 10.0 website must have Multipurpose Internet Mail Extensions (MIME) that invoke OS shell programs disabled.</title><description>&lt;VulnDiscussion&gt;Controlling what a user of a hosted application can access is part of the security posture of the web server. Any time a user can access more functionality than is needed for the operation of the hosted application poses a security issue. A user with too much access can view information that is not needed for the user's job role, or could use the function in an unintentional manner.
+
+A MIME tells the web server what type of program various file types and extensions are and what external utilities or programs are needed to execute the file type.
+
+A shell is a program that serves as the basic interface between the user and the operating system, so hosted application users must not have access to these programs. Shell programs may execute shell escapes and can then perform unauthorized activities that could damage the security posture of the web server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109311</ident><ident system="http://cyber.mil/legacy">V-100207</ident><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-20214r311128_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click on the IIS 10.0 site.
+
+Under IIS, double-click the “MIME Types” icon.
+
+From the "Group by:" drop-down list, select "Content Type".
+
+From the list of extensions under "Application", remove MIME types for OS shell program extensions, to include at a minimum, the following extensions:
+
+.exe
+.dll
+.com
+.bat
+.csh
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20214r311128_fix" /><check system="C-20216r1156521_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server is hosting WSUS, this is not applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click on the IIS 10.0 site.
+
+Under IIS, double-click the “MIME Types” icon.
+
+From the "Group by:" drop-down list, select "Content Type".
+
+From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
+
+.exe
+.dll
+.com
+.bat
+.csh
+
+If any OS shell MIME types are configured, this is a finding.</check-content></check></Rule></Group><Group id="V-218744"><title>SRG-APP-000141-WSR-000082</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218744r1135545_rule" weight="10.0" severity="medium"><version>IIST-SI-000215</version><title>Mappings to unused and vulnerable scripts on the IIS 10.0 website must be removed.</title><description>&lt;VulnDiscussion&gt;IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.
+
+For Handler Mappings, the ISSO must document and approve all allowable file extensions the website allows (whitelist) and denies (blacklist). The whitelist and blacklist will be compared to the Handler Mappings in IIS 10. Handler Mappings at the site level take precedence over Handler Mappings at the server level.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109313</ident><ident system="http://cyber.mil/legacy">V-100209</ident><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-20215r311131_fix">Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Double-click "Handler Mappings".
+
+Remove any script file extensions listed on the black list that are enabled.
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20215r311131_fix" /><check system="C-20217r1135544_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server being reviewed is hosting SharePoint, this is not applicable.
+
+For Handler Mappings, the ISSO must document and approve all allowable scripts the website allows (whitelist) and denies (blacklist). The whitelist and blacklist will be compared to the Handler Mappings in IIS 10.0. Handler Mappings at the site level take precedence over Handler Mappings at the server level.
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Double-click "Handler Mappings".
+
+If any script file extensions from the blacklist are enabled, this is a finding.</check-content></check></Rule></Group><Group id="V-218745"><title>SRG-APP-000141-WSR-000083</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218745r960963_rule" weight="10.0" severity="medium"><version>IIST-SI-000216</version><title>The IIS 10.0 website must have resource mappings set to disable the serving of certain file types.</title><description>&lt;VulnDiscussion&gt;IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.
+
+For Request Filtering, the ISSO must document and approve all allowable file extensions the website allows (white list) and denies (black list) by the website. The white list and black list will be compared to the Request Filtering in IIS 10.0. Request Filtering at the site level take precedence over Request Filtering at the server level.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109315</ident><ident system="http://cyber.mil/legacy">V-100211</ident><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-20216r311134_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server: 
+
+Open the IIS 10.0 Manager.
+
+Click the site name to review.
+
+Double-click Request Filtering-&gt;File Name Extensions Tab-&gt;Deny File Name Extension.
+
+Add any script file extensions listed on the black list that are not listed.
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20216r311134_fix" /><check system="C-20218r903114_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+
+For Request Filtering, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Request Filtering in IIS 10.0. Request Filtering at the site level take precedence over Request Filtering at the server level.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server: 
+
+Open the IIS 10.0 Manager.
+
+Click the site name to review.
+
+Double-click Request Filtering-&gt;File Name Extensions Tab.
+
+If any script file extensions from the black list are not denied, this is a finding.</check-content></check></Rule></Group><Group id="V-218748"><title>SRG-APP-000142-WSR-000089</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218748r1043177_rule" weight="10.0" severity="medium"><version>IIST-SI-000219</version><title>Each IIS 10.0 website must be assigned a default host header.</title><description>&lt;VulnDiscussion&gt;The web server must be configured to listen on a specified IP address and port. Without specifying an IP address and port for the web server to use, the web server will listen on all IP addresses available to the hosting server. If the web server has multiple IP addresses, i.e., a management IP address, the web server will also accept connections on the management IP address.
+
+Accessing the hosted application through an IP address normally used for non-application functions opens the possibility of user access to resources, utilities, files, ports, and protocols that are protected on the desired application IP address.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109321</ident><ident system="http://cyber.mil/legacy">V-100217</ident><ident system="http://cyber.mil/cci">CCI-000382</ident><fixtext fixref="F-20219r802888_fix">Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Right-click on the site name under review.
+
+Select "Edit Bindings".
+
+Assign hostname entries and unique IP addresses to port 80 for HTTP and port 443 for HTTPS. Other approved and documented ports may be used.
+
+Click "OK".
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20219r802888_fix" /><check system="C-20221r802887_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+Right-click on the site name under review.
+Select "Edit Bindings".
+
+Verify there are hostname entries and unique IP addresses assigned to port 80 for HTTP and port 443 for HTTPS. Other approved and documented ports may be used.
+
+If both hostname entries and unique IP addresses are not configured to port 80 for HTTP and port 443 for HTTPS (or other approved and documented port), this is a finding.
+
+Note: If certificate handling is performed at the Proxy/Load Balancer, this is not a finding.
+
+Note: If HTTP/Port 80 is not being used, and is not configured as above, this is not a finding.
+
+Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.</check-content></check></Rule></Group><Group id="V-218749"><title>SRG-APP-000172-WSR-000104</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218749r1111805_rule" weight="10.0" severity="medium"><version>IIST-SI-000220</version><title>A private IIS 10.0 website authentication mechanism must use client certificates to transmit session identifier to assure integrity.</title><description>&lt;VulnDiscussion&gt;A DoD private website must use PKI as an authentication mechanism for web users. Information systems residing behind web servers requiring authorization based on individual identity must use the identity provided by certificate-based authentication to support access control decisions. Not using client certificates allows an attacker unauthenticated access to private websites.
+
+Satisfies: SRG-APP-000172-WSR-000104, SRG-APP-000224-WSR-000135, SRG-APP-000427-WSR-000186&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109323</ident><ident system="http://cyber.mil/legacy">V-100219</ident><ident system="http://cyber.mil/cci">CCI-000197</ident><ident system="http://cyber.mil/cci">CCI-001188</ident><ident system="http://cyber.mil/cci">CCI-002470</ident><fixtext fixref="F-20220r1111804_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Double-click the "SSL Settings" icon.
+
+Verify the "Clients Certificate Required" check box is selected.
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20220r1111804_fix" /><check system="C-20222r1111803_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server being reviewed is a public IIS 10.0 web server, this is not applicable.
+Note: If the server being reviewed is hosting SharePoint, this is not applicable.
+Note: If the server being reviewed is hosting WSUS, this is not applicable.
+Note: If certificate handling is performed at the Proxy/Load Balancer, this is not applicable.
+Note: If the server being reviewed is hosting Simple Certificate Enrollment Services (SCEP), this is not applicable.
+Note: If the server being reviewed is hosting Network Device Enrollment Services (NDES), this is not applicable.
+Note: If the server is providing OCSP, and not otherwise hosting any content, this requirement is not applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Double-click the "SSL Settings" icon.
+
+Verify the "Clients Certificate Required" check box is selected.
+
+If the "Clients Certificate Required" check box is not selected, this is a finding.</check-content></check></Rule></Group><Group id="V-218750"><title>SRG-APP-000211-WSR-000031</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218750r1138073_rule" weight="10.0" severity="high"><version>IIST-SI-000221</version><title>Anonymous IIS 10.0 website access accounts must be restricted.</title><description>&lt;VulnDiscussion&gt;Many of the security problems that occur are not the result of a user gaining access to files or data for which the user does not have permissions, but rather users are assigned incorrect permissions to unauthorized data. The files, directories, and data stored on the web server must be evaluated and a determination made concerning authorized access to information and programs on the server. Only authorized users and administrative accounts will be allowed on the host server in order to maintain the web server, applications, and review the server operations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109325</ident><ident system="http://cyber.mil/legacy">V-100221</ident><ident system="http://cyber.mil/cci">CCI-001082</ident><fixtext fixref="F-20221r311149_fix">Remove the Anonymous access account from all privileged accounts and all privileged groups.</fixtext><fix id="F-20221r311149_fix" /><check system="C-20223r928847_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Check the account used for anonymous access to the website.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+Open the IIS 10.0 Manager.
+
+Double-click "Authentication" in the IIS section of the website’s Home Pane.
+
+If "Anonymous access" is disabled, this is Not a Finding.
+
+If "Anonymous access" is enabled, click "Anonymous Authentication".
+
+Click "Edit" in the "Actions" pane.
+
+If the "Specific user" radio button is enabled and an ID is specified in the adjacent control box, this is the ID being used for anonymous access. Note the account name.
+
+If nothing is tied to "Specific User", this is Not a Finding.
+
+Check privileged groups that may allow the anonymous account inappropriate membership:
+Open "Computer Management" on the machine.
+
+Expand "Local Users and Groups".
+
+Open "Groups".
+
+Review the members of any of the following privileged groups:
+
+Administrators
+Backup Operators
+Certificate Services (of any designation)
+Distributed COM Users
+Event Log Readers
+Network Configuration Operators
+Performance Log Users
+Performance Monitor Users
+Power Users
+Print Operators
+Remote Desktop Users
+Replicator
+
+Double-click each group and review its members.
+
+If the IUSR account or any account noted above used for anonymous access is a member of any group with privileged access, this is a finding.</check-content></check></Rule></Group><Group id="V-218751"><title>SRG-APP-000224-WSR-000136</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218751r1043181_rule" weight="10.0" severity="medium"><version>IIST-SI-000223</version><title>The IIS 10.0 website must generate unique session identifiers that cannot be reliably reproduced.</title><description>&lt;VulnDiscussion&gt;Communication between a client and the web server is done using the HTTP protocol, but HTTP is a stateless protocol. To maintain a connection or session, a web server will generate a session identifier (ID) for each client session when the session is initiated. The session ID allows the web server to track a user session and, in many cases, the user, if the user previously logged into a hosted application.
+
+By being able to guess session IDs, an attacker can easily perform a man-in-the-middle attack. To truly generate random session identifiers that cannot be reproduced, the web server session ID generator, when used twice with the same input criteria, must generate an unrelated random ID.
+
+The session ID generator must be a FIPS 140-2-approved generator.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109327</ident><ident system="http://cyber.mil/legacy">V-100223</ident><ident system="http://cyber.mil/cci">CCI-001188</ident><fixtext fixref="F-20222r311152_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Under the ASP.NET section, select "Session State".
+
+Under "Session State" Mode Settings, select the "In Process" mode.</fixtext><fix id="F-20222r311152_fix" /><check system="C-20224r1022684_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If ASP.NET is not installed, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Under the "ASP.NET" section, select "Session State".
+
+Under "Session State" Mode Settings, verify the "In Process" mode is selected.
+
+If the "In Process" mode is selected, this is not a finding.
+
+Alternative method:
+
+Click the site name.
+
+Select "Configuration Editor" under the "Management" section.
+
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
+
+Verify the "mode" reflects "InProc".
+
+If the "mode" is not set to "InProc", this is a finding.
+
+If the system being reviewed is part of a Web Farm, interview the System Administrator to ensure Session State Tracking is enabled via a SQL server, or other means. If Session State Tracking is enabled on the Web Farm, this is not a finding.</check-content></check></Rule></Group><Group id="V-218752"><title>SRG-APP-000233-WSR-000146</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218752r1111807_rule" weight="10.0" severity="medium"><version>IIST-SI-000224</version><title>The IIS 10.0 website document directory must be in a separate partition from the IIS 10.0 websites system files.</title><description>&lt;VulnDiscussion&gt;The content database is accessed by multiple anonymous users when the web server is in production. By locating the content database on the same partition as the web server system file, the risk for unauthorized access to these protected files is increased. Additionally, having the content database path on the same drive as the system folders also increases the potential for a drive space exhaustion attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109329</ident><ident system="http://cyber.mil/legacy">V-100225</ident><ident system="http://cyber.mil/cci">CCI-001084</ident><fixtext fixref="F-20223r311155_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Click the "Advanced Settings" from the "Actions" pane.
+
+Change the Physical Path to the new partition and directory location.</fixtext><fix id="F-20223r311155_fix" /><check system="C-20225r1111806_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If this server is hosting WSUS, this requirement is not applicable.
+Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is not applicable.
+Note: If this server is hosting the SharePoint Web Services site, this requirement is not applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Click the "Advanced Settings" from the "Actions" pane.
+
+Review the Physical Path.
+
+If the Path is on the same partition as the OS, this is a finding.</check-content></check></Rule></Group><Group id="V-218753"><title>SRG-APP-000246-WSR-000149</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218753r961152_rule" weight="10.0" severity="medium"><version>IIST-SI-000225</version><title>The IIS 10.0 website must be configured to limit the maxURL.</title><description>&lt;VulnDiscussion&gt;Request filtering replaces URLScan in IIS, enabling administrators to create a more granular rule set with which to allow or reject inbound web content. By setting limits on web requests, it helps to ensure availability of web services and may also help mitigate the risk of buffer overflow type attacks. The MaxURL Request Filter limits the number of bytes the server will accept in a URL.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109331</ident><ident system="http://cyber.mil/legacy">V-100227</ident><ident system="http://cyber.mil/cci">CCI-001094</ident><fixtext fixref="F-20224r311158_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Click the site name under review.
+
+Double-click the "Request Filtering" icon.
+
+Click "Edit Feature Settings" in the "Actions" pane.
+
+Set the "maxURL" value to "4096" or less.</fixtext><fix id="F-20224r311158_fix" /><check system="C-20226r311157_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click on the site name.
+
+Double-click the "Request Filtering" icon.
+
+Click "Edit Feature Settings" in the "Actions" pane.
+
+If the "maxUrl" value is not set to "4096" or less, this is a finding.</check-content></check></Rule></Group><Group id="V-218754"><title>SRG-APP-000246-WSR-000149</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218754r1156525_rule" weight="10.0" severity="medium"><version>IIST-SI-000226</version><title>The IIS 10.0 website must be configured to limit the size of web requests.</title><description>&lt;VulnDiscussion&gt;By setting limits on web requests, it ensures availability of web services and mitigates the risk of buffer overflow type attacks. The maxAllowedContentLength Request Filter limits the number of bytes the server will accept in a request.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109333</ident><ident system="http://cyber.mil/legacy">V-100229</ident><ident system="http://cyber.mil/cci">CCI-001094</ident><fixtext fixref="F-20225r1156524_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Double-click the "Request Filtering" icon.
+
+Click "Edit Feature Settings" in the "Actions" pane.
+
+Set the "maxAllowedContentLength" value to "2147483647" or less.</fixtext><fix id="F-20225r1156524_fix" /><check system="C-20227r1156523_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click on the site name.
+
+Double-click the "Request Filtering" icon.
+
+Click "Edit Feature Settings" in the "Actions" pane.
+
+If the "maxAllowedContentLength" value is not explicitly set to "2147483647" or less or a length documented and approved by the ISSO, this is a finding.</check-content></check></Rule></Group><Group id="V-218755"><title>SRG-APP-000246-WSR-000149</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218755r961152_rule" weight="10.0" severity="medium"><version>IIST-SI-000227</version><title>The IIS 10.0 websites Maximum Query String limit must be configured.</title><description>&lt;VulnDiscussion&gt;Setting limits on web requests helps to ensure availability of web services and may also help mitigate the risk of buffer overflow type attacks. The Maximum Query String Request Filter describes the upper limit on allowable query string lengths. Upon exceeding the configured value, IIS will generate a Status Code 404.15.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109335</ident><ident system="http://cyber.mil/legacy">V-100231</ident><ident system="http://cyber.mil/cci">CCI-001094</ident><fixtext fixref="F-20226r311164_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Double-click the "Request Filtering" icon.
+
+Click "Edit Feature Settings" in the "Actions" pane.
+
+Set the "Maximum Query String" value to "2048" or less.</fixtext><fix id="F-20226r311164_fix" /><check system="C-20228r311163_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Double-click the "Request Filtering" icon.
+
+Click “Edit Feature Settings” in the "Actions" pane.
+
+If the "Maximum Query String" value is not set to "2048" or less, this is a finding.</check-content></check></Rule></Group><Group id="V-218756"><title>SRG-APP-000246-WSR-000149</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218756r961152_rule" weight="10.0" severity="medium"><version>IIST-SI-000228</version><title>Non-ASCII characters in URLs must be prohibited by any IIS 10.0 website.</title><description>&lt;VulnDiscussion&gt;Setting limits on web requests ensures availability of web services and mitigates the risk of buffer overflow type attacks. The allow high-bit characters Request Filter enables rejection of requests containing non-ASCII characters.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109337</ident><ident system="http://cyber.mil/legacy">V-100233</ident><ident system="http://cyber.mil/cci">CCI-001094</ident><fixtext fixref="F-20227r311167_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Double-click the "Request Filtering" icon.
+
+Click "Edit Feature Settings" in the "Actions" pane.
+
+Uncheck the "Allow high-bit characters" check box.</fixtext><fix id="F-20227r311167_fix" /><check system="C-20229r311166_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Double-click the "Request Filtering" icon.
+
+Click "Edit Feature Settings" in the "Actions" pane.
+
+If the "Allow high-bit characters" check box is checked, this is a finding.
+
+Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.</check-content></check></Rule></Group><Group id="V-218757"><title>SRG-APP-000246-WSR-000149</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218757r961152_rule" weight="10.0" severity="medium"><version>IIST-SI-000229</version><title>Double encoded URL requests must be prohibited by any IIS 10.0 website.</title><description>&lt;VulnDiscussion&gt;Request filtering enables administrators to create a more granular rule set with which to allow or reject inbound web content. Setting limits on web requests ensures availability of web services and mitigates the risk of buffer overflow type attacks. When the "Allow double escaping" option is disabled, it prevents attacks that rely on double-encoded requests.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109339</ident><ident system="http://cyber.mil/legacy">V-100235</ident><ident system="http://cyber.mil/cci">CCI-001094</ident><fixtext fixref="F-20228r311170_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Double-click the "Request Filtering" icon.
+
+Click "Edit Feature Settings" in the "Actions" pane.
+
+Uncheck the "Allow double escaping" check box.</fixtext><fix id="F-20228r311170_fix" /><check system="C-20230r903118_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Double-click the "Request Filtering" icon.
+
+Click "Edit Feature Settings" in the "Actions" pane.
+
+If the "Allow double escaping" check box is checked, this is a finding.</check-content></check></Rule></Group><Group id="V-218758"><title>SRG-APP-000246-WSR-000149</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218758r1156527_rule" weight="10.0" severity="medium"><version>IIST-SI-000230</version><title>Unlisted file extensions in URL requests must be filtered by any IIS 10.0 website.</title><description>&lt;VulnDiscussion&gt;Request filtering enables administrators to create a more granular rule set to allow or reject inbound web content. Setting limits on web requests helps to ensure availability of web services and may also help mitigate the risk of buffer overflow type attacks. The allow unlisted property of the "File Extensions Request" filter enables rejection of requests containing specific file extensions not defined in the "File Extensions" filter. Tripping this filter will cause IIS to generate a Status Code 404.7.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109341</ident><ident system="http://cyber.mil/legacy">V-100237</ident><ident system="http://cyber.mil/cci">CCI-001094</ident><fixtext fixref="F-20229r311173_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Double-click the "Request Filtering" icon.
+
+Click "Edit Feature Settings" in the "Actions" pane.
+
+Uncheck the "Allow unlisted file extensions" check box.</fixtext><fix id="F-20229r311173_fix" /><check system="C-20231r1156526_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+
+Note: If the server being reviewed is hosting Network Device Enrollment Services (NDES), this is Not Applicable.
+
+Note: If the server being reviewed is hosting Azure DevOps (ADO), this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Double-click the "Request Filtering" icon.
+
+Click "Edit Feature Settings" in the "Actions" pane.
+
+If the "Allow unlisted file name extensions" check box is checked, this is a finding.
+
+Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Note: If this IIS 10.0 installation is supporting Splunk, this requirement is Not Applicable.
+
+Note: If this IIS 10.0 installation is supporting WSUS, this requirement is Not Applicable.</check-content></check></Rule></Group><Group id="V-218759"><title>SRG-APP-000251-WSR-000157</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218759r961158_rule" weight="10.0" severity="medium"><version>IIST-SI-000231</version><title>Directory Browsing on the IIS 10.0 website must be disabled.</title><description>&lt;VulnDiscussion&gt;Directory browsing allows the contents of a directory to be displayed upon request from a web client. If directory browsing is enabled for a directory in IIS, users could receive a web page listing the contents of the directory. If directory browsing is enabled the risk of inadvertently disclosing sensitive content is increased.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109343</ident><ident system="http://cyber.mil/legacy">V-100239</ident><ident system="http://cyber.mil/cci">CCI-001310</ident><fixtext fixref="F-20230r311176_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the Site.
+
+Double-click the "Directory Browsing" icon.
+
+Under the "Actions" pane, click "Disabled".</fixtext><fix id="F-20230r311176_fix" /><check system="C-20232r311175_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Click the Site.
+
+Double-click the "Directory Browsing" icon.
+
+If "Directory Browsing" is not installed, this is Not Applicable.
+
+Under the "Actions" pane, verify "Directory Browsing" is "Disabled".
+
+If "Directory Browsing" is not "Disabled", this is a finding.</check-content></check></Rule></Group><Group id="V-218760"><title>SRG-APP-000266-WSR-000159</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218760r1022690_rule" weight="10.0" severity="medium"><version>IIST-SI-000233</version><title>Warning and error messages displayed to clients must be modified to minimize the identity of the IIS 10.0 website, patches, loaded modules, and directory paths.</title><description>&lt;VulnDiscussion&gt;HTTP error pages contain information that could enable an attacker to gain access to an information system. Failure to prevent the sending of HTTP error pages with full information to remote requesters exposes internal configuration information to potential attackers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109345</ident><ident system="http://cyber.mil/legacy">V-100241</ident><ident system="http://cyber.mil/cci">CCI-001312</ident><fixtext fixref="F-20231r1022689_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Double-click the "Error Pages" icon.
+
+Click each error message and click "Edit Feature" Setting from the "Actions" pane; set each error message to "Detailed errors for local requests and custom error pages for remote requests" or "Custom error pages".</fixtext><fix id="F-20231r1022689_fix" /><check system="C-20233r1022688_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If this server is hosting WSUS, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Double-click the "Error Pages" icon.
+
+Click each error message and click "Edit Feature" setting from the "Actions" pane.
+
+If any error message is not set to "Detailed errors for local requests and custom error pages for remote requests" or "Custom error pages", this is a finding.</check-content></check></Rule></Group><Group id="V-218761"><title>SRG-APP-000266-WSR-000160</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218761r961167_rule" weight="10.0" severity="medium"><version>IIST-SI-000234</version><title>Debugging and trace information used to diagnose the IIS 10.0 website must be disabled.</title><description>&lt;VulnDiscussion&gt;Setting compilation debug to false ensures detailed error information does not inadvertently display during live application usage, mitigating the risk of application information being displayed to users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109347</ident><ident system="http://cyber.mil/legacy">V-100243</ident><ident system="http://cyber.mil/cci">CCI-001312</ident><fixtext fixref="F-20232r311182_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Double-click ".NET Compilation".
+
+Scroll down to the "Behavior" section and set the value for "Debug" to "False".</fixtext><fix id="F-20232r311182_fix" /><check system="C-20234r903122_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server being reviewed is hosting SharePoint, this is Not Applicable.
+Note: If the ".NET feature" is not installed, this check is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Double-click ".NET Compilation".
+
+Scroll down to the "Behavior" section and verify the value for "Debug" is set to "False".
+
+If the "Debug" value is not set to "False", this is a finding.</check-content></check></Rule></Group><Group id="V-218762"><title>SRG-APP-000295-WSR-000012</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218762r1043182_rule" weight="10.0" severity="medium"><version>IIST-SI-000235</version><title>The Idle Time-out monitor for each IIS 10.0 website must be enabled.</title><description>&lt;VulnDiscussion&gt;The idle time-out attribute controls the amount of time a worker process will remain idle before it shuts down. A worker process is idle if it is not processing requests and no new requests are received.
+
+The purpose of this attribute is to conserve system resources; the default value for idle time-out is 20 minutes.
+
+By default, the World Wide Web (WWW) service establishes an overlapped recycle, in which the worker process to be shut down is kept running until after a new worker process is started.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109349</ident><ident system="http://cyber.mil/legacy">V-100245</ident><ident system="http://cyber.mil/cci">CCI-002361</ident><fixtext fixref="F-20233r311185_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the Application Pools.
+
+Highlight an Application Pool to review and click "Advanced Settings" in the "Actions" pane.
+
+Scroll down to the "Process Model" section and set the value for "Idle Time-out" to something other than "0". "20" or less is recommended if the amount of RAM on the system is limited.</fixtext><fix id="F-20233r311185_fix" /><check system="C-20235r766902_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+Click the Application Pools.
+Highlight an Application Pool to review and click "Advanced Settings" in the "Actions" pane.
+Scroll down to the "Process Model" section and verify the value for "Idle Time-out" is not "0".
+
+If the "Idle Time-out" is set to "0", this is a finding.</check-content></check></Rule></Group><Group id="V-218763"><title>SRG-APP-000295-WSR-000134</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218763r1043182_rule" weight="10.0" severity="medium"><version>IIST-SI-000236</version><title>The IIS 10.0 websites connectionTimeout setting must be explicitly configured to disconnect an idle session.</title><description>&lt;VulnDiscussion&gt;Leaving sessions open indefinitely is a major security risk. An attacker can easily use an already authenticated session to access the hosted application as the previously authenticated user. By closing sessions after a set period of inactivity, the web server can make certain that those sessions that are not closed through the user logging out of an application are eventually closed.
+
+Acceptable values are 5 minutes for high-value applications, 10 minutes for medium-value applications, and 15 minutes for low-value applications.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109351</ident><ident system="http://cyber.mil/legacy">V-100247</ident><ident system="http://cyber.mil/cci">CCI-002361</ident><fixtext fixref="F-20234r802894_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Select "Configuration Editor" under the "Management" section.
+
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState". 
+
+Set the "timeout" to "00:15:00 or less”.
+
+In the "Actions" pane, click "Apply".</fixtext><fix id="F-20234r802894_fix" /><check system="C-20236r802893_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name.
+
+Select "Configuration Editor" under the "Management" section.
+
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
+
+Verify the "timeout" is set to "00:15:00 or less”.
+
+If "timeout" is not set to "00:15:00 or less”, this is a finding.</check-content></check></Rule></Group><Group id="V-218764"><title>SRG-APP-000316-WSR-000170</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218764r961281_rule" weight="10.0" severity="medium"><version>IIST-SI-000237</version><title>The IIS 10.0 website must provide the capability to immediately disconnect or disable remote access to the hosted applications.</title><description>&lt;VulnDiscussion&gt;During an attack on the web server or any of the hosted applications, the system administrator may need to disconnect or disable access by users to stop the attack.
+
+The web server must provide a capability to disconnect users to a hosted application without compromising other hosted applications unless deemed necessary to stop the attack. Methods to disconnect or disable connections are to stop the application service for a specified hosted application, stop the web server, or block all connections through web server access list.
+
+The web server capabilities used to disconnect or disable users from connecting to hosted applications and the web server must be documented to make certain that during an attack, the proper action is taken to conserve connectivity to any other hosted application if possible and to make certain log data is conserved for later forensic analysis.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109353</ident><ident system="http://cyber.mil/legacy">V-100249</ident><ident system="http://cyber.mil/cci">CCI-002322</ident><fixtext fixref="F-20235r311191_fix">Prepare documented procedures for shutting down an IIS 10.0 website in the event of an attack. The procedure should, at a minimum, provide the following steps:
+
+Determine the respective website for the application at risk of an attack.
+
+Access the IIS 10.0 web server IIS 10.0 Manager.
+
+Select the respective website.
+
+In the "Actions" pane, under "Manage Website", click "Stop".
+
+If necessary, stop all websites.
+
+If necessary, stop the IIS 10.0 web server by selecting the web server in the IIS 10.0 Manager.
+
+In the "Actions" pane, under "Manage Server", click "Stop".</fixtext><fix id="F-20235r311191_fix" /><check system="C-20237r311190_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Interview the System Administrator and Web Manager.
+
+Ask for documentation for the IIS 10.0 web server administration.
+
+Verify there are documented procedures for shutting down an IIS 10.0 website in the event of an attack. The procedure should, at a minimum, provide the following steps:
+
+Determine the respective website for the application at risk of an attack.
+
+Access the IIS 10.0 web server IIS 10.0 Manager.
+
+Select the respective website.
+
+In the "Actions" pane, under "Manage Website", click "Stop".
+
+If necessary, stop all websites.
+
+If necessary, stop the IIS 10.0 web server by selecting the web server in the IIS 10.0 Manager.
+
+In the "Actions" pane, under "Manage Server", click "Stop".
+
+If there are not documented procedures with, at a minimum, the mentioned steps for stopping a website, this is a finding.</check-content></check></Rule></Group><Group id="V-218765"><title>SRG-APP-000357-WSR-000150</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218765r961392_rule" weight="10.0" severity="medium"><version>IIST-SI-000238</version><title>The IIS 10.0 website must use a logging mechanism configured to allocate log record storage capacity large enough to accommodate the logging requirements of the IIS 10.0 website.</title><description>&lt;VulnDiscussion&gt;To make certain the logging mechanism used by the web server has sufficient storage capacity in which to write the logs, the logging mechanism must be able to allocate log record storage capacity.
+
+The task of allocating log record storage capacity is usually performed during initial installation of the logging mechanism. The system administrator will usually coordinate the allocation of physical drive space with the web server administrator along with the physical location of the partition and disk. Refer to NIST SP 800-92 for specific requirements on log rotation and storage dependent on the impact of the web server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109355</ident><ident system="http://cyber.mil/legacy">V-100251</ident><ident system="http://cyber.mil/cci">CCI-001849</ident><fixtext fixref="F-20236r311194_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Under "IIS" double-click on the "Logging" icon.
+
+If necessary, in the "Logging" configuration box, redesignate a log path to a location able to house the logs.
+
+Under "Log File Rollover", deselect the "Do not create new log files" setting.
+
+Configure a schedule to rollover log files on a regular basis.</fixtext><fix id="F-20236r311194_fix" /><check system="C-20238r311193_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Access the IIS 10.0 web server IIS 10.0 Manager.
+
+Under "IIS" double-click on the "Logging" icon.
+
+In the "Logging" configuration box, determine the "Directory:" to which the "W3C" logging is being written.
+
+Confirm with the System Administrator that the designated log path is of sufficient size to maintain the logging.
+
+Under "Log File Rollover", verify "Do not create new log files" is not selected.
+
+Verify a schedule is configured to rollover log files on a regular basis.
+
+Consult with the System Administrator to determine if there is a documented process for moving the log files off of the IIS 10.0 web server to another logging device.
+
+If the designated logging path device is not of sufficient space to maintain all log files and there is not a schedule to rollover files on a regular basis, this is a finding.</check-content></check></Rule></Group><Group id="V-218766"><title>SRG-APP-000383-WSR-000175</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218766r1111809_rule" weight="10.0" severity="medium"><version>IIST-SI-000239</version><title>The IIS 10.0 websites must use ports, protocols, and services according to Ports, Protocols, and Services Management (PPSM) guidelines.</title><description>&lt;VulnDiscussion&gt;Web servers provide numerous processes, features, and functionalities that use TCP/IP ports. Some of these processes may be deemed unnecessary or too unsecure to run on a production system.
+
+The web server must provide the capability to disable or deactivate network-related services deemed to be non-essential to the server mission, too unsecure, or prohibited by the PPSM CAL and vulnerability assessments.
+
+Failure to comply with DoD ports, protocols, and services (PPS) requirements can result in compromise of enclave boundary protections and/or functionality of the AIS.
+
+The ISSM will ensure web servers are configured to use only authorized PPS in accordance with the Network Infrastructure STIG, DoD Instruction 8551.1, PPSM, and the associated PPS Assurance Category Assignments List.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109357</ident><ident system="http://cyber.mil/legacy">V-100253</ident><ident system="http://cyber.mil/cci">CCI-001762</ident><fixtext fixref="F-20237r311197_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+In the "Action" Pane, click "Bindings".
+
+Edit to change an existing binding and set the correct ports and protocol.</fixtext><fix id="F-20237r311197_fix" /><check system="C-20239r1111808_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server is providing OCSP, and not otherwise hosting any content, this requirement is not applicable.
+
+Review the website to determine if HTTP and HTTPs (e.g., 80 and 443) are used in accordance with those ports and services registered and approved for use by the DOD PPSM. Any variation in PPS will be documented, registered, and approved by the PPSM.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+In the "Action" Pane, click "Bindings".
+
+Review the ports and protocols. If unknown ports or protocols are used, then this is a finding.</check-content></check></Rule></Group><Group id="V-218767"><title>SRG-APP-000427-WSR-000186</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218767r1111811_rule" weight="10.0" severity="medium"><version>IIST-SI-000241</version><title>The IIS 10.0 website must only accept client certificates issued by DOD PKI or DOD-approved PKI Certification Authorities (CAs).</title><description>&lt;VulnDiscussion&gt;The use of a DOD PKI certificate ensures clients the private website they are connecting to is legitimate, and is an essential part of the DOD defense-in-depth strategy.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109359</ident><ident system="http://cyber.mil/legacy">V-100255</ident><ident system="http://cyber.mil/cci">CCI-002470</ident><fixtext fixref="F-20238r1067600_fix">To add DOD Certificates to the Server, if not already present:
+
+Open the IIS 10.0 Manager.
+
+Click the Server name.
+
+Double-click "Server Certificates".
+
+Click "Import" under the "Actions" pane.
+
+Browse to the DOD certificate location, select it, and click "OK".
+
+Remove any non-DOD certificates if present.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server to bind the certificates to the site:
+
+Click on the site needing the certificate.
+
+Select "Bindings" under the "Actions" pane.
+
+Click on the binding needing a certificate and select "Edit", or add a site binding for HTTPS.
+
+Assign the certificate to the website by choosing it under the "SSL Certificate" drop-down and clicking "OK".</fixtext><fix id="F-20238r1067600_fix" /><check system="C-20240r1111810_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server being reviewed is hosting WSUS, this is not applicable.
+Note: If the server is providing OCSP, and not otherwise hosting any content, this requirement is not applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Click "Bindings" in the "Action" Pane.
+
+Click the "HTTPS type" from the box.
+
+Click "Edit".
+
+Click "View" and then review and verify the certificate path.
+
+If the list of CAs in the trust hierarchy does not lead to the DOD PKI Root CA, DOD-approved external certificate authority (ECA), or DOD-approved external partner, this is a finding.
+
+If HTTPS is not an available type under site bindings, this is a finding.
+
+If HTTPS is not an available type under site bindings, and the Web Server ONLY communicates directly with a load balancer/proxy server with IP address and Domain Restrictions in place, this is not a finding.</check-content></check></Rule></Group><Group id="V-218768"><title>SRG-APP-000429-WSR-000113</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218768r1156529_rule" weight="10.0" severity="high"><version>IIST-SI-000242</version><title>The IIS 10.0 private website must employ cryptographic mechanisms (TLS) and require client certificates.</title><description>&lt;VulnDiscussion&gt;TLS encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2/140-3 approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
+
+NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109361</ident><ident system="http://cyber.mil/legacy">V-100257</ident><ident system="http://cyber.mil/cci">CCI-002476</ident><fixtext fixref="F-20239r1111813_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Double-click the "SSL Settings" icon under the "IIS" section.
+
+Select the "Require SSL" setting.
+
+Select the "Client Certificates Required" setting.
+
+Click "Apply" in the "Actions" pane.
+
+Click the site under review.
+
+Select "Configuration Editor" under the "Management" section.
+
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.webServer/security/access".
+
+Click on the drop-down list for "sslFlags".
+
+Select the "Ssl128" check box.
+
+Click "Apply" in the "Actions" pane.</fixtext><fix id="F-20239r1111813_fix" /><check system="C-20241r1156528_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Notes: 
+- If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 10.0 server, and the IIS 10.0 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server. In this case, this requirement is not applicable.
+- If this is a public-facing web server, this requirement is not applicable.
+- If this server is hosting WSUS, this requirement is not applicable.
+- If the server being reviewed is hosting SharePoint, this is not applicable.
+- If the server being reviewed is hosting Simple Certificate Enrollment Services (SCEP), this is not applicable.
+- If the server being reviewed is hosting Network Device Enrollment Services (NDES), this is not applicable.
+- If the server is providing OCSP, and not otherwise hosting any content, this requirement is not applicable.
+- If the server is providing CRL, and not otherwise hosting any content, this requirement is not applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Open the IIS 10.0 Manager.
+
+Double-click the "SSL Settings" icon under the "IIS" section.
+
+Verify "Require SSL" is checked.
+
+Verify "Client Certificates Required" is selected.
+
+Click the site under review.
+
+Select "Configuration Editor" under the "Management" section.
+
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.webServer/security/access".
+
+The value for "sslFlags" set must include "ssl128".
+
+If the "Require SSL" is not selected, this is a finding.
+
+If the "Client Certificates Required" is not selected, this is a finding. Note: "Client Certificates Required" can be considered Not Applicable in a Single Sign On (SSO) scenario where client certificates are no longer processed locally.
+
+If the "sslFlags" is not set to "ssl128", this is a finding.</check-content></check></Rule></Group><Group id="V-218769"><title>SRG-APP-000439-WSR-000152</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218769r961632_rule" weight="10.0" severity="medium"><version>IIST-SI-000244</version><title>IIS 10.0 website session IDs must be sent to the client using TLS.</title><description>&lt;VulnDiscussion&gt;The HTTP protocol is a stateless protocol. To maintain a session, a session identifier is used. The session identifier is a piece of data used to identify a session and a user. If the session identifier is compromised by an attacker, the session can be hijacked. By encrypting the session identifier, the identifier becomes more difficult for an attacker to hijack, decrypt, and use before the session has expired.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109363</ident><ident system="http://cyber.mil/legacy">V-100259</ident><ident system="http://cyber.mil/cci">CCI-002418</ident><fixtext fixref="F-20240r311206_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Access the IIS 10.0 Manager.
+
+Select the website being reviewed.
+
+Under "Management" section, double-click the "Configuration Editor" icon.
+
+From the "Section:" drop-down list, select "system.webServer/asp".
+
+Expand the "session" section.
+
+Select "True" for the "keepSessionIdSecure" setting.
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20240r311206_fix" /><check system="C-20242r311205_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Access the IIS 10.0 Manager.
+
+Select the website being reviewed.
+
+Under "Management" section, double-click the "Configuration Editor" icon.
+
+From the "Section:" drop-down list, select "system.webServer/asp".
+
+Expand the "session" section.
+
+Verify the "keepSessionIdSecure" is set to "True".
+
+If the "keepSessionIdSecure" is not set to "True", this is a finding.</check-content></check></Rule></Group><Group id="V-218770"><title>SRG-APP-000439-WSR-000154</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218770r1111816_rule" weight="10.0" severity="medium"><version>IIST-SI-000246</version><title>Cookies exchanged between the IIS 10.0 website and the client must have cookie properties set to prohibit client-side scripts from reading the cookie data.</title><description>&lt;VulnDiscussion&gt;A cookie can be read by client-side scripts easily if cookie properties are not set properly. By allowing cookies to be read by the client-side scripts, information such as session identifiers could be compromised and used by an attacker who intercepts the cookie. Setting cookie properties (i.e., HttpOnly property) to disallow client-side scripts from reading cookies better protects the information inside the cookie.
+
+Satisfies: SRG-APP-000439-WSR-000154, SRG-APP-000439-SSR-000155, SRG-APP-000439-WSR-000153&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109365</ident><ident system="http://cyber.mil/legacy">V-100261</ident><ident system="http://cyber.mil/cci">CCI-002418</ident><fixtext fixref="F-20241r903125_fix">Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Access the IIS 10.0 Manager.
+Under "Management" section, double-click the "Configuration Editor" icon.
+From the "Section:" drop-down list, select "system.web/httpCookies".
+Set the "require SSL" to "True".
+
+From the "Section:" drop-down list, select "system.web/sessionState".
+Set the "compressionEnabled" to "False".
+
+Select "Apply" from the "Actions" pane.</fixtext><fix id="F-20241r903125_fix" /><check system="C-20243r1111815_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server being reviewed is a public IIS 10.0 web server, this is not applicable.
+Note: If the server being reviewed is hosting SharePoint, this is not applicable.
+Note: If the server being reviewed is hosting WSUS, this is not applicable.
+Note: If SSL is installed on load balancer/proxy server through which traffic is routed to the IIS 10.0 server, and the IIS 10.0 server receives traffic from the load balancer/proxy server, the SSL requirement must be met on the load balancer/proxy server.
+Note: If the server is providing OCSP, and not otherwise hosting any content, this requirement is not applicable.
+
+Follow the procedures below for each site hosted on the IIS 10.0 web server:
+
+Access the IIS 10.0 Manager.
+Under the "Management" section, double-click the "Configuration Editor" icon.
+From the "Section:" drop-down list, select "system.web/httpCookies".
+Verify the "require SSL" is set to "True".
+
+From the "Section:" drop-down list, select "system.web/sessionState".
+Verify the "compressionEnabled" is set to "False".
+
+If both the "system.web/httpCookies:require SSL" is set to "True" and the "system.web/sessionState:compressionEnabled" is set to "False", this is not a finding.</check-content></check></Rule></Group><Group id="V-218771"><title>SRG-APP-000516-WSR-000174</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218771r961863_rule" weight="10.0" severity="medium"><version>IIST-SI-000251</version><title>The IIS 10.0 website must have a unique application pool.</title><description>&lt;VulnDiscussion&gt;Application pools isolate sites and applications to address reliability, availability, and security issues. Sites and applications may be grouped according to configurations, although each site will be associated with a unique application pool.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109367</ident><ident system="http://cyber.mil/legacy">V-100263</ident><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-20242r311212_fix">Open the IIS 10.0 Manager.
+
+Click the site name under review.
+
+Assign a unique application pool to each website.</fixtext><fix id="F-20242r311212_fix" /><check system="C-20244r311211_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
+
+If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Open the IIS 10.0 Manager.
+
+Click "Application Pools".
+
+In the list of Application Pools, review the "Applications" column and verify unique application pools for each website.
+
+If any Application Pools are being used for more than one website, this is a finding.</check-content></check></Rule></Group><Group id="V-218772"><title>SRG-APP-000516-WSR-000174</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218772r1022694_rule" weight="10.0" severity="medium"><version>IIST-SI-000252</version><title>The maximum number of requests an application pool can process for each IIS 10.0 website must be explicitly set.</title><description>&lt;VulnDiscussion&gt;IIS application pools can be periodically recycled to avoid unstable states possibly leading to application crashes, hangs, or memory leaks. By default, application pool recycling is overlapped, which means the worker process to be shut down is kept running until after a new worker process is started. After a new worker process starts, new requests are passed to it. The old worker process shuts down after it finishes processing its existing requests, or after a configured time-out, whichever comes first. This way of recycling ensures uninterrupted service to clients.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109369</ident><ident system="http://cyber.mil/legacy">V-100265</ident><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-20243r311215_fix">Open the IIS 10.0 Manager.
+
+Click "Application Pools".
+
+Highlight an Application Pool and click "Advanced Settings" in the "Action" Pane.
+
+Scroll down to the "Recycling section" and set the value for "Request Limit" to greater than "0".
+
+Click "OK".</fixtext><fix id="F-20243r311215_fix" /><check system="C-20245r1022693_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
+Note: If this server is hosting WSUS, this requirement is Not Applicable.
+Note: If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Open the IIS 10.0 Manager.
+
+Perform for each Application Pool.
+
+Click "Application Pools".
+
+Highlight an Application Pool and click "Advanced Settings" in the "Action" Pane.
+
+Scroll down to the "Recycling section" and verify the value for "Request Limit" is set to a value other than "0".
+
+If the "Request Limit" is set to a value of "0", this is a finding.
+
+If the system must require "Request Limit" to be set to "0", it is documented and approved by the ISSO, this is not a finding.</check-content></check></Rule></Group><Group id="V-218775"><title>SRG-APP-000516-WSR-000174</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218775r1022696_rule" weight="10.0" severity="medium"><version>IIST-SI-000255</version><title>The application pool for each IIS 10.0 website must have a recycle time explicitly set.</title><description>&lt;VulnDiscussion&gt;Application pools can be periodically recycled to avoid unstable states possibly leading to application crashes, hangs, or memory leaks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109375</ident><ident system="http://cyber.mil/legacy">V-100271</ident><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-20246r863019_fix">Open the IIS 10.0 Manager.
+
+Click the "Application Pools".
+
+Perform the following for each Application Pool:
+
+Highlight an Application Pool and click "Recycling" in the "Actions" pane.
+
+In the Recycling Conditions window, select at least one means to recycle the Application Pool (e.g., Regular Time Intervals, Scheduled Time).
+
+Click "Next".
+
+In the Recycling Events to Log window, select at minimum both the events that match the conditions from the previous step (e.g., Regular Time Intervals, Scheduled Time).
+
+Click "Finish".</fixtext><fix id="F-20246r863019_fix" /><check system="C-20248r1022695_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
+Note: If the IIS Application Pool is hosting Microsoft Exchange and not otherwise hosting any content, this is Not Applicable.
+Note: If this server is hosting WSUS, this requirement is Not Applicable.
+
+Open the IIS 10.0 Manager.
+
+Expand "Application Pools".
+
+Perform the following for each Application Pool:
+
+Highlight an Application Pool and click "Recycling" in the "Actions" pane.
+
+In the Recycling Conditions window, verify at least one condition is checked as desired by the organization (e.g., Regular Time Intervals, Scheduled Time).
+
+If no conditions are checked, this is a finding.
+
+Click "Next".
+
+In the Recycling Events to Log window, verify at minimum the Recycling Events are selected that correspond to the conditions defined in the previous step (e.g., Regular Time Intervals, Scheduled Time).
+
+If no events are selected, this is a finding.
+
+Click "Cancel".</check-content></check></Rule></Group><Group id="V-218777"><title>SRG-APP-000516-WSR-000174</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218777r961863_rule" weight="10.0" severity="medium"><version>IIST-SI-000258</version><title>The application pools rapid fail protection for each IIS 10.0 website must be enabled.</title><description>&lt;VulnDiscussion&gt;Rapid fail protection is a feature that interrogates the health of worker processes associated with websites and web applications. It can be configured to perform a number of actions such as shutting down and restarting worker processes that have reached failure thresholds. By not setting rapid fail protection, the web server could become unstable in the event of a worker process crash potentially leaving the web server unusable.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109379</ident><ident system="http://cyber.mil/legacy">V-100275</ident><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-20248r311230_fix">Open the IIS 10.0 Manager.
+
+Click "Application Pools".
+
+Perform the following for each Application Pool:
+
+Highlight an Application Pool to review and click "Advanced Settings" in the "Actions" pane.
+
+Scroll down to the "Rapid Fail Protection" section and set the value for "Enabled" to "True".
+
+Click "OK".</fixtext><fix id="F-20248r311230_fix" /><check system="C-20250r311229_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
+
+If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Open the IIS 10.0 Manager.
+
+Click "Application Pools".
+
+Perform the following for each Application Pool:
+
+Highlight an Application Pool to review and click "Advanced Settings" in the "Actions" pane.
+
+Scroll down to the "Rapid Fail Protection" section and verify the value for "Enabled" is set to "True".
+
+If the "Rapid Fail Protection:Enabled" is not set to "True", this is a finding.</check-content></check></Rule></Group><Group id="V-218778"><title>SRG-APP-000516-WSR-000174</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218778r961863_rule" weight="10.0" severity="medium"><version>IIST-SI-000259</version><title>The application pools rapid fail protection settings for each IIS 10.0 website must be managed.</title><description>&lt;VulnDiscussion&gt;Windows Process Activation Service (WAS) manages application pool configuration and may flag a worker process as unhealthy and shut it down. The rapid fail protection must be set to a suitable value. A lack of response from the worker process might mean the worker process does not have a thread to respond to the ping request, or that it is hanging for some other reason. The ping interval and ping response time may need adjustment to gain access to timely information about application pool health without triggering false, unhealthy conditions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109381</ident><ident system="http://cyber.mil/legacy">V-100277</ident><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-20249r311233_fix">Open the IIS 10.0 Manager.
+
+Click "Application Pools".
+
+Perform the following for each Application Pool:
+
+Highlight an Application Pool to review and click "Advanced Settings" in the "Actions" pane.
+
+Scroll down to the "Rapid Fail Protection" section and set the value for "Failure Interval" to "5" or less.
+
+Click "OK".</fixtext><fix id="F-20249r311233_fix" /><check system="C-20251r311232_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
+
+If this IIS 10.0 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
+Open the IIS 10.0 Manager.
+
+Click "Application Pools".
+
+Perform the following for each Application Pool:
+
+Highlight an Application Pool to review and click "Advanced Settings" in the "Actions" pane.
+
+Scroll down to the "Rapid Fail Protection" section and verify the value for "Failure Interval" is set to "5".
+
+If the "Failure Interval" is not set to "5" or less, this is a finding.</check-content></check></Rule></Group><Group id="V-218779"><title>SRG-APP-000141-WSR-000087</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218779r1022698_rule" weight="10.0" severity="medium"><version>IIST-SI-000261</version><title>Interactive scripts on the IIS 10.0 web server must be located in unique and designated folders.</title><description>&lt;VulnDiscussion&gt;CGI and ASP scripts represent one of the most common and exploitable means of compromising a web server. All CGI and ASP program files must be segregated into their own unique folder to simplify the protection of these files. ASP scripts must be placed into a unique folder only containing other ASP scripts. JAVA and other technology-specific scripts must also be placed into their own unique folders. The placement of CGI, ASP, or equivalent scripts to special folders gives the Web Manager or the System Administrator (SA) control over what goes into those folders and to facilitate access control at the folder level.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109383</ident><ident system="http://cyber.mil/legacy">V-100279</ident><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-20250r311236_fix">All interactive programs must be placed in unique designated folders based on CGI or ASP script type.
+
+Open the IIS 10.0 Manager.
+
+Right-click the IIS 10.0 web server name and select "Explore".
+
+Search for the listed script extensions.
+
+Move each script type to its unique designated folder.
+
+Set the permissions to the scripts folders as follows:
+
+Administrators: FULL
+TrustedInstaller: FULL
+SYSTEM: FULL
+ApplicationPoolId:READ
+Custom Service Account: READ
+Users: READ 
+ALL APPLICATION PACKAGES: READ</fixtext><fix id="F-20250r311236_fix" /><check system="C-20252r1022697_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Determine whether scripts are used on the web server for the target website. Common file extensions include, but are not limited to: .cgi, .pl, .vbs, .class, .c, .php, and .asp. 
+
+All interactive programs must be placed in unique designated folders based on CGI or ASP script type. For modular and/or third-party applications, it is permissible to have script files in multiple folders.
+
+Open the IIS 10.0 Manager.
+
+Right-click the IIS 10.0 web site name and select "Explore".
+
+Search for the listed script extensions. Each script type must be in its unique designated folder.
+
+If scripts are not segregated from web content and in their own unique folders, this is a finding.
+
+If the website does not utilize CGI, this finding is Not Applicable.</check-content></check></Rule></Group><Group id="V-218780"><title>SRG-APP-000141-WSR-000087</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218780r960963_rule" weight="10.0" severity="medium"><version>IIST-SI-000262</version><title>Interactive scripts on the IIS 10.0 web server must have restrictive access controls.</title><description>&lt;VulnDiscussion&gt;CGI is a programming standard for interfacing external applications with information servers, such as HTTP or web servers. CGI, represented by all upper case letters, should not be confused with the .cgi file extension. The .cgi file extension does represent a CGI script, but CGI scripts may be written in a number of programming languages (e.g., PERL, C, PHP, and JavaScript), each having their own unique file extension.
+
+The use of CGI scripts represent one of the most common and exploitable means of compromising a web server. By definition, CGI scripts are executable by the operating system of the host server. While access control is provided via the web service, the execution of CGI programs is not limited unless the System Administrator (SA) or the Web Manager takes specific measures. CGI programs can access and alter data files, launch other programs, and use the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109385</ident><ident system="http://cyber.mil/legacy">V-100281</ident><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-20251r505269_fix">Determine whether scripts are used on the web server for the subject website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, and .asp.
+
+If the website does not utilize CGI, this finding is NA.
+
+All interactive programs must have restrictive permissions.
+
+Open the IIS 10.0 Manager.
+
+Right-click the IIS 10.0 web server name and select "Explore".
+
+Search for the listed script extensions.
+
+Set the permissions to the CGI scripts as follows:
+
+Administrators: FULL
+Web Administrators: FULL
+TrustedInstaller: FULL
+ALL APPLICATION PACKAGES: Read
+ALL RESTRICTED APPLICATION PACKAGES: Read
+SYSTEM: FULL
+ApplicationPoolId: READ
+Custom Service Account: READ
+Users: READ</fixtext><fix id="F-20251r505269_fix" /><check system="C-20253r505268_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Determine whether scripts are used on the web server for the subject website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, and .asp.
+
+If the website does not utilize CGI, this finding is Not Applicable.
+
+All interactive programs must have restrictive permissions.
+
+Open the IIS 10.0 Manager.
+
+Right-click the IIS 10.0 web site name and select "Explore".
+
+Search for the listed script extensions.
+
+Review the permissions to the CGI scripts and verify only the permissions listed, or more restrictive permissions are assigned.
+
+Administrators: FULL
+Web Administrators: FULL
+TrustedInstaller: FULL
+ALL APPLICATION PACKAGES: Read
+ALL RESTRICTED APPLICATION PACKAGES: Read
+SYSTEM: FULL
+ApplicationPoolId: READ
+Custom Service Account: READ
+Users: READ
+
+If the permissions are less restrictive than listed above, this is a finding.</check-content></check></Rule></Group><Group id="V-218781"><title>SRG-APP-000141-WSR-000087</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218781r1022700_rule" weight="10.0" severity="medium"><version>IIST-SI-000263</version><title>Backup interactive scripts on the IIS 10.0 server must be removed.</title><description>&lt;VulnDiscussion&gt;Copies of backup files will not execute on the server, but they can be read by the anonymous user if special precautions are not taken. Such backup copies contain the same sensitive information as the actual script being executed and, as such, are useful to malicious users. Techniques and systems exist today to search web servers for such files and are able to exploit the information contained in them.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109387</ident><ident system="http://cyber.mil/legacy">V-100283</ident><ident system="http://cyber.mil/cci">CCI-000381</ident><fixtext fixref="F-20252r311242_fix">Remove the backup files from the production web server.</fixtext><fix id="F-20252r311242_fix" /><check system="C-20254r1022699_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>If the website does not utilize CGI, this finding is Not Applicable.
+
+Open the IIS 10.0 Manager.
+
+Right-click the IIS 10.0 web site name and select "Explore".
+
+Search for the listed script extensions
+
+Search for the following files: *.bak, *.old, *.temp, *.tmp, *.backup, or “copy of...”.
+
+If files with these extensions are found, this is a finding.</check-content></check></Rule></Group><Group id="V-218782"><title>SRG-APP-000516-WSR-000174</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-218782r1111818_rule" weight="10.0" severity="medium"><version>IIST-SI-000264</version><title>The required DoD banner page must be displayed to authenticated users accessing a DoD private website.</title><description>&lt;VulnDiscussion&gt;A consent banner will be in place to inform prospective entrants the website they are about to enter is a DoD website and their activity is subject to monitoring. The document, DoDI 8500.01, establishes the policy on the use of DoD information systems. It requires the use of a standard Notice and Consent Banner and standard text to be included in user agreements. The requirement for the banner is for websites with security and access controls. These are restricted and not publicly accessible. If the website does not require authentication/authorization for use, then the banner does not need to be present. A manual check of the document root directory for a banner page file (such as banner.html) or navigation to the website via a browser can be used to confirm the information provided from interviewing the web staff.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/legacy">SV-109389</ident><ident system="http://cyber.mil/legacy">V-100285</ident><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-20253r311245_fix">Configure a DoD private website to display the required DoD banner page when authentication is required for user access.</fixtext><fix id="F-20253r311245_fix" /><check system="C-20255r1111817_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: This requirement is only applicable for private DOD websites.
+Note: If the server being reviewed is hosting WSUS, this is not applicable.
+
+If a banner is required, the following banner page must be in place: 
+
+“You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. 
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions: 
+
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. 
+
+- At any time, the USG may inspect and seize data stored on this IS. 
+
+- Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. 
+
+- This IS includes security measures (e.g., authentication and access controls) to protect USG interests—not for your personal benefit or privacy. 
+
+- Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.” 
+
+OR 
+
+If your system cannot meet the character limits to store this amount of text in the banner, the following is another option for the warning banner: 
+
+"I've read &amp; consent to terms in IS user agreem't." 
+
+NOTE: While DoDI 8500.01 does not contain a copy of the banner to be used, it does point to the RMF Knowledge Service for a copy of the required text. It is also noted that the banner is to be displayed only once when the individual enters the site and not for each page. 
+
+If the access-controlled website does not display this banner page before entry, this is a finding.</check-content></check></Rule></Group><Group id="V-278953"><title>SRG-APP-000266-WSR-000159</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-278953r1135550_rule" weight="10.0" severity="medium"><version>IIST-SI-000270</version><title>HTTPAPI Server version must be removed from the HTTP Response Header information.</title><description>&lt;VulnDiscussion&gt;HTTP Response Headers contain information that could enable an attacker to gain access to an information system. Failure to prevent the sending of certain HTTP Response Header information to remote requesters exposes internal configuration information to potential attackers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Microsoft IIS 10.0 Site</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Microsoft IIS 10.0 Site</dc:subject><dc:identifier>4051</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001312</ident><fixtext fixref="F-83392r1135549_fix">Navigate to "HKLM\System\CurrentControlSet\Services\HTTP\Parameters".
+
+Create REG_DWORD "DisableServerHeader” and set it to "2".
+
+Note: This can be performed multiple ways; this is an example.</fixtext><fix id="F-83392r1135549_fix" /><check system="C-83487r1135548_chk"><check-content-ref href="Microsoft_IIS_10.0_Site_STIG.xml" name="M" /><check-content>Note: If the server is hosting WSUS, this is not applicable.
+
+Open Registry Editor.
+
+Navigate to "HKLM\System\CurrentControlSet\Services\HTTP\Parameters".
+
+Verify "DisableServerHeader” is set to "2".
+
+If REG_DWORD DisableServerHeader is not set to "2", this is a finding.
+
+If the system administrator can show that Server Version information has been removed via other means, such as using a rewrite outbound rule, this is not a finding.</check-content></check></Rule></Group></Benchmark>
