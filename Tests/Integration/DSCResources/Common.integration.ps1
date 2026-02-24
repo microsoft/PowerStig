@@ -30,6 +30,10 @@ Describe ($title + " $($stig.StigVersion) mof output") {
         { & $technologyConfig @testParameterList } | Should -Not -Throw
     }
 
+    It 'Should compile a useable MOF' {
+        { Test-DscConfiguration -Path $testParameterList['OutputPath'] } | Should -Not -Throw
+    }
+
     $ruleNames = (Get-Member -InputObject $powerstigXml |
         Where-Object -FilterScript { $_.Name -match '.*Rule' -and $_.Name -ne 'DocumentRule' -and $_.Name -ne 'ManualRule' }).Name
 

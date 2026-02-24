@@ -21,11 +21,11 @@ foreach ($stig in $stigList)
     {
         $ruleType = "RegistryRule"
     }
-    else 
+    else
     {
         $ruleType = "FileContentRule"
     }
-    
+
     $skipRule = Get-Random -InputObject $powerstigXml.$ruleType.Rule.id
     $skipRuleType = $null
     $expectedSkipRuleTypeCount = 0 + $blankSkipRuleId.Count

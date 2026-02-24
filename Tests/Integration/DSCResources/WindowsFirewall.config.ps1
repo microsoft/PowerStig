@@ -42,6 +42,7 @@ configuration WindowsFirewall_config
     )
 
     Import-DscResource -ModuleName PowerStig
+    Import-DscResource -ModuleName PSDscResources
 
     Node localhost
     {

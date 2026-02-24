@@ -52,6 +52,7 @@ configuration WindowsServer_config
     )
 
     Import-DscResource -ModuleName PowerStig
+    Import-DscResource -ModuleName AccessControlDSC
 
     Node localhost
     {
