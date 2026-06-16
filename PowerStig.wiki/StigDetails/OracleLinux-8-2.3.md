@@ -1,0 +1,454 @@
+# [Oracle Linux 8 STIG, Version 2.3](https://github.com/Microsoft/PowerStig/wiki/OracleLinux-8-2.3)
+
+**Title:** Oracle Linux 8 Security Technical Implementation Guide  
+**Version:** 2  
+**Release:** Release: 3 Benchmark Date: 30 Jan 2025 3.5 1.10.0  
+**FileName:** U_Oracle_Linux_8_STIG_V2R3_Manual-xccdf.xml  
+**Created:** 2/25/2025  
+**Description:** This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.  
+**Total Stig Rule Coverage:** **278** of **431** rules are automated; **65%**
+
+* **High (CAT I):** **5** of **21** rules are automated
+* **Medium (CAT II):** **257** of **384** rules are automated
+* **Low (CAT III):** **16** of **26** rules are automated
+
+## Automated Rules
+
+| StigRuleId | Severity | RuleType | DscResource | DuplicateOf |
+| :---- | :---- | :---- | :---- | :---- |
+| V-248524 | High | nxFileLineRule | nxFileLine |  |
+| V-248527 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248533 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248535 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248538.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248538.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248539.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248539.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248541 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248542 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248543 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248544 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248560 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248561 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248562 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248563 | Low | nxFileLineRule | nxFileLine |  |
+| V-248564 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248565.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248565.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248565.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248574 | High | nxFileLineRule | nxFileLine |  |
+| V-248575 | High | nxFileLineRule | nxFileLine |  |
+| V-248581 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248585 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248590 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248591 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248592 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248595 | Low | nxFileLineRule | nxFileLine |  |
+| V-248596 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248621 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248622 | Medium | nxFileLineRule | None | V-248621 |
+| V-248623 | Medium | nxFileLineRule | None | V-248621 |
+| V-248624 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248625 | Medium | nxFileLineRule | None | V-248624 |
+| V-248626 | Medium | nxFileLineRule | None | V-248624 |
+| V-248631.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248631.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248632 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248633 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248644 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248649 | High | nxFileLineRule | nxFileLine |  |
+| V-248652.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248652.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248652.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248652.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248652.e | Medium | nxFileLineRule | nxFileLine |  |
+| V-248652.f | Medium | nxFileLineRule | nxFileLine |  |
+| V-248653 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248654.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248654.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248654.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248654.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248654.e | Medium | nxFileLineRule | nxFileLine |  |
+| V-248654.f | Medium | nxFileLineRule | nxFileLine |  |
+| V-248655 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248656.a | Medium | nxFileLineRule | None | V-248654.a |
+| V-248656.b | Medium | nxFileLineRule | None | V-248654.b |
+| V-248656.c | Medium | nxFileLineRule | None | V-248654.c |
+| V-248656.d | Medium | nxFileLineRule | None | V-248654.d |
+| V-248656.e | Medium | nxFileLineRule | None | V-248654.e |
+| V-248656.f | Medium | nxFileLineRule | None | V-248654.f |
+| V-248657 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248658.a | Medium | nxFileLineRule | None | V-248654.a |
+| V-248658.b | Medium | nxFileLineRule | None | V-248654.b |
+| V-248658.c | Medium | nxFileLineRule | None | V-248654.c |
+| V-248658.d | Medium | nxFileLineRule | None | V-248654.d |
+| V-248658.e | Medium | nxFileLineRule | None | V-248654.e |
+| V-248658.f | Medium | nxFileLineRule | None | V-248654.f |
+| V-248659 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248660.a | Medium | nxFileLineRule | None | V-248654.a |
+| V-248660.b | Medium | nxFileLineRule | None | V-248654.b |
+| V-248660.c | Medium | nxFileLineRule | None | V-248654.c |
+| V-248660.d | Medium | nxFileLineRule | None | V-248654.d |
+| V-248660.e | Medium | nxFileLineRule | None | V-248654.e |
+| V-248660.f | Medium | nxFileLineRule | None | V-248654.f |
+| V-248661 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248662.a | Medium | nxFileLineRule | None | V-248654.a |
+| V-248662.b | Medium | nxFileLineRule | None | V-248654.b |
+| V-248662.c | Medium | nxFileLineRule | None | V-248654.c |
+| V-248662.d | Medium | nxFileLineRule | None | V-248654.d |
+| V-248662.e | Medium | nxFileLineRule | None | V-248654.e |
+| V-248662.f | Medium | nxFileLineRule | None | V-248654.f |
+| V-248663 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248664.a | Medium | nxFileLineRule | None | V-248654.a |
+| V-248664.b | Medium | nxFileLineRule | None | V-248654.b |
+| V-248664.c | Medium | nxFileLineRule | None | V-248654.c |
+| V-248664.d | Medium | nxFileLineRule | None | V-248654.d |
+| V-248664.e | Medium | nxFileLineRule | None | V-248654.e |
+| V-248664.f | Medium | nxFileLineRule | None | V-248654.f |
+| V-248665 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248666.a | Low | nxFileLineRule | nxFileLine |  |
+| V-248666.b | Low | nxFileLineRule | None | V-248631.b |
+| V-248667.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248667.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248667.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248668.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248668.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248668.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248669.a | Medium | nxFileLineRule | None | V-248659 |
+| V-248669.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248669.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248669.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248670.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248670.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248670.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248670.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248670.e | Medium | nxFileLineRule | nxFileLine |  |
+| V-248676.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248676.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248676.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248676.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248676.e | Medium | nxFileLineRule | nxFileLine |  |
+| V-248676.f | Medium | nxFileLineRule | nxFileLine |  |
+| V-248678 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248679 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248681 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248686 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248695 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248696 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248700 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248702.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248702.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248703.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248703.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248704.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248704.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248710.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248710.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248710.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248710.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248712 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248717 | Low | nxFileLineRule | nxFileLine |  |
+| V-248719.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248721.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248721.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248721.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248721.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248721.e | Medium | nxFileLineRule | nxFileLine |  |
+| V-248723.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248723.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248723.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248723.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248725 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248726 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248728 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248729 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248730 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248731 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248733.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248733.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248733.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248733.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248734.a | Medium | nxFileLineRule | None | V-248733.a |
+| V-248734.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248734.c | Medium | nxFileLineRule | None | V-248733.c |
+| V-248734.d | Medium | nxFileLineRule | None | V-248733.d |
+| V-248735.a | Medium | nxFileLineRule | None | V-248733.a |
+| V-248735.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248735.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248735.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248736.a | Medium | nxFileLineRule | None | V-248733.a |
+| V-248736.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248736.c | Medium | nxFileLineRule | None | V-248735.c |
+| V-248736.d | Medium | nxFileLineRule | None | V-248735.d |
+| V-248737.a | Medium | nxFileLineRule | None | V-248733.a |
+| V-248737.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248737.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248737.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248740 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248741 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248742 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248743 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248744 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248745 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248746 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248747 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248748.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248748.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248748.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248748.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248753 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248754 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248756 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248757 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248758 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248759 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248760.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248760.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248761 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248762 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248763 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248769 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248770 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248771 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248772 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248773.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248773.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248774.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248774.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248779 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248781.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248781.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248782 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248783 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248784.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248784.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248784.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248784.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248790.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248790.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248791.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248791.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248797 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248798 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248799 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248800 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248801.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248801.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248801.c | Medium | nxFileLineRule | nxFileLine |  |
+| V-248801.d | Medium | nxFileLineRule | nxFileLine |  |
+| V-248801.e | Medium | nxFileLineRule | nxFileLine |  |
+| V-248802 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248803 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248804 | Low | nxFileLineRule | nxFileLine |  |
+| V-248805 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248815 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248816 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248820 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248821 | Low | nxFileLineRule | nxFileLine |  |
+| V-248822 | Low | nxFileLineRule | nxFileLine |  |
+| V-248826 | Low | nxFileLineRule | nxFileLine |  |
+| V-248828.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248828.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248829.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248829.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248830.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248830.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248831.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248831.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248832.a | Low | nxFileLineRule | nxFileLine |  |
+| V-248832.b | Low | nxFileLineRule | nxFileLine |  |
+| V-248833.a | Low | nxFileLineRule | nxFileLine |  |
+| V-248833.b | Low | nxFileLineRule | nxFileLine |  |
+| V-248834.a | Low | nxFileLineRule | nxFileLine |  |
+| V-248834.b | Low | nxFileLineRule | nxFileLine |  |
+| V-248837.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248837.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248843.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248843.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248844 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248845 | Medium | nxFileLineRule | None | V-248844 |
+| V-248846 | Medium | nxFileLineRule | None | V-248844 |
+| V-248847 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248848 | Medium | nxFileLineRule | None | V-248847 |
+| V-248849 | Medium | nxFileLineRule | None | V-248847 |
+| V-248850 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248851 | Medium | nxFileLineRule | None | V-248850 |
+| V-248852 | Medium | nxFileLineRule | None | V-248850 |
+| V-248853 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248854 | Medium | nxFileLineRule | None | V-248853 |
+| V-248855 | Medium | nxFileLineRule | None | V-248853 |
+| V-248856 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248857 | Medium | nxFileLineRule | None | V-248856 |
+| V-248858 | Medium | nxFileLineRule | None | V-248856 |
+| V-248865.a | Medium | nxFileLineRule | nxFileLine |  |
+| V-248865.b | Medium | nxFileLineRule | nxFileLine |  |
+| V-248870 | High | nxFileLineRule | nxFileLine |  |
+| V-248871 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248897 | Low | nxFileLineRule | nxFileLine |  |
+| V-248902 | Medium | nxFileLineRule | nxFileLine |  |
+| V-252657 | Medium | nxFileLineRule | nxFileLine |  |
+| V-252658 | Medium | nxFileLineRule | nxFileLine |  |
+| V-252659 | Medium | nxFileLineRule | nxFileLine |  |
+| V-255898 | Medium | nxFileLineRule | nxFileLine |  |
+| V-257259 | Medium | nxFileLineRule | nxFileLine |  |
+| V-248628 | Medium | nxServiceRule | nxService |  |
+| V-248836 | Medium | nxServiceRule | nxService |  |
+| V-248867 | Medium | nxServiceRule | nxService |  |
+
+## Document / Manual Rules (Not Automated)
+
+| StigRuleId | Severity | RuleType |
+| :---- | :---- | :---- |
+| V-248523 | Medium | DocumentRule |
+| V-248525 | High | DocumentRule |
+| V-248546 | Medium | DocumentRule |
+| V-248547 | Medium | DocumentRule |
+| V-248630 | Medium | DocumentRule |
+| V-248713 | Medium | DocumentRule |
+| V-248842 | Medium | DocumentRule |
+| V-248873 | High | DocumentRule |
+| V-248898 | Medium | DocumentRule |
+| V-248899 | Medium | DocumentRule |
+| V-248900 | Medium | DocumentRule |
+| V-248903 | High | DocumentRule |
+| V-252663 | Medium | DocumentRule |
+| V-248519 | Medium | ManualRule |
+| V-248520 | Medium | ManualRule |
+| V-248521 | High | ManualRule |
+| V-248526 | Medium | ManualRule |
+| V-248528 | Medium | ManualRule |
+| V-248529 | Medium | ManualRule |
+| V-248530 | Medium | ManualRule |
+| V-248531 | Medium | ManualRule |
+| V-248532 | Medium | ManualRule |
+| V-248534 | Medium | ManualRule |
+| V-248537 | High | ManualRule |
+| V-248540 | High | ManualRule |
+| V-248545 | Medium | ManualRule |
+| V-248548 | Medium | ManualRule |
+| V-248549 | Low | ManualRule |
+| V-248551 | Medium | ManualRule |
+| V-248554 | Medium | ManualRule |
+| V-248555 | Medium | ManualRule |
+| V-248556 | Medium | ManualRule |
+| V-248557 | Medium | ManualRule |
+| V-248558 | Medium | ManualRule |
+| V-248559 | Medium | ManualRule |
+| V-248566 | Medium | ManualRule |
+| V-248567 | Medium | ManualRule |
+| V-248568 | Medium | ManualRule |
+| V-248569 | Medium | ManualRule |
+| V-248570 | Medium | ManualRule |
+| V-248571 | Medium | ManualRule |
+| V-248572 | Medium | ManualRule |
+| V-248573 | Medium | ManualRule |
+| V-248582 | Medium | ManualRule |
+| V-248583 | Medium | ManualRule |
+| V-248584 | Medium | ManualRule |
+| V-248586 | Low | ManualRule |
+| V-248587 | Medium | ManualRule |
+| V-248588 | Medium | ManualRule |
+| V-248589 | Medium | ManualRule |
+| V-248593 | Medium | ManualRule |
+| V-248597 | High | ManualRule |
+| V-248598 | High | ManualRule |
+| V-248599 | Low | ManualRule |
+| V-248600 | Low | ManualRule |
+| V-248601 | Medium | ManualRule |
+| V-248602 | Medium | ManualRule |
+| V-248608 | Low | ManualRule |
+| V-248609 | Low | ManualRule |
+| V-248610 | Low | ManualRule |
+| V-248611 | Medium | ManualRule |
+| V-248612 | Medium | ManualRule |
+| V-248615 | Medium | ManualRule |
+| V-248617 | Medium | ManualRule |
+| V-248618 | Medium | ManualRule |
+| V-248619 | Medium | ManualRule |
+| V-248627 | Medium | ManualRule |
+| V-248634 | Medium | ManualRule |
+| V-248635 | Medium | ManualRule |
+| V-248636 | Medium | ManualRule |
+| V-248637 | Medium | ManualRule |
+| V-248638 | Medium | ManualRule |
+| V-248639 | Medium | ManualRule |
+| V-248640 | Medium | ManualRule |
+| V-248641 | Medium | ManualRule |
+| V-248642 | Medium | ManualRule |
+| V-248643 | Medium | ManualRule |
+| V-248645 | Medium | ManualRule |
+| V-248646 | Medium | ManualRule |
+| V-248647 | Medium | ManualRule |
+| V-248648 | Medium | ManualRule |
+| V-248651 | Medium | ManualRule |
+| V-248671 | Medium | ManualRule |
+| V-248672 | Medium | ManualRule |
+| V-248673 | Medium | ManualRule |
+| V-248674 | Medium | ManualRule |
+| V-248675 | Medium | ManualRule |
+| V-248677 | Low | ManualRule |
+| V-248680 | Medium | ManualRule |
+| V-248682 | Medium | ManualRule |
+| V-248683 | Medium | ManualRule |
+| V-248684 | Medium | ManualRule |
+| V-248694 | Medium | ManualRule |
+| V-248697 | Medium | ManualRule |
+| V-248701 | Medium | ManualRule |
+| V-248705 | Medium | ManualRule |
+| V-248706 | Medium | ManualRule |
+| V-248707 | Medium | ManualRule |
+| V-248708 | Medium | ManualRule |
+| V-248714 | High | ManualRule |
+| V-248715 | High | ManualRule |
+| V-248716 | High | ManualRule |
+| V-248720 | Medium | ManualRule |
+| V-248722 | Medium | ManualRule |
+| V-248724 | Medium | ManualRule |
+| V-248738 | Medium | ManualRule |
+| V-248739 | Medium | ManualRule |
+| V-248764 | Medium | ManualRule |
+| V-248765 | Medium | ManualRule |
+| V-248766 | Medium | ManualRule |
+| V-248767 | Medium | ManualRule |
+| V-248768 | Medium | ManualRule |
+| V-248806 | Medium | ManualRule |
+| V-248808 | Medium | ManualRule |
+| V-248809 | Medium | ManualRule |
+| V-248810 | Medium | ManualRule |
+| V-248811 | Medium | ManualRule |
+| V-248812 | Medium | ManualRule |
+| V-248813 | Medium | ManualRule |
+| V-248818 | Medium | ManualRule |
+| V-248819 | Medium | ManualRule |
+| V-248823 | High | ManualRule |
+| V-248824 | Medium | ManualRule |
+| V-248825 | Medium | ManualRule |
+| V-248827 | High | ManualRule |
+| V-248835 | Medium | ManualRule |
+| V-248839 | Medium | ManualRule |
+| V-248840 | Medium | ManualRule |
+| V-248841 | Medium | ManualRule |
+| V-248859 | Medium | ManualRule |
+| V-248860 | Medium | ManualRule |
+| V-248861 | Medium | ManualRule |
+| V-248862 | Medium | ManualRule |
+| V-248863 | Medium | ManualRule |
+| V-248864 | Medium | ManualRule |
+| V-248866 | Medium | ManualRule |
+| V-248869 | High | ManualRule |
+| V-248872 | Low | ManualRule |
+| V-248874 | High | ManualRule |
+| V-248895 | Medium | ManualRule |
+| V-248896 | Low | ManualRule |
+| V-248904 | Medium | ManualRule |
+| V-248905 | Medium | ManualRule |
+| V-248906 | Medium | ManualRule |
+| V-248907 | Medium | ManualRule |
+| V-252650 | High | ManualRule |
+| V-252651 | Medium | ManualRule |
+| V-252652 | Medium | ManualRule |
+| V-252653 | Medium | ManualRule |
+| V-252654 | Medium | ManualRule |
+| V-252655 | Medium | ManualRule |
+| V-256978 | Medium | ManualRule |
+| V-256979 | Medium | ManualRule |

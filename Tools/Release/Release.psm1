@@ -253,11 +253,11 @@ function Get-UnreleasedNotes
     $unreleasedLine = $changelogContent | Select-String -Pattern $unreleasedHeader
 
     $latestedreleaseLine = ($changelogContent |
-            Select-String -Pattern $latestedreleaseHeader)[0]
+        Select-String -Pattern $latestedreleaseHeader)[0]
 
     $releaseNotes = $changelogContent[
-        ($unreleasedLine.LineNumber)..($latestedreleaseLine.LineNumber - 2)] |
-            Out-String
+    ($unreleasedLine.LineNumber)..($latestedreleaseLine.LineNumber - 2)] |
+    Out-String
 
     return $releaseNotes.Trim()
 }
@@ -388,7 +388,7 @@ function Update-Manifest
     $releaseNotesRegEx = "(?<=ReleaseNotes\s*=\s*')[^']+(?=')"
 
     # If any single quotes are in the release notes, they need to be escaped with another single quote
-    $ReleaseNotes = $ReleaseNotes -replace "'","''"
+    $ReleaseNotes = $ReleaseNotes -replace "'", "''"
 
     $manifestContent = $manifestContent -replace $releaseNotesRegEx, $ReleaseNotes
 
@@ -419,7 +419,7 @@ function Update-AppVeyorConfiguration
     $appveyorContent = Get-Content -Path $appveyorPath
     $regex = 'version\:\s\d\.\d\.\d\.\{build\}'
     $appveyorContent = $appveyorContent -replace $regex,
-        "version: $($moduleVersion.major).$($moduleVersion.Minor).$($moduleVersion.Build).{build}"
+    "version: $($moduleVersion.major).$($moduleVersion.Minor).$($moduleVersion.Build).{build}"
 
     Set-Content -Path $appveyorPath -Value $appveyorContent.TrimEnd()
 }
@@ -521,7 +521,7 @@ function Get-GitHubApiKey
     try
     {
         [System.Security.SecureString] $GitHubKeySecure =
-            Get-Content -Path $SecureFilePath | ConvertTo-SecureString
+        Get-Content -Path $SecureFilePath | ConvertTo-SecureString
     }
     catch
     {
@@ -860,9 +860,9 @@ Hashes for **PowerSTIG** files are listed in the following table:
     foreach ($file in $fileHash)
     {
         $fileHashWithSize = '| {0} | {1} | {2} |' -f
-            $(Split-Path -Path $file.Path -Leaf),
-            $($file.Hash),
-            $((Get-Item -Path $file.Path).Length)
+        $(Split-Path -Path $file.Path -Leaf),
+        $($file.Hash),
+        $((Get-Item -Path $file.Path).Length)
         $null = $fileHashMarkdownFileContent.AppendLine($fileHashWithSize)
     }
 
@@ -905,11 +905,11 @@ function Update-PowerSTIGCoverageMarkdown
 
         [Parameter()]
         [string]
-        $PowerStigWikiPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\..\PowerSTIG.wiki\'),
+        $PowerStigWikiPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\PowerSTIG.wiki\'),
 
         [Parameter()]
         [string[]]
-        $Exclude = @('*.org.default.xml','ActiveDirectory-All-*.xml')
+        $Exclude = @('*.org.default.xml', 'ActiveDirectory-All-*.xml')
     )
 
     if (-not (Test-Path -Path $PowerStigWikiPath))
@@ -918,7 +918,8 @@ function Update-PowerSTIGCoverageMarkdown
     }
 
     $stigDetails = Join-Path -Path $PowerStigWikiPath -ChildPath 'StigDetails'
-    Get-ChildItem -Path $stigDetails -Recurse | Remove-Item -Recurse -Confirm:$false -Force
+    $stigDetailsDirectoryExclude = @('StigCoverageSummary.md', '_sidebar.md')
+    Get-ChildItem -Path $stigDetails -Recurse | Remove-Item -Recurse -Exclude $stigDetailsDirectoryExclude -Confirm:$false -Force
 
     $moduleManifest = Join-Path -Path $PSScriptRoot -ChildPath '..\..\source\PowerStig.psd1'
     $moduleVersion = (Import-PowerShellDataFile -Path $moduleManifest).ModuleVersion
@@ -935,36 +936,36 @@ function Update-PowerSTIGCoverageMarkdown
     {
         [xml]$stig = Get-Content -Path $stigXml -Encoding UTF8
         $allStigRuleType = ($stig.DISASTIG | Get-Member -Name *Rule).Name
-        $automatedRuleType = $allStigRuleType | Where-Object -FilterScript {$_ -notmatch 'DocumentRule|ManualRule'}
-        $docManualRuleType = $allStigRuleType | Where-Object -FilterScript {$_ -match 'DocumentRule|ManualRule'}
-        $allStigRuleCount = ($allStigRuleType | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
-        $automatedRuleCount = ($automatedRuleType | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
-        $allStigRuleSevCount = $allStigRuleType | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
-        $automatedSevCount = $automatedRuleType | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
+        $automatedRuleType = $allStigRuleType | Where-Object -FilterScript { $_ -notmatch 'DocumentRule|ManualRule' }
+        $docManualRuleType = $allStigRuleType | Where-Object -FilterScript { $_ -match 'DocumentRule|ManualRule' }
+        $allStigRuleCount = ($allStigRuleType | ForEach-Object { $stig.DISASTIG.$_.Rule } | Measure-Object).Count
+        $automatedRuleCount = ($automatedRuleType | ForEach-Object { $stig.DISASTIG.$_.Rule } | Measure-Object).Count
+        $allStigRuleSevCount = $allStigRuleType | Foreach-Object { $stig.DISASTIG.$_.Rule } | Group-Object -Property severity -NoElement
+        $automatedSevCount = $automatedRuleType | Foreach-Object { $stig.DISASTIG.$_.Rule } | Group-Object -Property severity -NoElement
         $stigDetailFileName = (Split-Path -Path $stigXml -Leaf) -replace '.xml', '.md'
         $stigDetailFilePath = Join-Path -Path $stigDetails -ChildPath $stigDetailFileName
         $stigDetailFileLink = $markdownStrings.markdownRuleLink -f ($stigDetailFileName -replace '.md')
-        [string]$stigAutomatedRulePercentage = ([math]::Round($automatedRuleCount/$allStigRuleCount, 2) * 100)
+        [string]$stigAutomatedRulePercentage = ([math]::Round($automatedRuleCount / $allStigRuleCount, 2) * 100)
         $stigMarkdown = $markdownStrings.markdownSummaryBody -f
-            $stig.DISASTIG.stigid.Replace('_', ' ').Trim(),
-            $stig.DISASTIG.fullversion.Trim(),
-            $stigDetailFileLink,
-            $stig.DISASTIG.title.Trim(),
-            $stig.DISASTIG.version.Trim(),
-            $stig.DISASTIG.releaseinfo.Trim(),
-            $stig.DISASTIG.filename.Trim(),
-            $stig.DISASTIG.created.Trim(),
-            $stig.DISASTIG.description.Trim(),
-            $automatedRuleCount,
-            $allStigRuleCount,
-            $stigAutomatedRulePercentage,
-            ($automatedSevCount | Where-Object {$_.Name -eq 'high'}).Count,
-            ($allStigRuleSevCount | Where-Object {$_.Name -eq 'high'}).Count,
-            ($automatedSevCount | Where-Object {$_.Name -eq 'medium'}).Count,
-            ($allStigRuleSevCount | Where-Object {$_.Name -eq 'medium'}).Count,
-            ($automatedSevCount | Where-Object {$_.Name -eq 'low'}).Count,
-            ($allStigRuleSevCount | Where-Object {$_.Name -eq 'low'}).Count,
-            [char]32
+        $stig.DISASTIG.stigid.Replace('_', ' ').Trim(),
+        $stig.DISASTIG.fullversion.Trim(),
+        $stigDetailFileLink,
+        $stig.DISASTIG.title.Trim(),
+        $stig.DISASTIG.version.Trim(),
+        $stig.DISASTIG.releaseinfo.Trim(),
+        $stig.DISASTIG.filename.Trim(),
+        $stig.DISASTIG.created.Trim(),
+        $stig.DISASTIG.description.Trim(),
+        $automatedRuleCount,
+        $allStigRuleCount,
+        $stigAutomatedRulePercentage,
+        ($automatedSevCount | Where-Object { $_.Name -eq 'high' }).Count,
+        ($allStigRuleSevCount | Where-Object { $_.Name -eq 'high' }).Count,
+        ($automatedSevCount | Where-Object { $_.Name -eq 'medium' }).Count,
+        ($allStigRuleSevCount | Where-Object { $_.Name -eq 'medium' }).Count,
+        ($automatedSevCount | Where-Object { $_.Name -eq 'low' }).Count,
+        ($allStigRuleSevCount | Where-Object { $_.Name -eq 'low' }).Count,
+        [char]32
         $null = $summaryMarkdownContent.AppendLine()
         $null = $summaryMarkdownContent.AppendLine($stigMarkdown)
 
@@ -981,11 +982,11 @@ function Update-PowerSTIGCoverageMarkdown
             foreach ($rule in $stig.DISASTIG.$ruleType.Rule)
             {
                 $ruleMarkdown = $markdownStrings.markdownRuleDetail -f
-                    $rule.id,
-                    [System.Globalization.CultureInfo]::new('en-US').TextInfo.ToTitleCase($rule.severity),
-                    $ruleType,
-                    $rule.dscresource,
-                    $rule.DuplicateOf
+                $rule.id,
+                [System.Globalization.CultureInfo]::new('en-US').TextInfo.ToTitleCase($rule.severity),
+                $ruleType,
+                $rule.dscresource,
+                $rule.DuplicateOf
                 $null = $stigDetailContent.AppendLine($ruleMarkdown)
             }
         }
@@ -1002,9 +1003,9 @@ function Update-PowerSTIGCoverageMarkdown
                 foreach ($rule in $stig.DISASTIG.$ruleType.Rule)
                 {
                     $ruleMarkdown = $markdownStrings.markdownDocumentRuleDetail -f
-                        $rule.id,
-                        [System.Globalization.CultureInfo]::new('en-US').TextInfo.ToTitleCase($rule.severity),
-                        $ruleType
+                    $rule.id,
+                    [System.Globalization.CultureInfo]::new('en-US').TextInfo.ToTitleCase($rule.severity),
+                    $ruleType
                     $null = $stigDetailContent.AppendLine($ruleMarkdown)
                 }
             }
@@ -1048,7 +1049,7 @@ function Update-PowerSTIGCoverageSidebar
     (
         [Parameter()]
         [string]
-        $PowerStigWikiPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\..\PowerSTIG.wiki'),
+        $PowerStigWikiPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\PowerSTIG.wiki'),
 
         [Parameter(Mandatory = $true)]
         [hashtable]
@@ -1056,7 +1057,7 @@ function Update-PowerSTIGCoverageSidebar
     )
 
     # Get the contents of the current root _sidebar.md and add the STIG details to create a new StigDetails\_sidebar.md
-    $rootSidebar = Get-Content -Path (Join-Path -Path $PowerStigWikiPath -ChildPath '_sidebar.md') -Raw -Encoding UTF8
+    $rootSidebar = Get-Content -Path (Join-Path -Path $PowerStigWikiPath -ChildPath 'StigDetails\_sidebar.md') -Raw -Encoding UTF8
     $sidebarInsertionIndex = [regex]::Match($rootSidebar, '^\[', [System.Text.RegularExpressions.RegexOptions]::Multiline).Index - 2
 
     # Query files in the StigDetails directory to create string data for new StigDetails\_sidebar.md
@@ -1318,8 +1319,8 @@ function Start-PowerStigRelease
 
     # Get the Dev Banch status. Wait until it is success or failure
     $gitHubRefStatusParam = [ordered]@{
-        'Repository' = $repository
-        'Name' = 'dev'
+        'Repository'     = $repository
+        'Name'           = 'dev'
         'WaitForSuccess' = $false
     }
     $gitHubReleaseBranchStatus = Get-GitHubRefStatus @gitHubRefStatusParam
@@ -1508,15 +1509,15 @@ function Complete-PowerStigRelease
 
         $pullRequestParam = @{
             Repository = $repository
-            Number = $PullRequestNumber
+            Number     = $PullRequestNumber
         }
         $pullRequest = Get-GitHubPullRequest @pullRequestParam
 
         $approvePullRequestParam = [ordered]@{
-            PullRequest = $pullRequest
-            CommitTitle = 'Release'
+            PullRequest   = $pullRequest
+            CommitTitle   = 'Release'
             CommitMessage = 'This PR is automatically completed.'
-            MergeMethod = 'merge'
+            MergeMethod   = 'merge'
         }
         $null = Approve-GitHubPullRequest @approvePullRequestParam
 
@@ -1525,9 +1526,9 @@ function Complete-PowerStigRelease
         $releaseNotes = (Import-PowerShellDataFile -Path $manifestPath).PrivateData.PSData.ReleaseNotes
 
         $gitHubReleaseParams = @{
-            Repository = $repository
-            TagName = $ModuleVersion + '-PSGallery'
-            Title = "Release of version $(($ModuleVersion -Split '-')[0])"
+            Repository  = $repository
+            TagName     = $ModuleVersion + '-PSGallery'
+            Title       = "Release of version $(($ModuleVersion -Split '-')[0])"
             Description = $releaseNotes
         }
         # The GitHub release triggers the AppVeyor deployment to the Gallery.
