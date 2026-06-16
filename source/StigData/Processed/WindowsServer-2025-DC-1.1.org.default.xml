@@ -1,0 +1,93 @@
+<!--
+    The organizational settings file is used to define the local organizations
+    preferred setting within an allowed range of the STIG.
+
+    Each setting in this file is linked by STIG ID and the valid range is in an
+    associated comment.
+-->
+<OrganizationalSettings fullversion="1.1">
+  <!-- Ensure ''V-278090.b'' -match '1|3'-->
+  <OrganizationalSetting id="V-278090.b" ValueData="3" />
+  <!-- Ensure ''V-278091'' -match '1|3|8|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-278091" ValueData="1" />
+  <!-- Ensure ''V-278105'' -ge '32768'-->
+  <OrganizationalSetting id="V-278105" ValueData="32768" />
+  <!-- Ensure ''V-278106'' -ge '196608'-->
+  <OrganizationalSetting id="V-278106" ValueData="196608" />
+  <!-- Ensure ''V-278107'' -ge '32768'-->
+  <OrganizationalSetting id="V-278107" ValueData="32768" />
+  <!-- Ensure ''V-278109'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-278109" ValueData="0" />
+  <!-- Ensure ''V-278110'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-278110" ValueData="0" />
+  <!-- Ensure ''V-278111'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-278111" ValueData="0" />
+  <!-- Ensure ''V-278118'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-278118" ValueData="0" />
+  <!-- Ensure ''V-278122'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-278122" ValueData="0" />
+  <!-- Ensure ''V-278134'' -le '600' -and ''V-278134'' -ne '0'-->
+  <OrganizationalSetting id="V-278134" PolicyValue="600" />
+  <!-- Ensure ''V-278135'' -le '10' -and ''V-278135'' -ne '0'-->
+  <OrganizationalSetting id="V-278135" PolicyValue="10" />
+  <!-- Ensure ''V-278136'' -le '7'-->
+  <OrganizationalSetting id="V-278136" PolicyValue="7" />
+  <!-- Ensure ''V-278137'' -le '5'-->
+  <OrganizationalSetting id="V-278137" PolicyValue="5" />
+  <!-- Ensure ''V-278172'' -match '1|2'-->
+  <OrganizationalSetting id="V-278172" ValueData="1" />
+  <!-- Ensure location for DOD Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-278192.a" Location="" />
+  <!-- Ensure location for DOD Root CA 3 certificate is present-->
+  <OrganizationalSetting id="V-278192.b" Location="" />
+  <!-- Ensure location for DOD Root CA 4 certificate is present-->
+  <OrganizationalSetting id="V-278192.c" Location="" />
+  <!-- Ensure location for DOD Root CA 5 certificate is present-->
+  <OrganizationalSetting id="V-278192.d" Location="" />
+  <!-- Ensure location for DOD Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-278193.a" Location="" />
+  <!-- Ensure location for DOD Interoperability Root CA 1 certificate is present-->
+  <OrganizationalSetting id="V-278193.b" Location="" />
+  <!-- Ensure location for US DOD CCEB Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-278194.a" Location="" />
+  <!-- Ensure location for US DOD CCEB Interoperability Root CA 2 certificate is present-->
+  <OrganizationalSetting id="V-278194.b" Location="" />
+  <!-- Ensure ''V-278204'' -le '30' -and ''V-278204'' -gt '0'-->
+  <OrganizationalSetting id="V-278204" ValueData="15" />
+  <!-- Ensure ''V-278206'' -le '900' -and ''V-278206'' -gt '0'-->
+  <OrganizationalSetting id="V-278206" ValueData="900" />
+  <!-- Ensure 'V-278207' is set to the required legal notice before logon-->
+  <OrganizationalSetting id="V-278207" ValueData="You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
+-At any time, the USG may inspect and seize data stored on this IS.
+
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details." />
+  <!-- Ensure ''V-278209'' -match '1|2'-->
+  <OrganizationalSetting id="V-278209" ValueData="1" />
+  <!-- Ensure ''V-278240'' -match '2|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-278240" ValueData="2" />
+  <!-- Ensure ''V-278033'' -ge '15' -or ''V-278033'' -eq '0'-->
+  <OrganizationalSetting id="V-278033" PolicyValue="15" />
+  <!-- Ensure ''V-278034'' -le '3' -and ''V-278034'' -ne '0'-->
+  <OrganizationalSetting id="V-278034" PolicyValue="3" />
+  <!-- Ensure ''V-278035'' -ge '15'-->
+  <OrganizationalSetting id="V-278035" PolicyValue="15" />
+  <!-- Ensure ''V-278036'' -ge '24'-->
+  <OrganizationalSetting id="V-278036" PolicyValue="24" />
+  <!-- Ensure ''V-278037'' -le '60' -and ''V-278037'' -ne '0'-->
+  <OrganizationalSetting id="V-278037" PolicyValue="60" />
+  <!-- Ensure ''V-278038'' -ne '0'-->
+  <OrganizationalSetting id="V-278038" PolicyValue="1" />
+  <!-- Ensure ''V-278197'' -ne 'Administrator'-->
+  <OrganizationalSetting id="V-278197" OptionValue="" />
+  <!-- Ensure ''V-278198'' -ne 'Guest'-->
+  <OrganizationalSetting id="V-278198" OptionValue="" />
+</OrganizationalSettings>
