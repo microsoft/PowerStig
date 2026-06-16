@@ -3816,7 +3816,7 @@ S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4
 If the defaults have not been changed, this is not a finding.
 </RawString>
     </Rule>
-    <Rule id="V-278002" severity="low" conversionstatus="fail" title="SRG-OS-000080-GPOS-00048" dscresource="">
+    <Rule id="V-278002" severity="low" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="none">
       <AccessControlEntry />
       <Description>&lt;VulnDiscussion&gt;Windows shares are a means by which files, folders, printers, and other resources can be published for network users to access. Improper configuration can permit access to devices and data beyond a user's need.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -4197,7 +4197,7 @@ CREATOR OWNER:(OI)(CI)(IO)(F)
 
 Run "icacls /help" to view definitions of other permission codes.</RawString>
     </Rule>
-    <Rule id="V-278140" severity="high" conversionstatus="fail" title="SRG-OS-000324-GPOS-00125" dscresource="">
+    <Rule id="V-278140" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="none">
       <AccessControlEntry>
         <Entry>
           <Type>
@@ -4313,7 +4313,7 @@ ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
 
 The Domain Admins and Enterprise Admins will not have the "Delete all child objects" permission on the two default Group Policy objects: Default Domain Policy and Default Domain Controllers Policy. They will have this permission on organization created Group Policy objects.</RawString>
     </Rule>
-    <Rule id="V-278148" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
+    <Rule id="V-278148" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="None">
       <AccessControlEntry>
         <Entry>
           <Type>Fail</Type>
@@ -6871,7 +6871,7 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000403-GPOS-00182&lt;/VulnDiscussion
       <RawString>DOD Interoperability Root CA 1,A8C27332CCB4CA49554CE55D34062A7DD2850C02</RawString>
       <Thumbprint>A8C27332CCB4CA49554CE55D34062A7DD2850C02</Thumbprint>
     </Rule>
-    <Rule id="V-278193.c" severity="medium" conversionstatus="fail" title="SRG-OS-000066-GPOS-00034" dscresource="CertificateDSC">
+    <Rule id="V-278193.c" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="none">
       <CertificateName />
       <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the DOD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
 
