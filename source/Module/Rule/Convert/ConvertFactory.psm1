@@ -4,6 +4,7 @@ using module .\..\..\Common\Common.psm1
 using module .\..\..\Rule.HardCoded\Convert\HardCodedRule.Convert.psm1
 using module .\..\..\Rule.AccountPolicy\Convert\AccountPolicyRule.Convert.psm1
 using module .\..\..\Rule.AuditPolicy\Convert\AuditPolicyRule.Convert.psm1
+using module .\..\..\Rule.AuditPolicy\Convert\AuditPolicyRuleAdvanced.Convert.psm1
 using module .\..\..\Rule.DnsServerRootHint\Convert\DnsServerRootHintRule.Convert.psm1
 using module .\..\..\Rule.DnsServerSetting\Convert\DnsServerSettingRule.Convert.psm1
 using module .\..\..\Rule.Document\Convert\DocumentRule.Convert.psm1
@@ -146,6 +147,12 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.Add(
                     [AuditPolicyRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[AuditPolicyRuleAdvancedConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [AuditPolicyRuleAdvancedConvert]::new($Rule).AsRule()
                 )
             }
             {[DnsServerSettingRuleConvert]::Match($PSItem)}
