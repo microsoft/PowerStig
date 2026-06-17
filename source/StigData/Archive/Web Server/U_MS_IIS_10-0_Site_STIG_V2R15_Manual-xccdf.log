@@ -3,7 +3,5 @@ V-218754::If the "maxAllowedContentLength" value is not explicitly set to "30000
 V-218763::*::HardCodedRule(WebConfigurationPropertyRule)@{DscResource = 'xWebConfigKeyValue'; Key = 'timeout'; Value = $null; OrganizationValueTestString = "'{0}' -le '00:15:00'"; ConfigSection = '/system.web/sessionState'}
 V-218775::*::HardCodedRule(WebAppPoolRule)@{DscResource = 'xWebAppPool'; Key = 'logEventOnRecycle'; Value = $null; OrganizationValueTestString = "'{0}' 'Value must contain Time and Schedule but can contain Requests, Memory, IsapiUnhealthy, OnDemand, ConfigChange, PrivateMemory'"}
 V-278953::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry';Ensure='Present'; Key = 'HKLM\System\CurrentControlSet\Services\HTTP\Parameters'; ValueData = 2; ValueName = 'DisableServerHeader'; ValueType = 'DWORD'}
-V-283673::*::
-V-218771::*::
 V-218771::*::.
 V-283673::*::.
