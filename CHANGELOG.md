@@ -1,8 +1,10 @@
 # Versions
 
 ## [Unreleased]
+
+## [4.30.0] - 2026-06-19
+
 * This is a bulk add and cleanup update.
-* 
 * Red Hat Enterprise Linux 9 STIG - Ver 2, Rel 8
 * Microsoft Windows Server 2025 STIG - Ver 1, Rel 1
 * Microsoft Windows Server 2022 STIG - Ver 2, Rel 8
