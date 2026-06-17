@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.15" created="6/16/2026">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.15" created="6/17/2026">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218744" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.
@@ -303,46 +303,6 @@ Request Header &gt;&gt; Authorization
 Response Header &gt;&gt; Content-Type
 
 If any of the above fields are not selected, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-283673" severity="medium" conversionstatus="pass" title="SRG-APP-000120-WSR-000070" dscresource="none">
-      <Description>&lt;VulnDiscussion&gt;A major tool in exploring the website use, attempted use, unusual conditions, and problems are the access and error logs. In the event of a security incident, these logs can provide the system administrator (SA) and the web manager with valuable information. Failure to protect log files could enable an attacker to modify the log file data or falsify events to mask an attacker's activity.
-
-Satisfies: SRG-APP-000120-WSR-000070, SRG-APP-000118-WSR-000068, SRG-APP-000118-WSR-000069&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LegacyId>
-      </LegacyId>
-      <LogCustomFieldEntry />
-      <LogFlags />
-      <LogFormat />
-      <LogPeriod />
-      <LogTargetW3C />
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This does not apply to service account IDs used by automated services necessary to process, manage, and store log files.
-
-Open the IIS 10.0 Manager.
-
-Click the IIS 10.0 web server name.
-
-For each Site:
-
-Click the "Logging" icon.
-
-Click "Browse" and navigate to the directory where the log files are stored.
-
-Right-click the log file directory to review.
-
-Click "Properties".
-
-Click the "Security" tab.
-
-Verify log file access is restricted as follows. Otherwise, this is a finding.
-
-SYSTEM - Full Control, This folder, subfolders and files
-Administrators - Full Control, This folder, subfolders and files (Lower permission levels are permitted)
-
-Note:  A "Web Administrators", etc., type group that is an approved group of administrators is also allowed and must be given "Full Control, This folder, subfolders and files" permissions. (Lower permission levels are permitted.)</RawString>
     </Rule>
   </IisLoggingRule>
   <ManualRule dscresourcemodule="None">
@@ -742,6 +702,31 @@ If the system administrator (SA) can show that Server Version information has be
       <ValueName>DisableServerHeader</ValueName>
       <ValueType>DWORD</ValueType>
     </Rule>
+    <Rule id="V-278953" severity="medium" conversionstatus="pass" title="SRG-APP-000266-WSR-000159" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;HTTP Response Headers contain information that could enable an attacker to gain access to an information system. Failure to prevent the sending of certain HTTP Response Header information to remote requesters exposes internal configuration information to potential attackers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKLM\System\CurrentControlSet\Services\HTTP\Parameters</Key>
+      <LegacyId>
+      </LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: If the server is hosting WSUS, this is not applicable.
+
+Open Registry Editor.
+
+Navigate to "HKLM\System\CurrentControlSet\Services\HTTP\Parameters".
+
+Verify "DisableServerHeader” is set to "1".
+
+If REG_DWORD DisableServerHeader is not set to "1", this is a finding.
+
+If the system administrator (SA) can show that Server Version information has been removed via other means, such as using a rewrite outbound rule, this is not a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>DisableServerHeader</ValueName>
+      <ValueType>DWORD</ValueType>
+    </Rule>
   </RegistryRule>
   <SslSettingsRule dscresourcemodule="xWebAdministration">
     <Rule id="V-218737" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006" dscresource="xSslSettings">
@@ -898,29 +883,6 @@ Scroll down to the "Process Model" section and verify the value for "Idle Time-o
 If the "Idle Time-out" is set to "0", this is a finding.</RawString>
       <Value>
       </Value>
-    </Rule>
-    <Rule id="V-218771" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="none">
-      <Description>&lt;VulnDiscussion&gt;Application pools isolate sites and applications to address reliability, availability, and security issues. Sites and applications may be grouped according to configurations, although each site will be associated with a unique application pool.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key />
-      <LegacyId>V-100263</LegacyId>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is not applicable.
-
-Note: If the IIS 10.0 installation is supporting Microsoft Exchange and is not otherwise hosting any content, this requirement is not applicable.
-
-Open the IIS 10.0 Manager.
-
-Click "Application Pools".
-
-In the list of Application Pools, right-click any Application Pool, and select View Applications.
-
-Remove the filter using the prompt.
-
-Compare the Site and Application Pool columns. If any Application Pools are being used for more than one Site, this is a finding.</RawString>
-      <Value />
     </Rule>
     <Rule id="V-218772" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="xWebAppPool">
       <Description>&lt;VulnDiscussion&gt;IIS application pools can be periodically recycled to avoid unstable states possibly leading to application crashes, hangs, or memory leaks. By default, application pool recycling is overlapped, which means the worker process to be shut down is kept running until after a new worker process is started. After a new worker process starts, new requests are passed to it. The old worker process shuts down after it finishes processing its existing requests, or after a configured time-out, whichever comes first. This way of recycling ensures uninterrupted service to clients.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1363,6 +1325,36 @@ Verify the "keepSessionIdSecure" is set to "True".
 
 If the "keepSessionIdSecure" is not set to "True", this is a finding.</RawString>
       <Value>True</Value>
+    </Rule>
+    <Rule id="V-218770.a" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000154" dscresource="xWebConfigKeyValue">
+      <ConfigSection>/system.web/httpCookies</ConfigSection>
+      <Description>&lt;VulnDiscussion&gt;A cookie can be read by client-side scripts easily if cookie properties are not set properly. By allowing cookies to be read by the client-side scripts, information such as session identifiers could be compromised and used by an attacker who intercepts the cookie. Setting cookie properties (i.e., HttpOnly property) to disallow client-side scripts from reading cookies better protects the information inside the cookie.
+
+Satisfies: SRG-APP-000439-WSR-000154, SRG-APP-000439-SSR-000155, SRG-APP-000439-WSR-000153&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>requireSSL</Key>
+      <LegacyId>V-100261.a</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>From the "Section:" drop-down list, select "system.web/httpCookies".
+Verify the "require SSL" is set to "True".</RawString>
+      <Value>True</Value>
+    </Rule>
+    <Rule id="V-218770.b" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000154" dscresource="xWebConfigKeyValue">
+      <ConfigSection>/system.web/sessionState</ConfigSection>
+      <Description>&lt;VulnDiscussion&gt;A cookie can be read by client-side scripts easily if cookie properties are not set properly. By allowing cookies to be read by the client-side scripts, information such as session identifiers could be compromised and used by an attacker who intercepts the cookie. Setting cookie properties (i.e., HttpOnly property) to disallow client-side scripts from reading cookies better protects the information inside the cookie.
+
+Satisfies: SRG-APP-000439-WSR-000154, SRG-APP-000439-SSR-000155, SRG-APP-000439-WSR-000153&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>compressionEnabled</Key>
+      <LegacyId>V-100261.b</LegacyId>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>From the "Section:" drop-down list, select "system.web/sessionState".
+Verify the "compressionEnabled" is set to "False".</RawString>
+      <Value>False</Value>
     </Rule>
     <Rule id="V-218770.a" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000154" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/httpCookies</ConfigSection>
