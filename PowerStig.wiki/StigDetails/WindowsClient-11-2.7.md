@@ -1,15 +1,15 @@
-# [Microsoft Windows 11 STIG, Version 2.5](https://github.com/Microsoft/PowerStig/wiki/WindowsClient-11-2.5)
+# [Microsoft Windows 11 STIG, Version 2.7](https://github.com/Microsoft/PowerStig/wiki/WindowsClient-11-2.7)
 
 **Title:** Microsoft Windows 11 Security Technical Implementation Guide  
 **Version:** 2  
-**Release:** Release: 5 Benchmark Date: 01 Oct 2025 3.5.1 1.10.0  
-**FileName:** U_MS_Windows_11_STIG_V2R5_Manual-xccdf.xml  
-**Created:** 12/2/2025  
+**Release:** Release: 7 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0  
+**FileName:** U_MS_Windows_11_STIG_V2R7_Manual-xccdf.xml  
+**Created:** 6/16/2026  
 **Description:** This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.  
-**Total Stig Rule Coverage:** **239** of **285** rules are automated; **84%**
+**Total Stig Rule Coverage:** **239** of **282** rules are automated; **85%**
 
 * **High (CAT I):** **23** of **28** rules are automated
-* **Medium (CAT II):** **201** of **239** rules are automated
+* **Medium (CAT II):** **201** of **236** rules are automated
 * **Low (CAT III):** **15** of **18** rules are automated
 
 ## Automated Rules
@@ -56,7 +56,6 @@
 | V-253334 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-253335 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-253336 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
-| V-253343 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-253344 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-253345 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-253346 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
@@ -80,6 +79,7 @@
 | V-253284 | High | RegistryRule | RegistryPolicyFile |  |
 | V-253287 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-253288 | Medium | RegistryRule | RegistryPolicyFile |  |
+| V-253291 | Medium | RegistryRule | Registry |  |
 | V-253337 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-253338 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-253339 | Medium | RegistryRule | RegistryPolicyFile |  |
@@ -208,6 +208,7 @@
 | V-253475 | Medium | RegistryRule | Registry |  |
 | V-253477 | Low | RegistryRule | RegistryPolicyFile |  |
 | V-253478 | Medium | RegistryRule | RegistryPolicyFile |  |
+| V-279688 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-253427.a | Medium | RootCertificateRule | CertificateDSC |  |
 | V-253427.b | Medium | RootCertificateRule | CertificateDSC |  |
 | V-253427.c | Medium | RootCertificateRule | CertificateDSC |  |
@@ -217,7 +218,6 @@
 | V-253430.a | Medium | RootCertificateRule | CertificateDSC |  |
 | V-253430.b | Medium | RootCertificateRule | CertificateDSC |  |
 | V-253430.c | Medium | RootCertificateRule | CertificateDSC |  |
-| V-253432 | Medium | SecurityOptionRule | SecurityOption |  |
 | V-253433 | Medium | SecurityOptionRule | SecurityOption |  |
 | V-253435 | Medium | SecurityOptionRule | SecurityOption |  |
 | V-253436 | Medium | SecurityOptionRule | SecurityOption |  |
@@ -260,12 +260,10 @@
 
 | StigRuleId | Severity | RuleType |
 | :---- | :---- | :---- |
-| V-253258 | Medium | DocumentRule |
 | V-253268 | Low | DocumentRule |
 | V-253271 | Medium | DocumentRule |
 | V-253275 | High | DocumentRule |
 | V-253280 | Medium | DocumentRule |
-| V-253291 | Medium | DocumentRule |
 | V-253295 | Medium | DocumentRule |
 | V-253254 | Medium | ManualRule |
 | V-253255 | Medium | ManualRule |
@@ -286,7 +284,6 @@
 | V-253281 | Medium | ManualRule |
 | V-253282 | Medium | ManualRule |
 | V-253290 | Medium | ManualRule |
-| V-253292 | Medium | ManualRule |
 | V-253293 | Medium | ManualRule |
 | V-253294 | High | ManualRule |
 | V-253296 | Low | ManualRule |

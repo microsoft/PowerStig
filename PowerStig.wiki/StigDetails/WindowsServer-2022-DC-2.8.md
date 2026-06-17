@@ -1,21 +1,26 @@
-# [MS Windows Server 2022 MS STIG, Version 2.6](https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2022-MS-2.6)
+# [MS Windows Server 2022 DC STIG, Version 2.8](https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2022-DC-2.8)
 
 **Title:** Microsoft Windows Server 2022 Security Technical Implementation Guide  
 **Version:** 2  
-**Release:** Release: 6 Benchmark Date: 01 Oct 2025 3.5.1 1.10.0  
-**FileName:** U_MS_Windows_Server_2022_MS_STIG_V2R6_Manual-xccdf.xml  
-**Created:** 12/2/2025  
+**Release:** Release: 8 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0  
+**FileName:** U_MS_Windows_Server_2022_DC_STIG_V2R8_Manual-xccdf.xml  
+**Created:** 6/16/2026  
 **Description:** This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.  
-**Total Stig Rule Coverage:** **208** of **248** rules are automated; **84%**
+**Total Stig Rule Coverage:** **216** of **276** rules are automated; **78%**
 
-* **High (CAT I):** **19** of **22** rules are automated
-* **Medium (CAT II):** **180** of **215** rules are automated
-* **Low (CAT III):** **9** of **11** rules are automated
+* **High (CAT I):** **20** of **29** rules are automated
+* **Medium (CAT II):** **187** of **235** rules are automated
+* **Low (CAT III):** **9** of **12** rules are automated
 
 ## Automated Rules
 
 | StigRuleId | Severity | RuleType | DscResource | DuplicateOf |
 | :---- | :---- | :---- | :---- | :---- |
+| V-254386 | Medium | AccountPolicyRule | AccountPolicy |  |
+| V-254387 | Medium | AccountPolicyRule | AccountPolicy |  |
+| V-254388 | Medium | AccountPolicyRule | AccountPolicy |  |
+| V-254389 | Medium | AccountPolicyRule | AccountPolicy |  |
+| V-254390 | Medium | AccountPolicyRule | AccountPolicy |  |
 | V-254285 | Medium | AccountPolicyRule | AccountPolicy |  |
 | V-254286 | Medium | AccountPolicyRule | AccountPolicy |  |
 | V-254287 | Medium | AccountPolicyRule | AccountPolicy |  |
@@ -57,6 +62,10 @@
 | V-254330 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-254331 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-254332 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
+| V-254407 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
+| V-254408 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
+| V-254409 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
+| V-254410 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-254247 | Medium | AuditSettingRule | AuditSetting |  |
 | V-254250 | High | AuditSettingRule | AuditSetting |  |
 | V-254251 | Medium | PermissionRule | NTFSAccessEntry |  |
@@ -70,6 +79,8 @@
 | V-254297 | Medium | PermissionRule | NTFSAccessEntry |  |
 | V-254298 | Medium | PermissionRule | NTFSAccessEntry |  |
 | V-254299 | Medium | PermissionRule | NTFSAccessEntry |  |
+| V-254391 | High | PermissionRule | NTFSAccessEntry |  |
+| V-254392 | High | PermissionRule | NTFSAccessEntry |  |
 | V-254276 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-254277 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-254333 | Medium | RegistryRule | RegistryPolicyFile |  |
@@ -126,12 +137,8 @@
 | V-254382 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-254383 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-254384 | Medium | RegistryRule | RegistryPolicyFile |  |
-| V-254429 | Medium | RegistryRule | RegistryPolicyFile |  |
-| V-254430 | Medium | RegistryRule | RegistryPolicyFile |  |
-| V-254431 | Medium | RegistryRule | RegistryPolicyFile |  |
-| V-254432 | Medium | RegistryRule | Registry |  |
-| V-254433 | Medium | RegistryRule | Registry |  |
-| V-254441 | High | RegistryRule | RegistryPolicyFile |  |
+| V-254416 | Medium | RegistryRule | Registry |  |
+| V-254417 | Medium | RegistryRule | Registry |  |
 | V-254446 | High | RegistryRule | Registry |  |
 | V-254449 | Medium | RegistryRule | Registry |  |
 | V-254450 | Medium | RegistryRule | Registry |  |
@@ -174,26 +181,27 @@
 | V-254488 | Medium | RegistryRule | Registry |  |
 | V-254489 | Medium | RegistryRule | Registry |  |
 | V-254490 | Medium | RegistryRule | RegistryPolicyFile |  |
+| V-271426 | Medium | RegistryRule | Registry |  |
 | V-254442.a | Medium | RootCertificateRule | CertificateDSC |  |
 | V-254442.b | Medium | RootCertificateRule | CertificateDSC |  |
 | V-254442.c | Medium | RootCertificateRule | CertificateDSC |  |
 | V-254442.d | Medium | RootCertificateRule | CertificateDSC |  |
 | V-254443 | Medium | RootCertificateRule | CertificateDSC |  |
-| V-254444.a | Medium | RootCertificateRule | CertificateDSC |  |
-| V-254444.b | Medium | RootCertificateRule | CertificateDSC |  |
 | V-254465 | High | SecurityOptionRule | SecurityOption |  |
 | V-254445 | Medium | SecurityOptionRule | SecurityOption |  |
 | V-254447 | Medium | SecurityOptionRule | SecurityOption |  |
 | V-254448 | Medium | SecurityOptionRule | SecurityOption |  |
 | V-254248 | Medium | ServiceRule | Service |  |
 | V-254265 | Medium | ServiceRule | Service |  |
-| V-254434 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-254435 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-254436 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-254437 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-254438 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-254439 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-254440 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-254418 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-254419 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-254420 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-254421 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-254422 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-254423 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-254424 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-254425 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-254426 | Medium | UserRightRule | UserRightsAssignment |  |
 | V-254491 | Medium | UserRightRule | UserRightsAssignment |  |
 | V-254492 | High | UserRightRule | UserRightsAssignment |  |
 | V-254493 | Medium | UserRightRule | UserRightsAssignment |  |
@@ -234,7 +242,10 @@
 | V-254256 | Medium | DocumentRule |
 | V-254261 | Medium | DocumentRule |
 | V-254264 | Medium | DocumentRule |
-| V-254266 | Medium | DocumentRule |
+| V-254393 | High | DocumentRule |
+| V-254395 | High | DocumentRule |
+| V-254398 | Medium | DocumentRule |
+| V-254414 | High | DocumentRule |
 | V-254238 | Medium | ManualRule |
 | V-254239 | Medium | ManualRule |
 | V-254240 | High | ManualRule |
@@ -259,7 +270,24 @@
 | V-254284 | Medium | ManualRule |
 | V-254294 | Medium | ManualRule |
 | V-254295 | Medium | ManualRule |
-| V-254428 | High | ManualRule |
+| V-254385 | High | ManualRule |
+| V-254394 | High | ManualRule |
+| V-254396 | Medium | ManualRule |
+| V-254397 | Medium | ManualRule |
+| V-254399 | High | ManualRule |
+| V-254400 | Low | ManualRule |
+| V-254401 | Medium | ManualRule |
+| V-254402 | Medium | ManualRule |
+| V-254403 | Medium | ManualRule |
+| V-254404 | Medium | ManualRule |
+| V-254405 | Medium | ManualRule |
+| V-254406 | Medium | ManualRule |
+| V-254412 | Medium | ManualRule |
+| V-254413 | High | ManualRule |
+| V-254415 | Medium | ManualRule |
+| V-254427 | Medium | ManualRule |
+| V-254444 | Medium | ManualRule |
+| V-271427 | Medium | ManualRule |
 | V-278942 | Medium | ManualRule |
 | V-278943 | Medium | ManualRule |
 | V-278944 | Medium | ManualRule |

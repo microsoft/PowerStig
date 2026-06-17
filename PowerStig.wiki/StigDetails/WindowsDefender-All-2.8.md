@@ -1,15 +1,15 @@
-# [MS Defender Antivirus, Version 2.6](https://github.com/Microsoft/PowerStig/wiki/WindowsDefender-All-2.6)
+# [MS Defender Antivirus, Version 2.8](https://github.com/Microsoft/PowerStig/wiki/WindowsDefender-All-2.8)
 
 **Title:** Microsoft Defender Antivirus Security Technical Implementation Guide  
 **Version:** 2  
-**Release:** Release: 6 Benchmark Date: 24 Sep 2025 3.5.1 1.10.0  
-**FileName:** U_MS_Windows_Defender_Antivirus_STIG_V2R6_Manual-xccdf.xml  
-**Created:** 12/3/2025  
+**Release:** Release: 8 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0  
+**FileName:** U_MS_Windows_Defender_Antivirus_STIG_V2R8_Manual-xccdf.xml  
+**Created:** 6/16/2026  
 **Description:** This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.  
-**Total Stig Rule Coverage:** **68** of **68** rules are automated; **100%**
+**Total Stig Rule Coverage:** **67** of **67** rules are automated; **100%**
 
 * **High (CAT I):** **4** of **4** rules are automated
-* **Medium (CAT II):** **64** of **64** rules are automated
+* **Medium (CAT II):** **63** of **63** rules are automated
 * **Low (CAT III):** **0** of **0** rules are automated
 
 ## Automated Rules
@@ -75,7 +75,6 @@
 | V-278668 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-278669 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-278672 | Medium | RegistryRule | RegistryPolicyFile |  |
-| V-278673 | Medium | RegistryRule | None | V-213431 |
 | V-278674 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-278675 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-278676 | Medium | RegistryRule | RegistryPolicyFile |  |

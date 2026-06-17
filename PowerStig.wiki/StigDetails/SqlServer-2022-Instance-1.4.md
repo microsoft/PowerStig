@@ -1,10 +1,10 @@
-# [MS SQL Server 2022 Instance STIG, Version 1.2](https://github.com/Microsoft/PowerStig/wiki/SqlServer-2022-Instance-1.2)
+# [MS SQL Server 2022 Instance STIG, Version 1.4](https://github.com/Microsoft/PowerStig/wiki/SqlServer-2022-Instance-1.4)
 
 **Title:** Microsoft SQL Server 2022 Instance Security Technical Implementation Guide  
 **Version:** 1  
-**Release:** Release: 2 Benchmark Date: 01 Oct 2025 3.5.1 1.10.0  
-**FileName:** U_MS_SQL_Server_2022_Instance_STIG_V1R2_Manual-xccdf.xml  
-**Created:** 12/2/2025  
+**Release:** Release: 4 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0  
+**FileName:** U_MS_SQL_Server_2022_Instance_STIG_V1R4_Manual-xccdf.xml  
+**Created:** 6/16/2026  
 **Description:** This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.  
 **Total Stig Rule Coverage:** **17** of **84** rules are automated; **20%**
 

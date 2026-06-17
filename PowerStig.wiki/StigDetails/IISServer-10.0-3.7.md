@@ -1,15 +1,15 @@
-# [IIS 10-0 Server STIG, Version 3.5](https://github.com/Microsoft/PowerStig/wiki/IISServer-10.0-3.5)
+# [IIS 10-0 Server STIG, Version 3.7](https://github.com/Microsoft/PowerStig/wiki/IISServer-10.0-3.7)
 
 **Title:** Microsoft IIS 10.0 Server Security Technical Implementation Guide  
 **Version:** 3  
-**Release:** Release: 5 Benchmark Date: 01 Oct 2025 3.5.1 1.10.0  
-**FileName:** U_MS_IIS_10-0_Server_STIG_V3R5_Manual-xccdf.xml  
-**Created:** 12/2/2025  
+**Release:** Release: 7 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0  
+**FileName:** U_MS_IIS_10-0_Server_STIG_V3R7_Manual-xccdf.xml  
+**Created:** 6/16/2026  
 **Description:** This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.  
-**Total Stig Rule Coverage:** **28** of **56** rules are automated; **50%**
+**Total Stig Rule Coverage:** **28** of **54** rules are automated; **52%**
 
 * **High (CAT I):** **9** of **12** rules are automated
-* **Medium (CAT II):** **19** of **42** rules are automated
+* **Medium (CAT II):** **19** of **40** rules are automated
 * **Low (CAT III):** **0** of **2** rules are automated
 
 ## Automated Rules
@@ -53,7 +53,6 @@
 | V-218793 | Medium | DocumentRule |
 | V-218802 | High | DocumentRule |
 | V-218806 | Medium | DocumentRule |
-| V-218809 | Medium | DocumentRule |
 | V-218813 | Medium | DocumentRule |
 | V-218815 | Medium | DocumentRule |
 | V-218816 | Medium | DocumentRule |
@@ -62,7 +61,6 @@
 | V-218827 | Low | DocumentRule |
 | V-228572 | Medium | DocumentRule |
 | V-241789 | Low | DocumentRule |
-| V-218790 | Medium | ManualRule |
 | V-218791 | Medium | ManualRule |
 | V-218794 | Medium | ManualRule |
 | V-218795 | High | ManualRule |

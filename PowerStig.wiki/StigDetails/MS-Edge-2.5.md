@@ -1,15 +1,15 @@
-# [MS Edge STIG, Version 2.3](https://github.com/Microsoft/PowerStig/wiki/MS-Edge-2.3)
+# [MS Edge STIG, Version 2.5](https://github.com/Microsoft/PowerStig/wiki/MS-Edge-2.5)
 
 **Title:** Microsoft Edge Security Technical Implementation Guide  
 **Version:** 2  
-**Release:** Release: 3 Benchmark Date: 02 Jul 2025 3.5 1.10.0  
-**FileName:** U_MS_Edge_V2R3_STIG_Manual-xccdf.xml  
-**Created:** 8/26/2025  
+**Release:** Release: 5 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0  
+**FileName:** U_MS_Edge_V2R5_STIG_Manual-xccdf.xml  
+**Created:** 6/16/2026  
 **Description:** This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.  
-**Total Stig Rule Coverage:** **54** of **59** rules are automated; **92%**
+**Total Stig Rule Coverage:** **56** of **61** rules are automated; **92%**
 
 * **High (CAT I):** **0** of **1** rules are automated
-* **Medium (CAT II):** **48** of **48** rules are automated
+* **Medium (CAT II):** **50** of **50** rules are automated
 * **Low (CAT III):** **6** of **10** rules are automated
 
 ## Automated Rules
@@ -70,6 +70,8 @@
 | V-260466 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-260467 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-266981 | Medium | RegistryRule | RegistryPolicyFile |  |
+| V-279940 | Medium | RegistryRule | Registry |  |
+| V-283439 | Medium | RegistryRule | RegistryPolicyFile |  |
 
 ## Document / Manual Rules (Not Automated)
 

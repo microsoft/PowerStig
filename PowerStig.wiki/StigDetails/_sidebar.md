@@ -141,6 +141,80 @@
   * [WindowsServer-2022-DC-2.7][WindowsServer2022DC27]
   * [WindowsServer-2022-MS-2.6][WindowsServer2022MS26]
   * [WindowsServer-2022-MS-2.7][WindowsServer2022MS27]
+  * [Adobe-AcrobatPro-2.1][AdobeAcrobatPro21]
+  * [Adobe-AcrobatReader-1.6][AdobeAcrobatReader16]
+  * [Adobe-AcrobatReader-2.1][AdobeAcrobatReader21]
+  * [DotNetFramework-4-2.7][DotNetFramework427]
+  * [DotNetFramework-4-2.8][DotNetFramework428]
+  * [FireFox-All-6.6][FireFoxAll66]
+  * [FireFox-All-6.7][FireFoxAll67]
+  * [Google-Chrome-2.10][GoogleChrome210]
+  * [Google-Chrome-2.11][GoogleChrome211]
+  * [IISServer-10.0-3.6][IISServer10036]
+  * [IISServer-10.0-3.7][IISServer10037]
+  * [IISSite-10.0-2.14][IISSite100214]
+  * [IISSite-10.0-2.15][IISSite100215]
+  * [InternetExplorer-11-2.5][InternetExplorer1125]
+  * [InternetExplorer-11-2.6][InternetExplorer1126]
+  * [MS-Edge-2.4][MSEdge24]
+  * [MS-Edge-2.5][MSEdge25]
+  * [Office-365ProPlus-3.4][Office365ProPlus34]
+  * [Office-365ProPlus-3.5][Office365ProPlus35]
+  * [Office-Access2016-1.1][OfficeAccess201611]
+  * [Office-Access2016-2.1][OfficeAccess201621]
+  * [Office-Excel2016-1.2][OfficeExcel201612]
+  * [Office-Excel2016-2.2][OfficeExcel201622]
+  * [Office-OneNote2016-1.2][OfficeOneNote201612]
+  * [Office-OneNote2016-2.1][OfficeOneNote201621]
+  * [Office-Outlook2016-2.3][OfficeOutlook201623]
+  * [Office-Outlook2016-2.4][OfficeOutlook201624]
+  * [Office-PowerPoint2016-1.1][OfficePowerPoint201611]
+  * [Office-PowerPoint2016-2.1][OfficePowerPoint201621]
+  * [Office-Publisher2016-1.3][OfficePublisher201613]
+  * [Office-Publisher2016-2.1][OfficePublisher201621]
+  * [Office-Skype2016-1.1][OfficeSkype201611]
+  * [Office-Skype2016-2.1][OfficeSkype201621]
+  * [Office-System2016-2.4][OfficeSystem201624]
+  * [Office-System2016-2.5][OfficeSystem201625]
+  * [Office-Word2016-1.1][OfficeWord201611]
+  * [Office-Word2016-2.1][OfficeWord201621]
+  * [OracleLinux-8-2.3][OracleLinux823]
+  * [OracleLinux-8-2.4][OracleLinux824]
+  * [OracleLinux-9-1.1][OracleLinux911]
+  * [RHEL-7-3.14][RHEL7314]
+  * [RHEL-7-3.15][RHEL7315]
+  * [RHEL-9-2.7][RHEL927]
+  * [RHEL-9-2.8][RHEL928]
+  * [SqlServer-2016-Instance-3.5][SqlServer2016Instance35]
+  * [SqlServer-2016-Instance-3.6][SqlServer2016Instance36]
+  * [SqlServer-2022-Instance-1.3][SqlServer2022Instance13]
+  * [SqlServer-2022-Instance-1.4][SqlServer2022Instance14]
+  * [Ubuntu-18.04-2.14][Ubuntu1804214]
+  * [Ubuntu-18.04-2.15][Ubuntu1804215]
+  * [WindowsClient-10-3.5][WindowsClient1035]
+  * [WindowsClient-10-3.6][WindowsClient1036]
+  * [WindowsClient-11-2.6][WindowsClient1126]
+  * [WindowsClient-11-2.7][WindowsClient1127]
+  * [WindowsDefender-All-2.7][WindowsDefenderAll27]
+  * [WindowsDefender-All-2.8][WindowsDefenderAll28]
+  * [WindowsDnsServer-2012R2-2.5][WindowsDnsServer2012R225]
+  * [WindowsDnsServer-2012R2-2.7][WindowsDnsServer2012R227]
+  * [WindowsFirewall-All-2.1][WindowsFirewallAll21]
+  * [WindowsFirewall-All-2.2][WindowsFirewallAll22]
+  * [WindowsServer-2016-DC-2.10][WindowsServer2016DC210]
+  * [WindowsServer-2016-DC-2.9][WindowsServer2016DC29]
+  * [WindowsServer-2016-MS-2.10][WindowsServer2016MS210]
+  * [WindowsServer-2016-MS-2.9][WindowsServer2016MS29]
+  * [WindowsServer-2019-DC-3.7][WindowsServer2019DC37]
+  * [WindowsServer-2019-DC-3.8][WindowsServer2019DC38]
+  * [WindowsServer-2019-MS-3.7][WindowsServer2019MS37]
+  * [WindowsServer-2019-MS-3.8][WindowsServer2019MS38]
+  * [WindowsServer-2022-DC-2.7][WindowsServer2022DC27]
+  * [WindowsServer-2022-DC-2.8][WindowsServer2022DC28]
+  * [WindowsServer-2022-MS-2.7][WindowsServer2022MS27]
+  * [WindowsServer-2022-MS-2.8][WindowsServer2022MS28]
+  * [WindowsServer-2025-DC-1.1][WindowsServer2025DC11]
+  * [WindowsServer-2025-MS-1.1][WindowsServer2025MS11]
 
 [AdobeAcrobatPro21]: https://github.com/Microsoft/PowerStig/wiki/Adobe-AcrobatPro-2.1
 [AdobeAcrobatReader16]: https://github.com/Microsoft/PowerStig/wiki/Adobe-AcrobatReader-1.6
@@ -286,3 +360,77 @@
 [WindowsServer2022DC27]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2022-DC-2.7
 [WindowsServer2022MS26]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2022-MS-2.6
 [WindowsServer2022MS27]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2022-MS-2.7
+[AdobeAcrobatPro21]: https://github.com/Microsoft/PowerStig/wiki/Adobe-AcrobatPro-2.1
+[AdobeAcrobatReader16]: https://github.com/Microsoft/PowerStig/wiki/Adobe-AcrobatReader-1.6
+[AdobeAcrobatReader21]: https://github.com/Microsoft/PowerStig/wiki/Adobe-AcrobatReader-2.1
+[DotNetFramework427]: https://github.com/Microsoft/PowerStig/wiki/DotNetFramework-4-2.7
+[DotNetFramework428]: https://github.com/Microsoft/PowerStig/wiki/DotNetFramework-4-2.8
+[FireFoxAll66]: https://github.com/Microsoft/PowerStig/wiki/FireFox-All-6.6
+[FireFoxAll67]: https://github.com/Microsoft/PowerStig/wiki/FireFox-All-6.7
+[GoogleChrome210]: https://github.com/Microsoft/PowerStig/wiki/Google-Chrome-2.10
+[GoogleChrome211]: https://github.com/Microsoft/PowerStig/wiki/Google-Chrome-2.11
+[IISServer10036]: https://github.com/Microsoft/PowerStig/wiki/IISServer-10.0-3.6
+[IISServer10037]: https://github.com/Microsoft/PowerStig/wiki/IISServer-10.0-3.7
+[IISSite100214]: https://github.com/Microsoft/PowerStig/wiki/IISSite-10.0-2.14
+[IISSite100215]: https://github.com/Microsoft/PowerStig/wiki/IISSite-10.0-2.15
+[InternetExplorer1125]: https://github.com/Microsoft/PowerStig/wiki/InternetExplorer-11-2.5
+[InternetExplorer1126]: https://github.com/Microsoft/PowerStig/wiki/InternetExplorer-11-2.6
+[MSEdge24]: https://github.com/Microsoft/PowerStig/wiki/MS-Edge-2.4
+[MSEdge25]: https://github.com/Microsoft/PowerStig/wiki/MS-Edge-2.5
+[Office365ProPlus34]: https://github.com/Microsoft/PowerStig/wiki/Office-365ProPlus-3.4
+[Office365ProPlus35]: https://github.com/Microsoft/PowerStig/wiki/Office-365ProPlus-3.5
+[OfficeAccess201611]: https://github.com/Microsoft/PowerStig/wiki/Office-Access2016-1.1
+[OfficeAccess201621]: https://github.com/Microsoft/PowerStig/wiki/Office-Access2016-2.1
+[OfficeExcel201612]: https://github.com/Microsoft/PowerStig/wiki/Office-Excel2016-1.2
+[OfficeExcel201622]: https://github.com/Microsoft/PowerStig/wiki/Office-Excel2016-2.2
+[OfficeOneNote201612]: https://github.com/Microsoft/PowerStig/wiki/Office-OneNote2016-1.2
+[OfficeOneNote201621]: https://github.com/Microsoft/PowerStig/wiki/Office-OneNote2016-2.1
+[OfficeOutlook201623]: https://github.com/Microsoft/PowerStig/wiki/Office-Outlook2016-2.3
+[OfficeOutlook201624]: https://github.com/Microsoft/PowerStig/wiki/Office-Outlook2016-2.4
+[OfficePowerPoint201611]: https://github.com/Microsoft/PowerStig/wiki/Office-PowerPoint2016-1.1
+[OfficePowerPoint201621]: https://github.com/Microsoft/PowerStig/wiki/Office-PowerPoint2016-2.1
+[OfficePublisher201613]: https://github.com/Microsoft/PowerStig/wiki/Office-Publisher2016-1.3
+[OfficePublisher201621]: https://github.com/Microsoft/PowerStig/wiki/Office-Publisher2016-2.1
+[OfficeSkype201611]: https://github.com/Microsoft/PowerStig/wiki/Office-Skype2016-1.1
+[OfficeSkype201621]: https://github.com/Microsoft/PowerStig/wiki/Office-Skype2016-2.1
+[OfficeSystem201624]: https://github.com/Microsoft/PowerStig/wiki/Office-System2016-2.4
+[OfficeSystem201625]: https://github.com/Microsoft/PowerStig/wiki/Office-System2016-2.5
+[OfficeWord201611]: https://github.com/Microsoft/PowerStig/wiki/Office-Word2016-1.1
+[OfficeWord201621]: https://github.com/Microsoft/PowerStig/wiki/Office-Word2016-2.1
+[OracleLinux823]: https://github.com/Microsoft/PowerStig/wiki/OracleLinux-8-2.3
+[OracleLinux824]: https://github.com/Microsoft/PowerStig/wiki/OracleLinux-8-2.4
+[OracleLinux911]: https://github.com/Microsoft/PowerStig/wiki/OracleLinux-9-1.1
+[RHEL7314]: https://github.com/Microsoft/PowerStig/wiki/RHEL-7-3.14
+[RHEL7315]: https://github.com/Microsoft/PowerStig/wiki/RHEL-7-3.15
+[RHEL927]: https://github.com/Microsoft/PowerStig/wiki/RHEL-9-2.7
+[RHEL928]: https://github.com/Microsoft/PowerStig/wiki/RHEL-9-2.8
+[SqlServer2016Instance35]: https://github.com/Microsoft/PowerStig/wiki/SqlServer-2016-Instance-3.5
+[SqlServer2016Instance36]: https://github.com/Microsoft/PowerStig/wiki/SqlServer-2016-Instance-3.6
+[SqlServer2022Instance13]: https://github.com/Microsoft/PowerStig/wiki/SqlServer-2022-Instance-1.3
+[SqlServer2022Instance14]: https://github.com/Microsoft/PowerStig/wiki/SqlServer-2022-Instance-1.4
+[Ubuntu1804214]: https://github.com/Microsoft/PowerStig/wiki/Ubuntu-18.04-2.14
+[Ubuntu1804215]: https://github.com/Microsoft/PowerStig/wiki/Ubuntu-18.04-2.15
+[WindowsClient1035]: https://github.com/Microsoft/PowerStig/wiki/WindowsClient-10-3.5
+[WindowsClient1036]: https://github.com/Microsoft/PowerStig/wiki/WindowsClient-10-3.6
+[WindowsClient1126]: https://github.com/Microsoft/PowerStig/wiki/WindowsClient-11-2.6
+[WindowsClient1127]: https://github.com/Microsoft/PowerStig/wiki/WindowsClient-11-2.7
+[WindowsDefenderAll27]: https://github.com/Microsoft/PowerStig/wiki/WindowsDefender-All-2.7
+[WindowsDefenderAll28]: https://github.com/Microsoft/PowerStig/wiki/WindowsDefender-All-2.8
+[WindowsDnsServer2012R225]: https://github.com/Microsoft/PowerStig/wiki/WindowsDnsServer-2012R2-2.5
+[WindowsDnsServer2012R227]: https://github.com/Microsoft/PowerStig/wiki/WindowsDnsServer-2012R2-2.7
+[WindowsFirewallAll21]: https://github.com/Microsoft/PowerStig/wiki/WindowsFirewall-All-2.1
+[WindowsFirewallAll22]: https://github.com/Microsoft/PowerStig/wiki/WindowsFirewall-All-2.2
+[WindowsServer2016DC210]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2016-DC-2.10
+[WindowsServer2016DC29]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2016-DC-2.9
+[WindowsServer2016MS210]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2016-MS-2.10
+[WindowsServer2016MS29]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2016-MS-2.9
+[WindowsServer2019DC37]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2019-DC-3.7
+[WindowsServer2019DC38]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2019-DC-3.8
+[WindowsServer2019MS37]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2019-MS-3.7
+[WindowsServer2019MS38]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2019-MS-3.8
+[WindowsServer2022DC27]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2022-DC-2.7
+[WindowsServer2022DC28]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2022-DC-2.8
+[WindowsServer2022MS27]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2022-MS-2.7
+[WindowsServer2022MS28]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2022-MS-2.8
+[WindowsServer2025DC11]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2025-DC-1.1
+[WindowsServer2025MS11]: https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2025-MS-1.1

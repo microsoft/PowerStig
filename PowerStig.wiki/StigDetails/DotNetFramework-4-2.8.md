@@ -1,10 +1,10 @@
-# [MS Dot Net Framework, Version 2.6](https://github.com/Microsoft/PowerStig/wiki/DotNetFramework-4-2.6)
+# [MS Dot Net Framework, Version 2.8](https://github.com/Microsoft/PowerStig/wiki/DotNetFramework-4-2.8)
 
 **Title:** Microsoft DotNet Framework 4.0 Security Technical Implementation Guide  
 **Version:** 2  
-**Release:** Release: 6 Benchmark Date: 02 Apr 2025 3.5 1.10.0  
-**FileName:** U_MS_DotNet_Framework_4-0_STIG_V2R6_Manual-xccdf.xml  
-**Created:** 5/21/2025  
+**Release:** Release: 8 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0  
+**FileName:** U_MS_DotNet_Framework_4-0_STIG_V2R8_Manual-xccdf.xml  
+**Created:** 6/16/2026  
 **Description:** This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.  
 **Total Stig Rule Coverage:** **6** of **18** rules are automated; **33%**
 

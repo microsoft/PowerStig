@@ -1,15 +1,15 @@
-# [MS Office 365 ProPlus STIG, Version 3.3](https://github.com/Microsoft/PowerStig/wiki/Office-365ProPlus-3.3)
+# [MS Office 365 ProPlus STIG, Version 3.5](https://github.com/Microsoft/PowerStig/wiki/Office-365ProPlus-3.5)
 
 **Title:** Microsoft Office 365 ProPlus Security Technical Implementation Guide  
 **Version:** 3  
-**Release:** Release: 3 Benchmark Date: 02 Apr 2025 3.5 1.10.0  
-**FileName:** U_MS_Office_365_ProPlus_STIG_V3R3_Manual-xccdf.xml  
-**Created:** 5/21/2025  
+**Release:** Release: 5 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0  
+**FileName:** U_MS_Office_365_ProPlus_STIG_V3R5_Manual-xccdf.xml  
+**Created:** 6/16/2026  
 **Description:** This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.  
-**Total Stig Rule Coverage:** **128** of **141** rules are automated; **91%**
+**Total Stig Rule Coverage:** **129** of **142** rules are automated; **91%**
 
 * **High (CAT I):** **1** of **1** rules are automated
-* **Medium (CAT II):** **127** of **140** rules are automated
+* **Medium (CAT II):** **128** of **141** rules are automated
 * **Low (CAT III):** **0** of **0** rules are automated
 
 ## Automated Rules
@@ -144,6 +144,7 @@
 | V-223416 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-223417 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-223418 | Medium | RegistryRule | RegistryPolicyFile |  |
+| V-278355 | Medium | RegistryRule | RegistryPolicyFile |  |
 
 ## Document / Manual Rules (Not Automated)
 

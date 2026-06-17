@@ -1,21 +1,26 @@
-# [Windows Server 2019 MS STIG, Version 3.6](https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2019-MS-3.6)
+# [Windows Server 2019 DC STIG, Version 3.8](https://github.com/Microsoft/PowerStig/wiki/WindowsServer-2019-DC-3.8)
 
 **Title:** Microsoft Windows Server 2019 Security Technical Implementation Guide  
 **Version:** 3  
-**Release:** Release: 6 Benchmark Date: 01 Oct 2025 3.5.1 1.10.0  
-**FileName:** U_MS_Windows_Server_2019_MS_STIG_V3R6_Manual-xccdf.xml  
-**Created:** 12/2/2025  
+**Release:** Release: 8 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0  
+**FileName:** U_MS_Windows_Server_2019_DC_STIG_V3R8_Manual-xccdf.xml  
+**Created:** 6/16/2026  
 **Description:** This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.  
-**Total Stig Rule Coverage:** **208** of **248** rules are automated; **84%**
+**Total Stig Rule Coverage:** **217** of **277** rules are automated; **78%**
 
-* **High (CAT I):** **21** of **25** rules are automated
-* **Medium (CAT II):** **178** of **210** rules are automated
-* **Low (CAT III):** **9** of **13** rules are automated
+* **High (CAT I):** **21** of **32** rules are automated
+* **Medium (CAT II):** **187** of **231** rules are automated
+* **Low (CAT III):** **9** of **14** rules are automated
 
 ## Automated Rules
 
 | StigRuleId | Severity | RuleType | DscResource | DuplicateOf |
 | :---- | :---- | :---- | :---- | :---- |
+| V-205702 | Medium | AccountPolicyRule | AccountPolicy |  |
+| V-205703 | Medium | AccountPolicyRule | AccountPolicy |  |
+| V-205704 | Medium | AccountPolicyRule | AccountPolicy |  |
+| V-205705 | Medium | AccountPolicyRule | AccountPolicy |  |
+| V-205706 | Medium | AccountPolicyRule | AccountPolicy |  |
 | V-205629 | Medium | AccountPolicyRule | AccountPolicy |  |
 | V-205630 | Medium | AccountPolicyRule | AccountPolicy |  |
 | V-205652 | Medium | AccountPolicyRule | AccountPolicy |  |
@@ -28,6 +33,7 @@
 | V-205625 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-205626 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-205627 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
+| V-205628 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-205634 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-205635 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-205730 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
@@ -47,6 +53,9 @@
 | V-205782 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-205783 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-205784 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
+| V-205791 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
+| V-205792 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
+| V-205793 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-205832 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-205833 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
 | V-205834 | Medium | AuditPolicyRule | AuditPolicySubcategory |  |
@@ -70,6 +79,7 @@
 | V-205737.a | Medium | PermissionRule | RegistryAccessEntry |  |
 | V-205737.b | Medium | PermissionRule | RegistryAccessEntry |  |
 | V-205737.c | Medium | PermissionRule | RegistryAccessEntry |  |
+| V-205740 | High | PermissionRule | NTFSAccessEntry |  |
 | V-205631 | Medium | RegistryRule | Registry |  |
 | V-205632 | Low | RegistryRule | Registry |  |
 | V-205633 | Medium | RegistryRule | Registry |  |
@@ -92,13 +102,11 @@
 | V-205692 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205693 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205694 | Medium | RegistryRule | RegistryPolicyFile |  |
-| V-205696 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205708 | Medium | RegistryRule | Registry |  |
 | V-205711 | High | RegistryRule | RegistryPolicyFile |  |
 | V-205712 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205713 | High | RegistryRule | RegistryPolicyFile |  |
 | V-205714 | Medium | RegistryRule | RegistryPolicyFile |  |
-| V-205715 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205716 | Medium | RegistryRule | Registry |  |
 | V-205717 | Medium | RegistryRule | Registry |  |
 | V-205718 | Medium | RegistryRule | Registry |  |
@@ -107,7 +115,6 @@
 | V-205722 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205724 | High | RegistryRule | Registry |  |
 | V-205725 | High | RegistryRule | Registry |  |
-| V-205747 | Medium | RegistryRule | Registry |  |
 | V-205796 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205797 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205798 | Medium | RegistryRule | RegistryPolicyFile |  |
@@ -122,7 +129,6 @@
 | V-205811 | Medium | RegistryRule | Registry |  |
 | V-205812 | Medium | RegistryRule | Registry |  |
 | V-205813 | Medium | RegistryRule | Registry |  |
-| V-205814 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205815 | Medium | RegistryRule | Registry |  |
 | V-205816 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205817 | Medium | RegistryRule | RegistryPolicyFile |  |
@@ -156,8 +162,7 @@
 | V-205872 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205873 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205874 | Medium | RegistryRule | RegistryPolicyFile |  |
-| V-205906 | Medium | RegistryRule | Registry |  |
-| V-205907 | High | RegistryRule | RegistryPolicyFile |  |
+| V-205876 | Medium | RegistryRule | Registry |  |
 | V-205908 | High | RegistryRule | Registry |  |
 | V-205911 | Medium | RegistryRule | Registry |  |
 | V-205912 | Medium | RegistryRule | Registry |  |
@@ -174,6 +179,7 @@
 | V-205924 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-205925 | Medium | RegistryRule | RegistryPolicyFile |  |
 | V-257503 | Medium | RegistryRule | RegistryPolicyFile |  |
+| V-271428 | Medium | RegistryRule | Registry |  |
 | V-205648.a | Medium | RootCertificateRule | CertificateDSC |  |
 | V-205648.b | Medium | RootCertificateRule | CertificateDSC |  |
 | V-205648.c | Medium | RootCertificateRule | CertificateDSC |  |
@@ -181,6 +187,7 @@
 | V-205649 | Medium | RootCertificateRule | CertificateDSC |  |
 | V-205650.a | Medium | RootCertificateRule | CertificateDSC |  |
 | V-205650.b | Medium | RootCertificateRule | CertificateDSC |  |
+| V-205820 | Medium | SecurityOptionRule | SecurityOption |  |
 | V-205913 | High | SecurityOptionRule | SecurityOption |  |
 | V-205709 | Medium | SecurityOptionRule | SecurityOption |  |
 | V-205909 | Medium | SecurityOptionRule | SecurityOption |  |
@@ -188,14 +195,16 @@
 | V-205850 | High | ServiceRule | Service |  |
 | V-214936 | Medium | ServiceRule | Service |  |
 | V-205643 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-205671 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-205672 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-205673 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-205674 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-205675 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-205665 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-205666 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-205667 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-205668 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-205669 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-205670 | Medium | UserRightRule | UserRightsAssignment |  |
 | V-205676 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-205733 | Medium | UserRightRule | UserRightsAssignment |  |
-| V-205748 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-205732 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-205744 | Medium | UserRightRule | UserRightsAssignment |  |
+| V-205745 | Medium | UserRightRule | UserRightsAssignment |  |
 | V-205749 | Medium | UserRightRule | UserRightsAssignment |  |
 | V-205750 | High | UserRightRule | UserRightsAssignment |  |
 | V-205751 | Medium | UserRightRule | UserRightsAssignment |  |
@@ -229,22 +238,39 @@
 
 | StigRuleId | Severity | RuleType |
 | :---- | :---- | :---- |
+| V-205647 | High | DocumentRule |
 | V-205677 | Medium | DocumentRule |
 | V-205699 | Medium | DocumentRule |
 | V-205707 | Medium | DocumentRule |
-| V-205728 | Medium | DocumentRule |
+| V-205741 | High | DocumentRule |
+| V-205743 | High | DocumentRule |
+| V-205818 | Medium | DocumentRule |
 | V-205851 | Medium | DocumentRule |
 | V-205852 | Medium | DocumentRule |
 | V-205624 | Medium | ManualRule |
+| V-205645 | Medium | ManualRule |
+| V-205646 | High | ManualRule |
 | V-205657 | Medium | ManualRule |
 | V-205658 | Medium | ManualRule |
 | V-205661 | Medium | ManualRule |
 | V-205664 | Low | ManualRule |
+| V-205695 | Medium | ManualRule |
 | V-205700 | Medium | ManualRule |
+| V-205701 | Medium | ManualRule |
 | V-205710 | Medium | ManualRule |
 | V-205721 | Medium | ManualRule |
+| V-205723 | Medium | ManualRule |
+| V-205726 | Low | ManualRule |
 | V-205727 | High | ManualRule |
-| V-205746 | High | ManualRule |
+| V-205738 | High | ManualRule |
+| V-205739 | High | ManualRule |
+| V-205742 | High | ManualRule |
+| V-205785 | Medium | ManualRule |
+| V-205786 | Medium | ManualRule |
+| V-205787 | Medium | ManualRule |
+| V-205788 | Medium | ManualRule |
+| V-205789 | Medium | ManualRule |
+| V-205790 | Medium | ManualRule |
 | V-205799 | Medium | ManualRule |
 | V-205800 | Low | ManualRule |
 | V-205803 | Medium | ManualRule |
@@ -260,6 +286,9 @@
 | V-205854 | Medium | ManualRule |
 | V-205856 | Low | ManualRule |
 | V-205857 | Low | ManualRule |
+| V-205875 | High | ManualRule |
+| V-205877 | Medium | ManualRule |
+| V-271429 | Medium | ManualRule |
 | V-278934 | Medium | ManualRule |
 | V-278935 | Medium | ManualRule |
 | V-278936 | Medium | ManualRule |
