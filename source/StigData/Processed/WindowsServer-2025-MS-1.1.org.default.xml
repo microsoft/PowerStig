@@ -77,7 +77,7 @@ By using this IS (which includes any device attached to this IS), you consent to
   <!-- Ensure ''V-278038'' -ne '0'-->
   <OrganizationalSetting id="V-278038" PolicyValue="1" />
   <!-- Ensure ''V-278184'' -match 'Enterprise Admins.,Domain Admins.,(Local account and member of Administrators group|Local account),Guests.'-->
-  <OrganizationalSetting id="V-278184" Identity="" />
+  <OrganizationalSetting id="V-278184" Identity="Enterprise Admins., Domain Admins.,Local account and member of Administrators group,Guests." />
   <!-- Ensure ''V-278197'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-278197" OptionValue="" />
   <!-- Ensure ''V-278198'' -ne 'Guest'-->
