@@ -15,7 +15,7 @@
   <!-- Ensure ''V-278106'' -ge '196608'-->
   <OrganizationalSetting id="V-278106" ValueData="196608" />
   <!-- Ensure ''V-278107'' -ge '32768'-->
-  <OrganizationalSetting id="V-278107" ValueData="" />
+  <OrganizationalSetting id="V-278107" ValueData="32768" />
   <!-- Ensure ''V-278109'' -match '0|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-278109" ValueData="0" />
   <!-- Ensure ''V-278110'' -match '0|ShouldBeAbsent'-->
