@@ -130,7 +130,7 @@
                 * Microsoft Office 365 ProPlus STIG - Ver 3, Rel 5
                 * Microsoft IIS 10.0 STIG Server - Ver 3, Rel 7
                 * Microsoft IIS 10.0 STIG Site - Ver 2, Rel 15
-                * Microsoft Edge STIG - Ver 2, Rel 5
+                * Microsoft Edge STIG - Ver 2, Rel 5 
                 * Microsoft DotNet Framework 4.0 STIG - Ver 2, Rel 8
                 * Microsoft Defender Antivirus STIG - Ver 2, Rel 8'
         } # End of PSData hashtable
