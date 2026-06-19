@@ -15,7 +15,7 @@
   <!-- Ensure ''V-278106'' -ge '196608'-->
   <OrganizationalSetting id="V-278106" ValueData="196608" />
   <!-- Ensure ''V-278107'' -ge '32768'-->
-  <OrganizationalSetting id="V-278107" ValueData="" />
+  <OrganizationalSetting id="V-278107" ValueData="32768" />
   <!-- Ensure ''V-278109'' -match '0|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-278109" ValueData="0" />
   <!-- Ensure ''V-278110'' -match '0|ShouldBeAbsent'-->
@@ -77,7 +77,7 @@ By using this IS (which includes any device attached to this IS), you consent to
   <!-- Ensure ''V-278038'' -ne '0'-->
   <OrganizationalSetting id="V-278038" PolicyValue="1" />
   <!-- Ensure ''V-278184'' -match 'Enterprise Admins.,Domain Admins.,(Local account and member of Administrators group|Local account),Guests.'-->
-  <OrganizationalSetting id="V-278184" Identity="" />
+  <OrganizationalSetting id="V-278184" Identity="Enterprise Admins., Domain Admins.,Local account and member of Administrators group,Guests." />
   <!-- Ensure ''V-278197'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-278197" OptionValue="" />
   <!-- Ensure ''V-278198'' -ne 'Guest'-->
