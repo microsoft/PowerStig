@@ -2,6 +2,22 @@
 
 ## [Unreleased]
 
+## [4.30.0] - 2026-06-19
+
+* This is a bulk add and cleanup update.
+* Red Hat Enterprise Linux 9 STIG - Ver 2, Rel 8
+* Microsoft Windows Server 2025 STIG - Ver 1, Rel 1
+* Microsoft Windows Server 2022 STIG - Ver 2, Rel 8
+* Microsoft Windows Server 2019 STIG - Ver 3, Rel 8
+* Microsoft Windows 11 STIG - Ver 2, Rel 7
+* Microsoft SQL Server 2022 STIG
+* Microsoft Office 365 ProPlus STIG - Ver 3, Rel 5
+* Microsoft IIS 10.0 STIG Server - Ver 3, Rel 7
+* Microsoft IIS 10.0 STIG Site - Ver 2, Rel 15
+* Microsoft Edge STIG - Ver 2, Rel 5
+* Microsoft DotNet Framework 4.0 STIG - Ver 2, Rel 8
+* Microsoft Defender Antivirus STIG - Ver 2, Rel 8
+
 ## [4.29.0] - 2026-02-25
 
 * This is a bulk add and cleanup update, Retired STIGs are being removed and this will be the last update for Sunset Stigs.  
