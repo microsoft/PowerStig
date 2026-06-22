@@ -52,6 +52,7 @@ configuration OracleJRE_config
     )
 
     Import-DscResource -ModuleName PowerStig
+    Import-DscResource -ModuleName FileContentDsc
 
     Node localhost
     {

@@ -6,6 +6,9 @@
 # local preference scripts/utilities
 .local/
 
+# Required modules folder
+RequiredModules/
+
 # Build output folder
 output/
 

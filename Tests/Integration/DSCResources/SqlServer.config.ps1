@@ -43,6 +43,7 @@ configuration SqlServer_config
     )
 
     Import-DscResource -ModuleName PowerStig
+    Import-DscResource -ModuleName SqlServerDsc
 
     Node localhost
     {

@@ -8,7 +8,8 @@
 param
 (
     [Parameter(Position = 0)]
-    [string[]]$Tasks = '.',
+    [string[]]
+    $Tasks = '.',
 
     [Parameter()]
     [String]
@@ -33,7 +34,7 @@ param
     # You can override the value for PSDepend in the Build.psd1 build manifest
     # This defaults to $OutputDirectory/modules (by default: ./output/modules)
     [Parameter()]
-    $RequiredModulesDirectory = $(Join-Path 'output' 'RequiredModules'),
+    $RequiredModulesDirectory = 'RequiredModules',
 
     [Parameter()]
     [object[]]
@@ -228,28 +229,25 @@ Begin
     # Set up a mini virtual environment...
     PSDependOptions             = @{
         AddToPath  = $true
-        Target     = 'output\RequiredModules'
-        Parameters = @{
-
-        }
+        Target     = 'RequiredModules'
+        Parameters = @{}
     }
 
-    InvokeBuild                     = 'latest'
-    PSScriptAnalyzer                = 'latest'
-    Pester                          = '4.10.1'
-    Plaster                         = 'latest'
-    ModuleBuilder                   = '1.0.0'
-    ChangelogManagement             = 'latest'
-    Sampler                         = '0.104.0'
-    xDSCResourceDesigner            = 'latest'
-    PSPKI                           = 'latest'
-    MarkdownLinkCheck               = 'latest'
-    'DscResource.Test'              = '0.13.1'
-    'DscResource.AnalyzerRules'     = 'latest'
-    'powershell-yaml'               = 'latest'
-    'Vmware.VsphereDSC'             = '2.1.0.58'
+    InvokeBuild                 = 'latest'
+    PSScriptAnalyzer            = 'latest'
+    Pester                      = '4.10.1'
+    Plaster                     = 'latest'
+    ModuleBuilder               = '1.0.0'
+    ChangelogManagement         = 'latest'
+    Sampler                     = '0.104.0'
+    xDSCResourceDesigner        = 'latest'
+    PSPKI                       = 'latest'
+    MarkdownLinkCheck           = 'latest'
+    'DscResource.Test'          = '0.13.1'
+    'DscResource.AnalyzerRules' = 'latest'
+    'powershell-yaml'           = 'latest'
+    'Vmware.VsphereDSC'         = '2.1.0.58'
     # The modules below are dynamically inserted from the Begin block of .\build.ps1
-
 '@
 
     $stringBuilder = New-Object -TypeName System.Text.StringBuilder -ArgumentList $requiredModulesContent
@@ -265,21 +263,27 @@ Begin
     Set-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath 'RequiredModules.psd1') -Value $stringBuilder.ToString() -Encoding UTF8
 
     # Find build config if not specified
-    if (-not $BuildConfig) {
+    if (-not $BuildConfig)
+    {
         $config = Get-ChildItem -Path "$PSScriptRoot\*" -Include 'build.y*ml', 'build.psd1', 'build.json*' -ErrorAction:Ignore
-        if (-not $config -or ($config -is [array] -and $config.Length -le 0)) {
+        if (-not $config -or ($config -is [array] -and $config.Length -le 0))
+        {
             throw "No build configuration found. Specify path via -BuildConfig"
         }
-        elseif ($config -is [array]) {
-            if ($config.Length -gt 1) {
+        elseif ($config -is [array])
+        {
+            if ($config.Length -gt 1)
+            {
                 throw "More than one build configuration found. Specify which one to use via -BuildConfig"
             }
             $BuildConfig = $config[0]
         }
-        else {
+        else
+        {
             $BuildConfig = $config
         }
     }
+
     # Bootstrapping the environment before using Invoke-Build as task runner
 
     if ($MyInvocation.ScriptName -notLike '*Invoke-Build.ps1')

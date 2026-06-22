@@ -66,6 +66,7 @@ configuration Vsphere_config
     )
 
     Import-DscResource -ModuleName PowerStig
+    Import-DscResource -ModuleName VMware.vSphereDSC
 
     Node localhost
     {
