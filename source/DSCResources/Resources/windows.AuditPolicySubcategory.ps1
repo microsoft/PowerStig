@@ -12,3 +12,15 @@ foreach ( $rule in $rules )
         Ensure    = $rule.Ensure
     }
 }
+
+$rules = $stig.RuleList | Select-Rule -Type AuditPolicyRuleAdvanced
+
+foreach ( $rule in $rules )
+{
+    AuditPolicySubcategory (Get-ResourceTitle -Rule $rule)
+    {
+        Name      = $rule.Subcategory
+        AuditFlag = $rule.AuditFlag
+        Ensure    = $rule.Ensure
+    }
+}

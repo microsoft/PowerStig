@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Added support for AuditPolicy rules using "Advanced Audit Policy" language.
+
 ## [4.30.0] - 2026-06-19
 
 * This is a bulk add and cleanup update.

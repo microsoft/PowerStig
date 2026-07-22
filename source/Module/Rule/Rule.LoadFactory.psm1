@@ -49,6 +49,7 @@ class LoadFactory
         {
             'AccountPolicyRule'                    {$return = [AccountPolicyRule]::new($Rule)}
             'AuditPolicyRule'                      {$return = [AuditPolicyRule]::new($Rule)}
+            'AuditPolicyRuleAdvanced'              {$return = [AuditPolicyRuleAdvanced]::new($Rule)}
             'DnsServerSettingRule'                 {$return = [DnsServerSettingRule]::new($Rule)}
             'DnsServerRootHintRule'                {$return = [DnsServerRootHintRule]::new($Rule)}
             'DocumentRule'                         {$return = [DocumentRule]::new($Rule)}

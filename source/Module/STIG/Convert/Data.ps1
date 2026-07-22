@@ -20,6 +20,7 @@ data dscResourceModule
     ConvertFrom-StringData -StringData @'
         AccountPolicyRule                    = SecurityPolicyDsc
         AuditPolicyRule                      = AuditPolicyDsc
+        AuditPolicyRuleAdvanced              = AuditPolicyDsc
         DnsServerSettingRule                 = xDnsServer
         DnsServerRootHintRule                = PSDscResources
         DocumentRule                         = None

@@ -73,3 +73,36 @@ class AuditPolicyRule : Rule
         }
     }
 }
+
+class AuditPolicyRuleAdvanced : AuditPolicyRule
+{
+    <#
+        .SYNOPSIS
+            Default constructor to support the AsRule cast method
+    #>
+    AuditPolicyRuleAdvanced ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Used to load PowerSTIG data from the processed data directory
+        .PARAMETER Rule
+            The STIG rule to load
+    #>
+    AuditPolicyRuleAdvanced ([xml.xmlelement] $Rule) : base ($Rule)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    AuditPolicyRuleAdvanced ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
+    {
+    }
+}
