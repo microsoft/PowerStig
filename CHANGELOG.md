@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Fix registry key path syntax error for V-278953 (IIS 10.0 Site, Ver 2, Rel 15)
+
 ## [4.30.0] - 2026-06-19
 
 * This is a bulk add and cleanup update.

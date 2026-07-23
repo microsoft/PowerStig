@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.15" created="6/17/2026">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="IIS_10-0_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DOD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_10-0_Site_STIG_V2R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 01 Apr 2026 3.5.2 1.10.0" title="Microsoft IIS 10.0 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.15" created="7/22/2026">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-218744" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 10.0 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 10.0, Request Filtering and Handler Mappings.
@@ -738,7 +738,7 @@ If any OS shell MIME types are configured, this is a finding.
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\System\CurrentControlSet\Services\HTTP\Parameters</Key>
+      <Key>HKLM:\System\CurrentControlSet\Services\HTTP\Parameters</Key>
       <LegacyId>
       </LegacyId>
       <OrganizationValueRequired>False</OrganizationValueRequired>
