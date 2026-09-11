@@ -107,6 +107,7 @@ configuration WindowsClient
     . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.Service.ps1"
     . "$resourcePath\windows.Registry.ps1"
+    . "$resourcePath\windows.OperatingSystem.ps1"
     . "$resourcePath\windows.WindowsOptionalFeature.ps1"
 
     Import-DscResource -ModuleName AuditSystemDsc -ModuleVersion 1.1.0

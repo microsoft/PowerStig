@@ -8,6 +8,7 @@ using module .\..\Rule.Group\GroupRule.psm1
 using module .\..\Rule.IISLogging\IISLoggingRule.psm1
 using module .\..\Rule.Manual\ManualRule.psm1
 using module .\..\Rule.MimeType\MimeTypeRule.psm1
+using module .\..\Rule.OperatingSystem\OperatingSystemRule.psm1
 using module .\..\Rule.Permission\PermissionRule.psm1
 using module .\..\Rule.ProcessMitigation\ProcessMitigationRule.psm1
 using module .\..\Rule.Registry\RegistryRule.psm1
@@ -57,6 +58,7 @@ class LoadFactory
             'IisLoggingRule'                       {$return = [IisLoggingRule]::new($Rule)}
             'MimeTypeRule'                         {$return = [MimeTypeRule]::new($Rule)}
             'ManualRule'                           {$return = [ManualRule]::new($Rule)}
+            'OperatingSystemRule'                  {$return = [OperatingSystemRule]::new($Rule)}
             'PermissionRule'                       {$return = [PermissionRule]::new($Rule)}
             'ProcessMitigationRule'                {$return = [ProcessMitigationRule]::new($Rule)}
             'RegistryRule'                         {$return = [RegistryRule]::new($Rule)}

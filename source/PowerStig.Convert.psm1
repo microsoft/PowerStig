@@ -21,6 +21,7 @@ using module .\Module\Rule.Group\Convert\GroupRule.Convert.psm1
 using module .\Module\Rule.IISLogging\Convert\IISLoggingRule.Convert.psm1
 using module .\Module\Rule.Manual\Convert\ManualRule.Convert.psm1
 using module .\Module\Rule.MimeType\Convert\MimeTypeRule.Convert.psm1
+using module .\Module\Rule.OperatingSystem\Convert\OperatingSystemRule.Convert.psm1
 using module .\Module\Rule.Permission\Convert\PermissionRule.Convert.psm1
 using module .\Module\Rule.ProcessMitigation\Convert\ProcessMitigationRule.Convert.psm1
 using module .\Module\Rule.Registry\Convert\RegistryRule.Convert.psm1

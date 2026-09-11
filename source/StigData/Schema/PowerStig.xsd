@@ -33,6 +33,7 @@
                     <xs:element ref="nxPackageRule"/>
                 </xs:sequence>
                 <xs:element minOccurs="0" ref="nxServiceRule"/>
+                <xs:element minOccurs="0" ref="OperatingSystemRule"/>
                 <xs:element minOccurs="0" ref="PermissionRule"/>
                 <xs:element minOccurs="0" ref="RegistryRule"/>
                 <xs:element minOccurs="0" ref="RootCertificateRule"/>
@@ -291,6 +292,14 @@
             <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
         </xs:complexType>
     </xs:element>
+    <xs:element name="OperatingSystemRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Rule"/>
+            </xs:sequence>
+            <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="SqlScriptQueryRule">
         <xs:complexType>
             <xs:sequence>
@@ -387,6 +396,7 @@
                     <xs:element ref="Contents"/>
                 </xs:choice>
                 <xs:element ref="Description"/>
+                <xs:element minOccurs="0" ref="DomainJoinedOnly"/>
                 <xs:choice minOccurs="0">
                     <xs:element ref="DesiredValue"/>
                     <xs:element ref="DisplayName"/>
@@ -460,6 +470,8 @@
                     </xs:sequence>
                 </xs:choice>
                 <xs:element ref="RawString"/>
+                <xs:element minOccurs="0" ref="RequiredArchitecture"/>
+                <xs:element minOccurs="0" ref="RequiredEdition"/>
                 <xs:choice minOccurs="0">
                     <xs:element ref="Running"/>
                     <xs:element ref="State"/>
@@ -508,6 +520,7 @@
     <xs:element name="ContainsLine" type="xs:string"/>
     <xs:element name="Contents" type="xs:string"/>
     <xs:element name="Description" type="xs:string"/>
+    <xs:element name="DomainJoinedOnly" type="xs:NCName"/>
     <xs:element name="DesiredValue" type="xs:string"/>
     <xs:element name="DisplayName" type="xs:string"/>
     <xs:element name="DoesNotContainPattern" type="xs:string"/>
@@ -566,6 +579,8 @@
     <xs:element name="PropertyValue" type="xs:string"/>
     <xs:element name="Property" type="xs:NCName"/>
     <xs:element name="Query" type="xs:string"/>
+    <xs:element name="RequiredArchitecture" type="xs:string"/>
+    <xs:element name="RequiredEdition" type="xs:string"/>
     <xs:element name="PolicyName" type="xs:string"/>
     <xs:element name="PolicyValue" type="xs:string"/>
     <xs:element name="RawString" type="xs:string"/>

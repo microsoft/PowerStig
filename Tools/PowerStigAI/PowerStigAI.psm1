@@ -233,7 +233,7 @@ converted to one or more of these existing types: AccountPolicyRule, AuditPolicy
 AuditSettingRule, DnsServerRootHintRule,
 DnsServerSettingRule, DocumentRule, FileContentRule, GroupRule, HardCodedRule, IisLoggingRule,
 MimeTypeRule, PermissionRule, ProcessMitigationRule, RegistryRule, RootCertificateRule,
-SecurityOptionRule, ServiceRule, SqlDatabaseRule, SqlLoginRule, SqlProtocolRule, SqlScriptQueryRule,
+OperatingSystemRule, SecurityOptionRule, ServiceRule, SqlDatabaseRule, SqlLoginRule, SqlProtocolRule, SqlScriptQueryRule,
 SqlServerConfigurationRule, SslSettingsRule, UserRightRule, WebAppPoolRule,
 WebConfigurationPropertyRule, WindowsFeatureRule, and WinEventLogRule. Use unsupported when a
 deterministic check is possible but none of those types can preserve the complete requirement,

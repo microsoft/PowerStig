@@ -12,6 +12,7 @@ using module .\..\..\Rule.Group\Convert\GroupRule.Convert.psm1
 using module .\..\..\Rule.IISLogging\Convert\IISLoggingRule.Convert.psm1
 using module .\..\..\Rule.Manual\Convert\ManualRule.Convert.psm1
 using module .\..\..\Rule.MimeType\Convert\MimeTypeRule.Convert.psm1
+using module .\..\..\Rule.OperatingSystem\Convert\OperatingSystemRule.Convert.psm1
 using module .\..\..\Rule.Permission\Convert\PermissionRule.Convert.psm1
 using module .\..\..\Rule.ProcessMitigation\Convert\ProcessMitigationRule.Convert.psm1
 using module .\..\..\Rule.Registry\Convert\RegistryRule.Convert.psm1
@@ -182,6 +183,12 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.AddRange(
                     [SplitFactory]::XccdfRule($Rule, 'MimeTypeRuleConvert')
+                )
+            }
+            {[OperatingSystemRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [OperatingSystemRuleConvert]::new($Rule).AsRule()
                 )
             }
             {[PermissionRuleConvert]::Match($PSItem)}

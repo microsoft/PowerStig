@@ -27,6 +27,7 @@ data dscResourceModule
         IisLoggingRule                       = xWebAdministration
         MimeTypeRule                         = xWebAdministration
         ManualRule                           = None
+        OperatingSystemRule                  = PSDscResources
         PermissionRule                       = AccessControlDsc
         ProcessMitigationRule                = WindowsDefenderDsc
         RegistryRule                         = PSDscResources
