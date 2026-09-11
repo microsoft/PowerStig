@@ -26,6 +26,15 @@
     .PARAMETER RuleIdFilter
         Filters the list rules that are converted to simplify debugging the conversion process.
 
+    .PARAMETER FallbackConverter
+        An optional script block that receives conversion context when regex conversion throws an
+        exception or returns a rule with a failed conversion status.
+
+    .PARAMETER ManualRuleReviewer
+        An optional script block that receives conversion context when regex conversion returns a
+        manual rule. An AutomationGap review is normalized and retried through PowerSTIG; it
+        replaces the manual result only when conversion returns passing non-manual rules.
+
     .EXAMPLE
         ConvertFrom-StigXccdf -Path C:\Stig\U_Windows_2012_and_2012_R2_MS_STIG_V2R8_Manual-xccdf.xml
 
@@ -52,7 +61,15 @@ function ConvertFrom-StigXccdf
 
         [Parameter()]
         [string[]]
-        $RuleIdFilter
+        $RuleIdFilter,
+
+        [Parameter()]
+        [scriptblock]
+        $FallbackConverter,
+
+        [Parameter()]
+        [scriptblock]
+        $ManualRuleReviewer
     )
 
     # Get the xml data from the file path provided.
@@ -64,11 +81,11 @@ function ConvertFrom-StigXccdf
     # Global variable needed to set and get specific logic needed for filtering and parsing FileContentRules
     switch ($true)
     {
-        {$global:stigXccdfName -and -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1, 2)) -eq ''}
+        { $global:stigXccdfName -and -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1, 2)) -eq '' }
         {
             break;
         }
-        {!$global:stigXccdfName -or $global:stigXccdfName -ne -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1, 2))}
+        { !$global:stigXccdfName -or $global:stigXccdfName -ne -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1, 2)) }
         {
             $global:stigXccdfName = -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1, 2))
             break;
@@ -81,11 +98,21 @@ function ConvertFrom-StigXccdf
 
     if ($RuleIdFilter)
     {
-        $stigRuleParams.StigGroupList = $stigBenchmarkXml.Group | Where-Object {$RuleIdFilter -contains $PSItem.Id}
+        $stigRuleParams.StigGroupList = $stigBenchmarkXml.Group | Where-Object { $RuleIdFilter -contains $PSItem.Id }
     }
     else
     {
         $stigRuleParams.StigGroupList = $stigBenchmarkXml.Group
+    }
+
+    if ($FallbackConverter)
+    {
+        $stigRuleParams.FallbackConverter = $FallbackConverter
+    }
+
+    if ($ManualRuleReviewer)
+    {
+        $stigRuleParams.ManualRuleReviewer = $ManualRuleReviewer
     }
 
     # The benchmark title drives the rest of the function and must exist to continue.
@@ -173,7 +200,7 @@ function Get-RegistryRuleExpressions
     {
         # Load specific and core expression sets
         $childItemParams = @{
-            Path = "$PSScriptRoot\..\..\Rule\Convert"
+            Path    = "$PSScriptRoot\..\..\Rule\Convert"
             Exclude = $spExclude
             Include = $spInclude
             Recurse = $true
@@ -204,6 +231,11 @@ function Get-RegistryRuleExpressions
         Filters the list rules that are converted to simplify debugging the conversion process.
     .PARAMETER DoNotExportDescription
         Excludes the Description elemet content from the converted object.
+    .PARAMETER FallbackConverter
+        An optional script block that normalizes conversion failures before document generation.
+    .PARAMETER ManualRuleReviewer
+        An optional script block that reviews manual rules. Valid AutomationGap results are
+        deterministically reconverted and written as automated rules.
 #>
 function ConvertTo-PowerStigXml
 {
@@ -233,7 +265,15 @@ function ConvertTo-PowerStigXml
 
         [Parameter()]
         [switch]
-        $DoNotExportDescription
+        $DoNotExportDescription,
+
+        [Parameter()]
+        [scriptblock]
+        $FallbackConverter,
+
+        [Parameter()]
+        [scriptblock]
+        $ManualRuleReviewer
     )
 
     begin
@@ -247,7 +287,22 @@ function ConvertTo-PowerStigXml
     }
     process
     {
-        $convertedStigObjects = ConvertFrom-StigXccdf -Path $Path -RuleIdFilter $RuleIdFilter
+        $convertParams = @{
+            Path         = $Path
+            RuleIdFilter = $RuleIdFilter
+        }
+
+        if ($FallbackConverter)
+        {
+            $convertParams.FallbackConverter = $FallbackConverter
+        }
+
+        if ($ManualRuleReviewer)
+        {
+            $convertParams.ManualRuleReviewer = $ManualRuleReviewer
+        }
+
+        $convertedStigObjects = ConvertFrom-StigXccdf @convertParams
 
         # Add a newline to end of raw xccdf if it doesn't exist
         $rawXccdf = Get-Content -Path $Path
@@ -302,9 +357,9 @@ function ConvertTo-PowerStigXml
 
             # Get the list of properties of the current object type to use as child elements
             [System.Collections.ArrayList] $properties = $rules |
-                Get-Member |
-                Where-Object MemberType -eq Property |
-                Select-Object Name -ExpandProperty Name
+            Get-Member |
+            Where-Object MemberType -eq Property |
+            Select-Object Name -ExpandProperty Name
 
             <#
                 The $properties array is used to set the child elements of the rule. Remove the base
@@ -319,7 +374,7 @@ function ConvertTo-PowerStigXml
                 in $propertiesToRemove are in different case from $properties we use the -in comparison
                 operator to filter and return the proper case
             #>
-            $propertiesToRemove = $properties | Where-Object -FilterScript {$PSItem -in $propertiesToRemove}
+            $propertiesToRemove = $properties | Where-Object -FilterScript { $PSItem -in $propertiesToRemove }
 
             ### [TODO] ###
             <#
@@ -350,7 +405,7 @@ function ConvertTo-PowerStigXml
             foreach ( $rule in $rules )
             {
                 # Replace TAB(s) with 3 spaces in rule.description before adding to xml document.
-                $rule.Description = $rule.Description -replace("`t","   ")
+                $rule.Description = $rule.Description -replace ("`t", "   ")
 
                 [System.XML.XMLElement] $xmlRuleTypeProperty = $xmlDocument.CreateElement( 'Rule' )
                 # Append as child to an existing node. DO NOT remove the [void]
@@ -549,7 +604,7 @@ function Compare-PowerStigXml
         foreach ($stig in $compareObjects)
         {
             $compareIdListFilter = $compareIdList |
-                Where-Object {$PSitem -eq $stig.Id}
+            Where-Object { $PSitem -eq $stig.Id }
 
             if ($compareIdListFilter.Count -gt "1")
             {
@@ -687,7 +742,7 @@ function Get-StigObjectsWithOrgSettings
     )
 
     $ConvertedStigObjects |
-        Where-Object { $PSitem.OrganizationValueRequired -eq $true}
+    Where-Object { $PSitem.OrganizationValueRequired -eq $true }
 }
 
 function Get-OrgSettingPropertyFromStigRule
@@ -751,7 +806,8 @@ function Get-HardCodedRuleLogFileEntry
         [String]
         $RuleId
     )
-    DynamicParam {
+    DynamicParam
+    {
         Get-DynamicParameterRuleTypeName
     }
 
@@ -783,7 +839,7 @@ function Get-HardCodedRuleLogFileEntry
 
             # Query all valid non-base rule property names
             $ruleProperties = (Get-Member -InputObject $ruleTypeConvert -MemberType Property).Name |
-                Where-Object -FilterScript {$PSItem -notin $commonPropertiesToRemove}
+            Where-Object -FilterScript { $PSItem -notin $commonPropertiesToRemove }
 
             # Build a string for DSC Resource specific parameters, without values
             $keyValuePair = @()
@@ -896,7 +952,7 @@ function Get-RuleChangeLog
         $oldText = $change.Groups.Item('oldText').value
         # The trim removes any potential CRLF entries that will show up in a regex escape sequence.
         # The replace replaces `r`n with an actual new line. This is useful if you need to add data on a separate line.
-        $newText = $change.Groups.Item('newText').value.Trim().Replace('`r`n',[Environment]::NewLine)
+        $newText = $change.Groups.Item('newText').value.Trim().Replace('`r`n', [Environment]::NewLine)
 
         $changeObject = [pscustomobject] @{
             OldText = $oldText

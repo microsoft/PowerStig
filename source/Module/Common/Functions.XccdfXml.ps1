@@ -140,6 +140,15 @@ function Split-StigXccdf
     .PARAMETER IncludeRawString
         A flag that returns the unaltered Check-Content with the converted object.
 
+    .PARAMETER FallbackConverter
+        An optional script block that receives conversion context when the primary conversion
+        throws an exception or returns a rule with a failed conversion status.
+
+    .PARAMETER ManualRuleReviewer
+        An optional script block that receives conversion context when the primary conversion
+        returns a manual rule. A review with an AutomationGap decision is retried through the
+        deterministic converter using its corrected XCCDF content.
+
     .NOTES
         General notes
 #>
@@ -155,7 +164,15 @@ function Get-StigRuleList
 
         [Parameter()]
         [hashtable]
-        $StigGroupListChangeLog
+        $StigGroupListChangeLog,
+
+        [Parameter()]
+        [scriptblock]
+        $FallbackConverter,
+
+        [Parameter()]
+        [scriptblock]
+        $ManualRuleReviewer
     )
 
     begin
@@ -177,7 +194,7 @@ function Get-StigRuleList
         foreach ($stigRule in $StigGroupList)
         {
             #Replace TAB's from in Rules to 3 spaces
-            $stigRule.rule.Check.('check-content') = $stigRule.rule.Check.('check-content') -replace("`t","   ")
+            $stigRule.rule.Check.('check-content') = $stigRule.rule.Check.('check-content') -replace ("`t", "   ")
 
             # This is to address STIG Rule V-18395 that has multiple rules that are exactly the same under that rule ID.
             if ($stigRule.Rule.Count -gt 1)
@@ -208,6 +225,8 @@ function Get-StigRuleList
             }
             else
             {
+                $rules = @()
+                $conversionError = $null
                 try 
                 {
                     write-host "Converting $($stigRule.Id)"
@@ -215,7 +234,115 @@ function Get-StigRuleList
                 }
                 catch 
                 {
+                    $conversionError = $_
                     Write-Host "Conversion for $($stigRule.Id) failed.  Error: $($_.Exception.Message)"
+                }
+
+                $failedRules = @($rules | Where-Object { $_.ConversionStatus -eq 'fail' })
+                if ($FallbackConverter -and ($conversionError -or $failedRules.Count -gt 0))
+                {
+                    $fallbackContext = [pscustomobject] @{
+                        XccdfRule = $stigRule
+                        Rules     = @($rules)
+                        Error     = $conversionError
+                        Reason    = if ($conversionError) { 'Exception' } else { 'ConversionFailed' }
+                    }
+
+                    try
+                    {
+                        $fallbackResult = @(& $FallbackConverter $fallbackContext)
+                        $normalization = $fallbackResult |
+                        Where-Object {
+                            $_.CorrectedCheckContent -and
+                            $_.CorrectedFixText
+                        } |
+                        Select-Object -First 1
+
+                        if ($normalization)
+                        {
+                            $normalizedRule = $stigRule.Clone()
+                            $normalizedRule.Rule.Check.'check-content' = $normalization.CorrectedCheckContent
+                            $normalizedRule.Rule.fixtext.'#text' = $normalization.CorrectedFixText
+                            $fallbackRules = @([ConvertFactory]::Rule($normalizedRule))
+                            $invalidFallbackRules = @(
+                                $fallbackRules |
+                                Where-Object {
+                                    $_.ConversionStatus -ne 'pass' -or
+                                    $_.GetType().Name -eq 'ManualRule' -or
+                                    ($_.Id -split '\.')[0] -ne $stigRule.Id
+                                }
+                            )
+                            if ($fallbackRules.Count -gt 0 -and $invalidFallbackRules.Count -eq 0)
+                            {
+                                $rules = $fallbackRules
+                            }
+                            else
+                            {
+                                Write-Warning "AI normalization for $($stigRule.Id) did not produce a valid automated rule."
+                            }
+                        }
+                        elseif ($fallbackResult.Count -gt 0)
+                        {
+                            $rules = $fallbackResult
+                        }
+                    }
+                    catch
+                    {
+                        Write-Warning "Fallback conversion for $($stigRule.Id) failed. Error: $($_.Exception.Message)"
+                    }
+                }
+
+                $manualRules = @($rules | Where-Object { $_.GetType().Name -eq 'ManualRule' })
+                if ($ManualRuleReviewer -and $manualRules.Count -gt 0)
+                {
+                    $reviewContext = [pscustomobject] @{
+                        XccdfRule = $stigRule
+                        Rules     = $manualRules
+                        Error     = $null
+                        Reason    = 'ManualReview'
+                    }
+
+                    try
+                    {
+                        $manualReviews = @(& $ManualRuleReviewer $reviewContext)
+                        $automationReview = $manualReviews |
+                        Where-Object { $_.Decision -eq 'automation-gap' } |
+                        Select-Object -First 1
+
+                        if
+                        (
+                            $automationReview -and
+                            $automationReview.CorrectedCheckContent -and
+                            $automationReview.CorrectedFixText
+                        )
+                        {
+                            $normalizedRule = $stigRule.Clone()
+                            $normalizedRule.Rule.Check.'check-content' = $automationReview.CorrectedCheckContent
+                            $normalizedRule.Rule.fixtext.'#text' = $automationReview.CorrectedFixText
+                            $automatedRules = @([ConvertFactory]::Rule($normalizedRule))
+                            $invalidAutomatedRules = @(
+                                $automatedRules |
+                                Where-Object {
+                                    $_.ConversionStatus -ne 'pass' -or
+                                    $_.GetType().Name -eq 'ManualRule' -or
+                                    ($_.Id -split '\.')[0] -ne $stigRule.Id
+                                }
+                            )
+
+                            if ($automatedRules.Count -gt 0 -and $invalidAutomatedRules.Count -eq 0)
+                            {
+                                $rules = $automatedRules
+                            }
+                            else
+                            {
+                                Write-Warning "AI-normalized manual rule $($stigRule.Id) did not produce a valid automated rule."
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        Write-Warning "Manual rule review for $($stigRule.Id) failed. Error: $($_.Exception.Message)"
+                    }
                 }
 
                 foreach ($rule in $rules)
@@ -389,7 +516,7 @@ function Split-BenchmarkId
 
     switch ($id)
     {
-        {$PSItem -match "SQL_Server"}
+        { $PSItem -match "SQL_Server" }
         {
             $sqlRole = Get-SqlTechnologyRole -Path $FilePath -Id $id
             $id -match "(?<Version>\d{4})"
@@ -397,37 +524,37 @@ function Split-BenchmarkId
             $returnId = 'SqlServer_{0}_{1}' -f $sqlVersion, $sqlRole
             continue
         }
-        {$PSItem -match "_Firewall"}
+        { $PSItem -match "_Firewall" }
         {
             $returnId = 'WindowsFirewall_All'
             continue
         }
-        {$PSItem -match "Windows_Defender_Antivirus|MS_Defender_Antivirus"}
+        { $PSItem -match "Windows_Defender_Antivirus|MS_Defender_Antivirus" }
         {
             $returnId = 'WindowsDefender_All'
             continue
         }
-        {$PSItem -match "IIS_8-5_Server"}
+        { $PSItem -match "IIS_8-5_Server" }
         {
             $returnId = 'IISServer_8.5'
             continue
         }
-        {$PSItem -match "IIS_8-5_Site"}
+        { $PSItem -match "IIS_8-5_Site" }
         {
             $returnId = 'IISSite_8.5'
             continue
         }
-        {$PSItem -match "IIS_10-0_Site"}
+        { $PSItem -match "IIS_10-0_Site" }
         {
             $returnId = 'IISSite_10.0'
             continue
         }
-        {$PSItem -match "IIS_10-0_Server"}
+        { $PSItem -match "IIS_10-0_Server" }
         {
             $returnId = 'IISServer_10.0'
             continue
         }
-        {$PSItem -match "Domain_Name_System"}
+        { $PSItem -match "Domain_Name_System" }
         {
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
             $id = $id -replace '_2012_', '_2012R2_'
@@ -435,29 +562,29 @@ function Split-BenchmarkId
             $returnId = '{0}_{1}' -f 'WindowsDnsServer', $dnsStig[2]
             continue
         }
-        {$PSItem -match "Windows_10"}
+        { $PSItem -match "Windows_10" }
         {
             $returnId = $id -Replace "Windows", 'WindowsClient'
             $returnId = $returnId -Replace "MS_", ''
             continue
         }
-        {$PSItem -match "Windows_11"}
+        { $PSItem -match "Windows_11" }
         {
             $returnId = $id -Replace "Windows", 'WindowsClient'
             $returnId = $returnId -Replace "Microsoft_", ''
             continue
         }
-        {$PSItem -match 'JRE_8'}
+        { $PSItem -match 'JRE_8' }
         {
             $returnId = 'OracleJRE_8'
             continue
         }
-        {$PSItem -match 'Google_Chrome_Current_Windows'}
+        { $PSItem -match 'Google_Chrome_Current_Windows' }
         {
             $returnId = 'Google_Chrome'
             continue
         }
-        {$PSItem -match "Windows"}
+        { $PSItem -match "Windows" }
         {
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
             $id = $id -replace '_2012_', '_2012R2_'
@@ -465,23 +592,23 @@ function Split-BenchmarkId
             $returnId = $returnId -replace 'MS_', ''
             continue
         }
-        {$PSItem -match "Active_Directory"}
+        { $PSItem -match "Active_Directory" }
         {
             $role = ($id -split '_')[-1]
             $returnId = "ActiveDirectory_All_$role"
             continue
         }
-        {$PSItem -match "IE_"}
+        { $PSItem -match "IE_" }
         {
             $returnId = "InternetExplorer_11"
             continue
         }
-        {$PSItem -match 'FireFox'}
+        { $PSItem -match 'FireFox' }
         {
             $returnId = "FireFox_All"
             continue
         }
-        {$PSItem -match 'Excel|Outlook|PowerPoint|Word|System|Visio|ProPlus|Publisher|Access|OneNote|Skype_for_Business'}
+        { $PSItem -match 'Excel|Outlook|PowerPoint|Word|System|Visio|ProPlus|Publisher|Access|OneNote|Skype_for_Business' }
         {
             $officeStig = ($id -split '_')
 
@@ -502,32 +629,32 @@ function Split-BenchmarkId
 
             continue
         }
-        {$PSItem -match 'Dot_Net'}
+        { $PSItem -match 'Dot_Net' }
         {
             $returnId = 'DotNetFramework_4'
             continue
         }
-        {$PSItem -match 'Adobe_Acrobat_Reader'}
+        { $PSItem -match 'Adobe_Acrobat_Reader' }
         {
             $returnId = 'Adobe_AcrobatReader'
             continue
         }
-        {$PSItem -match 'Adobe_Acrobat_Pro'}
+        { $PSItem -match 'Adobe_Acrobat_Pro' }
         {
             $returnId = 'Adobe_AcrobatPro'
             continue
         }
-        {$PSItem -match 'McAfee_VirusScan'}
+        { $PSItem -match 'McAfee_VirusScan' }
         {
             $returnId = 'McAfee_8.8_VirusScan'
             continue
         }
-        {$PSItem -match 'Vmware_Vsphere'}
+        { $PSItem -match 'Vmware_Vsphere' }
         {
             $returnId = 'Vsphere_6.5'
             continue
         }
-        {$PSItem -match 'Ubuntu'}
+        { $PSItem -match 'Ubuntu' }
         {
             $ubuntuId = $id -split '_'
             $ubuntuVersion = $ubuntuId[-1] -replace '-', '.'
@@ -563,7 +690,7 @@ function Get-SqlTechnologyRole
         [string]
         $Id,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $Path
@@ -571,7 +698,7 @@ function Get-SqlTechnologyRole
 
     $split = $Path -split '_'
     $stigIndex = $split.IndexOf('STIG')
-    $sqlRole = $split[$stigIndex -1]
+    $sqlRole = $split[$stigIndex - 1]
     if ($sqlRole -match '\w\d{1,}\w\d{1,}')
     {
         $null = $Id -match "(?<Type>Database|Instance)"
