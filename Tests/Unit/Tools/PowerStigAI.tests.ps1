@@ -1,6 +1,48 @@
 . $PSScriptRoot\.tests.header.ps1
 
 InModuleScope $script:ModuleName {
+    Describe 'Convert-PowerStigZipFolder' -Tag 'tools' {
+        It 'Should convert nested XCCDF files into a sibling conversions folder' {
+            $sourcePath = Join-Path -Path $TestDrive -ChildPath 'source'
+            $archivePath = Join-Path -Path $sourcePath -ChildPath 'sample.zip'
+            $archiveContent = Join-Path -Path $TestDrive -ChildPath 'archive-content\nested'
+            $null = New-Item -Path $archiveContent -ItemType Directory -Force
+            '<Benchmark />' | Set-Content -Path (Join-Path $archiveContent 'sample-xccdf.xml')
+            $null = New-Item -Path $sourcePath -ItemType Directory -Force
+            Compress-Archive -Path (Join-Path $TestDrive 'archive-content\*') -DestinationPath $archivePath
+            $script:conversionParameters = $null
+            $converter = {
+                param($Parameters)
+                $script:conversionParameters = $Parameters
+            }
+
+            $result = Convert-PowerStigZipFolder -Path $sourcePath -Converter $converter
+
+            @($result).Count | Should Be 1
+            $result.Status | Should Be 'Converted'
+            $result.Xccdf | Should Be 'sample-xccdf.xml'
+            $result.Destination | Should Be (Join-Path $sourcePath 'conversions')
+            $script:conversionParameters.Path | Should Match 'sample-xccdf.xml$'
+            $script:conversionParameters.Destination | Should Be (Join-Path $sourcePath 'conversions')
+            Test-Path -Path $script:conversionParameters.Path | Should Be $false
+        }
+
+        It 'Should skip an archive that contains no XCCDF file' {
+            $sourcePath = Join-Path -Path $TestDrive -ChildPath 'source-no-xccdf'
+            $archiveContent = Join-Path -Path $TestDrive -ChildPath 'archive-no-xccdf'
+            $null = New-Item -Path $sourcePath -ItemType Directory -Force
+            $null = New-Item -Path $archiveContent -ItemType Directory -Force
+            'sample' | Set-Content -Path (Join-Path $archiveContent 'readme.txt')
+            Compress-Archive -Path (Join-Path $archiveContent '*') `
+                -DestinationPath (Join-Path $sourcePath 'sample.zip')
+
+            $result = Convert-PowerStigZipFolder -Path $sourcePath -Converter { throw 'Should not run' }
+
+            $result.Status | Should Be 'Skipped'
+            $result.Error | Should Match 'No XCCDF file'
+        }
+    }
+
     Describe 'Invoke-PowerStigAzureAiNormalization' -Tag 'tools' {
         It 'Should request and parse strict normalized XCCDF content' {
             $script:requestBody = $null

@@ -34,6 +34,119 @@ function Get-PowerStigAiAccessToken
     return (Get-AzAccessToken -ResourceUrl 'https://ai.azure.com').Token
 }
 
+function Convert-PowerStigZipFolder
+{
+    [CmdletBinding()]
+    [OutputType([pscustomobject])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidateScript({ Test-Path -Path $_ -PathType Container })]
+        [string]
+        $Path,
+
+        [Parameter()]
+        [string]
+        $Destination = (Join-Path -Path $Path -ChildPath 'conversions'),
+
+        [Parameter()]
+        [scriptblock]
+        $FallbackConverter,
+
+        [Parameter()]
+        [scriptblock]
+        $ManualRuleReviewer,
+
+        [Parameter(DontShow)]
+        [scriptblock]
+        $Converter = { param($Parameters) ConvertTo-PowerStigXml @Parameters }
+    )
+
+    $sourcePath = (Resolve-Path -Path $Path).Path
+    $null = New-Item -Path $Destination -ItemType Directory -Force
+    $destinationPath = (Resolve-Path -Path $Destination).Path
+    $archives = @(Get-ChildItem -Path $sourcePath -Filter '*.zip' -File | Sort-Object -Property Name)
+
+    foreach ($archive in $archives)
+    {
+        $extractPath = Join-Path -Path ([IO.Path]::GetTempPath()) -ChildPath "PowerStig-$([guid]::NewGuid())"
+        try
+        {
+            Expand-Archive -Path $archive.FullName -DestinationPath $extractPath -Force
+            $xccdfFiles = @(Get-ChildItem -Path $extractPath -Filter '*-xccdf.xml' -File -Recurse)
+
+            if ($xccdfFiles.Count -eq 0)
+            {
+                [pscustomobject] @{
+                    Archive     = $archive.FullName
+                    Xccdf       = $null
+                    Status      = 'Skipped'
+                    Destination = $destinationPath
+                    Error       = 'No XCCDF file was found in the archive.'
+                }
+                continue
+            }
+
+            foreach ($xccdfFile in $xccdfFiles)
+            {
+                $conversionParameters = @{
+                    Path        = $xccdfFile.FullName
+                    Destination = $destinationPath
+                }
+
+                if ($FallbackConverter)
+                {
+                    $conversionParameters.FallbackConverter = $FallbackConverter
+                }
+
+                if ($ManualRuleReviewer)
+                {
+                    $conversionParameters.ManualRuleReviewer = $ManualRuleReviewer
+                }
+
+                try
+                {
+                    $null = & $Converter $conversionParameters
+                    [pscustomobject] @{
+                        Archive     = $archive.FullName
+                        Xccdf       = $xccdfFile.Name
+                        Status      = 'Converted'
+                        Destination = $destinationPath
+                        Error       = $null
+                    }
+                }
+                catch
+                {
+                    [pscustomobject] @{
+                        Archive     = $archive.FullName
+                        Xccdf       = $xccdfFile.Name
+                        Status      = 'Failed'
+                        Destination = $destinationPath
+                        Error       = $_.Exception.Message
+                    }
+                }
+            }
+        }
+        catch
+        {
+            [pscustomobject] @{
+                Archive     = $archive.FullName
+                Xccdf       = $null
+                Status      = 'Failed'
+                Destination = $destinationPath
+                Error       = $_.Exception.Message
+            }
+        }
+        finally
+        {
+            if (Test-Path -Path $extractPath)
+            {
+                Remove-Item -Path $extractPath -Recurse -Force
+            }
+        }
+    }
+}
+
 function Invoke-PowerStigAzureAiNormalization
 {
     [CmdletBinding()]
@@ -192,23 +305,23 @@ function Invoke-PowerStigAzureAiManualReview
         Title        = $rule.title
         CheckContent = $rule.Check.'check-content'
         FixText      = $rule.fixtext.'#text'
-        CurrentType  = @($Context.Rules | ForEach-Object {$_.GetType().Name})
+        CurrentType  = @($Context.Rules | ForEach-Object { $_.GetType().Name })
         ReviewReason = $Context.Reason
     } | ConvertTo-Json -Depth 5
 
     $schema = [ordered] @{
         type                 = 'object'
         properties           = [ordered] @{
-            decision               = @{
+            decision              = @{
                 type = 'string'
                 enum = @('manual', 'automation-gap', 'unsupported', 'uncertain')
             }
-            suggestedRuleType      = @{type = @('string', 'null') }
-            rationale              = @{type = 'string' }
-            correctedCheckContent  = @{type = 'string' }
-            correctedFixText       = @{type = 'string' }
-            changes                = @{type = 'array'; items = @{type = 'string' } }
-            confidence             = @{type = 'string'; enum = @('low', 'medium', 'high') }
+            suggestedRuleType     = @{type = @('string', 'null') }
+            rationale             = @{type = 'string' }
+            correctedCheckContent = @{type = 'string' }
+            correctedFixText      = @{type = 'string' }
+            changes               = @{type = 'array'; items = @{type = 'string' } }
+            confidence            = @{type = 'string'; enum = @('low', 'medium', 'high') }
         }
         required             = @(
             'decision',
@@ -311,6 +424,7 @@ and accepted only when it produces passing non-manual typed rules.
 }
 
 Export-ModuleMember -Function @(
+    'Convert-PowerStigZipFolder',
     'Invoke-PowerStigAzureAiNormalization',
     'Invoke-PowerStigAzureAiManualReview'
 )
