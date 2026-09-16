@@ -237,12 +237,14 @@ OperatingSystemRule, SecurityOptionRule, ServiceRule, SqlDatabaseRule, SqlLoginR
 SqlServerConfigurationRule, SslSettingsRule, UserRightRule, WebAppPoolRule,
 WebConfigurationPropertyRule, WindowsFeatureRule, and WinEventLogRule. Use unsupported when a
 deterministic check is possible but none of those types can preserve the complete requirement,
-including applicability conditions. Do not invent settings or claim that a DSC resource exists
-without evidence in the supplied text. Normalize malformed labels, separators, spacing, and line
-breaks in the corrected content while preserving the security requirement exactly. For an
-automation-gap, set suggestedRuleType to the existing target type and format corrected content for
-that type. Otherwise set suggestedRuleType to null. Automation-gap output will be retried through
-PowerSTIG and accepted only when it produces passing non-manual typed rules.
+including applicability conditions. Never use automation-gap for a partial conversion: if any check,
+exception, applicability condition, or remediation remains manual or cannot be represented by the
+suggested type, use unsupported. Do not invent settings or claim that a DSC resource exists without
+evidence in the supplied text. Normalize malformed labels, separators, spacing, and line breaks in
+the corrected content while preserving the security requirement exactly. For an automation-gap,
+set suggestedRuleType to the existing target type and format corrected content for that type.
+Otherwise set suggestedRuleType to null. Automation-gap output will be retried through PowerSTIG
+and accepted only when it produces passing non-manual typed rules.
 '@
         input        = $input
         text         = @{

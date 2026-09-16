@@ -90,6 +90,7 @@ InModuleScope $script:ModuleName {
             $script:requestBody.text.format.strict | Should Be $true
             $script:requestBody.instructions | Should Match 'Use automation-gap only'
             $script:requestBody.instructions | Should Match 'Use unsupported when'
+            $script:requestBody.instructions | Should Match 'Never use automation-gap for a partial conversion'
             Assert-MockCalled Invoke-RestMethod -Times 1 -ParameterFilter {
                 $Uri -eq 'https://example.services.ai.azure.com/openai/v1/responses'
             }
