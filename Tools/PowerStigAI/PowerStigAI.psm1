@@ -34,6 +34,75 @@ function Get-PowerStigAiAccessToken
     return (Get-AzAccessToken -ResourceUrl 'https://ai.azure.com').Token
 }
 
+function Get-PowerStigBatchDocumentReport
+{
+    [CmdletBinding()]
+    [OutputType([pscustomobject])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Archive,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $XccdfPath,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ConvertedPath
+    )
+
+    [xml] $sourceXml = Get-Content -Path $XccdfPath -Encoding UTF8 -Raw
+    [xml] $convertedXml = Get-Content -Path $ConvertedPath -Encoding UTF8 -Raw
+    $sourceRuleIds = @($sourceXml.Benchmark.Group.Id)
+    $convertedRuleGroups = @(
+        $convertedXml.SelectNodes('//Rule') |
+        Group-Object -Property { ([string] $PSItem.Id -split '\.')[0] }
+    )
+    $convertedRuleIds = @($convertedRuleGroups.Name)
+    $failedRuleIds = @(
+        $convertedRuleGroups |
+        Where-Object {
+            @($PSItem.Group | Where-Object { $PSItem.ConversionStatus -ne 'pass' }).Count -gt 0
+        } |
+        Select-Object -ExpandProperty Name
+    )
+    $manualRuleIds = @(
+        $convertedRuleGroups |
+        Where-Object {
+            $PSItem.Name -notin $failedRuleIds -and
+            @(
+                $PSItem.Group |
+                Where-Object {
+                    $PSItem.ParentNode.Name -notin @('DocumentRule', 'ManualRule') -and
+                    -not [string]::IsNullOrWhiteSpace([string] $PSItem.DscResource) -and
+                    $PSItem.DscResource -ne 'None'
+                }
+            ).Count -eq 0
+        } |
+        Select-Object -ExpandProperty Name
+    )
+    $successfulRuleIds = @(
+        $sourceRuleIds |
+        Where-Object { $PSItem -in $convertedRuleIds -and $PSItem -notin $failedRuleIds -and $PSItem -notin $manualRuleIds }
+    )
+    $missingRuleIds = @($sourceRuleIds | Where-Object { $PSItem -notin $convertedRuleIds })
+
+    return [pscustomobject] @{
+        Archive         = $Archive
+        Xccdf           = Split-Path -Path $XccdfPath -Leaf
+        Output          = $ConvertedPath
+        SourceRules     = $sourceRuleIds.Count
+        SuccessfulRules = $successfulRuleIds.Count
+        ManualRules     = $manualRuleIds.Count
+        FailedRules     = $failedRuleIds.Count
+        MissingRules    = $missingRuleIds.Count
+        FailedRuleIds   = $failedRuleIds
+        MissingRuleIds  = $missingRuleIds
+    }
+}
+
 function Convert-PowerStigZipFolder
 {
     [CmdletBinding()]
@@ -48,6 +117,10 @@ function Convert-PowerStigZipFolder
         [Parameter()]
         [string]
         $Destination = (Join-Path -Path $Path -ChildPath 'conversions'),
+
+        [Parameter()]
+        [string]
+        $ChangeLogPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\source\StigData\Archive'),
 
         [Parameter()]
         [scriptblock]
@@ -66,6 +139,12 @@ function Convert-PowerStigZipFolder
     $null = New-Item -Path $Destination -ItemType Directory -Force
     $destinationPath = (Resolve-Path -Path $Destination).Path
     $archives = @(Get-ChildItem -Path $sourcePath -Filter '*.zip' -File | Sort-Object -Property Name)
+    $batchResults = [System.Collections.Generic.List[object]]::new()
+    $documentReports = [System.Collections.Generic.List[object]]::new()
+    $resolvedChangeLogPath = if (Test-Path -Path $ChangeLogPath -PathType Container)
+    {
+        (Resolve-Path -Path $ChangeLogPath).Path
+    }
 
     foreach ($archive in $archives)
     {
@@ -77,18 +156,29 @@ function Convert-PowerStigZipFolder
 
             if ($xccdfFiles.Count -eq 0)
             {
-                [pscustomobject] @{
-                    Archive     = $archive.FullName
-                    Xccdf       = $null
-                    Status      = 'Skipped'
-                    Destination = $destinationPath
-                    Error       = 'No XCCDF file was found in the archive.'
-                }
+                $batchResults.Add([pscustomobject] @{
+                        Archive     = $archive.FullName
+                        Xccdf       = $null
+                        Status      = 'Skipped'
+                        Destination = $destinationPath
+                        Error       = 'No XCCDF file was found in the archive.'
+                    })
                 continue
             }
 
             foreach ($xccdfFile in $xccdfFiles)
             {
+                if ($resolvedChangeLogPath)
+                {
+                    $changeLog = Get-ChildItem -Path $resolvedChangeLogPath `
+                        -Filter "$($xccdfFile.BaseName).log" -File -Recurse | Select-Object -First 1
+                    if ($changeLog)
+                    {
+                        Copy-Item -Path $changeLog.FullName `
+                            -Destination ([IO.Path]::ChangeExtension($xccdfFile.FullName, '.log'))
+                    }
+                }
+
                 $conversionParameters = @{
                     Path        = $xccdfFile.FullName
                     Destination = $destinationPath
@@ -106,36 +196,47 @@ function Convert-PowerStigZipFolder
 
                 try
                 {
-                    $null = & $Converter $conversionParameters
-                    [pscustomobject] @{
-                        Archive     = $archive.FullName
-                        Xccdf       = $xccdfFile.Name
-                        Status      = 'Converted'
-                        Destination = $destinationPath
-                        Error       = $null
+                    $converterOutput = @(& $Converter $conversionParameters)
+                    $convertedPath = $converterOutput |
+                    Where-Object { $PSItem -match '^Converted Output:\s*(.+)$' } |
+                    ForEach-Object { $Matches[1] } |
+                    Select-Object -Last 1
+                    if ($convertedPath -and (Test-Path -Path $convertedPath -PathType Leaf))
+                    {
+                        $documentReports.Add((Get-PowerStigBatchDocumentReport `
+                                    -Archive $archive.FullName -XccdfPath $xccdfFile.FullName `
+                                    -ConvertedPath $convertedPath))
                     }
+
+                    $batchResults.Add([pscustomobject] @{
+                            Archive     = $archive.FullName
+                            Xccdf       = $xccdfFile.Name
+                            Status      = 'Converted'
+                            Destination = $destinationPath
+                            Error       = $null
+                        })
                 }
                 catch
                 {
-                    [pscustomobject] @{
-                        Archive     = $archive.FullName
-                        Xccdf       = $xccdfFile.Name
-                        Status      = 'Failed'
-                        Destination = $destinationPath
-                        Error       = $_.Exception.Message
-                    }
+                    $batchResults.Add([pscustomobject] @{
+                            Archive     = $archive.FullName
+                            Xccdf       = $xccdfFile.Name
+                            Status      = 'Failed'
+                            Destination = $destinationPath
+                            Error       = $_.Exception.Message
+                        })
                 }
             }
         }
         catch
         {
-            [pscustomobject] @{
-                Archive     = $archive.FullName
-                Xccdf       = $null
-                Status      = 'Failed'
-                Destination = $destinationPath
-                Error       = $_.Exception.Message
-            }
+            $batchResults.Add([pscustomobject] @{
+                    Archive     = $archive.FullName
+                    Xccdf       = $null
+                    Status      = 'Failed'
+                    Destination = $destinationPath
+                    Error       = $_.Exception.Message
+                })
         }
         finally
         {
@@ -145,6 +246,27 @@ function Convert-PowerStigZipFolder
             }
         }
     }
+
+    $report = [ordered] @{
+        GeneratedAt = (Get-Date -Format o)
+        SourcePath  = $sourcePath
+        Destination = $destinationPath
+        Totals      = [ordered] @{
+            Archives        = $archives.Count
+            Documents       = $documentReports.Count
+            SourceRules     = ($documentReports.SourceRules | Measure-Object -Sum).Sum
+            SuccessfulRules = ($documentReports.SuccessfulRules | Measure-Object -Sum).Sum
+            ManualRules     = ($documentReports.ManualRules | Measure-Object -Sum).Sum
+            FailedRules     = ($documentReports.FailedRules | Measure-Object -Sum).Sum
+            MissingRules    = ($documentReports.MissingRules | Measure-Object -Sum).Sum
+        }
+        Documents   = @($documentReports)
+        Archives    = @($batchResults)
+    }
+    $report | ConvertTo-Json -Depth 8 |
+    Set-Content -Path (Join-Path -Path $destinationPath -ChildPath 'conversion-report.json') -Encoding UTF8
+
+    return $batchResults
 }
 
 function Invoke-PowerStigAzureAiNormalization

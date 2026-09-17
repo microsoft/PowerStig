@@ -112,7 +112,7 @@ class DnsServerSettingRuleConvert : DnsServerSettingRule
             $CheckContent -Match 'dnsmgmt\.msc' -and
             $CheckContent -NotMatch 'Forward Lookup Zones' -and
             $CheckContent -Notmatch 'Logs\\Microsoft' -and
-            $CheckContent -NotMatch 'Verify the \"root hints\"'
+            $CheckContent -NotMatch 'Root Hints'
         )
         {
             return $true

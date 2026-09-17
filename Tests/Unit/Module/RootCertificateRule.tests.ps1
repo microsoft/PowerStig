@@ -70,6 +70,12 @@ try
         {
             . $PSScriptRoot\Convert.CommonTests.ps1
         }
+
+        It 'Should not automate a certificate check without a thumbprint' {
+            $checkContent = 'Subject: CN=DoD Root CA 6, OU=PKI, OU=DoD, O=U.S. Government, C=US'
+
+            [RootCertificateRuleConvert]::Match($checkContent) | Should Be $false
+        }
     }
 }
 finally

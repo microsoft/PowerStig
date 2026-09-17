@@ -3,7 +3,7 @@
 using module .\..\..\Common\Common.psm1
 using module .\..\PermissionRule.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$exclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
@@ -127,15 +127,15 @@ class PermissionRuleConvert : PermissionRule
             {
                 switch ($this.Path)
                 {
-                    {$PSItem -match '{domain}'}
+                    { $PSItem -match '{domain}' }
                     {
                         $this.DscResource = "ActiveDirectoryAuditRuleEntry"
                     }
-                    {$PSItem -match 'HKLM:\\'}
+                    { $PSItem -match 'HKLM:\\' }
                     {
                         $this.DscResource = 'RegistryAccessEntry'
                     }
-                    {$PSItem -match '(%windir%)|(ProgramFiles)|(%SystemDrive%)|(%ALLUSERSPROFILE%)'}
+                    { $PSItem -match '(%windir%)|(ProgramFiles)|(%SystemDrive%)|(%ALLUSERSPROFILE%)' }
                     {
                         $this.DscResource = 'NTFSAccessEntry'
                     }
@@ -170,12 +170,15 @@ class PermissionRuleConvert : PermissionRule
             $CheckContent -NotMatch 'Query the SA' -and
             $CheckContent -NotMatch "caspol\.exe" -and
             $CheckContent -NotMatch "Select the Group Policy Object item in the left pane" -and
+            $CheckContent -NotMatch 'permissions on GPOs|auditing configuration for all GPOs' -and
             $CheckContent -NotMatch "Deny log on through Remote Desktop Services" -and
             $CheckContent -NotMatch "Interview the IAM" -and
             $CheckContent -NotMatch "InetMgr\.exe" -and
             $CheckContent -NotMatch "Register the required DLL module by typing the following at a command line ""regsvr32 schmmgmt.dll""." -and
             $CheckContent -NotMatch 'If any private assets' -and
             $CheckContent -NotMatch "roles.sql" -and
+            $CheckContent -NotMatch 'about:policies|Printers? & scanners|Share this printer' -and
+            $CheckContent -NotMatch 'DatabasePermissions\.sql|elements of security functionality' -and
             $CheckContent -NotMatch '#.*\s+grep\s+.*'
         )
         {
@@ -225,9 +228,9 @@ class PermissionRuleConvert : PermissionRule
     #>
     [void] SetOrganizationValueRequired ()
     {
-        $propertyNames = @('Path','AccessControlEntry','Force')
+        $propertyNames = @('Path', 'AccessControlEntry', 'Force')
 
-        $nullPropertyCount = ($propertyNames | Where-Object -FilterScript {$null -eq $this.$PSItem}).Count
+        $nullPropertyCount = ($propertyNames | Where-Object -FilterScript { $null -eq $this.$PSItem }).Count
 
         if ($this.ConversionStatus -eq 'pass' -and $nullPropertyCount -eq 1)
         {

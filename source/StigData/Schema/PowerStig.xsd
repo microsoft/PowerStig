@@ -3,17 +3,11 @@
     <xs:element name="DISASTIG">
         <xs:complexType>
             <xs:sequence>
-                <xs:choice minOccurs="0">
-                    <xs:sequence>
-                        <xs:element ref="DnsServerRootHintRule"/>
-                        <xs:element ref="DnsServerSettingRule"/>
-                    </xs:sequence>
-                    <xs:sequence>
-                        <xs:element ref="AccountPolicyRule"/>
-                        <xs:element ref="AuditPolicyRule"/>
-                        <xs:element ref="AuditSettingRule"/>
-                    </xs:sequence>
-                </xs:choice>
+                <xs:element minOccurs="0" ref="AccountPolicyRule"/>
+                <xs:element minOccurs="0" ref="AuditPolicyRule"/>
+                <xs:element minOccurs="0" ref="AuditSettingRule"/>
+                <xs:element minOccurs="0" ref="DnsServerRootHintRule"/>
+                <xs:element minOccurs="0" ref="DnsServerSettingRule"/>
                 <xs:element minOccurs="0" ref="DocumentRule"/>
                 <xs:choice minOccurs="0">
                     <xs:element ref="FileContentRule"/>
@@ -21,13 +15,7 @@
                 </xs:choice>
                 <xs:element minOccurs="0" ref="ManualRule"/>
                 <xs:element minOccurs="0" ref="MimeTypeRule"/>
-                <xs:choice minOccurs="0">
-                    <xs:element ref="nxFileLineRule"/>
-                    <xs:sequence>
-                        <xs:element ref="SslSettingsRule"/>
-                        <xs:element ref="WebAppPoolRule"/>
-                    </xs:sequence>
-                </xs:choice>
+                <xs:element minOccurs="0" ref="nxFileLineRule"/>
                 <xs:sequence minOccurs="0">
                     <xs:element ref="nxFileRule"/>
                     <xs:element ref="nxPackageRule"/>
@@ -39,17 +27,17 @@
                 <xs:element minOccurs="0" ref="RootCertificateRule"/>
                 <xs:element minOccurs="0" ref="SecurityOptionRule"/>
                 <xs:element minOccurs="0" ref="ServiceRule"/>
+                <xs:element minOccurs="0" ref="SqlDatabaseRule"/>
+                <xs:element minOccurs="0" ref="SqlLoginRule"/>
+                <xs:element minOccurs="0" ref="SqlProtocolRule"/>
+                <xs:element minOccurs="0" ref="SqlScriptQueryRule"/>
+                <xs:element minOccurs="0" ref="SqlServerConfigurationRule"/>
+                <xs:element minOccurs="0" ref="SslSettingsRule"/>
                 <xs:element minOccurs="0" ref="UserRightRule"/>
-                <xs:sequence minOccurs="0">
-                    <xs:element ref="SqlDatabaseRule"/>
-                    <xs:element ref="SqlLoginRule"/>
-                    <xs:element ref="SqlProtocolRule"/>
-                </xs:sequence>
+                <xs:element minOccurs="0" ref="WebAppPoolRule"/>
                 <xs:element minOccurs="0" ref="WebConfigurationPropertyRule"/>
                 <xs:element minOccurs="0" ref="WindowsFeatureRule"/>
-                <xs:element minOccurs="0" ref="SqlScriptQueryRule"/>
                 <xs:choice minOccurs="0">
-                    <xs:element ref="SqlServerConfigurationRule"/>
                     <xs:sequence>
                         <xs:element ref="VsphereAcceptanceLevelRule"/>
                         <xs:element ref="VsphereAdvancedSettingsRule"/>
@@ -79,7 +67,7 @@
     <xs:element name="DnsServerRootHintRule">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="Rule"/>
+                <xs:element minOccurs="1" maxOccurs="unbounded" ref="Rule"/>
             </xs:sequence>
             <xs:attribute name="dscresourcemodule" use="required" type="xs:NCName"/>
         </xs:complexType>
@@ -497,7 +485,7 @@
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="conversionstatus" use="required" type="xs:NCName"/>
-            <xs:attribute name="dscresource" use="required" type="xs:NCName"/>
+            <xs:attribute name="dscresource" use="required" type="xs:string"/>
             <xs:attribute name="id" use="required" type="xs:NCName"/>
             <xs:attribute name="severity" use="required" type="xs:NCName"/>
             <xs:attribute name="title" use="required"/>
@@ -506,7 +494,7 @@
     <xs:element name="AccessControlEntry">
         <xs:complexType>
             <xs:sequence>
-                <xs:element maxOccurs="unbounded" ref="Entry"/>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="Entry"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -575,7 +563,7 @@
     <xs:element name="Path" type="xs:string"/>
     <xs:element name="Policy" type="xs:NCName"/>
     <xs:element name="ProtocolName" type="xs:NCName"/>
-    <xs:element name="PropertyName" type="xs:NCName"/>
+    <xs:element name="PropertyName" type="xs:string"/>
     <xs:element name="PropertyValue" type="xs:string"/>
     <xs:element name="Property" type="xs:NCName"/>
     <xs:element name="Query" type="xs:string"/>
@@ -618,9 +606,7 @@
             </xs:choice>
         </xs:complexType>
     </xs:element>
-    <xs:element name="Type">
-        <xs:complexType/>
-    </xs:element>
+    <xs:element name="Type" type="xs:string"/>
     <xs:element name="Principal" type="xs:string"/>
     <xs:element name="ForcePrincipal" type="xs:string"/>
     <xs:element name="Inheritance" type="xs:string"/>

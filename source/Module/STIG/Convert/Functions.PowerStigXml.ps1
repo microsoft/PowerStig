@@ -166,26 +166,16 @@ function Get-RegistryRuleExpressions
         # Handles testing and production
         $xccdfFileName = Split-Path $Path -Leaf
         $spInclude = @('Data.Core.ps1')
-        if ($xccdfFileName -eq 'TextData.xml')
+        $benchmarkIdentity = "$($benchmarkId.Values -join ' ') $($StigBenchmarkXml.id)"
+        switch -Regex ($benchmarkIdentity)
         {
-            # Query TechnologyRole and map to file
-            $officeApps = @('Outlook', 'Excel', 'PowerPoint', 'Word')
-            $mcafeeApps = @('VirusScan')
-            $spExclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt', 'Data.ps1', 'Functions.*.ps1', 'Methods.ps1')
-
-            switch ($benchmarkId.TechnologyRole)
-            {
-                { $null -ne ($officeApps | Where-Object { $benchmarkId.TechnologyRole -match $_ }) }
-                {
-                    $spInclude += "Data.Office.ps1"
-                }
-                { $null -ne ($mcafeeApps | Where-Object { $benchmarkId.TechnologyRole -match $_ }) }
-                {
-                    $spInclude += "Data.Mcafee.ps1"
-                }
-            }
+            'Chrome'                    { $spInclude += 'Data.Chrome.ps1'; break }
+            'McAfee|VirusScan'          { $spInclude += 'Data.Mcafee.ps1'; break }
+            'Defender'                  { $spInclude += 'Data.Windows.Defender.ps1'; break }
+            'Excel|Office|Outlook|PowerPoint|Word' { $spInclude += 'Data.Office.ps1'; break }
         }
-        else
+
+        if ($xccdfFileName -ne 'TextData.xml' -and $spInclude.Count -eq 1)
         {
             # Query directory of xccdf file
             $spResult = Split-Path (Split-Path $Path -Parent) -Leaf

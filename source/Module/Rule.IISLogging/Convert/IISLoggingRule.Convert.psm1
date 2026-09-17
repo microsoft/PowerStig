@@ -198,6 +198,7 @@ class IisLoggingRuleConvert : IisLoggingRule
             $CheckContent -Match 'IIS 8\.5|IIS 10\.0' -and
             $CheckContent -NotMatch 'review source IP' -and
             $CheckContent -NotMatch 'verify only authorized groups' -and
+            $CheckContent -NotMatch 'log file access is restricted' -and
             $CheckContent -NotMatch 'Confirm|Consult with the System Administrator' -and
             $CheckContent -Notmatch 'If an account associated with roles other than auditors'
         )

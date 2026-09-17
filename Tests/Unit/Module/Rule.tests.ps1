@@ -215,6 +215,23 @@ try
                     $testResults = [ConvertFactory]::Rule( $rule )
                     $testResults[0].GetType().Name | Should Not Be 'PermissionRule'
                 }
+                It "Should Not return 'PermissionRule' for non-ACL review requirements" {
+                    $checkContent = 'Review the permissions on GPOs using Group Policy Management'
+                    $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+                    $testResults = [ConvertFactory]::Rule( $rule )
+                    $testResults[0].GetType().Name | Should Not Be 'PermissionRule'
+                }
+                It "Should Not return 'PermissionRule' for browser policy names" {
+                    $checkContent = 'Type about:policies and verify Permissions is displayed under Policy Name'
+                    $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+                    $testResults = [ConvertFactory]::Rule( $rule )
+                    $testResults[0].GetType().Name | Should Not Be 'PermissionRule'
+                }
+                It "Should Not return 'PermissionRule' for organization-defined database permissions" {
+                    $rule = Get-TestStigRule -CheckContent 'Execute the supplemental DatabasePermissions.sql script and compare permissions with system documentation' -ReturnGroupOnly
+                    $testResults = [ConvertFactory]::Rule( $rule )
+                    $testResults[0].GetType().Name | Should Not Be 'PermissionRule'
+                }
             }
 
             Context 'RegistryRule' {

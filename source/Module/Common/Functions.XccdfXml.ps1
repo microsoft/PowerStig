@@ -184,7 +184,7 @@ function Get-StigRuleList
         # Global added so that the stig rule can be referenced later.
         if (-not $exclusionRuleList)
         {
-            $exclusionFile = Resolve-Path -Path $PSScriptRoot\..\Common\Data.ps1
+            $exclusionFile = Resolve-Path -Path $PSScriptRoot\Convert\Data.ps1
             . $exclusionFile
         }
 
@@ -290,6 +290,16 @@ function Get-StigRuleList
                     {
                         Write-Warning "Fallback conversion for $($stigRule.Id) failed. Error: $($_.Exception.Message)"
                     }
+                }
+
+                if (@($rules).Count -eq 0)
+                {
+                    $rules = @([ConvertFactory]::ManualRule($stigRule))
+                }
+
+                if (@($rules | Where-Object { $_.ConversionStatus -ne 'pass' }).Count -gt 0)
+                {
+                    $rules = @([ConvertFactory]::ManualRule($stigRule))
                 }
 
                 $manualRules = @($rules | Where-Object { $_.GetType().Name -eq 'ManualRule' })

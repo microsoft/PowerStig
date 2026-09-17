@@ -59,7 +59,7 @@ class DnsServerRootHintRuleConvert : DnsServerRootHintRule
         if
         (
             $CheckContent -Match 'dnsmgmt\.msc' -and
-            $CheckContent -Match 'Verify the \"root hints\"'
+            $CheckContent -Match 'Root Hints'
         )
         {
             return $true

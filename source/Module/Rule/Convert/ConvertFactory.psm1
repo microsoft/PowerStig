@@ -118,6 +118,11 @@ class SplitFactory
 
 class ConvertFactory
 {
+    static [psobject] ManualRule ([xml.xmlelement] $Rule)
+    {
+        return [ManualRuleConvert]::new($Rule).AsRule()
+    }
+
     static [System.Collections.ArrayList] Rule ([xml.xmlelement] $Rule)
     {
         [System.Collections.ArrayList] $ruleTypeList = @()

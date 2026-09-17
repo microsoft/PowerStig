@@ -4,7 +4,7 @@ using module .\..\..\Common\Common.psm1
 using module .\..\..\Rule\Rule.psm1
 using module .\..\RootCertificateRule.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$exclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
@@ -134,7 +134,7 @@ class RootCertificateRuleConvert : RootCertificateRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent -match 'CN=DoD')
+        if ($CheckContent -match 'CN=DoD' -and $CheckContent -match 'Thumbprint:')
         {
             return $true
         }

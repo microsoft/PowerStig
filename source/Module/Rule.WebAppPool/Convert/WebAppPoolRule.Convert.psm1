@@ -126,7 +126,7 @@ class WebAppPoolRuleConvert : WebAppPoolRule
         (
             $CheckContent -cMatch 'IIS' -and
             $CheckContent -Match 'Application Pools' -and
-            $CheckContent -NotMatch 'review the "Applications"'
+            $CheckContent -NotMatch 'review the "Applications"|more than one Site|conditions? (is|are) checked as desired by the organization'
         )
         {
             return $true
