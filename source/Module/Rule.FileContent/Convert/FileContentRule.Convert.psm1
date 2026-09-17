@@ -4,7 +4,7 @@ using module .\..\..\Common\Common.psm1
 using module .\..\FileContentRule.psm1
 using module .\FileContentType\FileContentType.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', '*.psm1')
+$exclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt', '*.psm1')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -File -Recurse -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
@@ -38,6 +38,7 @@ class FileContentRuleConvert : FileContentRule
     #>
     FileContentRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
+        $this.SetFilePath()
         $this.SetKeyName()
         $this.SetValue()
         if ($this.conversionstatus -eq 'pass')
@@ -49,6 +50,22 @@ class FileContentRuleConvert : FileContentRule
 
     #region Methods
 
+    [bool] IsOpenSshConfiguration ()
+    {
+        return (
+            $this.RawString -match '(?i)[\\/]ssh[\\/]sshd_config' -and
+            $this.RawString -match '(?m)^\s*(PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
+        )
+    }
+
+    [void] SetFilePath ()
+    {
+        if ($this.IsOpenSshConfiguration())
+        {
+            $this.set_FilePath('%ProgramData%\ssh\sshd_config')
+        }
+    }
+
     <#
         .SYNOPSIS
             Extracts the key name from the check-content and sets the value
@@ -59,7 +76,17 @@ class FileContentRuleConvert : FileContentRule
     #>
     [void] SetKeyName ()
     {
-        $thisKeyName = (Get-KeyValuePair $this.SplitCheckContent).Key
+        if ($this.IsOpenSshConfiguration())
+        {
+            $thisKeyName = [regex]::Match(
+                $this.RawString,
+                '(?m)^\s*(?<key>PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
+            ).Groups.Where( { $PSItem.Name -eq 'key' }).Value
+        }
+        else
+        {
+            $thisKeyName = (Get-KeyValuePair $this.SplitCheckContent).Key
+        }
 
         if (-not $this.SetStatus($thisKeyName))
         {
@@ -77,7 +104,17 @@ class FileContentRuleConvert : FileContentRule
     #>
     [void] SetValue ()
     {
-        $thisValue = (Get-KeyValuePair $this.SplitCheckContent).Value
+        if ($this.IsOpenSshConfiguration())
+        {
+            $thisValue = [regex]::Match(
+                $this.RawString,
+                '(?m)^\s*(?:PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+(?<value>\S+)\s*$'
+            ).Groups.Where( { $PSItem.Name -eq 'value' }).Value
+        }
+        else
+        {
+            $thisValue = (Get-KeyValuePair $this.SplitCheckContent).Value
+        }
 
         if (-not $this.SetStatus($thisValue))
         {
@@ -89,7 +126,11 @@ class FileContentRuleConvert : FileContentRule
     {
         if ($null -eq $this.DuplicateOf)
         {
-            if ($this.Key -match 'deployment.')
+            if ($this.IsOpenSshConfiguration())
+            {
+                $this.DscResource = 'Script'
+            }
+            elseif ($this.Key -match 'deployment.')
             {
                 $this.DscResource = 'KeyValuePairFile'
             }
@@ -109,6 +150,14 @@ class FileContentRuleConvert : FileContentRule
         $result = $false
         switch ( $true )
         {
+            {
+                $CheckContent -match '(?i)[\\/]ssh[\\/]sshd_config' -and
+                $CheckContent -match '(?m)^\s*(PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
+            }
+            {
+                $result = $true
+                break
+            }
             {
                 (
                     $CheckContent -Match 'app.update.enabled' -and
@@ -155,6 +204,14 @@ class FileContentRuleConvert : FileContentRule
     #>
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
+        if (
+            $CheckContent -match '(?i)[\\/]ssh[\\/]sshd_config' -and
+            $CheckContent -match '(?m)^\s*(PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
+        )
+        {
+            return $false
+        }
+
         $keyValuePairs = Get-KeyValuePair -CheckContent ([FileContentRule]::SplitCheckContent($CheckContent))
         return (Test-MultipleFileContentRule -KeyValuePair $keyValuePairs)
     }

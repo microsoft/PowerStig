@@ -4,7 +4,7 @@ using module .\..\..\Common\Common.psm1
 using module .\..\..\Rule\Rule.psm1
 using module .\..\nxFileLineRule.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$exclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
@@ -173,6 +173,11 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     static [bool] Match ([string] $CheckContent)
     {
+        if ($CheckContent -match '(?i)(?:ProgramData|\$env:ProgramData)[\\/]ssh[\\/]sshd_config')
+        {
+            return $false
+        }
+
         if
         (
             # CheckContent match for Ubuntu STIG

@@ -8,25 +8,42 @@ try
         #region Test Setup
         $testRuleList = @(
             @{
-                Key = 'security.default_personal_cert'
-                Value = 'Ask Every Time'
-                ArchiveFile = 'MozillaFirefox'
-                DscResource = 'ReplaceText'
+                Key                       = 'security.default_personal_cert'
+                Value                     = 'Ask Every Time'
+                ArchiveFile               = 'MozillaFirefox'
+                DscResource               = 'ReplaceText'
                 OrganizationValueRequired = $false
-                CheckContent = 'Type "about:config" in the browser address bar. Verify  Preference Name "security.default_personal_cert" is set to "Ask Every Time" and is locked to prevent the user from altering.
+                CheckContent              = 'Type "about:config" in the browser address bar. Verify  Preference Name "security.default_personal_cert" is set to "Ask Every Time" and is locked to prevent the user from altering.
 
                 Criteria: If the value of "security.default_personal_cert" is set incorrectly or is not locked, then this is a finding.'
+                FilePath                  = $null
             },
             @{
-                Key = 'plugin.disable_full_page_plugin_for_types'
-                Value = 'PDF,FDF,XFDF,LSL,LSO,LSS,IQY,RQY,XLK,XLS,XLT,POT,PPS,PPT,DOS,DOT,WKS,BAT,PS,EPS,WCH,WCM,WB1,WB3,RTF,DOC,MDB,MDE,WBK,WB1,WCH,WCM,AD,ADP'
-                ArchiveFile = 'MozillaFirefox'
+                Key                       = 'plugin.disable_full_page_plugin_for_types'
+                Value                     = 'PDF,FDF,XFDF,LSL,LSO,LSS,IQY,RQY,XLK,XLS,XLT,POT,PPS,PPT,DOS,DOT,WKS,BAT,PS,EPS,WCH,WCM,WB1,WB3,RTF,DOC,MDB,MDE,WBK,WB1,WCH,WCM,AD,ADP'
+                ArchiveFile               = 'MozillaFirefox'
                 OrganizationValueRequired = $false
-                CheckContent = 'Open a browser window, type "about:config" in the address bar.
+                CheckContent              = 'Open a browser window, type "about:config" in the address bar.
 
                 Criteria:  If the "plugin.disable_full_page_plugin_for_types" value is not set to include the following external extensions and not locked, then this is a finding:
 
                 PDF, FDF, XFDF, LSL, LSO, LSS, IQY, RQY, XLK, XLS, XLT, POT PPS, PPT, DOS, DOT, WKS, BAT, PS, EPS, WCH, WCM, WB1, WB3, RTF, DOC, MDB, MDE, WBK, WB1, WCH, WCM, AD, ADP.'
+                FilePath                  = $null
+            },
+            @{
+                Key                       = 'PermitEmptyPasswords'
+                Value                     = 'no'
+                FilePath                  = '%ProgramData%\ssh\sshd_config'
+                ArchiveFile               = 'WindowsServer'
+                DscResource               = 'Script'
+                OrganizationValueRequired = $false
+                CheckContent              = 'If OpenSSH is not installed on the system, this requirement is not applicable.
+
+                Get-Content "$env:ProgramData\ssh\sshd_config" | Select-String -Pattern ''^\s*PermitEmptyPasswords''
+
+                PermitEmptyPasswords no
+
+                If the "PermitEmptyPasswords" keyword is set to "yes", is missing, or is commented out, this is a finding.'
             }
             # TODO Add common test logic to support the multiple and split test data
             #,
@@ -47,8 +64,8 @@ try
             # TODO move this to the CommonTests
             $testRuleList = @(
                 @{
-                    ArchiveFile = 'OracleJRE'
-                    Count = 2
+                    ArchiveFile  = 'OracleJRE'
+                    Count        = 2
                     CheckContent = 'If the system is on the SIPRNet, this requirement is NA.
 
                         Navigate to the system-level "deployment.properties" file for JRE.
@@ -60,8 +77,8 @@ try
                         If the key "deployment.security.revocation.check.locked" is not present, this is a finding.'
                 }
                 @{
-                    ArchiveFile = 'MozillaFirefox'
-                    Count = 5
+                    ArchiveFile  = 'MozillaFirefox'
+                    Count        = 5
                     CheckContent = 'Open a browser window, type "about:config" in the address bar.
 
                         Verify Preference Name "security.enable_tls" is set to the value "true" and locked.

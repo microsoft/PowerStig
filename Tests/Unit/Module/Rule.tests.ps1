@@ -158,7 +158,7 @@ try
                 It "Should NOT return 'AuditPolicyRule' when 'SCENoApplyLegacyAuditPolicy' is found" {
                     $rule = Get-TestStigRule -CheckContent ($checkContent + 'SCENoApplyLegacyAuditPolicy') -ReturnGroupOnly
                     $testResults = [ConvertFactory]::Rule( $rule )
-                    $testResults[0].GetType().Name| Should Not Be 'AccountPolicyRule'
+                    $testResults[0].GetType().Name | Should Not Be 'AccountPolicyRule'
                 }
             }
 
@@ -265,6 +265,17 @@ try
                     $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
                     $testResults = [ConvertFactory]::Rule( $rule )
                     $testResults[0].GetType().Name | Should Be 'SecurityOptionRule'
+                }
+                It "Should return an automated SecurityOptionRule for the FIPS policy name" {
+                    $checkContent = 'Expand "Local Policies". Select "Security Options". Review "System Cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing". If the Security Setting is "Disabled", this is a finding.'
+                    $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+                    $testResults = [ConvertFactory]::Rule( $rule )
+
+                    $testResults[0].GetType().Name | Should Be 'SecurityOptionRule'
+                    $testResults[0].ConversionStatus | Should Be 'pass'
+                    $testResults[0].DscResource | Should Be 'SecurityOption'
+                    $testResults[0].OptionName | Should Be 'System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing'
+                    $testResults[0].OptionValue | Should Be 'enabled'
                 }
                 It "Should Not return 'SecurityOptionRule' when 'gpedit and Account Policy' are found" {
                     $checkContent = 'gpedit and Account Policy'

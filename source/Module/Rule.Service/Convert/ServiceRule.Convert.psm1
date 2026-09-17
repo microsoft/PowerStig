@@ -57,7 +57,14 @@ class ServiceRuleConvert : ServiceRule
     #>
     [void] SetServiceName ()
     {
-        $thisServiceName = Get-ServiceName -CheckContent $this.SplitCheckContent
+        if ($this.RawString -match '(?i)Get-Service\s+sshd')
+        {
+            $thisServiceName = 'sshd'
+        }
+        else
+        {
+            $thisServiceName = Get-ServiceName -CheckContent $this.SplitCheckContent
+        }
 
         if (-not $this.SetStatus($thisServiceName))
         {
@@ -76,7 +83,14 @@ class ServiceRuleConvert : ServiceRule
     #>
     [void] SetServiceState ()
     {
-        $thisServiceState = Get-ServiceState -CheckContent $this.SplitCheckContent
+        if ($this.RawString -match '(?i)Get-Service\s+sshd')
+        {
+            $thisServiceState = 'Running'
+        }
+        else
+        {
+            $thisServiceState = Get-ServiceState -CheckContent $this.SplitCheckContent
+        }
 
         if (-not $this.SetStatus($thisServiceState))
         {
@@ -95,7 +109,14 @@ class ServiceRuleConvert : ServiceRule
     #>
     [void] SetStartupType ()
     {
-        $thisServiceStartupType = Get-ServiceStartupType -CheckContent $this.SplitCheckContent
+        if ($this.RawString -match '(?i)Get-Service\s+sshd')
+        {
+            $thisServiceStartupType = 'Automatic'
+        }
+        else
+        {
+            $thisServiceStartupType = Get-ServiceStartupType -CheckContent $this.SplitCheckContent
+        }
 
         if (-not $this.SetStatus($thisServiceStartupType))
         {
@@ -107,7 +128,7 @@ class ServiceRuleConvert : ServiceRule
     {
         if
         (
-            $CheckContent -Match 'services\.msc' -and
+            ($CheckContent -Match 'services\.msc' -or $CheckContent -Match '(?i)Get-Service\s+sshd') -and
             $CheckContent -NotMatch 'Required Services' -and
             $CheckContent -NotMatch 'presence of applications' -and
             $CheckContent -NotMatch 'is not installed by default' -and
@@ -156,7 +177,14 @@ class ServiceRuleConvert : ServiceRule
     {
         if ($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = 'Service'
+            if ($this.RawString -match '(?i)Get-Service\s+sshd')
+            {
+                $this.DscResource = 'Script'
+            }
+            else
+            {
+                $this.DscResource = 'Service'
+            }
         }
         else
         {

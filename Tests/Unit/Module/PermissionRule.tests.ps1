@@ -266,6 +266,35 @@ try
                 (I) - permission inherited from parent container
                 (F) - full access
                 Do not use File Explorer to attempt to view permissions of the NTDS folder. Accessing the folder through File Explorer will change the permissions on the folder.'
+            },
+            @{
+                Path = '%ProgramData%\ssh\*_key'
+                AccessControlEntry = @(
+                    [pscustomobject]@{
+                        Type = 'Allow'
+                        Rights = 'FullControl'
+                        Inheritance = 'This folder only'
+                        Principal = 'SYSTEM'
+                        ForcePrincipal = $false
+                    }
+                    [pscustomobject]@{
+                        Type = 'Allow'
+                        Rights = 'FullControl'
+                        Inheritance = 'This folder only'
+                        Principal = 'Administrators'
+                        ForcePrincipal = $false
+                    }
+                )
+                Force = $true
+                DscResource = 'Script'
+                OrganizationValueRequired = $false
+                CheckContent = 'If OpenSSH is not installed on the system, this requirement is not applicable.
+
+                Verify the SSH private host key files permissions with the following command:
+                Get-ChildItem -Path "C:\ProgramData\ssh" -Filter "*_key" -File | ForEach-Object { icacls.exe $_.FullName }
+
+                BUILTIN\Administrators:(F)
+                NT AUTHORITY\SYSTEM:(F)'
             }
         )
         #endregion

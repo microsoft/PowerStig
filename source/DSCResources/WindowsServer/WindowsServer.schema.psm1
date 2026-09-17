@@ -106,6 +106,9 @@ configuration WindowsServer
     Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.3.1
     Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
     . "$resourcePath\windows.Registry.ps1"
+    . "$resourcePath\windows.Script.OpenSshConfiguration.ps1"
+    . "$resourcePath\windows.Script.OpenSshFilePermissions.ps1"
+    . "$resourcePath\windows.Script.OpenSshService.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.Service.ps1"
     . "$resourcePath\windows.WindowsFeature.ps1"

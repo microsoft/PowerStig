@@ -71,6 +71,7 @@ function Get-PowerStigBatchDocumentReport
     $manualRuleIds = @(
         $convertedRuleGroups |
         Where-Object {
+            $PSItem.Name -in $sourceRuleIds -and
             $PSItem.Name -notin $failedRuleIds -and
             @(
                 $PSItem.Group |

@@ -52,6 +52,14 @@ class PermissionRuleConvert : PermissionRule
 
     # Methods
 
+    [bool] IsOpenSshPermission ()
+    {
+        return (
+            $this.RawString -match '(?i)(?:ProgramData|\$env:ProgramData)[\\/]ssh[\\/]' -and
+            $this.RawString -match '(?i)icacls'
+        )
+    }
+
     <#
         .SYNOPSIS
             Extracts the object path from the check-content and sets the value
@@ -62,7 +70,25 @@ class PermissionRuleConvert : PermissionRule
     #>
     [void] SetPath ()
     {
-        $thisPath = Get-PermissionTargetPath -StigString $this.SplitCheckContent
+        if ($this.IsOpenSshPermission())
+        {
+            if ($this.RawString -match '(?i)private host key')
+            {
+                $thisPath = '%ProgramData%\ssh\*_key'
+            }
+            elseif ($this.RawString -match '(?i)public host key')
+            {
+                $thisPath = '%ProgramData%\ssh\*key.pub'
+            }
+            else
+            {
+                $thisPath = '%ProgramData%\ssh\sshd_config'
+            }
+        }
+        else
+        {
+            $thisPath = Get-PermissionTargetPath -StigString $this.SplitCheckContent
+        }
 
         if (-not $this.SetStatus($thisPath))
         {
@@ -96,7 +122,40 @@ class PermissionRuleConvert : PermissionRule
     #>
     [void] SetAccessControlEntry ()
     {
-        $thisAccessControlEntry = Get-PermissionAccessControlEntry -StigString $this.SplitCheckContent
+        if ($this.IsOpenSshPermission())
+        {
+            $thisAccessControlEntry = @(
+                [pscustomobject] @{
+                    Type           = 'Allow'
+                    Principal      = 'SYSTEM'
+                    ForcePrincipal = $false
+                    Inheritance    = 'This folder only'
+                    Rights         = 'FullControl'
+                }
+                [pscustomobject] @{
+                    Type           = 'Allow'
+                    Principal      = 'Administrators'
+                    ForcePrincipal = $false
+                    Inheritance    = 'This folder only'
+                    Rights         = 'FullControl'
+                }
+            )
+
+            if ($this.Path -match 'sshd_config$')
+            {
+                $thisAccessControlEntry += [pscustomobject] @{
+                    Type           = 'Allow'
+                    Principal      = 'Authenticated Users'
+                    ForcePrincipal = $false
+                    Inheritance    = 'This folder only'
+                    Rights         = 'ReadAndExecute'
+                }
+            }
+        }
+        else
+        {
+            $thisAccessControlEntry = Get-PermissionAccessControlEntry -StigString $this.SplitCheckContent
+        }
 
         if (-not $this.SetStatus($thisAccessControlEntry)) # why can't this be $null -eq $thisAccessControlEntry ??
         {
@@ -125,19 +184,26 @@ class PermissionRuleConvert : PermissionRule
         {
             if ($this.Path)
             {
-                switch ($this.Path)
+                if ($this.IsOpenSshPermission())
                 {
-                    { $PSItem -match '{domain}' }
+                    $this.DscResource = 'Script'
+                }
+                else
+                {
+                    switch ($this.Path)
                     {
-                        $this.DscResource = "ActiveDirectoryAuditRuleEntry"
-                    }
-                    { $PSItem -match 'HKLM:\\' }
-                    {
-                        $this.DscResource = 'RegistryAccessEntry'
-                    }
-                    { $PSItem -match '(%windir%)|(ProgramFiles)|(%SystemDrive%)|(%ALLUSERSPROFILE%)' }
-                    {
-                        $this.DscResource = 'NTFSAccessEntry'
+                        { $PSItem -match '{domain}' }
+                        {
+                            $this.DscResource = "ActiveDirectoryAuditRuleEntry"
+                        }
+                        { $PSItem -match 'HKLM:\\' }
+                        {
+                            $this.DscResource = 'RegistryAccessEntry'
+                        }
+                        { $PSItem -match '(%windir%)|(ProgramFiles)|(%SystemDrive%)|(%ALLUSERSPROFILE%)' }
+                        {
+                            $this.DscResource = 'NTFSAccessEntry'
+                        }
                     }
                 }
             }
@@ -199,6 +265,14 @@ class PermissionRuleConvert : PermissionRule
     <#{TODO}#> # HasMultipleRules is implemented inconsistently.
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
+        if (
+            $CheckContent -match '(?i)(?:ProgramData|\$env:ProgramData)[\\/]ssh[\\/]' -and
+            $CheckContent -match '(?i)icacls'
+        )
+        {
+            return $false
+        }
+
         $permissionPaths = Get-PermissionTargetPath -StigString ([PermissionRule]::SplitCheckContent($CheckContent))
         return (Test-MultiplePermissionRule -PermissionPath $permissionPaths)
     }

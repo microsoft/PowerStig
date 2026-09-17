@@ -16,6 +16,7 @@ using module .\..\Rule\Rule.psm1
 #>
 class FileContentRule : Rule
 {
+    [string] $FilePath
     [string] $Key
     [string] $Value <#(ExceptionValue)#>
 

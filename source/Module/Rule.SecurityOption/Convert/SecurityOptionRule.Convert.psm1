@@ -5,7 +5,7 @@ using module .\..\..\Rule\Rule.psm1
 using module .\..\SecurityOptionRule.psm1
 using namespace System.Text
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$exclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
@@ -67,7 +67,7 @@ class SecurityOptionRuleConvert : SecurityOptionRule
     {
         return [regex]::Match(
             $this.RawString,
-            '(?:If\s(?:the\svalue\sfor\s)?")(?<optionName>[^"]+)(?:")[^"]+(?:")(?<optionValue>[^"]+)(?:")|(?:System\scryptography:\sUse\sFIPS\scomplaint\salgorithms)'
+            '(?:If\s(?:the\svalue\sfor\s)?")(?<optionName>[^"]+)(?:")[^"]+(?:")(?<optionValue>[^"]+)(?:")|(?:System\scryptography:\s+Use\sFIPS[-\s]compliant\salgorithms)'
         )
     }
 
@@ -81,13 +81,13 @@ class SecurityOptionRuleConvert : SecurityOptionRule
     #>
     [void] SetOptionName ([System.Text.RegularExpressions.Match] $Regex)
     {
-        if ($this.Id -eq 'V-213969' -or $this.Id -eq 'V-213971' -or $this.Id -eq 'V-214022' -or $this.Id -eq 'V-214023' -or $this.Id -eq 'V-214024')
+        if ($this.RawString -match 'System\s[Cc]ryptography:\s+Use\sFIPS[-\s]compliant\salgorithms')
         {
-            $thisOptionName = Get-OptionName -CheckContent $this.RawString
+            $thisOptionName = 'System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing'
         }
         else
         {
-            $thisOptionName = $Regex.Groups.Where( {$_.Name -eq 'OptionName'}).Value
+            $thisOptionName = $Regex.Groups.Where( { $_.Name -eq 'OptionName' }).Value
         }
 
         if (-not $this.SetStatus($thisOptionName))
@@ -106,20 +106,17 @@ class SecurityOptionRuleConvert : SecurityOptionRule
     #>
     [void] SetOptionValue ([System.Text.RegularExpressions.Match] $Regex)
     {
-        if ($this.OptionValueContainsRange())
+        if ($this.RawString -match 'System\s[Cc]ryptography:\s+Use\sFIPS[-\s]compliant\salgorithms')
+        {
+            $this.set_OptionValue('enabled')
+        }
+        elseif ($this.OptionValueContainsRange())
         {
             $this.SetOptionOrganizationValue()
         }
         else
         {
-            if ($this.Id -eq 'V-213969' -or $this.Id -eq 'V-213971' -or $this.Id -eq 'V-214022' -or $this.Id -eq 'V-214023' -or $this.Id -eq 'V-214024')
-            {
-                $thisOptionValue = Get-OptionValue -CheckContent $this.RawString
-            }
-            else
-            {
-                $thisOptionValue = $Regex.Groups.Where( {$_.Name -eq 'OptionValue'}).Value
-            }
+            $thisOptionValue = $Regex.Groups.Where( { $_.Name -eq 'OptionValue' }).Value
 
             if (-not $this.SetStatus($thisOptionValue))
             {
@@ -194,7 +191,8 @@ class SecurityOptionRuleConvert : SecurityOptionRule
         return (
             $checkContent -Match "(?:Local Security Policy|Security Settings) $delimiter Local Policies $delimiter Security Options" -or
             $checkContent -Match "(?:Expand Local Policies) $delimiter Security Options" -or
-            $checkContent -Match "(?:Expand ""Local Policies"") $delimiter Select ""Security Options"""
+            $checkContent -Match "(?:Expand ""Local Policies"") $delimiter Select ""Security Options""" -or
+            $checkContent -Match 'System\s[Cc]ryptography:\s+Use\sFIPS[-\s]compliant\salgorithms'
         )
     }
     #endregion

@@ -8,12 +8,12 @@ try
         #region Test Setup
         $testRuleList = @(
             @{
-                ServiceName = 'masvc'
-                ServiceState = 'Running'
-                StartupType = 'Automatic'
-                Ensure = 'Present'
+                ServiceName               = 'masvc'
+                ServiceState              = 'Running'
+                StartupType               = 'Automatic'
+                Ensure                    = 'Present'
                 OrganizationValueRequired = $false
-                CheckContent = 'Run "Services.msc".
+                CheckContent              = 'Run "Services.msc".
 
                 Verify the McAfee Agent service is running, depending on the version installed.
 
@@ -24,24 +24,24 @@ try
                 If the service is not listed or does not have a Status of "Started", this is a finding.'
             },
             @{
-                ServiceName = 'SCPolicySvc'
-                ServiceState = 'Running'
-                StartupType = 'Automatic'
-                Ensure = 'Present'
+                ServiceName               = 'SCPolicySvc'
+                ServiceState              = 'Running'
+                StartupType               = 'Automatic'
+                Ensure                    = 'Present'
                 OrganizationValueRequired = $false
-                CheckContent = 'Verify the Smart Card Removal Policy service is configured to "Automatic".
+                CheckContent              = 'Verify the Smart Card Removal Policy service is configured to "Automatic".
 
                 Run "Services.msc".
 
                 If the Startup Type for Smart Card Removal Policy is not set to Automatic, this is a finding.'
             },
             @{
-                ServiceName = 'simptcp'
-                ServiceState = 'Stopped'
-                StartupType = 'Disabled'
-                Ensure = 'Present'
+                ServiceName               = 'simptcp'
+                ServiceState              = 'Stopped'
+                StartupType               = 'Disabled'
+                Ensure                    = 'Present'
                 OrganizationValueRequired = $false
-                CheckContent = 'Verify the Simple TCP/IP (simptcp) service is not installed or is disabled.
+                CheckContent              = 'Verify the Simple TCP/IP (simptcp) service is not installed or is disabled.
 
                 Run "Services.msc".
 
@@ -50,23 +50,36 @@ try
                 Simple TCP/IP Services (simptcp)'
             },
             @{
-                ServiceName = 'FTPSVC'
-                ServiceState = 'Stopped'
-                StartupType = 'Disabled'
-                Ensure = 'Present'
+                ServiceName               = 'FTPSVC'
+                ServiceState              = 'Stopped'
+                StartupType               = 'Disabled'
+                Ensure                    = 'Present'
                 OrganizationValueRequired = $false
-                CheckContent = 'If the server has the role of an FTP server, this is NA.
+                CheckContent              = 'If the server has the role of an FTP server, this is NA.
                 Run "Services.msc".
 
                 If the "Microsoft FTP Service" (Service name: FTPSVC) is installed and not disabled, this is a finding.'
             },
             @{
-                ServiceName = $null
-                ServiceState = 'Stopped'
-                StartupType = 'Disabled'
-                Ensure = 'Present'
+                ServiceName               = 'sshd'
+                ServiceState              = 'Running'
+                StartupType               = 'Automatic'
+                Ensure                    = 'Present'
+                DscResource               = 'Script'
                 OrganizationValueRequired = $false
-                CheckContent = 'If the server has the role of a server, this is NA.
+                CheckContent              = 'If OpenSSH is not installed on the system, this requirement is not applicable.
+
+                Get-Service sshd
+
+                If OpenSSH is installed and the "sshd" service is not "Running", this is a finding.'
+            },
+            @{
+                ServiceName               = $null
+                ServiceState              = 'Stopped'
+                StartupType               = 'Disabled'
+                Ensure                    = 'Present'
+                OrganizationValueRequired = $false
+                CheckContent              = 'If the server has the role of a server, this is NA.
                 Run "Services.msc".
 
                 If A string without parentheses is installed and not disabled, this is a finding.'
@@ -84,7 +97,7 @@ try
             # TODO move this to the CommonTests
             $testRuleList = @(
                 @{
-                    Count = 9
+                    Count        = 9
                     CheckContent = 'Run "services.msc" to display the Services console.
 
                     Verify the Startup Type for the following Windows services:
