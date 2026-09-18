@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = $stig.RuleList | Select-Rule -Type WebConfigurationPropertyRule
+$rules = $stig.RuleList | Select-Rule -Type WebConfigurationPropertyRule | Where-Object {$_.DscResource -eq 'xWebConfigKeyValue'}
 
 if ($WebsiteName)
 {

@@ -216,6 +216,30 @@ try
                 Note: If IIS 10.0 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.'
             },
             @{
+                ConfigSection = '/system.webServer/proxy'
+                Key = 'enabled'
+                Value = 'false'
+                OrganizationValueRequired = $false
+                CheckContent = 'If "Application Request Routing Cache" is present, open "Server Proxy Settings".
+
+                Verify whether "Enable proxy" is selected.
+
+                If "Enable proxy" is selected, this is a finding.'
+            },
+            @{
+                ConfigSection = '/system.applicationHost/sites/siteDefaults/limits'
+                Key = 'maxConnections'
+                Value = '4294967295'
+                OrganizationValueRequired = $false
+                CheckContent = 'Access the IIS 10.0 IIS Manager.
+
+                From the Configuration Editor, locate "system.applicationHost/sites".
+
+                Expand "siteDefaults", then "limits".
+
+                If the maxconnections parameter is set to zero, this is a finding.'
+            },
+            @{
                 ConfigSection = $null
                 Key = $null
                 Value = $null

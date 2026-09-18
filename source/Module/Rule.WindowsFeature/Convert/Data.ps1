@@ -11,6 +11,7 @@ data regularExpression
         FeatureNameSpaceColon = FeatureName\\s\\:\\s\\S*
         IfTheApplicationExists = If the [\\s\\S]*?application exists
         WebDavPublishingFeature = ((W|w)eb(DAV|(D|d)av) (A|a)uthoring)|(WebDAV Publishing)
+        InternetPrintingFeature = Internet Printing (option|role)
         SimpleTCP = Simple\\sTCP/IP\\sServices
         IISWebserver = Internet\\sInformation\\sServices
         IISHostableWebCore = Internet\\sInformation\\sServices\\sHostable\\sWeb\\sCore

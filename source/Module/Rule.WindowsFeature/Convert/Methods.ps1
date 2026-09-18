@@ -57,6 +57,10 @@ function Get-WindowsFeatureName
             {
                 $windowsFeatureName += 'Web-DAV-Publishing'
             }
+            {$PSItem -match $regularExpression.InternetPrintingFeature}
+            {
+                $windowsFeatureName += 'Print-Internet'
+            }
             {$PSItem -match $regularExpression.SimpleTCP}
             {
                 $windowsFeatureName += 'SimpleTCP'

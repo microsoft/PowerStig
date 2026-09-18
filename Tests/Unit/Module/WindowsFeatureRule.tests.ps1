@@ -20,6 +20,16 @@ try
                 If the "WebDAV Authoring Rules" icon exists, this is a finding.'
             },
             @{
+                Name = 'Print-Internet'
+                Ensure = 'Absent'
+                OrganizationValueRequired = $false
+                CheckContent = 'If the Print Services role and the Internet Printing role are not installed, this check is Not Applicable.
+
+                Determine whether Internet Printing is enabled.
+
+                If the Internet Printing option is enabled, this is a finding.'
+            },
+            @{
                 Name = 'TelnetClient'
                 Ensure = 'Absent'
                 OrganizationValueRequired = $false

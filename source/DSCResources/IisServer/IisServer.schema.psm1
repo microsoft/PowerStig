@@ -85,6 +85,7 @@ configuration IisServer
 
     Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
     . "$resourcePath\windows.Registry.ps1"
+    . "$resourcePath\windows.Script.IisArrProxy.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.WindowsFeature.ps1"
 

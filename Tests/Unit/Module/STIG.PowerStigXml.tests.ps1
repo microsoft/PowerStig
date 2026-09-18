@@ -15,6 +15,30 @@ foreach ($xccdf in $xccdfs)
     }
 }
 
+Describe 'IIS Server V3R7 deterministic conversion' {
+    BeforeAll {
+        $xccdfPath = Join-Path -Path $script:moduleRoot -ChildPath 'StigData\Archive\Web Server\U_MS_IIS_10-0_Server_STIG_V3R7_Manual-xccdf.xml'
+        ConvertTo-PowerStigXml -Path $xccdfPath -Destination $TestDrive
+        [xml] $convertedIis = Get-Content -Path (Join-Path -Path $TestDrive -ChildPath 'IISServer-10.0-3.7.xml') -Raw
+    }
+
+    $expectedRules = @(
+        @{Id = 'V-218794'; Type = 'WebConfigurationPropertyRule'; DscResource = 'Script' },
+        @{Id = 'V-218818'; Type = 'WindowsFeatureRule'; DscResource = 'WindowsFeature' },
+        @{Id = 'V-218826'; Type = 'WebConfigurationPropertyRule'; DscResource = 'xWebConfigKeyValue' }
+    )
+
+    foreach ($expectedRule in $expectedRules)
+    {
+        It "Should convert $($expectedRule.Id) to $($expectedRule.Type)" {
+            $rule = $convertedIis.DISASTIG.ChildNodes.Rule | Where-Object -Property id -EQ $expectedRule.Id
+            $rule.ParentNode.Name | Should -Be $expectedRule.Type
+            $rule.dscresource | Should -Be $expectedRule.DscResource
+            $rule.conversionstatus | Should -Be 'pass'
+        }
+    }
+}
+
 Describe 'ConvertFrom-StigXccdf fallback conversion' {
     It 'Should preserve an unresolved conversion exception as a manual rule' {
         $checkContent = 'Verify the value under HKEY_LOCAL_MACHINE.'

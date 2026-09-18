@@ -134,7 +134,14 @@ class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
     {
         if ($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = 'xWebConfigKeyValue'
+            if ($this.ConfigSection -eq '/system.webServer/proxy')
+            {
+                $this.DscResource = 'Script'
+            }
+            else
+            {
+                $this.DscResource = 'xWebConfigKeyValue'
+            }
         }
         else
         {
@@ -146,7 +153,7 @@ class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
     {
         if
         (
-            $CheckContent -Match '\.NET Trust Level' -or
+            $CheckContent -Match '\.NET Trust Level|Enable proxy|maxconnections' -or
             (
                 $CheckContent -Match 'IIS 8\.5 web|IIS 10\.0 web' -and
                 $CheckContent -NotMatch 'document'
@@ -170,7 +177,6 @@ class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
                 $CheckContent -NotMatch 'HKLM' -and
                 $CheckContent -NotMatch 'Authorization Rules' -and
                 $CheckContent -NotMatch 'regedit <enter>' -and
-                $CheckContent -NotMatch 'Enable proxy' -and
                 $CheckContent -NotMatch 'SSL Settings' -and
                 $CheckContent -NotMatch 'Strict-Transport-Security'
             )

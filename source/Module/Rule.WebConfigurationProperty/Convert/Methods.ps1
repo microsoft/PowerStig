@@ -81,6 +81,14 @@ function Get-ConfigSection
         {
             $configSection = '/system.web/sessionState'
         }
+        { $cleanCheckContent -match 'Enable proxy' }
+        {
+            $configSection = '/system.webServer/proxy'
+        }
+        { $cleanCheckContent -match 'maxconnections' }
+        {
+            $configSection = '/system.applicationHost/sites/siteDefaults/limits'
+        }
     }
 
     if ($null -ne $configSection)
@@ -214,6 +222,16 @@ function Get-KeyValuePair
             $key = 'timeout'
             $value = $null
         }
+        { $checkContent -match 'Enable proxy' }
+        {
+            $key = 'enabled'
+            $value = 'false'
+        }
+        { $checkContent -match 'maxconnections' }
+        {
+            $key = 'maxConnections'
+            $value = '4294967295'
+        }
     }
 
     if ($null -ne $key)
@@ -339,7 +357,7 @@ function Split-MultipleWebConfigurationPropertyRule
     }
     elseif ($checkContent -match $regularExpression.HMACSHA256)
     {
-        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $regularExpression.HMACSHA256}
+        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript { $PSItem -notMatch $regularExpression.HMACSHA256 }
 
         if ($checkContent -match $regularExpression.HMACSHA256)
         {
@@ -354,7 +372,7 @@ function Split-MultipleWebConfigurationPropertyRule
     }
     elseif (($checkContent -match $regularExpression.useCookies) -and ($checkContent -match $regularExpression.expiredSession))
     {
-        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $regularExpression.useCookies -and $PSItem -notmatch $regularExpression.expiredSession}
+        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript { $PSItem -notMatch $regularExpression.useCookies -and $PSItem -notmatch $regularExpression.expiredSession }
 
         if ($checkContent -match $regularExpression.useCookies)
         {
@@ -369,7 +387,7 @@ function Split-MultipleWebConfigurationPropertyRule
     }
     elseif (($checkContent -match $regularExpression.useCookies) -and ($checkContent -match $regularExpression.sessionTimeout))
     {
-        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $regularExpression.useCookies -and $PSItem -notmatch $regularExpression.sessionTimeout}
+        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript { $PSItem -notMatch $regularExpression.useCookies -and $PSItem -notmatch $regularExpression.sessionTimeout }
 
         if ($checkContent -match $regularExpression.useCookies)
         {
@@ -384,7 +402,7 @@ function Split-MultipleWebConfigurationPropertyRule
     }
     elseif ($matchMultipleKeyvaluePair.count -gt 1)
     {
-        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $regularExpression.CGIModules -and $PSItem -notmatch $regularExpression.ISAPIModules}
+        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript { $PSItem -notMatch $regularExpression.CGIModules -and $PSItem -notmatch $regularExpression.ISAPIModules }
 
         if ($checkContent -match $regularExpression.CGIModules)
         {
