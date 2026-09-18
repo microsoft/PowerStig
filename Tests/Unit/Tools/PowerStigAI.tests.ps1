@@ -73,7 +73,7 @@ InModuleScope $script:ModuleName {
             $null = New-Item -Path $sourcePath -ItemType Directory -Force
             $null = New-Item -Path $archiveContent -ItemType Directory -Force
             @'
-<Benchmark><Group id="V-1"/><Group id="V-2"/><Group id="V-3"/><Group id="V-4"/></Benchmark>
+<Benchmark><Group id="V-1"/><Group id="V-2"/><Group id="V-3"/><Group id="V-4"/><Group id="V-5"/></Benchmark>
 '@ | Set-Content -Path (Join-Path $archiveContent 'sample-xccdf.xml')
             Compress-Archive -Path (Join-Path $archiveContent '*') `
                 -DestinationPath (Join-Path $sourcePath 'sample.zip')
@@ -81,7 +81,7 @@ InModuleScope $script:ModuleName {
                 param($Parameters)
                 $outputPath = Join-Path $Parameters.Destination 'sample.xml'
                 @'
-<DISASTIG><RegistryRule><Rule id="V-1" conversionstatus="pass" dscresource="Registry"/></RegistryRule><ManualRule><Rule id="V-2" conversionstatus="pass" dscresource="None"/></ManualRule><PermissionRule><Rule id="V-3" conversionstatus="fail" dscresource="None"/></PermissionRule><DocumentRule><Rule id="V-4" conversionstatus="pass" dscresource="None"/></DocumentRule></DISASTIG>
+<DISASTIG><RegistryRule><Rule id="V-1" conversionstatus="pass" dscresource="Registry"/><Rule id="V-5" conversionstatus="pass" dscresource="None"><DuplicateOf>V-1</DuplicateOf></Rule></RegistryRule><ManualRule><Rule id="V-2" conversionstatus="pass" dscresource="None"/></ManualRule><PermissionRule><Rule id="V-3" conversionstatus="fail" dscresource="None"/></PermissionRule><DocumentRule><Rule id="V-4" conversionstatus="pass" dscresource="None"/></DocumentRule></DISASTIG>
 '@ | Set-Content -Path $outputPath
                 "Converted Output: $outputPath"
             }
@@ -90,8 +90,8 @@ InModuleScope $script:ModuleName {
             $report = Get-Content -Path (Join-Path $sourcePath 'conversions\conversion-report.json') `
                 -Raw | ConvertFrom-Json
 
-            $report.Totals.SourceRules | Should Be 4
-            $report.Totals.SuccessfulRules | Should Be 1
+            $report.Totals.SourceRules | Should Be 5
+            $report.Totals.SuccessfulRules | Should Be 2
             $report.Totals.ManualRules | Should Be 2
             $report.Totals.NonAutomatedRules | Should Be 2
             $report.Totals.DocumentaryRules | Should Be 1

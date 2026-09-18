@@ -77,6 +77,16 @@ try
 
                 If the zone is "Active Directory-Integrated" and "Dynamic updates" are not configured for "Secure only", this is a finding.'
             }
+            @{
+                PropertyName = 'WinsForwardLookup'
+                PropertyValue = 'Disabled'
+                OrganizationValueRequired = $false
+                CheckContent = 'In the "Properties" dialog box for the zone, click the "WINS" tab.
+
+                Verify the "Use WINS forward lookup" check box is not selected.
+
+                If the "Use WINS forward lookup" check box is selected, this is a finding.'
+            }
         )
         #endregion
 

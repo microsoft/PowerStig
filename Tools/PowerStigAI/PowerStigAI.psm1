@@ -61,6 +61,37 @@ function Get-PowerStigBatchDocumentReport
         Group-Object -Property { ([string] $PSItem.Id -split '\.')[0] }
     )
     $convertedRuleIds = @($convertedRuleGroups.Name)
+    $convertedRules = @($convertedXml.SelectNodes('//Rule'))
+    $automatedConvertedRuleIds = @(
+        $convertedRules |
+        Where-Object {
+            $PSItem.ConversionStatus -eq 'pass' -and
+            $PSItem.ParentNode.Name -notin @('DocumentRule', 'ManualRule') -and
+            -not [string]::IsNullOrWhiteSpace([string] $PSItem.DscResource) -and
+            $PSItem.DscResource -ne 'None'
+        } |
+        Select-Object -ExpandProperty Id
+    )
+    do
+    {
+        $automatedCount = $automatedConvertedRuleIds.Count
+        $automatedConvertedRuleIds = @(
+            $automatedConvertedRuleIds
+            $convertedRules |
+            Where-Object {
+                $PSItem.ConversionStatus -eq 'pass' -and
+                -not [string]::IsNullOrWhiteSpace([string] $PSItem.DuplicateOf) -and
+                $PSItem.DuplicateOf -in $automatedConvertedRuleIds
+            } |
+            Select-Object -ExpandProperty Id
+        ) | Select-Object -Unique
+    }
+    while ($automatedConvertedRuleIds.Count -gt $automatedCount)
+    $automatedRuleIds = @(
+        $automatedConvertedRuleIds |
+        ForEach-Object { ([string] $PSItem -split '\.')[0] } |
+        Select-Object -Unique
+    )
     $failedRuleIds = @(
         $convertedRuleGroups |
         Where-Object {
@@ -73,14 +104,7 @@ function Get-PowerStigBatchDocumentReport
         Where-Object {
             $PSItem.Name -in $sourceRuleIds -and
             $PSItem.Name -notin $failedRuleIds -and
-            @(
-                $PSItem.Group |
-                Where-Object {
-                    $PSItem.ParentNode.Name -notin @('DocumentRule', 'ManualRule') -and
-                    -not [string]::IsNullOrWhiteSpace([string] $PSItem.DscResource) -and
-                    $PSItem.DscResource -ne 'None'
-                }
-            ).Count -eq 0
+            $PSItem.Name -notin $automatedRuleIds
         } |
         Select-Object -ExpandProperty Name
     )

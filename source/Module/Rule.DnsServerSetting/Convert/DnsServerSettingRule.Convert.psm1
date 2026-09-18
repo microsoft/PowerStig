@@ -60,6 +60,11 @@ class DnsServerSettingRuleConvert : DnsServerSettingRule
             $this.set_PropertyName('DynamicUpdate')
             $this.set_PropertyValue('Secure')
         }
+        elseif ($this.RawString -match 'Use WINS forward lookup')
+        {
+            $this.set_PropertyName('WinsForwardLookup')
+            $this.set_PropertyValue('Disabled')
+        }
         else
         {
             $this.SetDnsServerPropertyName()
@@ -121,7 +126,7 @@ class DnsServerSettingRuleConvert : DnsServerSettingRule
         {
             if (
                 $this.RawString -match 'Get-DnsServerResponseRateLimiting' -or
-                $this.PropertyName -eq 'DynamicUpdate'
+                $this.PropertyName -in @('DynamicUpdate', 'WinsForwardLookup')
             )
             {
                 $this.DscResource = 'Script'
@@ -162,6 +167,10 @@ class DnsServerSettingRuleConvert : DnsServerSettingRule
             $CheckContent -match 'Dynamic updates' -and
             $CheckContent -match 'Secure only'
         )
+        {
+            return $true
+        }
+        elseif ($CheckContent -match 'Use WINS forward lookup')
         {
             return $true
         }
