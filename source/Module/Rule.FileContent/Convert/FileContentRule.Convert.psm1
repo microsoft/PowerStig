@@ -22,6 +22,8 @@ foreach ($supportFile in $supportFileList)
 #>
 class FileContentRuleConvert : FileContentRule
 {
+    hidden [psobject] $FirefoxEnterprisePolicy
+
     <#
         .SYNOPSIS
             Empty constructor for SplitFactory
@@ -38,6 +40,12 @@ class FileContentRuleConvert : FileContentRule
     #>
     FileContentRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
+        if ($this.IsFirefoxEnterprisePolicy())
+        {
+            $this.FirefoxEnterprisePolicy = Get-FirefoxEnterprisePolicy `
+                -CheckContent $this.RawString `
+                -FixText ([string] $XccdfRule.Rule.fixtext.'#text')
+        }
         $this.SetFilePath()
         $this.SetKeyName()
         $this.SetValue()
@@ -54,8 +62,13 @@ class FileContentRuleConvert : FileContentRule
     {
         return (
             $this.RawString -match '(?i)[\\/]ssh[\\/]sshd_config' -and
-            $this.RawString -match '(?m)^\s*(PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
+            $this.RawString -match '(?m)^\s*(Banner|PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
         )
+    }
+
+    [bool] IsFirefoxEnterprisePolicy ()
+    {
+        return $this.RawString -match 'about:policies'
     }
 
     [void] SetFilePath ()
@@ -63,6 +76,10 @@ class FileContentRuleConvert : FileContentRule
         if ($this.IsOpenSshConfiguration())
         {
             $this.set_FilePath('%ProgramData%\ssh\sshd_config')
+        }
+        elseif ($this.IsFirefoxEnterprisePolicy())
+        {
+            $this.set_FilePath('distribution\policies.json')
         }
     }
 
@@ -80,8 +97,12 @@ class FileContentRuleConvert : FileContentRule
         {
             $thisKeyName = [regex]::Match(
                 $this.RawString,
-                '(?m)^\s*(?<key>PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
+                '(?m)^\s*(?<key>Banner|PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
             ).Groups.Where( { $PSItem.Name -eq 'key' }).Value
+        }
+        elseif ($this.IsFirefoxEnterprisePolicy())
+        {
+            $thisKeyName = $this.FirefoxEnterprisePolicy.Key
         }
         else
         {
@@ -106,10 +127,21 @@ class FileContentRuleConvert : FileContentRule
     {
         if ($this.IsOpenSshConfiguration())
         {
-            $thisValue = [regex]::Match(
-                $this.RawString,
-                '(?m)^\s*(?:PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+(?<value>\S+)\s*$'
-            ).Groups.Where( { $PSItem.Name -eq 'value' }).Value
+            if ($this.RawString -match '(?m)^\s*Banner\s+')
+            {
+                $thisValue = '%ProgramData%\ssh\Banner.txt'
+            }
+            else
+            {
+                $thisValue = [regex]::Match(
+                    $this.RawString,
+                    '(?m)^\s*(?:PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+(?<value>\S+)\s*$'
+                ).Groups.Where( { $PSItem.Name -eq 'value' }).Value
+            }
+        }
+        elseif ($this.IsFirefoxEnterprisePolicy())
+        {
+            $thisValue = $this.FirefoxEnterprisePolicy.Value
         }
         else
         {
@@ -126,7 +158,7 @@ class FileContentRuleConvert : FileContentRule
     {
         if ($null -eq $this.DuplicateOf)
         {
-            if ($this.IsOpenSshConfiguration())
+            if ($this.IsOpenSshConfiguration() -or $this.IsFirefoxEnterprisePolicy())
             {
                 $this.DscResource = 'Script'
             }
@@ -152,7 +184,14 @@ class FileContentRuleConvert : FileContentRule
         {
             {
                 $CheckContent -match '(?i)[\\/]ssh[\\/]sshd_config' -and
-                $CheckContent -match '(?m)^\s*(PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
+                $CheckContent -match '(?m)^\s*(Banner|PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
+            }
+            {
+                $result = $true
+                break
+            }
+            {
+                $CheckContent -match 'about:policies'
             }
             {
                 $result = $true
@@ -204,9 +243,14 @@ class FileContentRuleConvert : FileContentRule
     #>
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
+        if ($CheckContent -match 'about:policies')
+        {
+            return $false
+        }
+
         if (
             $CheckContent -match '(?i)[\\/]ssh[\\/]sshd_config' -and
-            $CheckContent -match '(?m)^\s*(PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
+            $CheckContent -match '(?m)^\s*(Banner|PermitEmptyPasswords|ClientAliveCountMax|ClientAliveInterval|GSSAPIAuthentication)\s+\S+\s*$'
         )
         {
             return $false

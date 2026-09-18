@@ -3,7 +3,7 @@
 using module .\..\..\Common\Common.psm1
 using module .\..\DnsServerSettingRule.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$exclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
@@ -41,8 +41,30 @@ class DnsServerSettingRuleConvert : DnsServerSettingRule
     #>
     DnsServerSettingRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        $this.SetDnsServerPropertyName()
-        $this.SetDnsServerPropertyValue()
+        if ($this.RawString -match 'Get-DnsServerResponseRateLimiting')
+        {
+            $this.set_PropertyName('Mode')
+            $this.set_PropertyValue('Enable')
+        }
+        elseif ($this.RawString -match 'EnableVersionQuery')
+        {
+            $this.set_PropertyName('EnableVersionQuery')
+            $this.set_PropertyValue('0')
+        }
+        elseif (
+            $this.RawString -match 'Active Directory-Integrated' -and
+            $this.RawString -match 'Dynamic updates' -and
+            $this.RawString -match 'Secure only'
+        )
+        {
+            $this.set_PropertyName('DynamicUpdate')
+            $this.set_PropertyValue('Secure')
+        }
+        else
+        {
+            $this.SetDnsServerPropertyName()
+            $this.SetDnsServerPropertyValue()
+        }
         $this.SetDuplicateRule()
         if ($this.IsExistingRule($global:stigSettings))
         {
@@ -97,7 +119,17 @@ class DnsServerSettingRuleConvert : DnsServerSettingRule
     {
         if ($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = 'xDnsServerSetting'
+            if (
+                $this.RawString -match 'Get-DnsServerResponseRateLimiting' -or
+                $this.PropertyName -eq 'DynamicUpdate'
+            )
+            {
+                $this.DscResource = 'Script'
+            }
+            else
+            {
+                $this.DscResource = 'xDnsServerSetting'
+            }
         }
         else
         {
@@ -113,6 +145,22 @@ class DnsServerSettingRuleConvert : DnsServerSettingRule
             $CheckContent -NotMatch 'Forward Lookup Zones' -and
             $CheckContent -Notmatch 'Logs\\Microsoft' -and
             $CheckContent -NotMatch 'Root Hints'
+        )
+        {
+            return $true
+        }
+        elseif ($CheckContent -match 'Get-DnsServerResponseRateLimiting')
+        {
+            return $true
+        }
+        elseif ($CheckContent -match 'EnableVersionQuery')
+        {
+            return $true
+        }
+        elseif (
+            $CheckContent -match 'Active Directory-Integrated' -and
+            $CheckContent -match 'Dynamic updates' -and
+            $CheckContent -match 'Secure only'
         )
         {
             return $true

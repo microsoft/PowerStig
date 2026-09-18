@@ -44,6 +44,51 @@ try
                 PermitEmptyPasswords no
 
                 If the "PermitEmptyPasswords" keyword is set to "yes", is missing, or is commented out, this is a finding.'
+            },
+            @{
+                Key                       = 'Banner'
+                Value                     = '%ProgramData%\ssh\Banner.txt'
+                FilePath                  = '%ProgramData%\ssh\sshd_config'
+                ArchiveFile               = 'WindowsServer'
+                DscResource               = 'Script'
+                OrganizationValueRequired = $false
+                CheckContent              = 'If OpenSSH is not installed on the system, this requirement is not applicable.
+
+                Get-Content "$env:ProgramData\ssh\sshd_config" | Select-String -Pattern ''^\s*Banner''
+
+                Banner C:\ProgramData\ssh\Banner.txt
+
+                If "Banner" is set to "none", the line is commented out, or the line is missing, this is a finding.'
+            },
+            @{
+                Key                       = 'DisableTelemetry'
+                Value                     = '{"DisableTelemetry":true}'
+                FilePath                  = 'distribution\policies.json'
+                ArchiveFile               = 'MozillaFirefox'
+                DscResource               = 'Script'
+                OrganizationValueRequired = $false
+                CheckContent              = 'Type "about:policies" in the browser window. If "DisableTelemetry" is not displayed under Policy Name or the Policy Value is not "true", this is a finding.'
+                FixText                   = 'Linux "policies.json" file: Add the following in the policies section: "DisableTelemetry": true'
+            },
+            @{
+                Key                       = 'Preferences'
+                Value                     = '{"Preferences":{"dom.disable_window_flip":{"Value":true,"Status":"locked"}}}'
+                FilePath                  = 'distribution\policies.json'
+                ArchiveFile               = 'MozillaFirefox'
+                DscResource               = 'Script'
+                OrganizationValueRequired = $false
+                CheckContent              = 'Type "about:policies" in the browser address bar. If "Preferences" does not include "dom.disable_window_flip" with a value of "true" and status of "locked", this is a finding.'
+                FixText                   = 'Linux "policies.json" file: Add the following in the policies section: "Preferences": { "dom.disable_window_flip": { "Value": true, "Status": "locked" } }'
+            },
+            @{
+                Key                       = 'Certificates'
+                Value                     = '{"Certificates":{"ImportEnterpriseRoots":true}}'
+                FilePath                  = 'distribution\policies.json'
+                ArchiveFile               = 'MozillaFirefox'
+                DscResource               = 'Script'
+                OrganizationValueRequired = $false
+                CheckContent              = 'This can be set via the policy Certificates >> ImportEnterpriseRoots, which can be verified via "about:policies".'
+                FixText                   = 'On Windows, import certificates from the operating system by using Certificates >> Import Enterprise Roots via policy.'
             }
             # TODO Add common test logic to support the multiple and split test data
             #,

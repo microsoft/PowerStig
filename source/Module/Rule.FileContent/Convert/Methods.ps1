@@ -96,3 +96,64 @@ function Test-MultipleFileContentRule
     return $false
 }
 
+function Get-FirefoxEnterprisePolicy
+{
+    [CmdletBinding()]
+    [OutputType([pscustomobject])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $CheckContent,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $FixText
+    )
+
+    if ($CheckContent -match 'SSLVersionMin')
+    {
+        $policyJson = '{"SSLVersionMin":"tls1.2"}'
+    }
+    elseif ($CheckContent -match 'ImportEnterpriseRoots')
+    {
+        $policyJson = '{"Certificates":{"ImportEnterpriseRoots":true}}'
+    }
+    elseif ($CheckContent -match 'extensions\.htmlaboutaddons\.recommendations\.enabled')
+    {
+        $policyJson = '{"Preferences":{"extensions.htmlaboutaddons.recommendations.enabled":{"Value":false,"Status":"locked"}}}'
+    }
+    else
+    {
+        $match = [regex]::Match(
+            [System.Net.WebUtility]::HtmlDecode($FixText),
+            '(?is)policies section:\s*(?<fragment>".+)\s*$'
+        )
+        if (-not $match.Success)
+        {
+            return $null
+        }
+
+        $policyJson = "{$($match.Groups['fragment'].Value.Trim())}"
+    }
+
+    try
+    {
+        $policy = $policyJson | ConvertFrom-Json -ErrorAction Stop
+        if ($CheckContent -match 'PopupBlocking' -and $policy.PopupBlocking)
+        {
+            $policy.PopupBlocking.PSObject.Properties.Remove('Allow')
+        }
+
+        $property = @($policy.PSObject.Properties)[0]
+        return [pscustomobject] @{
+            Key   = $property.Name
+            Value = ($policy | ConvertTo-Json -Compress -Depth 20)
+        }
+    }
+    catch
+    {
+        return $null
+    }
+}
+

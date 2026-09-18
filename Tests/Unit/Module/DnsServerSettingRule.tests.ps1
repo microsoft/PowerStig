@@ -8,10 +8,10 @@ try
         #region Test Setup
         $testRuleList = @(
             @{
-                PropertyName = 'EventLogLevel'
-                PropertyValue = '4'
+                PropertyName              = 'EventLogLevel'
+                PropertyValue             = '4'
                 OrganizationValueRequired = $false
-                CheckContent = 'Log on to the DNS server using the Domain Admin or Enterprise Admin account.
+                CheckContent              = 'Log on to the DNS server using the Domain Admin or Enterprise Admin account.
 
                 Press Windows Key + R, execute dnsmgmt.msc.
 
@@ -24,11 +24,11 @@ try
                 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.'
             }
             @{
-                IsExistingRule = $true
-                PropertyName = 'NoRecursion'
-                PropertyValue = '$true'
+                IsExistingRule            = $true
+                PropertyName              = 'NoRecursion'
+                PropertyValue             = '$true'
                 OrganizationValueRequired = $false
-                CheckContent = 'Note: If the Windows DNS server is in the classified network, this check is Not Applicable.
+                CheckContent              = 'Note: If the Windows DNS server is in the classified network, this check is Not Applicable.
 
                 Note: In Windows DNS Server, if forwarders are configured, the recursion setting must also be enabled since disabling recursion will disable forwarders.
 
@@ -49,6 +49,33 @@ try
                 If the DNS Server does not forward to another DoD-managed DNS server or to the DoD Enterprise Recursive Services (ERS), this is a finding.
 
                 If the "Use root hints if no forwarders are available" is selected, this is a finding.'
+            }
+            @{
+                PropertyName              = 'Mode'
+                PropertyValue             = 'Enable'
+                OrganizationValueRequired = $false
+                CheckContent              = 'As an administrator, run PowerShell and enter the following command:
+                "Get-DnsServerResponseRateLimiting".
+
+                If "Mode" is not set to "Enable", this is a finding.'
+            }
+            @{
+                PropertyName              = 'EnableVersionQuery'
+                PropertyValue             = '0'
+                OrganizationValueRequired = $false
+                CheckContent              = 'The "EnableVersionQuery" property controls what version information the DNS server will respond with when a DNS query with class set to "CHAOS" and type set to "TXT" is received.
+
+                If the response returns something similar to text = "Microsoft DNS 6.1.7601 (1DB14556)", this is a finding.'
+            }
+            @{
+                PropertyName = 'DynamicUpdate'
+                PropertyValue = 'Secure'
+                OrganizationValueRequired = $false
+                CheckContent = 'Verify the "Type:" is "Active Directory-Integrated".
+
+                Verify "Dynamic updates" has "Secure only" selected.
+
+                If the zone is "Active Directory-Integrated" and "Dynamic updates" are not configured for "Secure only", this is a finding.'
             }
         )
         #endregion

@@ -102,6 +102,8 @@ configuration WindowsDnsServer
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.Script.RootHint.ps1"
+    . "$resourcePath\windows.Script.DnsResponseRateLimiting.ps1"
+    . "$resourcePath\windows.Script.DnsSecureDynamicUpdate.ps1"
 
     Import-DscResource -ModuleName ComputerManagementDsc -ModuleVersion 8.4.0
     . "$resourcePath\windows.WindowsEventLog.ps1"

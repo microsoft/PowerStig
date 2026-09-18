@@ -11,6 +11,7 @@ foreach ($rule in $rules)
     $filePath = $rule.FilePath.Replace("'", "''")
     $key = $rule.Key.Replace("'", "''")
     $value = $rule.Value.Replace("'", "''")
+    $isBanner = $rule.Key -eq 'Banner'
 
     $scriptBlock = [scriptblock]::Create("
         Script '$resourceTitle'
@@ -18,6 +19,7 @@ foreach ($rule in $rules)
             GetScript =
             {
                 `$path = [Environment]::ExpandEnvironmentVariables('$filePath')
+                `$desiredValue = [Environment]::ExpandEnvironmentVariables('$value')
                 `$line = if (Test-Path -Path `$path)
                 {
                     Get-Content -Path `$path | Where-Object { `$_ -match '(?i)^\s*$key\s+' } | Select-Object -First 1
@@ -33,13 +35,23 @@ foreach ($rule in $rules)
                 }
 
                 `$path = [Environment]::ExpandEnvironmentVariables('$filePath')
+                `$desiredValue = [Environment]::ExpandEnvironmentVariables('$value')
                 if (-not (Test-Path -Path `$path))
                 {
                     return `$false
                 }
 
                 `$matchingLines = @(Get-Content -Path `$path | Where-Object { `$_ -match '(?i)^\s*$key\s+' })
-                return `$matchingLines.Count -eq 1 -and `$matchingLines[0] -match '(?i)^\s*$key\s+$([regex]::Escape($value))\s*(?:#.*)?`$'
+                `$settingMatches = `$matchingLines.Count -eq 1 -and `$matchingLines[0] -match ('(?i)^\s*$key\s+' + [regex]::Escape(`$desiredValue) + '\s*(?:#.*)?`$')
+                if (-not `$settingMatches -or -not '$isBanner')
+                {
+                    return `$settingMatches
+                }
+
+                `$legalNoticeText = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name LegalNoticeText -ErrorAction SilentlyContinue).LegalNoticeText
+                return -not [string]::IsNullOrWhiteSpace(`$legalNoticeText) -and
+                    (Test-Path -Path `$desiredValue) -and
+                    (Get-Content -Path `$desiredValue -Raw) -eq `$legalNoticeText
             }
 
             SetScript =
@@ -50,9 +62,20 @@ foreach ($rule in $rules)
                 }
 
                 `$path = [Environment]::ExpandEnvironmentVariables('$filePath')
+                `$desiredValue = [Environment]::ExpandEnvironmentVariables('$value')
+                if ('$isBanner')
+                {
+                    `$legalNoticeText = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name LegalNoticeText -ErrorAction SilentlyContinue).LegalNoticeText
+                    if ([string]::IsNullOrWhiteSpace(`$legalNoticeText))
+                    {
+                        throw 'LegalNoticeText must be configured before the OpenSSH banner can be enforced.'
+                    }
+                    Set-Content -Path `$desiredValue -Value `$legalNoticeText -Encoding utf8 -NoNewline
+                }
+
                 `$content = if (Test-Path -Path `$path) { @(Get-Content -Path `$path) } else { @() }
                 `$pattern = '(?i)^\s*#?\s*$key\b.*`$'
-                `$replacement = '$key $value'
+                `$replacement = '$key ' + `$desiredValue
                 `$matched = `$false
                 `$updatedContent = foreach (`$line in `$content)
                 {

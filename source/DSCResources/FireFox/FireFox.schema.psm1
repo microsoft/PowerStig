@@ -75,6 +75,7 @@ configuration FireFox
     Import-DscResource -ModuleName PSDSCresources -ModuleVersion 2.12.0.0
     Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.3.1
     . "$resourcePath\firefox.ReplaceText.ps1"
+    . "$resourcePath\firefox.Script.EnterprisePolicy.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.RefreshRegistryPolicy.ps1"

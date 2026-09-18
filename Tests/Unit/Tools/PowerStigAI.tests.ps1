@@ -93,6 +93,10 @@ InModuleScope $script:ModuleName {
             $report.Totals.SourceRules | Should Be 4
             $report.Totals.SuccessfulRules | Should Be 1
             $report.Totals.ManualRules | Should Be 2
+            $report.Totals.NonAutomatedRules | Should Be 2
+            $report.Totals.DocumentaryRules | Should Be 1
+            $report.Totals.ManualFallbackRules | Should Be 1
+            $report.Totals.TypedUnenforcedRules | Should Be 0
             $report.Totals.FailedRules | Should Be 1
             $report.Totals.MissingRules | Should Be 0
         }

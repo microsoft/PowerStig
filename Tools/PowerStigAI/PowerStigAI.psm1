@@ -88,19 +88,44 @@ function Get-PowerStigBatchDocumentReport
         $sourceRuleIds |
         Where-Object { $PSItem -in $convertedRuleIds -and $PSItem -notin $failedRuleIds -and $PSItem -notin $manualRuleIds }
     )
+    $documentaryRuleIds = @(
+        $convertedRuleGroups |
+        Where-Object {
+            $PSItem.Name -in $manualRuleIds -and
+            'DocumentRule' -in @($PSItem.Group.ParentNode.Name)
+        } |
+        Select-Object -ExpandProperty Name
+    )
+    $manualFallbackRuleIds = @(
+        $convertedRuleGroups |
+        Where-Object {
+            $PSItem.Name -in $manualRuleIds -and
+            $PSItem.Name -notin $documentaryRuleIds -and
+            'ManualRule' -in @($PSItem.Group.ParentNode.Name)
+        } |
+        Select-Object -ExpandProperty Name
+    )
+    $typedUnenforcedRuleIds = @(
+        $manualRuleIds |
+        Where-Object { $PSItem -notin $documentaryRuleIds -and $PSItem -notin $manualFallbackRuleIds }
+    )
     $missingRuleIds = @($sourceRuleIds | Where-Object { $PSItem -notin $convertedRuleIds })
 
     return [pscustomobject] @{
-        Archive         = $Archive
-        Xccdf           = Split-Path -Path $XccdfPath -Leaf
-        Output          = $ConvertedPath
-        SourceRules     = $sourceRuleIds.Count
-        SuccessfulRules = $successfulRuleIds.Count
-        ManualRules     = $manualRuleIds.Count
-        FailedRules     = $failedRuleIds.Count
-        MissingRules    = $missingRuleIds.Count
-        FailedRuleIds   = $failedRuleIds
-        MissingRuleIds  = $missingRuleIds
+        Archive              = $Archive
+        Xccdf                = Split-Path -Path $XccdfPath -Leaf
+        Output               = $ConvertedPath
+        SourceRules          = $sourceRuleIds.Count
+        SuccessfulRules      = $successfulRuleIds.Count
+        ManualRules          = $manualRuleIds.Count
+        NonAutomatedRules    = $manualRuleIds.Count
+        DocumentaryRules     = $documentaryRuleIds.Count
+        ManualFallbackRules  = $manualFallbackRuleIds.Count
+        TypedUnenforcedRules = $typedUnenforcedRuleIds.Count
+        FailedRules          = $failedRuleIds.Count
+        MissingRules         = $missingRuleIds.Count
+        FailedRuleIds        = $failedRuleIds
+        MissingRuleIds       = $missingRuleIds
     }
 }
 
@@ -253,13 +278,17 @@ function Convert-PowerStigZipFolder
         SourcePath  = $sourcePath
         Destination = $destinationPath
         Totals      = [ordered] @{
-            Archives        = $archives.Count
-            Documents       = $documentReports.Count
-            SourceRules     = ($documentReports.SourceRules | Measure-Object -Sum).Sum
-            SuccessfulRules = ($documentReports.SuccessfulRules | Measure-Object -Sum).Sum
-            ManualRules     = ($documentReports.ManualRules | Measure-Object -Sum).Sum
-            FailedRules     = ($documentReports.FailedRules | Measure-Object -Sum).Sum
-            MissingRules    = ($documentReports.MissingRules | Measure-Object -Sum).Sum
+            Archives             = $archives.Count
+            Documents            = $documentReports.Count
+            SourceRules          = ($documentReports.SourceRules | Measure-Object -Sum).Sum
+            SuccessfulRules      = ($documentReports.SuccessfulRules | Measure-Object -Sum).Sum
+            ManualRules          = ($documentReports.ManualRules | Measure-Object -Sum).Sum
+            NonAutomatedRules    = ($documentReports.NonAutomatedRules | Measure-Object -Sum).Sum
+            DocumentaryRules     = ($documentReports.DocumentaryRules | Measure-Object -Sum).Sum
+            ManualFallbackRules  = ($documentReports.ManualFallbackRules | Measure-Object -Sum).Sum
+            TypedUnenforcedRules = ($documentReports.TypedUnenforcedRules | Measure-Object -Sum).Sum
+            FailedRules          = ($documentReports.FailedRules | Measure-Object -Sum).Sum
+            MissingRules         = ($documentReports.MissingRules | Measure-Object -Sum).Sum
         }
         Documents   = @($documentReports)
         Archives    = @($batchResults)
